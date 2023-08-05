@@ -1,0 +1,31 @@
+Metadata-Version: 1.2
+Name: tweepyauth
+Version: 1.1.1
+Summary: A small library to ease tweepy authentication
+Home-page: https://gitlab.com/mocchapi/tweepyauth
+Author: mocchapi
+Author-email: mocchapi@gmail.com
+License: UNKNOWN
+Description: ## tweepyAuth
+        have you ever wanted to easily get a tweepy api object without any hassle?
+        this is the project for you!
+        its this simple:
+        ```py
+        import tweepyauth 
+        import tweepy
+        api = tweepyauth.auto_authenticate()
+        print(api.me())
+        ```
+        
+        you can install this great library using pip with `pip3 install tweepyauth` 
+        ___
+        optional arguments for auto_authenticate() are as follows:
+        
+        `tokenfile=` (string) the file to read from or write twitter tokens to [defaults to `'twitter_tokens.txt'`]  
+        `keyfile=` (string) the file to read from or write twitter (consumer) keys to [defaults to `'twitter_keys.txt'`]  
+        `silent=` (bool) determines if console output should be printed [defaults to `False`]
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
