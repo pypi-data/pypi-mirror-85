@@ -1,0 +1,58 @@
+{
+    "plugin": {
+        "title": "Chat",
+        "packageName": "peek_plugin_chat",
+    "version":"2.5.2",
+        "buildNumber": "#PLUGIN_BUILD#",
+        "buildDate": "#BUILD_DATE#",
+        "creator": "Synerty Pty Ltd",
+        "website": "www.synerty.com"
+    },
+    "requiresServices": [
+        "server",
+        "client",
+        "storage",
+        "admin",
+        "mobile",
+        "doc-dev",
+        "doc-admin",
+        "doc-user"
+    ],
+    "doc-dev": {
+        "docDir": "doc-dev",
+        "docRst": "index.rst",
+        "hasApi": true
+    },
+    "doc-admin": {
+        "docDir": "doc-admin",
+        "docRst": "index.rst"
+    },
+    "doc-user": {
+        "docDir": "doc-user",
+        "docRst": "index.rst"
+    },
+    "server": {
+    },
+    "client": {
+    },
+    "storage": {
+        "alembicDir": "_private/alembic"
+    },
+    "admin": {
+        "showHomeLink": true,
+        "appDir": "_private/admin-app",
+        "appModule": "chat.module#ChatModule",
+        "moduleDir": "plugin-module"
+    },
+    "mobile": {
+        "showHomeLink": true,
+        "appDir": "_private/mobile-app",
+        "appModule": "chat.module#ChatModule",
+        "assetDir": "_private/mobile-assets",
+        "icon": "/assets/peek_plugin_chat/icon.png",
+        "moduleDir": "plugin-module"
+    },
+    "desktop": {
+        "moduleDir": "plugin-module"
+    }
+}

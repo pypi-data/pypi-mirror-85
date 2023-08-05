@@ -1,0 +1,54 @@
+<div class="mobile-dialog"
+     [@dialogAnimation]="dialogAnimationState"
+     (@dialogAnimation.done)="animationDone($event)">
+    <div class="container-fluid">
+
+        <label class="dialog-label">
+            Start a chat with:
+        </label>
+
+        <label class="dialog-value"
+               *ngIf="!createButtonEnabled()">
+            No users selected
+        </label>
+
+        <label class="dialog-value bg-success"
+               *ngFor="let user of data.users">
+            {{user.displayName}}
+        </label>
+
+        <div class="form-group"
+        *ngIf="usersStrList.length > 0">
+            <label class="dialog-label"
+                   for="userIdField">
+                Add User:
+            </label>
+            <select class="form-control dialog-selector"
+                    id="userIdField"
+                    name="userId"
+                    [(ngModel)]="selectedUserIndex">
+                <option [value]="i" *ngFor="let i = index; let item of usersStrList">
+                    {{item}}
+                </option>
+            </select>
+        </div>
+
+
+        <!-- BEGIN HANDBACK DIALOG -->
+        <div class="btn-group pull-right">
+            <Button class="dialog-action-btn" (click)="addUserClicked()"
+                    [disabled]="!newButtonEnabled()">
+                Add User
+            </Button>
+
+            <Button class="dialog-action-btn" (click)="confirmClicked(false)"
+                    [disabled]="!createButtonEnabled()">
+                Create Chat
+            </Button>
+
+            <Button class="dialog-action-btn" (click)="cancelClicked(false)">
+                Cancel
+            </Button>
+        </div>
+    </div>
+</div>

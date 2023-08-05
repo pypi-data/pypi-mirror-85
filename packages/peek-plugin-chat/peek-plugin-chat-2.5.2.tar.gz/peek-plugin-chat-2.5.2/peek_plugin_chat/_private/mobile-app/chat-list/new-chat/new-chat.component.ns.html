@@ -1,0 +1,65 @@
+<StackLayout class="mobile-dialog">
+
+    <!--
+    using GridLayout can spread the ListView to fill the space and
+    send the Picker and buttons to the bottom of the screen.
+    -->
+    <GridLayout rows="auto, auto, auto" columns="*">
+
+        <GridLayout row="0" col="0"
+                    rows="auto" columns="auto, *">
+            <GridLayout row="0" col="0"
+                        rows="auto, *" columns="*">
+                <Label row="0" col="0"
+                       class="dialog-label"
+                       text="Start a chat with:"></Label>
+            </GridLayout>
+
+            <Label *ngIf="!createButtonEnabled()"
+                   row="0" col="1"
+                   class="dialog-value"
+                   text="No users selected"></Label>
+
+            <WrapLayout *ngIf="createButtonEnabled()"
+                        row="0" col="1"
+                        [items]="data.users">
+                <Label class="dialog-value bg-success"
+                       *ngFor="let user of data.users"
+                       [text]="user.displayName"></Label>
+            </WrapLayout>
+        </GridLayout>
+
+        <StackLayout class="input-field"
+                     row="1" col="0"
+                     horizontalAlignment="stretch"
+                     *ngIf="usersStrList.length > 0">
+            <ListPicker #picker class="dialog-value"
+                        [items]="usersStrList"
+                        (selectedIndexChange)="selectedUserIndex = picker.selectedIndex">
+            </ListPicker>
+        </StackLayout>
+
+        <GridLayout row="2" col="0"
+                    rows="auto" columns="*,auto, auto, auto"
+                    class="dialog-action-btn-group">
+            <Button class="dialog-action-btn dialog-action-btn-divider"
+                    [class.dialog-action-btn-disabled]="!newButtonEnabled()"
+                    [isEnabled]="newButtonEnabled()"
+                    row="0" col="1"
+                    (tap)="addUserClicked()"
+                    text="Add User"></Button>
+            <Button class="dialog-action-btn dialog-action-btn-divider"
+                    [class.dialog-action-btn-disabled]="!createButtonEnabled()"
+                    [isEnabled]="createButtonEnabled()"
+                    row="0" col="2"
+                    text="Create Chat"
+                    (tap)="confirmClicked(true)">
+            </Button>
+            <Button class="dialog-action-btn"
+                    row="0" col="3"
+                    text="Cancel"
+                    (tap)="cancelClicked(true)">
+            </Button>
+        </GridLayout>
+    </GridLayout>
+</StackLayout>

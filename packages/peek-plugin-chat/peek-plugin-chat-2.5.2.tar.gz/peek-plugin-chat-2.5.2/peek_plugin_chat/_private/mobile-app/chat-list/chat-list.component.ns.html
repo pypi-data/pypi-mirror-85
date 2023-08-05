@@ -1,0 +1,51 @@
+<StackLayout>
+
+    <!--NEW CHAT DIALOG -->
+    <pl-chat-new-chat
+            *ngIf="isNewChatDialogShown()"
+            (create)="dialogConfirmed($event)"
+            (cancel)="dialogCanceled()"
+            [data]="newChatDialogData">
+
+    </pl-chat-new-chat>
+
+    <GridLayout class="peek-nav-section"
+                rows="auto" columns="auto, *, auto"
+                *ngIf="!isNewChatDialogShown()">
+        <GridLayout class="btn-group"
+                    row="0" col="2"
+                    rows="auto" columns="auto">
+            <Button class="nav-section-btn fa"
+                    text="{{'fa-plus' | fonticon }} New Chat"
+                    (tap)="newChatClicked()"></Button>
+        </GridLayout>
+    </GridLayout>
+    <StackLayout class="hr"></StackLayout>
+
+    <!-- chat list -->
+    <GridLayout columns="*" rows="*">
+        <ListView class="plugin-chat-list" [items]="chats">
+            <StackLayout *ngFor="let i = index; let chat of chats"
+                         (tap)="chatClicked(chat)">
+                <Border class="chat-list-messages"
+                        [class.bg-info]="!isChatRead(chat)"
+                        [class.bg-secondary]="isChatRead(chat)">
+                    <WrapLayout class="chat-list-group">
+
+                        <!-- Unread indicator -->
+                        <Label *ngIf="!isChatRead(chat)"
+                               class="fa chat-list-icon"
+                               [text]="'fa-comment-o' | fonticon"></Label>
+
+                        <!-- Users -->
+                        <WrapLayout *ngFor="let user of otherChatUsers(chat)">
+                            <Label class="chat-list-title" textWrap="true"
+                                   text="{{userDisplayName(user)}} ({{user.userId}}) "></Label>
+                        </WrapLayout>
+                    </WrapLayout>
+                </Border>
+            </StackLayout>
+        </ListView>
+    </GridLayout>
+</StackLayout>
+
