@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: rcsb.utils.io
+Version: 0.82
+Summary: RCSB Python I/O Utility Classes
+Home-page: https://github.com/rcsb/py-rcsb_utils_io
+Author: John Westbrook
+Author-email: john.westbrook@rcsb.org
+License: Apache 2.0
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: pytz
+Requires-Dist: python-dateutil
+Requires-Dist: mmcif (>=0.54)
+Requires-Dist: ruamel.yaml
+Requires-Dist: requests (>=2.23.0)
+Requires-Dist: rcsb.utils.validation (>=0.20)
+Requires-Dist: PyNaCl (>=1.3.0)
+Requires-Dist: paramiko (>=2.7)
+Requires-Dist: psutil (>=5.7.2)
+Requires-Dist: backports.tempfile ; python_version < "3.0"
+Requires-Dist: numpy ; sys_platform != "darwin"
+Requires-Dist: numpy (==1.16.6) ; sys_platform == "darwin" and python_version < "3.0"
+Requires-Dist: numpy (==1.18.0) ; sys_platform == "darwin" and python_version > "3.0"
+Provides-Extra: dev
+Requires-Dist: check-manifest ; extra == 'dev'
+Provides-Extra: test
+Requires-Dist: coverage ; extra == 'test'
+
+See:  README.md
+
+
