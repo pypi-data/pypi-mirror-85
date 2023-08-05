@@ -1,0 +1,69 @@
+Metadata-Version: 2.1
+Name: cryptonator
+Version: 0.0.4
+Summary: A simple wrapper for the cryptonator exchange rate API.
+Home-page: https://github.com/aldur/cryptonator
+Author: Adriano Di Luzio
+Author-email: adrianodl@hotmail.it
+License: MIT
+Keywords: cryptonator
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Development Status :: 6 - Mature
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Financial and Insurance Industry
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Office/Business :: Financial
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+
+# Cryptonator Python API
+
+A simple wrapper for the [Cryptonator](https://www.cryptonator.com/api/) exchange rate API.
+
+## Install
+
+You can either install Cryptonator by using `pip`, or simply copy the
+`cryptonator.py` file in you project root directory.
+
+```bash
+$ pip install cryptonator  # add --user if you want
+```
+
+## Usage
+
+```python
+import cryptonator
+
+"""Get an exchange rate between two currencies."""
+cryptonator.get_exchange_rate('usd', 'eur')
+# 0.95147479
+
+"""A Cryptonator API object can speed-up things if you need multiple calls."""
+api = cryptonator.Cryptonator()
+
+"""Get an exchange rate between a single curreny and many targets."""
+api.get_exchange_rates('usd', ['eur', 'btc', 'xrp'])
+# {'btc': 0.00136076, 'eur': 0.95147479, 'xrp': 144.71780029}
+```
+
+## Testing
+
+Tests can be found in `test_cryptonator.py`.
+You can launch them with:
+
+```bash
+$ python test_cryptonator.py
+```
+
+
