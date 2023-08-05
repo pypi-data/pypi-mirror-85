@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: BackTranslation
+Version: 0.1
+Summary: Back translation for Natural Language Processing (NLP) using Google Translate
+Home-page: https://github.com/hhhwwwuuu/BackTranslation
+Author: Zhiqiang Wu
+Author-email: wzq0515@gmail.com
+License: MIT
+Keywords: Translation,NLP,back-translation
+Platform: UNKNOWN
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.0
+Requires-Python: >=3
+Description-Content-Type: text/markdown
+Requires-Dist: googletrans
+Requires-Dist: nltk
+
+# BackTranslation
+[![version](https://img.shields.io/badge/version-0.1-blue)]()
+[![license](https://img.shields.io/badge/license-MIT-green)](https://github.com/hhhwwwuuu/BackTranslation/blob/main/LICENSE)
+Back translation for NLP using Google Translator.
+
+### Installation
+```bash
+$ pip install BackTranslation
+```
+
+## Usage
+### Backtranslation
+```python
+from BackTranslation import BackTranslation
+trans = BackTranslation()
+result = trans.translate('hello', src='en', tmp = 'zh-cn')
+print(result.result_text)
+# 'Hello there'
+```
+
+### Search the language code
+
+```python
+from BackTranslation import BackTranslation
+trans = BackTranslation()
+trans.searchLanguage('Chinese')
+# {'chinese (simplified)': 'zh-cn', 'chinese (traditional)': 'zh-tw'}
+```
+
+
+## reference
+- [googletrans](https://py-googletrans.readthedocs.io/en/latest/)
+
