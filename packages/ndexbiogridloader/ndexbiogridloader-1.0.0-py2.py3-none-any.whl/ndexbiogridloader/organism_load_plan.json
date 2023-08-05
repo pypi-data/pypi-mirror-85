@@ -1,0 +1,88 @@
+{
+    "context":
+    {
+        "ncbigene": "http://identifiers.org/ncbigene/",
+        "pubmed":  "http://identifiers.org/pubmed/"
+    },
+    "source_plan":
+    {
+        "rep_column": "Entrez Gene Interactor A",
+        "rep_prefix": "ncbigene",
+        "node_name_column": "Official Symbol Interactor A",
+        "property_columns":
+           [
+             {"column_name": "Organism Interactor A",
+                "attribute_name": "Organism Taxon Id"},
+
+             {  "column_name": "Synonyms Interactor A",
+                "attribute_name": "alias",
+                "delimiter" : "|" },
+
+            {
+                "attribute_name": "type",
+                "default_value": "protein"
+            }
+           ]
+    },
+    "target_plan":
+    {
+        "rep_column": "Entrez Gene Interactor B",
+        "node_name_column": "Official Symbol Interactor B",
+        "rep_prefix": "ncbigene",
+        "property_columns":
+           [
+              {"column_name": "Organism Interactor B",
+                "attribute_name": "Organism Taxon Id"},
+
+             {  "column_name": "Synonyms Interactor B",
+                "attribute_name": "alias",
+                "delimiter" : "|"
+             },
+             {
+                "attribute_name": "type",
+                "default_value": "protein"
+             }
+           ]
+    },
+    "edge_plan":
+    {
+        "default_predicate": "interacts-with",
+        "property_columns": [
+               {
+                    "column_name": "Experimental System",
+                    "delimiter": "|"
+               },
+               {
+                    "column_name": "Experimental System Type",
+                    "data_type": "list_of_string"
+               },
+               {
+                    "column_name": "Pubmed ID",
+                    "attribute_name": "citation",
+                    "value_prefix": "pubmed",
+                    "delimiter": "|"
+               },
+               {
+                    "column_name": "Throughput",
+                    "data_type": "list_of_string"
+                },
+               {
+                    "column_name": "Score",
+                    "data_type": "list_of_double"
+                },
+               {
+                    "column_name": "Modification",
+                    "delimiter": "|"
+                },
+               {
+                    "column_name": "Phenotypes",
+                    "delimiter": "|"
+                },
+               {
+                    "column_name": "Qualifications",
+                    "delimiter": "|"
+                }
+
+        ]
+    }
+}
