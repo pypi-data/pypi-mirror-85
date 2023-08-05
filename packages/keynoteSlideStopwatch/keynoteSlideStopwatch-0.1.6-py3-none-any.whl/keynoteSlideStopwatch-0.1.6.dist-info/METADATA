@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: keynoteSlideStopwatch
+Version: 0.1.6
+Summary: Allows to measure the time spent on each slide during a presentation with Apple Keynote.
+Home-page: https://github.com/casiez/KeynoteSlideStopwatch
+Author: Géry Casiez
+Author-email: gery.casiez@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: MacOS
+Description-Content-Type: text/markdown
+Requires-Dist: py-applescript
+Requires-Dist: pyobjc (==6.1)
+Requires-Dist: datetime
+
+# Keynote Slide Stopwatch
+
+Allows to measure the time spent on each slide during a presentation with Apple Keynote.
+
+Install using ```pip install keynoteSlideStopwatch```
+
+1. run ```keynoteSlideStopwatch``` from a terminal
+1. play your presentation. The time spent on a slide is automatically measured from the previous slide change to the next one.
+
+The time spent for each slide will appear in the terminal as such:
+
+```
+Press CTRL+C to quit
+slide 8 - 00:16
+slide 9 - 00:10
+slide 10 - 00:03
+slide 11 - 00:10
+Total - 00:00:39
+```
+
+
