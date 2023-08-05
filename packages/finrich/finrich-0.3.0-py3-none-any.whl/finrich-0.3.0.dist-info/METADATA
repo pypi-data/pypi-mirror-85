@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: finrich
+Version: 0.3.0
+Summary: Calculate enrichment of genomic regions with fine-mapping signals
+Home-page: https://github.com/anthony-aylward/finrich.git
+Author: Anthony Aylward
+Author-email: aaylward@eng.ucsd.edu
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: pybedtools
+Requires-Dist: scipy
+
+# finrich
+
+Calculate enrichment of genomic regions with fine-mapping signals
+
+## Installation
+
+```sh
+pip3 install finrich
+```
+or
+```sh
+pip3 install --user finrich
+```
+
+## Example
+```
+finrich --help
+finrich finemap.bed regions.bed background.bed --permutations 1000 --processes 2
+```
+
+
