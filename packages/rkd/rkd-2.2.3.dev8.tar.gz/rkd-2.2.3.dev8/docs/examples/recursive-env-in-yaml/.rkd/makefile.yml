@@ -1,0 +1,14 @@
+version: org.riotkit.rkd/yaml/v1
+
+tasks:
+    :hello:
+        environment:
+            FIRST: "First"
+            SECOND: "Second"
+            THIRD: "Escaped one"
+            ALL: ${FIRST} ${SECOND} \${THIRD}
+        steps: echo "${ALL}"
+
+    :external-env:
+        description: Prints env set from outside of RKD (use export HELLO_MSG="..." first)
+        steps: "echo \" >> ${HELLO_MSG}\""
