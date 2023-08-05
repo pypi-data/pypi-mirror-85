@@ -1,0 +1,7 @@
+version: '3.6'
+services:
+  dev:
+    volumes:
+      - ${REMOTE_PATH}:/workspace
+    env_file:
+      - .env
