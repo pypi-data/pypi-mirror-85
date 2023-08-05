@@ -1,0 +1,27 @@
+Metadata-Version: 1.2
+Name: generate_tiff_offsets
+Version: 0.1.0
+Summary: A cli tool for generating IFD offsets within a tiff file, useful for optimizing load times of remote tiff files in viewers like viv.
+Home-page: https://github.com/ilan-gold/generate_tiff_offsets
+Author: Ilan Gold
+Author-email: ilan_gold@hms.harvard.edu
+License: MIT license
+Description: A cli tool for generating IFD offsets within a tiff file, useful for optimizing load times of remote tiff files in viewers like [viv](https://github.com/hms-dbmi/viv).  An `offsets.json` file is written out adjacent to the input file in the folder from which the original file comes.  This is exactly what a tool like [Avivator](http://avivator.gehlenborglab.org)
+        
+        ```
+        pip install generate-tiff-offsets
+        generate_tiff_offsets --input-file my_file.ome.tiff
+        ```
+        
+Keywords: generate_tiff_offsets
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.5
