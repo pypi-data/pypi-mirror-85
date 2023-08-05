@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: python-darc
+Version: 0.9.0
+Summary: Darkweb crawler & search engine.
+Home-page: https://github.com/JarryShaw/darc
+Author: Jarry Shaw
+Author-email: jarryshaw@icloud.com
+Maintainer: Jarry Shaw
+Maintainer-email: jarryshaw@icloud.com
+License: BSD 3-Clause License
+Download-URL: https://github.com/JarryShaw/darc/archive/v0.9.0.tar.gz
+Description: ``darc`` - Darkweb Crawler Project
+        ========================================
+        
+        ``darc`` is designed as a swiss army knife for darkweb crawling.
+        It integrates ``requests`` to collect HTTP request and response
+        information, such as cookies, header fields, etc. It also bundles
+        ``selenium`` to provide a fully rendered web page and screenshot
+        of such view.
+        
+        The general process of ``darc`` can be described as following:
+        
+        There are two types of *workers*:
+        
+        * ``crawler`` -- runs the ``darc.crawl.crawler`` to provide a
+          fresh view of a link and test its connectability
+        
+        * ``loader`` -- run the ``darc.crawl.loader`` to provide an
+          in-depth view of a link and provide more visual information
+        
+        
+Keywords: darkweb,crawler
+Platform: any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Software Development
+Classifier: Topic :: Utilities
+Classifier: Typing :: Typed
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
+Provides-Extra: SQLite
+Provides-Extra: MySQL
+Provides-Extra: PostgreSQL
