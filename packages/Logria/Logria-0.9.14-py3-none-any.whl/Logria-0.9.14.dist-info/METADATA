@@ -1,0 +1,107 @@
+Metadata-Version: 2.1
+Name: Logria
+Version: 0.9.14
+Summary: A powerful CLI tool that puts log analytics at your fingertips.
+Home-page: https://github.com/ReagentX/Logria-py
+Author: Christopher Sardegna
+Author-email: logria@reagentx.net
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console :: Curses
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: System :: Logging
+Classifier: Topic :: Internet :: Log Analysis
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+![Logria Logo](/resources/branding/logria.svg)
+
+# Logria Python Proof of Concept
+
+A powerful CLI tool that puts log analytics at your fingertips. This is the Python Proof of Concept repository; the [main version](https://github.com/ReagentX/Logria/) is written in Rust.
+
+## tl;dr
+
+- Live filtering of data from other processes, replacing `grep`
+- Use shell commands or files as input, save sessions and come back later
+- Replace regex/filter without killing the process or losing the stream's history
+- Parse logs using user-defined rules, apply analytics methods on top
+- Pure Python, fully type hinted, zero dependencies
+
+## Installation
+
+There are several options to install this app.
+
+### Normal Usage
+
+`pip install logria`
+
+### Development
+
+See [Advanced Installation](docs/README.md#advanced-installation).
+
+## Usage
+
+There are a few main ways to invoke Logria:
+
+- Directly:
+  - `logria`
+  - Opens to the setup screen
+- With args:
+  - `logria -e 'tail -f log.txt'`
+  - Opens a pipe to `tail -f log.txt` and skips setup
+  - `logria -h` will show the help page with all possible options
+
+For more details, see [Sample Usage Session](docs/README.md#sample-usage-session).
+
+## Key Commands
+
+| Key | Command |
+|--|--|
+| `:` | [command mode](docs/commands.md) |
+| `/` | regex search |
+| `h` | if regex active, toggle highlighting of matches |
+| `i` | toggle insert mode (default off) |
+| `s` | swap reading `stdin` and `stdout` |
+| `p` | activate parser |
+| `a` | toggle analytics mode when parser is active |
+| `z` | deactivate parser |
+| ↑ | scroll buffer up one line |
+| ↓ | scroll buffer down one line |
+| → | skip and stick to end of buffer |
+| ← | skip and stick to beginning of buffer |
+
+## Features
+
+Here are some of the ways you can leverage Logria:
+
+### Live stream of log data
+
+![logria](/resources/screenshots/logria.png)
+
+### Interactive, live, editable grep
+
+![regex](/resources/screenshots/regex.png)
+
+### Live log message parsing
+
+![parser](/resources/screenshots/parser.png)
+
+### Live analytics/statistics tracking
+
+![analytics](/resources/screenshots/analytics.png)
+
+### User-defined saved sessions
+
+See [session](/docs/sessions.md) docs.
+
+### User-defined saved log parsing methods
+
+See [patterns](/docs/patterns.md) docs.
+
+
