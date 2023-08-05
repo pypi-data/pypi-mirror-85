@@ -1,0 +1,29 @@
+<div class="container">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <!-- Home Tab -->
+        <li role="presentation" class="active">
+            <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a>
+        </li>
+        <!-- Edit Settings Tab -->
+        <li role="presentation">
+            <a href="#editSetting" aria-controls="editSetting" role="tab"
+               data-toggle="tab">Edit Settings</a>
+        </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <!-- Edit Settings Tab -->
+        <div role="tabpanel" class="tab-pane" id="editSetting">
+            <pl-gis-diagram-edit-setting></pl-gis-diagram-edit-setting>
+        </div>
+        <!-- Home Tab -->
+        <div role="tabpanel" class="tab-pane active" id="home">
+            <h1 class="text-center">GIS Diagram</h1>
+            <p>This plugin creates a GIS version of the diagram,
+            making it easier for other plugins to use the APIs.</p>
+        </div>
+
+    </div>
+</div>

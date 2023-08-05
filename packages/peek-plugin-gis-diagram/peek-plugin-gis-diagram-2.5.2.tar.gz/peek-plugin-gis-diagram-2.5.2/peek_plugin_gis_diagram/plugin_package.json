@@ -1,0 +1,82 @@
+{
+    "plugin": {
+        "title": "GIS Diagram",
+        "packageName": "peek_plugin_gis_diagram",
+        "version": "2.5.2",
+        "buildNumber": "#PLUGIN_BUILD#",
+        "buildDate": "#BUILD_DATE#",
+        "creator": "Synerty Pty Ltd",
+        "website": "www.synerty.com"
+    },
+    "requiresServices": [
+        "server",
+        "storage",
+        "client",
+        "mobile",
+        "desktop",
+        "doc-user"
+    ],
+    "server": {
+    },
+    "doc-user": {
+        "docDir": "doc-user",
+        "docRst": "index.rst"
+    },
+    "storage": {
+        "alembicDir": "_private/alembic"
+    },
+    "admin": {
+        "showHomeLink": true,
+        "appDir": "_private/admin-app",
+        "appModule": "gisDiagram.module#GisDiagramModule",
+        "moduleDir": "plugin-module"
+    },
+    "client": {
+    },
+    "mobile": {
+        "showHomeLink": true,
+        "appDir": "_private/both-app",
+        "appModule": "gisDiagram.module#GisDiagramModule",
+        "assetDir": "_private/both-assets",
+        "icon": "/assets/peek_plugin_gis_diagram/icon.png",
+        "moduleDir": "plugin-module",
+        "rootServices": [
+            {
+                "file": "GisDiagramPositionService",
+                "class": "GisDiagramPositionService",
+                "useClassFile": "_private/services/PrivateGisDiagramPositionService",
+                "useClassClass": "PrivateGisDiagramPositionService",
+                "persistent": true
+            },
+            {
+                "file": "GisDiagramToolbarService",
+                "class": "GisDiagramToolbarService",
+                "persistent": true
+            }
+        ]
+    },
+    "agent": {
+    },
+    "desktop": {
+        "showHomeLink": true,
+        "appDir": "_private/both-app",
+        "appModule": "gisDiagram.module#GisDiagramModule",
+        "assetDir": "_private/both-assets",
+        "icon": "/assets/peek_plugin_gis_diagram/icon.png",
+        "moduleDir": "plugin-module",
+        "rootServices": [
+            {
+                "file": "GisDiagramPositionService",
+                "class": "GisDiagramPositionService",
+                "useClassFile": "_private/services/PrivateGisDiagramPositionService",
+                "useClassClass": "PrivateGisDiagramPositionService",
+                "persistent": true
+            },
+            {
+                "file": "GisDiagramToolbarService",
+                "class": "GisDiagramToolbarService",
+                "persistent": true
+            }
+        ]
+    }
+}
