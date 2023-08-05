@@ -1,0 +1,65 @@
+{
+    "plugin": {
+        "title": "DocDB Generic Menu",
+        "packageName": "peek_plugin_docdb_generic_menu",
+    "version":"2.5.2",
+        "buildNumber": "#PLUGIN_BUILD#",
+        "buildDate": "#BUILD_DATE#",
+        "creator": "Synerty Pty Ltd",
+        "website": "www.synerty.com"
+    },
+    "requiresServices": [
+        "server",
+        "storage",
+        "admin",
+        "client",
+        "mobile",
+        "desktop",
+        "doc-admin"
+    ],
+    "server": {
+    },
+    "doc-admin": {
+        "docDir": "doc-admin",
+        "docRst": "index.rst"
+    },
+    "storage": {
+        "alembicDir": "_private/alembic"
+    },
+    "admin": {
+        "showHomeLink": true,
+        "appDir": "_private/admin-app",
+        "appModule": "docDbGenericMenu.module#DocDbGenericMenuModule",
+        "moduleDir": "plugin-module"
+    },
+    "client": {
+    },
+    "mobile": {
+        "moduleDir": "plugin-module",
+        "rootServices": [
+            {
+                "file": "_private/services/PrivateGenericTupleService",
+                "class": "PrivateGenericTupleService"
+            },
+            {
+                "file": "_private/services/PrivateGenericMenuService",
+                "class": "PrivateGenericMenuService",
+                "persistent": true
+            }
+        ]
+    },
+    "desktop": {
+        "moduleDir": "plugin-module",
+        "rootServices": [
+            {
+                "file": "_private/services/PrivateGenericTupleService",
+                "class": "PrivateGenericTupleService"
+            },
+            {
+                "file": "_private/services/PrivateGenericMenuService",
+                "class": "PrivateGenericMenuService",
+                "persistent": true
+            }
+        ]
+    }
+}
