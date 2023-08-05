@@ -1,0 +1,38 @@
+# activate Virtual env
+. venv/bin/activate
+
+# to run the app
+export FLASK_APP=main.py
+django run
+
+# this should probably work
+FLASK_APP=main.py django run
+
+# to run debug mode + automatic reloader, set the following var
+export FLASK_ENV=development
+
+# All together
+FLASK_ENV=development FLASK_APP=main.py django run
+
+
+# builds the release version
+python setup.py bdist_wheel
+
+# install the package (from local source)
+pip install -e . --user
+
+
+# build the distributable
+python setup.py sdist
+
+# build release and distributable
+python setup.py bdist_wheel sdist
+
+# Upload distributable
+twine upload dist/*
+
+
+# Django
+python manage.py migrate
+python manage.py runserver
+python manage.py startapp polls
