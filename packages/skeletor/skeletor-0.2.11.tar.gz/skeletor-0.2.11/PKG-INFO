@@ -1,0 +1,142 @@
+Metadata-Version: 2.1
+Name: skeletor
+Version: 0.2.11
+Summary: Python 3 implementation of Skeleton Extraction by Mesh contraction algorithm
+Home-page: https://github.com/schlegelp/skeletor
+Author: Philipp Schlegel
+Author-email: pms70@cam.ac.uk
+License: GNU GPL V3
+Description: # Skeletor
+        Unlike its [namesake](https://en.wikipedia.org/wiki/Skeletor), this Python 3
+        library does not (yet) seek to conquer Eternia but to turn meshes into skeletons.
+        
+        The pipeline looks like this:
+        
+         1. `skeletor.contract()` to contract the mesh [1]
+         2. `skeletor.skeletonize()` to generate a skeleton either by _edge collapse_
+            [1] (slow) or by _vertex clustering_ (very fast)
+         3. `skeletor.clean()` to clean up some potential issues with the skeleton
+         4. `skeletor.radii()` to extract radii either by k-nearest neighbours or ray-casting
+        
+         Optional:
+         - `skeletor.simplify()` to simplify overly detailed meshes before contracting
+           them (requires [Blender3d](https://www.blender.org) to be installed)
+        
+         Check out the Gotchas below!
+        
+        ## Install
+        
+        `pip3 install git+git://github.com/schlegelp/skeletor@master`
+        
+        #### Dependencies
+        Automatically installed with `pip`:
+        - `networkx`
+        - `numpy`
+        - `pandas`
+        - `scipy`
+        - `scikit-learn`
+        - `trimesh`
+        - `tqdm`
+        
+        Optional because not strictly required for the core functions but highly recommended:
+        - [fastremap](https://github.com/seung-lab/fastremap) for sizeable speed-ups: `pip3 install fastremap`
+        - [ncollpyde](https://github.com/clbarnes/ncollpyde) for ray-casting (radii, clean-up): `pip3 install ncollpyde`
+        
+        ## Usage
+        
+        Fetch an example mesh:
+        ```Python
+        # Requires cloudvolume: pip3 install cloud-volume
+        >>> from cloudvolume import CloudVolume
+        # Load a neuron from the Janelia Research Campus hemibrain connectome
+        >>> vol = CloudVolume('precomputed://gs://neuroglancer-janelia-flyem-hemibrain/segmentation_52a13', fill_missing=True)
+        # mesh is a trimesh.Trimesh
+        >>> mesh = vol.mesh.get(5812983825, lod=2)[5812983825]
+        >>> mesh
+        Mesh(vertices<79947>, faces<149224>, normals<0>, segid=None, encoding_type=<draco>)
+        ```
+        
+        Generate the skeleton
+        ```Python
+        >>> import skeletor as sk
+        # Contract the mesh -> doesn't have to be perfect but you should aim for <10%
+        >>> cont = sk.contract(mesh, iter_lim=4)
+        # Extract the skeleton from the contracted mesh
+        >>> swc = sk.skeletonize(cont, method='vertex_clusters', sampling_dist=50, output='swc')
+        # Clean up the skeleton
+        >>> swc = sk.clean(swc, mesh)
+        # Add/update radii
+        >>> swc['radius'] = sk.radii(swc, mesh, method='knn', n=5, aggregate='mean')
+        >>> swc.head()
+           node_id  parent_id             x             y             z     radius
+        0        1        108  15171.575407  36698.832858  25797.208983  38.545553
+        1        2         75   5673.874254  21973.874094  15498.255429  79.262464
+        2        3        866  21668.461494  25084.044197  25855.263837  58.992209
+        3        4        212  16397.298583  35225.165481  24259.994014  20.213940
+        ```
+        
+        For visualisation check out [navis](https://navis.readthedocs.io/en/latest/index.html):
+        
+        ```Python
+        >>> import navis
+        >>> skeleton = navis.TreeNeuron(swc.copy(), units='8nm', soma=None)
+        >>> meshneuron = navis.MeshNeuron(mesh, units='8nm')
+        >>> navis.plot3d([skeleton, meshneuron], color=[(1, 0, 0), (1, 1, 1, .1)])
+        ```
+        
+        ![skeletor_examples](https://user-images.githubusercontent.com/7161148/87663989-6eea7800-c75c-11ea-985d-058d22300b62.png)
+        
+        ## Benchmarks
+        ![skeletor_examples](https://github.com/schlegelp/skeletor/raw/master/benchmarks/benchmark_2.png)
+        
+        [Benchmarks](https://github.com/schlegelp/skeletor/blob/master/benchmarks/skeletor_benchmark.ipynb)
+        were run on a 2018 MacBook Pro (2.2 GHz Core i7, 32Gb memory) with optional
+        `fastremap` dependency installed. Note that the contraction speed heavily
+        depends on the shape of the mesh - thin meshes like the neurons used here
+        take fewer steps. Likewise skeletonization using vertex clustering is very
+        dependant on the `sampling_dist` parameter.
+        
+        ## Gotchas
+        - the mesh contraction is the linchpin: insufficient/bad contraction will result
+          in a sub-optimal skeleton
+        - to save time you should try to contract the mesh in as few steps as possible:
+          try playing around with increasing the `SL` parameter - I've occasionally gone
+          up as far a 1000 (from the default 10)
+        - if the contracted mesh looks funny (e.g. large spikes sticking out) try using
+          the more robust "umbrella" Laplacian operator:
+          `contract(mesh, operator='umbrella')`
+        
+        ### Additional Notes
+        - while this is a general purpose library, my personal focus is on neurons and
+          this has certainly influenced things like default parameter values and certain
+          post-processing steps
+        - meshes need to be triangular
+        - if the mesh consists of multiple disconnected pieces the skeleton will
+          likewise be fragmented (i.e. will have multiple roots)
+        - strictly speaking, the SWC [format](http://www.neuronland.org/NLMorphologyConverter/MorphologyFormats/SWC/Spec.html)
+          requires continuous node IDs but the table generated by `skeletonize()`
+          currently uses the original vertex indices as node IDs (to facilitate e.g.
+          mapping back and forth between mesh and SWC) and is therefore not continuous
+        
+        ## References
+        `[1] Au OK, Tai CL, Chu HK, Cohen-Or D, Lee TY. Skeleton extraction by mesh contraction. ACM Transactions on Graphics (TOG). 2008 Aug 1;27(3):44.`
+        
+        The abstract and the paper can be found [here](http://visgraph.cse.ust.hk/projects/skeleton/).
+        Also see [this](https://www.youtube.com/watch?v=-H7n59YQCRM&feature=youtu.be) YouTube video.
+        
+        Some of the code in skeletor was modified from the
+        [Py_BL_MeshSkeletonization](https://github.com/aalavandhaann/Py_BL_MeshSkeletonization)
+        addon created by #0K Srinivasan Ramachandran and published under GPL3.
+        
+Keywords: mesh skeletonization mesh contraction skeleton extraction
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
