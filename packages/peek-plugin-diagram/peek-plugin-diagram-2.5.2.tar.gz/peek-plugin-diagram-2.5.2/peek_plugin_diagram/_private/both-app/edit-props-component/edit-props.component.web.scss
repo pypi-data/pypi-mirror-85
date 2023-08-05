@@ -1,0 +1,70 @@
+/* On the desktop, this slides in from the right.
+* https://www.w3schools.com/howto/howto_js_sidenav.asp
+*/
+@import '~@synerty/peek-plugin-base-js/src/styles/_mixins';
+@import '~@synerty/peek-plugin-base-js/src/styles/_variables';
+
+
+$panel_width: 400px;
+
+$edit_toolbar_button_height: 20px;
+$edit_toolbar_height: $edit_toolbar_button_height + 2 * $panel_width;
+
+
+.peek-tabs-section {
+  width: unset;
+}
+
+
+.close {
+  padding: 12px;
+}
+
+.peek-tabs-section-body {
+  padding: $general_padding_1;
+  top: $title_bar_height;
+}
+
+
+/* The side navigation menu */
+.edit-props-panel {
+  position: fixed; /* Stay in place */
+  z-index: 4; /* Stay on top */
+  //top: 46px;
+  right: 0;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the toolbar */
+  background-color: white;
+
+  margin-bottom: $mobile_footer_bar_height;
+}
+
+.edit-props-panel > .panel-header {
+  padding: 15px;
+}
+
+.edit-props-panel > .close {
+  padding: 6px;
+}
+
+/* Set the style for when the toolbar is open */
+.edit-props-is-open {
+  min-width: 60px;
+  max-width: 50vw;
+  padding-right: 60px;
+}
+
+/* Set the style for when the toolbar is closed */
+.edit-props-is-closed {
+  width: 0;
+  padding-right: 0;
+}
+
+//
+///* On smaller screens, where width is less than 450px,
+//    change the style of the toolbar (less padding and a smaller font size) */
+//@media screen and (max-width: 450px) {
+//  .edit-props-is-open {
+//    max-width: 70vw;
+//  }
+//}
