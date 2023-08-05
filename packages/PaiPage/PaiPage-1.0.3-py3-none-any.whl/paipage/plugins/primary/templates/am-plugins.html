@@ -1,0 +1,291 @@
+{% extends "am-lo.html" %}
+
+{% block title %}Plugins{% endblock %}
+
+{% block meta %}
+{{ super() }}
+<style type="text/css">
+	.plugin-info {
+		display: block;
+		float: left;
+		width: 100%;
+		margin-bottom: 16px;
+		background-color: white;
+		border: 1px solid darkgray;
+	}
+	.plugin-info-on {
+		background-color: hsl(130,90%,94%);
+	}
+	.plugin-info-off {
+		background-color: hsl(0,0%,90%);
+	}
+	.plugin-info-error {
+		background-color: hsl(5,90%,95%);
+		border-radius: 16px;
+	}
+	.plugin-head {
+		display: block;
+		float: left;
+		width: 100%;
+		font-size: 24px;
+		padding-left: 16px;
+		padding-bottom: 8px;
+	}
+	.plugin-name {
+		text-decoration: underline;
+	}
+	.button-box {
+		display: inline-block;
+		padding: 8px;
+	}
+</style>
+{% endblock %}
+
+{% block page_content %}
+<div class="col-xs-12 page-main">
+	<h1>Plugins</h1>
+	<div class="page-main-content">
+		<div id="content" class="col-xs-12"></div>
+		<div id="warning" class="col-xs-12"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+const $blind = $('#blind');
+const $content = $('#content');
+const $warning = $('#warning');
+const plugins_primary = ['primary'];
+const plugin_meta_map = {};
+let used_pg = {};
+let used_lo = {};
+const initialMeta = JSON.parse(JSON.stringify(pluginsMeta));
+
+function smallButton(text, onclick, url) {
+	if (url) {
+		return `<div class="button-box">
+				<a class="clickable" href="${url}">${text}</a>
+				</div>`;
+	} else {
+		return `<div class="button-box">
+				<span class="clickable" onclick="${onclick};">${text}</a>
+				</div>`;
+	}
+}
+
+function warning(text) {
+	let result = `
+<div class="alert alert-danger">
+	<span class="glyphicon glyphicon-alert"></span> ${text}
+</div>`;
+	$warning.append(result);
+}
+
+function pluginEnable(plugin_name) {
+	plugin_meta_map[plugin_name].enabled = true;
+	buildContent();
+}
+
+function pluginDisable(plugin_name) {
+	plugin_meta_map[plugin_name].enabled = false;
+	buildContent();
+}
+
+function pluginUp(position) {
+	if (position > 1) {
+		const plugin_info = pluginsMeta[position];
+		pluginsMeta.splice(position, 1);
+		pluginsMeta.splice(position-1, 0, plugin_info);
+		buildContent();
+	}
+}
+
+function pluginDown(position) {
+	if (position > 0 && position < pluginsMeta.length-1) {
+		const plugin_info = pluginsMeta[position];
+		pluginsMeta.splice(position, 1);
+		pluginsMeta.splice(position+1, 0, plugin_info);
+		buildContent();
+	}
+}
+
+function loUsageMapper(item) {
+	used_lo[item] = true;
+	let usages = [];
+	if (layout_templates[item])
+		usages.push(layout_templates[item]);
+	if (template_layout_default == item)
+		usages.push('def');
+
+	if (usages.length > 0)
+		return `<u>${item}</u> (${usages.join(', ')})`;
+	else
+		return item;
+}
+
+function pgUsageMapper(item) {
+	used_pg[item] = true;
+	let usages = [];
+	if (page_templates[item])
+		usages.push(page_templates[item]);
+	if (template_page_default == item)
+		usages.push('def');
+
+	if (usages.length > 0)
+		return `<u>${item}</u> (${usages.join(', ')})`;
+	else
+		return item;
+}
+
+function describePlugin(position, plugin_meta, plugin_info) {
+	// console.log(plugin_meta, plugin_info);
+	let buttons = '';
+
+	if (!plugin_info) {
+		return `
+<div class="plugin-info plugin-info-error">
+<div class="plugin-head">
+	Missing ${plugin_meta.enabled?'enabled':''} plugin
+	<span class="plugin-name">${plugin_meta.name}</span>!
+</div>
+<div class="plugin-body">
+	<div class="col-xs-12 text-right">${buttons}</div>
+</div>
+</div>`;
+	}
+
+	let description = 'No description provided.';
+	if (plugin_info.description) {
+		description = plugin_info.description;
+	}
+	let provides = '';
+	if (plugin_info.template_layout_list.length > 0) {
+		let list = plugin_info.template_layout_list;
+		if (plugin_meta.enabled)
+			list = list.map(loUsageMapper);
+		provides += `<b>Layouts:</b> ${list.join(', ')} `;
+	}
+	if (plugin_info.template_page_list.length > 0) {
+		let list = plugin_info.template_page_list;
+		if (plugin_meta.enabled)
+			list = list.map(pgUsageMapper);
+		provides += `<b>Pages:</b> ${list.join(', ')} `;
+	}
+	let subclass = plugin_meta.enabled ? 'plugin-info-on' : 'plugin-info-off';
+	if (position > 1)
+		buttons += smallButton('Up', `pluginUp('${position}');`);
+	if (position > 0 && position < pluginsMeta.length-1)
+		buttons += smallButton('Down', `pluginDown('${position}');`);
+	if (!plugins_primary.includes(plugin_info.name)) {
+		if (plugin_meta.enabled) {
+			buttons += smallButton('Disable', `pluginDisable('${plugin_info.name}');`);
+		} else {
+			buttons += smallButton('Enable', `pluginEnable('${plugin_info.name}');`);
+		}
+	}
+	return `
+<div class="plugin-info ${subclass}">
+<div class="plugin-head">
+	<span class="plugin-name">${plugin_info.name}:</span> ${plugin_info.title}
+</div>
+<div class="plugin-body">
+	<div class="col-xs-12"><p>
+		${description}
+		<b>Author:</b> ${plugin_info.author}
+	</p></div>
+
+	<div class="col-xs-12 col-md-6"><p>
+		<b>Version:</b> ${plugin_info.version}
+	</p></div>
+	<div class="col-xs-12 col-md-6"><p>
+		<b>Path:</b> ${plugin_info.path}
+	</p></div>
+
+	<div class="col-xs-12">${provides}</div>
+	<div class="col-xs-12 text-right">${buttons}</div>
+</div>
+</div>`;
+}
+
+function buildContent() {
+	used_pg = {};
+	used_lo = {};
+	let result = '';
+
+	pluginsMeta.forEach(function(plugin_meta, position) {
+		plugin_meta_map[plugin_meta.name] = plugin_meta;
+		const plugin_info = pluginsInstalled[plugin_meta.name];
+		result += describePlugin(position, plugin_meta, plugin_info);
+	});
+
+	const missing = [];
+	Object.keys(layout_templates).forEach(function(name) {
+		if (name && !used_lo[name]) {
+			missing.push(`${name} (${layout_templates[name]} usages)`);
+		}
+	});
+	if (!used_lo[template_layout_default]) {
+		missing.push(`${template_layout_default} (as default)`);
+	}
+	Object.keys(page_templates).forEach(function(name) {
+		if (name && !used_pg[name]) {
+			missing.push(`${name} (${page_templates[name]} usages)`);
+		}
+	});
+	if (!used_pg[template_page_default]) {
+		missing.push(`${template_page_default} (as default)`);
+	}
+	if (missing.length > 0) {
+		result += `
+<div class="plugin-info plugin-info-error">
+	<div class="plugin-head">
+		Missing used templates!
+	</div>
+	<div class="plugin-body">
+		<div class="col-xs-12"><p>${missing.join('<br>')}</p></div>
+	</div>
+</div>`;
+	}
+
+	console.log(initialMeta);
+	console.log(pluginsMeta);
+	if (JSON.stringify(initialMeta) != JSON.stringify(pluginsMeta)) {
+		result += `
+<div class="col-xs-12 text-right">
+	${smallButton('<span class="glyphicon glyphicon-floppy-disk"></span> Save changes', `saveChanges();`)}
+</div>`;
+	}
+
+	$content.html(result);
+}
+
+function saveChanges() {
+	const data = {
+		'pluginsMeta': pluginsMeta,
+	}
+	$blind.show();
+	$.ajax({
+		url: `/adminka/plugins`,
+		method: 'POST',
+		data: JSON.stringify(data),
+		contentType: 'application/json',
+		dataType: 'json',
+		crossDomain: true
+	}).done(function (data, textStatus, jqXHR) {
+		if (data.success) {
+			alert('Saved!');
+			document.location.reload(true);
+		} else {
+			alert(`Error: ${data.comment}`);
+		}
+	}).fail(function (jqXHR, textStatus, errorThrown) {
+		console.error('Error!', textStatus, errorThrown, jqXHR);
+	}).always(function () {
+		$blind.hide();
+	});
+}
+
+$(document).ready(function() {
+	buildContent();
+});
+</script>
+{% endblock %}

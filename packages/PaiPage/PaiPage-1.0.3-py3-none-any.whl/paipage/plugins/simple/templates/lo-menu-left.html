@@ -1,0 +1,63 @@
+{% extends "basic.html" %}
+{% import "_macros.html" as macros with context %}
+{% import "_utils.html" as utils with context %}
+
+
+{% block meta %}
+{{ super() }}
+<link rel="stylesheet" href="/static/lo-menu-left.css">
+{% endblock %}
+
+{% macro pageli(page, lang, upper=False) -%}
+	{% set txt = page.get_text(lang) -%}
+	{% if upper -%}
+		{% set direction = "left" -%}
+	{% else -%}
+		{% set direction = "right" -%}
+	{%- endif -%}
+
+	{%- if txt -%}
+	<li>
+		{% if page.pk != current.pk -%}
+		<a class="menu-section-link" href="/{{ page.url }}">
+		{%- endif -%}
+		<span class="glyphicon glyphicon-chevron-{{ direction }}"></span> {{ txt.title }}
+		{%- if page.pk != current.pk -%}
+		</a>
+		{%- endif %}
+	</li>
+	{%- endif %}
+{%- endmacro %}
+
+
+{% block content %}
+{# Admin header #}
+{{ macros.adminka() }}
+
+{# Table of content #}
+<div class="col-xs-2 menu-left">
+	<div class="col-xs-12 menu-left-title">
+		<a class="menu-title-link" href="/">{{ config.site_name }}</a>
+	</div>
+
+	<div class="col-xs-12 menu-left-content">
+		<ul>
+			{# {% if upper -%}
+			{{ pageli(upper, lang, True) }}
+			{%- endif -%} #}
+			{%- for page in sections -%}
+			{{ pageli(page, lang) }}
+			{%- endfor %}
+		</ul>
+
+		{{ utils.make_lang_list() }}
+	</div>
+</div>
+
+{# Page data #}
+<div class="col-xs-10 page-main">
+	{% block page_content %}{% endblock %}
+</div>
+
+{{ macros.footer() }}
+{% endblock %}

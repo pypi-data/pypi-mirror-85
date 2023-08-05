@@ -1,0 +1,38 @@
+{% extends "am-lo.html" %}
+
+{% block title %}Website settings{% endblock %}
+
+{% block page_content %}
+<div class="col-xs-2 col-md-3 col-lg-4"></div>
+<div class="col-xs-8 col-md-6 col-lg-4 page-main text-center">
+	<h1>Website settings</h1>
+	<div class="page-main-content">
+		<h1><u>{{ site_name }}</u></h1>
+		<a href="/adminka/structure"><h3>
+			<span class="glyphicon glyphicon-level-up"></span> Structure
+		</h3></a>
+		<a href="/adminka/plugins"><h3>
+			<span class="glyphicon glyphicon-list-alt"></span> Plugins
+		</h3></a>
+		{% if request.user.is_superuser %}
+		<a href="/admin/"><h3>
+			<span class="glyphicon glyphicon-th-list"></span> Database
+		</h3></a>
+		{% endif %}
+
+		<br>
+		<div class="col-xs-12">
+			TODO: languages list & default one; default LO/PG templates.
+		</div>
+		<br>
+		<br>
+
+		{% if debug %}
+		<div class="col-xs-12 alert alert-danger">
+			<span class="glyphicon glyphicon-alert"></span> Django <b>debug mode</b> is on!
+		</div>
+		{% endif %}
+	</div>
+</div>
+<div class="col-xs-2 col-md-3 col-lg-4"></div>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% macro page_card(page) -%}
+{% set txt = page.get_text(lang) -%}
+{%- if txt -%}
+<div class="page-card">
+	<h3>
+		{%- if should_show(page,txt) %}<a href="/{{ page.url }}">{% endif -%}
+		{{ txt.title }}
+		{%- if should_show(page,txt) %}</a>{% endif -%}
+	</h3>
+	{{ render_page_short(page,txt) |safe }}
+</div>
+{%- endif -%}
+{%- endmacro %}
+
+{% macro page_contents(children, max_level=5, level=1) -%}
+<ul>{% for page in children -%}
+	{% set txt = page.get_text(lang) -%}
+	{% if txt -%}
+		{%- if should_show(page,txt) %}<a href="/{{ page.url }}">{% endif -%}
+		<li>
+			{{ txt.title }}
+			{% if level < max_level -%}
+			{{ page_contents(get_handler(page, txt).get_children(), max_level, level+1) }}
+			{%- endif %}
+		</li>
+		{%- if should_show(page,txt) %}</a>{% endif %}
+	{%- endif %}
+{%- endfor %}</ul>
+{%- endmacro %}
+
+{% macro make_upper(upper) -%}
+{% if upper -%}
+	{% set txt = upper.get_text(lang) -%}
+	{%- if txt -%}
+	{%- if txt.text_full|length > 0 %}
+	<div class="upheader"><a href="/{{ upper.url }}">
+		<span class="glyphicon glyphicon-share-alt"></span>
+		{{ txt.title }}
+	</a></div>
+	{%- endif -%}
+	{%- endif -%}
+{%- endif %}
+{%- endmacro %}
+
+{% macro make_lang_list() -%}
+	{% if config.language_available |length > 1 -%}
+	<div class="col-xs-12">
+		{{ strings['languages'] }}:
+	</div>
+	<br>
+	<ul>
+	{% for key, x in config.language_available.items() -%}
+		{% if key != lang %}
+		<li><a class="link-white" href="/_lang/{{ key }}?next={{ request.path }}">
+			{{ x['name'] }}
+		</a></li>
+		{%- endif %}
+	{%- endfor %}
+	</ul>
+	{%- endif %}
+{%- endmacro %}
+
+{% macro make_lang_btn() -%}
+	{% if config.language_available |length > 1 -%}
+	<span class="dropdown menu-top-section">
+		<span class="dropdown-toggle menu-section-link" type="button" id="menu-langs" data-toggle="dropdown">
+			{{ strings['languages'] }}<span class="caret"></span>
+		</span>
+
+		<ul class="dropdown-menu" role="menu" aria-labelledby="menu-langs">
+			{% for key, x in config.language_available.items() -%}
+			{% if key != lang %}
+			<li role="presentation">
+				<a role="menuitem" href="/_lang/{{ key }}?next={{ request.path }}">
+				{{ x['name'] }}
+			</a></li>
+			{%- endif %}
+			{%- endfor %}
+		</ul>
+	</span>
+	{%- endif %}
+{%- endmacro %}

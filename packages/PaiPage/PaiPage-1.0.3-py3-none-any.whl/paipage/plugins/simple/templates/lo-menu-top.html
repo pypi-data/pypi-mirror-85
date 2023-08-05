@@ -1,0 +1,63 @@
+{% extends "basic.html" %}
+{% import "_macros.html" as macros with context %}
+{% import "_utils.html" as utils with context %}
+
+
+{% block meta %}
+{{ super() }}
+<link rel="stylesheet" href="/static/lo-menu-top.css">
+{% endblock %}
+
+{% macro pageli(page, lang, upper=False) -%}
+	{% set txt = page.get_text(lang) -%}
+	{% if upper -%}
+		{% set direction = "left" -%}
+	{% else -%}
+		{% set direction = "right" -%}
+	{%- endif -%}
+
+	{%- if txt -%}
+		{% if page.pk == current.pk -%}
+		<div class="menu-top-section menu-top-section-selected">
+		{% else %}
+		<div class="menu-top-section">
+		<a class="menu-section-link" href="/{{ page.url }}">
+		{%- endif -%}
+		{{ txt.title }}
+		{%- if page.pk != current.pk -%}
+		</a>
+		{%- endif %}
+		</div>
+	{%- endif %}
+{%- endmacro %}
+
+
+{% block content %}
+{# Admin header #}
+{{ macros.adminka() }}
+
+{# Table of content #}
+<div class="col-xs-12 menu-top">
+	<div class="menu-top-title">
+		<a class="menu-title-link" href="/">{{ config.site_name }}</a>
+	</div>
+
+	<div class="menu-top-content">
+		{# {% if upper -%}
+		{{ pageli(upper, lang, True) }}
+		{%- endif -%} #}
+		{%- for page in sections -%}
+		{{ pageli(page, lang) }}
+		{%- endfor %}
+
+		{{ utils.make_lang_btn() }}
+	</div>
+</div>
+
+{# Page data #}
+<div class="col-xs-12 page-main">
+	{% block page_content %}{% endblock %}
+</div>
+
+{{ macros.footer() }}
+{% endblock %}

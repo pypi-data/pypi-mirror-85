@@ -1,0 +1,54 @@
+{% macro adminka() -%}
+{% if request.user.is_authenticated -%}
+<div class="col-xs-12 admin-bar">
+	{#
+		www.glyphicons.com Halflings set
+		https://www.w3schools.com/bootstrap/bootstrap_ref_comp_glyphs.asp
+	#}
+	<a class="link-white" href="https://github.com/AivanF/PaiPage" target="blank">
+		PaiPage
+	</a>
+	<a class="link-white" href="/" target="blank">
+		<span class="glyphicon glyphicon-tree-deciduous"></span> Main
+	</a>
+
+	{% if request.user.is_staff %}
+	<a class="link-white" href="/adminka/">
+		<span class="glyphicon glyphicon-cog"></span> Adminka
+	</a>
+	{% endif %}
+
+	{% if request.user.is_staff %}
+	<span class="glyphicon glyphicon-lock"></span>
+	{% else %}
+	<span class="glyphicon glyphicon-user"></span>
+	{% endif %}
+	{{ request.user.username }}
+
+	{# TODO: JS onclick to make "next" = current page #}
+	<a class="link-white" href="/admin/logout/?next=/">
+		<span class="glyphicon glyphicon-log-out"></span> Exit
+	</a>
+</div>
+{%- endif %}
+{%- endmacro %}
+
+{% macro footer() -%}
+{% if request.user.is_staff %}
+{%- if current -%}
+<div class="col-xs-12 admin-footer">
+	<span><a href="/adminka/structure?action=view&page={{current.pk}}">
+		Open page settings
+	</a></span>
+	<span><a href="/adminka/page/{{current.pk}}?editing_lang={{lang}}&is_view=1">
+		Open page text
+	</a></span>
+</div>
+{%- endif -%}
+{% endif %}
+<div class="col-xs-12 paipage-footer">
+	<a href="https://github.com/AivanF/PaiPage" target="blank">
+		Powered by PaiPage
+	</a>
+</div>
+{%- endmacro %}

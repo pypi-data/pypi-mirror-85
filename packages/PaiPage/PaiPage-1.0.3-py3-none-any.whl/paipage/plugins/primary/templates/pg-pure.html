@@ -1,0 +1,7 @@
+{% extends layout_template %}
+
+{% block title %}{{ text.title }}{% endblock %}
+
+{% block page_content %}
+{{ text.text_full |safe }}
+{% endblock %}

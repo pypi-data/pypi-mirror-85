@@ -1,0 +1,32 @@
+{% extends layout_template %}
+{% import "_utils.html" as utils with context %}
+
+{% block title %}{{ text.title }}{% endblock %}
+
+{% block page_content %}
+	{{ utils.make_upper(upper) }}
+	<h1>{{ text.title }}</h1>
+
+	<div class="page-main-content">
+		{% if text.text_full|length > 1 -%}
+		{{ text.text_full |safe }}
+		<br><br>
+		{%- endif %}
+
+		<div class="page-card-holder">
+		{%- for page in children -%}
+			{{ utils.page_card(page) }}
+		{%- endfor %}
+		</div>
+		<script type="text/javascript">
+		$(document).ready(function(){ 
+			$('.page-card-holder').masonry({
+				itemSelector: '.page-card',
+				singleMode: true,
+				isResizable: true,
+				isAnimated: false,
+			}); 
+		});
+		</script>
+	</div>
+{% endblock %}

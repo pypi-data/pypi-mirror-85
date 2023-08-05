@@ -1,0 +1,10 @@
+{% extends layout_template %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block page_content %}
+	<h1>{{ title }}</h1>
+	<div class="page-main-content">
+		{{ description |safe }}
+	</div>
+{% endblock %}
