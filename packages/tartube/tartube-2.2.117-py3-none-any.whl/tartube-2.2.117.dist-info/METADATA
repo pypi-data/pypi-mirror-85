@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: tartube
+Version: 2.2.117
+Summary: GUI front-end for youtube-dl
+Home-page: https://tartube.sourceforge.io
+Author: A S Lewis
+Author-email: aslewis@cpan.org
+License: GPLv3+
+Project-URL: Bug Reports, https://github.com/axcore/tartube/issues
+Project-URL: Source, https://github.com/axcore/tartube
+Keywords: tartube video download youtube
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Topic :: Multimedia :: Video
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.0, <4
+Description-Content-Type: text/plain
+Requires-Dist: feedparser
+Requires-Dist: pgi
+Requires-Dist: playsound
+Requires-Dist: requests
+
+
+Tartube is a GUI front-end for youtube-dl, partly based on youtube-dl-gui
+and written in Python 3 / Gtk 3.
+
+- You can download individual videos, and even whole channels and
+playlists, from YouTube and hundreds of other websites
+- You can fetch information about those videos, channels and playlists,
+without actually downloading anything
+- Tartube will organise your videos into convenient folders
+- If creators upload their videos to more than one website (YouTube and
+BitChute, for example), you can download videos from both sites without
+creating duplicates
+- Certain popular websites manipulate search results, repeatedly
+unsubscribe people from their favourite channels and/or deliberately
+conceal videos that they don't like. Tartube won't do any of those things
+- Tartube can, in some circumstances, see videos that are region-blocked
+and/or age-restricted
+
+Note for PyPI users: Tartube should be installed with: pip3 install tartube
+
+
