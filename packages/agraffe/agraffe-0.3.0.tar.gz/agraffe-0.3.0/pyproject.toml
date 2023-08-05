@@ -1,0 +1,50 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "agraffe"
+author = "odd"
+author-email = "odd12258053@gmail.com"
+home-page = "https://github.com/odd12258053/agraffe"
+classifiers = [
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: System Administrators",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "License :: OSI Approved :: MIT License"
+]
+requires = [
+    "typing-extensions >=3.7.4, <4.0.0"
+]
+description-file = "README.md"
+requires-python = ">=3.7"
+
+[tool.flit.metadata.requires-extra]
+dev = [
+    "mypy >=0.782, <1.0",
+    "black >=20.8b1",
+    "isort >=5.5.0, <6.0.0",
+    "flake8 >=3.8.3, <4.0.0",
+]
+
+[tool.isort]
+py_version = "37"
+profile = "black"
+src_paths = ["*.py", "config", "libs", "api"]
+include_trailing_comma = true
+multi_line_output = 3
+
+[tool.black]
+line-length = 88
+target-version = ['py37']
+skip-string-normalization = true
