@@ -1,0 +1,25 @@
+future
+
+[aws]
+boto3
+
+[cli]
+click
+boto3
+google-cloud-kms<2.0.0
+google-cloud-datastore
+
+[gcp]
+google-cloud-kms<2.0.0
+google-cloud-datastore
+
+[test]
+tox
+pytest
+pytest-cov
+mock
+flake8
+moto
+
+[test:python_version >= "3.6.0"]
+black
