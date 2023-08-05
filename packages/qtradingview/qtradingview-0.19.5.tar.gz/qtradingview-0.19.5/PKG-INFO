@@ -1,0 +1,170 @@
+Metadata-Version: 2.1
+Name: qtradingview
+Version: 0.19.5
+Summary: PyQt App for TradingView
+Author: katmai
+Author-email: katmai.mobil@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: PyQtWebEngine (>=5.15.1,<6.0.0)
+Requires-Dist: beautifulsoup4 (>=4.9.3,<5.0.0)
+Requires-Dist: cached-property (>=1.5.2,<2.0.0)
+Requires-Dist: ccxt (>=1.37.52,<2.0.0)
+Requires-Dist: coloredlogs (>=14.0,<15.0)
+Requires-Dist: docopt (>=0.6.2,<0.7.0)
+Requires-Dist: html5lib (>=1.1,<2.0)
+Requires-Dist: peewee (>=3.14.0,<4.0.0)
+Requires-Dist: pyqt5-notificator (>=1.0.12,<2.0.0)
+Requires-Dist: toml (>=0.10.2,<0.11.0)
+Description-Content-Type: text/markdown
+
+# QTradingView
+
+PyQt App for TradingView.
+
+Recommends simple login to autosave your draws. 
+
+
+![Image not found](icons/screenshots/demo.png)  
+
+---
+---
+
+## **Index**
+
+
+- [Features](#Features)
+- [Installation](#Installation)
+- [Usage](#Usage)
+
+---
+---
+***
+
+  
+### **Features**
+
+- Includes the most cryptocurrencies exchanges available in tradingview.
+- Complete lists of available markets, with symbol filter.
+- Favorite and margin lists.
+- Portfolio.
+- Ads remove.
+
+--- 
+
+
+### **Installation**
+
+QTradingView needs an environment with Python3 and Qt5
+
+#### ___Prepare environment___
+
+    
+- Install [Anaconda](https://docs.anaconda.com/anaconda/install/)
+
+- Create and active environment.
+    ```
+    conda create -n env_name python=3.7
+    conda activate env_name
+    ```
+
+- Install PyQt5
+    ```
+    conda install -c anaconda pyqt
+    ```
+
+
+#### __QTradingView from source code__
+
+```
+    pip install poetry
+    git clone https://github.com/katmai1/qtradingview
+    cd qtradingview
+
+```
+
+---
+
+### **Usage**
+---
+---
+
+
+#### Install PyQt5 libs using anaconda
+
+Create and active environment.
+```
+conda create -n env_name python=3.7
+conda activate env_name
+```
+
+Install PyQt5 and dependencies
+```
+conda install -c anaconda pyqt
+```
+
+install
+```
+pip install qtradingview
+```
+
+---
+
+## Running from source using Anaconda
+
+Create and active environment.
+```
+conda create -n env_name python=3.7
+conda activate env_name
+```
+
+Install PyQt5 and dependencies
+```
+conda install -c anaconda pyqt
+pip install -r requirements.txt
+```
+
+Run
+```
+python apprun.py
+```
+
+
+*Can be install without Anaconda if install all PyQt5 dependencies manually.
+
+
+---
+
+
+#### Troubleshot
+
+##### Database issues after an update
+
+Probably the last update does changes into database and this changes are not applied automatically. You can try update tables manually.
+    
+
+```
+- If running from source:
+    python apprun.py --updatedb
+
+- If running compiled release:
+    qtradingview --updatedb
+
+* This function works fine whe running from source code, with a compiled version sometimes not update correctly.
+```
+
+If issue persist you can delete database to force his create again.
+
+```
+- If running from source:
+    python apprun.py --deletedb
+
+- If running compiled release:
+    qtradingview --deletedb
+```
+
+
+
