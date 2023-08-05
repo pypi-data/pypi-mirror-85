@@ -1,0 +1,2 @@
+from openspeechcorpus_cli.htk.configure_isolated_words_model import execute_from_command_line
+from openspeechcorpus_cli.htk.generate_flat_start import execute_from_command_line as generate_htk_flat_start
