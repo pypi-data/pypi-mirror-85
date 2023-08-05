@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: synth-a-py
+Version: 1.1.0
+Summary: Project configuration as code
+Home-page: https://github.com/eganjs/synth-a-py
+License: MIT
+Author: Joseph Egan
+Author-email: joseph.s.egan@gmail.com
+Requires-Python: >=3.6,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: contextvars (>=2.4,<3.0); python_version >= "3.6" and python_version < "3.7"
+Requires-Dist: returns (>=0.14.0,<0.15.0)
+Project-URL: Repository, https://github.com/eganjs/synth-a-py
+Description-Content-Type: text/markdown
+
+# synth-a-py
+
+![Build](https://github.com/eganjs/synth-a-py/workflows/ci/badge.svg)
+
+Project configuration as code
+
+# Updating project config
+
+To do this make edits to the `.projenrc.js` file in the root of the project and run `npx projen` to update existing or generate new config. Please also use `npx prettier --trailing-comma all --write .projenrc.js` to format this file.
+
