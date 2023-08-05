@@ -1,0 +1,270 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dyconnmap.graphs.mi &mdash; dyconnmap  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> dyconnmap
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dyconnmap.html">dyconnmap package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">dyconnmap</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>dyconnmap.graphs.mi</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for dyconnmap.graphs.mi</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot; Mutual Information</span>
+
+<span class="sd">Normalized Mutual Information (*NMI*) proposed by [Strehl2002]_ as an extension to</span>
+<span class="sd">Mutual Information [cover] to enable interpretations and comparisons between two partitions.</span>
+<span class="sd">Given the entropies :math:`H(P^a)=-\\sum_{i=1}^{k_a}{\\frac{n_i^a}{n}\\log(\\frac{n_i^a}{n})}` where :math:`n_i^a` represents the</span>
+<span class="sd">number of patterns in group :math:`C_i^a \\in P^a` (and computed for :math:`H(P^b)` accordingly); the initial</span>
+<span class="sd">matching of these two groups :math:`P^a` and :math:`P^b` in terms of mutual information is</span>
+<span class="sd">[Fred2005_, Strehl2002_]:</span>
+
+<span class="sd">.. math::</span>
+<span class="sd">    I(P^a, P^b) = \\sum_{i=1}^{k_a} \\sum_{j=1}^{k_b} {\\frac{n_{ij}^{ab}}{n}} \\log \\left(\\frac{ \\frac{n_{ij}{ab}}{n} }{ \\frac{n_i^a}{n} \\frac{n_j^b}{n} } \\right)</span>
+
+<span class="sd">Where :math:`n_{ij}^{ab}` denotes the number of shared patterns between the clusters :math:`C_i^a` and :math:`C_j^b`.</span>
+<span class="sd">By exploiting the definition of mutual information, the following property holds true:</span>
+<span class="sd">:math:`I(P^a,P^b) \\leq  \\frac{H(P^a)+H(P^b)}{2}`. This leads to the definition of NMI as:</span>
+
+
+<span class="sd">.. math::</span>
+<span class="sd">    NMI(A, B) = \\frac{2I(P^a, P^b)}{ H(P^a) + H(P^b)} = \\frac{ -2\\sum_{i=1}^{k_a} \\sum_{j=1}^{k_b} {n_{ij}^{ab}} \\log \\left( \\frac{ n_{ij}^{ab} n }{ n_i^a n_j^n } \\right)  }{  \\sum_{i=1}^{k_a} n_i^a \\log \\left( \\frac{n_i^a}{n} \\right) + \\sum_{j=1}^{k_b} n_j^b \\log \\left( \\frac{n_j^b}{n} \\right)   }</span>
+
+
+<span class="sd">|</span>
+
+<span class="sd">-----</span>
+
+<span class="sd">.. [Fred2005] Fred, A. L., &amp; Jain, A. K. (2005). Combining multiple clusterings using evidence accumulation. IEEE transactions on pattern analysis and machine intelligence, 27(6), 835-850.</span>
+<span class="sd">.. [Strehl2002] Strehl, A., &amp; Ghosh, J. (2002). Cluster ensembles---a knowledge reuse framework for combining multiple partitions. Journal of machine learning research, 3(Dec), 583-617.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># Author: Avraam Marimpis &lt;avraam.marimpis@gmail.com&gt;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">dyconnmap.ts.entropy</span> <span class="k">import</span> <span class="n">entropy</span>
+<span class="kn">from</span> <span class="nn">.vi</span> <span class="k">import</span> <span class="n">__unique_symbols</span>
+
+
+<div class="viewcode-block" id="mutual_information"><a class="viewcode-back" href="../../../dyconnmap.graphs.html#dyconnmap.graphs.mi.mutual_information">[docs]</a><span class="k">def</span> <span class="nf">mutual_information</span><span class="p">(</span><span class="n">indices_a</span><span class="p">,</span> <span class="n">indices_b</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Mutual Information</span>
+
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    indices_a : array-like, shape(n_samples)</span>
+<span class="sd">        Symbolic time series.</span>
+
+<span class="sd">    indices_b : array-like, shape(n_samples)</span>
+<span class="sd">        Symbolic time series.</span>
+
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    MI : float</span>
+<span class="sd">        Mutual information.</span>
+
+<span class="sd">    NMI : float</span>
+<span class="sd">        Normalized mutual information.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">indices_a</span> <span class="o">=</span> <span class="n">indices_a</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+    <span class="n">indices_b</span> <span class="o">=</span> <span class="n">indices_b</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+    <span class="n">entropy_a</span> <span class="o">=</span> <span class="o">-</span><span class="n">entropy</span><span class="p">(</span><span class="n">indices_a</span><span class="p">)</span>
+    <span class="n">entropy_b</span> <span class="o">=</span> <span class="o">-</span><span class="n">entropy</span><span class="p">(</span><span class="n">indices_b</span><span class="p">)</span>
+
+    <span class="n">Ua</span> <span class="o">=</span> <span class="n">__unique_symbols</span><span class="p">(</span><span class="n">indices_a</span><span class="p">)</span>
+    <span class="n">Ub</span> <span class="o">=</span> <span class="n">__unique_symbols</span><span class="p">(</span><span class="n">indices_b</span><span class="p">)</span>
+
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">indices_a</span><span class="p">)</span>
+    <span class="n">Sab</span> <span class="o">=</span> <span class="n">Ua</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Ub</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">Sa</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">Ua</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Ua</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+    <span class="n">Sb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">Ub</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Ub</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+
+    <span class="c1"># Add dummy dimension (needed for following computations).</span>
+    <span class="n">Sa</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">Sa</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">Sb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">Sb</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">SS</span> <span class="o">=</span> <span class="n">Sab</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">Sab</span> <span class="o">/</span> <span class="p">(</span><span class="n">Sa</span> <span class="o">*</span> <span class="n">Sb</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+
+    <span class="n">MI</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">SS</span><span class="p">))</span>
+    <span class="n">NMI</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">MI</span> <span class="o">/</span> <span class="p">(</span><span class="n">entropy_a</span> <span class="o">+</span> <span class="n">entropy_b</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">MI</span><span class="p">,</span> <span class="n">NMI</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Avraam Marimpis &amp; Stavros Dimitriadis
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
