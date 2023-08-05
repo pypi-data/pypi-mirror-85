@@ -1,0 +1,10 @@
+include CMakeLists.txt
+recursive-include src *.h *.pxd *.pyx
+
+graft docs
+prune docs/build
+
+include tox.ini
+recursive-include tests *.py
+recursive-include examples *.py
+graft tests/data
