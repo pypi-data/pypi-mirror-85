@@ -1,0 +1,30 @@
+# -*- coding: utf-8 -*-
+from setuptools import setup
+
+packages = \
+['ornitho', 'ornitho.model', 'ornitho.model.abstract']
+
+package_data = \
+{'': ['*']}
+
+install_requires = \
+['pytz', 'requests-oauthlib']
+
+setup_kwargs = {
+    'name': 'ornitho',
+    'version': '0.1.0',
+    'description': 'An ornitho API client',
+    'long_description': 'Python Ornitho API Client\n=========================\n\nThe following "ornitho controllers / calls" are implemented:\n\n- taxonomic groups\n\n  - List taxo groups\n  - Get a single taxo group\n\n- families\n\n  - List families\n  - Get a single family\n\n- species\n\n  - List species\n  - Get a single species\n\n- territorial units\n\n  - List territorial units\n  - Get a single territorial unit\n\n- local admin units\n\n  - List local admin units\n  - Get a single local admin unit\n\n- places\n\n  - List places\n  - Get a single place\n\n- observers\n\n  - List Observers\n  - Get a single observer\n  - Get current observers info\n\n- entities\n\n  - List entities\n  - Get a single entity\n\n- protocol\n\n  - List protocol\n  - Get a single protocol\n  - Get list of sites for protocol id\n  - Get PDF for site id\n\n- observations\n\n  - List observations\n  - Get a single observation\n  - Create an observation\n  - Update an observations (**WIP**)\n  - Delete an observations\n  - Search an observation\n  - Search update or deletion since a given date\n  - Delete a record\n  - Delete a list\n\n- fields\n\n  - List fields\n  - Get a single field options\n\n- media\n\n  - Get a single media\n\nNot yet Implemented:\n\n- local admin units\n\n  - Search local admin units\n\n- observers\n\n  - Get an observer rights list\n\n- export organizations\n\n  - List export organizations\n  - Get a single export organization\n\n- observations\n\n  - Search closest observations\n  - Search last observations\n  - Search rare observations\n  - Search my observations\n  - Search observations from a list of observers\n  - Search observations from a list of coordinates\n  - Search resources linked to an observation\n  - Create a new resources for an observation\n\n- import files\n\n  - List import files\n  - Get a single import file\n\n- import files/observations\n\n  - List links for import files and observations\n  - Get a single link between import file and observation\n\n- validations\n\n  - List validations\n  - Get a single validation\n\n- mortality information\n\n  - List mortality informations\n\n- bearded vulture birds\n\n  - List all bearded vulture birds\n  - Get a single bird\n\n- bearded vulture information\n\n  - List bearded vulture informations\n\n- observations by polygon\n\n  - List observations_by_polygon\n  - Get a single family\n  - Get a single group\n\n- polygons\n\n  - Get a single polygon\n  - List polygons from a group\n  - List polygon groups\n  - List cache for a given polygon or group with a period\n  - List form cache for a given polygon or group with a period\n  - List species form cache for a given polygon or group with a period\n  - List observer cache for a given polygon or group\n  - List observer species cache for a given polygon or group\n\nInstalling\n----------\n**Currently not published on pypi!**\n\n.. The project will be offered as a `Pypi\n   package <https://pypi.python.org/pypi/ornitho>`__, and using pip /\n   is an easy way to install it. For this use the following command:\n\n   ``$ pip install ornitho``\n\nManual installation can be done with following command:\n\n``$ pip install .``\n\nUsage\n-----\nBefore the client can be used  **consumer_key**, **consumer_secret**, **user_email**, **user_pw** and **api_base** must be set:\n\n.. code-block:: python\n\n    import ornitho\n\n    ornitho.consumer_key = "CONSUMER_KEY"\n    ornitho.consumer_secret = "CONSUMER_SECRET"\n    ornitho.user_email = "USER_MAIL"\n    ornitho.user_pw = "USER_PASSWORD"\n    ornitho.api_base = "https://www.ornitho.de/api/"\n\nThe client can then be used.\n\nExamples\n~~~~~~~~~~~~~\nFollowing code shows how to get all observation from ornitho.de between 01.10.2019 and 31.10.2019:\n\n.. code-block:: python\n\n    import os\n    import ornitho\n\n    ornitho.consumer_key = os.environ.get("ORNITHO_CONSUMER_KEY")\n    ornitho.consumer_secret = os.environ.get("ORNITHO_CONSUMER_SECRET")\n    ornitho.user_email = os.environ.get("ORNITHO_USER_EMAIL")\n    ornitho.user_pw = os.environ.get("ORNITHO_USER_PW")\n    ornitho.api_base = "https://www.ornitho.de/api/"\n    \n    resp = ornitho.Observation.search_all(period_choice="range", date_from="01.10.2019", date_to="31.10.2019")\n    print(f"Found {len(resp)} observations between 01.10.2019 and 31.10.2019")\n    \nMore examples can be found the `examples <https://github.com/dda-dev/ornitho-client-python/tree/master/examples>`__ folder.\n\nPrerequisites\n~~~~~~~~~~~~~\n\nThe project has been tested with the following python versions:\n\n- Python 3.6\n- Python 3.7\n- Python 3.8\n\nCollaborate\n-----------\n\nAny kind of help with the project will be well received, and there are\ntwo main ways to give such help:\n\n- Reporting errors and asking for extensions through the issues management\n- or forking the repository and extending the project\n\nIssues management\n~~~~~~~~~~~~~~~~~\n\nIssues are managed at the Github `project issues\ntracker <https://github.com/dda-dev/ornitho-client-python/issues>`__, where\nany Github user may report bugs or ask for new features.\n\nTesting\n~~~~~~~\n\nThe tests included with the project can be run with:\n\n``$ pytest``\n\nor with a coverage report:\n\n``$ pytest --cov=ornitho tests/``\n\nTo test all supported Python versions, use tox:\n\n``$ tox``\n\nLicense\n-------\n\nThe project has been released under the `MIT\nLicense <https://opensource.org/licenses/MIT>`__.\n',
+    'author': 'Patrick Lindel',
+    'author_email': 'lindel@dda-web.de',
+    'maintainer': None,
+    'maintainer_email': None,
+    'url': 'https://github.com/dda-dev/ornitho-client-python',
+    'packages': packages,
+    'package_data': package_data,
+    'install_requires': install_requires,
+    'python_requires': '>=3.6,<4.0',
+}
+
+
+setup(**setup_kwargs)

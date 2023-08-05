@@ -1,0 +1,58 @@
+[build-system]
+requires = ["poetry >= 0.12"]
+build-backend = "poetry.masonry.api"
+
+[tool.poetry]
+name = "ornitho"
+version = "0.1.0"
+description = "An ornitho API client"
+authors = ["Patrick Lindel <lindel@dda-web.de>"]
+license="MIT"
+readme = "README.rst"
+repository = "https://github.com/dda-dev/ornitho-client-python"
+homepage = "https://github.com/dda-dev/ornitho-client-python"
+keywords=[]
+classifiers=[
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+requests-oauthlib = "*"
+pytz = "*"
+
+[tool.poetry.dev-dependencies]
+pytest = "*"
+coverage = "*"
+twine = "*"
+autoflake = "*"
+black = "==19.10b0"
+isort = "*"
+vulture = "*"
+pytest-cov = "*"
+tox = "*"
+mypy = "*"
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+envlist = mypy, py36, py37, py38
+isolated_build = True
+skip_missing_interpreters = True
+
+[testenv]
+deps = pytest
+commands = pytest
+
+[testenv:mypy]
+basepython = python3.8
+deps = mypy
+commands = mypy . --ignore-missing-imports
+skip_install = True
+"""
