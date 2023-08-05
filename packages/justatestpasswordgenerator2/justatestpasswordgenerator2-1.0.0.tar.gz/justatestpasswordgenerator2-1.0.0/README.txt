@@ -1,0 +1,1 @@
+This program is designed to make a random password based on the desired number of characters the user inputs.
