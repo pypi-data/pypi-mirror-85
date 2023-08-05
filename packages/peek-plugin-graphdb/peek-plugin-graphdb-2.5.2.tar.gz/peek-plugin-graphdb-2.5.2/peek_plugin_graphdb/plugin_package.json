@@ -1,0 +1,123 @@
+{
+    "plugin": {
+        "title": "Graph DB",
+        "packageName": "peek_plugin_graphdb",
+    "version":"2.5.2",
+        "buildNumber": "#PLUGIN_BUILD#",
+        "buildDate": "#BUILD_DATE#",
+        "creator": "Synerty Pty Ltd",
+        "website": "www.synerty.com"
+    },
+    "requiresServices": [
+        "server",
+        "worker",
+        "agent",
+        "storage",
+        "admin",
+        "client",
+        "mobile",
+        "desktop",
+        "doc-dev",
+        "doc-admin"
+    ],
+    "doc-dev": {
+        "docDir": "doc-dev",
+        "docRst": "index.rst",
+        "hasApi": true
+    },
+    "doc-admin": {
+        "docDir": "doc-admin",
+        "docRst": "index.rst"
+    },
+    "server": {
+    },
+    "storage": {
+        "alembicDir": "_private/alembic"
+    },
+    "admin": {
+        "showHomeLink": true,
+        "appDir": "_private/admin-app",
+        "appModule": "graphdb.module#GraphDbModule",
+        "moduleDir": "plugin-module"
+    },
+    "client": {
+    },
+    "mobile": {
+        "cfgDir": "_private/both-cfg",
+        "cfgModule": "graphdb-cfg.module#GraphDbCfgModule",
+        "showHomeLink": false,
+        "appDir": "_private/both-app",
+        "appModule": "graphdb.module#GraphDbModule",
+        "assetDir": "_private/both-assets",
+        "icon": "/assets/peek_plugin_graphdb/icon.png",
+        "moduleDir": "plugin-module",
+        "rootServices": [
+            {
+                "file": "_private/GraphDbTupleService",
+                "class": "GraphDbTupleService"
+            },
+            {
+                "file": "_private/GraphDbOfflineTupleCacherService",
+                "class": "GraphDbOfflineTupleCacherService",
+                "persistent": true
+            },
+            {
+                "file": "_private/segment-loader/PrivateSegmentLoaderService",
+                "class": "PrivateSegmentLoaderService",
+                "persistent": true
+            },
+            {
+                "file": "_private/item-key-index-loader/ItemKeyIndexLoaderService",
+                "class": "ItemKeyIndexLoaderService",
+                "persistent": true
+            },
+            {
+                "file": "_private/tracer-service/PrivateTracerService",
+                "class": "PrivateTracerService"
+            },
+            {
+                "file": "GraphDbService",
+                "class": "GraphDbService"
+            }
+        ]
+    },
+    "desktop": {
+        "cfgDir": "_private/both-cfg",
+        "cfgModule": "graphdb-cfg.module#GraphDbCfgModule",
+        "showHomeLink": false,
+        "appDir": "_private/both-app",
+        "appModule": "graphdb.module#GraphDbModule",
+        "assetDir": "_private/both-assets",
+        "icon": "/assets/peek_plugin_graphdb/icon.png",
+        "moduleDir": "plugin-module",
+        "rootServices": [
+            {
+                "file": "_private/GraphDbTupleService",
+                "class": "GraphDbTupleService"
+            },
+            {
+                "file": "_private/GraphDbOfflineTupleCacherService",
+                "class": "GraphDbOfflineTupleCacherService",
+                "persistent": true
+            },
+            {
+                "file": "_private/segment-loader/PrivateSegmentLoaderService",
+                "class": "PrivateSegmentLoaderService",
+                "persistent": true
+            },
+            {
+                "file": "_private/item-key-index-loader/ItemKeyIndexLoaderService",
+                "class": "ItemKeyIndexLoaderService",
+                "persistent": true
+            },
+            {
+                "file": "_private/tracer-service/PrivateTracerService",
+                "class": "PrivateTracerService"
+            },
+            {
+                "file": "GraphDbService",
+                "class": "GraphDbService"
+            }
+        ]
+    }
+}
