@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: scrapy_selenium_middleware
+Version: 0.0.5
+Summary: Scrapy middleware for downloading a page html source using selenium,
+                and interacting with the web driver in the request context
+                eventually returning an HtmlResponse to the spider
+                
+Home-page: https://github.com/Tal-Leibman/scrapy-selenium-middleware
+Author: Tal Leibman
+Author-email: leibman2@gmail.com
+License: UNKNOWN
+Description: # scrapy-selenium-middleware
+        
+        ## requirements
+        * This downloader middleware should be used inside an existing [Scrapy](https://scrapy.org/) project
+        * Install  Firefox and [gekodriver](https://github.com/mozilla/geckodriver/releases) on the machine running this middleware
+        
+        ## pip
+        * `pip install scrapy-selenium-middleware`
+         
+        ## usage example
+        for a full scrapy project demo please go [here](https://github.com/Tal-Leibman/scrapy-selenium-middleware-example)
+        
+        The middleware receives its settings from [scrapy project settings](https://docs.scrapy.org/en/latest/topics/settings.html) <br>
+        in your scrapy project settings.py file add the following settings
+        ```python
+        DOWNLOADER_MIDDLEWARES = {"scrapy_selenium_middleware.SeleniumDownloader":451}
+        CONCURRENT_REQUESTS = 1 # multiple concurrent browsers are not supported yet
+        SELENIUM_IS_HEADLESS = False
+        SELENIUM_PROXY = "http://user:password@my-proxy-server:port" # set to None to not use a proxy
+        SELENIUM_USER_AGENT = "User-Agent: Mozilla/5.0 (<system-information>) <platform> (<platform-details>) <extensions>"           
+        SELENIUM_REQUEST_RECORD_SCOPE = ["api*"] # a list of regular expression to record the incoming requests by matching the url
+        SELENIUM_FIREFOX_PROFILE_SETTINGS = {}
+        SELENIUM_PAGE_LOAD_TIMEOUT = 120
+        ```
+        
+        
+        
+        
+        
+        
+        
+        
+        
+Keywords: scrapy,selenium,middleware,proxy,web scraping,render javascript,selenium-wire,headless browser
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
