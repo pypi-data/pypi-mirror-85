@@ -1,0 +1,62 @@
+---
+
+- name: Converge
+  hosts: all
+  # avoid gather as setup module fails when python is missing (ubuntu:latest)
+  gather_facts: false
+  environment:
+    LC_ALL: C.UTF-8
+    LANG: C.UTF-8
+  vars:
+    test_dir: /root/src
+  tasks:
+
+    - name: ensure-ansible role
+      include_role:
+        name: ensure-ansible
+
+    - name: install findutils on Fedora
+      when: ansible_distribution == 'Fedora'
+      package:
+        name: findutils
+
+    - name: Create a directory if it does not exist
+      file:
+        path: "{{ test_dir }}"
+        state: directory
+        mode: '0755'
+
+    - name: Deploy package wheel(s)
+      copy:
+        src: "{{ item }}"
+        dest: "{{ test_dir }}/"
+      with_fileglob:
+        - "{{ playbook_dir }}/../../../../../dist/*.whl"
+      register: result
+
+    - when: not result.results
+      fail:
+        msg: "No wheel was found: {{ result }}"
+
+    # Setting locales to avoid click error:
+    # https://click.palletsprojects.com/en/7.x/python3/
+    # we really need a minimum version of setuptools
+    # PIP_NO_BUILD_ISOLATION workaround for older pips with partial pep514
+    - name: Test install to user without extras
+      shell: |
+        set -eux
+        export PIP_NO_BUILD_ISOLATION=false
+        {# ansible_python.executable is not reliable for finding the recommended python #}
+        type python3 && PYTHON=python3 || {
+          PYTHON=python;
+          {# ancient versions of pip do not know about version specifiers #}
+          $PYTHON -m pip install --user 'zipp<0.6.0';
+          }
+        $PYTHON -m pip install --user 'setuptools>=40.0'
+        $PYTHON -m pip install --user 'wheel'
+        $PYTHON -m pip install --user {{ item.dest }}
+        $PYTHON -m molecule --version
+        {# tests that we can install docker extra #}
+        $PYTHON -m pip install --user echo '{{ item.dest }}[docker]'
+        $PYTHON -c 'import docker'
+      with_items: "{{ result.results }}"

@@ -1,0 +1,16 @@
+---
+driver:
+  name: delegated
+
+platforms:
+  - name: localhost
+
+provisioner:
+  name: ansible
+  env:
+    ANSIBLE_STDOUT_CALLBACK: yaml
+  log: true
+
+scenario:
+  test_sequence:
+    - converge
