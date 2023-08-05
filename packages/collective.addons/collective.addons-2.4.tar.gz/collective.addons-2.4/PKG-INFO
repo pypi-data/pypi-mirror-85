@@ -1,0 +1,292 @@
+Metadata-Version: 2.1
+Name: collective.addons
+Version: 2.4
+Summary: Plone add-on to host add-ons / extensions of a software
+Home-page: https://github.com/collective/collective.addons
+Author: Andreas Mantke
+Author-email: maand@gmx.de
+License: GPL version 2
+Project-URL: PyPI, https://pypi.python.org/pypi/collective.addons
+Project-URL: Source, https://github.com/collective/collective.addons
+Project-URL: Tracker, https://github.com/collective/collective.addons/issues
+Description: .. This README is meant for consumption by humans and pypi. Pypi can render rst files so please do not use Sphinx features.
+           If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide.html
+           This text does not appear on pypi or github. It is a comment.
+        
+        .. image:: https://travis-ci.org/collective/collective.addons.svg?branch=master
+            :target: https://travis-ci.org/collective/collective.addons
+        
+        =================
+        collective.addons
+        =================
+        
+        Features
+        --------
+        
+        - The add-on has a cofiguration settings entry in the site administration yet. It's form
+          contains fields to set a choice of categories, platforms, licenses and versions of the
+          product (for which the add-on is used). There are also fields to set the allowed file
+          extensions of the add-on files, the image files (e.g. screenshots, logos) and the
+          documentation.
+        
+        - A add-on center with listing and display of template projects respectively to their rating,
+          a search form and a listing of the latest projects.
+        - The add-on center edit form contains fields to set the title of the center and the name of
+          the add-ons and add a description of the center.
+        - Inside the add-on center contributors could create add-on projects. The edit form of the
+          project contains fields to choose the categories.
+        - The contributor could add releases and linked releases to the add-on project.
+        - The release contains fields to upload files.
+        - The linked release provide fields for links to the release files.
+        - Both, release and linked release, contains fields to choose the product version, platform
+          and licenses.
+        - The add-on send message once a new project was added. It push a message too, once a project
+          was submitted for publication. It send an email to the project contact address for every
+          change in the workflow status of the project.
+        - The add-on informs the contributor via email about new releases or linked releases,
+          once they were added to his project(s).
+        - The user could send a message to the author of an add-on via a mail. The mail form uses a
+          recaptcha widget. The contact data of the author of the aa-on will not be made public.
+        - The file extensions of the uploaded add-ons will be checked. It is possible to set the
+          allowed file extensions distinct for the specific use case of the add-on center. They
+          could be dynamically changed at any time.
+        - The add-on sends messages to the project contact email on every edit of the add-on
+          center's product versions field (thus the contributors could potentially add this new
+          product version to their release / linked release).
+        
+        
+        
+        Examples
+        --------
+        
+        This add-on can be seen in action at the following sites:
+        
+        
+        Documentation
+        -------------
+        
+        Full documentation for end users is available in the "docs" folder
+        
+        Translations
+        ------------
+        
+        This product has been translated into
+        
+        - German (Andreas Mantke)
+        
+        
+        Installation
+        ------------
+        
+        Install collective.addons by adding it to your buildout::
+        
+            [buildout]
+        
+            ...
+        
+            eggs =
+                collective.addons
+        
+        
+        and then running ``bin/buildout``
+        
+        
+        Contribute
+        ----------
+        
+        - Issue Tracker: https://github.com/collective/collective.addons/issues
+        - Source Code: https://github.com/collective/collective.addons
+        
+        
+        Support
+        -------
+        
+        If you are having issues, please let us know.
+        Please create an issue in the project issue tracker (see above).
+        
+        
+        License
+        -------
+        
+        The project is licensed under the GPLv2.
+        
+        
+        Contributors
+        ============
+        
+        - Andreas Mantke, maand@gmx.de
+        
+        
+        Changelog
+        =========
+        
+        2.4 (2020-11-11)
+        ----------------
+        
+        - Text fixes in addoncenter view template [Andreas Mantke]
+        - Add listing of the number of projects per category to the sidebar of the
+          addoncenter view template [Andreas Mantke]
+        - Update localization files [Andreas Mantke]
+        
+        
+        2.3 (2020-09-19)
+        ----------------
+        
+        - Reordering view templates and move them to one new folder [Andreas Mantke]
+        - Update localization files [Andreas Mantke]
+        
+        
+        2.2 (2020-08-02)
+        ----------------
+        
+        - Add a file extension validator for linked add-on releases. [Andreas Mantke]
+        
+        
+        2.1 (2020-07-27)
+        ----------------
+        
+        - Use safe_unicode for unicode strings, make more labels translatable [Andreas Mantke]
+        - Update README.rst [Andreas Mantke]
+        - Update localization files and German localization [Andreas Mantke]
+        
+        
+        2.0 (2020-07-24)
+        ----------------
+        
+        - Add a controlpanel and move configuration entries from the addoncenter
+          module to this panel, create new vocabulary and functions from this
+          entries in the configuration registry instead of entries in the portal_catalog,
+          register vocabularies as named utilities in the configure.zcml file, use the
+          new functions (inside the common module) for the project and (linked) release
+          creation / edit form and their views as well as for the search feature of
+          the addon center module. [Andreas Mantke]
+        - Update localization files and German localization [Andreas Mantke]
+        - Adapt the user documentation to the new functions and structure of the
+          add-on and create documentation in html and pdf file format [Andreas Mantke]
+        
+        
+        1.2 (2020-05-07)
+        ----------------
+        
+        - Fix a tal expression on the addon release view. [Andreas Mantke]
+        - Add new fields to choose, in username and /or e-mail address of a
+          project owner / contact should be published and save the choice
+          in the portal_catalog. [Andreas Mantke]
+        - Update localization files and add German localization for new
+          strings [Andreas Mantke]
+        
+        
+        1.1 (2020-03-28)
+        ----------------
+        
+        - Fix formating and text issues in the users docomentation, add
+          information about buildout entries and update documentation in
+          HTML and PDF file format. [Andreas Mantke]
+        - Include documentation txt-files into the the
+          MANIFEST.in [Andreas Mantke]
+        - Add versions to test_plone52.cfg [Andreas Mantke]
+        - Fix travis.yml [Andreas Mantke]
+        - Add a new module for a contact with the project owner, add a link to
+          the mail forms from addon project respective the addon center
+          view. [Andreas Mantke]
+        - Fix two URLs in own_projects.pt [Andreas Mantke]
+        - Add a subscriber for messaging about new project added [Andreas Mantke]
+        - Update localization files [Andreas Mantke]
+        
+        
+        
+        1.0 (2019-11-16)
+        ----------------
+        
+        - Complete user documentation [Andreas Mantke]
+        - Flake8 fixes [Andreas Mantke]
+        - Add a custom.css for creating documentation in HTML file
+          format [Andresa Mantke]
+        
+        
+        1.0b2 (2019-11-03)
+        ------------------
+        
+        - Add user documentation [Andreas Mantke]
+        - Add further directories to .gitignore [Andreas Mantke]
+        
+        
+        1.0b0 (2019-09-11)
+        ------------------
+        
+        - Made additions to travis.yml to get the robot test running
+          successfully [Andreas Mantke]
+        - Update the Readme and add more features of the add-on [Andreas Mantke]
+        - Change the name of the field for the add-on project contact
+          address [Andreas Mantke]
+        - Flake8 fixes [Andreas Mantke]
+        
+        
+        1.0a4 (2019-09-03)
+        ------------------
+        
+        - Pep8 and other code fixes [Andreas Mantke]
+        - Move from api.portal.get_tool to api.content.find for portal_catalog
+          searches [Andreas Mantke]
+        - Move from checkpermission to api.user.has_permission [Andreas Mantke]
+        - Fix the message to sender in the mailtoauthor form [Andreas Mantke]
+        - Add further dependencies to the install_requirements section
+          of the setup.py script [Andreas Mantke]
+        - Add include dependencies of the package to configure.zcml [Andreas Mantke]
+        - Remove test for Plone 4.3 from travis.yml [Andreas Mantke]
+        - Update localization files [Andreas Mantke]
+        
+        
+        1.0a3 (2019-08-23)
+        ------------------
+        
+        - Pep8, isort and code-analysis fixes. [Andreas Mantke]
+        
+        
+        
+        1.0b1 (2019-08-23)
+        ------------------
+        
+        - Add notifications module [Andreas Mantke]
+        - Fix css-class names in addonrelease and addonlinkedrelease
+          view [Andreas Mantke]
+        - Move a css inline style to the style sheet file [Andreas Mantke]
+        - Pep8 fixes [Andreas Mantke]
+        - Update localization template file and localization files,
+          update German translation. [Andreas Mantke
+        
+        
+        
+        1.0a2 (2019-08-16)
+        ------------------
+        
+        - Fix regular expressions for file extension validation [Andreas Mantke]
+        - Add import for Invalid to the addoncenter module [Andreas Mantke]
+        - Add necessary imports for virus scanning with
+          collective.clamaav [Andreas Mantke]
+        - Fix title strings and field namings [Andreas Mantke]
+        - Update localization template file and localization files and
+          add the missing German localization strings [Andreas Mantke]
+        
+        
+        
+        1.0a1 (2019-08-13)
+        ------------------
+        
+        - Initial release.
+          [andreasma]
+        
+Keywords: Python Plone
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Plone
+Classifier: Framework :: Plone :: Addon
+Classifier: Framework :: Plone :: 5.2
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Requires-Python: ==2.7, >=3.6
+Provides-Extra: test

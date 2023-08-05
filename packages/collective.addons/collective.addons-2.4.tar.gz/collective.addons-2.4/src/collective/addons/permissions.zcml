@@ -1,0 +1,22 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:zcml="http://namespaces.zope.org/zcml"
+  i18n_domain="plone">
+
+  <configure zcml:condition="installed AccessControl.security">
+  <!-- -*- extra stuff goes here -*- -->
+
+    <permission
+        id="collective.addons.AddAddonCenter"
+        title="collective.addons: Add AddonCenter"
+        />
+
+    <permission
+        id="collective.addons.AddAddonProject"
+        title="collective.addons: Add AddonProject"
+        />
+
+
+  </configure>
+
+</configure>
