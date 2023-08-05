@@ -1,0 +1,51 @@
+Metadata-Version: 1.1
+Name: findcmd
+Version: 0.1.2
+Summary: A command line tool for searching commands
+Home-page: https://github.com/xupeng/findcmd
+Author: Xupeng Yun
+Author-email: xupeng@xupeng.me
+License: Apache-2.0
+Description: **findcmd** is a simple command line tool for searching through PATHs to find out commands contain certian keywords.
+        
+        To install using ``pip``::
+        
+            pip install findcmd
+        
+        To install using ``easy_install``::
+        
+            easy_install findcmd
+        
+        Usage::
+        
+            Usage: findcmd [options] cmd
+        
+            Options:
+              -h, --help            show this help message and exit
+              -c, --case-sensitive
+              -e, --match-all
+              --no-color
+        
+        For example::
+        
+            xupeng@hopes ~ $ findcmd disk
+            /sbin/autodiskmount
+            /sbin/disklabel
+            /usr/bin/diskhits
+            /usr/sbin/diskarbitrationd
+            /usr/sbin/diskmanagementd
+            /usr/sbin/disktool
+            /usr/sbin/diskutil
+            /usr/sbin/fdisk
+            /usr/sbin/pdisk
+        
+Keywords: console sysutils
+Platform: UNKNOWN
+Classifier: Environment :: Console
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: POSIX :: BSD
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python
+Classifier: Topic :: System :: Systems Administration
+Classifier: Topic :: Utilities
