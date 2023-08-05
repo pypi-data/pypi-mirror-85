@@ -1,0 +1,49 @@
+[package]
+name = "pconvert-rust"
+description = "Rust version of P(NG)Convert, a simple PNG conversion tool."
+version = "0.2.3"
+authors = ["Platforme International"]
+license = "Apache-2.0"
+repository = "https://github.com/ripe-tech/pconvert-rust"
+edition = "2018"
+build = "build.rs"
+
+[lib]
+name = "pconvert_rust"
+crate-type = ["rlib", "cdylib"]
+
+[features]
+python-extension = ["pyo3"]
+wasm-extension = ["js-sys", "serde", "serde_json", "wasm-bindgen", "wasm-bindgen-futures", "web-sys"]
+
+[dependencies]
+# mandatory dependencies
+image = { version = "0.23", default-features = false, features = ["png"] }
+
+# `--features wasm-extension` dependencies
+js-sys = { version = "0.3", optional = true }
+serde = { version = "1.0", features = ["derive"], optional = true }
+serde_json = { version = "1.0", optional = true }
+wasm-bindgen = { version = "0.2", features = ["serde-serialize"], optional = true }
+wasm-bindgen-futures = { version = "0.4", optional = true }
+web-sys = { version = "0.3", features =  ["File", "ImageData"], optional = true }
+
+# `--features python-extension` dependencies
+pyo3 = { version = "0.12", features = ["extension-module"], optional = true }
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+mtpng = { version = "0.3" }
+
+[build-dependencies]
+chrono = "0.4"
+image = { version = "0.23", default-features = false, features = ["png"] }
+num_cpus = "1.13.0"
+regex = "1"
+
+[profile.dev]
+opt-level = 3
+
+[profile.release]
+debug = false
+lto = true
+opt-level = 3
