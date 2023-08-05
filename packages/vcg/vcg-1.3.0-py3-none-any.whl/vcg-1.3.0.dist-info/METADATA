@@ -1,0 +1,118 @@
+Metadata-Version: 2.1
+Name: vcg
+Version: 1.3.0
+Summary: Shared toolkit for VCG@XMU
+Home-page: UNKNOWN
+Author: VCG@XMU
+Author-email: elliott.zheng@foxmail.com
+License: MIT
+Keywords: VCG@XMU
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Education
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.1
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
+Requires-Dist: zmail
+Requires-Dist: pyyaml
+Requires-Dist: contexttimer
+Requires-Dist: tqdm
+
+# VCG
+## Install
+```bash
+pip install git+http://git.hypercube.top/ipic/vcg.git
+```
+or through pypi
+
+```bash
+pip install vcg
+```
+
+
+## Functions
+
+### list_dir
+```python
+from vcg import list_dir,get_postfix
+
+for name,file in list_dir(".", condition=get_postfix(".mp4"),key=lambda x:x[0]):
+    print(name,file)
+```
+### notify
+```python
+from vcg import notify
+with notify("admin@hypercube.top", debug=True):
+    raise NotImplementedError
+```
+set `debug=True` to disable notify temporary.
+
+### make_join
+```python
+import vcg
+
+folder=vcg.make_join("data","what")
+print(folder)
+
+# so you created a folder named "data/what"
+```
+### mkdir
+```python
+import vcg
+vcg.mkdir("data","ping") # create two folders "data" and "ping"
+```
+
+### partition
+
+Returns a new list with elements of which is a list of certain size.
+
+```python 
+partition([1, 2, 3, 4], 3) # you get [[1, 2, 3], [4]]
+```
+### flatten
+
+```python
+from vcg import flatten
+flatten([[1, 2, 3], [4]]) #[1,2,3,4]
+```
+
+### save_json
+```python
+save_json(file, obj)
+```
+### load_json
+```python
+obj=load_json(file)
+```
+## Classes
+
+### HostSpecific
+```python
+from vcg import HostSpecific
+spec = HostSpecific("data/spec.json")
+print(spec.what)
+print(spec["what"])
+```
+
+### Config
+```python
+from vcg import Config
+config = Config(key="cfg")
+config.add_post_arg("name", lambda args: args.cfg)
+config.add_argument(
+    "--no_flip", action="store_true", help="specified if no flipping"
+)
+print(config.parse_args())
+# Namespace(cfg='data/test.yaml', name='data/test.yaml', no_flip=True)
+```
+
+
+
+
+
