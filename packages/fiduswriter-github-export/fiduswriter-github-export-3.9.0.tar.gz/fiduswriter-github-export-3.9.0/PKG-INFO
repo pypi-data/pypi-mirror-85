@@ -1,0 +1,46 @@
+Metadata-Version: 1.1
+Name: fiduswriter-github-export
+Version: 3.9.0
+Summary: A Fidus Writer plugin to allow publishing of books to Github
+Home-page: https://www.github.org/fiduswriter/fiduswriter-github-export
+Author: Johannes Wilm
+Author-email: johannes@fiduswriter.org
+License: AGPL License
+Description: *************************
+        fiduswriter-github-export
+        *************************
+        A plugin to export books to github
+        
+        **This plugin is currently in early-stage development. It has not reached production level quality yet.**
+        
+        To install:
+        
+        1. Make sure you have installed the `fiduswriter-books` plugin and you have updated both `fiduswriter` and `fiduswriter-books` to the latest 3.8.x patch release.
+        
+        2. Install this plugin (for example by running ``pip install fiduswriter-github-export``).
+        
+        3. Set up github as one of the connected login options. See instructions here: https://django-allauth.readthedocs.io/en/latest/providers.html#github
+        
+        4. In your configuration.py file, add "github_export" to ``INSTALLED_APPS``.
+        
+        5. In your configuration.py file, make sure to add repo rights for the github connector like this::
+        
+            SOCIALACCOUNT_PROVIDERS = {
+                'github': {
+                    'SCOPE': [
+                        'repo',
+                    ],
+                }
+            }
+        
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 3.1
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
