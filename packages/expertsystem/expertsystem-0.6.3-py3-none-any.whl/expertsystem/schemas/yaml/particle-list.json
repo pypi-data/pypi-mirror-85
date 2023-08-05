@@ -1,0 +1,69 @@
+{
+  "$id": "particle-list.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["ParticleList"],
+  "additionalProperties": false,
+  "properties": { "ParticleList": { "$ref": "#/definitions/ParticleList" } },
+  "definitions": {
+    "Particle": {
+      "type": "object",
+      "required": ["PID", "Mass", "QuantumNumbers"],
+      "properties": {
+        "PID": { "type": "integer" },
+        "Mass": { "type": "number" },
+        "Width": { "type": "number" },
+        "QuantumNumbers": { "$ref": "#/definitions/QuantumNumbers" }
+      },
+      "additionalProperties": false
+    },
+    "ParticleList": {
+      "type": "object",
+      "patternProperties": { "^.*$": { "$ref": "#/definitions/Particle" } },
+      "additionalProperties": false
+    },
+    "QuantumNumbers": {
+      "type": "object",
+      "required": ["Charge", "Spin"],
+      "properties": {
+        "Charge": { "type": "integer" },
+        "Spin": { "type": "number", "multipleOf": 0.5 },
+        "Parity": { "enum": [-1, 1] },
+        "CParity": { "enum": [-1, 1] },
+        "GParity": { "enum": [-1, 1] },
+        "Strangeness": { "type": "integer" },
+        "Charmness": { "type": "integer" },
+        "Bottomness": { "type": "integer" },
+        "Topness": { "type": "integer" },
+        "BaryonNumber": { "type": "integer" },
+        "ElectronLN": { "type": "integer" },
+        "MuonLN": { "type": "integer" },
+        "TauLN": { "type": "integer" },
+        "IsoSpin": {
+          "anyOf": [
+            { "type": "number", "minimum": 0, "maximum": 0 },
+            {
+              "type": "object",
+              "required": ["Value"],
+              "properties": {
+                "Value": { "type": "number" },
+                "Projection": { "type": "number" }
+              },
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "Scalar": {
+      "anyOf": [
+        { "type": "number" },
+        {
+          "type": "string",
+          "regex": "[-+]?(\\.[0-9]+|[0-9]+(\\.[0-9]*)?)([eE][-+]?[0-9]+)?"
+        }
+      ]
+    }
+  }
+}
