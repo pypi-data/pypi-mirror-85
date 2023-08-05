@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: asciicast2movie
+Version: 0.3.0
+Summary: generate movie (video clip) from asciicast
+Home-page: https://bitbucket.org/OpCode-eu-org/asciicast2movie/
+Author: Robert Paciorek
+Author-email: robert@opcode.eu.org
+License: MIT
+Project-URL: GitHub, https://github.com/opcode-eu-org-libs/asciicast2movie/
+Keywords: asciicast video movie mp4 tty pyte moviepy
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.5
+Description-Content-Type: text/plain
+Requires-Dist: moviepy
+Requires-Dist: tty2img
+
+
+generate movie (video clip) from asciicast
+
+Can be used as command line tool for convert asciicast file to video files:
+  asciicast2movie.py input_asciicast_file.cast output_video_file.mp4
+
+Can be also imported as a module and contains functions:
+  * asciicast2video - convert asciicast data to moviepy video clip
+
+Requires:
+  * pyte (https://pypi.org/project/pyte/) VTXXX terminal emulator
+  * tty2img (https://pypi.org/project/tty2img/) lib for rendering pyte screen as image
+  * moviepy (https://pypi.org/project/moviepy/) video editing library
+  * numpy (https://pypi.org/project/numpy/) array computing (for moviepy)
+
+Copyright © 2020, Robert Ryszard Paciorek <rrp@opcode.eu.org>, MIT licence
+
+
