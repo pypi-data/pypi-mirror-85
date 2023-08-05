@@ -1,0 +1,353 @@
+#!python
+"""
+SWIFT-pipeline is a significantly more complex version of ``velociraptor-plot``.
+
+It uses configuration files along with additional plotting scripts to put together
+webpages that can represent whole cosmological simulations easily.
+"""
+
+import argparse as ap
+from typing import Union
+
+parser = ap.ArgumentParser(
+    prog="swift-pipeline",
+    description=(
+        "Creates a webpage containing many figures out of your SWIFT runs. "
+        "When creating this page, also creates a metadata file that can be used "
+        "later with this program to produce comparison webpages between multiple "
+        "simulations."
+    ),
+    epilog=(
+        "Example usage:\n"
+        "swift-pipeline -C ~/config -c example_0000.properties -s snapshot_0000.hdf5 "
+        "-o ~/plots/example_0000 -i /path/to/my/sim\n\n"
+        "Example creating comparisons:\n"
+        "swift-pipeline -C ~/config -c example_0000.properties example_0000.properties "
+        "-s snapshot_0000.hdf5 snapshot_0000.hdf5 "
+        "-o ~/plots/example_0000 -i /path/to/my/first/sim /path/to/my/second/sim\n\n"
+    ),
+)
+
+parser.add_argument(
+    "-C",
+    "--config",
+    type=str,
+    required=True,
+    help=("Configuration directory, containing config.yml."),
+)
+
+parser.add_argument(
+    "-c",
+    "--catalogues",
+    type=str,
+    required=True,
+    help="Name of the VELOCIraptor HDF5 .properties file(s). Required.",
+    nargs="*",
+)
+
+parser.add_argument(
+    "-s",
+    "--snapshots",
+    required=True,
+    type=str,
+    help="Name of the snapshot file(s). Required.",
+    nargs="*",
+)
+
+parser.add_argument(
+    "-o",
+    "--output",
+    type=str,
+    required=True,
+    help="Output directory for figures. Required.",
+)
+
+parser.add_argument(
+    "-i",
+    "--input",
+    type=str,
+    required=False,
+    default=".",
+    help=(
+        "Input directory where the snapshot(s) and properties file(s) are located. "
+        "Default is the current working directory. If you are running for comparison "
+        "purposes you will need to ensure that the metadata yaml files have been "
+        "generated in these folders and have the same basename (--metadata) as is "
+        "given here."
+    ),
+    nargs="*",
+)
+
+parser.add_argument(
+    "-d",
+    "--debug",
+    required=False,
+    default=False,
+    action="store_true",
+    help="Run in debug mode if this flag is present. Default: no.",
+)
+
+
+parser.add_argument(
+    "-m",
+    "--metadata",
+    required=False,
+    default="data",
+    help=(
+        "Base name of the written metadata file in the input directory. "
+        "By default this is data, leading to data_XXXX.yml"
+    ),
+)
+
+parser.add_argument(
+    "-n",
+    "--run-names",
+    required=False,
+    default=None,
+    nargs="*",
+    help=(
+        "Overwrite the names given to each run? If not present, the default names "
+        "from the snapshots are used, and in the case where there are multiple "
+        "redshifts, we append the redshift."
+    ),
+)
+
+
+if __name__ == "__main__":
+    # Parse our lovely arguments and pass them to the velociraptor library
+    from velociraptor.autoplotter.objects import AutoPlotter
+    from velociraptor.autoplotter.metadata import AutoPlotterMetadata
+    from velociraptor.autoplotter.compare import (
+        recreate_instances,
+        recreate_single_figure,
+    )
+    from velociraptor import load
+
+    from swiftsimio import load as load_snapshot
+
+    from matplotlib import __version__
+    from matplotlib.pyplot import style
+
+    from subprocess import run
+    from glob import glob
+    import os
+
+    from swiftpipeline.config import Config
+    from swiftpipeline.html import WebpageCreator
+
+    PLOT_FILE_EXTENSION = "png"
+
+    args = parser.parse_args()
+
+    # Set up some basic debugging things
+    if args.debug:
+        from tqdm import tqdm
+
+    def print_if_debug(string: str):
+        if args.debug:
+            print(string)
+
+    print_if_debug("Running in debug mode. Arguments given are:")
+    for name, value in dict(vars(args)).items():
+        print_if_debug(f"{name}: {value}")
+
+    config = Config(config_directory=args.config)
+
+    print_if_debug(f"Matplotlib version: {__version__}.")
+    if config.matplotlib_stylesheet != "default":
+        stylesheet_path = f"{config.config_directory}/{config.matplotlib_stylesheet}"
+        print_if_debug(f"Applying matplotlib stylesheet at {stylesheet_path}.")
+        style.use(stylesheet_path)
+
+    # Reverse so most recently modified is at the top.
+    auto_plotter_configs = list(
+        reversed(
+            glob(f"{config.config_directory}/{config.auto_plotter_directory}/*.yml")
+        )
+    )
+
+    print_if_debug("Loading snapshot metadata")
+    snapshots = [
+        load_snapshot(f"{input}/{snapshot}")
+        for input, snapshot in zip(args.input, args.snapshots)
+    ]
+    if args.run_names is not None:
+        run_names = args.run_names
+        print_if_debug("Using custom run names:")
+        print_if_debug(" ".join(run_names))
+    else:
+        # First, check if the snapshots are all at the same redshift
+        redshifts = {data.metadata.redshift for data in snapshots}
+        if len(redshifts) == len(snapshots):
+            # All different redshifts!
+            run_names = [data.metadata.run_name for data in snapshots]
+        else:
+            # Need to append appropriate redshifts to names.
+            run_names = [
+                f"{data.metadata.run_name} (z={data.metadata.redshift:1.3f})"
+                for data in snapshots
+            ]
+        print_if_debug("Using default run names from snapshot:")
+        print_if_debug(" ".join(run_names))
+
+    observational_data_path = (
+        f"{config.config_directory}/{config.observational_data_directory}/data"
+    )
+
+    is_comparison = len(args.snapshots) > 1
+
+    if not is_comparison:
+        # Run the pipeline based on the arguments if only a single simulation is
+        # included and generate the metadata yaml file.
+        print_if_debug(
+            f"Generating initial AutoPlotter instance for {config.auto_plotter_directory}."
+        )
+
+        auto_plotter = AutoPlotter(
+            auto_plotter_configs, observational_data_directory=observational_data_path,
+        )
+
+        halo_catalogue_filename = f"{args.input[0]}/{args.catalogues[0]}"
+        print_if_debug(f"Loading halo catalogue at {halo_catalogue_filename}.")
+
+        registration_filename = (
+            None
+            if config.auto_plotter_registration is None
+            else f"{config.config_directory}/{config.auto_plotter_registration}"
+        )
+
+        if registration_filename is not None:
+            print_if_debug(
+                f"Using registration functions contained in {registration_filename}"
+            )
+
+        catalogue = load(
+            halo_catalogue_filename,
+            disregard_units=True,
+            registration_file_path=registration_filename,
+        )
+        print_if_debug(f"Linking catalogue and AutoPlotter instance.")
+        auto_plotter.link_catalogue(catalogue=catalogue)
+
+        print_if_debug(f"Creating figures with extension .png in {args.output}.")
+        print_if_debug("Converting AutoPlotter.plots to a tqdm instance.")
+
+        if args.debug:
+            auto_plotter.plots = tqdm(auto_plotter.plots, desc="Creating figures")
+
+        auto_plotter.create_plots(
+            directory=args.output, file_extension=PLOT_FILE_EXTENSION, debug=args.debug
+        )
+
+        print_if_debug("Creating AutoPlotterMetadata instance.")
+        auto_plotter_metadata = AutoPlotterMetadata(auto_plotter=auto_plotter)
+        metadata_filename = (
+            f"{args.input[0]}/{args.metadata}_{args.snapshots[0][-9:-5]}.yml"
+        )
+        print_if_debug(f"Creating and writing metadata to {metadata_filename}")
+
+        try:
+            auto_plotter_metadata.write_metadata(metadata_filename)
+        except (OSError, PermissionError) as e:
+            print_if_debug(f"Unable to save metadata to {metadata_filename}")
+            pass
+    else:
+        # Need to generate our data again from the built-in yaml files.
+        metadata_filenames = [
+            f"{input}/{args.metadata}_{snapshot[-9:-5]}.yml"
+            for input, snapshot in zip(args.input, args.snapshots)
+        ]
+
+        if args.debug:
+            for metadata_filename in metadata_filenames:
+                if not os.path.exists(metadata_filename):
+                    print_if_debug(
+                        f"Unable to find {metadata_filename}, ensure the pipeline has "
+                        "been run in standalone mode for this simulation before "
+                        "attempting comparisons."
+                    )
+
+        print_if_debug(f"Attempting to recreate instances for {metadata_filenames}")
+        auto_plotter, auto_plotter_metadata, line_data = recreate_instances(
+            config=auto_plotter_configs,
+            paths=metadata_filenames,
+            names=run_names,
+            observational_data_directory=observational_data_path,
+            file_extension=PLOT_FILE_EXTENSION,
+        )
+
+        if not os.path.exists(args.output):
+            os.mkdir(args.output)
+
+        print_if_debug("Converting AutoPlotter.plots to a tqdm instance.")
+        if args.debug:
+            auto_plotter.plots = tqdm(auto_plotter.plots, desc="Creating figures")
+
+        for plot in auto_plotter.plots:
+            try:
+                recreate_single_figure(
+                    plot=plot,
+                    line_data=line_data,
+                    output_directory=args.output,
+                    file_type=PLOT_FILE_EXTENSION,
+                )
+            except:
+                print_if_debug(f"Unable to create figure {plot.filename}.")
+
+    # Now that we have auto_plotter_metadata we can use it to check if we have
+    # inadvertently created multiple plots with the same filename.
+    if args.debug:
+        figure_filenames = {plot.filename: 0 for plot in auto_plotter_metadata.plots}
+
+        for plot in auto_plotter_metadata.plots:
+            figure_filenames[plot.filename] += 1
+
+        for filename, number_of_figures in figure_filenames.items():
+            if number_of_figures > 1:
+                print_if_debug(
+                    f"{number_of_figures} figures with filename "
+                    f"{filename}.{PLOT_FILE_EXTENSION} have been created. "
+                    "This will cause overwriting, and may not be intentional."
+                )
+
+    # Now move onto using the ``config`` to generate plots from the actual data.
+
+    if args.debug:
+        config.scripts = tqdm(config.scripts, desc="Running Scripts")
+
+    scripts_to_use = config.comparison_scripts if is_comparison else config.scripts
+
+    for script in scripts_to_use:
+        full_script_path = f"{config.config_directory}/{script.filename}"
+
+        run(
+            [
+                "python3",
+                full_script_path,
+                "-s",
+                *args.snapshots,
+                "-c",
+                *args.catalogues,
+                "-d",
+                *args.input,
+                "-n",
+                *run_names,
+                "-o",
+                args.output,
+                "-C",
+                config.config_directory,
+                *script.additional_argument_list,
+            ]
+        )
+
+    # Create the webpage`
+    print_if_debug("Creating webpage.")
+    webpage = WebpageCreator()
+    webpage.add_auto_plotter_metadata(auto_plotter_metadata=auto_plotter_metadata)
+    webpage.add_config_metadata(config=config, is_comparison=is_comparison)
+    webpage.add_metadata(page_name=" | ".join(run_names))
+    webpage.add_run_metadata(config=config, snapshots=snapshots)
+    webpage.render_webpage()
+    webpage.save_html(f"{args.output}/index.html")
+
+    print_if_debug("Done.")
