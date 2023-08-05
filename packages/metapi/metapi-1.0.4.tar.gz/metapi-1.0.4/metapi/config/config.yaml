@@ -1,0 +1,448 @@
+params:
+  reads_layout: "pe"
+  interleaved: False
+  have_long: False
+  fq_encoding: "sanger"
+  begin: "trimming"
+  samples: "samples.tsv"
+
+  simulate:
+    do: True
+    threads: 8
+
+  raw:
+    threads: 8
+    save_reads: True
+    fastqc:
+      do: True
+
+  trimming:
+    save_reads: False
+    oas1:
+      do: False
+      quality_system: 33
+      min_length: 30
+      seed_oa: 0.9
+      fragment_oa: 0.8
+    sickle:
+      do: False
+      quality_type: "sanger"
+      sickle_pe: ""
+      length_cutoff: 51
+      quality_cutoff: 20
+    fastp:
+      do: True
+      threads: 4
+      disable_adapter_trimming: True
+      use_slide_window: True
+      compression: 6
+      cut_front_window_size: 4
+      cut_front_mean_quality: 20
+      cut_tail_window_size: 4
+      cut_tail_mean_quality: 20
+      cut_right_window_size: 4
+      cut_right_mean_quality: 20
+      length_required: 51
+      n_base_limit: 5
+
+  rmhost:
+    host_fasta: /ldfssz1/ST_META/share/User/zhujie/database/galaxy_indexes/hg38/seq/hg38full.fa
+    threads: 8
+    save_reads: True
+    save_bam: False
+    compression: 6
+    bwa:
+      do: False
+      index_prefix: /ldfssz1/ST_META/share/User/zhujie/database/galaxy_indexes/hg38/hg38full/bwa_index/hg38full.fa
+      minimum_seed_length: 23
+    bowtie2:
+      do: True
+      index_prefix: /ldfssz1/ST_META/share/User/zhujie/database/galaxy_indexes/hg38/hg38full/bowtie2_index/hg38full
+  qcreport:
+    do: True
+    seqkit:
+      threads: 4
+
+  assembly:
+    threads: 8
+    megahit:
+      do: False
+      min_contig: 100
+      only_save_scaftigs: True
+      k_list: ["21", "33", "55", "77"]
+      presets: "" # choose from "meta-sensitive" or "meta-large"
+      # 15-255, increment <= 28
+      # k_min: 21, default
+      # k_max: 141, default
+      # k_step: 12, default
+    idba_ud:
+      do: False
+      mink: 27
+      maxk: 127
+      step: 10
+      min_contig: 500
+      only_save_scaftigs: True
+    metaspades:
+      do: True
+      only_assembler: False
+      only_save_scaftigs: True
+      link_scaffolds: True
+      memory: 20
+      kmers: ["21", "33", "55", "77"]
+      # K_MERS_RNA = [33, 49]
+      # K_MERS_SHORT = [21, 33, 55]
+      # K_MERS_150 = [21, 33, 55, 77]
+      # K_MERS_250 = [21, 33, 55, 77, 99, 127]
+      # K_MERS_PLASMID_100 = [21, 33, 55, 77]
+      # K_MERS_PLASMID_LONG = [21, 33, 55, 77, 99, 127]
+    spades:
+      do: False
+      only_assembler: False
+      only_save_scaftigs: True
+      link_scaffolds: True
+      memory: 50
+      kmers: ["21", "33", "55", "77"]
+    plass:
+      do: False
+      min_seq_id:
+      min_length: 45
+      evalue:
+      filter_protiens: 1
+    opera_ms:
+      do: False
+      path: /ldfssz1/ST_META/share/User/zhujie/toolkit/OPERA-MS/OPERA-MS.pl
+      no_ref_clustering: True
+      no_strain_clustering: False
+      no_gap_filling: False
+      polishing: True
+      long_read_mapper: blasr
+      short_read_assembler: megahit
+      contig_len_threshold: 500
+      contig_edge_len: 80
+      contig_window_len: 340
+      genome_db: /ldfssz1/ST_META/share/User/zhujie/toolkit/OPERA-MS/OPERA-MS-DB
+
+    metaquast:
+      do: False
+      threads: 8
+      min_contig: 500
+
+    report:
+      threads: 8
+      len_ranges: [0, 1000, 1500, 2000, 2500, 3000]
+
+  coassembly:
+    megahit:
+      do: False
+      threads: 8
+      min_contig: 100
+      only_save_scaftigs: True
+      k_list: ["21", "33", "55", "77"]
+      presets: "" # choose from "meta-sensitive" or "meta-large"
+
+  alignment:
+    do: True
+    threads: 8
+    cal_base_depth: False
+    report: True
+
+  binning:
+    threads: 8
+    bin_suffix: "fa"
+    metabat2:
+      do: True
+      percent_identity: 97
+      min_map_qual: 0
+      output_paired_contigs: False
+      output_gc: False
+      output_gc_window: False
+      min_contig: 1500
+      maxP: 95
+      minS: 60
+      maxEdges: 200
+      pTNF: 0
+      noAdd: False
+      minCV: 1
+      minCVSum: 1
+      minClsSize: 200000
+      saveCls: False
+      seed: 2020
+    maxbin2:
+      do: True
+      min_contig: 1500
+      max_iteration: 50
+      prob_threshold: 0.9
+      plotmarker: True
+      markerset: 107
+    concoct:
+      do: True
+      chunk_size: 10000
+      overlap_size: 0
+      clusters: 400
+      kmer_length: 4
+      length_threshold: 1000
+      read_length: 100
+      total_percentage_pca: 90
+      iterations: 500
+      seed: 2020
+      no_cov_normalization: False
+      no_total_coverage: False
+      no_original_data: False
+      coverage_out: False
+    graphbin:
+      do: True
+      max_iteration: 100
+      diff_threshold: 0.1
+    dastools:
+      do: True
+      search_engine: "diamond"
+      write_bin_evals: 1
+      write_bins: 1
+      write_unbinned: 0
+      create_plots: 1
+      score_threshold: 0.5
+      duplicate_penalty: 0.6
+      megabin_penalty: 0.5
+
+  cobinning:
+    do: False
+    threads: 8
+    scaftigs_length: 1000
+    vsearch:
+      identity: 0.75
+
+  predict:
+    threads: 8
+    format: "gff"
+    scaftigs_to_gene:
+      prokka:
+        do: False
+    bins_to_gene:
+      prokka:
+        do: False
+        kingdom: Bacteria
+
+  checkm:
+    do: True
+    check_binners: ["metabat2", "dastools"]
+    report: True
+    threads: 8
+    pplacer_threads: 1
+    reduced_tree: False
+    completeness: 90
+    contamination: 10
+    standard: "MIMAG" # SGB
+    batch_num: 500
+
+  classify:
+    threads: 8
+    kraken2:
+      do: True
+      database: /ldfssz1/ST_META/share/User/zhujie/database/kraken2/k2_standard_20200919
+      quick: False
+      memory_mapping: False
+      use_names: True
+      use_mpa_style: False
+      report_zero_counts: False
+      confidence: 0
+      min_base_quality: 0
+      min_hit_groups: 2
+      unclassified_out: False
+      classified_out: False
+    gtdbtk:
+      do: True
+      pplacer_threads: 1
+      batch_num: 1000
+      gtdb_data_path: /ldfssz1/ST_META/share/User/zhujie/database/gtdb/release95
+      ar122_metadata: /ldfssz1/ST_META/share/User/zhujie/database/gtdb/ar122_metadata_r95.tsv
+      bac120_metadata: /ldfssz1/ST_META/share/User/zhujie/database/gtdb/bac120_metadata_r95.tsv
+      gtdb_to_ncbi_script: /ldfssz1/ST_META/share/User/zhujie/toolkit/GTDBTk/scripts/gtdb_to_ncbi_majority_vote.py
+
+  dereplicate:
+    drep:
+      do: True
+      threads: 8
+      filtering_genome_min_length: 50000
+      filtering_completeness: 75
+      filtering_contamination: 25
+      genome_comparison_algorithm: "ANImf"
+      clustering_primary_ANI: 0.9
+      clustering_secondary_ANI: 0.99
+    cdhit:
+      do_gene: True
+      do_proteins: False
+      threads: 32
+      sequence_identity_threshold: 0.95
+      alignment_coverage_for_shorter_sequence: 0.9
+      word_length: 8
+      use_global_sequence_identity: 0
+      memory_limit: 0
+      cluster_description_length: 0
+      default_algorithm: 0
+      both_alignment: 1
+    galah:
+      ani: 99
+      max_contamination:
+      min_completeness: 0
+      prethreshold_ani: 95
+      threads: 32
+
+  profiling:
+    threads: 8
+    metaphlan:
+      do_v2: True
+      do_v3: True
+      bowtie2db: /ldfssz1/ST_META/share/User/zhujie/database/metaphlan
+      index_v2: "v20_m200"
+      index_v3: "mpa_v30_CHOCOPhlAn_201901"
+      bowtie2_presets: "very-sensitive"
+      taxonomic_level: "a"
+      min_cu_len: 2000
+      avoid_disqm: True
+      analysis_type: "rel_ab"
+      #  [
+      #    "rel_ab",
+      #    "rel_ab_w_read_stats",
+      #    "reads_map",
+      #    "clade_profiles",
+      #    "marker_ab_table",
+      #    "marker_counts",
+      #    "marker_pres_table",
+      #  ]
+      stat_q: "0.1"
+      stat: "tavg_g"
+      no_unknown_estimation: False
+      read_min_len: 70
+      save_bowtie2out: False
+      legacy_output: False
+      cami_format_output: False
+      no_map: True
+      biom: False
+    jgi:
+      oneway: False
+      do: True
+      fragment: 1200
+      memory_limit: 8G
+      compression_level: 6
+      index_metadata: /ldfssz1/ST_META/share/User/zhujie/database/oral_genome_database/oral_genome_db_metadata.tsv
+      taxonomy: /ldfssz1/ST_META/share/User/zhujie/database/oral_genome_database/oral_genome_db_gtdb_taxonomy.tsv
+      index_prefix: /ldfssz1/ST_META/share/User/zhujie/database/oral_genome_database/oral_genome_db
+    bracken:
+      do: True
+      reads_len: 100
+      level: "S"
+    humann:
+      do_v2: True
+      do_v3: True
+      evalue: 1.0
+      prescreen_threshold: 0.01
+      identity_threshold: 50.0
+      nucleotide_identity_threshold: 0.0 # nucleotide: 0
+      translated_identity_threshold: 80.0 # uniref90: 80.0; uniref50: 50.0
+      nucleotide_subject_coverage_threshold: 50.0
+      translated_subject_coverage_threshold: 50.0
+      nucleotide_query_coverage_threshold: 90.0
+      translated_query_coverage_threshold: 90.0
+      translated-alignment: "diamond" # ["diamond", "usearch", "rapsearch"]
+      xipe: False
+      minpath: True
+      pick_frames: False
+      gap_fill: False
+      remove_temp_output: True
+      memory_use: "minimum"
+      normalize_method: "relab"
+      regroup_method: "sum"
+      map_database:
+        [
+          "uniref90_go",
+          "uniref90_ko",
+          "uniref90_eggnog",
+          "uniref90_pfam"
+        #  "uniref90_level4ec",
+        #  "uniref90_infogo1000",
+        #  "uniref90_rxn",
+        ]
+      update_config: True
+      database_utility_mapping: /ldfssz1/ST_META/share/User/zhujie/database/humann/utility_mapping
+      database_utility_mapping_v3: /ldfssz1/ST_META/share/User/zhujie/database/humann/utility_mapping_v3
+      database_protein: /ldfssz1/ST_META/share/User/zhujie/database/humann/uniref90_diamond
+      database_protein_v3: /ldfssz1/ST_META/share/User/zhujie/database/humann/uniref90_diamond_v3
+      database_nucleotide: /ldfssz1/ST_META/share/User/zhujie/database/humann/chocophlan_full
+      database_nucleotide_v3: /ldfssz1/ST_META/share/User/zhujie/database/humann/chocophlan_full_v3
+
+output:
+  simulate: "results/00.simulate"
+  raw: "results/00.raw"
+  trimming: "results/01.trimming"
+  rmhost: "results/02.rmhost"
+  qcreport: "results/03.qcreport"
+  assembly: "results/04.assembly"
+  coassembly: "results/04.coassembly"
+  alignment: "results/05.alignment"
+  coalignment: "results/05.coalignment"
+  binning: "results/06.binning"
+  cobinning: "results/06.cobinning"
+  predict: "results/07.predict"
+  copredict: "results/07.copredict"
+  checkm: "results/08.checkm"
+  cocheckm: "results/08.cocheckm"
+  classify: "results/09.classify"
+  coclassify: "results/09.coclassify"
+  dereplicate: "results/10.dereplicate"
+  profiling: "results/11.profiling"
+  upload: "results/99.upload"
+
+upload:
+  do: True
+  threads: 8
+  project_accession: "CNP0000000"
+
+  samples:
+    tax_id: "447426"
+    organism: "human oral metagenome"
+    investigation_type: "metagenome"
+    collection_date: "2018-11-19"
+    env_biome: "saliva"
+    env_feature: "saliva"
+    env_material: "saliva material"
+    geo_loc_name: "China: Shenzhen"
+    host: "Homo sapiens"
+    lat_lon: "22.35 N 114.27 E"
+    strain: "missing"
+    estimated_size: "missing"
+    isol_growth_condt: "not collected"
+    num_replicons: "not collected"
+    ref_biomaterial: "not collected"
+    ploidy: "missing"
+    propagation: "not collected"
+
+  sequencing_run:
+    experiment_title: "WGS of human oral metagenome"
+    library_name: "LIBRARY_NAME-BARCODE_ID"
+    library_strategy: "WGS"
+    library_source: "METAGENOMIC"
+    library_selection: "RANDOM"
+    library_layout: "paired"
+    platform: "BGISEQ"
+    instrument_model: "BGISEQ-500"
+    design_description: "human oral metagenome"
+    library_construction_protocol: "RANDOM"
+    spot_layout: ""
+    nominal_size: "350"
+    file_type: "fastq"
+
+  assembly:
+    assembly_method: "SPAdes"
+    assembly_method_version: "v3.13.0"
+    assembly_partial: True
+    assembly_coverage: "30"
+    sequencing_technology: "BGISEQ"
+    assembly_min_gap_length: ""
+    assembly_mol_type: "genomic DNA"
+    reference_genome: ""
+
+envs:
+  bioenv3.7: "envs/bioenv3.7.yaml"
+  bioenv3.6: "envs/bioenv3.6.yaml" # drep
+  bioenv2: "envs/bioenv2.yaml"     # metaphlan2, humann2
+  biobakery: "envs/biobakery.yaml" # metaphlan3, humann3
