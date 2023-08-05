@@ -1,0 +1,61 @@
+# Introduction
+
+Gray code or reflected binary code (RBC) is an ordering of binary numbers such
+that two successive numbers only differ in one bit. In essence, this is an
+alternative to two's complement integers when it is useful to change only
+one bit between successive numbers.
+
+This library implements functions to convert gray code to two's complement
+integer and vice versa.
+
+See LICENSE.md for copyright information. This library is licensed under the
+MIT license.
+
+See https://en.wikipedia.org/wiki/Gray_code for details and applications of
+gray codes.
+
+# Installation
+
+```
+$ python3 setup.py install
+```
+Or from PyPi:
+```
+$ pip3 install graycode
+```
+
+# Example
+
+```
+import graycode
+
+for i in range(8):
+    print(i, '{:03b}'.format(graycode.tc_to_gray_code(i)))
+```
+=>
+```
+0 000
+1 001
+2 011
+3 010
+4 110
+5 111
+6 101
+7 100
+```
+Reverse is also provided:
+```
+graycode.gray_code_to_tc(0b011)
+```
+=>
+```
+2
+```
+gen_gray_codes(n) produces all n bit gray codes:
+```
+graycode.gen_gray_codes(3)
+```
+=>
+```
+[0, 1, 3, 2, 6, 7, 5, 4]
+```

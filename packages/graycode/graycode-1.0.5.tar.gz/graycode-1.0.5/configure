@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -e
+
+python3 setup.py build "$@"
+
+echo "gray-code library built."
+echo
+echo "To install gray-code library, run:"
+echo
+echo "    python3 setup.py install [--user]"
+echo
