@@ -1,0 +1,38 @@
+<div class="container">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <!-- Home Tab -->
+        <li role="presentation" class="active">
+            <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a>
+        </li>
+        <!-- Edit Branch Detail Tab -->
+        <li role="presentation">
+            <a href="#editBranchDetail" aria-controls="editBranchDetail" role="tab"
+               data-toggle="tab">Edit Branch Detail</a>
+        </li>
+        <!-- Edit Settings Tab -->
+        <li role="presentation">
+            <a href="#editSetting" aria-controls="editSetting" role="tab"
+               data-toggle="tab">Edit Settings</a>
+        </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <!-- Edit Settings Tab -->
+        <div role="tabpanel" class="tab-pane" id="editSetting">
+            <pl-branch-edit-setting></pl-branch-edit-setting>
+        </div>
+        <!-- Edit Branch Detail Tab -->
+        <div role="tabpanel" class="tab-pane" id="editBranchDetail">
+            <pl-branch-edit-branch-detail></pl-branch-edit-branch-detail>
+        </div>
+        <!-- Home Tab -->
+        <div role="tabpanel" class="tab-pane active" id="home">
+            <h1 class="text-center">Branch Plugin</h1>
+            <p>Angular2 Lazy Loaded Module</p>
+            <p>This is the root of the admin app for the Branch plugin</p>
+        </div>
+
+    </div>
+</div>
