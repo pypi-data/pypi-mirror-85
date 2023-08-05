@@ -1,0 +1,73 @@
+@import '~@synerty/peek-plugin-base-js/src/styles/_variables';
+
+
+.peek-ds-main-header {
+
+    width: $desktop_side_bar_width / 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: $brand;
+
+}
+
+.sidebar-button {
+    color: #fff;
+    cursor: pointer;
+    font-size: $general_font_size_4;
+    background-color: $brand;
+    width: $desktop_side_bar_width / 2;
+    height: $desktop_side_bar_width / 2;
+    border-bottom: 2px sold $white;;
+}
+
+.sidebar-button-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+
+.peek-ds-mh-title {
+    max-width: $desktop_side_bar_width / 2;
+    word-wrap: break-word;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    background-color: $white;
+    text-align: center;
+    //font-size: $general_font_size_3;
+    color: $black;
+}
+
+
+.button-disabled {
+    cursor: not-allowed;
+    box-shadow: none;
+    background-color: $general_button_background_disabled;
+    color: $font_colour_disabled;
+}
+
+.sidebar-top {
+    align-self: flex-start;
+    flex-grow: 1;
+}
+
+.sidebar-bottom {
+    align-self: flex-end;
+}
+
+
+.sidebar-powered-by {
+    background-color: $black;
+    display: block;
+    width: 100%;
+}
+
+.powered-by-tooltip {
+    background-color: $black;
+    padding-left: 100px;
+    padding-bottom: 100px;
+    width: 400px;
+    //height: 400px;
+}

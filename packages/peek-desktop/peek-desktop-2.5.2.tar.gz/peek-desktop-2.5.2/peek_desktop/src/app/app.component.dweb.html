@@ -1,0 +1,19 @@
+<balloon-msg-queue-component></balloon-msg-queue-component>
+
+<div class="peek-desktop-row">
+    <!-- Left Menu -->
+    <div [class.peek-desktop-sidebar]="loggedIn"
+         [class.peek-desktop-sidebar-hidden]="!loggedIn">
+        <div class="peek-desktop-sidebar-inner">
+            <peek-main-sidebar></peek-main-sidebar>
+        </div>
+    </div>
+
+    <!-- Right Contents -->
+    <div class="peek-desktop-content">
+        <peek-main-root-components *ngIf="!showLoading()"></peek-main-root-components>
+        <core-device-loading *ngIf="showLoading()"></core-device-loading>
+        <router-outlet [hidden]="showLoading()"></router-outlet>
+    </div>
+
+</div>

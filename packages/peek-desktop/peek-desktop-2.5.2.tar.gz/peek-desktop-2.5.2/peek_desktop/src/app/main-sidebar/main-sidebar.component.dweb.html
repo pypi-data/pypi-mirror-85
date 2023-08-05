@@ -1,0 +1,113 @@
+<div class="peek-ds-main-header" *ngIf="isEnabled">
+    <div class="sidebar-top">
+        <div *ngIf="!vortexIsOnline">
+            <nz-alert nzType="error" nzMessage="Offline"></nz-alert>
+        </div>
+        <div class="peek-ds-mh-title">
+            {{title}}
+        </div>
+
+        <div>
+            <button
+                class="sidebar-button"
+                [disabled]="!isBackButtonEnabled()"
+                [class.button-disabled]="!isBackButtonEnabled()"
+                (click)="navBackService.navBack()"
+                nzTitle="Back to Last Page"
+                nzPlacement="right"
+                nz-tooltip
+            >
+                <i nz-icon nzType="left" nzTheme="outline"></i>
+            </button>
+        </div>
+
+        <div>
+            <button
+                class="sidebar-button"
+                (click)="showSearchClicked()"
+                nzTitle="Search for Anything"
+                nzPlacement="right"
+                nz-tooltip
+            >
+                <i nz-icon nzType="search" nzTheme="outline"></i>
+            </button>
+
+            <plugin-search [(showSearch)]="showSearch"></plugin-search>
+        </div>
+
+        <div *ngFor="let link of leftLinks">
+            <button class="sidebar-button" [routerLink]="[link.resourcePath]">
+                {{linkTitle(link)}}
+            </button>
+        </div>
+
+        <div *ngFor="let link of rightLinks">
+            <button class="sidebar-button" [routerLink]="[link.resourcePath]">
+                {{linkTitle(link)}}
+            </button>
+        </div>
+        <div>
+            <button
+                class="sidebar-button"
+                *ngFor="let link of rightLinks"
+                [routerLink]="[link.resourcePath]"
+            >
+                {{linkTitle(link)}}
+            </button>
+        </div>
+        <div class="title h3" *ngIf="!appDetails.length">
+            No Plugins Installed
+        </div>
+
+        <div *ngFor="let app of appDetails">
+            <button
+                class="sidebar-button"
+                [routerLink]="[app.resourcePath]"
+                [nzTitle]="app.title"
+                nzPlacement="right"
+                nz-tooltip
+            >
+                <img class="sidebar-button-img" [src]="[app.pluginIconPath]" />
+            </button>
+        </div>
+    </div>
+
+    <div class="sidebar-bottom">
+        <div>
+            <button
+                class="sidebar-button"
+                [routerLink]="['/peek_core_user']"
+                nzTitle="Login / Logout"
+                nzPlacement="right"
+                nz-tooltip
+            >
+                <i nz-icon nzType="user" nzTheme="outline"></i>
+            </button>
+        </div>
+
+        <div *ngIf="hasConfigLinks()">
+            <button
+                class="sidebar-button"
+                [routerLink]="['/config']"
+                nzTitle="Configuration"
+                nzPlacement="right"
+                nz-tooltip
+            >
+                <i nz-icon nzType="setting" nzTheme="outline"></i>
+            </button>
+        </div>
+
+        <div
+            [routerLink]="['/']"
+            nz-tooltip
+            [nzTitle]="poweredByTemplate"
+            nzPlacement="rightTop"
+        >
+            <img class="sidebar-powered-by" src="/assets/home-center.png" />
+        </div>
+    </div>
+</div>
+
+<ng-template #poweredByTemplate>
+    <img class="powered-by-tooltip" src="/assets/home-center.png" />
+</ng-template>
