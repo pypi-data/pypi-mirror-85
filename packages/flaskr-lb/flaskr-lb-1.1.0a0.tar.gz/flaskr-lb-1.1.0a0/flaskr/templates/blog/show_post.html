@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block header %}
+	<article class="post">
+		<header>
+			<table>
+				<tr valign="top">
+					<td><img src="{{ post.author.avatar(60) }}"></td>
+					<td>
+						<div>
+							<h1>{% block title%}{{ post.title }}{% endblock %}</h1>
+							<div class="about">by <a href="{{ url_for('blog.user', username=post.author.username) }}">{{ post.author.username }}</a> on {{post.timestamp.strftime('%d-%m-%Y %H:%M')}}</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</header>
+	</article>
+	{% if current_user == post.author %}
+			<a class="action" href="{{ url_for('blog.update', post_id=post.id) }}">Edit</a>
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+	<article class="post">
+		<p class="body">{{ post.body }}</p>
+	</article>
+	<hr>
+	<div>
+		{% block add_comment %}
+			<a class="action" href="{{ url_for('blog.comment', post_id=post.id) }}">Comment</a>
+		{% endblock %}
+	</div>
+	<hr>
+	{% for comment in comments %}
+		{% include "blog/_comment.html" %}	
+		{% if current_user == comment.author %}
+			<a class="action" href="{{ url_for('blog.update_comment', comment_id=comment.id) }}">Edit</a>
+		{% endif %}
+		{% if not loop.last %}
+			<hr>
+		{% endif %}
+	{% endfor %}
+{% endblock %}
