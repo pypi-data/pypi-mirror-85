@@ -1,0 +1,66 @@
+@RELATION auto-sklearn_FEATURE_RUNSTATUS
+
+@ATTRIBUTE instance_id STRING
+@ATTRIBUTE repetition NUMERIC
+@ATTRIBUTE NumberOfInstances {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE LogNumberOfInstances {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE NumberOfFeatures {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE LogNumberOfFeatures {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE MissingValues {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE NumberOfInstancesWithMissingValues {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE PercentageOfInstancesWithMissingValues {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE NumberOfFeaturesWithMissingValues {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE PercentageOfFeaturesWithMissingValues {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE NumberOfMissingValues {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE PercentageOfMissingValues {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE NumberOfNumericFeatures {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE NumberOfCategoricalFeatures {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE RatioNumericalToNominal {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE RatioNominalToNumerical {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE DatasetRatio {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE LogDatasetRatio {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE InverseDatasetRatio {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE LogInverseDatasetRatio {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE NumSymbols {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE SymbolsMin {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE SymbolsMax {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE SymbolsMean {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE SymbolsSTD {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE SymbolsSum {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE Kurtosisses {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE KurtosisMin {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE KurtosisMax {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE KurtosisMean {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE KurtosisSTD {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE Skewnesses {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE SkewnessMin {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE SkewnessMax {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE SkewnessMean {ok, timeout, memout, presolved, crash, other}
+@ATTRIBUTE SkewnessSTD {ok, timeout, memout, presolved, crash, other}
+
+@DATA
+2280,1.0,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,other,ok,ok,ok,ok
+2288,1.0,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,other,ok,ok,ok,ok
+2289,1.0,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,other,ok,ok,ok,ok
+2292,1.0,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,other,ok,ok,ok,ok
+2300,1.0,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,other,ok,ok,ok,ok
+2306,1.0,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,other,ok,ok,ok,ok
+2307,1.0,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,other,ok,ok,ok,ok
+2309,1.0,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,other,ok,ok,ok,ok
+2313,1.0,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,other,ok,ok,ok,ok
+2315,1.0,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,other,ok,ok,ok,ok
+4768,1.0,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,other,ok,ok,ok,ok
+4769,1.0,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,other,ok,ok,ok,ok
+4772,1.0,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,other,ok,ok,ok,ok
+4774,1.0,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,other,ok,ok,ok,ok
+4779,1.0,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,other,ok,ok,ok,ok
+4790,1.0,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,other,ok,ok,ok,ok
+4796,1.0,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,other,ok,ok,ok,ok
+4835,1.0,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,other,ok,ok,ok,ok
+4881,1.0,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,other,ok,ok,ok,ok
+4883,1.0,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,other,ok,ok,ok,ok
+4885,1.0,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,other,ok,ok,ok,ok
+4892,1.0,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,other,ok,ok,ok,ok
+4893,1.0,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,other,ok,ok,ok,ok
+5022,1.0,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,other,ok,ok,ok,ok
+5024,1.0,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,ok,other,ok,ok,ok,ok,other,ok,ok,ok,ok
