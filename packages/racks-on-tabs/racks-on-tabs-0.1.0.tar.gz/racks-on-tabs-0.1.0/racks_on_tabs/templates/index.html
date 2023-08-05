@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <title>racks@tabs</title>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/kimeiga/bahunya/css/bahunya-0.1.3.css" />
+    <script type="text/javascript" src="{{ app_js_url }}"></script>
+  </head>
+  <body>
+    <h1>racks on '{{ csv_path }}' tabs</h1>
+    <p>{{ n_cols }} cols, {{ n_rows }} rows in total.</p>
+    <table id="csv-table">
+      <tr>
+        <th>row id</th>
+        {% for header in table_headers %}
+          <th>{{ header }}</th>
+        {% endfor %}
+      </tr>
+    </table>
+    <p id="post-table-p">loading rows...</>
+  </body>
+</html>
