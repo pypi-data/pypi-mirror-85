@@ -1,0 +1,122 @@
+active_locators:
+  - mode: ''
+    value: ''
+    index: 0
+    score: 0.5
+inactive_locators:
+  - mode: ''
+    value: ''
+    index: 0
+    score: 0.5
+actions:
+  - verb: ''
+    name: ''
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.5
+  - verb: fill
+    name: first_name
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.125
+      - mode: name
+        value: first_name
+        index: 0
+        score: 0.125
+      - mode: name
+        value: first-name
+        index: 0
+        score: 0.125
+      - mode: id
+        value: edit-submitted-info-first
+        index: 0
+        score: 1.0
+      - mode: id
+        value: first-name
+        index: 0
+        score: 0.25
+      - mode: css
+        value: '[aria-label="First Name"]'
+        index: 0
+        score: 0.25
+  - verb: fill
+    name: last_name
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.125
+      - mode: name
+        value: last_name
+        index: 0
+        score: 0.125
+      - mode: name
+        value: last-name
+        index: 0
+        score: 0.125
+      - mode: id
+        value: edit-submitted-info-last
+        index: 0
+        score: 1.0
+      - mode: id
+        value: last-name
+        index: 0
+        score: 0.25
+      - mode: css
+        value: '[aria-label="Last Name"]'
+        index: 0
+        score: 0.25
+  - verb: fill
+    name: email
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.125
+      - mode: name
+        value: email
+        index: 0
+        score: 0.125
+      - mode: name
+        value: email
+        index: 0
+        score: 0.125
+      - mode: id
+        value: edit-submitted-info-email
+        index: 0
+        score: 1.0
+      - mode: id
+        value: email
+        index: 0
+        score: 0.25
+      - mode: css
+        value: '[aria-label="Email"]'
+        index: 0
+        score: 0.25
+  - verb: click
+    name: subscribe
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.0001
+      - mode: text
+        value: Subscribe
+        index: 0
+        score: 0.0001
+      - mode: text
+        value: Subscribe
+        index: 0
+        score: 0.0001
+      - mode: css
+        value: '[value="Subscribe"]'
+        index: 0
+        score: 0.0059
+      - mode: name
+        value: op
+        index: 0
+        score: 0.0
