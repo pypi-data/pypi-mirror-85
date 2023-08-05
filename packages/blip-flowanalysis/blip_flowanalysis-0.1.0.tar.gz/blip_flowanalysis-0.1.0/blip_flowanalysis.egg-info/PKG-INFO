@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: blip-flowanalysis
+Version: 0.1.0
+Summary: A solution for chatbot constructors to identify problems in flow structure.
+Home-page: UNKNOWN
+Author: Squad XD
+Author-email: anaytics.dar@take.net
+Maintainer: daresearch
+Maintainer-email: anaytics.dar@take.net
+License: MIT License
+Description: # Blip Flow Analysis
+        Blip Flow Analysis provides a solution for chatbot constructors to identify problems in flow structure 
+        that can be originated from bad structuring or poor organization.
+        
+        # Installation
+        Use [pip](https://pip.pypa.io/en/stable/) to install:
+        
+        ```shell script
+        pip install blip_flowanalysis
+        ```
+        
+        # Usage
+        Using the `MissingTrackigns` analyse:
+        ```python
+        import blip_flowanalysis as bfa
+        
+        # replace __chatbot_as_json__ param for your json bot
+        bot = bfa.Flow(__chatbot_as_json__)
+        analyser = bfa.MissingTrackings(minimum=1)
+        
+        # return `True` if the chatbot has at least `minimum` tracking
+        print(analyser.analyse(bot)) 
+        ```
+        
+        # Author
+        [Take Data&Analytics Research](anaytics.dar@take.net)
+        
+        # License
+        [Creative Commons Attribution 4.0 International (CC BY 4.0)](LICENSE)
+Keywords: chatbot,flow,analysis
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
