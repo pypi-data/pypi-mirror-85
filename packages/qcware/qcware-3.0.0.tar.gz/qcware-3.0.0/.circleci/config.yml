@@ -1,0 +1,40 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@0.2.1
+    
+jobs:
+
+  build:
+    executor: python/default
+
+    steps:
+      - checkout
+
+  publish_to_pypi:
+    executor: python/default
+
+    steps:
+      - checkout
+      - run:
+          name: "publish to pypi"
+          command: |
+            sudo pip3 install --upgrade pip
+            sudo pip3 install flit
+            sudo pip3 install pygments
+            flit install --deps none
+            flit build
+            flit publish
+
+workflows:
+
+  on_commit:
+    jobs:
+      - build
+      - publish_to_pypi:
+          context: python_client_publish
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
