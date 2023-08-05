@@ -1,0 +1,155 @@
+Metadata-Version: 2.1
+Name: w7x
+Version: 0.3.4
+Summary: Wendelstein 7-X tools providing easy acces and error catching for field line tracer, VMEC and EXTENDER web services and much more.
+Home-page: https://gitlab.mpcdf.mpg.de/dboe/w7x
+Author: Daniel Böckenhoff
+Author-email: dboe@ipp.mpg.de
+License: MIT License
+Project-URL: Documentation, https://w7x.readthedocs.io
+Project-URL: Source, https://gitlab.mpcdf.mpg.de/dboe/w7x
+Keywords: Wendelstein 7-X,field line diffusion,VMEC,EXTENDER
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.0
+Description-Content-Type: text/x-rst
+Requires-Dist: pathlib
+Requires-Dist: osa
+Requires-Dist: symfit
+Requires-Dist: scipy (>=1.4.1)
+Requires-Dist: joblib
+Requires-Dist: argparse
+Requires-Dist: transcoding
+Requires-Dist: tfields (>=0.3.4)
+Provides-Extra: all
+Requires-Dist: sphinx (>=2.2.0) ; extra == 'all'
+Requires-Dist: sphinx-rtd-theme (>=0.4.3) ; extra == 'all'
+Requires-Dist: flake8 ; extra == 'all'
+Requires-Dist: pytest ; extra == 'all'
+Requires-Dist: pytest-cov ; extra == 'all'
+Requires-Dist: coverage ; extra == 'all'
+Requires-Dist: pytest-shutil ; extra == 'all'
+Requires-Dist: pytest-virtualenv ; extra == 'all'
+Requires-Dist: pytest-fixture-config ; extra == 'all'
+Requires-Dist: pytest-xdist ; extra == 'all'
+Requires-Dist: bumpversion ; extra == 'all'
+Requires-Dist: twine ; extra == 'all'
+Requires-Dist: sphinx ; extra == 'all'
+Requires-Dist: pre-commit ; extra == 'all'
+Requires-Dist: pre-commit-hooks ; extra == 'all'
+Requires-Dist: cookiecutter-project-upgrader ; extra == 'all'
+Provides-Extra: batch
+Requires-Dist: pandas ; extra == 'batch'
+Requires-Dist: sklearn ; extra == 'batch'
+Requires-Dist: dill ; extra == 'batch'
+Provides-Extra: dev
+Requires-Dist: sphinx (>=2.2.0) ; extra == 'dev'
+Requires-Dist: sphinx-rtd-theme (>=0.4.3) ; extra == 'dev'
+Requires-Dist: flake8 ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+Requires-Dist: coverage ; extra == 'dev'
+Requires-Dist: pytest-shutil ; extra == 'dev'
+Requires-Dist: pytest-virtualenv ; extra == 'dev'
+Requires-Dist: pytest-fixture-config ; extra == 'dev'
+Requires-Dist: pytest-xdist ; extra == 'dev'
+Requires-Dist: bumpversion ; extra == 'dev'
+Requires-Dist: twine ; extra == 'dev'
+Requires-Dist: sphinx ; extra == 'dev'
+Requires-Dist: pre-commit ; extra == 'dev'
+Requires-Dist: pre-commit-hooks ; extra == 'dev'
+Requires-Dist: cookiecutter-project-upgrader ; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: sphinx (>=2.2.0) ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme (>=0.4.3) ; extra == 'docs'
+Provides-Extra: test
+Requires-Dist: flake8 ; extra == 'test'
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: pytest-cov ; extra == 'test'
+Requires-Dist: coverage ; extra == 'test'
+Requires-Dist: pytest-shutil ; extra == 'test'
+Requires-Dist: pytest-virtualenv ; extra == 'test'
+Requires-Dist: pytest-fixture-config ; extra == 'test'
+Requires-Dist: pytest-xdist ; extra == 'test'
+
+=====================
+Introduction to `w7x`
+=====================
+
+
+.. pypi
+.. image:: https://img.shields.io/pypi/v/w7x.svg
+    :target: https://pypi.python.org/pypi/w7x
+
+.. ci
+    .. image:: https://img.shields.io/travis/dboe/w7x.svg
+        :target: https://travis-ci.com/dboe/w7x
+.. image:: https://gitlab.mpcdf.mpg.de/dboe/w7x/badges/master/pipeline.svg
+    :target: https://gitlab.mpcdf.mpg.de/dboe/w7x/commits/master
+
+.. readthedocs
+.. image:: https://readthedocs.org/projects/w7x/badge/?version=latest
+    :target: https://w7x.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+
+.. pyup crosschecks your dependencies. Github is default, gitlab more complicated: https://pyup.readthedocs.io/en/latest/readme.html#run-your-first-update 
+    .. image:: https://pyup.io/repos/github/dboe/w7x/shield.svg
+        :target: https://pyup.io/repos/github/dboe/w7x/
+        :alt: Updates
+
+.. image:: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
+   :target: https://github.com/pre-commit/pre-commit
+   :alt: pre-commit
+
+
+Wendelstein 7-X tools providing easy acces and error catching for field line tracer, VMEC and EXTENDER web services and much more.
+
+
+Licensed under the ``MIT License``
+
+Resources
+---------
+
+* Source code: https://gitlab.mpcdf.mpg.de/dboe/w7x
+* Examples: https://gitlab.mpcdf.mpg.de/dboe/w7x/-/tree/master/examples
+* Documentation: https://w7x.readthedocs.io
+* Pypi: https://pypi.python.org/pypi/w7x
+
+
+Features
+--------
+
+The following features should be highlighted:
+
+* TODO
+
+MIT License
+
+Copyright (c) 2020, Daniel Böckenhoff
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
