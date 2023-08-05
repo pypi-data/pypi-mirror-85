@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: eventsourcing-helpers
+Version: 0.8.11
+Summary: Helpers for practicing the Event sourcing pattern
+Home-page: https://github.com/fyndiq/eventsourcing_helpers
+Author: Fyndiq AB
+Author-email: support@fyndiq.com
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: structlog (>=17.2.0)
+Requires-Dist: jsonpickle (>=0.9.6)
+Requires-Dist: confluent-kafka-helpers (>=0.7.6)
+Provides-Extra: cnamedtuple
+Requires-Dist: cnamedtuple (>=0.1.6) ; extra == 'cnamedtuple'
+Provides-Extra: mongo
+Requires-Dist: pymongo (>=3.6.1) ; extra == 'mongo'
+Provides-Extra: redis
+Requires-Dist: redis (>=2.10.6) ; extra == 'redis'
+Requires-Dist: hiredis (>=0.2.0) ; extra == 'redis'
+
+UNKNOWN
+
+
