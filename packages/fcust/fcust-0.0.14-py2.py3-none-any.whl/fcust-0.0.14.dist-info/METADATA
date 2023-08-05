@@ -1,0 +1,168 @@
+Metadata-Version: 2.1
+Name: fcust
+Version: 0.0.14
+Summary: Linux Common Folder Custodian
+Home-page: https://github.com/Iolaum/fcust
+Author: Nikolaos Perrakis
+Author-email: nikperrakis@gmail.com
+License: GNU General Public License v3
+Keywords: fcust
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.8
+Requires-Dist: Click (>=7.1)
+Provides-Extra: dev
+Requires-Dist: pip ; extra == 'dev'
+Requires-Dist: bump2version (>=1.0) ; extra == 'dev'
+Requires-Dist: wheel ; extra == 'dev'
+Requires-Dist: Sphinx ; extra == 'dev'
+Requires-Dist: twine ; extra == 'dev'
+Requires-Dist: check-manifest ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-runner ; extra == 'dev'
+Requires-Dist: mock ; extra == 'dev'
+Requires-Dist: flake8 ; extra == 'dev'
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: mypy ; extra == 'dev'
+Requires-Dist: tox ; extra == 'dev'
+Requires-Dist: coverage ; extra == 'dev'
+Requires-Dist: yamllint ; extra == 'dev'
+Requires-Dist: doc8 ; extra == 'dev'
+
+================
+Folder Custodian
+================
+
+
+.. image:: https://img.shields.io/pypi/v/fcust.svg
+        :target: https://pypi.python.org/pypi/fcust
+
+.. image:: https://img.shields.io/travis/Iolaum/fcust.svg
+        :target: https://travis-ci.com/Iolaum/fcust
+
+.. image:: https://readthedocs.org/projects/fcust/badge/?version=latest
+        :target: https://fcust.readthedocs.io/en/latest/?badge=latest
+        :alt: Documentation Status
+
+
+.. image:: https://pyup.io/repos/github/Iolaum/fcust/shield.svg
+     :target: https://pyup.io/repos/github/Iolaum/fcust/
+     :alt: Updates
+
+
+
+Linux Common Folder Custodian
+
+
+* Free software: GNU General Public License v3
+* Documentation: https://fcust.readthedocs.io.
+
+
+Why?
+----
+
+The family computer runs Fedora, has many users and we want to share some files with each other. 
+To achive this we create a shared common folder.
+This package solves the problems that come with our use case.
+
+Features
+--------
+
+This package is intended to perform maintenance over a folder shared across many users in a Fedora Workstation.
+The folder should belong to a group for which all users are members.
+
+* Go through a folder's content and enforce common group ownership.
+* Go through a folder's content and enforce common group read and write permissions as
+  well as set groupid sticky bit.
+* Provide a command line command with sane defaults for enforcing common folder group ownership
+  and permissions.
+* Write logs to ``/tmp/fcust/$USER.log``.
+* Provides user systemd service to periodically enforce common folder group ownership
+  and permissions. Runs on user log out.
+
+The key problem this package intends to solve is that files moved from one location to another do not inherit
+proper permissions in the commonly used folder and therefore when another user tries to access them they encounter
+problems.
+
+Quick Start Guide
+-----------------
+
+- Install fcust::
+
+
+    $ dnf install python3-fcust-0.0.13-1.fc33.noarch.rpm
+
+- Manually create a common group and add as members the users that will have access to it.
+  For example::
+
+
+    $ sudo groupadd family
+    $ sudo usermod -a -G family user1
+    $ sudo usermod -a -G family user1
+
+- Create that folder and assign proper permissions::
+
+    $ mkdir /path/to/common/folder/
+    $ chown :family /path/to/common/folder/
+    $ chmod 2775 /path/to/common/folder/
+
+- Setup fcust::
+
+    $ fcust setup /path/to/common/folder/
+    $ fcust activate
+
+- In order to run fcust manually on a properly permissioned common folder run::
+
+    $ fcust run /path/to/common/folder/
+
+Credits
+-------
+
+This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+
+
+=======
+History
+=======
+
+0.0.14 (2020-11-10)
+-------------------
+
+* Adding functionality to create, start and stop systemd user service
+
+0.0.10 (2020-11-07)
+-------------------
+
+* F33 release
+* Minor Documentation update
+
+0.0.9 (2020-10-13)
+------------------
+
+* Hotfixed log access path bug
+
+0.0.8 (2020-10-10)
+------------------
+
+* Draft packaging as a fedora 32 rpm package
+
+0.0.5 (2020-10-07)
+------------------
+
+* Added command line command for folder contents permission enformcement
+* Added documentation
+
+0.0.3 (2020-10-05)
+------------------
+
+* Alpha version with common folder enformcement functionality.
+
+
