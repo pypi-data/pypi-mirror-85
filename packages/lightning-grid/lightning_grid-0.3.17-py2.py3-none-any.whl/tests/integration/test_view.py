@@ -1,0 +1,104 @@
+import click
+import unittest
+
+import grid.globals as env
+from grid import cli
+from grid.client import Grid
+
+from tests.utilities import create_test_credentials
+from click.testing import CliRunner
+from _pytest.monkeypatch import MonkeyPatch
+from tests.mock_backend import GridAIBackenedTestServer
+
+
+class ViewTestCase(unittest.TestCase):
+    """Test case for the view command"""
+    @classmethod
+    def setUpClass(cls):
+        cls.runner = CliRunner()
+        cls.monkeypatch = MonkeyPatch()
+
+        cls.credentials_path = 'tests/data/credentials.json'
+        cls.test_run = 'manual-test-run'
+
+        # Setup the global DEBUG flag to True.
+        env.DEBUG = True
+
+        #  Monkey patches the GraphQL client to read from a local schema.
+        def monkey_patch_client(self):
+            self.client = GridAIBackenedTestServer()
+
+        #  skipcq: PYL-W0212
+        Grid._init_client = monkey_patch_client
+
+        create_test_credentials()
+
+    def monkey_patched_method(self, *args, **kwargs):
+        return True
+
+    def monkey_patch_grid_status(self, *args, **kwargs):
+        result = {
+            'getRuns': [{
+                'name': self.test_run,
+                'resourceUrls': {
+                    'tensorboard': ['http://test-url-tensorboard']
+                }
+            }]
+        }
+        return result
+
+    def monkey_patch_exception(self, *args, **kwargs):
+        raise click.ClickException('test')
+
+    def test_view_opens_browser(self):
+        """grid view RUN_ID opens browser."""
+        self.monkeypatch.setattr(click, 'launch', self.monkey_patched_method)
+
+        result = self.runner.invoke(cli.view, [self.test_run])
+
+        assert result.exit_code == 0
+        assert 'http' in result.output
+        assert 'run' in result.output
+        assert self.test_run in result.output
+
+        result = self.runner.invoke(cli.view, [f'{self.test_run}-exp1'])
+        assert result.exit_code == 0
+        assert 'http' in result.output
+        assert 'experiment' in result.output
+        assert self.test_run in result.output
+
+    def test_view_exception(self):
+        """grid view raises exception if resource URL not available."""
+        self.monkeypatch.setattr(click, 'launch', self.monkey_patched_method)
+
+        old_status = Grid.status
+        self.monkeypatch.setattr(Grid, 'status', self.monkey_patch_exception)
+
+        result = self.runner.invoke(cli.view, [self.test_run, 'tensorboard'])
+        assert result.exit_code == 1
+        assert result.exception
+
+        result = self.runner.invoke(cli.view, [self.test_run, 'tensorboard'])
+        assert result.exit_code == 1
+        assert result.exception
+
+        # Set attribute again.
+        self.monkeypatch.setattr(Grid, 'status', old_status)
+
+    def test_view_right_url_for_services(self):
+        """grid view generates the right URLs for services."""
+        self.monkeypatch.setattr(click, 'launch', self.monkey_patched_method)
+
+        old_status = Grid.status
+        self.monkeypatch.setattr(Grid, 'status', self.monkey_patch_grid_status)
+
+        result = self.runner.invoke(cli.view, [self.test_run, 'tensorboard'])
+        assert result.exit_code == 0
+        assert not result.exception
+        assert 'http' in result.output
+
+        # Test that the Tensorboard URL constructor is there.
+        assert 'scalars&regexInput=' in result.output
+
+        # Set attribute again.
+        self.monkeypatch.setattr(Grid, 'status', old_status)
