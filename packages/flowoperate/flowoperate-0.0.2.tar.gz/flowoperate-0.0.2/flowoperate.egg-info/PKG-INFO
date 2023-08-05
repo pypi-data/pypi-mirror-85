@@ -1,0 +1,158 @@
+Metadata-Version: 2.1
+Name: flowoperate
+Version: 0.0.2
+Summary: control the mouse and keyboard todo repeat jobs
+Home-page: https://github.com/ga1008/flowoperate
+Author: Guardian
+Author-email: zhling2012@live.com
+Maintainer: Guardian
+Maintainer-email: zhling2012@live.com
+License: UNKNOWN
+Description: python GUI 流程操作工具
+        ====
+        
+        ## 介绍：  
+        
+        <ul>  
+            <li>    <h6>让你的双手从重复的敲键盘点鼠标中解放！</h6></li>    
+            <li>    <h6>使用了pyautogui进行二次包装，用json文件进行任务安排</h6></li>    
+            <li>    <h6>json 文件为字典列表，具体格式见下方</h6></li>    
+            <li>    <h6>在 linux 上功能更丰富</h6></li>    
+        </ul>  
+        
+        ---
+        
+        ### 简要使用说明：
+        
+        #### &nbsp;&nbsp; 安装：  
+        
+        ```
+        $ pip install flowoperate  
+        ```
+        
+        #### &nbsp;&nbsp; 终端命令：    
+        
+        ```  
+        $ flowcmd /path_to_your/mission1.json [-l --loop] [-s --start_time] [-e --end_time]
+          
+        # 显示帮助：  
+        $ colorit -h  
+        ```    
+        
+        <ul style="font-size:30">  
+            <li>     <h5>参数解释：</h5>   
+                <ul style="none">  
+                    <li><b>-l --loop</b> 是否循环执行</li>  
+                    <li><b>-s --start_time</b> 循环执行的开始时间</li>  
+                    <li><b>-e --end_time</b> 循环执行的结束时间</li>  
+                </ul></li>  
+        </ul>  
+          
+        
+        #### &nbsp;&nbsp; 代码中调用：    
+          
+        ```  
+        from flow_operate.flow_operation import FlowTool  
+          
+        # 参数 operate_list 即为上面 json 文件 loads 后的列表
+        ft = FlowTool(operate_list=mission_list)  
+        ft.start()  
+        ```
+        
+        #### &nbsp;&nbsp; json文件（任务文件）格式：    
+        ```  
+        [  
+          {  
+            "name": "search image and click",  
+            "method": "SearchClick",  
+            "icon_path": "/root/... .../image.png",  
+            "match_options": {  
+              "threshold_value": 90,  
+            "as_gray": true,  
+            "as_binary": false,  
+            "img_shape_times": 1.0  
+          },  
+          "speed": "fast",  
+          "pre_delay": null,  
+          "sub_delay": 2  
+          },  
+          {  
+            "name": "search image with multi icons, if one of them matched, then click",  
+          "method": "MulSearchClick",  
+          "icon_paths": [  
+              "/root/... .../image1.png",  
+          "/root/... .../image2.png"  
+          ],  
+          "match_options": {  
+              "threshold_value": 90,  
+          "as_gray": true,  
+          "as_binary": false,  
+          "img_shape_times": 1.0  
+          },  
+          "speed": "fast",  
+          "pre_delay": null,  
+          "sub_delay": 2  
+          },  
+          {  
+            "name": "open chrome and enter url",  
+          "method": "EnterUrl",  
+          "url": "http://www.xxx.com",  
+          "speed": "fast",  
+          "pre_delay": null,  
+          "sub_delay": 2  
+          },  
+          {  
+            "name": "wait the icon show",  
+          "method": "WaitIcon",  
+          "icon_path": "/root/... .../icon.png",  
+          "match_options": {  
+              "threshold_value": 90,  
+          "as_gray": true,  
+          "as_binary": false,  
+          "img_shape_times": 1.0  
+          },  
+          "interval": 1,  
+          "after_showed": "NextStep",  
+          "time_out": 120,  
+          "if_timeout": "End"  
+          },  
+          {  
+            "name": "wait until the icon gone",  
+          "method": "WaitIconGone",  
+          "icon_path": "/root/... .../icon.png",  
+          "match_options": {  
+              "threshold_value": 90,  
+          "as_gray": true,  
+          "as_binary": false,  
+          "img_shape_times": 1.0  
+          },  
+          "interval": 1,  
+          "after_gone": "NextStep",  
+          "time_out": 120,  
+          "if_timeout": "End"  
+          },  
+          {  
+            "name": "save data to a file with vim",  
+          "method": "SaveWithVim",  
+          "save_path": "/root/... .../icon.json"  
+          },  
+          {  
+            "name": "terminal opera",  
+          "method": "TermCommand",  
+          "Command": "redis-cli -p xxxx rpush GrCookies 'diahwdioawafdoanwf;ona;owdaow'"  
+          },  
+          {  
+            "name": "move mouse to a position and click",  
+          "method": "Click",  
+          "position": "TopLeft",  
+          "pre_delay": null,  
+          "sub_delay": 2  
+          }  
+        ]
+        ```  
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
