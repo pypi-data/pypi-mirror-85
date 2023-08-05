@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: mega-pip
+Version: 1.0
+Summary: Python packaging and distrubution made easy.
+Home-page: https://github.com/gadhagod/mega-pip
+Author: Aarav Borthakur
+Author-email: gadhaguy13@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: click
+Requires-Dist: twine
+
+# Mega-Pip
+Python packaging and distrubution made easy.
+
+### Installation
+
+    pip3 install mega-pip
+
+### Commands
+- `publish`: Publish python package
+  - `-p`/`--pypi`: Publish to pypi (default).
+  - `-t`/`--testpypi`: Publish to testpypi.
+- `reset`: Remove `dist`, `build`, and `*.egg_info` directories.
+
+### Instructions
+1. Make a [setup.py](https://github.com/navdeep-G/setup.py) file.
+2. Run `mp publish`.
+3. To reset, run `mp reset`.
+
