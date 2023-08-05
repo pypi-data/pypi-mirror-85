@@ -1,0 +1,37 @@
+PyYAML>=5.1
+cwltool==1.0.20191022103248
+pyOpenSSL>=19.0.0
+jsonpointer>=2.0
+reana-commons<0.8.0,>=0.7.1
+rfc3987>=1.3.8
+six==1.12.0
+strict-rfc3339>=0.7
+tablib<0.13,>=0.12.1
+webcolors==1.9.1
+werkzeug>=0.14.1
+yadage-schemas==0.10.6
+
+[:python_version == "2.7"]
+typing>=3.7.4
+click==7.0
+
+[:python_version >= "3"]
+click>=7
+
+[all]
+Sphinx>=1.5.1
+sphinx-rtd-theme>=0.1.9
+sphinx-click>=1.0.4
+pytest-reana<0.8.0,>=0.7.0
+Sphinx>=1.5.1
+sphinx-rtd-theme>=0.1.9
+sphinx-click>=1.0.4
+pytest-reana<0.8.0,>=0.7.0
+
+[docs]
+Sphinx>=1.5.1
+sphinx-rtd-theme>=0.1.9
+sphinx-click>=1.0.4
+
+[tests]
+pytest-reana<0.8.0,>=0.7.0
