@@ -1,0 +1,156 @@
+Metadata-Version: 2.1
+Name: imio.prometheus
+Version: 1.0.0
+Summary: Add some iMio informations on prometheus metrics view
+Home-page: https://github.com/collective/imio.prometheus
+Author: Benoît Suttor
+Author-email: benoit.suttor@imio.be
+License: GPL version 2
+Project-URL: Source, https://github.com/collective/imio.prometheus
+Project-URL: Tracker, https://github.com/collective/imio.prometheus/issues
+Project-URL: PyPI, https://pypi.python.org/pypi/imio.prometheus
+Description: .. This README is meant for consumption by humans and pypi. Pypi can render rst files so please do not use Sphinx features.
+           If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide.html
+           This text does not appear on pypi or github. It is a comment.
+        
+        ===============
+        imio.prometheus
+        ===============
+        
+        Tell me what your product does
+        
+        Features
+        --------
+        
+        - Can be bullet points
+        
+        
+        Examples
+        --------
+        
+        This add-on can be seen in action at the following sites:
+        - Is there a page on the internet where everybody can see the features?
+        
+        
+        Documentation
+        -------------
+        
+        Full documentation for end users can be found in the "docs" folder, and is also available online at http://docs.plone.org/foo/bar
+        
+        
+        Translations
+        ------------
+        
+        This product has been translated into
+        
+        - Klingon (thanks, K'Plai)
+        
+        
+        Installation
+        ------------
+        
+        Install imio.prometheus by adding it to your buildout::
+        
+            [buildout]
+        
+            ...
+        
+            eggs =
+                imio.prometheus
+        
+        
+        and then running ``bin/buildout``
+        
+        
+        Contribute
+        ----------
+        
+        - Issue Tracker: https://github.com/collective/imio.prometheus/issues
+        - Source Code: https://github.com/collective/imio.prometheus
+        - Documentation: https://docs.plone.org/foo/bar
+        
+        
+        Support
+        -------
+        
+        If you are having issues, please let us know.
+        We have a mailing list located at: project@example.com
+        
+        
+        License
+        -------
+        
+        The project is licensed under the GPLv2.
+        
+        
+        Contributors
+        ============
+        
+        - Benoît Suttor, benoit.suttor@imio.be
+        
+        
+        Changelog
+        =========
+        
+        
+        1.0.0 (2020-11-10)
+        ------------------
+        
+        - Update package to pypi.
+          [bsuttor]
+        
+        
+        1.0b1 (2020-04-15)
+        ------------------
+        
+        - Use Hostname to get docker-compose name to become more explicit.
+          [bsuttor]
+        
+        
+        1.0a5 (2020-04-03)
+        ------------------
+        
+        - Add number of zope threads for python 2 instances.
+          [bsuttor]
+        
+        
+        1.0a4 (2020-04-02)
+        ------------------
+        
+        - Add docker-compose name on label.
+          [bsuttor]
+        
+        
+        1.0a3 (2020-04-02)
+        ------------------
+        
+        - Reformating to add attibutes to metric.
+          [bsuttor]
+        
+        
+        1.0a2 (2020-04-02)
+        ------------------
+        
+        - Add type and help text.
+          [bsuttor]
+        
+        
+        1.0a1 (2020-04-01)
+        ------------------
+        
+        - Initial release.
+          [bsuttor]
+        
+Keywords: Python Plone
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Plone
+Classifier: Framework :: Plone :: Addon
+Classifier: Framework :: Plone :: 5.2
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Requires-Python: >=3.6
+Provides-Extra: test
