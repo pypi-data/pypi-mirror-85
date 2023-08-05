@@ -1,0 +1,58 @@
+<div class="panel panel-default">
+    <!--<div class="panel-heading">Send Test Activity</div>-->
+    <div class="panel-body">
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="uniqueId">uniqueId</label>
+                <input type="text" class="form-control" id="uniqueId"
+                       [(ngModel)]="activity.uniqueId">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="userId">userId</label>
+                <input type="text" class="form-control" id="userId"
+                       [(ngModel)]="activity.userId">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="title">title</label>
+                <input type="text" class="form-control" id="title"
+                       [(ngModel)]="activity.title">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="iconPath">iconPath</label>
+                <input type="text" class="form-control" id="iconPath"
+                       [(ngModel)]="activity.iconPath">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label for="description">description</label>
+                <input type="text" class="form-control" id="description"
+                       [(ngModel)]="activity.description">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="routePath">routePath</label>
+                <input type="text" class="form-control" id="routePath"
+                       [(ngModel)]="activity.routePath">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="routeParamJson">routeParamJson</label>
+                <input type="text" class="form-control" id="routeParamJson"
+                       [(ngModel)]="activity.routeParamJson">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="autoDeleteDateTime">autoDeleteDateTime</label>
+                <input type="datetime-local" class="form-control" id="autoDeleteDateTime"
+                       [(ngModel)]="activity.autoDeleteDateTime">
+            </div>
+        </div>
+
+        <button class="btn btn-default" (click)="send()">Send</button>
+
+    </div>
+</div>

@@ -1,0 +1,81 @@
+<GridLayout rows="*" columns="*">
+    <label *ngIf="noItems()"
+           class="title fa"
+           text="There are no tasks {{'fa-smile-o' | fonticon }}"></label>
+
+    <ListView class="pl-inbox" [items]="tasks"
+              *ngIf="!noItems()">
+        <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+            <StackLayout class="pl-inbox-item"
+                         [class.bg-success]="!item.isCompleted() && item.isPrioritySuccess()"
+                         [class.bg-info]="!item.isCompleted() && item.isPriorityInfo()"
+                         [class.bg-warning]="!item.isCompleted() && item.isPriorityWarning()"
+                         [class.bg-danger]="!item.isCompleted() && item.isPriorityDanger()"
+                         [class.bg-odd]="odd" [class.bg-even]="even"
+                         (tap)="taskClicked(item)">
+
+                <GridLayout rows="auto" columns="auto, *, auto">
+
+                    <!--Icons-->
+                    <GridLayout row="0" col="0"
+                                rows="auto, *" columns="*">
+                        <Label row="0" col="0"
+                               *ngIf="item.isTask() && !item.isCompleted()"
+                               class="pl-inbox-icon fa"
+                               [text]="'fa-square-o' | fonticon"></Label>
+
+                        <Label row="0" col="0"
+                               *ngIf="item.isTask() && item.isCompleted()"
+                               class="pl-inbox-icon fa"
+                               [text]="'fa-check-square-o' | fonticon"></Label>
+
+                        <Label row="0" col="0"
+                               *ngIf="item.isMessage() && !item.isCompleted()"
+                               class="pl-inbox-icon fa"
+                               [text]="'fa-comment-o' | fonticon"></Label>
+
+                    </GridLayout>
+
+                    <!--Title, Description and Date-Time-->
+                    <GridLayout row="0" col="1"
+                                rows="auto, auto, auto, auto" columns="*"
+                                class="pl-inbox-info">
+                        <Label row="0" col="0"
+                               class="pl-inbox-title"
+                               [text]="item.title"
+                               textWrap="true"></Label>
+
+                        <label row="1" col="0"
+                               class="pl-inbox-description"
+                               [text]="item.description"
+                               textWrap="true"></label>
+
+                        <WrapLayout row="2" col="1"
+                                    class="btn-group"
+                                    *ngIf="!item.isActioned()">
+                            <Button class="btn btn-sm"
+                                    *ngFor="let action of item.actions"
+                                    [text]="action.title"
+                                    (tap)="actionClicked(item, action)"></Button>
+
+                        </WrapLayout>
+                        <GridLayout row="3" col="1"
+                                    rows="auto" columns="*, auto">
+
+                            <label row="0" col="1"
+                                   class="pl-inbox-date-time"
+                                   [text]="timePast(item) + ' ago, ' + dateTime(item)"></label>
+                        </GridLayout>
+                    </GridLayout>
+
+                    <!--Read More-->
+                    <Label row="0" col="2"
+                            *ngIf="hasRoute(item)"
+                            class="fa pl-inbox-read-more "
+                            [text]="'fa-chevron-right' | fonticon"></Label>
+
+                </GridLayout>
+            </StackLayout>
+        </ng-template>
+    </ListView>
+</GridLayout>

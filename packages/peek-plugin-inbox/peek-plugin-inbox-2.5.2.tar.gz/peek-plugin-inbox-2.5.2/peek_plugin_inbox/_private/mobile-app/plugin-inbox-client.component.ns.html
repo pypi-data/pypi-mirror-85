@@ -1,0 +1,21 @@
+<StackLayout class="peek-tabs-section">
+
+    <!-- >> segmentedbar-basic-html -->
+    <GridLayout class="btn-group" rows="auto" columns="auto, auto, *">
+        <Button row="0" col="0"
+                class="tabs-section-btn tabs-section-btn-divider"
+                [class.active]="barIndex == 0"
+                text="Inbox"
+                (tap)="barIndex = 0"></Button>
+        <Button row="0" col="1"
+                class="tabs-section-btn"
+                [class.active]="barIndex == 1"
+                text="Activity"
+                (tap)="barIndex = 1"></Button>
+    </GridLayout>
+</StackLayout>
+
+<StackLayout class="pl-inbox peek-tabs-bar-padding">
+    <plugin-inbox-task-list *ngIf="barIndex == 0"></plugin-inbox-task-list>
+    <plugin-inbox-activity-list *ngIf="barIndex == 1"></plugin-inbox-activity-list>
+</StackLayout>

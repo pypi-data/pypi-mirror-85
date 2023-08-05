@@ -1,0 +1,69 @@
+<div class="pl-inbox">
+    <div class="title" *ngIf="noItems()">
+        There are no tasks <i nz-icon nzType="smile" nzTheme="outline"></i>
+    </div>
+    <div
+        class="pl-inbox-item"
+        *ngFor="let task of tasks; odd as odd; even as even"
+        [class.bg-success]="!task.isCompleted() && task.isPrioritySuccess()"
+        [class.bg-info]="!task.isCompleted() && task.isPriorityInfo()"
+        [class.bg-warning]="!task.isCompleted() && task.isPriorityWarning()"
+        [class.bg-danger]="!task.isCompleted() && task.isPriorityDanger()"
+        [class.bg-odd]="odd"
+        [class.bg-even]="even"
+        (click)="taskClicked(task)"
+    >
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 2048 2048"
+            width="1em"
+            height="1em"
+            *ngIf="task.isTask() && !task.isCompleted()"
+        >
+            <path
+                d="M1920 128v1792H128V128h1792zm-128 128H256v1536h1536V256z"
+            ></path>
+        </svg>
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 2048 2048"
+            width="1em"
+            height="1em"
+            *ngIf="task.isTask() && task.isCompleted()"
+        >
+            <path
+                d="M2048 0v2048H0V0h2048zm-128 128H128v1792h1792V128zM768 1627l-429-430 90-90 339 338 851-850 90 90-941 942z"
+            ></path>
+        </svg>
+        <i
+            nz-icon
+            nzType="comment"
+            nzTheme="outline"
+            *ngIf="task.isMessage() && !task.isCompleted()"
+        ></i>
+        <div class="pl-inbox-info">
+            <div class="pl-inbox-title">{{task.title}}</div>
+            <div class="pl-inbox-description">{{task.description}}</div>
+            <i
+                nz-icon
+                nzType="right"
+                nzTheme="outline"
+                class="pl-inbox-read-more"
+                *ngIf="hasRoute(task)"
+            ></i>
+            <div class="pl-inbox-date-time">
+                {{timePast(task)}} ago {{dateTime(task)}}
+            </div>
+        </div>
+        <img *ngIf="task.imagePath" [src]="task.imagePath" />
+        <div class="btn-group" *ngIf="!task.isActioned()">
+            <button
+                *ngFor="let action of task.actions"
+                (click)="actionClicked(task, action); $event.stopPropagation();"
+                class="btn btn-sm"
+            >
+                {{action.title}}
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row">
+        <h1 class="text-center">Active Task Plugin</h1>
+        <p>This admin page shows the status of each current task for each user device.</p>
+    </div>
+
+    <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation">
+                <a href="#userTasks" aria-controls="userTasks"
+                   role="tab" data-toggle="tab">Users Tasks</a></li>
+            <li role="presentation">
+                <a href="#userActivities" aria-controls="userActivities"
+                   role="tab" data-toggle="tab">Users Activities</a></li>
+            <li role="presentation">
+                <a href="#settings" aria-controls="settings"
+                   role="tab" data-toggle="tab">Settings</a></li>
+            <li role="presentation" class="active">
+                <a href="#sendTask" aria-controls="send test task"
+                   role="tab" data-toggle="tab">Send Test Task</a></li>
+            <li role="presentation">
+                <a href="#sendActivity" aria-controls="send test activity" role="tab"
+                   data-toggle="tab">Send Test Activity</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane" id="userTasks">
+                <admin-inbox-task-list></admin-inbox-task-list>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="userActivities">
+                <admin-inbox-activity-list></admin-inbox-activity-list>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="settings">
+                <pl-inbox-setting-list></pl-inbox-setting-list>
+            </div>
+            <div role="tabpanel" class="tab-pane active" id="sendTask">
+                <active-task-send-test-task></active-task-send-test-task>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="sendActivity">
+                <active-task-send-test-activity></active-task-send-test-activity>
+            </div>
+        </div>
+
+    </div>
+
+</div>

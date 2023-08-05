@@ -1,0 +1,162 @@
+<div class="panel panel-default">
+    <!--<div class="panel-heading">Send Test Task</div>-->
+    <div class="panel-body">
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label for="uniqueId">uniqueId</label>
+                <input type="text" class="form-control" id="uniqueId"
+                       [(ngModel)]="task.uniqueId">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="userId">userId</label>
+                <input type="text" class="form-control" id="userId"
+                       [(ngModel)]="task.userId">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="displayAs">displayAs</label>
+                <select class="form-control" id="displayAs"
+                        [(ngModel)]="task.displayAs">
+                    <option value="0">DISPLAY_AS_TASK</option>
+                    <option value="1">DISPLAY_AS_MESSAGE</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="displayPriority">displayPriority</label>
+                <select class="form-control" id="displayPriority"
+                        [(ngModel)]="task.displayPriority">
+                    <option value="1">PRIORITY_SUCCESS</option>
+                    <option value="2">PRIORITY_INFO</option>
+                    <option value="3">PRIORITY_WARNING</option>
+                    <option value="4">PRIORITY_DANGER</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="title">title</label>
+                <input type="text" class="form-control" id="title"
+                       [(ngModel)]="task.title">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="iconPath">iconPath</label>
+                <input type="text" class="form-control" id="iconPath"
+                       [(ngModel)]="task.iconPath">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label for="description">description</label>
+                <input type="text" class="form-control" id="description"
+                       [(ngModel)]="task.description">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="routePath">routePath</label>
+                <input type="text" class="form-control" id="routePath"
+                       [(ngModel)]="task.routePath">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="routeParamJson">routeParamJson</label>
+                <input type="text" class="form-control" id="routeParamJson"
+                       [(ngModel)]="task.routeParamJson">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="autoComplete">autoComplete</label>
+                <select class="form-control" id="autoComplete"
+                        [(ngModel)]="task.autoComplete">
+                    <option value="0">AUTO_COMPLETE_OFF</option>
+                    <option value="1">AUTO_COMPLETE_ON_DELIVER</option>
+                    <option value="2">AUTO_COMPLETE_ON_SELECT</option>
+                    <option value="4">AUTO_COMPLETE_ON_ACTION</option>
+                    <option value="16">AUTO_COMPLETE_ON_DIALOG</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="autoDelete">autoDelete</label>
+                <select class="form-control" id="autoDelete"
+                        [(ngModel)]="task.autoDelete">
+                    <option value="0">AUTO_DELETE_OFF</option>
+                    <option value="1">AUTO_DELETE_ON_DELIVER</option>
+                    <option value="2">AUTO_DELETE_ON_SELECT</option>
+                    <option value="4">AUTO_DELETE_ON_ACTION</option>
+                    <option value="8">AUTO_DELETE_ON_COMPLETE</option>
+                    <option value="16">AUTO_DELETE_ON_DIALOG</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="autoDeleteDateTime">autoDeleteDateTime</label>
+                <input type="datetime-local" class="form-control" id="autoDeleteDateTime"
+                       [(ngModel)]="task.autoDeleteDateTime">
+            </div>
+        </div>
+
+        <h4>Notification Methods</h4>
+        <div class="row">
+            <div class="form-group col-md-2">
+                <input #notifyByPopup
+                       (change)="task.notifyByPopup = notifyByPopup.checked"
+                       type="checkbox"/>
+                Popup
+            </div>
+            <div class="form-group col-md-2">
+                <input #notifyByDialog
+                       (change)="task.notifyByDialog = notifyByDialog.checked"
+                       type="checkbox"/>
+                Dialog
+            </div>
+            <div class="form-group col-md-2">
+                <input #notifyBySound
+                       (change)="task.notifyBySound = notifyBySound.checked"
+                       type="checkbox"/>
+                Sound
+            </div>
+            <div class="form-group col-md-3">
+                <input #notifyBySms
+                       (change)="task.notifyBySms = notifyBySms.checked"
+                       type="checkbox"/>
+                SMS
+            </div>
+            <div class="form-group col-md-3">
+                <input #notifyByEmail
+                       (change)="task.notifyByEmail = notifyByEmail.checked"
+                       type="checkbox"/>
+                Email
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-default" (click)="addAction()">Add Action</button>
+                <table>
+                    <tr *ngFor="let action of task.actions; let i = index">
+                        <td>
+                            <h2>Action {{i}}</h2>
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="actionTitle">actionTitle</label>
+                                    <input type="text" class="form-control"
+                                           id="actionTitle"
+                                           [(ngModel)]="action.title">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="actionConfirmMessage">actionConfirmMessage</label>
+                                    <input type="text" class="form-control"
+                                           id="actionConfirmMessage"
+                                           [(ngModel)]="action.confirmMessage">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <button class="btn btn-default" (click)="send()">Send</button>
+
+    </div>
+</div>

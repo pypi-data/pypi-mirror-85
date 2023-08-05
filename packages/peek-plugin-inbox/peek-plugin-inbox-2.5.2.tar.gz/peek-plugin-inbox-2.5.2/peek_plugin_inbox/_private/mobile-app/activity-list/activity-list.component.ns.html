@@ -1,0 +1,45 @@
+<GridLayout rows="*" columns="*">
+    <label *ngIf="noItems()"
+           class="title"
+           text="There is no recent activity"></label>
+
+    <ListView class="pl-inbox" [items]="activities" (tap)="activityClicked(activity)"
+              *ngIf="!noItems()">
+        <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+            <StackLayout class="pl-inbox-item bg-primary"
+                         [class.bg-odd]="odd" [class.bg-even]="even"
+                         (tap)="activityClicked(item)">
+                <GridLayout rows="*" columns="*, auto">
+
+                    <!--Title, Description and Date-Time-->
+                    <GridLayout row="0" col="0"
+                                rows="auto, *, auto" columns="*"
+                                class="pl-inbox-info">
+                        <Label row="0" col="0"
+                               class="pl-inbox-title"
+                               [text]="item.title"
+                               textWrap="true"></Label>
+
+                        <label row="1" col="0"
+                               class="pl-inbox-description"
+                               [text]="item.description"
+                               textWrap="true"></label>
+
+                        <GridLayout row="2" col="0"
+                                    rows="auto" columns="*, auto">
+                            <label row="0" col="1"
+                                   class="pl-inbox-date-time"
+                                   [text]="timePast(item) + ' ago, ' + dateTime(item)"></label>
+                        </GridLayout>
+                    </GridLayout>
+
+                    <!--Read More-->
+                    <Label row="0" col="1"
+                            *ngIf="hasRoute(item)"
+                            class="fa pl-inbox-read-more"
+                            [text]="'fa-chevron-right' | fonticon"></Label>
+                </GridLayout>
+            </StackLayout>
+        </ng-template>
+    </ListView>
+</GridLayout>

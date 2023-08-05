@@ -1,0 +1,19 @@
+<div class="peek-tabs-section">
+    <div class="btn-group" role="group">
+        <Button class="tabs-section-btn tabs-section-btn-divider"
+                [class.active]="barIndex == 0"
+                (click)="barIndex = 0">
+            Inbox
+        </Button>
+        <Button class="tabs-section-btn"
+                [class.active]="barIndex == 1"
+                (click)="barIndex = 1">
+            Activity
+        </Button>
+    </div>
+</div>
+
+<div class="pl-inbox peek-tabs-bar-padding">
+    <plugin-inbox-task-list *ngIf="barIndex == 0"></plugin-inbox-task-list>
+    <plugin-inbox-activity-list *ngIf="barIndex == 1"></plugin-inbox-activity-list>
+</div>
