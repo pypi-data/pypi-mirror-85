@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: scrapy_middlewares
+Version: 1.0.1
+Summary: scrapy middleware
+Home-page: https://github.com/CLannadZSY/scrapy-middlewares
+Author: CLannadZSY
+Author-email: zsymidi@gmail.com
+License: UNKNOWN
+Description: # scrapy-middlewares
+        scrapy middlewares
+        
+        ### Installation 安装
+        
+        ```sh
+        pip install scrapy_middlewares requests httpx aiohttp
+        ```
+        
+        ### Usage example 使用示例
+        ```python
+        'DOWNLOADER_MIDDLEWARES': {
+            'scrapy_middlewares.req_sync_middleware.ModuleReqMiddleware': 601
+        },
+        
+        # module_name:
+        # 	'httpx', 'requests'
+        
+        yield ModuleRequest(url=url, callback=self.parse, module_name='requests')
+        ```
+        
+        ```python
+        'DOWNLOADER_MIDDLEWARES': {
+            'scrapy_middlewares.req_async_middleware.ModuleAsyncReqMiddleware': 601
+        },
+        
+        # module_name:
+        # 	'httpx_async', 'aiohttp'
+        
+        yield ModuleRequest(url=url, callback=self.parse, module_name='httpx_async')
+        ```
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.0
+Description-Content-Type: text/markdown
