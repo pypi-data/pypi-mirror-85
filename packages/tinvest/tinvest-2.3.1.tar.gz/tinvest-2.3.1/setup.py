@@ -1,0 +1,38 @@
+# -*- coding: utf-8 -*-
+from setuptools import setup
+
+packages = \
+['tinvest', 'tinvest.cli']
+
+package_data = \
+{'': ['*']}
+
+install_requires = \
+['aiohttp>=3.6,<4.0', 'pydantic>=1.2,<2', 'requests>=2.22,<3.0']
+
+extras_require = \
+{'cli': ['typer>=0.3.2,<1']}
+
+entry_points = \
+{'console_scripts': ['tinvest = tinvest.cli.app:app']}
+
+setup_kwargs = {
+    'name': 'tinvest',
+    'version': '2.3.1',
+    'description': 'Tinkoff Invest',
+    'long_description': '# T-Invest\n\n[![Build Status](https://api.travis-ci.com/daxartio/tinvest.svg?branch=master)](https://travis-ci.com/daxartio/tinvest)\n[![PyPI](https://img.shields.io/pypi/v/tinvest)](https://pypi.org/project/tinvest/)\n[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/tinvest)](https://www.python.org/downloads/)\n[![Codecov](https://img.shields.io/codecov/c/github/daxartio/tinvest)](https://travis-ci.com/daxartio/tinvest)\n[![GitHub last commit](https://img.shields.io/github/last-commit/daxartio/tinvest)](https://github.com/daxartio/tinvest)\n[![Tinvest](https://img.shields.io/github/stars/daxartio/tinvest?style=social)](https://github.com/daxartio/tinvest)\n\n```\npip install tinvest\n```\n\nДанный проект представляет собой инструментарий на языке Python для работы с OpenAPI Тинькофф Инвестиции, который можно использовать для создания торговых роботов.\n\nКлиент предоставляет синхронный и асинхронный API для взаимодействия с Тинькофф Инвестиции.\n\nCLI\n\n```\npip install tinvest[cli]\n```\n\nЕсть возможность делать запросы через командную строку, подробнее [тут](https://daxartio.github.io/tinvest/cli/).\n\n## Начало работы\n\n### Где взять токен аутентификации?\n\nВ разделе инвестиций вашего [личного кабинета tinkoff](https://www.tinkoff.ru/invest/). Далее:\n\n* Перейдите в настройки\n* Проверьте, что функция "Подтверждение сделок кодом" отключена\n* Выпустите токен для торговли на бирже и режима "песочницы" (sandbox)\n* Скопируйте токен и сохраните, токен отображается только один раз, просмотреть его позже не получится, тем не менее вы можете выпускать неограниченное количество токенов\n\n## Документация\n\n[tinvest](https://daxartio.github.io/tinvest/)\n\n[invest-openapi](https://tinkoffcreditsystems.github.io/invest-openapi/)\n\n### Быстрый старт\n\nДля непосредственного взаимодействия с OpenAPI нужно создать клиента. Клиенты разделены на streaming и rest.\n\nПримеры использования SDK находятся ниже.\n\n### У меня есть вопрос\n\n[Основной репозиторий с документацией](https://github.com/TinkoffCreditSystems/invest-openapi/) — в нем вы можете задать вопрос в Issues и получать информацию о релизах в Releases.\nЕсли возникают вопросы по данному SDK, нашёлся баг или есть предложения по улучшению, то можно задать его в Issues.\n\n## Примеры\n\nДля работы с данным пакетом вам нужно изучить [OpenAPI Тинькофф Инвестиции](https://tinkoffcreditsystems.github.io/invest-openapi/swagger-ui/)\n\n### Streaming\n\nВ основном, предоставляет асинхронный интерфейс,\nно также могут использоваться синхронные хендлеры.\nСинхронные хендлеры будут запущены в тредпуле.\nСинхронные хендлеры могут быть использованы для работы с синхронными библиотеками,\nу которых нет асинхронный реализации.\n\nВсе хендлеры в рамках одного типа события будут запущены конкурентно.\nСледующее полученное событие будет обрабатываться после успешной обработки предыдущего.\nЕсли у вас планируется долгая обработка, выполняйте её в отдельной таске или процессе.\n\nЕсли вам требуется время сервера, то можете указать принимаемый аргумент в хендлере под именем `server_time`.\nВ хендлер будет передано серверное время в формате `datetime`.\n\n> При сетевых сбоях будет произведена попытка переподключения.\n\n```python\nimport asyncio\nfrom datetime import datetime\n\nimport tinvest\n\nTOKEN = "<TOKEN>"\n\nevents = tinvest.StreamingEvents()\n\n\n@events.reconnect()\ndef handle_reconnect():\n    print(\'Reconnecting\')\n\n\n@events.candle()\nasync def handle_candle(\n    api: tinvest.StreamingApi,\n    payload: tinvest.CandleStreaming,\n    server_time: datetime  # [optional] if you want\n):\n    print(payload)\n\n\n@events.orderbook()\nasync def handle_orderbook(\n    api: tinvest.StreamingApi, payload: tinvest.OrderbookStreaming\n):\n    print(payload)\n\n\n@events.instrument_info()\nasync def handle_instrument_info(\n    api: tinvest.StreamingApi, payload: tinvest.InstrumentInfoStreaming\n):\n    print(payload)\n\n\n@events.error()\nasync def handle_error(\n    api: tinvest.StreamingApi, payload: tinvest.ErrorStreaming\n):\n    print(payload)\n\n\n@events.startup()\nasync def startup(api: tinvest.StreamingApi):\n    await api.candle.subscribe("BBG0013HGFT4", tinvest.CandleResolution.min1)\n    await api.orderbook.subscribe("BBG0013HGFT4", 5, "123ASD1123")\n    await api.instrument_info.subscribe("BBG0013HGFT4")\n\n\n@events.cleanup()\nasync def cleanup(api: tinvest.StreamingApi):\n    await api.candle.unsubscribe("BBG0013HGFT4", "1min")\n    await api.orderbook.unsubscribe("BBG0013HGFT4", 5)\n    await api.instrument_info.unsubscribe("BBG0013HGFT4")\n\n\nasync def main():\n    await tinvest.Streaming(TOKEN, state={"postgres": ...}).add_handlers(events).run()\n\n\nif __name__ == "__main__":\n    try:\n        asyncio.run(main())\n    except KeyboardInterrupt:\n        pass\n\n```\n\n### Синхронный REST API Client\n\nДля выполнения синхронных http запросов используется библиотека `requests`.\nС описанием клиентов можно ознакомиться по этой [ссылке](https://daxartio.github.io/tinvest/tinvest/apis/).\nВозвращаемый аргумент это типичный объект класса `requests.Response`,\nкоторый имеет методы `parse_json` и `parse_error`.\nЭти методы возвращают объекты, наследованные от класса `pydantic.BaseModel`.\n\n```python\nimport tinvest\n\nTOKEN = "<TOKEN>"\n\nclient = tinvest.SyncClient(TOKEN)\napi = tinvest.PortfolioApi(client)\n\nresponse = api.portfolio_get()  # requests.Response\nif response.status_code == 200:\n    print(response.parse_json())  # tinvest.PortfolioResponse\n```\n\n```python\n# Handle error\n...\napi = tinvest.OperationsApi(client)\n\nresponse = api.operations_get("", "")\nif response.status_code != 200:\n    print(response.parse_error())  # tinvest.Error\n```\n\n### Асинхронный REST API Client\n\nДля выполнения асинхронных http запросов используется библиотека `aiohttp`.\nКлиенты имеют такой же интерфейс как в синхронной реализации, за исключением того,\nчто функции возвращают объект корутина.\n\n```python\nimport asyncio\nimport tinvest\n\nTOKEN = "<TOKEN>"\n\n\nasync def main():\n    client = tinvest.AsyncClient(TOKEN)\n    api = tinvest.PortfolioApi(client)\n    async with api.portfolio_get() as response:  # aiohttp.ClientResponse\n        if response.status == 200:\n            print(await response.parse_json())  # tinvest.PortfolioResponse\n\n    await client.close()\n\nasyncio.run(main())\n```\n\n### Sandbox\n\nSandbox позволяет вам попробовать свои торговые стратегии, при этом не тратя реальные средства. Протокол взаимодействия полностью совпадает с Production окружением.\n\n```python\nclient = tinvest.AsyncClient(SANDBOX_TOKEN, use_sandbox=True)\n# client = tinvest.SyncClient(SANDBOX_TOKEN, use_sandbox=True)\n\napi = tinvest.SandboxApi(client)\n```\n\n## Contributing\n\nПредлагайте свои пулл реквесты, проект с открытым исходным кодом.\n',
+    'author': 'Danil Akhtarov',
+    'author_email': 'daxartio@gmail.com',
+    'maintainer': None,
+    'maintainer_email': None,
+    'url': 'https://pypi.org/project/tinvest',
+    'packages': packages,
+    'package_data': package_data,
+    'install_requires': install_requires,
+    'extras_require': extras_require,
+    'entry_points': entry_points,
+    'python_requires': '>=3.7,<4.0',
+}
+
+
+setup(**setup_kwargs)
