@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: py-ms-consulate
+Version: 1.0.0
+Summary: A Client library and command line application for the Consul
+Home-page: https://consulate.readthedocs.org
+Author: Gavin M. Roy
+Author-email: gavinr@aweber.com
+Maintainer: Alberto Vara
+Maintainer-email: a.vara.1986@gmail.com
+License: BSD
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: System :: Systems Administration
+Classifier: Topic :: System :: Clustering
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Software Development :: Libraries
+Requires-Dist: requests (>=2.24.0)
+Provides-Extra: tests
+Requires-Dist: requests-mock (>=1.8.0) ; extra == 'tests'
+Requires-Dist: coverage (>=5.3) ; extra == 'tests'
+Requires-Dist: pytest (>=6.1.0) ; extra == 'tests'
+Requires-Dist: pytest-cov (>=2.10.1) ; extra == 'tests'
+Requires-Dist: pytest-docker (>=0.10.1) ; extra == 'tests'
+Requires-Dist: pylint (>=2.6.0) ; extra == 'tests'
+Requires-Dist: flake8 (>=3.8.2) ; extra == 'tests'
+Requires-Dist: tox (>=3.20.0) ; extra == 'tests'
+Requires-Dist: bandit (>=1.6.2) ; extra == 'tests'
+Requires-Dist: safety (==1.9.0) ; extra == 'tests'
+Requires-Dist: mypy (>=0.782) ; extra == 'tests'
+Requires-Dist: pre-commit (>=2.8.1) ; extra == 'tests'
+Requires-Dist: black (>=20.8b1) ; extra == 'tests'
+Requires-Dist: isort (>=5.6.4) ; extra == 'tests'
+Requires-Dist: httmock (>=1.4.0) ; extra == 'tests'
+Provides-Extra: unixsocket
+Requires-Dist: requests-unixsocket (<=1.0.0,>=0.1.4) ; extra == 'unixsocket'
+
+UNKNOWN
+
+
