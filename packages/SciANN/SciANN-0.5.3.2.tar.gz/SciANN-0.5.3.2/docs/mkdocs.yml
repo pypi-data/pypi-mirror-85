@@ -1,0 +1,56 @@
+site_name: SciANN Documentation
+
+# theme: cinder
+theme: readthedocs
+  # name: null
+  # custom_dir: theme
+  # static_templates:
+  #   - 404.html
+  # include_search_page: true
+  # search_index_only: false
+  # highlightjs: true
+  # hljs_languages: []
+  # include_homepage_in_sidebar: true
+  # prev_next_buttons_location: bottom
+  # navigation_depth: 4
+  # titles_only: false
+  # sticky_navigation: true
+  # collapse_navigation: true
+
+
+docs_dir: sources
+site_dir: ../../SciANN_site
+repo_url: https://github.com/sciann/sciann
+site_url: https://www.sciann.com/
+edit_uri: edit/master/docs/sources/
+site_description: 'Documentation for SciANN.'
+google_analytics: ['UA-149481893-1', 'www.sciann.com']
+
+# Math markdown. 
+markdown_extensions: [extra, tables, fenced_code]
+extra_javascript: ['https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML','mathjaxhelper.js']
+
+nav:
+- Home: index.md
+- Why use SciANN: why-use-sciann.md
+- Getting started:
+  - Guide to SciANN model: getting-started/scimodel-guide.md
+  - Guide to Functional: getting-started/functional-guide.md
+- Classes:
+  - SciModels: scimodels.md
+  - Functionals: functionals.md
+  - Variables: variables.md
+  - Fields: fields.md
+  - Constraints: constraints.md
+  - Utils: utils.md
+- Examples:
+  - Curve fitting in 1D: examples/example-fitting-1d.md
+- SciANN-Applications on Github:
+  - Github repository: https://github.com/sciann/sciann-applications
+  - Linear and quadratic regression: https://github.com/sciann/sciann-applications/blob/master/SciANN-Linear-Quadratic-Regression/SciANN-Regression.ipynb
+  - Curve fitting in 2D: https://github.com/sciann/sciann-applications/blob/master/SciANN-NN-Regression/SciANN-NN-Regression.ipynb
+  - Physics-Informed Linear elasticity: https://github.com/sciann/sciann-applications/tree/master/SciANN-SolidMechanics
+  - Solving Burgers Shock Equation: https://github.com/sciann/sciann-applications/blob/master/SciANN-BurgersEquation/SciANN-BurgersEquation.ipynb
+  - Physics-Informed Navier-Stokes: https://github.com/sciann/sciann-applications/blob/master/SciANN-NavierStokes/SciANN-NavierStokes.ipynb
+  - Physics-Informed Elasto-Plasticity: https://github.com/sciann/sciann-applications/blob/master/SciANN-ElastoPlasticity/SciANN-ElastoPlasticity.ipynb
+  
