@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: mautrix-twitter
+Version: 0.1.1
+Summary: A Matrix-Twitter DM puppeting bridge.
+Home-page: https://github.com/tulir/mautrix-twitter
+Author: Tulir Asokan
+Author-email: tulir@maunium.net
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: Topic :: Communications :: Chat
+Classifier: Framework :: AsyncIO
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: ~=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: aiohttp (<4,>=3)
+Requires-Dist: asyncpg (<0.22,>=0.20)
+Requires-Dist: attrs (>=19.1)
+Requires-Dist: commonmark (<0.10,>=0.8)
+Requires-Dist: mautrix (<0.9,>=0.8.2)
+Requires-Dist: python-magic (<0.5,>=0.4)
+Requires-Dist: ruamel.yaml (<0.17,>=0.15.35)
+Requires-Dist: yarl (<2,>=1)
+Provides-Extra: all
+Requires-Dist: prometheus-client (<0.9,>=0.6) ; extra == 'all'
+Requires-Dist: pycryptodome (<4,>=3) ; extra == 'all'
+Requires-Dist: python-olm (<4,>=3) ; extra == 'all'
+Requires-Dist: unpaddedbase64 (<2,>=1) ; extra == 'all'
+Provides-Extra: e2be
+Requires-Dist: pycryptodome (<4,>=3) ; extra == 'e2be'
+Requires-Dist: python-olm (<4,>=3) ; extra == 'e2be'
+Requires-Dist: unpaddedbase64 (<2,>=1) ; extra == 'e2be'
+Provides-Extra: metrics
+Requires-Dist: prometheus-client (<0.9,>=0.6) ; extra == 'metrics'
+
+# mautrix-twitter
+![Languages](https://img.shields.io/github/languages/top/tulir/mautrix-twitter.svg)
+[![License](https://img.shields.io/github/license/tulir/mautrix-twitter.svg)](LICENSE)
+[![Release](https://img.shields.io/github/release/tulir/mautrix-twitter/all.svg)](https://github.com/tulir/mautrix-twitter/releases)
+[![GitLab CI](https://mau.dev/tulir/mautrix-twitter/badges/master/pipeline.svg)](https://mau.dev/tulir/mautrix-twitter/container_registry)
+
+A Matrix-Twitter DM puppeting bridge.
+
+### [Wiki](https://github.com/tulir/mautrix-twitter/wiki)
+
+### [Features & Roadmap](https://github.com/tulir/mautrix-twitter/blob/master/ROADMAP.md)
+
+## Discussion
+Matrix room: [`#twitter:maunium.net`](https://matrix.to/#/#twitter:maunium.net)
+
+
