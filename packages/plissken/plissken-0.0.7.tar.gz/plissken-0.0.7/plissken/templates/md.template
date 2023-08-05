@@ -1,0 +1,78 @@
+{% macro create_arg(arg) -%}
+**{{ arg.name }}**{{ "`: {}`".format(arg.annotation) if arg.annotation}}{{ "=*{}*".format(arg.default)|replace("'","") if arg.default }}
+{%- endmacro %}
+{% macro gen_arglist(arglist) -%}
+{% set args = [] %}{% for arg in arglist %}{% do args.append(create_arg(arg)) %}{% endfor %}{{ args|join(', ') }}
+{%- endmacro %}
+{% macro render_function(function) -%}
+`{{ function.name }}`({{ gen_arglist(function.arguments) }}){{ " `-> {}`".format(function.return_annotation) if function.return_annotation}}:
+> {{ function.docstring }}
+{% if function.decorators %}
+#### Decorators:
+{% for decorator in function.decorators %}
+- `{{ decorator.name }}`:({{ gen_arglist(decorator.arguments )}})
+{% endfor%}
+{% endif %}
+{%- endmacro %}
+{% macro render_variable(variable) -%}
+**{{ variable.name }}**{{ "`: {}`".format(variable.annotation) if variable.annotation}} - {{ variable.docstring }}
+{%- endmacro %}
+{% macro render_class(class) -%}
+**`{{ class.name}}`**({{ gen_arglist(class.init_method.arguments)}})
+{{ class.init_method.docstring }}
+{% if class.docstring%}
+---
+> {{ class.docstring }}
+---
+{% endif %}
+{% if class.variables %}
+#### Variables:
+{% for variable in class.variables%}
+- {{ render_variable(variable)}}
+{% endfor %}{% endif %}
+{% if class.class_methods %}
+#### Methods:
+{% for method in class.class_methods%}
+- {{ render_function(method) }}
+{% endfor %}{% endif %}
+{%- endmacro %}
+---
+title : {{ data.name }}
+---
+{%if data.docstring %}
+> {{ data.docstring }}
+{% endif %}
+---
+{% if data.variables %}
+## Variables:
+{% for variable in data.variables %}
+- {{ render_variable(variable) }}
+{% endfor %}
+---
+{% endif %}
+{%if data.functions %}
+## Functions:
+{% for function in data.functions %}
+{{ render_function(function) }}
+{% endfor %}
+---
+{% endif %}
+{% if data.classes %}
+## Classes:
+{% for class in data.classes %}
+{{ render_class(class) }}
+{% endfor %}
+---
+{% endif %}
+{% if data.modules %}
+## Sub-Modules:
+{% for module in data.modules%}
+- {{ module.name }}
+{% endfor %}
+{% endif %}
+{% if data.subpackages %}
+## Sub-Packages:
+{% for package in data.subpackages%}
+- {{ pacakge.name}}
+{% endfor %}
+{% endif %}
