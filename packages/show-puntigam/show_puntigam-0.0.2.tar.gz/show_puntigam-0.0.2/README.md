@@ -1,0 +1,21 @@
+# show me puntigam
+
+#### short description
+Python package to evaluate urban lidar datasets. 
+
+#### install
+
+##### python 3.6
+`pip install show-puntigam`
+
+#### documentation
+
+
+#### our slack community
+https://showpuntigam.slack.com/ssb/redirect?entry_point=homepage_nav
+
+#### publications
+* Hartmann et. al. "Urban environments for synthetic movement generation" 2020 (to be published)
+
+#### acknowledgement
+SHOW is co-funded by the EU under the H2020 Research and Innovation Programme (grant agreement No 875530). Package is provided by Virtual Vehicle Research GmbH. Virtual Vehicle Research Team: Joachim Hillebrand, Michael Hartmann, Markus Schratter'
