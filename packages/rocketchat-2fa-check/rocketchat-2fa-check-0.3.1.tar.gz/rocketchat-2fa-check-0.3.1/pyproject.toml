@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "rocketchat-2fa-check"
+version = "0.3.1"
+description = ""
+authors = ["Ulrich Petri <github@ulo.pe>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+click = "^7.0"
+pymongo = "^3.8"
+requests = "^2.22"
+click-pathlib = "^2020.3.13"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.0"
+black = {version = "^20.0",allow-prereleases = true}
+isort = "^5"
+flake8 = "^3.7"
+flake8-bugbear = "^20"
+flake8-tuple = "^0.4.0"
+pylint = "^2.3"
+mypy = "^0.790"
+bpython = "^0.20.0"
+
+[tool.poetry.scripts]
+rc-check-2fa = 'rocketchat_2fa_check.__main__:_run_main'
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
+[tool.black]
+line-length = 99
+target-version = ['py38']
+include = '\.pyi?$'
