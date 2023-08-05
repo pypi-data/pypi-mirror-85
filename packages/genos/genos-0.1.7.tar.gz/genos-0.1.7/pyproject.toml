@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "genos"
+# This version is ignored. Version is
+version = "0.1.0"
+description = "Instantiate objects and call functions using dictionary configs in Python using Genos."
+authors = ["Ayushman Dash <ayushman@neuralspace.ai>"]
+
+
+[tool.poetry.dependencies]
+python = "^3.7"
+omegaconf = "^2.0.4"
+
+[tool.poetry.dev-dependencies]
+isort = "^4.3.21"
+flake8 = "^3.7.9"
+pytest = "^5.4.1"
+coverage = "^5.1"
+requirements-parser = "^0.2.0"
+pytest-xdist = "^1.32.0"
+black = "^20.8b1"
+twine = "^3.2.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
