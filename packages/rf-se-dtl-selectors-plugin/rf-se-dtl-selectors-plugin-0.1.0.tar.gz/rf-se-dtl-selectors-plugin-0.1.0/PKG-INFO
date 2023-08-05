@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: rf-se-dtl-selectors-plugin
+Version: 0.1.0
+Summary: DOM testing library inspired selectors for Robot Framework SeleniumLibrary.
+Home-page: https://github.com/kangasta/rf-se-dtl-selectors
+Author: Toni Kangas
+License: UNKNOWN
+Description: # rf-se-dtl-selectors-plugin
+        
+        [![Build Status](https://travis-ci.org/kangasta/rf-se-dtl-selectors-plugin.svg?branch=main)](https://travis-ci.org/kangasta/rf-se-dtl-selectors-plugin)
+        
+        [DOM testing library](https://testing-library.com/) inspired selectors for Robot Framework [SeleniumLibrary](https://robotframework.org/SeleniumLibrary/).
+        
+        ## Usage
+        
+        In order to use selector provided by this plugin, load `SeleniumLibrary` with `TestingLibrarySelectorsPlugin` in the plugin array:
+        
+        ```robot
+        *** Settings ***
+        Library         SeleniumLibrary    plugins=TestingLibrarySelectorsPlugin
+        ```
+        
+        The plugin provides `label`, `testid`, `text`, and `title` selectors. See [acceptance_tests](./acceptance_tests) directory for usage examples.
+        
+        ## Testing
+        
+        Check and automatically fix formatting with:
+        
+        ```bash
+        pycodestyle TestingLibrarySelectorsPlugin
+        autopep8 -aaar --in-place TestingLibrarySelectorsPlugin
+        ```
+        
+        Run static analysis with:
+        
+        ```bash
+        pylint -E --enable=invalid-name,unused-import,useless-object-inheritance TestingLibrarySelectorsPlugin
+        ```
+        
+        Run acceptance tests in Docker container:
+        
+        ```bash
+        # Build image
+        docker build . -t atest
+        
+        # Run tests
+        docker run --rm atest
+        
+        # Run tests and get test output to ./out
+        docker run -v $(pwd)/out:/out --rm atest -d /out -L TRACE:INFO
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
