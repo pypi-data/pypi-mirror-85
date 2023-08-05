@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load helpers %}
+{% block title %} Announcements {% endblock %}
+{% block content %}
+<div class="pull-right noprint">
+    {% if request.user.is_authenticated and table_config_form %}
+        <button type="button" class="btn btn-default" data-toggle="modal"
+        data-target="#tableconfig" title="Configure table"><i class="fa fa-cog"></i>
+        Configure</button>
+        <a href="{% url 'plugins:netbox_announcement:announcement_add' %}" class="btn btn-primary">
+            <span class="fa fa-plus" aria-hidden="true"></span> Add
+        </a>
+    {% endif %}
+</div>
+<h1>Announcements</h1>
+<div class="row">
+    <div class="col-md-9">
+        {% if permissions.change or permissions.delete %}
+            <form method="post" class="form form-horizontal">
+                {% csrf_token %}
+                <input type="hidden" name="return_url" value="{% if return_url %}{{ return_url }}{% else %}{{ request.path }}
+                {% if request.GET %}?{{ request.GET.urlencode }}{% endif %}{% endif %}">
+            </form>
+        {% else %}
+            {% include table_template|default:'responsive_table.html' %}
+        {% endif %}
+        {% include 'inc/paginator.html' with paginator=table.paginator page=table.page%}
+        <div class="clearfix"></div>
+        {% if table_config_form %}
+            {% include 'inc/table_config_form.html' %}
+        {% endif %}
+    </div>
+    {% if filter_form %}
+        <div class="col-md-3 noprint">
+            {% include 'inc/search_panel.html' %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
