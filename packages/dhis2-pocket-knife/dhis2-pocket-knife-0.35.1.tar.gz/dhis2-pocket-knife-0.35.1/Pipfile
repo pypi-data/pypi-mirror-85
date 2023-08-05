@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+pytest = "*"
+pytest-cov = "*"
+responses = "*"
+pytest-runner = "*"
+pyinstaller = "==3.6"
+
+[packages]
+"dhis2.py" = "==2.1.2"
+
+[scripts]
+tests = "python -m pytest --cov=src --cov-report term-missing tests -vv"
