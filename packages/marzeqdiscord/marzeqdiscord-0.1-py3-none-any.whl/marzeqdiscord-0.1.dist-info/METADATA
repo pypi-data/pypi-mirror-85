@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: marzeqdiscord
+Version: 0.1
+Summary: Custom extensions for discord.py
+Home-page: https://github.com/marzeq/marzeqdiscord
+Author: marzeq
+Author-email: marzeqmarzeq@gmail.com
+License: Creative Commons Attribution NonCommercial (CC-BY-NC)
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: discord.py (>=1.5.1)
+
+# marzeqdiscord
+My own extensions for discord.py.
+
+Features list:
+* Custom command parser with support for command flags and parameters.
+    * Pros:
+        * Support for command flags and parameters
+        * The default command parser still can be used
+    * Cons:
+        * Every command needs to be initialised separately
+        * The parser gives us the invoked message to work with, not the context
+
+
