@@ -1,0 +1,6 @@
+from .ops import execute_from_command_line as ops_execute_from_command_line
+from .recursive_convert import execute_from_command_line as recursive_convert_execute_from_command_line
+from .cmu_sphinx import execute_from_command_line as configure_sphinx_execute_from_command_line
+from .cmu_sphinx import clean_previous_configuration as clean_previous_configuration_execute_from_command_line
+from .htk import execute_from_command_line as configure_htk_isolated_words_model
+from .htk import generate_htk_flat_start as generate_htk_flat_start
