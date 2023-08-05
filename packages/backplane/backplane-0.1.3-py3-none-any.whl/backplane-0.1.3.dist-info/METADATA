@@ -1,0 +1,86 @@
+Metadata-Version: 2.1
+Name: backplane
+Version: 0.1.3
+Summary: a dead-simple backplane for Dockerized applications
+License: LICENSE.md
+Author: Fabian Peter
+Author-email: fabian@p3r.link
+Requires-Python: >=3.7,<4.0
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: PyYAML (>=5.3.1,<6.0.0)
+Requires-Dist: anyconfig (>=0.9.11,<0.10.0)
+Requires-Dist: docker (>=4.3.1,<5.0.0)
+Requires-Dist: python-dotenv (>=0.15.0,<0.16.0)
+Requires-Dist: typer[all] (>=0.3.2,<0.4.0)
+Description-Content-Type: text/markdown
+
+# backplane
+
+A simple backplane for your containerized applications.
+
+- [Traefik](https://doc.traefik.io/traefik/getting-started/quick-start/) reverse-proxy for your containers
+- [Portainer](https://www.portainer.io/) management dashboard for Docker
+
+## Get started
+
+```bash
+git clone https://gitlab.com/p3r.one/backplane $HOME/.backplane
+cd $HOME/.backplane
+docker-compose --project-name backplane up -d
+```
+
+You can now visit the dashboards of both services in your browser:
+
+- [Traefik Dashboard](http://traefik.here.ns0.co)
+- [Portainer Dashboard](http://portainer.here.ns0.co)
+
+To expose one of your services through Traefik, your service needs to be part of the `backplane` Docker network and carry a few Traefik-relevant labels:
+
+```bash
+portainer:
+  image: portainer/portainer-ce:2.0.0
+  container_name: portainer
+  command: -H unix:///var/run/docker.sock
+  restart: unless-stopped
+  security_opt:
+    - no-new-privileges:true
+  networks:
+    - backplane
+  volumes:
+    - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    - "portainer-data:/data"
+  labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.portainer.entrypoints=http"
+    - "traefik.http.routers.portainer.rule=Host(`portainer.${BACKPLANE_DOMAIN}`)"
+    - "traefik.http.routers.traefik.middlewares=compress@file"
+    - "traefik.http.routers.portainer.service=portainer"
+    - "traefik.http.services.portainer.loadbalancer.server.port=9000"
+    - "traefik.docker.network=backplane"
+```
+
+## Development
+
+### Dependencies
+
+```bash
+pip install poetry
+poetry shell
+poetry install
+```
+
+### Build
+
+```bash
+poetry build
+```
+
+### Publish
+
+```bash
+poetry publish
+```
