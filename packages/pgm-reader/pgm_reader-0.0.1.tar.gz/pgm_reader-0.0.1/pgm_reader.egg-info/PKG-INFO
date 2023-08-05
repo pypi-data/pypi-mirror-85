@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: pgm-reader
+Version: 0.0.1
+Summary: A Python package for reading pgm files
+Home-page: https://github.com/BDEvan5/pgm
+Author: Benjamin Evans
+Author-email: 19811799@sun.ac.za
+License: UNKNOWN
+Description: # PyPgm
+        
+        This package is for reading portable greymap files.
+        
+        Functionality still to be added for writing pgm files.
+        
+        # Installation
+        
+        ```cmd
+        pip install pgm_reader
+        ```
+        
+        # Usage
+        
+        ```python
+        from pgm_reader import Reader
+        
+        f = 'pgm_file.pgm'
+        reader = Reader()
+        image = reader.read_pgm(f)
+        width = reader.width
+        ```
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
