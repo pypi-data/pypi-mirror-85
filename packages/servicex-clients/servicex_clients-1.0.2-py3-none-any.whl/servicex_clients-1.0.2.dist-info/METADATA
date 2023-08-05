@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: servicex-clients
+Version: 1.0.2
+Summary: Install ServiceX Common Clients
+Home-page: https://github.com/ssl-hep/servicex_clients
+Author: G. Watts (IRIS-HEP/UW Seattle)
+Author-email: gwatts@uw.edu
+Maintainer: Gordon Watts (IRIS-HEP/UW Seattle)
+Maintainer-email: gwatts@uw.edu
+License: TBD
+Platform: Any
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
+Requires-Dist: func-adl-servicex (==1.0.2)
+Requires-Dist: tcut-to-qastle (==0.4)
+
+# servicex_clients
+ An umbrella package that will include servicex client packages
+
+## Packages
+
+The following ServiceX frontend clients are installed when you install this library.
+
+- [tcut-to-castle](https://pypi.org/project/tcut-to-qastle/) - The TCut library that uses TCut like syntax to drive ServiceX selections.
+- [func_adl_servicex](https://pypi.org/project/func-adl-servicex/) - The func_adl front-end for using servicex.
+
+
