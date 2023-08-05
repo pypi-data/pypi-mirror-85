@@ -1,0 +1,9 @@
+[flask.commands]
+oai = oarepo_oai_pmh_harvester.cli:oai
+
+[invenio_db.alembic]
+oarepo_oai_pmh_harvester = oarepo_oai_pmh_harvester:alembic
+
+[invenio_db.models]
+oarepo_oai_pmh_harvester = oarepo_oai_pmh_harvester.models
+
