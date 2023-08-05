@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>KanbanView</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="KanbanView">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="kanban.css">
+    <link rel="stylesheet" href="chart.css">
+    <link rel="stylesheet" href="fa.min.css">
+    <link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="manifest" href="manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+  </head>
+  <body>
+    <div class="outer-container">
+      <div class="header" id="header">
+        <a href="https://kanbanview.app" title="visit website" target="_blank"><img class="logo" src="logo-dark.png" alt="logo" ></a>
+        <div class="onoffswitch">
+          <input type="checkbox" name="onoffswitch"
+                  class="onoffswitch-checkbox" id="mode"
+                  checked="checked" onclick="switchMode();"
+                  accesskey="p" title="⌃+⎇+P">
+          <label class="onoffswitch-label" for="mode">
+            <span class="onoffswitch-inner"><!----></span>
+            <span class="onoffswitch-switch"><!----></span>
+          </label>
+        </div>
+      </div>
+      <div class="sidebar-container">
+        <div class="sidebar">
+          <div class="column sidelist bigger" id="listContainer">
+            <div class="listHeader">
+              <i class="fa fa-sliders-h"></i><a href="javascript:showPreferences();"> Preferences</a>
+            </div>
+            <div class="listHeader"><i class="fa fa-archive"> </i> View</div>
+            <ul id="viewlist">
+              <a href="#" id="kanban" data-function="kanbanUpdate" onclick="kanbanFilterReset(); kanbanUpdate();" accesskey="1" title="⌃+⎇+1"><li>Kanban</li></a>
+              <a href="#" id="distribution" data-function="statsShowDistribution" onclick="statsShowDistribution();" accesskey="2" title="⌃+⎇+2"><li>Distribution</li></a>
+              <a href="#" id="history" data-function="statsShowHistory" onclick="statsShowHistory();" accesskey="3" title="⌃+⎇+3"><li>History</li></a>
+              <a href="#" id="universe" data-function="statsShowUniverse" onclick="statsShowUniverse();" accesskey="4" title="⌃+⎇+4"><li>Universe</li></a>
+              <a href="#" id="eisenhower" data-function="statsShowMinutes" onclick="statsShowMinutes();" accesskey="5" title="⌃+⎇+5"><li>Eisenhower</li></a>
+            </ul>
+            <div class="listHeader"><i class="fa fa-archive"> </i> Areas</div>
+            <ul id="areas" data-ctx="area"></ul>
+            <div class="listHeader"><i class="fa fa-archive"> </i> Projects</div>
+            <ul id="projects" data-ctx="project"></ul>
+          </div>
+        </div>
+        <div class="main-view-container">
+          <article class='some-page-wrapper'>
+            <div id="stats" class="stats"></div>
+            <div id="prefs" class="prefs"></div>
+            <div class='row' id="content"></div>
+            <div class='loading' id='loading'></div>
+          </article>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="chart.bundle.min.js"></script>
+    <script type="text/javascript" src="chartjs-plugin-labels.min.js"></script>
+    <script type="text/javascript" src="kanban.js"></script>
+    <script type="text/javascript" src="fa.min.js" defer></script>
+  </body>
+</html>
