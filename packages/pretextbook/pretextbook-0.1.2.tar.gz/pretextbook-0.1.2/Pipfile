@@ -1,0 +1,13 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+setuptools = "*"
+wheel = "*"
+twine = "*"
+pretext = {editable = true,path = "."}
+secretstorage = {markers = "sys_platform == 'linux'", version = ">=3"}
