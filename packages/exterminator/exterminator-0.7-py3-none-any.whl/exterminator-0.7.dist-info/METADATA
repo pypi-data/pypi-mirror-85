@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: exterminator
+Version: 0.7
+Summary: Log the important data when a exception occurs.
+Home-page: https://github.com/dermasmid/python-exterminator
+Author: Cheskel Twersky
+Author-email: yoursn21@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# Pest control
+
+Bugs are bad, but it's even worse when it happens in production, this is why it is a good idea to document all data possible when a exception occurs.
+
+## Usage
+
+You have two options.
+
+### As a decorator
+
+``` python
+from exterminator import Exterminator
+
+@Exterminator()
+def main_function():
+    # do stuff that might work
+
+main_function()
+```
+
+### As a context manager
+
+``` python
+from exterminator import Exterminator
+
+with Exterminator():
+    # do stuff, you know the thing
+```
+
+
