@@ -1,0 +1,15 @@
+{
+    "type" : "object",
+    "properties" : {
+        "id" : {"type" : "integer"},
+        "defaultValue" : {"type" : "integer"},
+        "params" : {
+            "type" : "object",
+            "properties" : {
+                "switchType": {"type" : "string"}
+            },
+            "required": ["switchType"]
+        }
+    },
+    "required": ["id", "defaultValue", "params"]
+}
