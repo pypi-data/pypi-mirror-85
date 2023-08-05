@@ -1,0 +1,41 @@
+<div class="panel panel-default">
+    <div class="panel-heading">Edit Source Server Settings
+        <div class="btn-toolbar pull-right">
+            <div class="btn-group">
+                <div class="btn btn-default btn-sm" (click)='save()'>
+                    Save
+                </div>
+                <div class="btn btn-default btn-sm" (click)='loader.load()'>
+                    Reset
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <label for="appHost">Source Server Host</label>
+            <input type="text" class="form-control" id="appHost" required
+                   [(ngModel)]="item.appHost">
+        </div>
+        <div class="form-group">
+            <label for="appOracleUsername">Oracle Username</label>
+            <input type="text" class="form-control" id="appOracleUsername" required
+                   [(ngModel)]="item.appOracleUsername">
+        </div>
+        <div class="form-group">
+            <label for="appOraclePassword">Oracle Password</label>
+            <input type="password" class="form-control" id="appOraclePassword" required
+                   [(ngModel)]="item.appOraclePassword">
+        </div>
+        <div class="form-group">
+            <button (click)="item.enabled = !item.enabled"
+                    type="button"
+                    class="form-control btn"
+                    [class.btn-success]="item.enabled"
+                    [class.btn-warning]="!item.enabled"
+                    [class.active]="item.enabled">
+                {{item.enabled ? 'Enabled':'Disabled'}}
+            </button>
+        </div>
+    </div>
+</div>

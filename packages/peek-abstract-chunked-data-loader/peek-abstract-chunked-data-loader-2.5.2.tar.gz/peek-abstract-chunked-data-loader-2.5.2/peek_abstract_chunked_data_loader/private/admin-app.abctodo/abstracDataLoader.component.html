@@ -1,0 +1,60 @@
+<div class="container">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <!-- Home Tab -->
+        <li role="presentation" class="active">
+            <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a>
+        </li>
+        <!-- Loader Status Tab -->
+        <li role="presentation">
+            <a href="#loaderStatus" aria-controls="loaderStatus" role="tab"
+               data-toggle="tab">Loader Status</a>
+        </li>
+        <!-- Edit Source Server Settings Tab -->
+        <li role="presentation">
+            <a href="#editAppSetting" aria-controls="editAppSetting" role="tab"
+               data-toggle="tab">Edit Source Server Settings</a>
+        </li>
+        <!-- Edit Settings Tab -->
+        <li role="presentation">
+            <a href="#editSetting" aria-controls="editSetting" role="tab"
+               data-toggle="tab">Edit General Settings</a>
+        </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <!-- Home Tab -->
+        <div role="tabpanel" class="tab-pane active" id="home">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h1 class="text-center">Data Loader</h1>
+                    <p>This plugin loads the information from a source server.</p>
+                    <p>It then populates the Search plugin so the equipment can be found,
+                        with the data:</p>
+                        <ul>
+                            <li>Item ID, Aka Key</li>
+                            <li>Item Alias</li>
+                            <li>Item Name</li>
+                        </ul>
+                    <p>The same information is also pushed to the DocDB plugin along with
+                    the configured custom attributes.</p>
+
+                </div>
+            </div>
+        </div>
+        <!-- Loader Status Tab -->
+        <div role="tabpanel" class="tab-pane" id="loaderStatus">
+            <pl-pof-diagram-loader-loader-status></pl-pof-diagram-loader-loader-status>
+        </div>
+        <!-- Edit Source Server Settings Tab -->
+        <div role="tabpanel" class="tab-pane" id="editAppSetting">
+            <pl-pof-diagram-loader-edit-source-settings></pl-pof-diagram-loader-edit-source-settings>
+        </div>
+        <!-- Edit Settings Tab -->
+        <div role="tabpanel" class="tab-pane" id="editSetting">
+            <pl-pof-diagram-loader-edit-setting></pl-pof-diagram-loader-edit-setting>
+        </div>
+
+    </div>
+</div>
