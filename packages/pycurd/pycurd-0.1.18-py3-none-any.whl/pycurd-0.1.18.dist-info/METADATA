@@ -1,0 +1,147 @@
+Metadata-Version: 2.1
+Name: pycurd
+Version: 0.1.18
+Summary: A common crud framework for web.
+Home-page: https://github.com/fy0/pycrud
+License: MIT
+Author: fy
+Author-email: fy0748@gmail.com
+Requires-Python: >=3.6.9
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: PyPika (>=0.42.1)
+Requires-Dist: multidict (>=4.5,<6.0)
+Requires-Dist: pydantic (>=1.6.1)
+Requires-Dist: typing_extensions (>=3.6.5)
+Project-URL: Repository, https://github.com/fy0/pycrud
+Description-Content-Type: text/markdown
+
+# pycrud
+
+[![codecov](https://codecov.io/gh/fy0/pycrud/branch/master/graph/badge.svg)](https://codecov.io/gh/fy0/pycrud)
+
+A common crud framework for web.
+
+Features:
+
+* Generate query by json
+
+* Role based permission system
+
+* Easy to bind
+
+* Tested
+
+
+### Examples:
+
+#### Define
+
+```python
+from typing import Optional
+
+from playhouse.db_url import connect
+from pycurd.crud.ext.peewee_crud import PeeweeCrud
+from pycurd.types import RecordMapping
+
+class User(RecordMapping):
+    id: Optional[int]
+    nickname: str
+    username: str
+    password: str = 'password'
+
+
+db = connect("sqlite:///:memory:")
+
+c = PeeweeCrud(None, {
+    User: 'users'
+}, db)
+
+```
+
+#### Create
+
+```python
+from pycurd.values import ValuesToWrite
+
+v = ValuesToWrite({'nickname': 'wwww', 'username': 'u2'})
+lst = await c.insert_many(User, [v])
+
+print(lst)
+```
+
+#### Read
+
+```python
+from pycurd.query import QueryInfo
+
+lst = await c.get_list(QueryInfo.from_json(User, {
+    'id.eq': 1
+}))
+
+print([x.to_dict() for x in lst])
+```
+
+#### Update
+
+```python
+from pycurd.query import QueryInfo
+from pycurd.values import ValuesToWrite
+
+v = ValuesToWrite({'nickname': 'bbb', 'username': 'u2'})
+lst = await c.update(QueryInfo.from_json(User, {
+    'id.in': [1,2,3]
+}), v)
+
+print(lst)
+```
+
+#### Delete
+
+```python
+from pycurd.query import QueryInfo
+
+lst = await c.delete(QueryInfo.from_json(User, {
+    'id.in': [1,2,3]
+}))
+
+print(lst)
+```
+
+
+### Operators
+
+| type | operator | text |
+| ---- | -------- | ---- |
+| compare | EQ | ('eq', '==') |
+| compare | NE | ('ne', '!=') |
+| compare | LT | ('lt', '<') |
+| compare | LE | ('le', '<=') |
+| compare | GE | ('ge', '>=') |
+| compare | GT | ('gt', '>') |
+| relation | IN | ('in',) |
+| relation | NOT_IN | ('notin', 'not in') |
+| relation | IS | ('is',) |
+| relation | IS_NOT | ('isnot', 'is not') |
+| relation | PREFIX | ('prefix',) |
+| relation | CONTAINS | ('contains',) |
+| logic | AND | ('and',) |
+| logic | OR | ('or',) |
+
+
+```json5
+// usage:
+{
+  'time.ge': 1,
+  '$or': {
+    'id.in': [1, 2, 3],
+    '$and': {
+      'time.ge': 100,
+      'time.le': 500,
+    }
+  }
+}
+```
+
