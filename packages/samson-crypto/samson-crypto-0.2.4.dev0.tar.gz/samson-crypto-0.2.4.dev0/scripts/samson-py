@@ -1,0 +1,239 @@
+#!/usr/bin/python3
+import logging
+logging.getLogger('lazy_import').setLevel(logging.WARNING)
+logging.getLogger('asyncio').setLevel(logging.WARNING)
+
+from samson.encoding.general import PKIAutoParser
+from samson.utilities.cli import start_repl, start_exec, HASHES, EC_CURVES, ED_CURVES, PKI, ENCODING_MAPPING
+from samson.utilities.bytes import Bytes
+from samson.utilities.runtime import RUNTIME
+import argparse
+import sys
+
+
+parser     = argparse.ArgumentParser()
+subparsers = parser.add_subparsers(dest='command')
+parser.add_argument('--eval', action='store_true')
+
+load_parser = subparsers.add_parser('load')
+load_parser.add_argument('loadfile')
+
+factor_parser = subparsers.add_parser('factor')
+factor_parser.add_argument('int_to_fac')
+factor_parser.add_argument('--args', nargs="?")
+
+hash_parser = subparsers.add_parser('hash')
+hash_parser.description = f"Available hash types: {', '.join([k for k,v in HASHES.items()])}"
+
+hash_parser.add_argument('type')
+hash_parser.add_argument('text', nargs="?")
+hash_parser.add_argument('--args', nargs="?")
+
+pki_parser = subparsers.add_parser('pki')
+pki_parser.formatter_class = argparse.RawDescriptionHelpFormatter
+pki_parser.description = f"""Available PKI types: {', '.join([k for k,v in PKI.items()])}
+
+Available ECDSA curves: {', '.join([k for k,v in EC_CURVES.items()])}
+
+Available EdDSA curves: {', '.join([k for k,v in ED_CURVES.items()])}
+
+Available encodings: {', '.join([k for k,v in ENCODING_MAPPING.items()])}
+"""
+
+
+pki_parser.add_argument('action', help='generate, parse, info')
+pki_parser.add_argument('type', default='auto', nargs='?')
+pki_parser.add_argument('--args', nargs="?")
+pki_parser.add_argument('filename', nargs="?")
+pki_parser.add_argument('--pub', action='store_true')
+pki_parser.add_argument('--encoding', nargs="?")
+pki_parser.add_argument('--encoding-args', nargs="?")
+
+arguments = parser.parse_args()
+
+def try_parse(val):
+    try:
+        val = int(val)
+    except ValueError:
+        pass
+    
+    return val
+
+
+PARSE_METHOD = try_parse
+
+
+
+import re
+_spec_re = re.compile(r'([%@])')
+_lit_re  = re.compile(r'\'.*\'|".*"')
+
+def process_literals(arg_str):
+    preprocessed_literals = {}
+    sanitized = arg_str
+
+    i = 0
+    while _lit_re.search(sanitized):
+        match   = _lit_re.search(sanitized)
+        literal = sanitized[match.start():match.end()]
+
+        preprocessed_literals[f'#{i}'] = literal[1:-1]
+        sanitized = sanitized.replace(literal, f'#{i}')
+        i += 1
+    
+    return sanitized, preprocessed_literals
+
+
+def process_specials(arg):
+    curr = None
+    for cmd in [_ for _ in _spec_re.split(arg)[::-1] if _ ]:
+        if cmd == "@":
+            with open(curr, 'rb') as f:
+                curr = f.read()
+
+        elif cmd == "%":
+            curr = eval(curr)
+
+        else:
+            curr = cmd
+
+    return curr
+
+
+
+
+def export_pki(pki_obj, arguments):
+    if arguments.encoding:
+        encoding = ENCODING_MAPPING[arguments.encoding.upper()]
+
+    if arguments.encoding_args:
+        # Process literals
+        sanitized, preprocessed_literals = process_literals(arguments.encoding_args)
+
+        processed_args = [arg.strip().split('=') for arg in sanitized.split(',')]
+        for i, (_, v)in enumerate(processed_args):
+            processed_args[i][1] = preprocessed_literals.get(v) or v
+        
+
+        encoding_args = {k: PARSE_METHOD(process_specials(v)) for k,v in processed_args}
+        if 'signing_key' in encoding_args:
+            with open(encoding_args['signing_key'], 'rb') as f:
+                encoding_args['signing_key'] = PKIAutoParser.import_key(f.read()).key
+
+
+    else:
+        encoding_args = {}
+
+
+    # Handle request for pub
+    if arguments.pub:
+        export_func = pki_obj.export_public_key
+    else:
+        export_func = pki_obj.export_private_key
+    
+
+    # Handle request for specific encoding
+    if arguments.encoding:
+        encoded_key = export_func(encoding=encoding, **encoding_args)
+    else:
+        encoded_key = export_func(**encoding_args)
+
+
+    print(encoded_key.encode(**encoding_args).decode())
+
+
+if __name__ == '__main__':
+    if len(sys.argv) == 1:
+        start_repl()
+
+    elif arguments.command == 'load':
+        with open(arguments.loadfile) as f:
+            exec(start_exec + "\n" + f.read())
+
+    else:
+        RUNTIME.minimize_output = False
+
+        if arguments.eval:
+            PARSE_METHOD = eval
+
+        # Process arguments
+        if hasattr(arguments, 'args') and arguments.args:
+            dict_args = {k: PARSE_METHOD(process_specials(v)) for k,v in [arg.strip().split('=') for arg in arguments.args.split(',')]}
+        else:
+            dict_args = {}
+
+
+        if arguments.command == 'hash':
+            hash_cls = HASHES[arguments.type.lower()]
+
+            text = arguments.text
+
+            if not text:
+                text = sys.stdin.buffer.read()
+
+            if arguments.eval:
+                text = PARSE_METHOD(text)
+
+            if type(text) is str:
+                text = text.encode('utf-8')
+
+
+            hash_obj = hash_cls(**dict_args)
+            print(hash_obj.hash(text).hex().decode())
+
+
+        elif arguments.command == 'pki':
+            pki_type = arguments.type.lower()
+            pki_cls  = PKI[pki_type]
+
+            if "curve" in dict_args:
+                curve = dict_args["curve"].lower()
+
+                if pki_type == 'ecdsa':
+                    dict_args["G"] = EC_CURVES[curve].G
+                    del dict_args["curve"]
+
+                elif pki_type == 'eddsa':
+                    dict_args["curve"] = ED_CURVES[curve]
+
+
+
+            if arguments.action == 'generate':
+                if pki_type == 'auto':
+                    raise parser.error("'type' is a required argument when used with 'generate'")
+
+                pki_obj = pki_cls(**dict_args)
+                export_pki(pki_obj, arguments)
+
+
+            elif arguments.action == 'parse':
+                if arguments.filename:
+                    key_to_parse = PARSE_METHOD(process_specials(arguments.filename))
+
+                    if type(key_to_parse) is str:
+                        key_to_parse = key_to_parse.encode('utf-8')
+                    
+                    key_to_parse = key_to_parse.strip()
+
+                else:
+                    key_to_parse = sys.stdin.read().encode('utf-8')
+
+                pki_obj = pki_cls.import_key(key_to_parse)
+
+                if arguments.encoding:
+                    export_pki(pki_obj.key, arguments)
+                else:
+                    print(pki_obj)
+
+            elif arguments.action == 'info':
+                print(f'Class: {pki_cls}\n')
+                print(f"Available private key encodings: {', '.join([str(k) for k,v in pki_cls.PRIV_ENCODINGS.items()])}")
+                print(f"Available public key encodings : {', '.join([str(k) for k,v in pki_cls.PUB_ENCODINGS.items()])}")
+                print(f'{pki_cls.__doc__}{pki_cls.__init__.__doc__}')
+
+            else:
+                raise ValueError('Invalid action. Please choose from "generate" and "parse".')
+
+        elif arguments.command == 'factor':
+            from samson.math.factorization.general import factor
+            print(factor(PARSE_METHOD(process_specials(arguments.int_to_fac)), **dict_args))
