@@ -1,0 +1,6 @@
+ibis.expr.api.ValueExpr.substitute
+==================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: ValueExpr.substitute

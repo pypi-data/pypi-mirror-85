@@ -1,0 +1,6 @@
+ibis.null
+=========
+
+.. currentmodule:: ibis
+
+.. autofunction:: null

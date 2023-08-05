@@ -1,0 +1,6 @@
+ibis.expr.api.GeoSpatialValue.perimeter
+=======================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: GeoSpatialValue.perimeter

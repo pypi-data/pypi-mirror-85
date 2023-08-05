@@ -1,0 +1,6 @@
+ibis.expr.api.ValueExpr.fillna
+==============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: ValueExpr.fillna

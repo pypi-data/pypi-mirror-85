@@ -1,0 +1,6 @@
+ibis.expr.api.IntervalValue.sub
+===============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: IntervalValue.sub

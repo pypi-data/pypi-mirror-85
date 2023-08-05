@@ -1,0 +1,6 @@
+ibis.expr.api.GeoSpatialValue.srid
+==================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: GeoSpatialValue.srid

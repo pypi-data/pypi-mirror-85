@@ -1,0 +1,6 @@
+ibis.expr.api.StringValue.repeat
+================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: StringValue.repeat

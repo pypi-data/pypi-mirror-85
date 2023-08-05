@@ -1,0 +1,6 @@
+ibis.expr.api.ColumnExpr.rank
+=============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: ColumnExpr.rank

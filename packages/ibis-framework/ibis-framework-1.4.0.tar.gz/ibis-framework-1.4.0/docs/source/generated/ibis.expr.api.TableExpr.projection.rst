@@ -1,0 +1,6 @@
+ibis.expr.api.TableExpr.projection
+==================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: TableExpr.projection

@@ -1,0 +1,6 @@
+ibis.expr.api.ValueExpr.cast
+============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: ValueExpr.cast

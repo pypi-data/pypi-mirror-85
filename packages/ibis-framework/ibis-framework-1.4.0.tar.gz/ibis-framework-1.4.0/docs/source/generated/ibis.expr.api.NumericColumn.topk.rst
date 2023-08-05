@@ -1,0 +1,6 @@
+ibis.expr.api.NumericColumn.topk
+================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: NumericColumn.topk

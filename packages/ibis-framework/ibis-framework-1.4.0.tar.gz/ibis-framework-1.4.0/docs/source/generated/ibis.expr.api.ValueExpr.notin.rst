@@ -1,0 +1,6 @@
+ibis.expr.api.ValueExpr.notin
+=============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: ValueExpr.notin

@@ -1,0 +1,6 @@
+ibis.expr.api.NumericColumn.histogram
+=====================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: NumericColumn.histogram

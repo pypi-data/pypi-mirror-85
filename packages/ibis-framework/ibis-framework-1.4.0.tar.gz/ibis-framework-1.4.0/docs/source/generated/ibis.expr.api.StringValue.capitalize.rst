@@ -1,0 +1,6 @@
+ibis.expr.api.StringValue.capitalize
+====================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: StringValue.capitalize

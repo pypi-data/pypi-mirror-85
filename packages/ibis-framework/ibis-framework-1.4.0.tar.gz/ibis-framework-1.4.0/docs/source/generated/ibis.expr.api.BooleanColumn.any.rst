@@ -1,0 +1,6 @@
+ibis.expr.api.BooleanColumn.any
+===============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: BooleanColumn.any

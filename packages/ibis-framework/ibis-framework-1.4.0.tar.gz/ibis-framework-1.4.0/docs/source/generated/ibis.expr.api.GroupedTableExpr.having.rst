@@ -1,0 +1,6 @@
+ibis.expr.api.GroupedTableExpr.having
+=====================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: GroupedTableExpr.having

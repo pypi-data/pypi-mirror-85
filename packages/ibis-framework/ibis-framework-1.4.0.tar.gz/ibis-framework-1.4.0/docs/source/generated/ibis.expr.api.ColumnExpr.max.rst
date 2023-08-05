@@ -1,0 +1,6 @@
+ibis.expr.api.ColumnExpr.max
+============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: ColumnExpr.max

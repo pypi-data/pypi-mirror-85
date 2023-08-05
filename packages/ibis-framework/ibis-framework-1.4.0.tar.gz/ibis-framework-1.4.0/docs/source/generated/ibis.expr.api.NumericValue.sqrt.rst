@@ -1,0 +1,6 @@
+ibis.expr.api.NumericValue.sqrt
+===============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: NumericValue.sqrt

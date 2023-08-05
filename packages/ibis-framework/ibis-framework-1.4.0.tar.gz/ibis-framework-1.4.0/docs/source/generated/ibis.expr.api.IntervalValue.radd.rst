@@ -1,0 +1,6 @@
+ibis.expr.api.IntervalValue.radd
+================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: IntervalValue.radd

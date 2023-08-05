@@ -1,0 +1,6 @@
+ibis.expr.api.NumericValue.add
+==============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: NumericValue.add

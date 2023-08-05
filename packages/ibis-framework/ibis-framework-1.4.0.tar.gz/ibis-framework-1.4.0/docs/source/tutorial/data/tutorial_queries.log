@@ -1,0 +1,2 @@
+2020-07-02 17:51:02.760861 - SELECT t0.iso_alpha2, t0.iso_alpha3, t0.iso_numeric, t0.fips, t0.name, t0.capital, t0.area_km2, t0.population, t0.continent \nFROM base.countries AS t0\n LIMIT ? OFFSET ?
+2020-07-02 17:51:03.779023 - SELECT t0.name, t0.continent, t0.population / CAST(? AS REAL) AS population_in_millions \nFROM base.countries AS t0\n LIMIT ? OFFSET ?

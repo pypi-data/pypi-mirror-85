@@ -1,0 +1,6 @@
+ibis.expr.api.NumericValue.ceil
+===============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: NumericValue.ceil

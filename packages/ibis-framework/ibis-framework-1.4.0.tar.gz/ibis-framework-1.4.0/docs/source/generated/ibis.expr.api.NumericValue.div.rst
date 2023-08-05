@@ -1,0 +1,6 @@
+ibis.expr.api.NumericValue.div
+==============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: NumericValue.div

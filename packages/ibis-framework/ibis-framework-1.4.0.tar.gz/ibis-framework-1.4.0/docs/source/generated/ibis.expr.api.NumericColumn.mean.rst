@@ -1,0 +1,6 @@
+ibis.expr.api.NumericColumn.mean
+================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: NumericColumn.mean

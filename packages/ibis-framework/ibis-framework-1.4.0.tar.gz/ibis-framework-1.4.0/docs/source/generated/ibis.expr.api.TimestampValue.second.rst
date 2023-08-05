@@ -1,0 +1,6 @@
+ibis.expr.api.TimestampValue.second
+===================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: TimestampValue.second

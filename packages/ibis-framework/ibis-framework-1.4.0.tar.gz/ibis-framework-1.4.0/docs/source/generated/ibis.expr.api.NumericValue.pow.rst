@@ -1,0 +1,6 @@
+ibis.expr.api.NumericValue.pow
+==============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: NumericValue.pow

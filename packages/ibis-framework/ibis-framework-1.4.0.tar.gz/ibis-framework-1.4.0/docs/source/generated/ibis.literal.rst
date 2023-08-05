@@ -1,0 +1,6 @@
+ibis.literal
+============
+
+.. currentmodule:: ibis
+
+.. autofunction:: literal

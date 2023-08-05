@@ -1,0 +1,6 @@
+ibis.expr.api.ColumnExpr.last
+=============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: ColumnExpr.last

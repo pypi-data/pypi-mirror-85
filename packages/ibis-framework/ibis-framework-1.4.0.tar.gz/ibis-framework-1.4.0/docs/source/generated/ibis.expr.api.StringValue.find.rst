@@ -1,0 +1,6 @@
+ibis.expr.api.StringValue.find
+==============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: StringValue.find

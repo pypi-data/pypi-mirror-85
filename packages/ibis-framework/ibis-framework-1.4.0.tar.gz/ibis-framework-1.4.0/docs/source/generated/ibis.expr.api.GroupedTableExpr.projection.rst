@@ -1,0 +1,6 @@
+ibis.expr.api.GroupedTableExpr.projection
+=========================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: GroupedTableExpr.projection

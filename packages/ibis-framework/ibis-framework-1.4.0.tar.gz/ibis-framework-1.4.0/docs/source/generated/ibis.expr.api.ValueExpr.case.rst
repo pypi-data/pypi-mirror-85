@@ -1,0 +1,6 @@
+ibis.expr.api.ValueExpr.case
+============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: ValueExpr.case

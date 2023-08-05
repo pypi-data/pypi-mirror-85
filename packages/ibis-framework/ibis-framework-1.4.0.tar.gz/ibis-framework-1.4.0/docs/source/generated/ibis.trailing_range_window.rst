@@ -1,0 +1,6 @@
+ibis.trailing\_range\_window
+============================
+
+.. currentmodule:: ibis
+
+.. autofunction:: trailing_range_window

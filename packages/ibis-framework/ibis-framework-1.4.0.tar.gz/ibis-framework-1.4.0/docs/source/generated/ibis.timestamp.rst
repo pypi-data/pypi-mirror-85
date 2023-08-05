@@ -1,0 +1,6 @@
+ibis.timestamp
+==============
+
+.. currentmodule:: ibis
+
+.. autofunction:: timestamp

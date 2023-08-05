@@ -1,0 +1,6 @@
+ibis.expr.api.TableExpr.cross\_join
+===================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: TableExpr.cross_join

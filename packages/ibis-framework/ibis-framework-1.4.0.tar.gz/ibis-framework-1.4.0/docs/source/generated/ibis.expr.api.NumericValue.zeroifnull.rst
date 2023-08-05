@@ -1,0 +1,6 @@
+ibis.expr.api.NumericValue.zeroifnull
+=====================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: NumericValue.zeroifnull

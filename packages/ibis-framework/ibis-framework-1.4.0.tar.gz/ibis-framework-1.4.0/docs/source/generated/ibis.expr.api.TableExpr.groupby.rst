@@ -1,0 +1,6 @@
+ibis.expr.api.TableExpr.groupby
+===============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: TableExpr.groupby

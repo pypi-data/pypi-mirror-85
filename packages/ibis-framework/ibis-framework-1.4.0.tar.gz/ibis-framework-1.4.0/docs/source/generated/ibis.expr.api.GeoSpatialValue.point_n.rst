@@ -1,0 +1,6 @@
+ibis.expr.api.GeoSpatialValue.point\_n
+======================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: GeoSpatialValue.point_n

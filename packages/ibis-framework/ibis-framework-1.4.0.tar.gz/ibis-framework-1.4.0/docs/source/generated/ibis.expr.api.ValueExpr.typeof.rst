@@ -1,0 +1,6 @@
+ibis.expr.api.ValueExpr.typeof
+==============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: ValueExpr.typeof

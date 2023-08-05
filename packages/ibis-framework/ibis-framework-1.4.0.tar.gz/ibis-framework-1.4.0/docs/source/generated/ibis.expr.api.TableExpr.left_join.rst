@@ -1,0 +1,6 @@
+ibis.expr.api.TableExpr.left\_join
+==================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: TableExpr.left_join

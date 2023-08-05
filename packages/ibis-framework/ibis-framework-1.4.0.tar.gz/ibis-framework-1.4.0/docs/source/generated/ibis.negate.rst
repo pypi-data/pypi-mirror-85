@@ -1,0 +1,6 @@
+ibis.negate
+===========
+
+.. currentmodule:: ibis
+
+.. autofunction:: negate

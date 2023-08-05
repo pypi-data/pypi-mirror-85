@@ -1,0 +1,6 @@
+ibis.expr.api.TableExpr.sort\_by
+================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: TableExpr.sort_by

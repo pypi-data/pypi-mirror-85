@@ -1,0 +1,6 @@
+ibis.expr.api.TableExpr.set\_column
+===================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: TableExpr.set_column

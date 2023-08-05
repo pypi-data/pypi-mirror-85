@@ -1,0 +1,6 @@
+ibis.expr.api.IntervalValue.rmul
+================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: IntervalValue.rmul

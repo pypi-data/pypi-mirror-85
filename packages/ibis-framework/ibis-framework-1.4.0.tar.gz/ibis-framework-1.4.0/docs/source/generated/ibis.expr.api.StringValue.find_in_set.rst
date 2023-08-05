@@ -1,0 +1,6 @@
+ibis.expr.api.StringValue.find\_in\_set
+=======================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: StringValue.find_in_set

@@ -1,0 +1,6 @@
+ibis.expr.api.IntervalValue.floordiv
+====================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: IntervalValue.floordiv

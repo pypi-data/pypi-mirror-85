@@ -1,0 +1,6 @@
+ibis.range\_window
+==================
+
+.. currentmodule:: ibis
+
+.. autofunction:: range_window

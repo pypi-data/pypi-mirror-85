@@ -1,0 +1,6 @@
+ibis.expr.api.GeoSpatialValue.disjoint
+======================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: GeoSpatialValue.disjoint

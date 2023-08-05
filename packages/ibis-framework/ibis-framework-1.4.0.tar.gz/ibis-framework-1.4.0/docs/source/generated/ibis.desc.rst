@@ -1,0 +1,6 @@
+ibis.desc
+=========
+
+.. currentmodule:: ibis
+
+.. autofunction:: desc

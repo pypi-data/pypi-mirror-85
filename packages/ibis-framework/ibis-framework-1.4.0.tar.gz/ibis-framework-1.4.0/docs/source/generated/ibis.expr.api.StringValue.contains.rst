@@ -1,0 +1,6 @@
+ibis.expr.api.StringValue.contains
+==================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: StringValue.contains

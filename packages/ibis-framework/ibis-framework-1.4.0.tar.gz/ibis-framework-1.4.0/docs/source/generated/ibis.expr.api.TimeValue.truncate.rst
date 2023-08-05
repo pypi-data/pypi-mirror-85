@@ -1,0 +1,6 @@
+ibis.expr.api.TimeValue.truncate
+================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: TimeValue.truncate

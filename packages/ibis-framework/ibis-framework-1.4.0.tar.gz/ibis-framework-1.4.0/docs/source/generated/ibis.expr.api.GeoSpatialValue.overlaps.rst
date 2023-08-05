@@ -1,0 +1,6 @@
+ibis.expr.api.GeoSpatialValue.overlaps
+======================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: GeoSpatialValue.overlaps

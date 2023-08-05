@@ -1,0 +1,6 @@
+ibis.expr.api.IntervalValue.negate
+==================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: IntervalValue.negate

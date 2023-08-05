@@ -1,0 +1,6 @@
+ibis.coalesce
+=============
+
+.. currentmodule:: ibis
+
+.. autofunction:: coalesce

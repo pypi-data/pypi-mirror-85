@@ -1,0 +1,6 @@
+ibis.expr.api.GeoSpatialValue.contains
+======================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: GeoSpatialValue.contains

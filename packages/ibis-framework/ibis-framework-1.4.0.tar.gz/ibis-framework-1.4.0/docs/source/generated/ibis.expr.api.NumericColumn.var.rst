@@ -1,0 +1,6 @@
+ibis.expr.api.NumericColumn.var
+===============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: NumericColumn.var

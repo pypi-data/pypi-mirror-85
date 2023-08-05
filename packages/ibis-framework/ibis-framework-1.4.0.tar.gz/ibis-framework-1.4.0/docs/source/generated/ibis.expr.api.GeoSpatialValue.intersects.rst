@@ -1,0 +1,6 @@
+ibis.expr.api.GeoSpatialValue.intersects
+========================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: GeoSpatialValue.intersects

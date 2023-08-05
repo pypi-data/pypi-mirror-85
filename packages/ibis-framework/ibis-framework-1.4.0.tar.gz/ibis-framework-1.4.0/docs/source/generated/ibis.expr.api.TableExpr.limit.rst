@@ -1,0 +1,6 @@
+ibis.expr.api.TableExpr.limit
+=============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: TableExpr.limit

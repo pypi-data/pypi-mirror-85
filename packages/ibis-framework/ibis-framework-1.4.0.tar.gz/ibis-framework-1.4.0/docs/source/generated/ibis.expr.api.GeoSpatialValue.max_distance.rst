@@ -1,0 +1,6 @@
+ibis.expr.api.GeoSpatialValue.max\_distance
+===========================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: GeoSpatialValue.max_distance

@@ -1,0 +1,6 @@
+ibis.expr.api.NumericColumn.cummean
+===================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: NumericColumn.cummean

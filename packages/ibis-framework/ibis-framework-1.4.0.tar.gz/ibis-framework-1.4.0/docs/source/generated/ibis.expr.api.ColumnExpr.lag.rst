@@ -1,0 +1,6 @@
+ibis.expr.api.ColumnExpr.lag
+============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: ColumnExpr.lag

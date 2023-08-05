@@ -1,0 +1,6 @@
+ibis.schema
+===========
+
+.. currentmodule:: ibis
+
+.. autofunction:: schema

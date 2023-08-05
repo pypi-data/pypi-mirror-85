@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <title>Ibis: Python data analysis productivity framework</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel='shortcut icon' type='image/x-icon' href='/static/img/favicon.ico'/>
+        <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              crossorigin="anonymous">
+        
+            <link rel="stylesheet"
+                  href="/static/css/ibis.css">
+        
+            <link rel="stylesheet"
+                  href="/static/css/codehilite.css">
+        
+        <script src="https://kit.fontawesome.com/79e5369384.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+                <div class="container">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    
+                        <a class="navbar-brand" href="/">
+                            
+                                <img alt="" src="/static/img/logo_ibis.svg" class="header-logo"/>
+                            
+                            
+                                <span class="header-title">Ibis</span>
+                            
+                        </a>
+                    
+
+                    
+                        <div class="collapse navbar-collapse" id="nav-content">   
+                            <ul class="navbar-nav ml-auto">
+                                
+                                    
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle"
+                                               data-toggle="dropdown"
+                                               id="About us"
+                                               href="#"
+                                               role="button"
+                                               aria-haspopup="true"
+                                               aria-expanded="false">About us</a>
+                                            <div class="dropdown-menu" aria-labelledby="About us">
+                                            
+                                                <a class="dropdown-item" href="/about/index.html">About Ibis</a>
+                                            
+                                                <a class="dropdown-item" href="/about/team.html">Team</a>
+                                            
+                                                <a class="dropdown-item" href="/about/roadmap.html">Roadmap</a>
+                                            
+                                                <a class="dropdown-item" href="/about/license.html">License</a>
+                                            
+                                            </div>
+                                        </li>
+                                    
+                                
+                                    
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/getting_started.html">Getting started</a>
+                                        </li>
+                                    
+                                
+                                    
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/docs/">Documentation</a>
+                                        </li>
+                                    
+                                
+                                    
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle"
+                                               data-toggle="dropdown"
+                                               id="Community"
+                                               href="#"
+                                               role="button"
+                                               aria-haspopup="true"
+                                               aria-expanded="false">Community</a>
+                                            <div class="dropdown-menu" aria-labelledby="Community">
+                                            
+                                                <a class="dropdown-item" href="https://stackoverflow.com/questions/tagged/ibis">Ask a question (StackOverflow)</a>
+                                            
+                                                <a class="dropdown-item" href="https://gitter.im/ibis-dev/Lobby">Chat (Gitter)</a>
+                                            
+                                                <a class="dropdown-item" href="/community/coc.html">Code of conduct</a>
+                                            
+                                            </div>
+                                        </li>
+                                    
+                                
+                                    
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/contribute.html">Contribute</a>
+                                        </li>
+                                    
+                                
+                            </ul>
+                        </div>
+                    
+                </div>
+            </nav>
+        </header>
+        <main role="main">
+            <div class="container">
+                
+                               <h1 id="contributing-to-ibis">Contributing to Ibis</h1>
+<h2 id="clone-the-repository">Clone the Repository</h2>
+<p>To contribute to ibis you need to clone the repository from GitHub:</p>
+<div class="codehilite"><pre><span></span><code>git clone https://github.com/ibis-project/ibis
+</code></pre></div>
+
+
+<h2 id="set-up-a-development-environment">Set Up a Development Environment</h2>
+<ol>
+<li><a href="https://docs.conda.io/en/latest/miniconda.html">Install miniconda</a></li>
+<li>
+<p>Create a Conda environment suitable for ibis development:</p>
+<div class="codehilite"><pre><span></span><code>conda env create -n ibis-dev --file ci/requirements-dev-3.7-main.yml
+</code></pre></div>
+
+
+<blockquote>
+<p>If you are developing for the Spark/PySpark backends, use <code>requirements-dev-3.7-pyspark-spark.yml</code> instead.</p>
+</blockquote>
+</li>
+<li>
+<p>Activate the environment</p>
+<div class="codehilite"><pre><span></span><code>conda activate ibis-dev
+</code></pre></div>
+
+
+</li>
+<li>
+<p>Install your local copy of Ibis into the Conda environment. This also
+   sets up a pre-commit hook to check style and formatting before committing.</p>
+<div class="codehilite"><pre><span></span><code>make develop
+</code></pre></div>
+
+
+</li>
+</ol>
+<h2 id="run-the-test-suite">Run the Test Suite</h2>
+<p>Contributor <a href="https://github.com/kszucs">Krisztián Szűcs</a> has spent many hours
+crafting an easy-to-use <a href="https://docs.docker.com/compose/">docker-compose</a>
+setup that enables ibis developers to get up and running quickly.</p>
+<p>For those unfamiliar with <code>docker</code>, and <code>docker-compose</code>, here are some
+rough steps on how to get things set up:</p>
+<ul>
+<li>Install <code>docker-compose</code> with <code>pip install docker-compose</code></li>
+<li>Install <a href="https://docs.docker.com/install/">docker</a></li>
+<li>Be sure to follow the <a href="https://docs.docker.com/install/linux/linux-postinstall/">post-install instructions</a> if you are running on Linux.</li>
+<li>Log in to your Docker hub account with <code>docker login</code> (create an account at <a href="https://hub.docker.com/">https://hub.docker.com/</a> if you don't have one).</li>
+</ul>
+<p>First, start the database services and load the test data:</p>
+<div class="codehilite"><pre><span></span><code>make --directory ibis init
+</code></pre></div>
+
+
+<p>To run tests for all backends except PySpark and Spark:</p>
+<div class="codehilite"><pre><span></span><code>make --directory ibis testmain
+</code></pre></div>
+
+
+<p>To run tests for the PySpark backend:</p>
+<div class="codehilite"><pre><span></span><code>make --directory ibis testpyspark
+</code></pre></div>
+
+
+<p>You can run tests for a custom subset of backends:</p>
+<div class="codehilite"><pre><span></span><code>make --directory ibis testparallel <span class="nv">BACKENDS</span><span class="o">=</span><span class="s1">&#39;omniscidb impala&#39;</span>
+</code></pre></div>
+
+
+<p>or start database services for a specific subset of backends:</p>
+<div class="codehilite"><pre><span></span><code>make --directory ibis init <span class="nv">BACKENDS</span><span class="o">=</span><span class="s1">&#39;omniscidb impala&#39;</span>
+</code></pre></div>
+
+
+<p><em>make for targets <code>test</code> and <code>testparallel</code> automatically do restart of services (as a prerequisite)</em></p>
+<p>You can also run <code>pytest</code> tests on the command line if you are not testing
+integration with running database services. For example, to run all the tests
+for the <code>pandas</code> backend:</p>
+<div class="codehilite"><pre><span></span><code>pytest ./ibis/pandas
+</code></pre></div>
+
+
+<h2 id="style-and-formatting">Style and Formatting</h2>
+<p>We use <a href="http://flake8.pycqa.org/en/latest/">flake8</a>,
+<a href="https://github.com/psf/black">black</a> and
+<a href="https://github.com/pre-commit/mirrors-isort">isort</a> to ensure our code
+is formatted and linted properly. If you have properly set up your development
+environment by running <code>make develop</code>, the pre-commit hooks should check
+that your proposed changes continue to conform to our style guide.</p>
+<p>We use <a href="https://numpydoc.readthedocs.io/en/latest/format.html">numpydoc</a> as
+our standard format for docstrings.</p>
+<h2 id="commit-philosophy">Commit Philosophy</h2>
+<p>We aim to make our individual commits small and tightly focused on the feature
+they are implementing. If you find yourself making functional changes to
+different areas of the codebase, we prefer you break up your changes into
+separate Pull Requests. In general, a philosophy of one Github Issue per
+Pull Request is a good rule of thumb, though that isn't always possible.</p>
+<p>We avoid merge commits (and in fact they are disabled in the Github repository)
+so you may be asked to rebase your changes on top of the latest commits to
+master if there have been changes since you last updated a Pull Request.
+Rebasing your changes is usually as simple as running
+<code>git pull upstream master --rebase</code> and then force-pushing to your branch:
+<code>git push origin &lt;branch-name&gt; -f</code>.</p>
+<h2 id="commitpr-messages">Commit/PR Messages</h2>
+<p>Well-structed commit messages allow us to generate comprehensive release notes
+and make it very easy to understand what a commit/PR contributes to our
+codebase. Commit messages and PR titles should be prefixed with a standard
+code the states what kind of change it is. They fall broadly into 3 categories:
+<code>FEAT (feature)</code>, <code>BUG (bug)</code>, and <code>SUPP (support)</code>. The <code>SUPP</code>
+category has some more fine-grained aliases that you can use, such as <code>BLD</code>
+(build), <code>CI</code> (continuous integration), <code>DOC</code> (documentation), <code>TST</code>
+(testing), and <code>RLS</code> (releases).</p>
+<h2 id="maintainers-guide">Maintainer's Guide</h2>
+<p>Maintainers generally perform two roles, merging PRs and making official
+releases.</p>
+<h3 id="merging-prs">Merging PRs</h3>
+<p>We have a CLI script that will merge Pull Requests automatically once they have
+been reviewed and approved. See the help message in <code>dev/merge-pr.py</code> for
+full details. If you have two-factor authentication turned on in Github, you
+will have to generate an application-specific password by following this
+<a href="https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line">guide</a>.
+You will then use that generated password on the command line for the <code>-P</code>
+argument.</p>
+<p>Access the <a href="https://github.com/ibis-project/ibis/wiki/Merging-PRs">Ibis "Merging PRs" wiki</a> page
+for more information.</p>
+<h3 id="releasing">Releasing</h3>
+<p>Access the <a href="https://github.com/ibis-project/ibis/wiki/Releasing-Ibis">Ibis "Releasing" wiki</a> page
+for more information.</p>
+                               
+            </div>
+        </main>
+        <footer class="container pt-4 pt-md-5 border-top">
+            
+                <ul class="list-inline social-buttons float-right">
+                    
+                        <li class="list-inline-item">
+                            <a href="https://twitter.com/IbisData" target="_blank">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            <a href="https://github.com/ibis-project/ibis/" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </li>
+                    
+                </ul>
+            
+            
+                <p>© Copyright 2020, Ibis developers</p>
+            
+        </footer>
+                
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"></script>
+    </body>
+</html>

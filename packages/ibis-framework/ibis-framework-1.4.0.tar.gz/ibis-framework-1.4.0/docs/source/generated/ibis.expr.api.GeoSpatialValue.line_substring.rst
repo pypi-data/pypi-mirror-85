@@ -1,0 +1,6 @@
+ibis.expr.api.GeoSpatialValue.line\_substring
+=============================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: GeoSpatialValue.line_substring

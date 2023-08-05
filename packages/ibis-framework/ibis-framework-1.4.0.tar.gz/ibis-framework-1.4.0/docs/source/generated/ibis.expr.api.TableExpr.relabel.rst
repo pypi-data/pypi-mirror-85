@@ -1,0 +1,6 @@
+ibis.expr.api.TableExpr.relabel
+===============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: TableExpr.relabel

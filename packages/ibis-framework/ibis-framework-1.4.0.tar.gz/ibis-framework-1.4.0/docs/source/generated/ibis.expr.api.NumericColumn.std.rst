@@ -1,0 +1,6 @@
+ibis.expr.api.NumericColumn.std
+===============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: NumericColumn.std

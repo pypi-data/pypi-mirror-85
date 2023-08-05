@@ -1,0 +1,6 @@
+ibis.expr.api.TableExpr.mutate
+==============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: TableExpr.mutate

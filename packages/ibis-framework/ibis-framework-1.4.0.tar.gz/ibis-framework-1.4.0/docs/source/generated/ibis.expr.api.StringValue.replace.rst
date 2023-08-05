@@ -1,0 +1,6 @@
+ibis.expr.api.StringValue.replace
+=================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: StringValue.replace

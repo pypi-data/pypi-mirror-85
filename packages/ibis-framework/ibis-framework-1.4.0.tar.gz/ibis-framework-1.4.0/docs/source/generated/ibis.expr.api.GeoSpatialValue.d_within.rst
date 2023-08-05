@@ -1,0 +1,6 @@
+ibis.expr.api.GeoSpatialValue.d\_within
+=======================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: GeoSpatialValue.d_within

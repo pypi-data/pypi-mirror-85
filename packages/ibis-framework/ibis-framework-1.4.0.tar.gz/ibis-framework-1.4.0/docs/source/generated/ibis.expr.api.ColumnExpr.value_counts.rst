@@ -1,0 +1,6 @@
+ibis.expr.api.ColumnExpr.value\_counts
+======================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: ColumnExpr.value_counts

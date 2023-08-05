@@ -1,0 +1,6 @@
+ibis.expr\_list
+===============
+
+.. currentmodule:: ibis
+
+.. autofunction:: expr_list

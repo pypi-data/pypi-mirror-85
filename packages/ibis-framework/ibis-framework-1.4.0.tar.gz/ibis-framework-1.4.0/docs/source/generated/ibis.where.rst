@@ -1,0 +1,6 @@
+ibis.where
+==========
+
+.. currentmodule:: ibis
+
+.. autofunction:: where

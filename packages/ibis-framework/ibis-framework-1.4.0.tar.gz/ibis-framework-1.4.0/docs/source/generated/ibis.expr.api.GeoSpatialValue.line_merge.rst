@@ -1,0 +1,6 @@
+ibis.expr.api.GeoSpatialValue.line\_merge
+=========================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: GeoSpatialValue.line_merge

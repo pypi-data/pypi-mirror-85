@@ -1,0 +1,6 @@
+ibis.expr.types.DayOfWeek.full\_name
+====================================
+
+.. currentmodule:: ibis.expr.types
+
+.. automethod:: DayOfWeek.full_name

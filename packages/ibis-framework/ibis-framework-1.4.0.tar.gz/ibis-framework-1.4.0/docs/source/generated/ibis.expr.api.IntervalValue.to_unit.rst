@@ -1,0 +1,6 @@
+ibis.expr.api.IntervalValue.to\_unit
+====================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: IntervalValue.to_unit

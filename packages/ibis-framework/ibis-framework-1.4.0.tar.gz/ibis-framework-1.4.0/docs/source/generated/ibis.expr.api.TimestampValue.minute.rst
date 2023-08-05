@@ -1,0 +1,6 @@
+ibis.expr.api.TimestampValue.minute
+===================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: TimestampValue.minute

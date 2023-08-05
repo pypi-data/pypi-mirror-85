@@ -1,0 +1,6 @@
+ibis.expr.api.NumericColumn.cumsum
+==================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: NumericColumn.cumsum

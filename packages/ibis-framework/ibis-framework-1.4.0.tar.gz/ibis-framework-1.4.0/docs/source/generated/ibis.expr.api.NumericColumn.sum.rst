@@ -1,0 +1,6 @@
+ibis.expr.api.NumericColumn.sum
+===============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: NumericColumn.sum

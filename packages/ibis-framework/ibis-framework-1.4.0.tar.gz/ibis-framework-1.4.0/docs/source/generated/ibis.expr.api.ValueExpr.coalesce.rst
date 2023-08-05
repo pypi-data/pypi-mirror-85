@@ -1,0 +1,6 @@
+ibis.expr.api.ValueExpr.coalesce
+================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: ValueExpr.coalesce

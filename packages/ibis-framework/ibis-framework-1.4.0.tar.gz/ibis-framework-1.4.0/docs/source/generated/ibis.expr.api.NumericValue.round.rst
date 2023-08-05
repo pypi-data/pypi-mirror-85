@@ -1,0 +1,6 @@
+ibis.expr.api.NumericValue.round
+================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: NumericValue.round

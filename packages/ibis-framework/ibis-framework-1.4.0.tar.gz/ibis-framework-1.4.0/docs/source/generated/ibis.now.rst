@@ -1,0 +1,6 @@
+ibis.now
+========
+
+.. currentmodule:: ibis
+
+.. autofunction:: now

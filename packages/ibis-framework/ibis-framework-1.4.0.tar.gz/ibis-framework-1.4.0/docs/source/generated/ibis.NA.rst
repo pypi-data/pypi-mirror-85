@@ -1,0 +1,6 @@
+ibis.NA
+=======
+
+.. currentmodule:: ibis
+
+.. autodata:: NA

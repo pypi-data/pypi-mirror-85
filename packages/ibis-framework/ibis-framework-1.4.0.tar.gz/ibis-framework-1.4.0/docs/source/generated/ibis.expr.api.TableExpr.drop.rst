@@ -1,0 +1,6 @@
+ibis.expr.api.TableExpr.drop
+============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: TableExpr.drop

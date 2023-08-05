@@ -1,0 +1,6 @@
+ibis.expr.api.StringValue.upper
+===============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: StringValue.upper

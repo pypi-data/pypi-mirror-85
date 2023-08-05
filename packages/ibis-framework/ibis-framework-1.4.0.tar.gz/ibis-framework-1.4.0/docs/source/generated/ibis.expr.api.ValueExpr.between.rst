@@ -1,0 +1,6 @@
+ibis.expr.api.ValueExpr.between
+===============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: ValueExpr.between

@@ -1,0 +1,6 @@
+ibis.expr.api.GroupedTableExpr.order\_by
+========================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: GroupedTableExpr.order_by

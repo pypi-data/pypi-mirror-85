@@ -1,0 +1,6 @@
+ibis.expr.api.NumericValue.rsub
+===============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: NumericValue.rsub

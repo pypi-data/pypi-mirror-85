@@ -1,0 +1,6 @@
+ibis.expr.api.TableExpr.union
+=============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: TableExpr.union

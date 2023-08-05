@@ -1,0 +1,6 @@
+ibis.expr.api.BooleanValue.ifelse
+=================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: BooleanValue.ifelse

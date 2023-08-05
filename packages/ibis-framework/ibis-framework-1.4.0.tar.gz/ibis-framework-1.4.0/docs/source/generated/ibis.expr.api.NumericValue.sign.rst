@@ -1,0 +1,6 @@
+ibis.expr.api.NumericValue.sign
+===============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: NumericValue.sign

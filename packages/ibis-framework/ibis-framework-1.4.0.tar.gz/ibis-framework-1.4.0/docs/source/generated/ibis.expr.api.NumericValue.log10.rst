@@ -1,0 +1,6 @@
+ibis.expr.api.NumericValue.log10
+================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: NumericValue.log10

@@ -1,0 +1,6 @@
+ibis.expr.api.BooleanColumn.cumall
+==================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: BooleanColumn.cumall

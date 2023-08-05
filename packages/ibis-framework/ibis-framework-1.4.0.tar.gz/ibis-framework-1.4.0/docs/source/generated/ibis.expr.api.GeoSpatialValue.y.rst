@@ -1,0 +1,6 @@
+ibis.expr.api.GeoSpatialValue.y
+===============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: GeoSpatialValue.y

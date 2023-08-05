@@ -1,0 +1,6 @@
+ibis.expr.api.StringValue.length
+================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: StringValue.length

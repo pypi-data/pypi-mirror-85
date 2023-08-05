@@ -1,0 +1,6 @@
+ibis.expr.api.GeoSpatialValue.covered\_by
+=========================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: GeoSpatialValue.covered_by

@@ -1,0 +1,6 @@
+ibis.expr.api.ColumnExpr.cummin
+===============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: ColumnExpr.cummin

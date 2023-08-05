@@ -1,0 +1,6 @@
+ibis.expr.api.ColumnExpr.distinct
+=================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: ColumnExpr.distinct

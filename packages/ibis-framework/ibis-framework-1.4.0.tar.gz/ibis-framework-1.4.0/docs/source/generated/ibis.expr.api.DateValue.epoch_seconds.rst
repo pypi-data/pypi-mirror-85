@@ -1,0 +1,6 @@
+ibis.expr.api.DateValue.epoch\_seconds
+======================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: DateValue.epoch_seconds

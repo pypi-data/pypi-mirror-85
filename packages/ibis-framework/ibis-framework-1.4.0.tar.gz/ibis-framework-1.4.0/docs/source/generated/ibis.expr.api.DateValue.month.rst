@@ -1,0 +1,6 @@
+ibis.expr.api.DateValue.month
+=============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: DateValue.month

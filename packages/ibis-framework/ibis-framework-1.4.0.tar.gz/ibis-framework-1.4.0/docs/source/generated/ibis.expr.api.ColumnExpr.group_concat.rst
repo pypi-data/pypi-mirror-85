@@ -1,0 +1,6 @@
+ibis.expr.api.ColumnExpr.group\_concat
+======================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: ColumnExpr.group_concat

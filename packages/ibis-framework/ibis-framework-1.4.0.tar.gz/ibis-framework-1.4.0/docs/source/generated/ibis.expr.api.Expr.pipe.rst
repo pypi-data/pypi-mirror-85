@@ -1,0 +1,6 @@
+ibis.expr.api.Expr.pipe
+=======================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: Expr.pipe

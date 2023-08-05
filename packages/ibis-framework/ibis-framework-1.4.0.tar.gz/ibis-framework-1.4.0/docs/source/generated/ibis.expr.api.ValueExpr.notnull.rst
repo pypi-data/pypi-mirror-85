@@ -1,0 +1,6 @@
+ibis.expr.api.ValueExpr.notnull
+===============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: ValueExpr.notnull

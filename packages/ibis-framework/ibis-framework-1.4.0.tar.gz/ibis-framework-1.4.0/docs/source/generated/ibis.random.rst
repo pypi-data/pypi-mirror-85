@@ -1,0 +1,6 @@
+ibis.random
+===========
+
+.. currentmodule:: ibis
+
+.. autofunction:: random

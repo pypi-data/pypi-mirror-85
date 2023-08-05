@@ -1,0 +1,6 @@
+ibis.expr.api.GeoSpatialValue.end\_point
+========================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: GeoSpatialValue.end_point

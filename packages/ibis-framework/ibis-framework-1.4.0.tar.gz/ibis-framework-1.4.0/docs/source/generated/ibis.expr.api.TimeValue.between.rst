@@ -1,0 +1,6 @@
+ibis.expr.api.TimeValue.between
+===============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: TimeValue.between

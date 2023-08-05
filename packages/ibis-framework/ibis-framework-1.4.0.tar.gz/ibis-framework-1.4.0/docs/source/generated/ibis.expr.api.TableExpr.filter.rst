@@ -1,0 +1,6 @@
+ibis.expr.api.TableExpr.filter
+==============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: TableExpr.filter

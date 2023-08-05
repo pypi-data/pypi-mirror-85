@@ -1,0 +1,6 @@
+ibis.expr.api.GeoSpatialValue.difference
+========================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: GeoSpatialValue.difference

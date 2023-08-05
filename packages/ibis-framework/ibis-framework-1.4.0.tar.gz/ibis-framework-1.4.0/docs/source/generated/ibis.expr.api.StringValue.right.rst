@@ -1,0 +1,6 @@
+ibis.expr.api.StringValue.right
+===============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: StringValue.right

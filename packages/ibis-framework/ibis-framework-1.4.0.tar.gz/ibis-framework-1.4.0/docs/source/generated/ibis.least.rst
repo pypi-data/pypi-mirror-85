@@ -1,0 +1,6 @@
+ibis.least
+==========
+
+.. currentmodule:: ibis
+
+.. autofunction:: least

@@ -1,0 +1,6 @@
+ibis.expr.api.StringValue.lower
+===============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: StringValue.lower

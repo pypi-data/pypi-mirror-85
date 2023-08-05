@@ -1,0 +1,6 @@
+ibis.greatest
+=============
+
+.. currentmodule:: ibis
+
+.. autofunction:: greatest

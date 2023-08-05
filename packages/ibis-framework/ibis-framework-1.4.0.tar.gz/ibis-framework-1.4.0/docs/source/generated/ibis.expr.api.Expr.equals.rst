@@ -1,0 +1,6 @@
+ibis.expr.api.Expr.equals
+=========================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: Expr.equals

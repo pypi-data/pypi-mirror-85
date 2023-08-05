@@ -1,0 +1,6 @@
+ibis.expr.api.TableExpr.schema
+==============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: TableExpr.schema

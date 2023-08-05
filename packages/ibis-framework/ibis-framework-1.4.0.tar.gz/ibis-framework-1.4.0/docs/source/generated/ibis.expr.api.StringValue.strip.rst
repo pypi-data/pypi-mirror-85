@@ -1,0 +1,6 @@
+ibis.expr.api.StringValue.strip
+===============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: StringValue.strip

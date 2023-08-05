@@ -1,0 +1,6 @@
+ibis.expr.api.DateValue.rsub
+============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: DateValue.rsub

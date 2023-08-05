@@ -1,0 +1,6 @@
+ibis.expr.api.TableExpr.view
+============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: TableExpr.view

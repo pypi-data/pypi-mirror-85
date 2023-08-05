@@ -1,0 +1,6 @@
+ibis.expr.api.ColumnExpr.approx\_nunique
+========================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: ColumnExpr.approx_nunique

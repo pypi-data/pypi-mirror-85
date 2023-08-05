@@ -1,0 +1,6 @@
+ibis.expr.api.GroupedTableExpr.over
+===================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: GroupedTableExpr.over

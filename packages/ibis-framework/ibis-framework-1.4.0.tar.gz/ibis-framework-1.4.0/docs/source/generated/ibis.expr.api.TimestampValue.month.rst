@@ -1,0 +1,6 @@
+ibis.expr.api.TimestampValue.month
+==================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: TimestampValue.month

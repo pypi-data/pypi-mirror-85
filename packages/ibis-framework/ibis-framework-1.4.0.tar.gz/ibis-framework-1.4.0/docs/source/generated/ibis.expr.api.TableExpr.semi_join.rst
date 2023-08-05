@@ -1,0 +1,6 @@
+ibis.expr.api.TableExpr.semi\_join
+==================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: TableExpr.semi_join

@@ -1,0 +1,6 @@
+ibis.expr.api.ColumnExpr.min
+============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: ColumnExpr.min

@@ -1,0 +1,6 @@
+ibis.expr.api.NumericColumn.bottomk
+===================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: NumericColumn.bottomk

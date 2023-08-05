@@ -1,0 +1,6 @@
+ibis.expr.api.TableExpr.count
+=============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: TableExpr.count

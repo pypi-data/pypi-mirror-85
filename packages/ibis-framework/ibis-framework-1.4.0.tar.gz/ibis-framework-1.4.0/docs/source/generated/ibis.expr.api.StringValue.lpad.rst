@@ -1,0 +1,6 @@
+ibis.expr.api.StringValue.lpad
+==============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: StringValue.lpad

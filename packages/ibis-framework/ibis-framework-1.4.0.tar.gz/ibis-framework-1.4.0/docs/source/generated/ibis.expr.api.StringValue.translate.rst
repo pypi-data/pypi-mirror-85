@@ -1,0 +1,6 @@
+ibis.expr.api.StringValue.translate
+===================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: StringValue.translate

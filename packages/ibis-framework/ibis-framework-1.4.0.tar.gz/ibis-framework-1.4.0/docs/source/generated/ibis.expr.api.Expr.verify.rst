@@ -1,0 +1,6 @@
+ibis.expr.api.Expr.verify
+=========================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: Expr.verify

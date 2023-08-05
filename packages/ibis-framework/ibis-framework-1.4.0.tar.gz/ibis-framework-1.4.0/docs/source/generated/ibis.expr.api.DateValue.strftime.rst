@@ -1,0 +1,6 @@
+ibis.expr.api.DateValue.strftime
+================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: DateValue.strftime

@@ -1,0 +1,6 @@
+ibis.window
+===========
+
+.. currentmodule:: ibis
+
+.. autofunction:: window

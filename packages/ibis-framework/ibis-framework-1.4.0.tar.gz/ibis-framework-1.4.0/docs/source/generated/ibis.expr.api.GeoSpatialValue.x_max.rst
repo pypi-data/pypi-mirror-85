@@ -1,0 +1,6 @@
+ibis.expr.api.GeoSpatialValue.x\_max
+====================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: GeoSpatialValue.x_max

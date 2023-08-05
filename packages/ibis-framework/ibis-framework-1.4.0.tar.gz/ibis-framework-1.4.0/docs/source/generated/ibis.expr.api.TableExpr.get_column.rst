@@ -1,0 +1,6 @@
+ibis.expr.api.TableExpr.get\_column
+===================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: TableExpr.get_column

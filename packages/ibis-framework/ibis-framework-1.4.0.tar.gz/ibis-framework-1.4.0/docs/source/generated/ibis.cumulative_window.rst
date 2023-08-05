@@ -1,0 +1,6 @@
+ibis.cumulative\_window
+=======================
+
+.. currentmodule:: ibis
+
+.. autofunction:: cumulative_window

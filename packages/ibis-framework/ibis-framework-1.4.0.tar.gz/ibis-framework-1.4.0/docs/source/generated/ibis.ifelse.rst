@@ -1,0 +1,6 @@
+ibis.ifelse
+===========
+
+.. currentmodule:: ibis
+
+.. autofunction:: ifelse

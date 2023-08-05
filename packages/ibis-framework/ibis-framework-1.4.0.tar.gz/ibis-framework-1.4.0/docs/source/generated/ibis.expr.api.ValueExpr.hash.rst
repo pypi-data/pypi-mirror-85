@@ -1,0 +1,6 @@
+ibis.expr.api.ValueExpr.hash
+============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: ValueExpr.hash

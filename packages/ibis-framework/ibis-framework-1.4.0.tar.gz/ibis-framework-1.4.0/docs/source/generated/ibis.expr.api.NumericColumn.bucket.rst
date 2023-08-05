@@ -1,0 +1,6 @@
+ibis.expr.api.NumericColumn.bucket
+==================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: NumericColumn.bucket

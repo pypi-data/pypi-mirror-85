@@ -1,0 +1,6 @@
+ibis.expr.api.DateValue.add
+===========================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: DateValue.add

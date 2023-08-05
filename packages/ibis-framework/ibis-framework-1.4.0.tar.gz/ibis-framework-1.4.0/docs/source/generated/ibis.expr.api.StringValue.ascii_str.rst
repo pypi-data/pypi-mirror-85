@@ -1,0 +1,6 @@
+ibis.expr.api.StringValue.ascii\_str
+====================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: StringValue.ascii_str

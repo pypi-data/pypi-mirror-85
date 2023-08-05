@@ -1,0 +1,6 @@
+ibis.expr.api.ColumnExpr.lead
+=============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: ColumnExpr.lead

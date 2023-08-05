@@ -1,0 +1,6 @@
+ibis.expr.api.CategoryValue.label
+=================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: CategoryValue.label

@@ -1,0 +1,6 @@
+ibis.expr.api.GroupedTableExpr.count
+====================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: GroupedTableExpr.count

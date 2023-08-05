@@ -1,0 +1,6 @@
+ibis.expr.api.DateValue.truncate
+================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: DateValue.truncate

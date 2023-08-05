@@ -1,0 +1,6 @@
+ibis.expr.api.TimeValue.radd
+============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: TimeValue.radd

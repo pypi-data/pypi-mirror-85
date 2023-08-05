@@ -1,0 +1,6 @@
+ibis.case
+=========
+
+.. currentmodule:: ibis
+
+.. autofunction:: case

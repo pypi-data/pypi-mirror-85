@@ -1,0 +1,6 @@
+ibis.expr.api.TableExpr.join
+============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: TableExpr.join

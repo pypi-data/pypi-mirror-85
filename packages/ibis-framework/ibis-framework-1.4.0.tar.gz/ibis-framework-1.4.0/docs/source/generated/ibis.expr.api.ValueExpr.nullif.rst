@@ -1,0 +1,6 @@
+ibis.expr.api.ValueExpr.nullif
+==============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: ValueExpr.nullif

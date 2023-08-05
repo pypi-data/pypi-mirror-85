@@ -1,0 +1,6 @@
+ibis.expr.api.TimeValue.millisecond
+===================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: TimeValue.millisecond

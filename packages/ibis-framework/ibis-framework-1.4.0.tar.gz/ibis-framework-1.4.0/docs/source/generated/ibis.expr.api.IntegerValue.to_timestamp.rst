@@ -1,0 +1,6 @@
+ibis.expr.api.IntegerValue.to\_timestamp
+========================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: IntegerValue.to_timestamp

@@ -1,0 +1,6 @@
+ibis.expr.api.TableExpr.distinct
+================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: TableExpr.distinct

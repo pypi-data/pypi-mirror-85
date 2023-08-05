@@ -1,0 +1,6 @@
+ibis.expr.api.IntervalValue.add
+===============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: IntervalValue.add

@@ -1,0 +1,6 @@
+ibis.expr.api.StringValue.join
+==============================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: StringValue.join

@@ -1,0 +1,6 @@
+ibis.expr.api.Expr.compile
+==========================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: Expr.compile

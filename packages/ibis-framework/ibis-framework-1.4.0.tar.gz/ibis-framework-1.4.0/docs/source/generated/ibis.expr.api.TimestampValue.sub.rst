@@ -1,0 +1,6 @@
+ibis.expr.api.TimestampValue.sub
+================================
+
+.. currentmodule:: ibis.expr.api
+
+.. automethod:: TimestampValue.sub
