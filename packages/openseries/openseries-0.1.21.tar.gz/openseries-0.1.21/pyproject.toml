@@ -1,0 +1,34 @@
+[tool.black]
+line-length = 88
+target-version = ['py37']
+include = '\.pyi?$'
+exclude = '''
+
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.circleci
+    | \coverage_html
+    | \.mypy_cache
+    | \.tox
+    | \venv
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+  | .coverage        # also separately exclude a file named foo.py in
+  | .coveragerc      # the root of the project
+  | .dockerignore
+  | .flake8
+  | .gitignore
+  | .pep8
+  | LICENSE
+  | Makefile
+  | README.md
+  | requirements.txt
+)
+'''
