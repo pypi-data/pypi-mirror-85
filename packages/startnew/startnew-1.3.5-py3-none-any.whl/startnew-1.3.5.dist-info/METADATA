@@ -1,0 +1,160 @@
+Metadata-Version: 2.1
+Name: startnew
+Version: 1.3.5
+Summary: Start new python project with this light cli tool
+Home-page: https://github.com/stefangal/newpy
+Author: Stefan Gal
+Author-email: "stefan.mail.sk@gmail.com
+License: mit
+Keywords: newpy,skeleton,structure,new project,template
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: MacOS :: MacOS X
+Description-Content-Type: text/markdown
+Requires-Dist: attrs (==20.3.0)
+Requires-Dist: bleach (==3.2.1)
+Requires-Dist: certifi (==2020.11.8)
+Requires-Dist: chardet (==3.0.4)
+Requires-Dist: Click (==7.0)
+Requires-Dist: colorama (==0.4.3)
+Requires-Dist: Deprecated (==1.2.10)
+Requires-Dist: docutils (==0.16)
+Requires-Dist: idna (==2.10)
+Requires-Dist: iniconfig (==1.1.1)
+Requires-Dist: keyring (==21.5.0)
+Requires-Dist: lice (==0.6)
+Requires-Dist: mock (==4.0.2)
+Requires-Dist: packaging (==20.4)
+Requires-Dist: pkginfo (==1.6.1)
+Requires-Dist: pluggy (==0.13.1)
+Requires-Dist: py (==1.9.0)
+Requires-Dist: PyGithub (==1.53)
+Requires-Dist: Pygments (==2.7.2)
+Requires-Dist: PyJWT (==1.7.1)
+Requires-Dist: pyparsing (==2.4.7)
+Requires-Dist: pytest (==6.1.1)
+Requires-Dist: readme-renderer (==28.0)
+Requires-Dist: requests (==2.24.0)
+Requires-Dist: requests-toolbelt (==0.9.1)
+Requires-Dist: rfc3986 (==1.4.0)
+Requires-Dist: six (==1.15.0)
+Requires-Dist: toml (==0.10.2)
+Requires-Dist: tqdm (==4.51.0)
+Requires-Dist: twine (==3.2.0)
+Requires-Dist: urllib3 (==1.25.11)
+Requires-Dist: webencodings (==0.5.1)
+Requires-Dist: wrapt (==1.12.1)
+
+<h1 align="center"> NewPy </h1>
+
+<div align="center"> 
+
+[![Build Status](https://travis-ci.com/stefangal/newpy.svg?branch=master)](https://travis-ci.com/stefangal/newpy)
+![GitHub](https://img.shields.io/github/license/stefangal/newpy)
+![PyPI](https://img.shields.io/pypi/v/startnew)
+![PyPI - Downloads](https://img.shields.io/pypi/dw/startnew)
+
+ </div>
+
+<h3 align="center"> 
+PERSONAL NEW PYTHON PROJECT AUTOMATION PROGRAM [CLI]
+</h3>
+
+<hr>
+
+## OVERVIEW: ##
+- [x] Open new Python project by building the structure and prepare initial files automatically via simple command line command ```startnew```. 
+- [x] Prepare github repository
+## DEVELOPMENT ##
+
+```
+# clone the repo
+$ git clone https://github.com/stefangal/newpy
+
+# change the working directory to newpy
+$ cd newpy
+
+# install the requirements
+$ pip install .
+
+# now you can run it
+$ startnew
+```
+
+
+## INSTALLATION ##
+
+Use ```startnew```  to generate the folders and files in current working directory.
+
+```code
+$ pip install startnew
+```
+For arguments help run:
+```code
+$ startnew --help
+```
+Run:
+```code
+$ startnew
+```
+or
+```code
+$ startnew --p <project_name> --l <license_type> --g <Github_token>
+```
+You'll need a personal access token to open repository on Github
+you can get one from https://github.com/settings/tokens.
+
+You will be asked several questions as well as you will be able to choose some default settings.
+Regarding Github repository read the **GITHUB section**.
+
+## GETTING STARTED ##
+
+
+#### Folder structure
+[MORE ABOUT THE STRUCTURE](https://docs.python-guide.org/writing/structure/)
+
+```bash
+└── app
+    ├── tests
+    │   └── __init__.py
+    ├── docs
+    │    
+    ├── app
+    │   └── __init__.py
+    ├── .gitignore
+    ├── LICENSE
+    ├── README.md
+    ├── requirements.txt
+    └── setup.py
+```
+This is the app structure given all the actually available features.
+
+#### LICENSE
+
+You can choose from the following abbrevations:
+```table
+afl3', 'agpl3', 'apache', 'bsd2', 'bsd3', 'cc0', 'cc_by', 'cc_by_nc',
+'cc_by_nc_nd', 'cc_by_nc_sa', 'cc_by_nd', 'cc_by_sa', 'cddl', 'epl', 
+'gpl2', 'gpl3', 'isc', 'lgpl', 'mit', 'mpl', 'wtfpl', 'zlib'
+```
+
+### GITHUB
+
+In order to open a new repository for the project via command line, first you will need to
+get/create the Github access token. 
+
+[Instructions](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token) how to get access token.
+
+## HOW TO HELP ##
+
+Any help is appriciated.
+
+## CONTRIBUTORS ##
+
+Feel free to contribute and register yourself in AUTHORS.md
+
+For more information see CONTRIBUTING.md
+
+
+
