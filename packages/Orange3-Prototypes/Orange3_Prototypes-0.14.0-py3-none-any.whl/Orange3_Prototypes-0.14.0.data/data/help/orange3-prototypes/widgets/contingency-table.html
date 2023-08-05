@@ -1,0 +1,87 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=cp1252" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contingency Table</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="next" title="Parallel Coordinates" href="parallel-coordinates.html" />
+    <link rel="prev" title="Welcome to Orange3-Prototypes documentation!" href="../index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="contingency-table">
+<h1>Contingency Table</h1>
+<p>Construct a contingency table from given data.</p>
+<dl class="docutils">
+<dt>Inputs</dt><dd><dl class="docutils">
+<dt>Data</dt><dd>input dataset</dd>
+</dl>
+</dd>
+<dt>Outputs</dt><dd><dl class="docutils">
+<dt>Contingency Table</dt><dd>data table with frequency counts</dd>
+</dl>
+</dd>
+</dl>
+<p><strong>Contingency Table</strong> computes occurrences (frequencies) of two discrete variables (rows and columns).</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/Contingency-Table-stamped.png"><img alt="../_images/Contingency-Table-stamped.png" src="../_images/Contingency-Table-stamped.png" style="width: 261.0px; height: 223.0px;" /></a>
+</div>
+<ol class="arabic simple">
+<li>Attribute values placed in rows.</li>
+<li>Attribute values placed in columns.</li>
+<li>Click <em>Apply</em> to commit the changes. To communicate changes automatically tick <em>Apply Automatically</em>.</li>
+<li>Access widget help and produce report.</li>
+</ol>
+<div class="section" id="example">
+<h2>Example</h2>
+<p>Contingency table can be computed only for discrete variables, so we will use <em>titanic</em> data set as an example. Load the data in the <strong>File</strong> widget and pass it to <strong>Contingency Table</strong>. Say I want to know how many second class passengers on Titanic were children.</p>
+<p>Let us select <em>status</em> for rows and <em>age</em> for columns. We can observe the computed table in a <strong>Data Table</strong> widget. The answer to our question seems to be 24.</p>
+<div class="figure align-default">
+<img alt="../_images/Contingency-Example.png" src="../_images/Contingency-Example.png" />
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Biolab, University of Ljubljana.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/widgets/contingency-table.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
