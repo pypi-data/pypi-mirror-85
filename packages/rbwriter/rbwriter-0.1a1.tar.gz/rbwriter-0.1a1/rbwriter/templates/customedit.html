@@ -1,0 +1,52 @@
+<!-- TODO: remove this file completely and replace with edit.html? -->
+{% extends "base.html" %}
+<!DOCTYPE html>
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" type= "text/css" href= "{{ url_for('static', filename='styles/general.css') }}">
+    <link rel="stylesheet" type= "text/css" href= "{{ url_for('static', filename='styles/edit.css') }}">
+{% endblock %}
+{% block title %}Edit Report Booklet{% endblock %}
+
+{% block headline %}Report Booklet Writer{% endblock %}
+
+{% block second_title %}Loaded report booklet from Week {{ data.get('week', '') }}: {% endblock %}
+
+{% block content %}
+    <form class="form" action="" method="post" id="editform">
+        <div class="form_wrapper">
+            <div class="input_container">
+                <div class="manual_input">
+                    <p class="input_hint">Name:</p>
+                    <input class="input_field" type="text" name="name" value="{{ data.get('name', '') }}">
+                </div>
+                <div class="manual_input">
+                    <p class="input_hint">Surname:</p>
+                    <input class="input_field" type="text" name="surname" value="{{ data.get('surname', '') }}">
+                </div>
+                <div class="manual_input">
+                    <p class="input_hint">Week:</p>
+                    <input class="input_field" type="number" name="week" value="{{ data.get('week', '') }}">
+                </div>
+                <div class="manual_input">
+                    <p class="input_hint">Year:</p>
+                    <input class="input_field" type="number" name="year" value="{{ data.get('year', '') }}">
+                </div>
+                <div class="manual_input">
+                    <p class="input_hint">Unit:</p>
+                    <input class="input_field" type="text" name="unit" value="{{ data.get('unit', '') }}">
+                </div>
+                <div class="manual_input">
+                    <p class="input_hint">Sign date:</p>
+                    <input class="input_field" type="date" name="sign" value="{{ data.get('sign', '') }}">
+                </div>
+            </div>
+            <div class="textarea_container">
+                <textarea name="Bcontent" rows="8" cols="100" form="editform">{{ data.get('Bcontent', '') }}</textarea>
+                <textarea name="Scontent" rows="8" cols="100" form="editform">{{ data.get('Scontent', '') }}</textarea>
+                <textarea name="BScontent" rows="8" cols="100" form="editform">{{ data.get('BScontent', '') }}</textarea>
+                <input class="button" type="submit" name="save_custom" value="Save" form=editform>
+            </div>
+        </div>
+    </form>
+{% endblock %}
