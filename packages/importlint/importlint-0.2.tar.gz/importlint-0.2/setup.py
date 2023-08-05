@@ -1,0 +1,22 @@
+from setuptools import setup
+
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
+setup(name='importlint',
+      version='0.2',
+      description='Check and fix your module and package imports in python files',
+      long_description=long_description,
+      long_description_content_type="text/markdown",
+      url='https://github.com/JakeRoggenbuck/ImportLinter',
+      author='Jake Roggenbuck',
+      author_email='jake@jr0.org',
+      license='MIT',
+      py_modules=['importlint'],
+      zip_safe=False,
+      entry_points={
+            'console_scripts': [
+                'importlint = importlint:run'
+            ]
+      },
+)
