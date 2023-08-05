@@ -1,0 +1,45 @@
+image: python:3.8
+
+definitions:
+  caches:
+    pip-qa: ~/.cache/pip
+    pip-test: ~/.cache/pip
+  steps:
+    - step: &quality-check
+        name: Quality Check
+        caches:
+          - pip-qa
+        script:
+          - pip install --upgrade pip wheel setuptools
+          - pip install -r requirements-qa.txt
+          - flake8 .
+          - isort . -rc -c
+    - step: &test
+        name: Test
+        caches:
+          - pip-test
+        script:
+          - pip install --upgrade pip wheel setuptools
+          - pip install -e .
+          - obuild --version
+    # TODO: Make auto deploy (actually deployed manually)
+    # - step: &pypi-publish-test
+    #     name: Publish on PyPI Test
+    #     script:
+    #       - pipe: atlassian/pypi-publish:0.3.0
+    #         variables:
+    #           PYPI_USERNAME: $PYPI_USERNAME
+    #           PYPI_PASSWORD: $PYPI_PASSWORD
+    #           DISTRIBUTIONS: 'bdist_wheel'
+    #           REPOSITORY: 'https://test.pypi.org/legacy/'
+pipelines:
+  default:
+    - step: *quality-check
+    - step: *test
+  # branches:
+  #   master:
+  #     - step: *quality-check
+  #     - step: *pypi-publish
+  #   prod:
+  #     - step: *quality-check
+  #     - step: *pypi-publish
