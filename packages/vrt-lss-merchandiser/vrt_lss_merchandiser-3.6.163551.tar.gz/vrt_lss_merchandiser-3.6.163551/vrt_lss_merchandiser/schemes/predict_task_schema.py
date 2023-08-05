@@ -1,0 +1,1 @@
+PREDICT_TASK_SCHEMA = '''"{}"'''
