@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: esopipeline
+Version: 0.1
+Summary: Process astronomical data from European Southern Observatory
+Home-page: UNKNOWN
+Author: Régis Lachaume
+Author-email: regis.lachaume@gmail.com
+License: LICENSE.txt
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: 3 - Alpha 
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Astronomy
+Classifier: License :: Public Domain
+Requires-Python: >=3.8
+Requires-Dist: astropy
+Requires-Dist: numpy
+Requires-Dist: pyoifits
+
+Automaticaly run a data processing pipeline by European Southern Observatory.
+
+The function esopipeline will take an instrument descriptor (e.g. gravity) 
+and run the various esorex recipes on a set of raw frames and static
+calibration files.  
+
+It is equivalent to esoreflex but in the console.
+
+INSTALL REQUIREMENTS
+
+You need a 
+(1) a relatively recent CPL and esorex installed
+(2) the instrument recipes installed for: GRAVITY.
+(3) a recent python 3
+
+Only for GRAVITY for the moment...
+
+

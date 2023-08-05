@@ -1,0 +1,8 @@
+PRO.CATG     use     required grouping keys
+------------ ------- -------- -----------------------------------------------------------------------------
+WAVELAMP     all     1        PRO.NIGHT.OBS,INS.SPEC.RES,FT.POLA.MODE,INS.POLA.MODE 
+DISP_RAW     all     1        PRO.NIGHT.OBS,INS.SPEC.RES,FT.POLA.MODE,INS.POLA.MODE 
+FLAT         closest 1        INS.SPEC.RES,FT.POLA.MODE,INS.POLA.MODE 
+BAD          closest 1        INS.SPEC.RES,FT.POLA.MODE,INS.POLA.MODE
+WAVE         closest 1        INS.SPEC.RES,FT.POLA.MODE,INS.POLA.MODE
+P2VM         closest 1        INS.SPEC.RES,FT.POLA.MODE,INS.POLA.MODE
