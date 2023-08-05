@@ -1,0 +1,342 @@
+#!/usr/bin/env python3
+import atexit
+import logging
+import os
+import subprocess
+import signal
+import sys
+import time
+import socket
+from datetime import datetime, timezone
+import psutil
+import configargparse
+import locust_plugins
+
+logging.basicConfig(
+    format="%(asctime)s,%(msecs)d %(levelname)-4s [%(filename)s:%(lineno)d] %(message)s",
+    datefmt="%Y-%m-%d:%H:%M:%S",
+    level=logging.INFO,
+)
+
+parser = configargparse.ArgumentParser(
+    # swarm is compatible with locust config files, but locust is not necessarily compatible
+    # with swarm config files (it will give an error on swarm-specific settings), so we enable both
+    default_config_files=["~/.locust.conf", "locust.conf", "~/.swarm.conf", "swarm.conf"],
+    auto_env_var_prefix="LOCUST_",
+    description="A tool for running locust in a distributed fashion.",
+    epilog="Any parameters not listed here are forwarded to locust unmodified, so go ahead and use things like -u, -r, --host, ... Any env vars starting with LOCUST_ will also be forwarded to the workers.",
+)
+
+parser.add_argument("-f", "--locustfile", type=str, dest="testplan")
+parser.add_argument("--headless", type=bool, dest="ignore_this")
+parser.add_argument(
+    "--loadgen-list",
+    type=str,
+    required=True,
+    help="A comma-separated list of ssh servers to act as load generators/workers",
+)
+parser.add_argument(
+    "--processes-per-loadgen", type=int, default=4, help="Number of locust worker processes to spawn for each load gen"
+)
+parser.add_argument("--loadgens", type=int, default=1, help="Number of load gen servers to use")
+parser.add_argument("-L", type=str, dest="loglevel")
+parser.add_argument("--port", type=str, default="5557")
+parser.add_argument(
+    "--remote-master",
+    type=str,
+    help="An ssh server to use as locust master (default is to run the master on the same machine as swarm). This is useful when rurnning swarm on your workstation if it might become disconnected",
+)
+
+
+args, unrecognized_args = parser.parse_known_args()
+
+
+def is_port_in_use(portno: int):
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+        return sock.connect_ex(("localhost", portno)) == 0
+
+
+def check_output(command):
+    logging.debug(command)
+    try:
+        subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
+    except subprocess.CalledProcessError as e:
+        logging.error(f"command failed: {command}")
+        logging.error(e.output.decode().strip())
+        raise
+
+
+def check_output_multiple(list_of_commands):
+    running_procs = []
+    for command in list_of_commands:
+        logging.debug(command)
+        running_procs.append(subprocess.Popen(command, shell=True, stderr=subprocess.STDOUT))
+
+    while running_procs:
+        for process in running_procs:
+            retcode = process.poll()
+            if retcode is not None:  # Process finished.
+                running_procs.remove(process)
+                if retcode != 0:
+                    raise Exception(f"Bad return code {retcode} from command: {process.args}")
+                break
+            else:  # No process is done, wait a bit and check again.
+                time.sleep(0.1)
+                continue
+
+
+def check_proc_running(process):
+    retcode = process.poll()
+    if retcode is not None:
+        raise subprocess.CalledProcessError(retcode, process.args)
+
+
+def check_and_lock_server(server):
+    # a server is considered busy if it is either running a locust process or
+    # is "locked" by a sleep command with somewhat unique syntax.
+    # the regex uses a character class ([.]) to avoid matching with the pgrep command itself
+    check_command = f"ssh -o LogLevel=error {server} \"pgrep -u \\$USER -f '^sleep 1 19|[l]ocust --worker' && echo busy || (echo available && sleep 1 19)\""
+
+    logging.debug(check_command)
+    p = subprocess.Popen(check_command, stdout=subprocess.PIPE, shell=True)
+
+    line = None
+    while p.poll() is None:
+        line = p.stdout.readline().decode().strip()
+        if line == "available":
+            logging.debug(f"found available worker {server}")
+            return True
+        if line == "busy":
+            logging.debug(f"found busy worker {server}")
+            return False
+
+    raise Exception(
+        f'could not determine if worker {server} was busy!? check command must have failed to return "available" or "busy". Maybe try it manually: {check_command}'
+    )
+
+
+def cleanup(_args):
+    logging.debug("cleanup started")
+    procs = psutil.Process().children()
+    for p in procs:
+        logging.debug(f"killing subprocess {p}")
+        try:
+            p.kill()
+        except psutil.NoSuchProcess:
+            pass
+    psutil.wait_procs(procs, timeout=3)
+    check_output_multiple(
+        f"ssh -q {server} 'pkill -9 -u $USER -f \"locust --worker\"' | grep -v 'No such process' || true"
+        for server in workers
+    )
+    logging.debug("cleanup complete")
+
+
+def upload(server):
+    # upload test plan and any other files in the current directory (dont upload locust.conf because it might contain master-only settings like run-time)
+    check_output(f"rsync -qr --exclude locust.conf * {server}:")
+    # upload locust-extensions
+    check_output(f"rsync -qr {locust_plugins.__path__[0]} {server}:")
+
+
+def start_locust_processes(server):
+    upload(server)
+
+    if args.remote_master:
+        port_forwarding_parameters = []
+        ensure_remote_kill = []
+        nohup = ["nohup"]
+        master_parameters = ["--master-host " + args.remote_master]
+
+    else:
+        port_forwarding_parameters = ["-R", f"{port}:localhost:{port}", "-R", f"{port+1}:localhost:{port+1}"]
+        ensure_remote_kill = ["& read; kill -9 $!"]
+        nohup = []
+        master_parameters = []
+
+    procs = []
+    for i in range(args.processes_per_loadgen):
+
+        cmd = " ".join(
+            [
+                "ssh",
+                "-q",
+                *port_forwarding_parameters,
+                server,
+                "'",
+                *locust_env_vars,
+                *nohup,
+                "locust",
+                "--worker",
+                "--master-port",
+                str(port),
+                *master_parameters,
+                "--headless",
+                "-f",
+                testplan_filename,
+                *ensure_remote_kill,
+                "'",  # ensure remote process terminates if swarm is killed
+            ]
+        )
+
+        if i == 0:
+            logging.info("First worker: " + cmd)
+        else:
+            logging.debug("worker: " + cmd)
+
+        procs.append(subprocess.Popen(cmd, shell=True, stdin=subprocess.PIPE))
+        port_forwarding_parameters = []  # only first ssh session should do port forwarding
+    return procs
+
+
+# ensure atexit handler gets called even if we get a signal (typically when terminating the debugger)
+def sig_handler(_signo, _frame):
+    sys.exit(0)
+
+
+if args.loglevel:
+    logging.getLogger().setLevel(args.loglevel.upper())
+
+testplan = args.testplan or "locustfile.py"
+
+if "/" in testplan:
+    parser.error(
+        "Testplan (-f) must be a file in the current directory (I'm lazy and havent fixed support for this yet)"
+    )
+
+testplan_filename = os.path.split(testplan)[1]
+port = int(args.port)
+processes_per_loadgen = args.processes_per_loadgen
+loadgens = args.loadgens
+worker_process_count = processes_per_loadgen * loadgens
+server_list = args.loadgen_list.split(",")
+workers = []
+
+try:
+    subprocess.check_output(f"ssh -o LogLevel=error -o BatchMode=yes {server_list[0]} true", shell=True)
+except Exception:
+    logging.error(
+        f"Error ssh:ing to loadgen ({server_list[0]}). Maybe you dont have permission to log on to them? Or your ssh key requires a password? (in that case, use ssh-agent)"
+    )
+    raise
+
+signal.signal(signal.SIGTERM, sig_handler)
+
+while is_port_in_use(port):
+    port += 2
+
+
+def get_available_servers_and_lock_them():
+    attempts = 0
+    if loadgens == 0:
+        return []
+    while True:
+        available_servers = []
+        for server in server_list:
+            if check_and_lock_server(server):
+                available_servers.append(server)
+            if len(available_servers) == loadgens:
+                return available_servers
+        logging.info("Didnt get enough servers. Will try again...")
+        available_servers = []
+        time.sleep(25)
+        attempts += 1
+        if attempts > 5:
+            raise Exception("Never found enough servers :(")
+
+
+workers = get_available_servers_and_lock_them()
+
+worker_procs = []
+start_time = datetime.now(timezone.utc)
+atexit.register(cleanup, args)
+
+os.environ["LOCUST_RUN_ID"] = start_time.isoformat()
+locust_env_vars = []
+
+for varname in os.environ:
+    if varname.startswith("LOCUST_") or varname.startswith("PG"):
+        if varname == "LOCUST_RPS" and os.environ[varname]:
+            # distribute the rps over the locust worker processes
+            # when client count < worker_process count, not all locust processes will get a client,
+            # so use the minium of the two when distributing rps.
+            locust_env_vars.append(
+                f'LOCUST_RPS="{float(os.environ[varname])/min(worker_process_count, int(args.users))}"'
+            )
+        else:
+            locust_env_vars.append(f'{varname}="{os.environ[varname]}"')
+
+locust_env_vars.append("PYTHONUNBUFFERED=1")  # dont buffer locust worker's stdout, show it immediately
+
+if args.remote_master:
+    ssh_command = ["ssh", "-q", args.remote_master, "'", *locust_env_vars, "nohup"]
+    bind_only_localhost = []
+    ssh_command_end = ["'"]
+    check_output(f"ssh -q {args.remote_master} 'pkill -9 -u $USER locust' || true")
+    upload(args.remote_master)
+else:
+    # avoid firewall popups by only binding localhost if running local master (ssh port forwarding):
+    bind_only_localhost = ["--master-bind-host=127.0.0.1"]
+    ssh_command = []
+    ssh_command_end = []
+
+master_command = [
+    *ssh_command,
+    "locust",
+    "--master",
+    "--master-bind-port",
+    str(port),
+    *bind_only_localhost,
+    "--expect-workers",
+    str(worker_process_count),
+    "--headless",
+    "-f",
+    testplan,
+    # "-t",
+    # run_time,
+    # "-u",
+    # users,
+    "--exit-code-on-error",
+    "0",  # return zero even if there were failed samples (locust default is to return 1)
+    *unrecognized_args,
+    *ssh_command_end,
+]
+
+logging.info(f"launching master: {' '.join(master_command)}")
+master_proc = subprocess.Popen(" ".join(master_command), shell=True)
+
+for worker in workers:
+    # fail early if master has already terminated
+    check_proc_running(master_proc)
+    worker_procs.extend(start_locust_processes(worker))
+
+# check that worker procs didnt immediately terminate for some reason (like invalid parameters)
+time.sleep(2)
+for proc in worker_procs:
+    check_proc_running(proc)
+
+# wait for test to complete
+while True:
+    try:
+        code = master_proc.wait(timeout=10)
+        break
+    except subprocess.TimeoutExpired:
+        pass
+    except KeyboardInterrupt:
+        pass
+    # ensure worker procs didnt die before master
+    for proc in worker_procs:
+        try:
+            check_proc_running(proc)
+        except subprocess.CalledProcessError as e:
+            try:
+                code = master_proc.wait(timeout=10)
+                break
+            except subprocess.TimeoutExpired:
+                logging.error(
+                    f"worker proc finished unexpectedly with ret code {e.returncode} (and master was still running)"
+                )
+                raise
+
+logging.info(f"Load gen master process finished (return code {code})")
+sys.exit(code)
