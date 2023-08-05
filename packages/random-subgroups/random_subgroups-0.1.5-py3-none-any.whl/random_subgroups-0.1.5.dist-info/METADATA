@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: random-subgroups
+Version: 0.1.5
+Summary: ('Machine learning with Subgroup Discovery',)
+Home-page: https://github.com/rebelosa/random-subgroups
+Maintainer: C. Rebelo Sa
+Maintainer-email: c.f.pinho.rebelo.de.sa@liacs.leidenuniv.nl
+License: new BSD
+Download-URL: https://github.com/rebelosa/random-subgroups
+Platform: UNKNOWN
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development
+Classifier: Topic :: Scientific/Engineering
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: scikit-learn
+Requires-Dist: pysubgroup (==0.7.2)
+Provides-Extra: docs
+Requires-Dist: sphinx ; extra == 'docs'
+Requires-Dist: sphinx-gallery ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme ; extra == 'docs'
+Requires-Dist: numpydoc ; extra == 'docs'
+Requires-Dist: matplotlib ; extra == 'docs'
+Provides-Extra: tests
+Requires-Dist: pytest ; extra == 'tests'
+Requires-Dist: pytest-cov ; extra == 'tests'
+
+A package based on scikit learn that uses subgroup discovery for machine learning.
+
+
