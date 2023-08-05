@@ -1,0 +1,9 @@
+# ciomaya
+prune tests
+graft ciomaya/plug-ins
+graft ciomaya/scripts
+graft ciomaya/icons
+graft ciomaya/cli
+include ciomaya/conductor.mod
+global-exclude __pycache__
+global-exclude *.py[co]
