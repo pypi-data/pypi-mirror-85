@@ -1,0 +1,38 @@
+Metadata-Version: 2.0
+Name: ocldev
+Version: 0.1.82
+Summary: Python development library for working with OCL resources and APIs
+Home-page: http://github.com/OpenConceptLab/ocldev
+Author: Open Concept Lab
+Author-email: info@openconceptlab.org
+License: MPL2.0
+Project-URL: Source, http://github.com/OpenConceptLab/ocldev
+Project-URL: Documentation, http://github.com/OpenConceptLab/ocldev/wiki
+Project-URL: Tracker, https://github.com/OpenConceptLab/ocl_issues/issues
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: jsonschema
+Requires-Dist: requests
+
+# ocldev
+Development library for working with OCL metadata and APIs
+
+`ocldev` package is published to PyPi, which means you can easily install it with pip, eg:
+```
+pip install ocldev
+```
+
+These classes are implemented currently:
+* OclResourceList, OclCsvResourceList, OclJsonResourceList - 
+* OclFlexImporter & OclBulkImporter - Used to import JSON resources into OCL
+* OclImportResults - Used to process the results of an import
+* OclExport & OclExportFactory - Used to fetch exports from OCL
+* OclCsvToJsonConverter - Used to convert CSV files to OCL-formatted JSON
+* OclValidator - Validates OCL-formatted JSON and CSV resources and resource lists
+
+
