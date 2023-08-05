@@ -1,0 +1,33 @@
+<li class="nav-item has-treeview {% if side_menu_subgroup_name == 'admin' %}menu-open{% endif %}">
+    <a href="#" class="nav-link {% if side_menu_subgroup_name == 'admin' %}active{% endif %}">
+      <i class="far fa-circle nav-icon"></i>
+      <p>
+        Admin Setting
+        <i class="right fas fa-angle-left"></i>
+      </p>
+    </a>
+    <ul class="nav nav-treeview">
+	  <li class="nav-item">
+        <a href="#" data-target-url="{{ url_for('manage_admin_bp.manage_administrator') }}"
+		class="nav-link nav-menu {% if side_menu_item == 'manage_administrator' %}active{% endif %}">
+          <i class="far fa-dot-circle nav-icon"></i>
+          <p class="d-inline-flex">
+			<span class="d-block long-text-next-line">
+	        Manage Administrator Account
+	       </span>  
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" data-target-url="{{ url_for('manage_merchant_bp.manage_merchant') }}"
+		class="nav-link nav-menu {% if side_menu_item == 'manage_merchant' %}active{% endif %}">
+          <i class="far fa-dot-circle nav-icon"></i>
+          <p class="d-inline-flex">
+			<span class="d-block long-text-next-line">
+	        Manage Merchant Account
+	       </span>  
+          </p>
+        </a>
+      </li>	
+    </ul>
+</li>

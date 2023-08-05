@@ -1,0 +1,29 @@
+<ul class="navbar-nav ml-auto">
+  <!-- Messages Dropdown Menu -->
+  <li class="nav-item dropdown">
+    {% block navigation_top_menu_item_message %}
+	{% if show_dashboard_messaging %} 
+	{% include "shared/skeleton/dashboard/navigation_top_item_message_content.html" %}
+	{% endif %}
+	{% endblock %}
+  </li>
+  <!-- Notifications Dropdown Menu -->
+  <li class="nav-item dropdown">
+    
+    {% block navigation_top_menu_item_notification %}
+    {% if show_dashboard_notification %}
+	{% include "shared/skeleton/dashboard/navigation_top_item_notification_content.html" %}
+	{% endif %}
+	{% endblock %}
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i
+        class="fas fa-th-large"></i></a>
+  </li>
+ {% if current_user and current_user.is_authenticated %}
+ <li class="nav-item">
+    <a class="nav-link" href="/sec/signout" role="button" title="Sign Out">
+		<i class="fas fa-sign-out-alt"></i></a>
+  </li>	
+  {% endif %} 
+</ul>

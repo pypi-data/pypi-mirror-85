@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	
+  	{% block styling %}
+	{% include "shared/skeleton/dashboard/styling_content.html" %}
+	{% endblock %}
+	
+	<style>
+	{% block styling_extra %}
+	
+	{% endblock %}
+	</style>
+	
+	{% if show_full %}
+	{% block javascript %}
+	{% include "shared/skeleton/dashboard/javascript_content.html" %}
+	{% endblock %}
+	{% endif %}
+	
+	{% block javascript_link_extra %}
+	{% endblock %}
+	
+	<script type="text/javascript">
+		
+		{% block javascript_extra %}
+		{% endblock %}
+		
+		$(document).ready(function() {
+			initInputBase();
+			window.debug_mode = {{ DEBUG_MODE }};
+			{% block documentReady %}
+			{% endblock %}
+		});
+
+
+	</script>
+
+</head>
+<body>
+
+
+{% block content %}
+	
+{% endblock %}
+
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	
+  	{% block styling %}
+	{% include "shared/skeleton/dashboard/styling_content.html" %}
+	{% endblock %}
+	
+	<style>
+	{% block styling_extra %} 
+	
+	{% endblock %}
+	</style>
+	
+	{% if show_full %}
+	{% block javascript %}
+	{% include "shared/skeleton/dashboard/javascript_content.html" %}
+	{% endblock %}
+	{% endif %}
+	
+	{% block javascript_link_extra %}
+	{% endblock %}
+	
+	<script type="text/javascript">
+		
+		{% block javascript_extra %}
+		{% endblock %}
+		
+		$(document).ready(function() {
+			window.debug_mode = {{ DEBUG_MODE }};
+			initInputBase();
+			{% block documentReady %}
+			{% endblock %}
+		});
+
+
+	</script>
+
+</head>
+<body>
+
+
+<div class="container py-1">
+    <div class="row">
+      <div class="col-lg-11 mx-auto">
+        <div class="card shadow mb-2">
+		  <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">{% block card_title %}{% endblock %}</h3>
+              </div>
+			  {% block card_top %}
+
+			  {% endblock %}	
+		  </div>		
+          <div class="card-body shadow-sm p-3">
+            {% block card_body_content %}
+
+			{% endblock %}
+          </div>
+   		  <div class="card-footer d-flex justify-content-end">
+          {% block card_footer_content %}
+
+		  {% endblock %}
+          </div>
+        </div>
+      </div>
+    </div>	
+    
+</div>
+
+</body>
+</html>
+
+
+
+
+
+

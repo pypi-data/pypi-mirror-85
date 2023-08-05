@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  	
+  <title>{{ application_title }}</title>
+  <meta name="description" content="{{ application_desc }}">
+	
+  	{% block styling %}
+	{% include "shared/skeleton/dashboard/styling_content.html" %}
+	{% endblock %}
+	
+	<style>
+	{% block styling_extra %}
+	{% endblock %}
+	</style>
+	
+		
+	{% block javascript %}
+	{% include "shared/skeleton/dashboard/javascript_content.html" %}
+	{% endblock %}
+	
+	{% block javascript_link_extra %}
+	{% endblock %}
+	
+	<script type="text/javascript">
+		
+		{% block javascript_extra %}
+		{% endblock %}
+		
+		$(document).ready(function() {
+			window.debug_mode = {{ DEBUG_MODE }};
+			initBase();
+			initInputBase();
+			initPagination();
+			initMultTabs();
+			initSideMenuContentSwitch();	
+			{% if current_user and current_user.is_authenticated %}
+				initGravatarFetch('{{ current_user.gravatar_url }}')
+			{% endif %}
+				
+			{% block documentReady %}
+			{% endblock %}
+		});
+
+
+	</script>
+
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+  	{% block navigation_bar %}
+	{% include "shared/skeleton/dashboard/navigation_section_content.html" %}
+	{% endblock %}
+
+	{% block side_menu %}
+	{% include "shared/skeleton/dashboard/side_menu_section_content.html" %}
+	{% endblock %}
+  
+
+  <!-- Content Wrapper. Contains page content -->
+  <div id="content_wrapper" class="content-wrapper">
+	<div class="content-header">
+	  <div class="container-fluid">
+	    <div class="row mb-2">
+	      <div class="col-11">
+			<h1 id="page_title" class="ml-3 text-dark">{{ page_title }} </h1>
+		  </div><!-- /.col -->
+		  <div class="col-1">
+			<a id="page_href" class="" data-page-url="{{ page_url }}"><span class="fa fa-sync"></span></a>
+		  </div><!-- /.col -->
+	      <div class="col-sm-6">
+			{% block page_breadcrumb %}
+			
+			{% endblock %}
+	        
+	      </div><!-- /.col -->
+	    </div><!-- /.row -->
+	  </div><!-- /.container-fluid -->
+	</div>	
+    
+    <!-- Main content -->
+    <div id="content" class="content">
+    {% block content %}
+	{% include "shared/skeleton/dashboard/dashboard_sample_content.html" %}
+	{% endblock %}  
+    </div>
+	
+    <!-- /.content -->
+  </div>
+
+    {% include "shared/modals_content.html" %}
+
+  <!-- /.content-wrapper -->
+
+  	{% block side_bar %}
+	{% include "shared/skeleton/dashboard/side_bar_content.html" %}
+	{% endblock %}
+	
+  	{% block footer %}
+	{% include "shared/skeleton/dashboard/footer_section_content.html" %}
+	{% endblock %}
+</div>
+<!-- ./wrapper -->
+	
+
+</body>
+</html>

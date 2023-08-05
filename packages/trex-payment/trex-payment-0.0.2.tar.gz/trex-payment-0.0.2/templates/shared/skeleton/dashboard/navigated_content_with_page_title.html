@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	
+  	{% block styling %}
+	
+	{% endblock %}
+	
+	<style>
+	{% block styling_extra %}
+	
+	{% endblock %}
+	</style>
+	
+	{% if show_full %}
+	{% block javascript %}
+	{% include "shared/skeleton/dashboard/javascript_content.html" %}
+	{% endblock %}
+	{% endif %}
+	
+	{% block javascript_link_extra %}
+	{% endblock %}
+	
+	<script type="text/javascript">
+		
+		{% block javascript_extra %}
+		{% endblock %}
+		
+		$(document).ready(function() {
+			window.debug_mode = {{ DEBUG_MODE }};
+			initInputBase();
+			$('#page_title').html("{{ _(page_title) }}");
+			$('#page_href').data('page-url',"{{ page_url }}");	
+			$.console.log('page_url={{ page_url }}')
+			$.console.log('page_href='+$('#page_href').data('page-url'));	
+			{% block documentReady %}
+			{% endblock %}
+		});
+
+
+	</script>
+
+</head>
+<body>
+
+
+{% block content %}
+	
+{% endblock %}
+
+</body>
+
+</html>

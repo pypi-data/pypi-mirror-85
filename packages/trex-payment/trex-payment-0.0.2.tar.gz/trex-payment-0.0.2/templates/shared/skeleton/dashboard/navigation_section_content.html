@@ -1,0 +1,20 @@
+<!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    {% block navigation_top_left_menu %}
+		{% include "shared/skeleton/dashboard/navigation_top_left_menu_content.html" %}
+	{% endblock %}
+	
+	{% block navigation_top_search %}
+		{% include "shared/skeleton/dashboard/navigation_top_search_content.html" %}
+	{% endblock %}
+	
+    <!-- SEARCH FORM -->
+    
+
+    <!-- Right navbar links -->
+    {% block navigation_top_menu_item_notification %}
+	{% include "shared/skeleton/dashboard/navigation_top_right_menu_content.html" %}
+	{% endblock %}
+  </nav>
+  <!-- /.navbar -->

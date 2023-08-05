@@ -1,0 +1,8 @@
+
+{% if current_user.is_authenticated %}
+	Hi {{ current_user.name }}!
+{% else %}
+	User is not authenticated
+{% endif %}
+
+

@@ -1,0 +1,32 @@
+{% macro pagination_widget(pages, endpoint, pagination_target_selector, pager) %}
+
+<nav aria-label="Page navigation">
+	<div class="d-flex justify-content-end">
+	<div class="mr-3 align-self-center text-justify">
+	Showing 
+	<span class="font-weight-bold">{{ pager.offset+1 }}</span>
+	 to 
+	<span class="font-weight-bold">{% if pager.offset + pager.limit < pager.count %}{{ pager.offset + pager.limit }} {% else %} {{ pager.count }} {% endif %} </span>
+	 of  
+	<span class="font-weight-bold">{{ pager.count }}</span> rows
+	</div>
+	
+	
+    <ul class="pagination">
+        {% for p in pages %}
+        <li class="page-item {{p['class']}}">
+            <a href="#" 
+				data-target-selector='{{ pagination_target_selector }}'  
+				data-page-url="{{ url_for(endpoint, limit = pager.limit, page_no = p['href']) }}"
+                class="page-link"
+                aria-label={{p['page']}}>
+                <span aria-hidden="true">{{p['page_label'] | safe}}</span>
+                <span class="sr-only">{{p['page_label'] | safe}}</span>
+
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+	</div>
+</nav>
+{% endmacro %}
