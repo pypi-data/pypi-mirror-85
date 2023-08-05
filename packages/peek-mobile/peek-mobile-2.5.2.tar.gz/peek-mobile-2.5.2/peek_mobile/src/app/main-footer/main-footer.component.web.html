@@ -1,0 +1,24 @@
+<div *ngIf="isEnabled" class="peek-footer" [class.bg-danger]="!vortexIsOnline">
+    <div class="btn-group" role="group">
+        <button
+            class="footer-bar-btn"
+            [disabled]="!isBackButtonEnabled()"
+            [class.footer-bar-btn-disabled]="!isBackButtonEnabled()"
+            (click)="navBackService.navBack()"
+        >
+            <i nz-icon nzType="left" nzTheme="outline"></i>
+        </button>
+    </div>
+
+    <div class="footer-bar-text">
+        {{statusText}}
+    </div>
+
+    <div *ngIf="hasConfigLinks()" class="pull-right">
+        <div class="btn-group">
+            <button class="footer-bar-btn" [routerLink]="['/config']">
+                <i nz-icon nzType="setting" nzTheme="outline"></i>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,69 @@
+@import '~@synerty/peek-plugin-base-js/src/styles/variables';
+@import '~@synerty/peek-plugin-base-js/src/styles/mixins';
+
+.peek-home-screen {
+  /*
+      Contains the Home Screen classes
+      Contains the Background attributes
+      Home Screen background is unique and different to other screens
+      Cannot use the body tag
+  */
+  bottom: 0;
+  min-height: 100%;
+
+  .home-screen-icon {
+    /*
+        Contains the Button attributes unique to the Home Screen
+        Buttons responsively wrap
+    */
+    background-image: url('~@synerty/peek-plugin-base-js/src/assets/images/button_home_background.png');
+    margin-left: -$general_margin_1/4;
+    margin-right: -$general_margin_1/4;
+    margin-top: $general_margin_1;
+    padding: $general_padding_4;
+    position: relative;
+
+    .home-screen-image {
+      /*
+          Contains the Image attributes unique to the Home Screen
+          Strictly uses images
+      */
+      width: 100%;
+      height: auto;
+      padding-bottom: $home_screen_image_padding;
+
+    }
+    .home-screen-title {
+      /* Contains the Button Title attributes unique to the Home Screen */
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      padding: $general_padding_2;
+
+    }
+  }
+  .home-screen-message {
+    /* Contains the message attributes unique to the Home Screen */
+    position: absolute;
+    left: 0;
+    width: 100%;
+    padding: $general_padding_2;
+
+  }
+}
+
+.peek-home-screen-background {
+  /*
+      Contains the Background attributes
+      Home Screen background is unique and different to other screens
+      Cannot use the body tag
+  */
+  background-image: url('~@synerty/peek-plugin-base-js/src/assets/images/home_background.png');
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
