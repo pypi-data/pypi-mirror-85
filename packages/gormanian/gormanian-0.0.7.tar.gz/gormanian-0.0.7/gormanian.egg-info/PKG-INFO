@@ -1,0 +1,72 @@
+Metadata-Version: 2.1
+Name: gormanian
+Version: 0.0.7
+Summary: A simple library to convert a datetime date to use the superior Gormanian Calendar.
+Home-page: https://github.com/Morrolan/gormanian
+Author: Ian Havelock
+Author-email: ian@morrolan.com
+License: MIT
+Download-URL: https://github.com/Morrolan/gormanian/archive/v0.0.1.tar.gz
+Description: # Gormanian
+        
+        ## Gormanian Calendar Calculator/Converter
+        
+        ### What is it?
+        
+        Put simply, it is a library to calculate an alternative date structure based on the comedic sketch of [Dave Gorman](http://davegorman.com/).  In an episode of '*Modern Life is Goodish*', Dave Gorman proposed a new calendar format to replace the existing Gregorian calendar.  In particular, he takes umbridge at the fact that the length of a month varies, when all other units of time are fixed and identical.
+        
+        You can watch the video in question [here](https://www.youtube.com/watch?v=vunESk53r5U&feature=youtu.be) on Dave Gorman's official YouTube channel.
+        
+        ### But why?
+        
+        Why not?  I happen to agree with the calendar, and decided to write this for a laugh.
+        
+        ### How to Use
+        
+        #### To convert the current date
+        
+        
+            import gormanian
+            
+            response = gormanian.now()
+            
+            print(response.as_string)
+        
+        
+        
+        #### To convert a specific date
+        Use the standard datetime format for any given date.
+        
+            from datetime import datetime
+            import gormanian
+            
+            response = gormanian.convert(datetime(2000, 12, 1))
+            
+            print(response.as_string)
+        
+        #### ISO-8601 format:
+        You can also retrieve the date in ISO-8601 basic format.
+        
+            from datetime import datetime
+            import gormanian
+            
+            response = gormanian.convert(datetime(2000, 12, 31))
+            
+            print(response.isoformat)
+        
+        
+Keywords: Gormanian,Gormanuary,Dave Gorman
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Information Technology
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Localization
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Description-Content-Type: text/markdown
