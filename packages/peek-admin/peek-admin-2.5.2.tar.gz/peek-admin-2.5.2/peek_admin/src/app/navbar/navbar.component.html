@@ -1,0 +1,138 @@
+<div>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid" [class.bg-danger]="!vortexIsOnline">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button
+                    type="button"
+                    class="navbar-toggle"
+                    data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1"
+                    aria-expanded="false"
+                >
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <ul class="nav navbar-nav">
+                    <li
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        [routerLink]="dashboardPath"
+                    >
+                        <a class="navbar-brand">Peek Admin Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div
+                class="collapse navbar-collapse"
+                id="bs-example-navbar-collapse-1"
+            >
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/docs/index.html" target="_self">
+                            <i
+                                nz-icon
+                                nzType="question-circle"
+                                nzTheme="outline"
+                            ></i>
+                        </a>
+                    </li>
+
+                    <li class="dropdown">
+                        <a
+                            href="#"
+                            class="dropdown-toggle"
+                            data-toggle="dropdown"
+                            role="button"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            >Platform
+                            <i nz-icon nzType="caret-down" nzTheme="outline"></i
+                        ></a>
+                        <ul class="dropdown-menu">
+                            <li
+                                *ngFor="let item of platformMenuData"
+                                routerLinkActive="active"
+                                [routerLink]="item.resourcePath"
+                            >
+                                <a>{{ item.title }}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a
+                            href="#"
+                            class="dropdown-toggle"
+                            data-toggle="dropdown"
+                            role="button"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            >Plugins
+                            <i
+                                nz-icon
+                                nzType="caret-down"
+                                nzTheme="outline"
+                            ></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li
+                                *ngFor="let item of pluginsMenuData"
+                                routerLinkActive="active"
+                                [routerLink]="item.resourcePath"
+                            >
+                                <a>{{ item.title }}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul *ngIf="!vortexIsOnline" class="nav navbar-nav navbar-right">
+                    <li class="text-muted text-right small">
+                        <i nz-icon nzType="disconnect" nzTheme="outline"></i>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="text-muted text-right small">
+                        <span class="small"
+                            >Product of
+                            <a href="https://www.synerty.com"
+                                >Synerty Pty Ltd,</a
+                            >
+                            All Rights Reserved</span
+                        ><br />
+                        <span class="small">Version 2.5.2</span><br />
+                        <div *ngIf="user.supportExceeded && !user.demoExceeded">
+                            <span class="small">
+                                <a class="text-danger" [href]="updatePath"
+                                    >Support Expired</a
+                                > </span
+                            ><br />
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a
+                            href="#"
+                            class="dropdown-toggle"
+                            data-toggle="dropdown"
+                            role="button"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                        >
+                            <i nz-icon nzType="user" nzTheme="outline"></i
+                        ></a>
+                        <ul class="dropdown-menu">
+                            <li (click)="logoutClicked()">
+                                <a href="#">Logout {{ user.username }}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
