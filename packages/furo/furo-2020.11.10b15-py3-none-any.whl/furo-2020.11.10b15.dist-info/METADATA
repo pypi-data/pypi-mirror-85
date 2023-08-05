@@ -1,0 +1,84 @@
+Metadata-Version: 2.1
+Name: furo
+Version: 2020.11.10b15
+Summary: A clean customisable Sphinx documentation theme.
+Home-page: https://github.com/pradyunsg/furo
+License: UNKNOWN
+Author: Pradyun Gedam
+Author-email: mail@pradyunsg.me
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+Classifier: Framework :: Sphinx
+Classifier: Framework :: Sphinx :: Theme
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Documentation
+Classifier: Topic :: Software Development :: Documentation
+Requires-Dist: beautifulsoup4
+Requires-Dist: sphinx > 3.0
+Requires-Dist: myst-parser ; extra == "doc"
+Requires-Dist: sphinx-inline-tabs ; extra == "doc"
+Requires-Dist: pytest ; extra == "test"
+Requires-Dist: pytest-cov ; extra == "test"
+Requires-Dist: pytest-xdist ; extra == "test"
+Provides-Extra: doc
+Provides-Extra: test
+
+<h1 align="center">Furo</h1>
+<p align="center">
+  A clean customizable <a href="https://www.sphinx-doc.org/">Sphinx</a> documentation theme.
+</p>
+<a href="https://pradyunsg.me/furo/">
+  <img align="center" src="https://github.com/pradyunsg/furo/raw/main/docs/_static/demo.png" alt="Demo image">
+</a>
+
+## Quickstart
+
+Furo can be installed using `pip`:
+
+```
+pip install furo
+```
+
+Update the `html_theme` in `conf.py`:
+
+```py
+html_theme = "furo"
+```
+
+Your Sphinx documentation will now be generated with this theme! For more information, visit [Furo's documentation][quickstart-docs].
+
+[quickstart-docs]: https://pradyunsg.me/furo/quickstart
+
+## Contributing
+
+Furo is a volunteer maintained open source project, and we welcome contributions of all forms. Please take a look at our [Contributing Guide](https://pradyunsg.me/furo/contributing/) for more information.
+
+## Acknowledgements
+
+Furo is inspired by (and borrows elements from) some excellent technical documentation themes:
+
+- [mkdocs-material] for MkDocs
+- [Just the Docs] for Jekyll
+- [GitBook]
+
+We use [BrowserStack] to test on real devices and browsers. Shoutout to them for supporting OSS projects!
+
+[mkdocs-material]: https://squidfunk.github.io/mkdocs-material/
+[just the docs]: https://pmarsceill.github.io/just-the-docs/
+[gitbook]: https://www.gitbook.com/
+[browserstack]: https://browserstack.com/
+
+## License
+
+This project is licensed under the MIT License.
+
