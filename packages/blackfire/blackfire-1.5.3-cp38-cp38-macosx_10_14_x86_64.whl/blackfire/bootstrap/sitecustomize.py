@@ -1,0 +1,3 @@
+import blackfire
+
+blackfire.bootstrap()
