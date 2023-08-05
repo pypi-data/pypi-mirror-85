@@ -1,0 +1,11 @@
+include setup.cfg
+include .github/CONTRIBUTING.md
+include LICENSE
+include README.md
+include INSTALL.md 
+include CONTRIBUTORS 
+
+recursive-include caer/data *
+recursive-include caer *.pyx *.pyd *.pxd *.pxi *.py *.c *.h *.ini *.txt *.in *.cpp *.md
+
+recursive-exclude * __pycache__ *.npy *.npz
