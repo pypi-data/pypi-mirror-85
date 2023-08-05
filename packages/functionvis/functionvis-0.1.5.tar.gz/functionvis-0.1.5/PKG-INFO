@@ -1,0 +1,87 @@
+Metadata-Version: 2.1
+Name: functionvis
+Version: 0.1.5
+Summary: Visualize all functions and classes in a directory
+Home-page: https://github.com/SubhadityaMukherjee/functionFinder
+Author: Subhaditya Mukherjee
+Author-email: msubhaditya@gmail.com
+License: MIT
+Description: # Function Finder
+        
+        Have a complex library? 
+        Want to either understand someone elses or make your library easier to understand? 
+        
+        What if you could generate a detailed graph of all the functions and classes in your package. Including links between common functions in multiple files. Now you can
+        
+        # External requirements
+        - This requires the [graphviz library](https://graphviz.org/download/)
+        
+        # What files are taken into account?
+        
+        - .py
+        - .ipynb (Jupyter notebook)
+        
+        # How to use?
+        
+        - cd to any directory you want
+        - Default outputs are in pdf
+        ```py
+        import functionvis
+        functionvis.runner()
+        ```
+        - Change the format of the outputs
+        ```py
+        import functionvis
+        functionvis.runner(".", "svg")
+        ```
+        - Run for another directory
+        ```py
+        import functionvis
+        functionvis.runner("path-to-dir", "svg")
+        ```
+        
+        # Outputs
+        
+        - Graph of all functions/classes and their related links
+        - Relationships between files
+        - functions.pdf (With all the functions)
+        - classes.pdf (With all the classes)
+        - Extension can be configured
+        - Saved in project dir
+        
+        # Outputs supported
+        
+        - pdf
+        - png
+        - svg
+        - jpg
+        - Others might work so just try
+        
+        # Examples
+        
+        Check the repo for examples
+        [repo](https://github.com/SubhadityaMukherjee/functionFinder)
+        
+        # FAQ
+        
+        ## Not Working
+        - Have you installed graphviz? 
+        - Do you have jupytext and graphviz installed
+        - Are you trying for python files?
+        
+        ## Windows?
+        - I cant check the compatibility but it should work
+        
+        ## Where are the outputs?
+        - Wherever you opened python from
+        - Or wherever you put the first argument from
+        
+        ## Can I convert this to other languages?
+        - Yes please. Contributions are welcome
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
