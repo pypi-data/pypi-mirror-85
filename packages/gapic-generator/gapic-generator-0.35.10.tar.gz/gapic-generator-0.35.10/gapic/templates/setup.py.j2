@@ -1,0 +1,42 @@
+{% extends '_base.py.j2' %}
+
+{% block content %}
+import setuptools  # type: ignore
+
+
+setuptools.setup(
+    name='{{ api.naming.warehouse_package_name }}',
+    version='0.0.1',
+    {% if api.naming.namespace -%}
+    packages=setuptools.PEP420PackageFinder.find(),
+    namespace_packages={{ api.naming.namespace_packages }},
+    {% else -%}
+    packages=setuptools.find_packages(),
+    {% endif -%}
+    platforms='Posix; MacOS X; Windows',
+    include_package_data=True,
+    install_requires=(
+        'google-api-core[grpc] >= 1.22.2, < 2.0.0dev',
+        'libcst >= 0.2.5',
+        'proto-plus >= 1.4.0',
+    {%- if api.requires_package(('google', 'iam', 'v1')) or opts.add_iam_methods %}
+        'grpc-google-iam-v1',
+    {%- endif %}
+    ),
+    python_requires='>=3.6',
+    scripts=[
+        'scripts/fixup_{{ api.naming.versioned_module_name }}_keywords.py',
+    ],
+    classifiers=[
+        'Development Status :: 3 - Alpha',
+        'Intended Audience :: Developers',
+        'Operating System :: OS Independent',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Topic :: Internet',
+        'Topic :: Software Development :: Libraries :: Python Modules',
+    ],
+    zip_safe=False,
+)
+{% endblock %}
