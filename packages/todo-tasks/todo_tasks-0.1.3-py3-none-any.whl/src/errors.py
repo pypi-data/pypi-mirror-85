@@ -1,0 +1,2 @@
+class InitNotFoundError(Exception):
+    pass
