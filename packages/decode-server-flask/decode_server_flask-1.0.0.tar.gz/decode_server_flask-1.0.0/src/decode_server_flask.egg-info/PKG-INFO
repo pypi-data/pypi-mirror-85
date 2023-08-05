@@ -1,0 +1,85 @@
+Metadata-Version: 2.1
+Name: decode-server-flask
+Version: 1.0.0
+Summary: Flask middleware for Decode Auth
+Home-page: https://github.com/usedecode/decode_server
+Author: Davor Badrov
+Author-email: flask@decodeauth.com
+License: UNKNOWN
+Description: # Decode Server Flask
+        
+        A middleware for Flask for authenticating requests from [Decode Auth Server](https://decodeauth.com/).
+        
+        
+        ## Installing
+        
+        Install using pip:
+        
+        ```sh
+        pip install decode_server_flask
+        ```
+        
+        ## A simple example
+        
+        To integrate your Flask app with Decode Auth you only need to import the middleware and register it with the app.
+        A simple example on how to do it:
+        
+        ```python
+        from flask import Flask
+        from decode_server_flask import decode_server_flask
+        from os import environ
+        
+        app = Flask(__name__)
+        
+        # To setup the middleware, you need to get the Decode's RSA Public Key.
+        # You can read the key from an ENV variable.
+        decode_public_key = os.environ["DECODE_PUBLIC_KEY"]
+        
+        # Or you can read the key from file.
+        public_key_file = open("decode-key.pub", "r")
+        decode_public_key = public_key_file.read()
+        
+        # Then just pass the key to the middleware
+        app.wsgi_app = decode_server_flask(app.wsgi_app, decode_public_key)
+        
+        
+        # Now all the routes are protected!
+        # To call them you need a valid JWT which only the Decode Auth server can generate.
+        @app.route("/me", methods=["GET"])
+        def me_api():
+            return {
+                "user": "Paul Muad'Dib",
+                "affiliation": "Fremen",
+                "house": "Atreides",
+            }
+        ```
+        
+        
+        ## Developing
+        
+        To install Decode Server Flask, alogn with the tools you need to develop and run tests, run the following in your virtualenv:
+        
+        ```sh
+        pip install -e .[dev]
+        ```
+        
+        ## Pushing updates
+        
+        ```sh
+        # First build the redistributable
+        python setup.py bdist_wheel sdist
+        
+        # and then push it to pypi.org
+        twine upload dist/*
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Provides-Extra: dev
