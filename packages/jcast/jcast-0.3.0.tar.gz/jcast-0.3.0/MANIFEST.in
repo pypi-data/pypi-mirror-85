@@ -1,0 +1,11 @@
+include pyproject.toml
+
+# Include the README
+include *.md
+
+# Include the license file
+include LICENSE.md
+
+# Include the data files
+recursive-include tests/data/genome *
+recursive-include tests/data/rmats *
