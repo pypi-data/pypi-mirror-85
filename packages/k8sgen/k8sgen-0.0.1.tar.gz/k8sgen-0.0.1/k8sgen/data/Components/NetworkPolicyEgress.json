@@ -1,0 +1,36 @@
+{
+    "ports": [
+        {
+            "port": "<string>",
+            "protocol": "<string>"
+        }
+    ],
+    "to": [
+        {
+            "ipBlock": {
+                "cidr": "<string>",
+                "except": "<[]string>"
+            },
+            "namespaceSelector": {
+                "matchExpressions": [
+                    {
+                        "key": "<string>",
+                        "operator": "<string>",
+                        "values": "<[]string>"
+                    }
+                ],
+                "matchLabels": "<map[string]string>"
+            },
+            "podSelector": {
+                "matchExpressions": [
+                    {
+                        "key": "<string>",
+                        "operator": "<string>",
+                        "values": "<[]string>"
+                    }
+                ],
+                "matchLabels": "<map[string]string>"
+            }
+        }
+    ]
+}

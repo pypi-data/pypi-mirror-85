@@ -1,0 +1,45 @@
+{
+    "description": "Event is a report of an event somewhere in the cluster.",
+    "json": {
+        "action": "<string>",
+        "apiVersion": "v1",
+        "count": "<integer>",
+        "eventTime": "<string>",
+        "firstTimestamp": "<string>",
+        "involvedObject": {
+            "apiVersion": "<string>",
+            "fieldPath": "<string>",
+            "kind": "<string>",
+            "name": "<string>",
+            "namespace": "<string>",
+            "resourceVersion": "<string>",
+            "uid": "<string>"
+        },
+        "kind": "Event",
+        "lastTimestamp": "<string>",
+        "message": "<string>",
+        "metadata": "<COMPONENT.Metadata>",
+        "reason": "<string>",
+        "related": {
+            "apiVersion": "<string>",
+            "fieldPath": "<string>",
+            "kind": "<string>",
+            "name": "<string>",
+            "namespace": "<string>",
+            "resourceVersion": "<string>",
+            "uid": "<string>"
+        },
+        "reportingComponent": "<string>",
+        "reportingInstance": "<string>",
+        "series": {
+            "count": "<integer>",
+            "lastObservedTime": "<string>",
+            "state": "<string>"
+        },
+        "source": {
+            "component": "<string>",
+            "host": "<string>"
+        },
+        "type": "<string>"
+    }
+}

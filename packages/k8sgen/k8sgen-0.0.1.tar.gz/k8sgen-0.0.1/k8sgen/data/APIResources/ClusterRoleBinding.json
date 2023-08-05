@@ -1,0 +1,14 @@
+{
+    "description": "ClusterRoleBinding references a ClusterRole, but not contain it. It can reference a ClusterRole in the global namespace, and adds who information via Subject.",
+    "json": {
+        "apiVersion": "rbac.authorization.k8s.io/v1",
+        "kind": "ClusterRoleBinding",
+        "metadata": "<COMPONENT.Metadata>",
+        "roleRef": {
+            "apiGroup": "<string>",
+            "kind": "<string>",
+            "name": "<string>"
+        },
+        "subjects": "<[]COMPONENT.ClusterRoleBindingSubject>"
+    }
+}

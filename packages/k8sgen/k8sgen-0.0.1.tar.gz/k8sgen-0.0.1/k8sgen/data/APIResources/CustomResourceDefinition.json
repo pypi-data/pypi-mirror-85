@@ -1,0 +1,38 @@
+{
+    "description": "CustomResourceDefinition represents a resource that should be exposed on the API server. Its name MUST be in the format <.spec.name>.<.spec.group>.",
+    "json": {
+        "apiVersion": "apiextensions.k8s.io/v1",
+        "kind": "CustomResourceDefinition",
+        "metadata": "<COMPONENT.Metadata>",
+        "spec": {
+            "conversion": {
+                "strategy": "<string>",
+                "webhook": {
+                    "clientConfig": {
+                        "caBundle": "<string>",
+                        "service": {
+                            "name": "<string>",
+                            "namespace": "<string>",
+                            "path": "<string>",
+                            "port": "<integer>"
+                        },
+                        "url": "<string>"
+                    },
+                    "conversionReviewVersions": "<[]string>"
+                }
+            },
+            "group": "<string>",
+            "names": {
+                "categories": "<[]string>",
+                "kind": "<string>",
+                "listKind": "<string>",
+                "plural": "<string>",
+                "shortNames": "<[]string>",
+                "singular": "<string>"
+            },
+            "preserveUnknownFields": "<boolean>",
+            "scope": "<string>",
+            "versions": "<[]COMPONENT.ResourceDefinitionVersion>"
+        }
+    }
+}

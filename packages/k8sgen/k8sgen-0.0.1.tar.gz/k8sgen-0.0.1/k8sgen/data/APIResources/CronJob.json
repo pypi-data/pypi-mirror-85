@@ -1,0 +1,32 @@
+{
+    "description": "CronJob represents the configuration of a single cron job.",
+    "json": {
+        "apiVersion": "batch/v1beta1",
+        "kind": "CronJob",
+        "metadata": "<COMPONENT.Metadata>",
+        "spec": {
+            "concurrencyPolicy": "<string>",
+            "failedJobsHistoryLimit": "<integer>",
+            "jobTemplate": {
+                "metadata": "<COMPONENT.Metadata>",
+                "spec": {
+                    "activeDeadlineSeconds": "<integer>",
+                    "backoffLimit": "<integer>",
+                    "completions": "<integer>",
+                    "manualSelector": "<boolean>",
+                    "parallelism": "<integer>",
+                    "selector": "<COMPONENT.Selector>",
+                    "template": {
+                        "metadata": "<COMPONENT.Metadata>",
+                        "spec": "<COMPONENT.ContainerSpec>"
+                    },
+                    "ttlSecondsAfterFinished": "<integer>"
+                }
+            },
+            "schedule": "<string>",
+            "startingDeadlineSeconds": "<integer>",
+            "successfulJobsHistoryLimit": "<integer>",
+            "suspend": "<boolean>"
+        }
+    }
+}

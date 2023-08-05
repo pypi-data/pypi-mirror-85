@@ -1,0 +1,20 @@
+{
+    "configMap": {
+        "items": "<[]COMPONENT.ConfigMapItem>",
+        "name": "<string>",
+        "optional": "<boolean>"
+    },
+    "downwardAPI": {
+        "items": "<[]COMPONENT.DownwardAPIItem>"
+    },
+    "secret": {
+        "items": "<[]COMPONENT.SecretItem>",
+        "name": "<string>",
+        "optional": "<boolean>"
+    },
+    "serviceAccountToken": {
+        "audience": "<string>",
+        "expirationSeconds": "<integer>",
+        "path": "<string>"
+    }
+}

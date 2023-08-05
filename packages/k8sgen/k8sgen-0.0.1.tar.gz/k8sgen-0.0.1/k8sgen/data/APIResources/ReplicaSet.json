@@ -1,0 +1,17 @@
+{
+    "description": "ReplicaSet ensures that a specified number of pod replicas are running at any given time.",
+    "json": {
+        "apiVersion": "apps/v1",
+        "kind": "ReplicaSet",
+        "metadata": "<COMPONENT.Metadata>",
+        "spec": {
+            "minReadySeconds": "<integer>",
+            "replicas": "<integer>",
+            "selector": "<COMPONENT.Selector>",
+            "template": {
+                "metadata": "<COMPONENT.Metadata>",
+                "spec": "<COMPONENT.ContainerSpec>"
+            }
+        }
+    }
+}
