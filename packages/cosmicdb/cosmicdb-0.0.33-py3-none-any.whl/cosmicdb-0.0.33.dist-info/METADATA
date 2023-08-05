@@ -1,0 +1,136 @@
+Metadata-Version: 2.1
+Name: cosmicdb
+Version: 0.0.33
+Summary: An easy way to setup a database site.
+Home-page: https://bitbucket.org/davidbradleycole/cosmicdb
+Author: David Cole
+Author-email: davidbradleycole@gmail.com
+License: BSD License
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Description-Content-Type: text/markdown
+Requires-Dist: asgiref (==3.2.10)
+Requires-Dist: beautifulsoup4 (==4.9.1)
+Requires-Dist: bleach (==3.2.1)
+Requires-Dist: certifi (==2020.6.20)
+Requires-Dist: chardet (==3.0.4)
+Requires-Dist: colorama (==0.4.3)
+Requires-Dist: Django (==3.1.1)
+Requires-Dist: django-crispy-forms (==1.9.2)
+Requires-Dist: django-tables2 (==2.3.1)
+Requires-Dist: docutils (==0.16)
+Requires-Dist: idna (==2.10)
+Requires-Dist: importlib-metadata (==1.7.0)
+Requires-Dist: keyring (==21.4.0)
+Requires-Dist: packaging (==20.4)
+Requires-Dist: pkginfo (==1.5.0.1)
+Requires-Dist: Pygments (==2.7.1)
+Requires-Dist: pyparsing (==2.4.7)
+Requires-Dist: pytz (==2020.1)
+Requires-Dist: pywin32-ctypes (==0.2.0)
+Requires-Dist: readme-renderer (==26.0)
+Requires-Dist: requests (==2.24.0)
+Requires-Dist: requests-toolbelt (==0.9.1)
+Requires-Dist: rfc3986 (==1.4.0)
+Requires-Dist: six (==1.15.0)
+Requires-Dist: soupsieve (==2.0.1)
+Requires-Dist: sqlparse (==0.3.1)
+Requires-Dist: tqdm (==4.49.0)
+Requires-Dist: twine (==3.2.0)
+Requires-Dist: urllib3 (==1.25.10)
+Requires-Dist: webencodings (==0.5.1)
+Requires-Dist: wheel (==0.35.1)
+Requires-Dist: zipp (==3.1.0)
+
+
+# CosmicDB Django App
+
+## Install
+
+### Initial setup
+```
+virtualenv demoenv --no-site-packages
+demoenv\Scripts\activate
+pip install cosmicdb
+django-admin startproject demo
+```
+
+### Usage
+
+#### Add cosmicdb and requirements to your INSTALLED_APPS setting like this (your app must be first to override)
+```
+INSTALLED_APPS = (
+    'YOURAPPHERE',
+    'cosmicdb',
+    'crispy_forms',
+    'django_tables2',
+    ... (rest of django apps)
+)
+```
+
+#### Add cosmicdb.urls to your urls.py like this (put cosmicdb urls last)
+```
+    from django.conf.urls import url, include
+
+    urlpatterns = [
+        ...
+        url(r'^', include('cosmicdb.urls')),
+    ]
+```
+
+#### Add cosmicdb settings to your settings.py like this::
+```
+LANGUAGE_CODE = 'en-au'
+COSMICDB_SITE_TITLE = 'Demo Site'
+COSMICDB_ALLOW_SIGNUP = True
+AUTH_USER_MODEL = 'cosmicdb.CosmicUser'
+LOGIN_URL = '/login/'
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+DJANGO_TABLES2_TEMPLATE = 'django_tables2/bootstrap-responsive.html'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'test@test.com'
+EMAIL_HOST_PASSWORD = 'testpassword'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL_NAME = COSMICDB_SITE_TITLE
+```
+
+#### Run
+```
+python manage.py migrate
+
+python manage.py collectstatic
+
+python manage.py createsuperuser
+```
+
+
+## Dev Notes
+
+### install required packages for packaging
+```
+pip install setuptools twine wheel
+```
+
+### adjust cosmicdb/__init__.py for version number
+```
+python setup.py sdist bdist_wheel
+```
+### replace the following line with version number
+### twine upload dist/cosmicdb-VERSION_NUMBER*
+```
+twine upload dist/cosmicdb-0.0.32*
+```
+
+
