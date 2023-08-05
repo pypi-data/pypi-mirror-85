@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: arrowhead-client
+Version: 0.2.0a2
+Summary: Arrowhead client library
+Home-page: https://github.com/arrowhead-f/client-library-python
+Author: Jacob Nilsson
+Author-email: jacob.nilsson@ltu.se
+License: EPL-2.0
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Operating System :: POSIX :: Linux
+Classifier: License :: OSI Approved :: Eclipse Public License 2.0 (EPL-2.0)
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: Flask (>=1.0.2)
+Requires-Dist: requests (>=2.21)
+Requires-Dist: gevent (>=20.5.0)
+Requires-Dist: typing-extensions (>=3.7)
+
+# ARROWHEAD CLIENT PYTHON LIBRARY
+This is a library for the creation of client service providers and consumer for the [Arrowhead Framework](www.arrowhead.eu), a service-oriented framework developed for industrial automation.
+
+## About
+The Arrowhead Client Python Library is a library to make it easy to create your own Arrowhead Framework systems and services in Python.
+This library provides classes that interface with the [Arrowhead Core Systems](https://github.com/arrowhead-f/core-java-spring), and uses Flask to provide services.
+
+### Development status
+This library has not yet reached a stable development version, and a lot will change.
+Currently, it is working, but it's still missing many crucial features, such as:
+ - Error handling
+ - Logging
+ - Testing
+ - Support for the following core services
+   - Eventhandler
+ - Support for the TOKEN security modes (access policy):
+
+As more Arrowhead Core Systems mature and are added to the official docker container, those will be added to this list.
+
+### External Depencies
+To run an Arrowhead system you need to have the Arrowhead core systems up and running, and the correct certificates need to be provided.
+A guide on how to create your own certificates can be found on the [Arrowhead github](https://github.com/arrowhead-f/core-java-spring/blob/master/documentation/certificates/create_client_certificate.pdf).
+
+### Requirements
+ - Python 3.7 or higher
+ - Requests
+ - Flask
+ - Gevent
+
+## How To Use
+Install the library with `pip install arrowhead-client`.
+
+
+
