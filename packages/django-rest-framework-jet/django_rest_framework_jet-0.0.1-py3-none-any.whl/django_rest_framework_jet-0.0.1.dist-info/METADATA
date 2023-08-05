@@ -1,0 +1,60 @@
+Metadata-Version: 2.1
+Name: django-rest-framework-jet
+Version: 0.0.1
+Summary: JET - Django APP
+Home-page: https://github.com/FR98/django-rest-framework-jet
+Author: Francisco Rosal
+Author-email: ros18676@uvg.edu.gt
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: djangorestframework (==3.11.0)
+Requires-Dist: json-encrypted-token (==0.0.5)
+
+=====
+Rest Framework JET
+=====
+
+Rest Framework JET is a Django app to manage authentication. It can create tokens, verify and refresh them.
+
+Detailed documentation is in the "docs" directory.
+
+Quick start
+-----------
+
+1. Install Django Rest Framework.
+
+2. Add "rest_framework_jet" to your INSTALLED_APPS setting like this::
+
+    INSTALLED_APPS = [
+        ...
+        'rest_framework_jet',
+    ]
+
+3. Include the rest_framework_jet URLconf in your project urls.py like this::
+
+    url(r'^api/token-auth/', generate_jet),
+    url(r'^api/token-verify/', verify_jet),
+    url(r'^api/token-refresh/', refresh_jet),
+
+4. Start the development server
+
+5. Visit http://127.0.0.1:8000/api/token-auth/
+   to authenticate a user and generate a valid token.
+
+
