@@ -1,0 +1,92 @@
+Metadata-Version: 2.1
+Name: flake8-django-migrations
+Version: 0.1.0
+Summary: Flake8 plugin to lint for backwards incompatible database migrations
+Home-page: https://github.com/browniebroke/flake8-django-migrations
+License: MIT
+Keywords: flake8,lint,django,migrations
+Author: Bruno Alla
+Author-email: bruno.alla@festicket.com
+Requires-Python: >=3.6,<4.0
+Classifier: Development Status :: 1 - Planning
+Classifier: Environment :: Console
+Classifier: Framework :: Flake8
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development :: Quality Assurance
+Requires-Dist: astor (>=0.1)
+Requires-Dist: flake8 (>=3.7)
+Requires-Dist: importlib-metadata (>=0.9); python_version < "3.8"
+Project-URL: Repository, https://github.com/browniebroke/flake8-django-migrations
+Description-Content-Type: text/markdown
+
+# flake8-django-migrations
+
+Flake8 plugin to lint for backwards incompatible database migrations.
+
+## Installation
+
+Install using `pip` (or your favourite package manager):
+
+```sh
+pip install flake8-django-migrations
+```
+
+## Usage
+
+This plugin should be used automatically when running flake8:
+
+```sh
+flake8
+```
+
+
+## Checks
+
+This is the list of checks currently implemented by this plugin.
+
+### DM001
+
+`RemoveField` operation should be wrapped in `SeparateDatabaseAndState`. 
+
+Such an operation should be run in two separate steps, using `SeparateDatabaseAndState`, otherwise it is not backwards compatible.
+
+* Step 1: remove the field from the model and code. For foreign key fields, the foreign key constraint should also be dropped.
+* Step 2: remove the column from the database.
+
+#### Bad
+
+```python
+class Migration(migrations.Migration):
+    operations = [
+        migrations.RemoveField(
+            model_name="order",
+            name="total",
+        ),
+    ]
+```
+
+#### Good
+
+```python
+class Migration(migrations.Migration):
+    operations = [
+        migrations.SeparateDatabaseAndState(
+            state_operations=[
+                migrations.RemoveField(
+                    model_name="order",
+                    name="total",
+                ),
+            ],
+        ),
+    ]
+```
+
+
