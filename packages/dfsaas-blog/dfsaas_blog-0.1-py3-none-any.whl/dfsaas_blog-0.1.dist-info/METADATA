@@ -1,0 +1,57 @@
+Metadata-Version: 2.1
+Name: dfsaas-blog
+Version: 0.1
+Summary: A Django app to rub blogs.
+Home-page: https://www.djangoforsaas.com/
+Author: Konstantin Pavlovsky
+Author-email: konstantin.pavlovsky@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 3.0
+Classifier: Framework :: Django :: 3.1
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Requires-Python: >=3.6
+Requires-Dist: django (>=3)
+Requires-Dist: django-ckeditor (==6.0.0)
+Requires-Dist: django-taggit (==1.3.0)
+Requires-Dist: Pillow (>=8.0.1)
+
+Django For SaaS Blog
+====================
+
+Blog is a Django app to run blog.
+
+
+Quick start
+-----------
+
+1. Add "dfsaas_blog" to your INSTALLED_APPS setting like this::
+
+    INSTALLED_APPS = [
+        ...
+        'dfsaas_blog',
+    ]
+
+2. Include the polls URLconf in your project urls.py like this::
+
+    path('blog/', include('dfsaas_blog.urls')),
+
+3. Run ``python manage.py migrate`` to create the polls models.
+
+4. Start the development server and visit http://127.0.0.1:8000/admin/
+   to create a poll (you'll need the Admin app enabled).
+
+5. Visit http://127.0.0.1:8000/blog/ to participate in the poll.
+
