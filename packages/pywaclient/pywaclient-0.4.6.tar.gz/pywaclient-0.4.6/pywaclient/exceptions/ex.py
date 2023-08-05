@@ -1,0 +1,4 @@
+
+
+class InvalidAuthorizationTokenException(Exception):
+    pass
