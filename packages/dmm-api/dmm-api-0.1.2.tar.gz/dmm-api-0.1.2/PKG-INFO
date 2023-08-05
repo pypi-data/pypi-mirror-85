@@ -1,0 +1,89 @@
+Metadata-Version: 2.1
+Name: dmm-api
+Version: 0.1.2
+Summary: DMM API Client for Python
+Home-page: https://github.com/takelushi/dmm-api-py
+License: MIT
+Keywords: API
+Author: Takeru Saito
+Author-email: takelushi@gmail.com
+Maintainer: Takeru Saito
+Maintainer-email: takelushi@gmail.com
+Requires-Python: >=3.6,<4.0
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Software Development :: Libraries
+Requires-Dist: requests (>=2.25.0,<3.0.0)
+Project-URL: Repository, https://github.com/takelushi/dmm-api-py
+Project-URL: issues, https://github.com/takelushi/dmm-api-py/issues
+Description-Content-Type: text/markdown
+
+# DMM Affiliate API Client for Python
+
+* **This SDK is unofficial**
+* API Guide is [here](https://affiliate.dmm.com/api/guide/).
+
+## Install
+
+```sh
+pip install dmm-api
+```
+
+## Usage
+
+* [Examples](https://github.com/takelushi/dmm-api-py/tree/master/examples))
+
+```py
+import os
+
+from dmm_api import DMMApiClient
+
+API_ID = os.environ.get('DMM_API_ID', '')
+AFFILIATE_ID = os.environ.get('DMM_AFFILIATE_ID', '')
+
+client = DMMApiClient(API_ID, AFFILIATE_ID)
+res = client.get_floor()
+print(res.json())
+```
+
+## Supported API list
+
+### v3
+
+* 商品情報 API (ItemList)
+* フロア API (FloorList)
+* 女優検索 API (ActressSearch)
+* ジャンル検索 API (GenreSearch)
+* メーカー検索 API (MakerSearch)
+* シリーズ検索 API (SeriesSearch)
+* 作者検索 API (AuthorSearch)
+
+## For developers
+
+* Setup
+
+   **Require: poetry**
+
+   ```she
+   git clone git@github.com:takelushi/dmm-api-py.git
+   cd dmm-api-py
+   poetry install
+   ```
+
+* Build
+
+   ```sh
+   poetry build
+   ```
+
+* Register PyPI and install.
+
+   ```sh
+   poetry publish
+   pip --no-cache-dir install --upgrade dmm-api
+   ```
+
