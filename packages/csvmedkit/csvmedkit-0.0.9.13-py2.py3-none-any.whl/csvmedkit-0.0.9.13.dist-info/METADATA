@@ -1,0 +1,70 @@
+Metadata-Version: 2.1
+Name: csvmedkit
+Version: 0.0.9.13
+Summary: The unofficial extended family of csvkit, i.e. even more tools for command-line data parsing and wrangling
+Home-page: https://github.com/dannguyen/csvmedkit
+Author: Dan Nguyen
+Author-email: dansonguyen@gmail.com
+License: MIT
+Project-URL: Documentation, https://csvmedkit.readthedocs.io/en/latest/
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
+Description-Content-Type: text/x-rst
+Requires-Dist: csvkit
+Requires-Dist: python-slugify (>=4.0)
+Requires-Dist: regex (>=2020.7.14)
+Provides-Extra: dev
+Requires-Dist: coverage (>=4.4.2) ; extra == 'dev'
+Requires-Dist: nose (>=1.1.2) ; extra == 'dev'
+Requires-Dist: parameterized ; extra == 'dev'
+Requires-Dist: sphinx (>=1.0.7) ; extra == 'dev'
+Requires-Dist: sphinx-rtd-theme ; extra == 'dev'
+Requires-Dist: tox (>=3.1.0) ; extra == 'dev'
+
+=========
+csvmedkit
+=========
+
+The unofficial extended family of csvkit, i.e. even more tools for command-line data parsing and wrangling.
+
+**Status as of 2020-11-11**: Alpha, but working toward release version with these utilities:
+
+
+- csvflatten: reformat data for easier browsing of "wide" data
+- csvheader: add/alter a data file's column names
+- csvnorm: normalize unprintable characters and whitespace
+- csvpivot: do pivot tables
+- csvsed: do sed substitution on a per-column basis
+- csvslice: return rows by index, including head/tail to get first/last n rows
+
+
+Read the in-progress docs at: `csvmedkit.readthedocs.io <https://csvmedkit.readthedocs.io/>`_
+
+
+
+- Read TODOS: `TODOS.md <TODOS.md>`_ for an informal roadmap.
+- The old, now archived csvkitcat repo: `dannguyen/csvkitcat <https://github.com/dannguyen/csvkitcat>`_
+
+
+Note: many of the data examples incorporate the original csvkit tools, including a couple of post 1.0.6 fixes. Until csvkit makes a new official release, here's what I used::
+
+
+    $ pip install git+https://github.com/wireservice/csvkit.git@73d5bdc4a2f5c07b91737ea007bb3510f970aad7
+
+
