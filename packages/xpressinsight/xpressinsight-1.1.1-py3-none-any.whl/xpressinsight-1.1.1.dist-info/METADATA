@@ -1,0 +1,68 @@
+Metadata-Version: 2.1
+Name: xpressinsight
+Version: 1.1.1
+Summary: FICO Xpress - Insight Python package
+Home-page: http://www.fico.com/en/products/fico-xpress-optimization-suite
+Author: FICO Xpress dev. team
+Author-email: support@fico.com
+License: Xpress Shrinkwrap License Agreement
+Keywords: optimization xpress insight
+Platform: any
+Classifier: License :: Other/Proprietary License
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Software Development
+Classifier: Topic :: Scientific/Engineering
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: pandas (>=1.0.0)
+Requires-Dist: numpy (>=1.17.0)
+Requires-Dist: urllib3
+Requires-Dist: certifi
+
+Xpress Insight Python Package
+=============================
+
+The 'xpressinsight' Python package can be used to develop Python<sup>&reg;</sup> based web applications for Xpress Insight.
+
+Release Notes
+-------------
+
+__v 1.1.1__
+
+- Improve error message when Insight cannot start Python because of security restrictions.
+- Update documentation and update VDL version number in examples.
+
+__v 1.1.0__
+
+ - Additional factory function `create_app` initializes and configures standard test environment.
+ - Some performance issues with executing a Python based scenario have been addressed.
+ - Maximum length of a string in an Index, Series, or DataFrame has been changed from 1,000,000 bytes to 250,000 characters.
+ - Default name of the temporary Insight working directory has been changed from "insight" to "work_dir/insight".
+
+__v 1.0.2__
+
+ - The functions `update` and `reset_progress` have been added to the Insight Python interface.
+ - Changed Python standard output to unbuffered mode to improve responsiveness of output messages.
+
+Licensing
+---------
+
+The Xpress software is governed by the
+[Xpress Shrinkwrap License Agreement](https://community.fico.com/s/contentdocument/06980000002h0i5AAA).
+When downloading or using the package, you accept the license terms. After installation, a copy of the Xpress Shrinkwrap 
+License will be stored in the `LICENSE.txt` file in the `site-packages/xpressinsight-*.dist-info` directory.
+In Anaconda, a copy of the license file will be stored in the `pkgs/xpressinsight-*/info/licenses` directory.
+
+"Python" is a registered trademark of the Python Software Foundation.
+
+&copy; Copyright 2012-2020 Fair Isaac Corporation.
+
