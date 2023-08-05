@@ -1,0 +1,20 @@
+fs~=2.2
+pysmb!=1.1.26,!=1.1.29,<=1.2.5,>=1.1.22
+six~=1.10
+
+[:python_version < "3"]
+configparser~=3.2
+
+[dev]
+docutils
+Pygments
+codecov
+green
+coverage
+
+[test]
+docker~=3.6
+semantic_version~=2.6
+
+[test:python_version < "3.4"]
+mock~=2.0
