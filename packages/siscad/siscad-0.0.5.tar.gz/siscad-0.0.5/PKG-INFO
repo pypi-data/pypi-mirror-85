@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: siscad
+Version: 0.0.5
+Summary: Module for siscad.ufms.br
+Home-page: https://github.com/llpinokio/siscad.py
+Author: Giuliano Oliveira De Macedo
+Author-email: giuliano.llpinokio@gmail.com
+License: GPLv3
+Download-URL: https://github.com/llpinokio/siscad.py/archive/v0.0.5.tar.gz
+Description: ![PyPI](https://img.shields.io/pypi/v/siscad)
+        # Módulo para extrair informações do Siscad
+        
+        ## Exemplo
+        ```python
+        from siscad import Siscad
+        siscad=Siscad("passaporte","senha") 
+        
+        print(siscad.rga)
+        print(siscad.nome)
+        print(siscad.carga_hor)
+        print(siscad.cr)
+        print(siscad.discs_feitas)
+        print(siscad.ultima_matricula)
+        
+        for semestre in siscd.get_semestres():
+        	print(semestre.date)
+        	for disciplina in semestre.discs:
+        		print(disciplina.nome)
+        		print(*disc.notas,sep="\n")
+        ```
+        
+Keywords: web-scraping
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
