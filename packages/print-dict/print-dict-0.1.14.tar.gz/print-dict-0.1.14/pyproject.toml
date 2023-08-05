@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "print-dict"
+version = "0.1.14"
+description = ""
+authors = ["Eyal Levin <eyalev@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.scripts]
+print-dict = "print_dict.cli:cli"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+yapf = "^0.30.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
