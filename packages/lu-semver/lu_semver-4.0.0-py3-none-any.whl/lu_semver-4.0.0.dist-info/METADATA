@@ -1,0 +1,64 @@
+Metadata-Version: 2.1
+Name: lu-semver
+Version: 4.0.0
+Summary: print semantic version for git projects
+Home-page: https://gitlab.com/aanatoly/semver-tool
+Author: Anatoly Asviyan
+Author-email: anatoly@gmail.com
+License: GPLv2
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+Requires-Dist: twine ; extra == 'dev'
+Requires-Dist: tox ; extra == 'dev'
+
+# lu-semver
+
+Print Semantic Version for Git project.
+
+Intended usage: makefiles and build scripts to print meaningful project version.
+
+## Usage
+
+Let's take this repo as example
+```
+* 4cf9ba3 (HEAD -> master) sync 11
+* ac24825 sync 10
+* 73745a4 sync 9
+| * 856d14b (feat2) sync 8
+| * 1fcbaf1 sync 7
+| * 2a02f9b sync 6
+|/
+* b62e51a (tag: 1.3.0) sync 5
+* 027b518 sync 4
+| * d58163e (feat1) sync 3
+| * d658ddc sync 2
+|/
+* 217658d (tag: 1.0.0) sync 1
+* ad3d54e initial commit
+```
+Running `lu-semver` for project's refs give below output
+
+| command                                                                      | output                       |
+|------------------------------------------------------------------------------|------------------------------|
+| lu-semver                                                                 | 1.3.1-rc.3.git.4cf9ba3       |
+| lu-semver --ver @same                                                     | 1.3.0-dev.3.git.4cf9ba3      |
+| lu-semver --ver @next --fmt 'branch,count:pfx=rc,scm,extra'               | 1.3.1-rc.3.git.4cf9ba3       |
+| lu-semver --ver @next --fmt 'branch,count:pfx=rc,scm,extra' --extra gcc.9 | 1.3.1-rc.3.git.4cf9ba3.gcc.9 |
+| lu-semver --ver @same --fmt 'branch,count,extra' --extra gcc.9            | 1.3.0-dev.3.gcc.9            |
+| lu-semver --ver @latest                                                   | latest                       |
+| lu-semver --ver @latest feat1                                             | latest-feat1                 |
+| lu-semver feat1                                                           | 1.0.1-feat1.rc.2.git.d58163e |
+| lu-semver --fmt 'branch,count,extra' --extra gcc.9 feat1                  | 1.0.1-feat1.dev.2.gcc.9      |
+| lu-semver feat2                                                           | 1.3.1-feat2.rc.3.git.856d14b |
+| lu-semver 1.3.0                                                           | 1.3.0                        |
+|                                                                              |                              |
+
+
