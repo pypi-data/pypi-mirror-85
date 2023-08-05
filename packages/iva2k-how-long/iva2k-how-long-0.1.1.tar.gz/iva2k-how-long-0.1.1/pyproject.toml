@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "iva2k-how-long"
+version = "0.1.1"
+description = ""
+authors = ["iva2k <iva2k@yahoo.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+pendulum = "^2.1.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+flake8 = "^3.8.4"
+black = "^20.8b1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
