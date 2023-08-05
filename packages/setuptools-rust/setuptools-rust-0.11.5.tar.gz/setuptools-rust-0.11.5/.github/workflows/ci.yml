@@ -1,0 +1,117 @@
+name: CI
+on: [push]
+
+jobs:
+  build:
+    name:  ${{ matrix.python-version }} ${{ matrix.platform.os }}-${{ matrix.platform.python-architecture }}
+    runs-on: ${{ matrix.platform.os }}
+    strategy:
+      fail-fast: false  # If one platform fails, allow the rest to keep testing.
+      matrix:
+        python-version: [3.6, 3.7, 3.8, 3.9, pypy3]
+        platform: [
+          { os: "macOS-latest",   python-architecture: "x64", rust-target: "x86_64-apple-darwin" },
+          { os: "ubuntu-latest", python-architecture: "x64", rust-target: "x86_64-unknown-linux-gnu" },
+          { os: "windows-latest", python-architecture: "x64", rust-target: "x86_64-pc-windows-msvc" },
+          { os: "windows-latest", python-architecture: "x86", rust-target: "i686-pc-windows-msvc" },
+        ]
+        exclude:
+          # No 64-bit pypy on windows
+          - python-version: pypy3
+            platform: { os: "windows-latest", python-architecture: "x64" }
+          # Example rust_with_cffi broken on Python 3.5 for Windows, never mind!
+          - python-version: 3.5
+            platform: { os: "windows-latest" }
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: ${{ matrix.platform.python-architecture }}
+
+      - name: Install Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          target: ${{ matrix.platform.rust-target }}
+          profile: minimal
+          default: true
+
+      - name: Install test dependencies
+        run: pip install --upgrade tox setuptools
+
+      - name: Build package
+        run: pip install -e .
+
+      - name: Test examples
+        if: matrix.python-version != 'pypy3'
+        shell: bash
+        env:
+          PYTHON: ${{ matrix.python-version }}
+        run: |
+          for example_dir in examples/*; do
+              tox -c $example_dir -e py
+          done
+
+      - name: Test examples (pypy)
+        # FIXME: issues with tox + pypy + windows
+        if: matrix.python-version == 'pypy3' && matrix.platform.os != 'windows-latest'
+        shell: bash
+        run: |
+          for example_dir in examples/*; do
+              if [[ $example_dir = "examples/html-py-ever" ]]; then
+              echo "skipping html-py-ever on pypy3 - lxml is hard to build from source"
+              continue
+              fi
+
+              tox -c $example_dir -e py
+          done
+
+  test-abi3:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.6
+
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+
+      - name: Build package
+        run: pip install -e .
+
+      - name: Build an abi3 wheel
+        shell: bash
+        run: |
+          cd examples/rust_with_cffi/
+          python --version
+          pip install wheel
+          python setup.py bdist_wheel --py-limited-api=cp35
+          ls -la dist/
+
+      # Now we switch to a differnet Python version and ensure we can install
+      # the wheel we just built.
+      - name: Setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Install abi3 wheel and run tests
+        shell: bash
+        run: |
+          cd examples/
+          python --version
+          pip install rust_with_cffi/dist/rust_with_cffi*.whl
+          python -c "from rust_with_cffi import rust; assert rust.rust_func() == 14"
+          python -c "from rust_with_cffi.cffi import lib; assert lib.cffi_func() == 15"
