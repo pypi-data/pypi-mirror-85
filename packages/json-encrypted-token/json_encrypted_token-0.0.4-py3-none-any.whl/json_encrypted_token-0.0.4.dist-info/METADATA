@@ -1,0 +1,60 @@
+Metadata-Version: 2.1
+Name: json-encrypted-token
+Version: 0.0.4
+Summary: JET - JSON Encrypted Token
+Home-page: https://github.com/FR98/jet-python
+Author: Francisco Rosal
+Author-email: frangrosalo@hotmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: backports.pbkdf2 (==0.1)
+Requires-Dist: cffi (==1.14.3)
+Requires-Dist: cryptography (==3.1.1)
+Requires-Dist: pkg-resources (==0.0.0)
+Requires-Dist: pycparser (==2.20)
+Requires-Dist: six (==1.15.0)
+
+# jet-python
+JSON Encrypted Token - Python module
+
+```python
+from jet import JET
+from jet.utils import hmac_sha256
+
+
+GLOBAL_JET = JET(
+    SECRET = 'my-secret-string'
+)
+
+user_secret = hmac_sha256('user-password', 'user-password', 'ascii')
+
+payload = {
+    'id': 1,
+    'message': "Hola"
+}
+
+# Generate token
+token = GLOBAL_JET.encrypt(user_secret, payload)
+
+# Get info on token
+decrypted_meta, decrypted_payload = GLOBAL_JET.decrypt(user_secret, token)
+
+# Get info on token without user_secret
+decrypted_meta, decrypted_payload = GLOBAL_JET.decrypt_from_PK(token)
+
+# Verify token
+verified_sign = GLOBAL_JET.is_valid_token(token)
+print("Token is valid? ", verified_sign)
+
+# Refresh token
+new_token = GLOBAL_JET.refresh_token(token)
+print("Token == New Token ", token == new_token)
+
+```
+
+
