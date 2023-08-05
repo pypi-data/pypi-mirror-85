@@ -1,0 +1,14 @@
+<div class="logoBar">
+ <img class="logo"
+  {% if logo_style %}
+   style="{% for style_key in logo_style.keys() %}{{ style_key }}:{{ logo_style[style_key] }};{% endfor %}"
+  {% endif %}
+  src="data:image/{{ logo_ext }};base64, {{ encoded_logo }}">
+ {% if second_logo_ext and second_encoded_logo %}
+ <img class="logo"
+  {% if second_logo_style %}
+   style="{% for style_key in second_logo_style.keys() %}{{ style_key }}:{{ second_logo_style[style_key] }};{% endfor %}"
+  {% endif %}
+  src="data:image/{{ second_logo_ext }};base64, {{ second_encoded_logo }}">
+ {% endif %}
+</div>

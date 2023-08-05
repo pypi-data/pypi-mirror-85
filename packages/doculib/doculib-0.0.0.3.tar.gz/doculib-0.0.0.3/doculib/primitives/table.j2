@@ -1,0 +1,46 @@
+<table class="dataTable" cellspacing="0">
+ <thead>
+  <tr>
+   {% for col in meta.columns %}
+    <th {% if col.width %}style="width:{{ col.width }}px"{% endif %} >{{ col.title }}</th>
+   {% endfor %}
+  </tr>
+ </thead>
+ <tbody>
+  {% for row in data %}
+   <tr>
+    {% for col in meta.columns %}
+     <td
+     {% if col.style %}
+      style="{% for style_key in col.style.keys() %}{{ style_key }}:{{ col.style[style_key] }};{% endfor %}"
+     {% endif %}
+     {% if col.type == 'icon' %} class="icon-{{ row[col.key] }}">
+      {% elif col.type == 'url' %}
+       ><a href="{{ row[col.key] }}" target="_new">
+        {% if col.display_key %}
+         {{ row[col.display_key] }}
+        {% elif col.display %}
+         {{ display }}
+        {% else %}
+         Link
+        {% endif %}
+       </a>
+      {% else %}
+       >{{ row[col.key] }}
+      {% endif %}
+      {% if col.tooltip %}
+       <span class="tooltip"
+       {% if col.tooltip.style %}
+        style="
+        {% for style_key in col.tooltip.style.keys() %}
+         {{ style_key }}:{{ col.tooltip.style[style_key] }};
+        {% endfor %}"
+       {% endif %}
+       >{{ row[col.tooltip.key] }}</span>
+      {% endif %}
+     </td>
+    {% endfor %}
+   </tr>
+  {% endfor %}
+ </tbody>
+</table>

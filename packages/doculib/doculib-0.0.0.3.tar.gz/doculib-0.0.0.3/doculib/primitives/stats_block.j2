@@ -1,0 +1,14 @@
+<div class="statBlock">
+ {% for stat in meta.data %}
+  <div class="stat">
+   <div class="{% if stat.icon %}icon-{{ stat.icon }}{% endif %} statIcon">
+   </div>
+   <span class="statTitle">
+    {{ stat.title }}
+   </span>
+   <span class="statValue">
+    {{ data[stat.key] }}
+   </span>
+  </div>
+ {% endfor %}
+</div>

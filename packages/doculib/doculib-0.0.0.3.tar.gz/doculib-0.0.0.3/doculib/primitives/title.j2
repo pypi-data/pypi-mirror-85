@@ -1,0 +1,13 @@
+<div class="titleBar">
+    <h1>{{ title }}</h1>
+    <h2>{{ subtitle }}</h2>
+     <hr style="margin-top:15px;" />
+    <table class="keyValue">
+        {% if meta %}
+            {% for key in meta.keys() %}
+                <tr><td>{{ key }}:</td><td>{{ meta[key] }}</td></tr>
+            {% endfor %}
+        {% endif %}
+        <tr><td>Generated:</td><td>{{ time_generated }}</td></tr>
+    </table>
+</div>

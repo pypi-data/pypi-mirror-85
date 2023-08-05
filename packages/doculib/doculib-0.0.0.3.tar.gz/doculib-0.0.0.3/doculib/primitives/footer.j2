@@ -1,0 +1,17 @@
+<div class="footer">
+ {% if footer_links %}
+  <div class="footerLinks">
+   {% for link in footer_links %}
+    <a target="_blank" href="{{ link.url }}">{{ link.name }}</a>{% if not loop.last %} |{% endif %}
+   {% endfor %}
+  </div>
+  <hr />
+ {% endif %}
+ <div class="footerLogo">
+  <img class="logo"
+   {% if logo_style %}
+    style="{% for style_key in logo_style.keys() %}{{ style_key }}:{{ logo_style[style_key] }};{% endfor %}"
+   {% endif %}
+   src="data:image/{{ logo_ext }};base64, {{ encoded_logo }}">
+  </div>
+</div>
