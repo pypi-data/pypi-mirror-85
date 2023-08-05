@@ -1,0 +1,17 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:lawgiver="http://namespaces.zope.org/lawgiver"
+    i18n_domain="ftw.file">
+
+    <include package="ftw.lawgiver" file="meta.zcml" />
+
+    <lawgiver:map_permissions
+        action_group="add"
+        permissions="ftw.file: Add File"
+        />
+
+    <lawgiver:ignore
+        permissions="ftw.file: Protect file"
+        />
+
+</configure>

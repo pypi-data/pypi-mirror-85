@@ -1,0 +1,104 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:profilehook="http://namespaces.zope.org/profilehook"
+    xmlns:upgrade-step="http://namespaces.zope.org/ftw.upgrade"
+    i18n_domain="ftw.file">
+
+  <include package="ftw.profilehook" />
+
+  <five:registerPackage package="." initialize=".initialize" />
+  <i18n:registerTranslations directory="locales" />
+
+  <include file="permissions.zcml" />
+
+  <include package=".browser" />
+  <include package=".content" />
+  <include package=".rules" />
+  <include package=".viewlets" />
+  <include package=".upgrades" />
+
+  <include zcml:condition="installed ftw.lawgiver" file="lawgiver.zcml" />
+  <include zcml:condition="installed ftw.theming" file="resources.zcml" />
+  <include zcml:condition="have ftw-activity-2" package=".activity2" />
+
+  <genericsetup:registerProfile
+      zcml:condition="not-have plone-5"
+      name="default"
+      title="ftw.file"
+      directory="profiles/default"
+      description="Installs the ftw.file package"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:registerProfile
+      zcml:condition="have plone-5"
+      name="default"
+      title="ftw.file"
+      directory="profiles/default_plone5"
+      description="Installs the ftw.file package"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:registerProfile
+      zcml:condition="not-have plone-5"
+      name="uninstall"
+      title="Uninstall ftw.file"
+      directory="profiles/uninstall"
+      description="Uninstalls the ftw.file package"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+      />
+
+  <genericsetup:registerProfile
+      zcml:condition="have plone-5"
+      name="uninstall"
+      title="Uninstall ftw.file"
+      directory="profiles/uninstall_plone5"
+      description="Uninstalls the ftw.file package"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+      />
+
+  <upgrade-step:directory
+      profile="ftw.file:default"
+      directory="upgrades"
+      />
+
+  <profilehook:hook
+      profile="ftw.file:default"
+      handler=".hooks.installed"
+      />
+
+  <profilehook:hook
+      profile="ftw.file:uninstall"
+      handler=".hooks.uninstalled"
+      />
+
+  <browser:resourceDirectory
+      name="ftw.file.resources"
+      directory="resources"
+      />
+
+  <subscriber
+      for="ftw.file.interfaces.IFile
+           OFS.interfaces.IObjectWillBeRemovedEvent"
+      handler=".handlers.handle_protected_file"
+     />
+  <subscriber
+      for="ftw.file.interfaces.IFile
+           OFS.interfaces.IObjectWillBeMovedEvent"
+      handler=".handlers.handle_protected_file"
+     />
+
+  <!-- indexer -->
+  <adapter
+      name="documentDate"
+      factory=".indexer.document_date"
+      />
+
+</configure>
