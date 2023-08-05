@@ -1,0 +1,77 @@
+Metadata-Version: 2.1
+Name: dweather-client
+Version: 1.3.0
+Summary: Python client for interacting with weather data on IPFS.
+Home-page: https://github.com/Arbol-Project/dWeather-Python-Client.git
+Author: Arbol
+Author-email: info@arbolmarket.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: appdirs (==1.4.4)
+Requires-Dist: beautifulsoup4 (==4.9.1)
+Requires-Dist: certifi (==2020.4.5.1)
+Requires-Dist: cftime (==1.1.3)
+Requires-Dist: chardet (==3.0.4)
+Requires-Dist: click (==7.1.2)
+Requires-Dist: comtypes (==1.1.7)
+Requires-Dist: cycler (==0.10.0)
+Requires-Dist: distlib (==0.3.0)
+Requires-Dist: filelock (==3.0.12)
+Requires-Dist: Flask (==1.1.2)
+Requires-Dist: Flask-WTF (==0.14.3)
+Requires-Dist: google (==2.0.3)
+Requires-Dist: googlemaps (==4.4.1)
+Requires-Dist: gunicorn (==20.0.4)
+Requires-Dist: idna (==2.9)
+Requires-Dist: itsdangerous (==1.1.0)
+Requires-Dist: Jinja2 (==2.11.2)
+Requires-Dist: joblib (==0.15.1)
+Requires-Dist: kiwisolver (==1.2.0)
+Requires-Dist: lib (==3.0.0)
+Requires-Dist: MarkupSafe (==1.1.1)
+Requires-Dist: matplotlib (==3.2.1)
+Requires-Dist: netCDF4 (==1.5.3)
+Requires-Dist: nltk (==3.5)
+Requires-Dist: numpy (==1.18.4)
+Requires-Dist: oauthlib (==3.1.0)
+Requires-Dist: pandas (==1.0.3)
+Requires-Dist: pbr (==5.4.5)
+Requires-Dist: pyparsing (==2.4.7)
+Requires-Dist: PySocks (==1.7.1)
+Requires-Dist: python-dateutil (==2.8.1)
+Requires-Dist: pytz (==2020.1)
+Requires-Dist: regex (==2020.5.14)
+Requires-Dist: requests (==2.23.0)
+Requires-Dist: requests-oauthlib (==1.3.0)
+Requires-Dist: scipy (==1.4.1)
+Requires-Dist: six (==1.14.0)
+Requires-Dist: soupsieve (==2.0.1)
+Requires-Dist: stevedore (==1.32.0)
+Requires-Dist: textblob (==0.15.3)
+Requires-Dist: tqdm (==4.46.0)
+Requires-Dist: tweepy (==3.8.0)
+Requires-Dist: urllib3 (==1.25.9)
+Requires-Dist: virtualenv (==20.0.21)
+Requires-Dist: virtualenv-clone (==0.5.4)
+Requires-Dist: virtualenvwrapper (==4.8.4)
+Requires-Dist: Werkzeug (==1.0.1)
+Requires-Dist: WTForms (==2.3.1)
+Requires-Dist: xarray (==0.15.1)
+Requires-Dist: xlrd (==1.2.0)
+Requires-Dist: xlwings (==0.19.2)
+
+# dWeather-Python-Client
+
+    cd dweather_client
+    virtualenv .
+    bin/pip3 install -r ../requirements.txt
+    bin/python3 -m pytest tests
+
+See `tests` directory for example usage.
+
+
