@@ -1,0 +1,74 @@
+Metadata-Version: 2.1
+Name: tqp
+Version: 0.4.12
+Summary: An opinionated library for pub/sub over SQS and SNS
+Home-page: https://github.com/4Catalyzer/tqp
+Author: Giacomo Tagliabue
+Author-email: giacomo@gmail.com
+License: MIT
+Keywords: pub sub pubsub flask
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3 :: Only
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: boto3
+Provides-Extra: dev
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: fourmat (~=0.4.3) ; extra == 'dev'
+Requires-Dist: pre-commit ; extra == 'dev'
+Requires-Dist: moto[server] ; extra == 'dev'
+Requires-Dist: boto3 ; extra == 'dev'
+
+# TQP
+
+An opinionated library for pub/sub over SQS and SNS
+
+## Topic
+
+To publish on a topic:
+
+```py
+topic = Topic('widgets--created')
+topic.publish({'id': '123456'})
+```
+
+## Topic Queue Poller
+
+To read from the topic:
+
+```py
+poller = TopicQueuePoller('my_poller')
+
+@poller.handler('widgets--created')
+def process_created_widget(item):
+    widget_id = item['id']
+    print(f'Widget {widget_id} was created')
+
+poller.start()
+```
+
+
+### Flask
+
+A Flask binding is also provided:
+
+```py
+poller = FlaskTopicQueuePoller('my_poller', app=flask_app)
+```
+
+When using the Flask poller, you can also specify how to format the logs:
+
+```py
+# the argument (optional) is a function that takes the message payload as input and return a message identifier
+poller.set_log_formatter(lambda payload: payload["message"].get("id", "<NO ID>"))
+```
+
+
