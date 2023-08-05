@@ -1,0 +1,45 @@
+#!python
+#
+# Copyright (c) 2020, Grigoriy Kramarenko
+# All rights reserved.
+# This file is distributed under the same license as the current project.
+#
+"""
+Консольная программа для перевода текста в голос.
+"""
+import sys
+from argparse import ArgumentParser
+from gettext import gettext as _
+
+from astersay.conf import settings, DEFAULT_WORK_DIR
+
+
+def prepare(text, workdir):
+    if workdir:
+        settings.work_dir = workdir
+    settings.configure()
+    assert text, _('Текст не должен быть пустым.')
+    synthesizer = settings.get_synthesizer()
+    voice = synthesizer.make_voice(text)
+    return voice
+
+
+def run(text, file, workdir):
+    if not text and file:
+        with open(file, 'r') as f:
+            text = f.read()
+    print(prepare(text, workdir))
+    sys.exit()
+
+
+if __name__ == "__main__":
+    parser = ArgumentParser(description=(
+        _('Синтезирует текст из голоса с помощью AsterSay.')))
+    parser.add_argument('-t', '--text', default='', help=(
+        _('Текст для синтеза.')))
+    parser.add_argument('-f', '--file', default='', help=(
+        _('Путь к файлу текста.')))
+    parser.add_argument('-w', '--workdir', default=DEFAULT_WORK_DIR, help=(
+        _('Путь к рабочему каталогу AsterSay.')))
+    args = parser.parse_args()
+    run(**vars(args))

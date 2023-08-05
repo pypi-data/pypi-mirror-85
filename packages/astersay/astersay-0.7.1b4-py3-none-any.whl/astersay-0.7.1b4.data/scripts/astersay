@@ -1,0 +1,82 @@
+#!python
+#
+# Copyright (c) 2020, Grigoriy Kramarenko
+# All rights reserved.
+# This file is distributed under the same license as the current project.
+#
+"""
+Консольная программа для инициализации рабочего каталога и проверки
+авторизации в Яндексе.
+"""
+import os
+import sys
+from argparse import ArgumentParser
+from gettext import gettext as _
+
+from astersay.conf import settings, DEFAULT_WORK_DIR, get_dialog_scheme
+
+
+DEFAULT_LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'short': {
+            'format': '%(message)s'
+        },
+    },
+    'handlers': {
+        'main': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'short',
+        },
+    },
+    'loggers': {
+        'astersay': {
+            'handlers': ['main'],
+            'level': 'INFO',
+        },
+    }
+}
+
+
+def run(check, workdir):
+    if workdir:
+        settings.work_dir = workdir
+    settings.configure()
+    get_dialog_scheme(settings.work_dir, 'default')
+
+    if check:
+        print(_('Начинаем проверку...'))
+        settings.reconfigure_logging(DEFAULT_LOGGING)
+        synthesizer = settings.get_synthesizer()
+        print(_('СИНТЕЗАТОР:'), synthesizer)
+        try:
+            voice = synthesizer.make_voice('OK')
+        except Exception as e:
+            print(_('ОШИБКА:'), str(e))
+        else:
+            for ext in ('raw', 'wav', 'json', 'mp3'):
+                filename = voice + '.' + ext
+                if os.path.exists(filename):
+                    os.remove(filename)
+            print(_('УСПЕШНО: Авторизация пройдена, файлы получены.'))
+        print(_('Проверка завершена.'))
+    else:
+        cpath = os.path.join(settings.work_dir, 'config')
+        print('main config:   ', os.path.join(cpath, 'main.json'))
+        print('logging config:', os.path.join(cpath, 'logging.json'))
+        print('yandex config: ', os.path.join(cpath, 'yandex.json'))
+        print('vosk config:   ', os.path.join(cpath, 'vosk.json'))
+
+    sys.exit()
+
+
+if __name__ == "__main__":
+    parser = ArgumentParser(description=(
+        _('Подготавливает и проверяет настройки AsterSay.')))
+    parser.add_argument('-c', '--check', action='store_true', help=(
+        _('Проверка готовности работы.')))
+    parser.add_argument('-w', '--workdir', default=DEFAULT_WORK_DIR, help=(
+        _('Путь к рабочему каталогу AsterSay.')))
+    args = parser.parse_args()
+    run(**vars(args))
