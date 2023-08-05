@@ -1,0 +1,152 @@
+:root{
+    --bg-color: #32393F;
+    --bg-txt-color: #fff;
+}
+body{
+    margin: 0px;
+    padding: 0px;
+    font-family: Verdana, sans-serif;
+    font-weight: lighter;
+    color: #666;
+    font-size: 14px;
+}
+a{
+    color: var(--bg-color);
+    font-weight: bold;
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: underline;
+}
+td:hover span.tooltip{
+  display:block;
+}
+td{
+  position: relative;
+}
+.titleBar{
+    background-color: var(--bg-color);
+    color: var(--bg-txt-color);
+    padding:5px 5px 20px 5px;
+}
+.secHead{
+    background-color: var(--bg-color);
+    color: var(--bg-txt-color);
+    padding:12px 25px;
+    margin:10px 0px;
+    font-size: 16px;
+}
+.titleBar h1 {
+    font-size:25px;
+    font-weight: normal;
+    margin:5px;
+}
+.titleBar h2 {
+    font-size:18px;
+    font-weight: normal;
+    margin:5px;
+}
+.titleBar h3 {
+    font-size:14px;
+    font-weight: normal;
+    margin:5px;
+}
+.logoBar{
+    padding:0px 10px;
+    background: var(--bg-color);
+    text-align: center;
+}
+.logo{
+    height:50px;
+    padding:15px 25px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.sec{
+    padding:5px 10px;
+}
+.statBlock{
+    display: grid;
+    grid-gap: 15px;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, 186px);
+    width: 100%;
+}
+.stat{
+    display: inherit;
+    border: 1px solid #ccc;
+    height:110px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    cursor: default;
+}
+.keyValue tr td:first-child {
+    color: #FA582D;
+    padding: 0px 15px;
+}
+.statIcon{
+    width: 35px;
+    height: 35px;
+    margin: auto;
+}
+.statTitle{
+    display: block;
+    text-align: center;
+    font-size: 16px;
+}
+.statValue{
+    display: block;
+    text-align: center;
+    color: #000;
+    font-size: 20px;
+}
+.dataTable{
+    font-size: 12px;
+    cursor: default;
+    width: 100%;
+    padding: 5px 10px;
+}
+.dataTable thead tr {
+    background-color: #ddd;
+    color: #000;
+}
+.dataTable thead tr th {
+    padding: 10px 5px;
+    text-align: left;
+    font-weight: normal;
+}
+.dataTable tbody tr td {
+    padding: 7px 5px 7px 10px;
+    text-align: left;
+    font-weight: normal;
+    border-bottom: 1px solid #ddd;
+}
+.dataTable tbody tr:hover{
+    background-color: #eee;
+}
+.tooltip{
+    display:none;
+    position:absolute;
+    background: black;
+    color: white;
+    padding:16px;
+    top:40px;
+    left:25px;
+    width:250px;
+    z-index: 10;
+}
+.footer{
+    background: var(--bg-color);
+    margin-top: 20px;
+    padding:25px;
+}
+.footerLinks{
+    width: 100%;
+    text-align: center;
+}
+.footerLinks a{
+    color: var(--bg-txt-color);
+}
+.footerLogo{
+    width:100%;
+    text-align: center;
+}
