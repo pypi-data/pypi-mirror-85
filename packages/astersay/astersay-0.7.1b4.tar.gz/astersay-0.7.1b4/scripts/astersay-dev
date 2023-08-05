@@ -1,0 +1,79 @@
+#!/usr/bin/env python3
+#
+# Copyright (c) 2020, Grigoriy Kramarenko
+# All rights reserved.
+# This file is distributed under the same license as the current project.
+#
+"""
+Модуль для запуска с эмуляцией AGI Asterisk.
+"""
+import sys
+import time
+from argparse import ArgumentParser
+from gettext import gettext as _
+from threading import Thread
+
+from astersay.app import App
+from astersay.dummy import DummyAsterisk
+from astersay.conf import DEFAULT_WORK_DIR
+
+
+def interactive(server, app):
+    """Многократный запуск в интерактивном режиме."""
+    for name, value in app.agi.params.items():
+        print('%s: %s' % (name, value))
+    print(_('\nИНТЕРАКТИВНЫЙ РЕЖИМ.\n'))
+
+    def start_app():
+        # Предварительно запускаем запись голоса с микрофона.
+        server.start_record_audio()
+        app.stream = server.stream
+        print(_('Модель начата.'))
+        app.start()
+        server.stop_record_audio()
+        print(_('Модель завершена.'))
+
+    start_app()
+
+    while True:
+        if app.is_stopped:
+            break
+        # Чтобы сервер успел вывести в консоль остатки сообщений, делаем паузу.
+        time.sleep(2)
+        print(_('\n\nЗапустить модель повторно? (Да|нет): '), end='')
+        line = input().lower()
+        if line in ('', 'y', 'yes', _('да').lower()):
+            start_app()
+        elif line in ('n', 'no', _('нет').lower()):
+            app.stop()
+    print(_('\nИНТЕРАКТИВНЫЙ РЕЖИМ ОКОНЧЕН.\n'))
+    server.stop()
+
+
+def run(**kwargs):
+    server = DummyAsterisk(agi_request=__file__, **kwargs)
+    t = Thread(target=server.start, daemon=True)
+    t.start()
+    app = App(
+        stdin=server.stdout,
+        stdout=server.stdin,
+        stderr=sys.stdout)
+    try:
+        interactive(server, app)
+    except KeyboardInterrupt:
+        app.stop()
+        server.stop()
+    sys.exit()
+
+
+if __name__ == "__main__":
+    parser = ArgumentParser(description=_(
+        'Запуск CGI-программы AsterSay для отладки диалогов без подключения '
+        'к Asterisk.'))
+    parser.add_argument('-m', '--model', default='', help=_(
+        'Название модели или путь к файлу модели диалога. '
+        'Первый аргумент в AGI.'))
+    parser.add_argument('-w', '--workdir', default=DEFAULT_WORK_DIR, help=_(
+        'Путь к рабочему каталогу. Второй аргумент в AGI.'))
+    args = parser.parse_args()
+    run(**vars(args))
