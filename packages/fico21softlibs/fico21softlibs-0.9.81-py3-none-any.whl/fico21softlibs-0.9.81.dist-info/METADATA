@@ -1,0 +1,176 @@
+Metadata-Version: 2.1
+Name: fico21softlibs
+Version: 0.9.81
+Summary: This is a fico21soft's common libraries
+Home-page: UNKNOWN
+Author: Senna Kang
+Author-email: fico21soft@gmail.com
+License: UNKNOWN
+Keywords: common,library,fico21soft
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3
+Requires-Dist: pyodbc
+Requires-Dist: selenium
+Requires-Dist: pynput
+Requires-Dist: pywinauto
+
+## This is a fico21soft's common libraries...
+
+
+
+#### **install**
+
+```
+pip install fico21softlibs
+```
+
+
+
+#### import
+
+```
+from fico21softlibs.common import CommonLib as com
+```
+
+
+
+#### Static methods
+
+```
+restart()
+```
+
+```
+is_internet_connected()
+```
+
+```
+create_logger(logger_name, logger_level=logging.ERROR, filename="log")
+```
+
+```
+open_url(url)
+```
+
+```
+merge_list(list1, list2)
+```
+
+```
+os()
+```
+
+```
+db_connect(server, database, username, password)
+```
+
+```
+get_contacts(filename)
+```
+
+```
+read_template(filename)
+```
+
+```
+smtp_login(host, port, user_name, pwd)
+```
+
+```
+have_punctuation(str)
+```
+
+```
+punctuation_pos(str)
+```
+
+```
+remove_punctuation(src_str)
+```
+
+```
+get_webdriver()
+```
+
+```
+wd_wait(wd, timeout=10, presence_id='')
+```
+
+```
+send_keys(keys)
+```
+
+```
+wd_send_keys(wd, keys)
+```
+
+```
+get_clipboard_data()
+```
+
+```
+set_clipboard_data(data)
+```
+
+```
+paste_data(data)
+```
+
+```
+close_popup(wd)
+```
+
+```
+switch_to_popup(wd)
+```
+
+```
+create_new_tab(chromewebdriver, url)
+```
+
+```
+close_new_tab(wd)
+```
+
+```
+alert_close(ie)
+```
+
+```
+press_tab(wd, cnt)
+```
+
+```
+press_enter(wd, cnt)
+```
+
+```
+expand_shadow_element(wd, element)
+```
+
+```
+arrow_down(elem)
+```
+
+```
+click_image(ga, image, must=True, x_opset=0, y_optset=0, button='left', double_click=False)
+```
+
+
+
+#### Windows only
+
+```
+input_keys(data)
+```
+
+```
+paste_data(data)
+```
+
+```
+scroll(clicks=0, delta_x=0, delta_y=0, delay_between_ticks=0)
+```
+
