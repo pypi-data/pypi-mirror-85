@@ -1,0 +1,134 @@
+CHANGES
+=======
+
+v0.4.4
+------
+
+* Test with python 3.9 in CI, deal with some windows issues (#27)
+
+v0.4.3
+------
+
+* Remove defunct Travis CI (#24)
+
+4.3.3
+-----
+
+* update changelog
+* Update for recommended usage of CheckLinks (#22)
+* updated expected success count for anchor test
+* add an id to anchor fixture
+* can't use or in stdlib xpath
+* update anchor xpath to match any element by name or id
+
+v0.4.2
+------
+
+* Update changelog
+* update docstring
+* Add another guard
+* use headers directly in sleep
+
+v0.4.1
+------
+
+* Update changelog
+* Clean up metadata for dist generation
+* fix uncache logic
+* update threshold
+* improve retry logic and add python 3 classifier
+* Update README.md
+
+v0.4.0
+------
+
+* Add changelog
+* Add pypi badge
+* add badges
+* drop py27 support
+* remove allowable\_codes, attempt parsing backend-opts as json first
+* py27-compatible syntax
+* go ahead and handle/test remote #anchors
+* travis coverage tweaks
+* add handling (and test) of retries with cache
+* more py35/27 stringifying
+* more py27 syntax
+* whitespace
+* add test for custom cache location, stringify paths for <=3.5
+* reorganize cache tests, add memory backend test
+* hoist session to a singleton, ignore anchors for cache
+* some work on docs, etc
+* less-verbose protocol error handling
+* add requests-cache
+* use requests
+* Format release document
+* Add release notes
+
+0.3.4
+-----
+
+* add checking of self- and local html anchors
+* Add rst to supported files
+* Update metadata for JupyterLab
+
+0.3.2
+-----
+
+* Add note about pbr
+
+0.3.1
+-----
+
+* remove redundant check
+* Honor Retry-After header
+
+0.3.0
+-----
+
+* proper tests
+* move examples to examples dir
+* add travis config
+* Use warnings.warn
+* Efficiency tweak
+* Allow relative links to supported files
+* use standard name
+* Update example name
+* Add rst handling
+
+0.2.0
+-----
+
+* Use \`extensions\_str\` for warning output
+* Rename entrypoint
+* We don't need to explicitly load our plugin
+* Add \`--links-ext\` for which extensions to check
+* Add a markdown file that has workable links
+* Add a main entry point
+* Setup lint ignore
+
+0.1.0
+-----
+
+* use io.open
+* open all files as UTF-8
+* arg typo
+
+0.0.2
+-----
+
+* set user-agent on requests
+* resolve local URLs with escapes, hash, query correctly
+* TODO: test self
+* add some TODO
+
+0.0.1
+-----
+
+* universal wheel
+* a bit in the README
+* test notebook
+* add plugin
+* add requirements
+* ignore pbr files
+* init package
+* Initial commit
