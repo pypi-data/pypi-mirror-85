@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: perf-timer
+Version: 0.2.1
+Summary: An indispensable performance timer for Python
+Home-page: https://github.com/belm0/perf-timer
+Author: John Belmonte
+Author-email: john@neggie.net
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Framework :: Trio
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+
+
+PerfTimer is an instrumenting timer which provides an easy way to
+get insight into call count and average execution time of a function
+or piece of code during a real session of your program.
+
+Use cases include:
+  * check the effects of algorithm tweaks, new implementations, etc.
+  * confirm the performance of a library you are considering under
+  actual use by your app (as opposed to upstream's artificial
+  benchmarks)
+  * measure CPU overhead of networking or other asynchronous I/O
+  (currently supported: OS threads, Trio async/await)
+
+
