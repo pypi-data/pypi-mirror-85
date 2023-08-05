@@ -1,0 +1,347 @@
+<html><head><title>U.S. Bankruptcy Court, Washington Western LIVE Database V5.1</title>
+<link rel="stylesheet" type="text/css" href="/css/default.css"><script type="text/javascript" src="/lib/core.js"></script><script type="text/javascript">if (top!=self) {top.location.replace(location.href);}</script></head><body BGCOLOR=FFFFF0 TEXT=000000 onLoad='SetFocus()'><div class="noprint"><img id="cmecfLogo" class="cmecfLogo" src="/graphics/cmecf-logo.gif" alt="CM/ECF" title=""  /><img src="/graphics/menubar-help.gif" alt="?" title="" class="helpImage" id="helpImage" onClick="CMECF.MainMenu.showHelpPage(''); return false" onMouseOver="CMECF.MainMenu.helpImageOn()" onMouseOut="CMECF.MainMenu.helpImageOff()" /><div id="topmenu" class="yuimenubar"><div class="bd"><ul class="first-of-type"><li class="yuimenubaritem" style="width:9%"><a class="yuimenubaritemlabel" href='/cgi-bin/iquery.pl'>Q</u>uery</a></li><li class="yuimenubaritem" style="width:11%"><a class="yuimenubaritemlabel" href='/cgi-bin/DisplayMenu.pl?Reports&id=-1'>R</u>eports</a></li><li class="yuimenubaritem" style="width:11%"><a class="yuimenubaritemlabel" href='/cgi-bin/DisplayMenu.pl?Utilities&id=-1'>U</u>tilities</a></li><li class="yuimenubaritem" style="width:10%"><a class="yuimenubaritemlabel" href='/cgi-bin/login.pl?logout'>Logout</a></li><li class="yuimenubaritem" style="margin-left:1.7%"><a class="yuimenubaritemlabel" href="http://www.wawb.uscourts.gov/training-lessons" target="_blank">T</u>raining</a></li></ul></div></div></div><script type="text/javascript">if (navigator.appVersion.indexOf("MSIE")==-1){window.setTimeout( function(){ CMECF.MainMenu.renderSimpleMenu(); }, 0);}else{CMECF.util.Event.addListener(window, "load", CMECF.MainMenu.renderSimpleMenu);}</script><div id="cmecfMainContent"><input type="hidden" id="cmecfMainContentScroll" value="0"><SCRIPT LANGUAGE="JavaScript">
+		var IsForm = false;
+		var FirstField;
+		function SetFocus() {
+			if(IsForm) {
+				if(FirstField) {
+					var ind = FirstField.indexOf('document.',0);
+					if(ind == 0)
+					{
+						eval(FirstField);
+					}
+					else
+					{
+						var Code = "document.forms[0]."+FirstField+".focus();";
+						eval(Code);
+					}
+				} else {
+					var Cnt = 0;
+					while(document.forms[0].elements[Cnt] != null) {
+						if(document.forms[0].elements[Cnt].type != "hidden") {
+							document.forms[0].elements[Cnt].focus();
+							break;
+						}
+						Cnt += 1;
+					}
+				}
+			}
+			return(true);
+		}
+		</SCRIPT>
+<script type='text/JavaScript'>
+document.cookie="PDFHeaderReferer=226499087453385; path=/";
+</script>
+		<script type="text/javascript" src="/lib/widgits.js"></script>
+		<script>
+		var debtorPanel = null;
+
+		function create_panel(clid, message) {
+		    if (!debtorPanel) {
+		        debtorPanel = new CMECF.widget.Panel('debtorPanel', {
+				close:true,
+				draggable:false,
+				context:[clid, 'tl', 'br'],
+				width: "250" + "px",
+				height: "110" + "px",
+				constraintoviewport:true
+			});
+			debtorPanel.setHeader("Barred Debtor Information");
+			debtorPanel.setBody(message);
+			debtorPanel.body.style.height = "8em";
+			debtorPanel.render(document.body);
+		    } else {
+		        debtorPanel.show();
+		    }
+		}
+
+		function close_panel() {
+		    if (debtorPanel) {
+		        debtorPanel.destroy();
+		        debtorPanel = null;
+		    }
+		}
+		</script>
+		<TABLE width="100%" align=right BORDER=0 CELLSPACING=5><TR><TD ALIGN=right><h2> <FONT SIZE="3">727, MEANSU, ChamNote, AwaitClo, CostDue  </FONT></h2></TD></TR></TABLE><BR><BR><BR><CENTER><B><FONT SIZE="+1">U.S. Bankruptcy Court<BR>Western District of Washington (Seattle)<BR>Bankruptcy Petition #: 09-16841-MLB</FONT></B></CENTER><TABLE width="100%" BORDER=0 CELLSPACING=1><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><BR><I>Assigned to:</I>       Marc Barreca<BR>Chapter          7<BR>Involuntary<BR>Asset <br><div class="noprint"><A HREF='/cgi-bin/qryAscCases.pl?484565'>Show Associated Cases</A></div> <div class="noprint"><a href='/cgi-bin/SearchClaims.pl?caseid=484565;sc'>Claims Register</a></div><BR><BR>	</FONT></TD>
+	<TD VALIGN=top  WIDTH="50%" ALIGN=right><FONT SIZE="+0"><TABLE border=0 cellspacing=0 cellpadding=0 align=center><TR><td align="right" valign="top"><I>Date filed:</I></td><td align="left" valign="top">&nbsp;&nbsp;07/10/2009</td></TR><TR><td align="right" valign="top"><I>341 meeting:</I></td><td align="left" valign="top">&nbsp;&nbsp;10/28/2009</td></TR><TR><td align="right" valign="top"><I>Deadline for filing claims:</I></td><td align="left" valign="top">&nbsp;&nbsp;12/11/2009  </td></TR><TR><td align="right" valign="top"><I>Complaint Deadline:</I></td><td align="left" valign="top">&nbsp;&nbsp;03/12/2010  </td></TR></TABLE>	</FONT></TD>
+</TR>
+</TABLE><BR><FONT SIZE="5"><B></B>
+		</FONT><TABLE width="100%" BORDER=0 CELLSPACING=1><TR><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Debtor</B></I><BR><B>Michael R Mastro</B>
+<BR>143 Metate Place
+<BR>Palm Desert, CA 92260
+<BR>KING-WA
+<BR>SSN / ITIN: xxx-xx-2256<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Thomas N. Bucknell</B>
+<BR>Bucknell Stehlik Sato & Orth, LLP
+<BR>2003 Western Ave Ste 400
+<BR>Seattle, WA 98121
+<BR>206-587-0144
+<BR>Fax  : 206-587-0277
+<BR>Email:&nbsp;<a href='mailto:tbucknell@bsss-law.com'>tbucknell@bsss-law.com</a>
+<BR><I> TERMINATED: 09/09/2011</I><BR><BR><B>Lawrence R Cock</B>
+<BR>Cable Langenbach Kinerk & Bauer LLP
+<BR>1000 2nd Ave Ste 3500
+<BR>Seattle, WA 98104
+<BR>206-292-8800
+<BR>Email:&nbsp;<a href='mailto:lrc@cablelang.com'>lrc@cablelang.com</a><BR><BR><B>C James Frush</B>
+<BR>Cable Langenbach Kinerk & Bauer LLP
+<BR>1000 2nd Ave Ste 3500
+<BR>Seattle, WA 98104
+<BR>206-292-8800
+<BR>Email:&nbsp;<a href='mailto:jfrush@cablelang.com'>jfrush@cablelang.com</a><BR><BR><B>A. Grant Lingg</B>
+<BR>Forsberg & Umlauf PS
+<BR>900 4th Ave Ste 1700
+<BR>Seattle, WA 98164-1039
+<BR>206-689-8500
+<BR>Email:&nbsp;<a href='mailto:glingg@forsberg-umlauf.com'>glingg@forsberg-umlauf.com</a>
+<BR><I> TERMINATED: 05/29/2012</I><BR><BR><B>Edwin K Sato</B>
+<BR>Bucknell Stehlik Sato & Orth LLP
+<BR>2003 Western Ave Ste 400
+<BR>Seattle, WA 98121
+<BR>206-587-0144
+<BR>Fax  : 206-587-0277
+<BR>Email:&nbsp;<a href='mailto:esato@bsss-law.com'>esato@bsss-law.com</a>
+<BR><I> TERMINATED: 09/09/2011</I><BR><BR><B>Jerry N Stehlik</B>
+<BR>Bucknell Stehlik Sato & Orth, LLP
+<BR>2003 Western Ave Ste 400
+<BR>Seattle, WA 98101-3000
+<BR>206-587-0144
+<BR>Email:&nbsp;<a href='mailto:jstehlik@bsss-law.com'>jstehlik@bsss-law.com</a>
+<BR><I> TERMINATED: 09/09/2011</I><BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Petitioning Creditor</B></I><BR><B>Columbia State Bank</B>
+<BR>249 Winslow Way E
+<BR>Bainbridge Island, WA 98110<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Terrence J Donahue</B>
+<BR>Eisenhower & Carlson PLLC
+<BR>1201 Pacific Ave Ste 1200
+<BR>Tacoma, WA 98402
+<BR>253-572-4500
+<BR>Email:&nbsp;<a href='mailto:tdonahue@eisenhowerlaw.com'>tdonahue@eisenhowerlaw.com</a><BR><BR><B>John Ruhl</B>
+<BR>Eisenhower & Carlson PLLC
+<BR>601 Union St &#035;2830
+<BR>Seattle, WA 98101
+<BR>(206) 382-1830
+<BR><I> TERMINATED: 05/05/2010</I><BR><BR><B>John R. Ruhl</B>
+<BR>Ryan Swanson & Cleveland PLLC
+<BR>1201 3rd Ave Ste 3400
+<BR>Seattle, WA 98101
+<BR>206-654-2917
+<BR>Email:&nbsp;<a href='mailto:ruhl@ryanlaw.com'>ruhl@ryanlaw.com</a>
+<BR><I> TERMINATED: 05/06/2010</I><BR><BR><B>Ronald Trompeter</B>
+<BR>Eisenhower & Carlson PLLC
+<BR>1201 3rd Ave Ste 1650
+<BR>Seattle, WA 98101
+<BR>206-382-1830
+<BR><I> TERMINATED: 04/16/2010</I><BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Petitioning Creditor</B></I><BR><B>First Sound Bank</B>
+<BR>925 4th Ave Ste 2350
+<BR>Seattle, WA 98104<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Thomas L. Gilman</B>
+<BR>Barrett & Gilman
+<BR>1000 2nd Ave Ste 3500
+<BR>Seattle, WA 98104
+<BR>206-464-1900
+<BR>Email:&nbsp;<a href='mailto:tgilman@bgseattle.com'>tgilman@bgseattle.com</a>
+<BR><I> TERMINATED: 10/15/2014</I><BR><BR><B>Amy C. Hevly</B>
+<BR>Barrett & Gilman
+<BR>1000 2nd Ave Ste 3500
+<BR>Seattle, WA 98104
+<BR>206-464-1900
+<BR>Email:&nbsp;<a href='mailto:ahevly@bgseattle.com'>ahevly@bgseattle.com</a><BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Petitioning Creditor</B></I><BR><B>Venture Bank</B>
+<BR>1495 Wilmington Dr
+<BR>PO Box 970
+<BR>DuPont, WA 98327<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Terrence J Donahue</B>
+<BR>(See above for address)<BR><BR><B>John Ruhl</B>
+<BR>(See above for address)
+<BR><I> TERMINATED: 05/05/2010</I><BR><BR><B>Ronald Trompeter</B>
+<BR>(See above for address)
+<BR><I> TERMINATED: 04/16/2010</I><BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Trustee</B></I><BR><B>James Rigby</B>
+<BR>1302 - 24th Street W, &#035;342
+<BR>Billings, MT 59102
+<BR>206-755-7600<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Hunter M Abell</B>
+<BR>Williams Kastner & Gibbs PLLC
+<BR>601 Union St Ste 4100
+<BR>Seattle, WA 98101
+<BR>206-628-6600
+<BR>Email:&nbsp;<a href='mailto:habell@williamskastner.com'>habell@williamskastner.com</a>
+<BR><I>SELF- TERMINATED: 09/21/2015</I><BR><BR><B>Robert M Aronson</B>
+<BR>Law Office of Robert M Aronson
+<BR>444 S Flower St &#035;1700
+<BR>Los Angeles, CA 90071-2918
+<BR>213-688-8945<BR><BR><B>Eugene Becker</B>
+<BR>Becker Law
+<BR>224 West 35th St &#035;502
+<BR>New York, NY 10001<BR><BR><B>Becker Law</B>
+<BR>224 West 35th St &#035;502
+<BR>New York, NY 10001<BR><BR><B>Bojic Pyfrom and Associates</B>
+<BR>35900 Bob Hope Dr &#035;215
+<BR>Racnho Mirage, CA 92270<BR><BR><B>Manish Borde</B>
+<BR>Williams Kastner
+<BR>601 Union St Ste 4100
+<BR>Seattle, WA 98101
+<BR>206-628-6600
+<BR>Email:&nbsp;<a href='mailto:mborde@williamskastner.com'>mborde@williamskastner.com</a><BR><BR><B>Paul R Brown</B>
+<BR>Karr Tuttle Campbell
+<BR>701 5th Ave Ste 3300
+<BR>Seattle, WA 98104
+<BR>206-223-1313
+<BR>Email:&nbsp;<a href='mailto:pbrown@karrtuttle.com'>pbrown@karrtuttle.com</a><BR><BR><B>Gayle E Bush</B>
+<BR>Bush Kornfeld LLP
+<BR>601 Union St Ste 5000
+<BR>Seattle, WA 98101
+<BR>206-292-2110
+<BR>Email:&nbsp;<a href='mailto:gbush@bskd.com'>gbush@bskd.com</a>
+<BR><I> TERMINATED: 09/26/2016</I><BR><BR><B>Bush Kornfeld LLP</B>
+<BR>601 Union St Ste 5000
+<BR>Seattle, WA 98101
+<BR>206-292-2110<BR><BR><B>Michael M Feinberg</B>
+<BR>Karr Tuttle Campbell
+<BR>701 5th Ave Ste 3300
+<BR>Seattle, WA 98104
+<BR>206-223-1313
+<BR>Email:&nbsp;<a href='mailto:mfeinberg@karrtuttle.com'>mfeinberg@karrtuttle.com</a><BR><BR><B>David A Gebben</B>
+<BR>Attorney at Law
+<BR>1700 7th Ave Ste 2100
+<BR>Seattle, WA 98101
+<BR>206-357-8456
+<BR>Email:&nbsp;<a href='mailto:david.gebben@gmail.com'>david.gebben@gmail.com</a><BR><BR><B>Spencer Hall</B>
+<BR>Spencer Hall & Associates PLLC
+<BR>1200 5th Ave Ste 1414
+<BR>Seattle, WA 98101
+<BR>206-292-5900
+<BR>Email:&nbsp;<a href='mailto:shall@spencerhall-assoc.com'>shall@spencerhall-assoc.com</a><BR><BR><B>Hall Zanzig Claflin McEachern PLLC</B>
+<BR>1200 5th Ave Ste 1414
+<BR>Seattle, WA 98101<BR><BR><B>Scott B Henrie</B>
+<BR>William Kastner & Gibbs PLLC
+<BR>601 Union St Ste 4100
+<BR>PO Box 21926
+<BR>Seattle, WA 98111-3926
+<BR>206-628-6600
+<BR>Email:&nbsp;<a href='mailto:shenrie@williamskastner.com'>shenrie@williamskastner.com</a><BR><BR><B>Horwood Marcus Berk Chartered</B>
+<BR>500 West Madison &#035;3700
+<BR>Chicago, IL 60661
+<BR>(312) 606-3200<BR><BR><B>Karr Tuttle Campbell PS</B>
+<BR>701 5th Ave Ste 3300
+<BR>Seattle, WA 98104
+<BR>(206)223-1313<BR><BR><B>Karr Tuttle Campbell PS, Becker Law, and Horwood Marcus Berk Chartered</B>
+<BR>701 Fifth Ave &#035;3300
+<BR>Seattle, WA 98104
+<BR>206-223-1313<BR><BR><B>Law Office of Robert M Aronson</B>
+<BR>444 S Flower St &#035;1700
+<BR>Los Angeles, CA 90071-2918<BR><BR><B>Janet D. McEachern</B>
+<BR>Hall Zanzig Claflin McEachern PLLC
+<BR>1200 5th Ave Ste 1414
+<BR>Seattle, WA 98101
+<BR>206-292-5900
+<BR>Email:&nbsp;<a href='mailto:jmceachern@hallzan.com'>jmceachern@hallzan.com</a>
+<BR><I>SELF- TERMINATED: 01/27/2016</I><BR><BR><B>Bridget G Morgan</B>
+<BR>Bush Strout & Kornfeld LLP
+<BR>601 Union St Ste 5000
+<BR>Seattle, WA 98101
+<BR>206-292-2110
+<BR>Email:&nbsp;<a href='mailto:bmorgan@bskd.com'>bmorgan@bskd.com</a><BR><BR><B>Shawn B. Rediger</B>
+<BR>Williams Kastner & Gibbs PLLC
+<BR>601 Union St Ste 4100
+<BR>PO Box 21926
+<BR>Seattle, WA 98111
+<BR>206-628-6600
+<BR>Email:&nbsp;<a href='mailto:srediger@wkg.com'>srediger@wkg.com</a><BR><BR><B>Eric S Rein</B>
+<BR>Horwood Marcus & Berk Chartered
+<BR>500 West Madison &#035;3700
+<BR>Chicago, IL 60661
+<BR>312-606-3200
+<BR>Email:&nbsp;<a href='mailto:rrein@hmblaw.com'>rrein@hmblaw.com</a><BR><BR><B>Katriana L Samiljan</B>
+<BR>Bush Kornfeld LLP
+<BR>601 Union St Ste 5000
+<BR>Seattle, WA 98101
+<BR>206-292-2110
+<BR>Email:&nbsp;<a href='mailto:ksamiljan@bskd.com'>ksamiljan@bskd.com</a><BR><BR><B>Arthur A Shwab</B>
+<BR>Bush Kornfeld LLP
+<BR>601 Union St Ste 5000
+<BR>Seattle, WA 98133
+<BR>206-292-2110
+<BR>Email:&nbsp;<a href='mailto:ashwab@bskd.com'>ashwab@bskd.com</a><BR><BR><B>Evan D Smiley</B>
+<BR>Smiley Wang-Ekvall
+<BR>3200 Park Center Dr &#035;250
+<BR>Costa Mesa, CA 92626
+<BR>(714) 445-1000<BR><BR><B>Smiley Wang-Ekvall LLP</B>
+<BR>3200 Park Center Dr &#035;250
+<BR>Costa Mesa, CA 92626
+<BR>(714) 445-1000<BR><BR><B>Spencer Hall & Associates PLLC</B>
+<BR>1200 5th Ave Ste 1414
+<BR>Seattle, WA 98101
+<BR>206-292-5900<BR><BR><B>Christine M Tobin-Presser</B>
+<BR>Bush Kornfeld LLP
+<BR>601 Union St Ste 5000
+<BR>Seattle, WA 98101
+<BR>206-292-2110
+<BR>Email:&nbsp;<a href='mailto:ctobin@bskd.com'>ctobin@bskd.com</a><BR><BR><B>Williams Kastner & Gibbs PLLC</B>
+<BR>601 Union St Ste 4100
+<BR>Seattle, WA 98101
+<BR>206-628-6600<BR><BR><B>Aimee S Willig</B>
+<BR>Bush Kornfeld LLP
+<BR>601 Union St Ste 5000
+<BR>Seattle, WA 98101
+<BR>206- 292-2110
+<BR>Email:&nbsp;<a href='mailto:awillig@bskd.com'>awillig@bskd.com</a><BR><BR><B>Dean G von Kallenbach</B>
+<BR>Williams Kastner & Gibbs, PLLC
+<BR>601 Union St.
+<BR>Suite 4100
+<BR>Seattle, WA 98101
+<BR>206-628-6618
+<BR>Email:&nbsp;<a href='mailto:dvonkallenbach@williamskastner.com'>dvonkallenbach@williamskastner.com</a><BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>US Trustee</B></I><BR><B>United States Trustee</B>
+<BR>700 Stewart St Ste 5103
+<BR>Seattle, WA 98101
+<BR>(206) 553-2000<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Thomas A Buford</B>
+<BR>700 Stewart St Ste 5103
+<BR>Seattle, WA 98101
+<BR>206-553-2000 Ext 229
+<BR>Email:&nbsp;<a href='mailto:Thomas.A.Buford@usdoj.gov'>Thomas.A.Buford@usdoj.gov</a><BR><BR><B>Martin L. Smith</B>
+<BR>700 Stewart St Ste 5103
+<BR>Seattle, WA 98101
+<BR>206-553-2000
+<BR>Email:&nbsp;<a href='mailto:martin.l.smith@usdoj.gov'>martin.l.smith@usdoj.gov</a>
+<BR><I> TERMINATED: 08/02/2011</I><BR><BR></font></TD></TR><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>US Trustee</B></I><BR><B>Martin Smith</B>	</FONT></TD>
+	<TD VALIGN=top  WIDTH="20%" ALIGN=right><FONT SIZE="+0">&nbsp;	</FONT></TD>
+	<TD VALIGN=top  WIDTH="40%"><FONT SIZE="+0">&nbsp;	</FONT></TD>
+</TR></TABLE><BR><TABLE BORDER=1 CELLPADDING=10 CELLSPACING=0><TR><TH width='94' nowrap>Filing Date</TH>
+<TH colspan=2 align='center'>#</TH><TH align=center>Docket Text</TH></TR>
+<TR><TD width="94" nowrap valign=bottom>02/16/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?484565,4048"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/196014671440' onContextMenu='this.href="https://ecf.wawb.uscourts.gov/doc1/196014671440"'>950</a></nobr></TD><TD valign=bottom>  Declaration <i>of Colleen Adams in Support of Trustee's Ex Parte Application to Employ Listing Agent</i> (Related document(s)<a href='https://ecf.wawb.uscourts.gov/doc1/196014671422'>949</a> Application to Employ)... Filed by Katriana L Samiljan on behalf of James Rigby. (Samiljan, Katriana) (Entered: 02/16/2010 at 12:39:12)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/16/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?484565,4046"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/196014671422' onContextMenu='this.href="https://ecf.wawb.uscourts.gov/doc1/196014671422"'>949</a></nobr></TD><TD valign=bottom>  Ex Parte Application to Employ Remax Unlimited as Listing Agent <i></i>.. Filed by Katriana L Samiljan on behalf of James Rigby (Samiljan, Katriana) (Entered: 02/16/2010 at 12:37:44)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/16/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?484565,4039"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/196014669588' onContextMenu='this.href="https://ecf.wawb.uscourts.gov/doc1/196014669588"'>948</a></nobr></TD><TD valign=bottom>  Proof of Service <i></i>. Filed by Jerome Shulkin on behalf of Italian Club Inc. (Related document(s)<a href='https://ecf.wawb.uscourts.gov/doc1/196014560625'>913</a> Notice of Appeal, <a href='https://ecf.wawb.uscourts.gov/doc1/196014656331'>946</a> Designation of Record on Appeal, <a href='https://ecf.wawb.uscourts.gov/doc1/196014656630'>947</a> Generic Notice). (Shulkin, Jerome) (Entered: 02/16/2010 at 09:37:11)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/12/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?484565,4031"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/196014656630' onContextMenu='this.href="https://ecf.wawb.uscourts.gov/doc1/196014656630"'>947</a></nobr></TD><TD valign=bottom>  Notice of <i>Appellants Regarding Hearing Transcript</i> (Related document(s)<a href='https://ecf.wawb.uscourts.gov/doc1/196014560625'>913</a> Notice of Appeal, <a href='https://ecf.wawb.uscourts.gov/doc1/196014656331'>946</a> Designation of Record on Appeal). Filed by Jerome Shulkin on behalf of Anthony T Petrarca. (Shulkin, Jerome) (Entered: 02/12/2010 at 14:18:35)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/12/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?484565,4028"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/196014656331' onContextMenu='this.href="https://ecf.wawb.uscourts.gov/doc1/196014656331"'>946</a></nobr></TD><TD valign=bottom>  Appellant's Designation of Contents For Inclusion in Record On Appeal <i>and Statement of Isuues</i> BAP Appeal No: WW-10-1037 (Related document(s)<a href='https://ecf.wawb.uscourts.gov/doc1/196014560625'>913</a> Notice of Appeal). Filed by Jerome Shulkin on behalf of Italian Club Inc. (Shulkin, Jerome) Modified on 2/16/2010 to add text (USBC Staff - Brazil, Victoria). Modified on 3/1/2010 to edit text (USBC Staff - Brazil, Victoria). (Entered: 02/12/2010 at 14:00:19)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/11/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?484565,4012"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/196014644275' onContextMenu='this.href="https://ecf.wawb.uscourts.gov/doc1/196014644275"'>944</a></nobr></TD><TD valign=bottom>  Proof of Service <i>of Notice of Hearing on Trustee's Motion for Sale of Real Property Free and Clear of Liens, Claims and Encumbrances and Underlying Pleadings (Re: 129xx Possession Lane, Edmonds, WA 98026)</i>. Filed by Katriana L Samiljan on behalf of James Rigby. (Related document(s)<a href='https://ecf.wawb.uscourts.gov/doc1/196014600921'>935</a> Motion to Sell, <a href='https://ecf.wawb.uscourts.gov/doc1/196014600983'>936</a> Declaration, <a href='https://ecf.wawb.uscourts.gov/doc1/196014601298'>937</a> Hearing Notice). (Attachments: <a href='https://ecf.wawb.uscourts.gov/doc1/196114644276'>1</a> special request matrix) (Samiljan, Katriana) (Entered: 02/11/2010 at 12:42:21)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/11/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?484565,4008"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/196014641879' onContextMenu='this.href="https://ecf.wawb.uscourts.gov/doc1/196014641879"'>943</a></nobr></TD><TD valign=bottom>  Trustee's Report RE: <i>Sale of Real Property (8240 - 126th Avenue N.E., #1E, Kirkland, WA)</i>. (Related document(s)<a href='https://ecf.wawb.uscourts.gov/doc1/196014198962'>722</a> Motion to Sell, <a href='https://ecf.wawb.uscourts.gov/doc1/196014379566'>822</a> Order Re Application to Sell). Filed by James Rigby on behalf of James Rigby. (Rigby, James) (Entered: 02/11/2010 at 09:03:20)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/10/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?484565,4025"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/196014655402' onContextMenu='this.href="https://ecf.wawb.uscourts.gov/doc1/196014655402"'>945</a></nobr></TD><TD valign=bottom>  Change of Address Filed by Thomas W Kenyon . (USBC Staff - Brazil, Victoria) (Entered: 02/12/2010 at 12:47:31)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/07/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?484565,4003"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/196014611430' onContextMenu='this.href="https://ecf.wawb.uscourts.gov/doc1/196014611430"'>942</a></nobr></TD><TD valign=bottom>  BNC Certificate of Notice (Related document(s)<a href='https://ecf.wawb.uscourts.gov/doc1/196014602344'>938</a> Miscellaneous Mailing of PDF Document by the BNC). Service Date 02/07/2010. (Admin.) (Entered: 02/07/2010 at 21:25:55)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/05/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?484565,4000"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/196014606568' onContextMenu='this.href="https://ecf.wawb.uscourts.gov/doc1/196014606568"'>941</a></nobr></TD><TD valign=bottom>  ORDER Extending Time to Assume or Reject (1) Executory Contracts, (2) Unexpired Leases of Residential Property and Personal Property, and (3) Unexpired Leases of Nonresidential Real Property Where Debtor is Lessor (Related document(s)<a href='https://ecf.wawb.uscourts.gov/doc1/196014388550'>828</a> Motion to Extend Time). (USBC Staff - Brazil, Victoria) (Entered: 02/05/2010 at 15:50:07)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/05/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?484565,3996"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/196014603268' onContextMenu='this.href="https://ecf.wawb.uscourts.gov/doc1/196014603268"'>940</a></nobr></TD><TD valign=bottom>  Received UNSIGNED Order. Forwarded to Chambers for Judge's Signature <i>--Order Extending Time to Assume or Reject (1) Executory Contracts, (2) Unexpired Leases of Residential Real Property and Personal Property, and (3) Unexpired Leases of Nonresidential Real Property Where Debtor is Lessor</i>. Filed by Aimee S. Willig on behalf of James Rigby. (Related document(s)<a href='https://ecf.wawb.uscourts.gov/doc1/196014388550'>828</a> Motion to Extend Time, <a href='https://ecf.wawb.uscourts.gov/doc1/196014603246'>939</a> Declaration of No Objection). (Willig, Aimee) (Entered: 02/05/2010 at 12:31:12)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/05/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?484565,3993"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/196014603246' onContextMenu='this.href="https://ecf.wawb.uscourts.gov/doc1/196014603246"'>939</a></nobr></TD><TD valign=bottom>  Declaration of No Objection <i>on Trustee's Motion to Assume or Reject (1) Executory Contracts, (2) Unexpired Leases of Residential Real Property and Personal Property, and (3) Unexpired Leases of Nonresidential Real Property Where Debtor is Lessor</i> (Related document(s)<a href='https://ecf.wawb.uscourts.gov/doc1/196014388550'>828</a> Motion to Extend Time)... Filed by Aimee S. Willig on behalf of James Rigby. (Willig, Aimee) (Entered: 02/05/2010 at 12:27:54)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/05/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?484565,3989"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/196014602344' onContextMenu='this.href="https://ecf.wawb.uscourts.gov/doc1/196014602344"'>938</a></nobr></TD><TD valign=bottom>  Sent to BNC for Mailing (Related document(s)<a href='https://ecf.wawb.uscourts.gov/doc1/196014600921'>935</a> Motion to Sell, <a href='https://ecf.wawb.uscourts.gov/doc1/196014601298'>937</a> Hearing Notice). (USBC Staff - Brazil, Victoria) (Entered: 02/05/2010 at 11:09:32)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/05/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?484565,3986"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/196014601298' onContextMenu='this.href="https://ecf.wawb.uscourts.gov/doc1/196014601298"'>937</a></nobr></TD><TD valign=bottom>  Notice of Hearing <i>on Trustee's Motion for Sale of Real Property Free and Clear of Liens, Claims and Encumbrances re 129xx Possession Lane, Edmonds, WA 98026</i> (Related document(s)<a href='https://ecf.wawb.uscourts.gov/doc1/196014600921'>935</a> Motion to Sell). Filed by Katriana L Samiljan on behalf of James Rigby. (Samiljan, Katriana) (Entered: 02/05/2010 at 09:51:08)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/05/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?484565,3983"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/196014600983' onContextMenu='this.href="https://ecf.wawb.uscourts.gov/doc1/196014600983"'>936</a></nobr></TD><TD valign=bottom>  Declaration <i>of James F. Rigby, Jr. in Support of Trustee's Motion for Sale of Real Property Free and Clear of Liens, Claims and Encumbrances</i> (Related document(s)<a href='https://ecf.wawb.uscourts.gov/doc1/196014600921'>935</a> Motion to Sell)... Filed by Katriana L Samiljan on behalf of James Rigby. (Samiljan, Katriana) (Entered: 02/05/2010 at 09:36:04)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/05/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?484565,3981"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/196014600920' onContextMenu='this.href="https://ecf.wawb.uscourts.gov/doc1/196014600920"'>935</a></nobr></TD><TD valign=bottom>  Trustee's Motion to Sell <I>Real Property Free and Clear of Liens, Claims and Encumbrances re 129xx Possession Lane, Edmonds, WA 98026</I>. <i></i> with Notice of Hearing... Filed by Katriana L Samiljan on behalf of James Rigby The Hearing date is set for 3/5/2010 at 11:00 AM at Judge Steiner's Courtroom, U.S. Courthouse, Room 8206. Response due by 2/26/2010. (Attachments: <a href='https://ecf.wawb.uscourts.gov/doc1/196114600921'>1</a> Proposed Order) (Samiljan, Katriana) (Entered: 02/05/2010 at 09:32:54)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/04/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?484565,3976"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/196014594503' onContextMenu='this.href="https://ecf.wawb.uscourts.gov/doc1/196014594503"'>934</a></nobr></TD><TD valign=bottom>  Proof of Service <i>of Notice of Hearing on Trustee's Motion to Approve Compromise Regarding Rents and Section 506(c) Claims and Underlying Pleadings</i>. Filed by Katriana L Samiljan on behalf of James Rigby. (Related document(s)<a href='https://ecf.wawb.uscourts.gov/doc1/196014583393'>926</a> Motion, <a href='https://ecf.wawb.uscourts.gov/doc1/196014583410'>927</a> Declaration, <a href='https://ecf.wawb.uscourts.gov/doc1/196014583431'>928</a> Hearing Notice). (Attachments: <a href='https://ecf.wawb.uscourts.gov/doc1/196114594504'>1</a> matrix<a href='https://ecf.wawb.uscourts.gov/doc1/196114594505'>2</a> special request matrix) (Samiljan, Katriana) (Entered: 02/04/2010 at 14:40:24)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/04/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?484565,3972"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/196014592359' onContextMenu='this.href="https://ecf.wawb.uscourts.gov/doc1/196014592359"'>933</a></nobr></TD><TD valign=bottom>  Proof of Service <i> of Darla Marshall RE: Motion for Relief from Stay of Plaza Bank</i>. Filed by John T Mellen on behalf of Plaza Bank. (Related document(s)<a href='https://ecf.wawb.uscourts.gov/doc1/196014590482'>931</a> Motion for Relief from Stay, <a href='https://ecf.wawb.uscourts.gov/doc1/196014590613'>932</a> Declaration). (Mellen, John) (Entered: 02/04/2010 at 12:13:58)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/04/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?484565,3969"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/196014590611' onContextMenu='this.href="https://ecf.wawb.uscourts.gov/doc1/196014590611"'>932</a></nobr></TD><TD valign=bottom>  Declaration <i>of Carlos Guangorena in Support of Plaza Bank's Motion for RFS</i> (Related document(s)<a href='https://ecf.wawb.uscourts.gov/doc1/196014590482'>931</a> Motion for Relief from Stay)... Filed by John T Mellen on behalf of Plaza Bank. (Attachments: <a href='https://ecf.wawb.uscourts.gov/doc1/196114590612'>1</a> Exhibit A-H<a href='https://ecf.wawb.uscourts.gov/doc1/196114590613'>2</a> Exhibit I - L) (Mellen, John) (Entered: 02/04/2010 at 10:51:27)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/04/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?484565,3965"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/196014590481' onContextMenu='this.href="https://ecf.wawb.uscourts.gov/doc1/196014590481"'>931</a></nobr></TD><TD valign=bottom>  Motion for Relief from Stay, <I>304-06 East Thomas Street, Seattle, WA 98102</I> with Notice of Hearing... Filed by John T Mellen on behalf of Plaza Bank The Hearing date is set for 3/5/2010 at 11:00 AM at Judge Steiner's Courtroom, U.S. Courthouse, Room 8206. Response due by 2/26/2010. (Attachments: <a href='https://ecf.wawb.uscourts.gov/doc1/196114590482'>1</a> Proposed Order Proposed Order Granting RFS) (Mellen, John) (Entered: 02/04/2010 at 10:44:41)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/04/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?484565,3960"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/196014587931' onContextMenu='this.href="https://ecf.wawb.uscourts.gov/doc1/196014587931"'>930</a></nobr></TD><TD valign=bottom>  Ex Parte ORDER Granting Motion to Shorten Time for Hearing on Trustee's Motion to Approve Compromise Regarding Rents and Section 506(C) Claims (Related Doc # <a href='https://ecf.wawb.uscourts.gov/doc1/196014583297'>924</a>) Signed on 2/4/2010. The Hearing date is set for 2/26/2010 at 11:00 AM at Judge Steiner's Courtroom, U.S. Courthouse, Room 8206. Response due by 2/19/2010. (USBC Staff - Brazil, Victoria) (Entered: 02/04/2010 at 06:36:02)</TD></TR>
+</TABLE><BR><BR><BR><BR>
+			<script type='text/javascript'>
+				document.cookie = 'RECENT_CASES=' + "484565^495235;";
+			</script>
+		<HR><CENTER><TABLE BORDER=1 BGCOLOR=white width="400"><TR><TH COLSPAN=4><FONT SIZE=+1 COLOR=DARKRED>PACER Service Center </FONT></TH></TR><TR><TH COLSPAN=4><FONT COLOR=DARKBLUE>Transaction Receipt </FONT></TH></TR><TR></TR><TR></TR><TR><TD COLSPAN=4 ALIGN=CENTER><FONT SIZE=-1 COLOR=DARKBLUE>06/30/2017 11:30:52</FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> PACER Login: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> [ LOGIN REMOVED ] </FONT></TH></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Client Code: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE>  </FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Description: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Docket Report </FONT></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Search Criteria: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 09-16841-MLB Fil or Ent: filed   Doc From: 930 Doc To: 950 Term: included Links : included Headers: included  Format: html  </FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Billable Pages: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 6 </FONT></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Cost: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 0.60 </FONT></TD></TR><TR></TR><TR></TR></TABLE></CENTER></HR><BR></BR></div></body></html>

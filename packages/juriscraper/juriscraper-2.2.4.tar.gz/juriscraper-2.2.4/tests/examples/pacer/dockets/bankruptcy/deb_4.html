@@ -1,0 +1,230 @@
+<html><head><title>Internal CM/ECF Live Database</title>
+<link rel="stylesheet" type="text/css" href="/css/default.css"><script type="text/javascript" src="/lib/core.js"></script><script type="text/javascript">if (top!=self) {top.location.replace(location.href);}</script></head><body BGCOLOR=FFFFF0 TEXT=000000 onLoad='SetFocus()'><div class="noprint"><img id="cmecfLogo" class="cmecfLogo" src="/graphics/cmecf-logo.gif" alt="CM/ECF" title=""  /><img src="/graphics/menubar-help.gif" alt="?" title="" class="helpImage" id="helpImage" onClick="CMECF.MainMenu.showHelpPage(''); return false" onMouseOver="CMECF.MainMenu.helpImageOn()" onMouseOut="CMECF.MainMenu.helpImageOff()" /><div id="topmenu" class="yuimenubar"><div class="bd"><ul class="first-of-type"><li class="yuimenubaritem" style="width:9%"><a class="yuimenubaritemlabel" href='/cgi-bin/iquery.pl'>Q</u>uery</a></li><li class="yuimenubaritem" style="width:11%"><a class="yuimenubaritemlabel" href='/cgi-bin/DisplayMenu.pl?Reports&id=-1'>R</u>eports</a></li><li class="yuimenubaritem" style="width:11%"><a class="yuimenubaritemlabel" href='/cgi-bin/DisplayMenu.pl?Utilities&id=-1'>U</u>tilities</a></li><li class="yuimenubaritem" style="width:10%"><a class="yuimenubaritemlabel" href='/cgi-bin/login.pl?logout'>Logout</a></li></ul></div></div></div><script type="text/javascript">if (navigator.appVersion.indexOf("MSIE")==-1){window.setTimeout( function(){ CMECF.MainMenu.renderSimpleMenu(); }, 0);}else{CMECF.util.Event.addListener(window, "load", CMECF.MainMenu.renderSimpleMenu);}</script><div id="cmecfMainContent"><input type="hidden" id="cmecfMainContentScroll" value="0"><SCRIPT LANGUAGE="JavaScript">
+		var IsForm = false;
+		var FirstField;
+		function SetFocus() {
+			if(IsForm) {
+				if(FirstField) {
+					var ind = FirstField.indexOf('document.',0);
+					if(ind == 0)
+					{
+						eval(FirstField);
+					}
+					else
+					{
+						var Code = "document.forms[0]."+FirstField+".focus();";
+						eval(Code);
+					}
+				} else {
+					var Cnt = 0;
+					while(document.forms[0].elements[Cnt] != null) {
+						if(document.forms[0].elements[Cnt].type != "hidden") {
+							document.forms[0].elements[Cnt].focus();
+							break;
+						}
+						Cnt += 1;
+					}
+				}
+			}
+			return(true);
+		}
+		</SCRIPT>
+<script type='text/JavaScript'>
+document.cookie="PDFHeaderReferer=104411451795475; path=/";
+</script>
+		<script type="text/javascript" src="/lib/widgits.js"></script>
+		<script>
+		var debtorPanel = null;
+
+		function create_panel(clid, message) {
+		    if (!debtorPanel) {
+		        debtorPanel = new CMECF.widget.Panel('debtorPanel', {
+				close:true,
+				draggable:false,
+				context:[clid, 'tl', 'br'],
+				width: "250" + "px",
+				height: "110" + "px",
+				constraintoviewport:true
+			});
+			debtorPanel.setHeader("Barred Debtor Information");
+			debtorPanel.setBody(message);
+			debtorPanel.body.style.height = "8em";
+			debtorPanel.render(document.body);
+		    } else {
+		        debtorPanel.show();
+		    }
+		}
+
+		function close_panel() {
+		    if (debtorPanel) {
+		        debtorPanel.destroy();
+		        debtorPanel = null;
+		    }
+		}
+		</script>
+		<TABLE width="100%" align=right BORDER=0 CELLSPACING=5><TR><TD ALIGN=right><h2> <FONT SIZE="3">LEAD, CLMSAGNT, MEGA, CONFIRMED</FONT></h2></TD></TR></TABLE><BR><BR><BR><CENTER><B><FONT SIZE="+1">U.S. Bankruptcy Court<BR>District of Delaware (Delaware)<BR>Bankruptcy Petition #: 08-12606-BLS</FONT></B></CENTER><TABLE width="100%" BORDER=0 CELLSPACING=1><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><BR><I>Assigned to:</I>       Brendan Linehan Shannon<BR>Chapter          11<BR>Voluntary<BR>Asset <br><div class="noprint"><A HREF='/cgi-bin/qryAscCases.pl?114563'>Show Associated Cases</A></div> <div class="noprint"><a href='/cgi-bin/SearchClaims.pl?caseid=114563;sc'>Claims Register</a></div><BR><BR>	</FONT></TD>
+	<TD VALIGN=top  WIDTH="50%" ALIGN=right><FONT SIZE="+0"><TABLE border=0 cellspacing=0 cellpadding=0 align=center><TR><td align="right" valign="top"><I>Date filed:</I></td><td align="left" valign="top">&nbsp;&nbsp;10/31/2008</td></TR><TR><td align="right" valign="top"><I>Plan confirmed:</I></td><td align="left" valign="top">&nbsp;&nbsp;10/23/2009</td></TR></TABLE>	</FONT></TD>
+</TR>
+</TABLE><BR><FONT SIZE="5"><B></B>
+		</FONT><TABLE width="100%" BORDER=0 CELLSPACING=1><TR><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Debtor</B></I><BR><B>VeraSun Energy Corporation, et al.,  <I>Reorganized Debtor</I></B>
+<BR>110 North Minnesota Avenue
+<BR>Suite 300
+<BR>Sioux Falls, SD 57104
+<BR>OUTSIDE HOME STATE
+<BR>Tax ID / EIN: 20-3430241     <BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Jason R. Alderson</B>
+<BR>Kelley Drye & Warren LLP
+<BR>101 Park Avenue
+<BR>New York, NY 10178
+<BR>212-808-7800
+<BR>Email:&nbsp;<a href='mailto:jalderson@kelleydrye.com'>jalderson@kelleydrye.com</a><BR><BR><B>Brian L. Arban</B>
+<BR>The Rosner Law Group LLC
+<BR>824 Market Street
+<BR>Suite 810
+<BR>Wilmington, DE 19801
+<BR>302-295-5040
+<BR>Email:&nbsp;<a href='mailto:arban@teamrosner.com'>arban@teamrosner.com</a><BR><BR><B>Mark S. Chehi</B>
+<BR>Skadden Arps Slate Meagher & Flom LLP
+<BR>One Rodney Square, P.O. Box 636
+<BR>Wilmington, DE 19899-0636<BR>usa
+<BR>302 651-3000
+<BR>Fax  : 302-651-3160
+<BR>Email:&nbsp;<a href='mailto:mark.chehi@skadden.com'>mark.chehi@skadden.com</a><BR><BR><B>Megan E. Cleghorn</B>
+<BR>Email:&nbsp;<a href='mailto:megan.cleghorn@skadden.com'>megan.cleghorn@skadden.com</a><BR><BR><B>Jason A. Gibson</B>
+<BR>The Rosner Law Group LLC
+<BR>824 Market Street, Suite 810
+<BR>Wilmington, DE 19801
+<BR>302-777-1111
+<BR>Fax  : 302-319-6318
+<BR>Email:&nbsp;<a href='mailto:gibson@teamrosner.com'>gibson@teamrosner.com</a><BR><BR><B>Julia Bettina Klein</B>
+<BR>Klein LLC
+<BR>919 N. Market Street
+<BR>Suite 600
+<BR>Wilmington, DE 19801
+<BR> (302) 438-0456
+<BR>Email:&nbsp;<a href='mailto:klein@kleinllc.com'>klein@kleinllc.com</a><BR><BR><B>Scott J. Leonhardt</B>
+<BR>The Rosner Law Group LLC
+<BR>824 Market Street
+<BR>Suite 810
+<BR>Wilmington, DE 19801
+<BR>302-777-1111
+<BR>Email:&nbsp;<a href='mailto:leonhardt@teamrosner.com'>leonhardt@teamrosner.com</a><BR><BR><B>Scott J. Leonhardt</B>
+<BR>The Rosner Law Group LLC
+<BR>824 Market Street
+<BR>Suite 810
+<BR>Wilmington, DE 19801
+<BR>302-777-1111
+<BR>Email:&nbsp;<a href='mailto:leonhardt@teamrosner.com'>leonhardt@teamrosner.com</a><BR><BR><B>Jason M. Liberi</B>
+<BR>Skadden, Arps, Slate, Meagher & Flom LLP
+<BR>One Rodney Square
+<BR>P.O. Box 636
+<BR>Wilmington, DE 19899-0636
+<BR>302-651-3023
+<BR>Fax  : 302-651-3001
+<BR>Email:&nbsp;<a href='mailto:jason.liberi@skadden.com'>jason.liberi@skadden.com</a><BR><BR><B>Dennis A. Meloro</B>
+<BR>Greenberg Traurig, LLP
+<BR>The Nemours Building
+<BR>1007 North Orange Street
+<BR>Suite 1200
+<BR>Wilmington, DE 19801
+<BR>302-661-7000
+<BR>Fax  : 302-661-7360
+<BR>Email:&nbsp;<a href='mailto:melorod@gtlaw.com'>melorod@gtlaw.com</a><BR><BR><B>Robert D. Nosek</B>
+<BR>Silverman Acampora LLP
+<BR>100 Jericho Quadrangle, Suite 300
+<BR>Jericho, NY 11753
+<BR>516-479-6307
+<BR>Email:&nbsp;<a href='mailto:RNosek@SilvermanAcampora.com'>RNosek@SilvermanAcampora.com</a><BR><BR><B>Mark W. Page</B>
+<BR>Kelley Drye & Warren LLP
+<BR>333 W. Wacker Drive, Floor 26
+<BR>Chicago, IL 60606
+<BR>312-857-7070
+<BR>Email:&nbsp;<a href='mailto:MPage@KelleyDrye.com'>MPage@KelleyDrye.com</a><BR><BR><B>Frederick Brian Rosner</B>
+<BR>The Rosner Law Group LLC
+<BR>824 Market Street
+<BR>Suite 810
+<BR>Wilmington, DE 19801
+<BR>302-777-1111
+<BR>Email:&nbsp;<a href='mailto:rosner@teamrosner.com'>rosner@teamrosner.com</a><BR><BR><B>Davis Lee Wright</B>
+<BR>Montgomery McCracken Walker & Rhoads LLP
+<BR>1105 North Market Street
+<BR>Suite 1500
+<BR>Wilmington, DE 19801
+<BR>302-504-7800
+<BR>Fax  : 302-504-7820
+<BR>Email:&nbsp;<a href='mailto:dwright@mmwr.com'>dwright@mmwr.com</a>
+<BR><I> TERMINATED: 10/28/2011</I><BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>U.S. Trustee</B></I><BR><B>U.S. Trustee</B>
+<BR>Office of United States Trustee
+<BR>J. Caleb Boggs Federal Building
+<BR>844 King Street, Suite 2207
+<BR>Lockbox 35
+<BR>Wilmington, DE 19899-0035
+<BR>302-573-6491<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Mark S. Kenney</B>
+<BR>Office of the U.S. Trustee
+<BR>844 King Street, Suite 2207
+<BR>Lockbox 35
+<BR>Wilmington, DE 19801
+<BR>302-573-6491
+<BR>Fax  : 302-573-6497
+<BR>Email:&nbsp;<a href='mailto:mark.kenney@usdoj.gov'>mark.kenney@usdoj.gov</a><BR><BR></font></TD></TR><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Alternate Claims Agent</B></I><BR><B>VeraSun Energy Corporation, et al,  <I>Reorganized Debtor</I></B>	</FONT></TD>
+	<TD VALIGN=top  WIDTH="20%" ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+	<TD VALIGN=top  WIDTH="40%"><FONT SIZE="+0"><B>Jason A. Gibson</B>
+<BR>(See above for address)<BR><BR><B>Scott J. Leonhardt</B>
+<BR>(See above for address)	</FONT></TD>
+</TR></TABLE><BR><TABLE BORDER=1 CELLPADDING=10 CELLSPACING=0><TR><TH width='94' nowrap>Filing Date</TH>
+<TH colspan=2 align='center'>#</TH><TH align=center>Docket Text</TH></TR>
+<TR><TD width="94" nowrap valign=bottom>10/31/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207770264' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207770264"'>1</a></nobr></TD><TD valign=bottom>  Chapter 11 Voluntary Petition <i></i>. Fee Amount $1039. Filed by VeraSun Energy Corporation. (Chehi, Mark) (Entered: 10/31/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/31/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'>2</nobr></TD><TD valign=bottom>  Receipt of filing fee for Voluntary Petition (Chapter 11)(08-12606) [misc,volp11a] (1039.00). Receipt Number 3632675, amount $1039.00. (U.S. Treasury) (Entered: 10/31/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/31/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207770471' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207770471"'>3</a></nobr></TD><TD valign=bottom>  Motion for Joint Administration <i></i> Filed By VeraSun Energy Corporation (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04217770472'>1</a> Proposed Form of Order)(Chehi, Mark) (Entered: 11/01/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/31/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207770489' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207770489"'>4</a></nobr></TD><TD valign=bottom>  Application to Appoint Claims/Noticing Agent <i>Kurtzman Carson Consultants, LLC</i> Filed By VeraSun Energy Corporation (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04217770490'>1</a> Exhibit A to Application<a href='https://ecf.deb.uscourts.gov/doc1/04217770491'>2</a> Exhibit B to Application<a href='https://ecf.deb.uscourts.gov/doc1/04217770492'>3</a> Proposed Form of Order <a href='https://ecf.deb.uscourts.gov/doc1/04217770493'>4</a> Exhibit A to Proposed Form of Order)(Chehi, Mark) (Entered: 11/01/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/31/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207770502' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207770502"'>5</a></nobr></TD><TD valign=bottom>  Motion to Maintain Bank Accounts <i></i> Filed By VeraSun Energy Corporation (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04217770503'>1</a> Exhibit A to Motion<a href='https://ecf.deb.uscourts.gov/doc1/04217770504'>2</a> Exhibit B to Motion<a href='https://ecf.deb.uscourts.gov/doc1/04217770505'>3</a> Proposed Form of Order <a href='https://ecf.deb.uscourts.gov/doc1/04217770506'>4</a> Exhibit A to Proposed Form of Order)(Chehi, Mark) (Entered: 11/01/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/31/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207770518' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207770518"'>6</a></nobr></TD><TD valign=bottom>  &quot;WITHDRAWN~RELATED DOCKET #2364&quot; Motion Waiving Investment/Deposit Requirements <i></i> Filed By VeraSun Energy Corporation (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04217770519'>1</a> Exhibit A to Motion<a href='https://ecf.deb.uscourts.gov/doc1/04217770520'>2</a> Proposed Form of Order (Interim)<a href='https://ecf.deb.uscourts.gov/doc1/04217770521'>3</a> Proposed Form of Order (Final))(Chehi, Mark) Modified Text on 2/16/2010 (JAF). (Entered: 11/01/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/01/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207770532' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207770532"'>7</a></nobr></TD><TD valign=bottom>  Motion to Pay Employee Wages <i></i> Filed By VeraSun Energy Corporation (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04217770533'>1</a> Proposed Form of Order (Emergency Order)<a href='https://ecf.deb.uscourts.gov/doc1/04217770534'>2</a> Proposed Form of Order)(Chehi, Mark) (Entered: 11/01/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/01/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207770537' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207770537"'>8</a></nobr></TD><TD valign=bottom>  Motion Prohibiting Utilities from Discontinuing Service <i></i> Filed By VeraSun Energy Corporation (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04217770538'>1</a> Exhibit A to Motion<a href='https://ecf.deb.uscourts.gov/doc1/04217770539'>2</a> Proposed Form of Order (Interim)<a href='https://ecf.deb.uscourts.gov/doc1/04217770540'>3</a> Exhibit A to Proposed Form of Order)(Chehi, Mark) (Entered: 11/01/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/01/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207770543' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207770543"'>9</a></nobr></TD><TD valign=bottom>  Motion to Pay Sales and Use Taxes <i></i> Filed By VeraSun Energy Corporation (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04217770544'>1</a> Proposed Form of Order)(Chehi, Mark) (Entered: 11/01/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/01/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207770547' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207770547"'>10</a></nobr></TD><TD valign=bottom>  Motion to Approve <i>Motion For Order Under 11 U.S.C. Sections 105, 362 And 541 And Fed. R. Bankr. P. 3001 And 3002 (I) Establishing Notification And Hearing Procedures For Trading In Equity Securities And (II) Establishing The Notice And Sell-Down Procedures For Trading In Claims Against The Debtors Estates</i> Filed by VeraSun Energy Corporation. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04217770548'>1</a> Proposed Form of Order) (Chehi, Mark) (Entered: 11/01/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/01/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207770551' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207770551"'>11</a></nobr></TD><TD valign=bottom>  Motion to Pay <i>Motion Of The Debtors For Order Pursuant To Bankruptcy Code Sections 105(a) 363(B), 503(b), 506, 1107 And 1108 And Fed. R. Bankr. P. 6003 Authorizing Payment Of Certain Prepetition Shipping, Delivery, And Warehousing Charges</i> Filed by VeraSun Energy Corporation. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04217770552'>1</a> Proposed Form of Order (Emergency Order )<a href='https://ecf.deb.uscourts.gov/doc1/04217770553'>2</a> Proposed Form of Order) (Chehi, Mark) (Entered: 11/01/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/01/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207770556' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207770556"'>12</a></nobr></TD><TD valign=bottom>  Motion to Approve <i>Motion For An Order Pursuant To 11 U.S.C. Sections 105 And 503(b), (I) Confirming Grant Of Administrative Expense Status To Obligations Arising From Prepetition Delivery Of Goods Received Within 20 Days Of The Commencement Date Of These Chapter 11 Cases, (II) Confirming Grant Of Administrative Expense Status To Obligations Arising From Postpetition Delivery Of Goods And Services, And (III) Authorizing, But Not Directing, The Debtors To Pay Such Obligations In The Ordinary Course Of Business</i> Filed by VeraSun Energy Corporation. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04217770557'>1</a> Proposed Form of Order (Emergency Order)<a href='https://ecf.deb.uscourts.gov/doc1/04217770558'>2</a> Proposed Form of Order) (Chehi, Mark) (Entered: 11/01/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/01/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207770561' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207770561"'>13</a></nobr></TD><TD valign=bottom>  Declaration in Support <i>Of Chapter 11 Petitions And First Day Pleadings</i> Filed by VeraSun Energy Corporation. (Chehi, Mark) (Entered: 11/01/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/01/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207770564' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207770564"'>14</a></nobr></TD><TD valign=bottom>  Notice of Service <i>Notice Of Bankruptcy Filing And Debtors' Presentation Of Motions And Applications To The Court For Consideration</i> Filed by VeraSun Energy Corporation. (Chehi, Mark) (Entered: 11/01/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/01/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207770567' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207770567"'>15</a></nobr></TD><TD valign=bottom>  Notice of Intent <i>Notice Of Debtors' Intent To File Motion Seeking Approval, Pursuant To Bankruptcy Code Sections 105, 361, 362, 363 And 364 And Bankruptcy Rules 2002, 4001 And 9014, Of An Interim Order (I) Authorizing Debtors To Obtain Post-Petition Financings (II) Authorizing Debtors To Utilize Cash Collateral, (III) Granting Adequate Protection To Pre-Petition Secured Lenders And (Iv) Scheduling Final Hearing</i> Filed by VeraSun Energy Corporation. (Chehi, Mark) (Entered: 11/01/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/01/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207770570' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207770570"'>16</a></nobr></TD><TD valign=bottom>  List of Creditors <i></i> Filed by VeraSun Energy Corporation. (Chehi, Mark) (Entered: 11/01/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/01/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207771306' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207771306"'>17</a></nobr></TD><TD valign=bottom>  Notice of Agenda of Matters Scheduled for Hearing <i>on November 3, 2008 At 10:00 A.M. And November 4, 2008 At 11:00 A.M.</i> Filed by VeraSun Energy Corporation. Hearing scheduled for 11/3/2008 at 10:00 AM at US Bankruptcy Court, 824 Market St., 6th Fl., Courtroom #1, Wilmington, Delaware. (Chehi, Mark) (Entered: 11/01/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/01/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207771337' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207771337"'>18</a></nobr></TD><TD valign=bottom>  Notice of Appearance <i></i> Filed by Dougherty Funding LLC. (Galle, David) (Entered: 11/01/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/01/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207771859' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207771859"'>19</a></nobr></TD><TD valign=bottom>  Affidavit/Declaration of Service <i>of Jenifer Mose re: 1) Notice Of Bankruptcy Filing And Debtors' Presentation Of Motions And Applications To The Court For Consideration; 2) Notice Of Debtors' Intent To File Motion Seeking Approval, Pursuant To Bankruptcy Code Sections 105, 361, 362, 363 And 364 And Bankruptcy Rules 2002, 4001 And 9014, Of An Interim Order (I) Authorizing Debtors To Obtain Post-Petition Financings (II) Authorizing Debtors To Utilize Cash Collateral, (III) Granting Adequate Protection To Pre-Petition Secured Lenders And (Iv) Scheduling Final Hearing; and 3) Notice of Agenda of Matters Scheduled for Hearing on November 3, 2008 At 10:00 A.M. And November 4, 2008 At 11:00 A.M.</i> (related document(s)<a href='https://ecf.deb.uscourts.gov/doc1/04207770564'>14</a>, <a href='https://ecf.deb.uscourts.gov/doc1/04207770567'>15</a>, <a href='https://ecf.deb.uscourts.gov/doc1/04207771306'>17</a>) Filed by Kurtzman Carson Consultants. (Scott, Jason) (Entered: 11/01/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/03/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207772781' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207772781"'>20</a></nobr></TD><TD valign=bottom>  Motion to Approve Debtor In Possession Financing <i></i> Filed By VeraSun Energy Corporation (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04217772782'>1</a> Notice of Motion<a href='https://ecf.deb.uscourts.gov/doc1/04217772783'>2</a> Exhibit 1<a href='https://ecf.deb.uscourts.gov/doc1/04217772784'>3</a> Exhibit 2<a href='https://ecf.deb.uscourts.gov/doc1/04217772785'>4</a> Exhibit 3<a href='https://ecf.deb.uscourts.gov/doc1/04217772786'>5</a> Exhibit 4<a href='https://ecf.deb.uscourts.gov/doc1/04217772787'>6</a> Exhibit 5)(Chehi, Mark) (Entered: 11/03/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/03/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207773236' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207773236"'>21</a></nobr></TD><TD valign=bottom>  Motion to Appear pro hac vice <i>of Aaron S. Feinberg</i>. Receipt Number 154066, Filed by VeraSun Energy Corporation. (Chehi, Mark) (Entered: 11/03/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/03/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207773251' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207773251"'>22</a></nobr></TD><TD valign=bottom>  Motion to Appear pro hac vice <i>of Timothy R. Pohl</i>. Receipt Number 154066, Filed by VeraSun Energy Corporation. (Chehi, Mark) (Entered: 11/03/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/03/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207773268' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207773268"'>23</a></nobr></TD><TD valign=bottom>  Motion to Appear pro hac vice <i>of Patrick Nash</i>. Receipt Number 154066, Filed by VeraSun Energy Corporation. (Chehi, Mark) (Entered: 11/03/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/03/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207773284' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207773284"'>24</a></nobr></TD><TD valign=bottom>  Motion to Appear pro hac vice <i>of Felicia Gerber Perlman</i>. Receipt Number 154066, Filed by VeraSun Energy Corporation. (Chehi, Mark) (Entered: 11/03/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/03/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207773295' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207773295"'>25</a></nobr></TD><TD valign=bottom>  Motion to Appear pro hac vice <i>of Peter E. Krebs</i>. Receipt Number 154066, Filed by VeraSun Energy Corporation. (Chehi, Mark) (Entered: 11/03/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/03/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207773324' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207773324"'>26</a></nobr></TD><TD valign=bottom>  Notice of Appearance <i>and Request for Service of Papers Pursuant to Fed.R.Bankr.P. 2002 and 9010 and Del.Bankr.L.R. 2002-1(d)</i> Filed by Wells Fargo Bank, N.A., as Indenture Trustee for the 9 7/8% Senior Notes Due 2012. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04217773325'>1</a> Certificate of Service) (Robinson, Richard) (Entered: 11/03/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/03/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207773355' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207773355"'>27</a></nobr></TD><TD valign=bottom>  Notice of Appearance <i>and Request for Service of Papers</i> Filed by The CIT Group/Equipment Financing, Inc.. (Dehney, Robert) (Entered: 11/03/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/03/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207773399' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207773399"'>28</a></nobr></TD><TD valign=bottom>  Motion to Appear pro hac vice <i>for Michael L. Schein, Esq. of Vedder Price P.C.</i>. Receipt Number 151471, Filed by The CIT Group/Equipment Financing, Inc.. (Dehney, Robert) (Entered: 11/03/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/03/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207773501' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207773501"'>29</a></nobr></TD><TD valign=bottom>  Motion to Appear pro hac vice <i>of Eric A. Schaffer, Esquire (of Reed Smith LLP)</i>. Receipt Number 154068-FS, Filed by Wells Fargo Bank, N.A., as Indenture Trustee for the 9 7/8% Senior Notes Due 2012. (Robinson, Richard) (Entered: 11/03/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/03/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207773650' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207773650"'>30</a></nobr></TD><TD valign=bottom>  Motion to Appear pro hac vice <i>of George A. Davis, Esquire of Cadwalader, Wickersham and Taft, LLP</i>. Receipt Number CC, Filed by Wayzata Opportunities Fund II, L.P., Wayzata Opportunities Fund Offshore II, L.P., Trilogy Portfolio Company LLC, Trilogy Special Situations Fund LLC, and AIG Global Investments Corp.. (Edmonson, Jamie) (Entered: 11/03/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/03/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207773706' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207773706"'>31</a></nobr></TD><TD valign=bottom>  Motion to Appear pro hac vice <i>of Mark C. Ellenberg, Esquire of Cadwalader, Wickersham and Taft, LLP</i>. Receipt Number CC, Filed by Wayzata Opportunities Fund II, L.P., Wayzata Opportunities Fund Offshore II, L.P., Trilogy Portfolio Company LLC, Trilogy Special Situations Fund LLC, and AIG Global Investments Corp.. (Edmonson, Jamie) (Entered: 11/03/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/03/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207774863' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207774863"'>32</a></nobr></TD><TD valign=bottom>  Notice of Appearance <i>Request For Matrix Entry, And Request For Service Of Notices And Documents</i> Filed by Airgas, Inc.. (Miller, Kathleen) (Entered: 11/03/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/03/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207774867' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207774867"'>33</a></nobr></TD><TD valign=bottom>  Order Authorizing Joint Administration of the Debtors' Chapter 11 Cases: 08-12605 through 08-12629. An order has been entered in this case consolidating this case with the case of VeraSun Energy Corporation, Case No. 08-12606 (BLS), for procedural purposes only and providing for its joint administration in accordance with the terms thereof. The docket in Case No. 08-12606 (BLS) should be consulted for all matters affecting this case. (Related Doc # <a href='https://ecf.deb.uscourts.gov/doc1/04207770472'>3</a>) Order Signed on 11/3/2008. (LCN) (Entered: 11/03/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/03/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207775047' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207775047"'>34</a></nobr></TD><TD valign=bottom>  Order Authorizing (I) Continued Use of Existing Cash Management System, (II) Continued Use of Existing Bank Accounts, (III) Authorizing continued Use of Existing Business Forms, and (IV) Authorizing Intercompany Transactions. (related document(s)<a href='https://ecf.deb.uscourts.gov/doc1/04207770506'>5</a>) Order Signed on 11/3/2008. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04217775048'>1</a> Exhibit A) (LCN) (Entered: 11/03/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/03/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207775150' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207775150"'>35</a></nobr></TD><TD valign=bottom>  Order (EMERGENCY) Authorizing, But No Directing, the Debtors to Pay Certain Prepetition Obligations in the Ordinary Course of Business. Order Signed on 11/3/2008. (LCN) (Entered: 11/03/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/03/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207775164' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207775164"'>36</a></nobr></TD><TD valign=bottom>  Notice of Appearance <i>/Notice of Entry of Appearance and Demand for Notices and Papers</i> Filed by Wayzata Opportunities Fund II, L.P., Wayzata Opportunities Fund Offshore II, L.P., Trilogy Portfolio Company LLC, Trilogy Special Situations Fund LLC, and AIG Global Investments Corp.. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04217775165'>1</a> Certificate of Service) (Edmonson, Jamie) (Entered: 11/03/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/03/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207775170' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207775170"'>37</a></nobr></TD><TD valign=bottom>  Order (EMERGENCY) Authorizing Payment Of Certain Prepetition Shipping, Delivery, And Warehousing Charges. (related document(s)<a href='https://ecf.deb.uscourts.gov/doc1/04207770553'>11</a>) Order Signed on 11/3/2008. (LCN) (Entered: 11/03/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/03/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207775260' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207775260"'>38</a></nobr></TD><TD valign=bottom>  Order (EMERGENCY) Authorizing and Directing inter alia Banks to Honor Prepetition Checks for Payment of Prepetition Employee Obligations. Order Signed on 11/3/2008. (LCN) (Entered: 11/03/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/03/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207775318' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207775318"'>39</a></nobr></TD><TD valign=bottom>  Order (INTERIM) (I) Authorizing Debtors to Obtain Post-Petition Senior Secured Super-Priority Financing, (II) Authorizing the Repayment of Certain Pre-Petition Secured Obligations, (III) Granting Adequate Protection to Prepetition First Lien Secured Parties, (IV) Scheduling Final Hearing and (V) Related Relief. Order Signed on 11/3/2008. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04217775319'>1</a> Exhibit A) (LCN) (Entered: 11/03/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/03/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207775368' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207775368"'>40</a></nobr></TD><TD valign=bottom>  Order (CONSENSUAL INTERIM) For Use of Cash Collateral and Adequate Protection.(related document(s)<a href='https://ecf.deb.uscourts.gov/doc1/04207772787'>20</a>) Order Signed on 11/3/2008. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04217775369'>1</a> Exhibit A) (LCN) (Entered: 11/03/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/03/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207775431' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207775431"'>41</a></nobr></TD><TD valign=bottom>  Order (INTERIM) Authorizing Use of UBS' Cash Collateral and Providing Adequate Protection. Order Signed on 11/3/2008. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04217775432'>1</a> Exhibit A) (LCN) (Entered: 11/03/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/03/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207775530' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207775530"'>42</a></nobr></TD><TD valign=bottom>  Order (INTERIM) (I) Authorizing Debtors to Obtain Postpetition Financing, (II) Granting Liens and Superpriority Claims to Postpetition Lender, (III) Authorizing Use of Cash Collateral, (IV) Providing Adequate Protection to Prepetition Lenders and (V) Scheduling Final Hearing (Verasun Hankinson, LLC). Order Signed on 11/3/2008. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04217775531'>1</a> Exhibit A# 2 Exhibit B) (LCN) Additional attachment(s) added on 11/5/2008 (LCN). (Entered: 11/03/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/03/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207775568' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207775568"'>43</a></nobr></TD><TD valign=bottom>  Order (INTERIM) (I) Authorizing Debtors to Obtain Postpetition Financing, (II) Granting Liens and Superpriority Claims to Postpetition Lender, (III) Authorizing Use of Cash Collateral, (IV) Providing Adequate Protection to Prepetition Lenders and (V) Scheduling Final Hearing (VeraSun Dyersville, LLC) Order Signed on 11/3/2008. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04217775569'>1</a> Exhibit A# 2 Exhibit B) (LCN) Additional attachment(s) added on 11/5/2008 (LCN). (Entered: 11/03/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/03/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207775590' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207775590"'>44</a></nobr></TD><TD valign=bottom>  Order (CONSENT) Authorizing Use West LB Of Cash Collateral and Providing Adequate Protection. Order Signed on 11/3/2008. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04217775591'>1</a> Exhibit A) (LCN) (Entered: 11/03/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/03/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04207775604' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04207775604"'>45</a></nobr></TD><TD valign=bottom>  Order (INTERIM) (I) Authorizing Debtors to Obtain Postpetition Financing, (II) Granting Liens and Superpriority Claims to Postpetition Lender, (III) Authorizing Use of Cash Collateral, (IV) Providing Adequate Protection to Prepetition Lenders and (V) Scheduling Final Hearing (VerSun Ord, LLC). Order Signed on 11/3/2008. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04217775605'>1</a> Exhibit A# 2 Exhibit B) (LCN) Additional attachment(s) added on 11/5/2008 (LCN). (Entered: 11/03/2008)</TD></TR>
+</TABLE><BR><BR><BR><BR>
+			<script type='text/javascript'>
+				document.cookie = 'RECENT_CASES=' + "114563^116481^115824^119835^119343^117129^105698^120629^118752^117911;";
+			</script>
+		<HR><CENTER><TABLE BORDER=1 BGCOLOR=white width="400"><TR><TH COLSPAN=4><FONT SIZE=+1 COLOR=DARKRED>PACER Service Center </FONT></TH></TR><TR><TH COLSPAN=4><FONT COLOR=DARKBLUE>Transaction Receipt </FONT></TH></TR><TR></TR><TR></TR><TR><TD COLSPAN=4 ALIGN=CENTER><FONT SIZE=-1 COLOR=DARKBLUE>06/30/2017 13:49:44</FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> PACER Login: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> [ LOGIN REMOVED ] </FONT></TH></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Client Code: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE>  </FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Description: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Docket Report </FONT></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Search Criteria: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 08-12606-BLS Fil or Ent: filed From: 5/1/2000 To: 6/30/2017 Doc From: 1 Doc To: 45 Term: included  Headers: included  Format: html  </FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Billable Pages: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 6 </FONT></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Cost: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 0.60 </FONT></TD></TR><TR></TR><TR></TR></TABLE></CENTER></HR><BR></BR></div></body></html>

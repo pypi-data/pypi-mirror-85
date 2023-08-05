@@ -1,0 +1,150 @@
+<html><head><title>Pawb LIVE Database Area G6 CM/ECF-BK V4.2.0</title>
+<link rel="stylesheet" type="text/css" href="/css/default.css"><script type="text/javascript" src="/lib/core.js"></script><script type="text/javascript">if (top!=self) {top.location.replace(location.href);}</script></head><body BGCOLOR=FFFFF0 TEXT=000000 onLoad='SetFocus()'><div class="noprint"><img id="cmecfLogo" class="cmecfLogo" src="/graphics/cmecf-logo.gif" alt="CM/ECF" title=""  /><img src="/graphics/menubar-help.gif" alt="?" title="" class="helpImage" id="helpImage" onClick="CMECF.MainMenu.showHelpPage(''); return false" onMouseOver="CMECF.MainMenu.helpImageOn()" onMouseOut="CMECF.MainMenu.helpImageOff()" /><div id="topmenu" class="yuimenubar"><div class="bd"><ul class="first-of-type"><li class="yuimenubaritem" style="width:9%"><a class="yuimenubaritemlabel" href='/cgi-bin/iquery.pl'>Q</u>uery</a></li><li class="yuimenubaritem" style="width:11%"><a class="yuimenubaritemlabel" href='/cgi-bin/DisplayMenu.pl?Reports&id=-1'>R</u>eports</a></li><li class="yuimenubaritem" style="width:11%"><a class="yuimenubaritemlabel" href='/cgi-bin/DisplayMenu.pl?Utilities&id=-1'>U</u>tilities</a></li><li class="yuimenubaritem" style="width:10%"><a class="yuimenubaritemlabel" href='/cgi-bin/login.pl?logout'>Logout</a></li></ul></div></div></div><script type="text/javascript">if (navigator.appVersion.indexOf("MSIE")==-1){window.setTimeout( function(){ CMECF.MainMenu.renderSimpleMenu(); }, 0);}else{CMECF.util.Event.addListener(window, "load", CMECF.MainMenu.renderSimpleMenu);}</script><div id="cmecfMainContent"><input type="hidden" id="cmecfMainContentScroll" value="0"><SCRIPT LANGUAGE="JavaScript">
+		var IsForm = false;
+		var FirstField;
+		function SetFocus() {
+			if(IsForm) {
+				if(FirstField) {
+					var ind = FirstField.indexOf('document.',0);
+					if(ind == 0)
+					{
+						eval(FirstField);
+					}
+					else
+					{
+						var Code = "document.forms[0]."+FirstField+".focus();";
+						eval(Code);
+					}
+				} else {
+					var Cnt = 0;
+					while(document.forms[0].elements[Cnt] != null) {
+						if(document.forms[0].elements[Cnt].type != "hidden") {
+							document.forms[0].elements[Cnt].focus();
+							break;
+						}
+						Cnt += 1;
+					}
+				}
+			}
+			return(true);
+		}
+		</SCRIPT>
+<script type='text/JavaScript'>
+document.cookie="PDFHeaderReferer=322641488394466; path=/";
+</script>
+		<script type="text/javascript" src="/lib/widgits.js"></script>
+		<script>
+		var debtorPanel = null;
+
+		function create_panel(clid, message) {
+		    if (!debtorPanel) {
+		        debtorPanel = new CMECF.widget.Panel('debtorPanel', {
+				close:true,
+				draggable:false,
+				context:[clid, 'tl', 'br'],
+				width: "250" + "px",
+				height: "110" + "px",
+				constraintoviewport:true
+			});
+			debtorPanel.setHeader("Barred Debtor Information");
+			debtorPanel.setBody(message);
+			debtorPanel.body.style.height = "8em";
+			debtorPanel.render(document.body);
+		    } else {
+		        debtorPanel.show();
+		    }
+		}
+
+		function close_panel() {
+		    if (debtorPanel) {
+		        debtorPanel.destroy();
+		        debtorPanel = null;
+		    }
+		}
+		</script>
+		<TABLE width="100%" align=right BORDER=0 CELLSPACING=5><TR><TD ALIGN=right><h2> <FONT SIZE="3">CLOSED</FONT></h2></TD></TR></TABLE><BR><BR><BR><CENTER><B><FONT SIZE="+1">U.S. Bankruptcy Court<BR>WESTERN DISTRICT OF PENNSYLVANIA (Erie)<BR>Bankruptcy Petition #: 08-11904-TPA</FONT></B></CENTER><TABLE width="100%" BORDER=0 CELLSPACING=1><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><BR><I>Assigned to:</I>      Judge Thomas P. Agresti<BR>Chapter          11<BR>Voluntary<BR>Asset <br><div class="noprint"><A HREF='/cgi-bin/qryAscCases.pl?259029'>Show Associated Cases</A></div> <div class="noprint"><a href='/cgi-bin/SearchClaims.pl?caseid=259029;sc'>Claims Register</a></div><BR><BR><BR><I>Debtor disposition:</I>&nbsp;&nbsp;Discharge Not Applicable	</FONT></TD>
+	<TD VALIGN=top  WIDTH="50%" ALIGN=right><FONT SIZE="+0"><TABLE border=0 cellspacing=0 cellpadding=0 align=center><TR><td align="right" valign="top"><I>Date filed:</I></td><td align="left" valign="top">&nbsp;&nbsp;10/04/2008</td></TR><TR><td align="right" valign="top"><I>Date terminated:</I></td><td align="left" valign="top">&nbsp;&nbsp;10/11/2011</td></TR><TR><td align="right" valign="top"><I>Plan confirmed:</I></td><td align="left" valign="top">&nbsp;&nbsp;08/16/2010</td></TR><TR><td align="right" valign="top"><I>341 meeting:</I></td><td align="left" valign="top">&nbsp;&nbsp;02/06/2009</td></TR></TABLE>	</FONT></TD>
+</TR>
+</TABLE><BR><FONT SIZE="5"><B></B>
+		</FONT><TABLE width="100%" BORDER=0 CELLSPACING=1><TR><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Debtor</B></I><BR><B>Thayer Power and Communication Line Construction Company, Inc.,  <I>now known as TP Liquidation Company, Inc.</I></B>
+<BR>7400 Market Road
+<BR>P.O. Box 915
+<BR>Fairview, PA 16415
+<BR>ERIE-PA
+<BR>Tax ID / EIN: 25-1374363     <BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Lawrence C. Bolla</B>
+<BR>Quinn Buseck Leemhuis Toohey & Kroto Inc
+<BR>2222 West Grandview Boulevard
+<BR>Erie, PA 16506-4508
+<BR>814-833-2222
+<BR>Email:&nbsp;<a href='mailto:lbolla@quinnfirm.com'>lbolla@quinnfirm.com</a><BR><BR><B>Michael P. Kruszewski</B>
+<BR>Quinn Law Firm
+<BR>2222 West Grandview Boulevard
+<BR>Erie, PA 16506
+<BR>814-833-2222
+<BR>Fax  : 814-835-2076
+<BR>Email:&nbsp;<a href='mailto:mkruszewski@quinnfirm.com'>mkruszewski@quinnfirm.com</a><BR><BR><B>Nicholas R. Pagliari</B>
+<BR>MacDonald, Illig, Jones & Britton LLP
+<BR>100 State Street, Suite 700
+<BR>Erie, PA 16507-1459
+<BR>814-870-7754
+<BR>Fax  : 814-454-4647
+<BR>Email:&nbsp;<a href='mailto:npagliari@mijb.com'>npagliari@mijb.com</a><BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>U.S. Trustee</B></I><BR><B>Office of the United States Trustee</B>
+<BR>Liberty Center.
+<BR>1001 Liberty Avenue, Suite 970
+<BR>Pittsburgh, PA 15222
+<BR>412-644-4756<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Heather A. Sprague on Behalf of the United States Trustee by</B>
+<BR>Office of the United States Trustee
+<BR>Liberty Center, Suite 970
+<BR>1001 Liberty Avenue
+<BR>Pittsburgh, PA 15222
+<BR>412-644-4756
+<BR>Fax  : 412-644-4785
+<BR>Email:&nbsp;<a href='mailto:Heather.Sprague@usdoj.gov'>Heather.Sprague@usdoj.gov</a><BR><BR></font></TD></TR><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Creditor Committee</B></I><BR><B>Official Committee of Unsecured Creditors of Thayer Power & Communication Line Construction Co., Inc.</B>
+<BR>c/o Guy C. Fustine, Esquire
+<BR>120 West Tenth Street
+<BR>Erie, PA 16501	</FONT></TD>
+	<TD VALIGN=top  WIDTH="20%" ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+	<TD VALIGN=top  WIDTH="40%"><FONT SIZE="+0"><B>Guy C. Fustine</B>
+<BR>Knox McLaughlin Gornall & Sennett, P.C.
+<BR>120 West Tenth Street
+<BR>Erie, PA 16501
+<BR>814-459-2800
+<BR>Email:&nbsp;<a href='mailto:mwernick@kmgslaw.com'>mwernick@kmgslaw.com</a><BR><BR><B>Joseph F. Gula, III</B>
+<BR>Knox McLaughlin Gornell & Sennett, P.C.
+<BR>120 West Tenth Street
+<BR>Erie, PA 16501
+<BR>814-459-2800
+<BR>Fax  : 814-453-4530	</FONT></TD>
+</TR></TABLE><BR><TABLE BORDER=1 CELLPADDING=10 CELLSPACING=0><TR><TH width='94' nowrap>Filing Date</TH>
+<TH colspan=2 align='center'>#</TH><TH align=center>Docket Text</TH></TR>
+<TR><TD width="94" nowrap valign=bottom>10/07/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/15609514492' onContextMenu='this.href="https://ecf.pawb.uscourts.gov/doc1/15609514492"'>20</a> <br><nobr>(2&nbsp;pgs)</nobr></nobr></TD><TD valign=bottom>  Notice of Appearance and Request for Notice <i>[Demand for Service of Pleadings]</i> by Peter S. Russ Filed by Creditor KeyBank National Association (Russ, Peter) (Entered: 10/07/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/06/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'>19</nobr></TD><TD valign=bottom>  Declaration Re: Electronic Filing (RE: related document(s): <a href='https://ecf.pawb.uscourts.gov/doc1/15609506114'>1</a> Voluntary Petition Chapter 11 filed by Debtor Thayer Power and Communication Line Construction Company, Inc.). (amaz) (Entered: 10/06/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/06/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/15609512640' onContextMenu='this.href="https://ecf.pawb.uscourts.gov/doc1/15609512640"'>18</a> <br><nobr>(3&nbsp;pgs)</nobr></nobr></TD><TD valign=bottom>  Notice of Appearance and Request for Notice <i></i> by T. Lawrence Palmer Filed by Creditor T. Lawrence Palmer Office of Attorney General, Pennsylvania Department of Revenue (Palmer, T.) (Entered: 10/06/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/06/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/15609511787' onContextMenu='this.href="https://ecf.pawb.uscourts.gov/doc1/15609511787"'>17</a> <br><nobr>(7&nbsp;pgs)</nobr></nobr></TD><TD valign=bottom>  Supplemental Certificate of Service <i></i> Regarding the Hearing on 10/9/2008. Filed by Debtor Thayer Power and Communication Line Construction Company, Inc. (RE: related document(s): <a href='https://ecf.pawb.uscourts.gov/doc1/15609506119'>3</a> Motion Re: Chapter 11 First Day Motions filed by Debtor Thayer Power and Communication Line Construction Company, Inc., <a href='https://ecf.pawb.uscourts.gov/doc1/15609506122'>4</a> Hearing on a Judge Bentz Case Set by Attorney or Trustee filed by Debtor Thayer Power and Communication Line Construction Company, Inc., <a href='https://ecf.pawb.uscourts.gov/doc1/15609506127'>5</a> Motion Re: Chapter 11 First Day Motions filed by Debtor Thayer Power and Communication Line Construction Company, Inc., <a href='https://ecf.pawb.uscourts.gov/doc1/15609506130'>6</a> Hearing on a Judge Bentz Case Set by Attorney or Trustee filed by Debtor Thayer Power and Communication Line Construction Company, Inc., <a href='https://ecf.pawb.uscourts.gov/doc1/15609506134'>7</a> Motion Re: Chapter 11 First Day Motions filed by Debtor Thayer Power and Communication Line Construction Company, Inc., <a href='https://ecf.pawb.uscourts.gov/doc1/15609506137'>8</a> Hearing on a Judge Bentz Case Set by Attorney or Trustee filed by Debtor Thayer Power and Communication Line Construction Company, Inc., <a href='https://ecf.pawb.uscourts.gov/doc1/15609506142'>9</a> Motion Re: Chapter 11 First Day Motions filed by Debtor Thayer Power and Communication Line Construction Company, Inc., <a href='https://ecf.pawb.uscourts.gov/doc1/15609506145'>10</a> Hearing on a Judge Bentz Case Set by Attorney or Trustee filed by Debtor Thayer Power and Communication Line Construction Company, Inc., <a href='https://ecf.pawb.uscourts.gov/doc1/15609506150'>11</a> Motion Re: Chapter 11 First Day Motions filed by Debtor Thayer Power and Communication Line Construction Company, Inc., <a href='https://ecf.pawb.uscourts.gov/doc1/15609506153'>12</a> Hearing on a Judge Bentz Case Set by Attorney or Trustee filed by Debtor Thayer Power and Communication Line Construction Company, Inc.). (Bolla, Lawrence) (Entered: 10/06/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/06/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'>16</nobr></TD><TD valign=bottom>  CORRECTIVE ENTRY CASE ADMINISTRATOR HAS MODIFIED THE LOCATION TO MATCH THE PDF. (RE: related document(s): <a href='https://ecf.pawb.uscourts.gov/doc1/15609506137'>8</a> Hearing on a Judge Bentz Case Set by Attorney or Trustee filed by Debtor Thayer Power and Communication Line Construction Company, Inc.). (avay) (Entered: 10/06/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/06/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/15609508895' onContextMenu='this.href="https://ecf.pawb.uscourts.gov/doc1/15609508895"'>15</a> <br><nobr>(1&nbsp;pg)</nobr></nobr></TD><TD valign=bottom>  Notice of Appearance and Request for Notice <i></i> by Heather A. Sprague on Behalf of the United States Trustee by Filed by U.S. Trustee Office of the United States Trustee (on Behalf of the United States Trustee by, Heather A. Sprague) (Entered: 10/06/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/06/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'>14</nobr></TD><TD valign=bottom>  Notice of Additional Filing Deficiencies. Assigned Judge: Bentz.. Pursuant to Local Rule 1017-2, the United States Trustee is deemed to have filed a Motion To Dismiss this case, and that Motion will be deemed GRANTED, if any deadline set forth in the first docket entry or any of the following deadlines is not met. Incomplete Filings: STATEMENT OF ATTORNEY (RE: related document(s): <a href='https://ecf.pawb.uscourts.gov/doc1/15609506114'>1</a> Voluntary Petition Chapter 11 filed by Debtor Thayer Power and Communication Line Construction Company, Inc.). Incomplete Filings due by 10/20/2008. (amaz) (Entered: 10/06/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/06/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'>13</nobr></TD><TD valign=bottom>  CORRECTIVE ENTRY: STATEMENT OF CURRENT MONTHLY INCOME FR 22 B ANDINFORMATIONAL NOTICE REQUIRED BY 342b DEADLINES TERMINATED: NOT APPLICABLE AS THE DEBTOR IS A CORPORATION. (RE: related document(s): <a href='https://ecf.pawb.uscourts.gov/doc1/15609506114'>1</a> Voluntary Petition Chapter 11 filed by Debtor Thayer Power and Communication Line Construction Company, Inc.). (amaz) (Entered: 10/06/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/04/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/15609506153' onContextMenu='this.href="https://ecf.pawb.uscourts.gov/doc1/15609506153"'>12</a> <br><nobr>(7&nbsp;pgs)</nobr></nobr></TD><TD valign=bottom>  Hearing on Thayer Power and Communication Line Construction Company, Inc. vs. No Respondent<i></i> Filed by Debtor Thayer Power and Communication Line Construction Company, Inc. (RE: related document(s): <a href='https://ecf.pawb.uscourts.gov/doc1/15609506150'>11</a> Motion Re: Chapter 11 First Day Motions filed by Debtor Thayer Power and Communication Line Construction Company, Inc.). Hearing scheduled for 10/9/2008 at 09:00 AM at Bankruptcy Courtroom, U.S. Courthouse, 17 South Park Row, Erie. (Bolla, Lawrence) (Entered: 10/04/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/04/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/15609506148' onContextMenu='this.href="https://ecf.pawb.uscourts.gov/doc1/15609506148"'>11</a> <br><nobr>(14&nbsp;pgs; 3&nbsp;docs)</nobr></nobr></TD><TD valign=bottom>  Motion Regarding Chapter 11 First Day Motions <i>(Application to Employ Accountant)</i> Filed by Debtor Thayer Power and Communication Line Construction Company, Inc.. (Attachments: <a href='https://ecf.pawb.uscourts.gov/doc1/15619506149'>1</a> Proposed Order <a href='https://ecf.pawb.uscourts.gov/doc1/15619506150'>2</a> Affidavit) (Bolla, Lawrence) (Entered: 10/04/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/04/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/15609506145' onContextMenu='this.href="https://ecf.pawb.uscourts.gov/doc1/15609506145"'>10</a> <br><nobr>(7&nbsp;pgs)</nobr></nobr></TD><TD valign=bottom>  Hearing on Thayer Power and Communication Line Construction Company, Inc. vs. No Respondent<i></i> Filed by Debtor Thayer Power and Communication Line Construction Company, Inc. (RE: related document(s): <a href='https://ecf.pawb.uscourts.gov/doc1/15609506142'>9</a> Motion Re: Chapter 11 First Day Motions filed by Debtor Thayer Power and Communication Line Construction Company, Inc.). Hearing scheduled for 10/9/2008 at 09:00 AM at Bankruptcy Courtroom, U.S. Courthouse, 17 South Park Row, Erie. (Bolla, Lawrence) (Entered: 10/04/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/04/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/15609506140' onContextMenu='this.href="https://ecf.pawb.uscourts.gov/doc1/15609506140"'>9</a> <br><nobr>(14&nbsp;pgs; 3&nbsp;docs)</nobr></nobr></TD><TD valign=bottom>  Motion Regarding Chapter 11 First Day Motions <i>(Application to Employ Counsel)</i> Filed by Debtor Thayer Power and Communication Line Construction Company, Inc.. (Attachments: <a href='https://ecf.pawb.uscourts.gov/doc1/15619506141'>1</a> Proposed Order <a href='https://ecf.pawb.uscourts.gov/doc1/15619506142'>2</a> Affidavit) (Bolla, Lawrence) (Entered: 10/04/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/04/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/15609506137' onContextMenu='this.href="https://ecf.pawb.uscourts.gov/doc1/15609506137"'>8</a> <br><nobr>(7&nbsp;pgs)</nobr></nobr></TD><TD valign=bottom>  Hearing on Thayer Power & Communication Line Construction Company, Inc. vs. No Respondent<i></i> Filed by Debtor Thayer Power and Communication Line Construction Company, Inc. (RE: related document(s): <a href='https://ecf.pawb.uscourts.gov/doc1/15609506134'>7</a> Motion Re: Chapter 11 First Day Motions filed by Debtor Thayer Power and Communication Line Construction Company, Inc.). Hearing scheduled for 10/9/2008 at 09:00 AM at Bankruptcy Courtroom, U.S. Courthouse, 17 South Park Row, Erie. (Bolla, Lawrence)CASE ADMINISTRATOR HAS MODIFIED THE LOCATION TO MATCH THE PDF Modified on 10/6/2008 (avay). CORRECTIVE ENTRY CASE ADMINISTRATOR HAS MODIFIED THE LOCATION TO MATCH THE PDF. Modified on 10/6/2008 (avay). (Entered: 10/04/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/04/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/15609506133' onContextMenu='this.href="https://ecf.pawb.uscourts.gov/doc1/15609506133"'>7</a> <br><nobr>(12&nbsp;pgs; 2&nbsp;docs)</nobr></nobr></TD><TD valign=bottom>  Motion Regarding Chapter 11 First Day Motions <i>(Motion for Order Authorizing Maintenance of Pre-Petition Accounts and Use of Existing Business Forms, Stationary, and Checks)</i> Filed by Debtor Thayer Power and Communication Line Construction Company, Inc.. (Attachments: <a href='https://ecf.pawb.uscourts.gov/doc1/15619506134'>1</a> Proposed Order) (Bolla, Lawrence) (Entered: 10/04/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/04/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/15609506130' onContextMenu='this.href="https://ecf.pawb.uscourts.gov/doc1/15609506130"'>6</a> <br><nobr>(7&nbsp;pgs)</nobr></nobr></TD><TD valign=bottom>  Hearing on Thayer Power & Communication Line Construction Company, Inc. vs. No Respondent<i></i> Filed by Debtor Thayer Power and Communication Line Construction Company, Inc. (RE: related document(s): <a href='https://ecf.pawb.uscourts.gov/doc1/15609506127'>5</a> Motion Re: Chapter 11 First Day Motions filed by Debtor Thayer Power and Communication Line Construction Company, Inc.). Hearing scheduled for 10/9/2008 at 09:00 AM at Bankruptcy Courtroom, U.S. Courthouse, 17 South Park Row, Erie. (Bolla, Lawrence) (Entered: 10/04/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/04/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/15609506125' onContextMenu='this.href="https://ecf.pawb.uscourts.gov/doc1/15609506125"'>5</a> <br><nobr>(15&nbsp;pgs; 3&nbsp;docs)</nobr></nobr></TD><TD valign=bottom>  Motion Regarding Chapter 11 First Day Motions <i>(Motion for Order Authorizing Payment of Pre-Petition Wages and Benefits)</i> Filed by Debtor Thayer Power and Communication Line Construction Company, Inc.. (Attachments: <a href='https://ecf.pawb.uscourts.gov/doc1/15619506126'>1</a> Proposed Order <a href='https://ecf.pawb.uscourts.gov/doc1/15619506127'>2</a> Exhibit) (Bolla, Lawrence) (Entered: 10/04/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/04/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/15609506122' onContextMenu='this.href="https://ecf.pawb.uscourts.gov/doc1/15609506122"'>4</a> <br><nobr>(7&nbsp;pgs)</nobr></nobr></TD><TD valign=bottom>  Hearing on Thayer Power and Communication Line Construction Company, Inc. vs. Key Bank National Association and USA, IRS<i></i> Filed by Debtor Thayer Power and Communication Line Construction Company, Inc. (RE: related document(s): <a href='https://ecf.pawb.uscourts.gov/doc1/15609506119'>3</a> Motion Re: Chapter 11 First Day Motions filed by Debtor Thayer Power and Communication Line Construction Company, Inc.). Hearing scheduled for 10/9/2008 at 09:00 AM at Bankruptcy Courtroom, U.S. Courthouse, 17 South Park Row, Erie. (Bolla, Lawrence) (Entered: 10/04/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/04/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/15609506117' onContextMenu='this.href="https://ecf.pawb.uscourts.gov/doc1/15609506117"'>3</a> <br><nobr>(18&nbsp;pgs; 3&nbsp;docs)</nobr></nobr></TD><TD valign=bottom>  Motion Regarding Chapter 11 First Day Motions <i>(Motion to Use Cash Collateral)</i> Filed by Debtor Thayer Power and Communication Line Construction Company, Inc.. (Attachments: <a href='https://ecf.pawb.uscourts.gov/doc1/15619506118'>1</a> Proposed Order <a href='https://ecf.pawb.uscourts.gov/doc1/15619506119'>2</a> Exhibit) (Bolla, Lawrence) (Entered: 10/04/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/04/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'>2</nobr></TD><TD valign=bottom>  Receipt of Voluntary Petition Chapter 11(08-11904) [misc,volp11] (1039.00) filing fee. Receipt number 5345416, amount $1039.00. (U.S. Treasury) (Entered: 10/04/2008)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/04/2008</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/15609506114' onContextMenu='this.href="https://ecf.pawb.uscourts.gov/doc1/15609506114"'>1</a> <br><nobr>(13&nbsp;pgs)</nobr></nobr></TD><TD valign=bottom>  Chapter 11 Voluntary Petition <i></i>. Fee Amount $1039 Filed by Thayer Power and Communication Line Construction Company, Inc. Government Proof of Claim due by 04/2/2009. Declaration Re: Electronic Filing due 10/20/2008. Declaration of Schedules due 10/20/2008. Employee Income Record or a statement that there is no record due by 10/20/2008. Statement of Current Monthly Income FR 22B due by 10/20/2008. Schedules A-J due 10/20/2008. Statement of Financial Affairs due 10/20/2008. Summary of schedules due 10/20/2008. Informational Notice Required by 342b due by 10/20/2008. Incomplete Filings due by 10/20/2008. Chapter 11 Plan due by 02/2/2009. Disclosure Statement due by 02/2/2009. (Bolla, Lawrence) CORRECTIVE ENTRY: STATEMENT OF CURRENT MONTHLY INCOME FR 22 B AND INFORMATIONAL NOTICE REQUIRED BY 342b DEADLINES TERMINATED: NOT APPLICABLE AS THE DEBTOR IS A CORPORATION. Modified on 10/6/2008 (amaz). (Entered: 10/04/2008)</TD></TR>
+</TABLE><BR><BR><BR><BR>
+			<script type='text/javascript'>
+				document.cookie = 'RECENT_CASES=' + "259029;";
+			</script>
+		<HR><CENTER><TABLE BORDER=1 BGCOLOR=white width="400"><TR><TH COLSPAN=4><FONT SIZE=+1 COLOR=DARKRED>PACER Service Center </FONT></TH></TR><TR><TH COLSPAN=4><FONT COLOR=DARKBLUE>Transaction Receipt </FONT></TH></TR><TR></TR><TR></TR><TR><TD COLSPAN=4 ALIGN=CENTER><FONT SIZE=-1 COLOR=DARKBLUE>07/12/2017 18:32:06</FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> PACER Login: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> [ LOGIN REMOVED ] </FONT></TH></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Client Code: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE>  </FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Description: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Docket Report </FONT></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Search Criteria: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 08-11904-TPA Fil or Ent: filed   Doc From: 1 Doc To: 20 Term: included  Headers: included  Format: html Page counts for documents: included </FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Billable Pages: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 4 </FONT></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Cost: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 0.40 </FONT></TD></TR><TR></TR><TR></TR></TABLE></CENTER></HR><BR></BR></div></body></html>

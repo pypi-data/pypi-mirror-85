@@ -1,0 +1,303 @@
+<html><head><title>U.S. Bankruptcy Court - Northern District of Texas</title>
+<link rel="stylesheet" type="text/css" href="/css/default.css"><script type="text/javascript" src="/lib/core.js"></script><script type="text/javascript">if (top!=self) {top.location.replace(location.href);}</script><script type="text/javascript" src="/cgi-bin/menu.pl?id=-1"></script></head><body BGCOLOR=FFFFF0 TEXT=000000 onLoad='SetFocus()'><div class="noprint"><img id="cmecfLogo" class="cmecfLogo" src="/graphics/cmecf-logo.gif" alt="CM/ECF" title="" onClick="CMECF.MainMenu.showCourtInformation(); return false" /><img src="/graphics/menubar-help.gif" alt="?" title="" class="helpImage" id="helpImage" onClick="CMECF.MainMenu.showHelpPage(''); return false" onMouseOver="CMECF.MainMenu.helpImageOn()" onMouseOut="CMECF.MainMenu.helpImageOff()" /><div id="topmenu" class="yuimenubar"><div class="bd"><ul class="first-of-type"><li class="yuimenubaritem" style="width:9%"><a class="yuimenubaritemlabel" href='/cgi-bin/iquery.pl'><u>Q</u>uery</a></li><li class="yuimenubaritem" style="width:11%"><a class="yuimenubaritemlabel" href='/cgi-bin/DisplayMenu.pl?Reports&id=-1'><u>R</u>eports</a></li><li class="yuimenubaritem" style="width:11%"><a class="yuimenubaritemlabel" href='/cgi-bin/DisplayMenu.pl?Utilities&id=-1'><u>U</u>tilities</a></li><li class="yuimenubaritem" style="width:10%"><a class="yuimenubaritemlabel" href='/cgi-bin/login.pl?logout'>Logout</a></li></ul></div></div></div><script type="text/javascript">if (navigator.appVersion.indexOf("MSIE")==-1){window.setTimeout( function(){ CMECF.MainMenu.createMenu(); }, 0);}else{CMECF.util.Event.addListener(window, "load", CMECF.MainMenu.createMenu);}</script><div id="cmecfMainContent"><input type="hidden" id="cmecfMainContentScroll" value="0"><SCRIPT LANGUAGE="JavaScript">
+		var IsForm = false;
+		var FirstField;
+		function SetFocus() {
+			if(IsForm) {
+				if(FirstField) {
+					var ind = FirstField.indexOf('document.',0);
+					if(ind == 0)
+					{
+						eval(FirstField);
+					}
+					else
+					{
+						var Code = "document.forms[0]."+FirstField+".focus();";
+						eval(Code);
+					}
+				} else {
+					var Cnt = 0;
+					while(document.forms[0].elements[Cnt] != null) {
+						if(document.forms[0].elements[Cnt].type != "hidden") {
+							document.forms[0].elements[Cnt].focus();
+							break;
+						}
+						Cnt += 1;
+					}
+				}
+			}
+			return(true);
+		}
+		</SCRIPT>
+<script type='text/JavaScript'>
+document.cookie="PDFHeaderReferer=517640602254075; path=/";
+</script>
+		<script type="text/javascript" src="/lib/widgits.js"></script>
+		<script>
+		var debtorPanel = null;
+
+		function create_panel(clid, message) {
+		    if (!debtorPanel) {
+		        debtorPanel = new CMECF.widget.Panel('debtorPanel', {
+				close:true,
+				draggable:false,
+				context:[clid, 'tl', 'br'],
+				width: "250" + "px",
+				height: "110" + "px",
+				constraintoviewport:true
+			});
+			debtorPanel.setHeader("Barred Debtor Information");
+			debtorPanel.setBody(message);
+			debtorPanel.body.style.height = "8em";
+			debtorPanel.render(document.body);
+		    } else {
+		        debtorPanel.show();
+		    }
+		}
+
+		function close_panel() {
+		    if (debtorPanel) {
+		        debtorPanel.destroy();
+		        debtorPanel = null;
+		    }
+		}
+		</script>
+		<TABLE width="100%" align=right BORDER=0 CELLSPACING=5><TR><TD ALIGN=right><h2> <FONT SIZE="3">REFORM, NTCAPR, jntadmn, LEAD, ClaimsAgent, EXHIBITS, COMPLEX, ADVAPL, SealedDocument, SEALEDEXH</FONT></h2></TD></TR></TABLE><BR><BR><BR><CENTER><B><FONT SIZE="+1">U.S. Bankruptcy Court<BR>Northern District of Texas (Dallas)<BR>Bankruptcy Petition #: 09-37010-sgj11</FONT></B></CENTER><TABLE width="100%" BORDER=0 CELLSPACING=1><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><BR><I>Assigned to:</I>       Stacey G. Jernigan<BR>Chapter          11<BR>Voluntary<BR>Asset <br><div class="noprint"><A HREF='/cgi-bin/qryAscCases.pl?331493'>Show Associated Cases</A></div> <div class="noprint"><a href='/cgi-bin/SearchClaims.pl?caseid=331493;sc'>Claims Register</a></div><BR><BR>	</FONT></TD>
+	<TD VALIGN=top  WIDTH="50%" ALIGN=right><FONT SIZE="+0"><TABLE border=0 cellspacing=0 cellpadding=0 align=center><TR><td align="right" valign="top"><I>Date filed:</I></td><td align="left" valign="top">&nbsp;&nbsp;10/19/2009</td></TR><TR><td align="right" valign="top"><I>Date Plan Confirmed:</i></td><td align="left" valign="top">&nbsp;&nbsp;04/22/2010</td></TR><TR><td align="right" valign="top"><I>Plan confirmed:</I></td><td align="left" valign="top">&nbsp;&nbsp;04/22/2010</td></TR><TR><td align="right" valign="top"><I>341 meeting:</I></td><td align="left" valign="top">&nbsp;&nbsp;11/30/2009</td></TR><TR><td align="right" valign="top"><I>Deadline for filing claims:</I></td><td align="left" valign="top">&nbsp;&nbsp;02/28/2010  </td></TR></TABLE>	</FONT></TD>
+</TR>
+</TABLE><BR><FONT SIZE="5"><B></B>
+		</FONT><TABLE width="100%" BORDER=0 CELLSPACING=1><TR><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Debtor</B></I><BR><B>Erickson Retirement Communities, LLC</B>
+<BR>701 Maiden Choice Lane
+<BR>Baltimore, MD 21228
+<BR>BALTIMORE-MD
+<BR>Tax ID / EIN: 52-2003375     <BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Ted A. Berkowitz</B>
+<BR>Farrell Fritz, P.C.
+<BR>1320 RXR Plaza
+<BR>Uniondale, NY 11556-1320
+<BR>(516) 227-0700
+<BR>Fax  : (516) 227-0777
+<BR>Email:&nbsp;<a href='mailto:tberkowitz@farrellfritz.com'>tberkowitz@farrellfritz.com</a><BR><BR><B>Thomas R. Califano</B>
+<BR>DLA Piper LLP US
+<BR>1251 Avenue of the Americas
+<BR>New York, NY 10020-1104
+<BR>(212) 335-4500
+<BR>Fax  : (212) 335-4501
+<BR>Email:&nbsp;<a href='mailto:thomas.califano@dlapiper.com'>thomas.califano@dlapiper.com</a><BR><BR><B>Patrick Collins</B>
+<BR>Farrell Fritz, P.C.
+<BR>1320 RXR Plaza
+<BR>Uniondale, NY 11556-1320<BR><BR><B>DLA Piper LLP US</B>
+<BR>1717 Main St., Ste. 4600
+<BR>Dallas, TX 75201-4605
+<BR>(214) 743-4504<BR><BR><B>Michael D. Hynes</B>
+<BR>DLA Piper LLP US
+<BR>1251 Avenue of the Americas
+<BR>New York, NY 10020
+<BR>(212) 835-6000
+<BR>Fax  : (212) 835-6001
+<BR>Email:&nbsp;<a href='mailto:Michael.Hynes@dlapiper.com'>Michael.Hynes@dlapiper.com</a><BR><BR><B>Jeremy R Johnson</B>
+<BR>DLA Piper LLP (US)
+<BR>1251 Avenue of the Americas
+<BR>New York, NY 10020-1104
+<BR>(212) 835-6000
+<BR>Fax  : (212) 835-6001
+<BR>Email:&nbsp;<a href='mailto:jeremy.johnson@dlapiper.com'>jeremy.johnson@dlapiper.com</a><BR><BR><B>Jason M. Karaffa</B>
+<BR>DLA Piper LLP US
+<BR>1251 Avenue of the Americas
+<BR>New York, NY 10020-1104
+<BR>(212) 335-4500
+<BR>Fax  : (212) 335-4501
+<BR>Email:&nbsp;<a href='mailto:jason.karaffa@dlapiper.com'>jason.karaffa@dlapiper.com</a><BR><BR><B>Kristin J Rosella</B>
+<BR>DLA Piper LLP US
+<BR>1251 Avenue of the Americas
+<BR>New York, NY 10020-1104
+<BR>(212) 335-4500
+<BR>Fax  : (212) 335-4501
+<BR>Email:&nbsp;<a href='mailto:kristin.rosella@dlapiper.com'>kristin.rosella@dlapiper.com</a><BR><BR><B>Vincent P. Slusher</B>
+<BR>DLA Piper LLP US
+<BR>1717 Main Street
+<BR>Suite 4600
+<BR>Dallas, TX 75201
+<BR>214.743.4500
+<BR>Fax  : 214.743.4545
+<BR>Email:&nbsp;<a href='mailto:vince.slusher@dlapiper.com'>vince.slusher@dlapiper.com</a><BR><BR><B>Robert C. Yan</B>
+<BR>Farrell Fritz, P.C.
+<BR>1320 RXR Plaza
+<BR>Uniondale, NY 11556-1320
+<BR>516-227-0700
+<BR>Fax  : 516-227-0777<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Consolidated debtor</B></I><BR><B>Ashburn Campus, LLC</B>
+<BR>Tax ID / EIN: 55-0876975     <BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Vincent P. Slusher</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Consolidated debtor</B></I><BR><B>Columbus Campus, LLC</B>
+<BR>Tax ID / EIN: 54-2179224     <BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Vincent P. Slusher</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Consolidated debtor</B></I><BR><B>Concord Campus GP, LLC</B>
+<BR>Tax ID / EIN: 34-2017347     <BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Vincent P. Slusher</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Consolidated debtor</B></I><BR><B>Concord Campus, LP</B>
+<BR>Tax ID / EIN: 32-0085110     <BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Vincent P. Slusher</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Consolidated debtor</B></I><BR><B>Dallas Campus GP, LLC</B>
+<BR>Tax ID / EIN: 65-1234848     <BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Vincent P. Slusher</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Consolidated debtor</B></I><BR><B>Dallas Campus, LP</B>
+<BR>Tax ID / EIN: 65-1236308     <BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Vincent P. Slusher</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Consolidated debtor</B></I><BR><B>Erickson Construction, LLC</B>
+<BR>Tax ID / EIN: 52-2012727     <BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Vincent P. Slusher</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Consolidated debtor</B></I><BR><B>Erickson Group, LLC</B>
+<BR>Tax ID / EIN: 52-2150975     <BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Vincent P. Slusher</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Consolidated debtor</B></I><BR><B>Houston Campus, L.P.</B>
+<BR>Tax ID / EIN: 56-2476166     <BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Vincent P. Slusher</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Consolidated debtor</B></I><BR><B>Kansas Campus, LLC</B>
+<BR>Tax ID / EIN: 56-2524039     <BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Vincent P. Slusher</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Consolidated debtor</B></I><BR><B>Littleton Campus, LLC</B>
+<BR>Tax ID / EIN: 56-2446644     <BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Vincent P. Slusher</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Consolidated debtor</B></I><BR><B>Novi Campus, LLC</B>
+<BR>Tax ID / EIN: 52-2313098     <BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Vincent P. Slusher</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Consolidated debtor</B></I><BR><B>Senior Campus Services, LLC</B>
+<BR>Tax ID / EIN: 52-2003383     <BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Vincent P. Slusher</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Consolidated debtor</B></I><BR><B>Warminster Campus GP, LLC</B>
+<BR>Tax ID / EIN: 26-0534747     <BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Vincent P. Slusher</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Consolidated debtor</B></I><BR><B>Warminster Campus, L.P.</B>
+<BR>Tax ID / EIN: 52-2318248     <BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Vincent P. Slusher</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Trustee</B></I><BR><B>Dan Lain</B>
+<BR>Lain Faulkner & Co
+<BR>400 North St. Paul
+<BR>Dallas, TX 75201-6897
+<BR>214-720-1929<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Jason Gary Cohen</B>
+<BR>Bracewell & Giuliani, LLP
+<BR>711 Louisiana Street, Suite 2300
+<BR>Houston, TX 77002
+<BR>(713) 221-1416
+<BR>Fax  : (713) 222-3209
+<BR>Email:&nbsp;<a href='mailto:jason.cohen@bracewelllaw.com'>jason.cohen@bracewelllaw.com</a><BR><BR><B>Tricia R. DeLeon</B>
+<BR>Gruber Elrod Johansen Hail Shank LLP
+<BR>1445 Ross Avenue, Suite 2500
+<BR>Dallas, TX 75202
+<BR>(214) 855-6800
+<BR>Fax  : (214) 855-6808
+<BR>Email:&nbsp;<a href='mailto:tdeleon@getrial.com'>tdeleon@getrial.com</a><BR><BR><B>Jonathan L. Lozano</B>
+<BR>Bracewell LLP
+<BR>111 Congress Avenue, Suite 2300
+<BR>Austin, TX 78701
+<BR>(512) 472-7800
+<BR>Fax  : (800) 404-3970
+<BR>Email:&nbsp;<a href='mailto:jonathan.lozano@bracewelllaw.com'>jonathan.lozano@bracewelllaw.com</a><BR><BR><B>Brian Christopher Mitchell</B>
+<BR>Bracewell LLP
+<BR>1445 Ross Avenue, Ste. 3800
+<BR>Dallas, TX 75202-2711
+<BR>(214) 758-1053
+<BR>Fax  : (214) 758-8353
+<BR>Email:&nbsp;<a href='mailto:brian.mitchell@bgllp.com'>brian.mitchell@bgllp.com</a><BR><BR><B>Aaron Z. Tobin</B>
+<BR>Condon Tobin Sladek Thornton PLLC
+<BR>8080 Park Ln, Suite 700
+<BR>Dallas, TX 75231
+<BR>kreed&#064;ctstlaw.com
+<BR>Email:&nbsp;<a href='mailto:atobin@ctstlaw.com'>atobin@ctstlaw.com</a><BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>U.S. Trustee</B></I><BR><B>United States Trustee</B>
+<BR>1100 Commerce Street
+<BR>Room 976
+<BR>Dallas, TX 75242
+<BR>214-767-8967<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Nancy Sue Resnick</B>
+<BR>Office of The United States Trustee
+<BR>1100 Commerce St., Room 976
+<BR>Dallas, TX 75242-1496
+<BR>214-767-8967
+<BR>Email:&nbsp;<a href='mailto:ustpregion06.da.ecf@usdoj.gov'>ustpregion06.da.ecf@usdoj.gov</a><BR><BR></font></TD></TR><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Creditor Committee</B></I><BR><B>Official Unsecured Creditors Committee</B>	</FONT></TD>
+	<TD VALIGN=top  WIDTH="20%" ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+	<TD VALIGN=top  WIDTH="40%"><FONT SIZE="+0"><B>Daniel S. Connolly</B>
+<BR>Bracewell & Giuliani LLP
+<BR>1177 Avenue of the Americas Ste. 1900
+<BR>New York, NY 10036-2714
+<BR>(212) 508-6100
+<BR>Fax  : (212) 508-6101<BR><BR><B>Rachel B. Goldman</B>
+<BR>Bracewell & Giuliani LLP
+<BR>1177 Avenue of the Americas, Ste. 1900
+<BR>New York, NY 10036
+<BR>(212) 508-6100
+<BR>Fax  : (212) 508-6101<BR><BR><B>Andrew J. Schoulder</B>
+<BR>Bracewell & Giuliani LLP
+<BR>1177 Avenue of the Americas, Ste 1900
+<BR>New York, NY 10036-2714
+<BR>212-508-6100
+<BR>Fax  : 212-508-6101<BR><BR><B>Samuel Martin Stricklin</B>
+<BR>Bracewell & Guiliani, LLP
+<BR>1445 Ross Ave. Ste. 3800
+<BR>Dallas, TX 75202
+<BR>(214) 758-1000
+<BR>Fax  : (214) 758-8395
+<BR>Email:&nbsp;<a href='mailto:sam.stricklin@bgllp.com'>sam.stricklin@bgllp.com</a>	</FONT></TD>
+</TR></TABLE><BR><TABLE BORDER=1 CELLPADDING=10 CELLSPACING=0><TR><TH width='94' nowrap>Filing Date</TH>
+<TH align=center>Docket Text</TH></TR>
+<TR><TD width="94" nowrap valign=bottom>10/19/2009</TD><TD valign=bottom>  &nbsp; <a href='/doc1/176018642659' onContextMenu='this.href="https://ecf.txnb.uscourts.gov/doc1/176018642659"'>1</a> &nbsp;<nobr>(11&nbsp;pgs)</nobr> Chapter 11 voluntary petition. Fee Amount $1039 Filed by Erickson Retirement Communities, LLC (Slusher, Vincent)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/19/2009</TD><TD valign=bottom>  &nbsp; <a href='/doc1/176018646298' onContextMenu='this.href="https://ecf.txnb.uscourts.gov/doc1/176018646298"'>2</a> &nbsp;<nobr>(16&nbsp;pgs)</nobr> Motion for joint administration of cases 09-37010, 09-37012, 09-37013, 09-37015, 09-37016, 09-37017, 09-37018, 09-37019, 09-37020, 09-37021, 09-37022, 09-37023, 09-37024, 09-37025, 09-37026, 09-37027 <i></i> Filed by Debtor Erickson Retirement Communities, LLC (Slusher, Vincent)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/19/2009</TD><TD valign=bottom>  &nbsp; <a href='/doc1/176018646532' onContextMenu='this.href="https://ecf.txnb.uscourts.gov/doc1/176018646532"'>3</a> &nbsp;<nobr>(2&nbsp;pgs)</nobr> Notice of designation as complex chapter 11 case <i>/Notice of Designation as Complex Chapter 11 Bankruptcy Cases</i> filed by Debtor Erickson Retirement Communities, LLC. (Slusher, Vincent)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/19/2009</TD><TD valign=bottom>  &nbsp; <a href='/doc1/176018646568' onContextMenu='this.href="https://ecf.txnb.uscourts.gov/doc1/176018646568"'>4</a> &nbsp;<nobr>(8&nbsp;pgs)</nobr> Motion to Extend time to Time for Filing Schedules and Statements of Financial Affairs Pursuant to Bankruptcy Rule 1007 Filed by Debtor Erickson Retirement Communities, LLC (Slusher, Vincent)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/19/2009</TD><TD valign=bottom>  &nbsp; <a href='/doc1/176018646662' onContextMenu='this.href="https://ecf.txnb.uscourts.gov/doc1/176018646662"'>5</a> &nbsp;<nobr>(4&nbsp;pgs)</nobr> Notice of Appearance and Request for Notice <i></i> by William Lawrence Medford Jr. filed by Creditor Wilmington Trust FSB. (Medford, William)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/19/2009</TD><TD valign=bottom>  &nbsp; <a href='/doc1/176018647186' onContextMenu='this.href="https://ecf.txnb.uscourts.gov/doc1/176018647186"'>6</a> &nbsp;<nobr>(12&nbsp;pgs)</nobr> Notice of Appearance and Request for Notice <i></i> by John Mark Chevallier filed by Tallgrass Creek, Inc., Monarch Landing, Inc., Sedgebrook, Inc., Linden Ponds, Inc., Eagle's Trace, Inc., Highland Springs, Inc., Ashby Ponds, Inc., Wind Crest, Inc., Fox Run Village, Inc., Maris Grove, Inc., Ann's Choice, Inc., Cedar Crest Village, Inc., Seabrook Village, Inc., Brooksby Village, Inc., Riderwood Village, Inc., Greenspring Village, Inc., Oak Crest Village, Inc.. (Chevallier, John)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/19/2009</TD><TD valign=bottom>  &nbsp; <a href='/doc1/176018647298' onContextMenu='this.href="https://ecf.txnb.uscourts.gov/doc1/176018647298"'>7</a> &nbsp;<nobr>(8&nbsp;pgs)</nobr> Motion to limit notice<i>/Debtors' Motion for an Order Pursuant to 11 U.S.C. 105(a) and Bankruptcy Rule 2002 Establishing Notice Procedures</i> Filed by Debtor Erickson Retirement Communities, LLC (Slusher, Vincent)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/19/2009</TD><TD valign=bottom>  &nbsp; <a href='/doc1/176018647905' onContextMenu='this.href="https://ecf.txnb.uscourts.gov/doc1/176018647905"'>8</a> &nbsp;<nobr>(23&nbsp;pgs; 4&nbsp;docs)</nobr> Application to employ BMC Group, Inc. as Claims Agent <i>, Noticing Agent, and Balloting Agent for the Bankruptcy Court</i> Filed by Debtor Erickson Retirement Communities, LLC (Attachments: <a href='https://ecf.txnb.uscourts.gov/doc1/176118647906'>1</a> Exhibit A<a href='https://ecf.txnb.uscourts.gov/doc1/176118647907'>2</a> Exhibit B<a href='https://ecf.txnb.uscourts.gov/doc1/176118647908'>3</a> Exhibit C) (Slusher, Vincent)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/19/2009</TD><TD valign=bottom>  &nbsp; <a href='/doc1/176018648499' onContextMenu='this.href="https://ecf.txnb.uscourts.gov/doc1/176018648499"'>9</a> &nbsp;<nobr>(19&nbsp;pgs; 2&nbsp;docs)</nobr> Motion to pay <i>/Motion of Debtors Pursuant to 11 U.S.C. 105(a) and 363(b) for an Order Authorizing Payment of Prepetition (I) Wages, Salaries and Other Compensation of Employees, (II) Employee Medical and Similar Benefits, (III) Reimbursable Employee Expenses, and (IV) Other Miscellaneous Employee Expenses and Benefits</i> Filed by Debtor Erickson Retirement Communities, LLC (Attachments: <a href='https://ecf.txnb.uscourts.gov/doc1/176118648500'>1</a> Exhibit A) (Slusher, Vincent)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/19/2009</TD><TD valign=bottom>  &nbsp; <a href='/doc1/176018648705' onContextMenu='this.href="https://ecf.txnb.uscourts.gov/doc1/176018648705"'>10</a> &nbsp;<nobr>(55&nbsp;pgs; 4&nbsp;docs)</nobr> Motion to use cash collateral <i>/ Motion of Ashburn Campus, LLC, Columbus Campus, LP, Concord Campus, LP, Dallas Campus, LP, Houston Campus, LP, Kansas Campus, LLC, Littleton Campus, LLC, Novi Campus, LLC, and Warminster Campus, LP For Interim and Final Orders (I) Authorizing the Use of Cash Collateral, (II) Granting Adequate Protection to Secured Lenders, and (III) Scheduling a Final Hearing</i> Filed by Debtor Erickson Retirement Communities, LLC (Attachments: <a href='https://ecf.txnb.uscourts.gov/doc1/176118648706'>1</a> Motion Part 2<a href='https://ecf.txnb.uscourts.gov/doc1/176118648707'>2</a> Exhibit A - Part 1<a href='https://ecf.txnb.uscourts.gov/doc1/176118648708'>3</a> Exhibit A - Part 2) (Slusher, Vincent)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/19/2009</TD><TD valign=bottom>  &nbsp; <a href='/doc1/176018648717' onContextMenu='this.href="https://ecf.txnb.uscourts.gov/doc1/176018648717"'>11</a> &nbsp;<nobr>(32&nbsp;pgs; 3&nbsp;docs)</nobr> Motion to use cash collateral <i>/Motion of ERC For Interim and Final Orders (I) Authorizing the Use of Cash Collateral, (II) Granting Adequate Protection to Secured Lenders, and (III) Scheduling a Final Hearing</i> Filed by Debtor Erickson Retirement Communities, LLC (Attachments: <a href='https://ecf.txnb.uscourts.gov/doc1/176118648718'>1</a> Motion Part 2<a href='https://ecf.txnb.uscourts.gov/doc1/176118648719'>2</a> Exhibit A) (Slusher, Vincent)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/19/2009</TD><TD valign=bottom>  &nbsp; <a href='/doc1/176018648728' onContextMenu='this.href="https://ecf.txnb.uscourts.gov/doc1/176018648728"'>12</a> &nbsp;<nobr>(51&nbsp;pgs)</nobr> Motion to maintain bank accounts. <i>/Motion of Debtors For Order Authorizing (I) COntinued Use of Existing Cash Management System, (II) Maintenance of Existing Bank Accounts, (III) Continued Use of Existing Business Forms, and (IV) Maintenance of Existing Investment Practices</i> Filed by Debtor Erickson Retirement Communities, LLC (Slusher, Vincent) MODIFED to remove termination date on 10/21/2009 (Sauer, K.).</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/19/2009</TD><TD valign=bottom>  &nbsp; <a href='/doc1/176018648778' onContextMenu='this.href="https://ecf.txnb.uscourts.gov/doc1/176018648778"'>13</a> &nbsp;<nobr>(27&nbsp;pgs)</nobr> Motion regarding utilities. <i>/Motion of the Debtors for Interim and Final Orders (I) Prohibiting Utilities From Altering, Refusing or Discontinuing Service, (II) Deeming the Utility Companies Adequately Assured of Future Performance, (III) Authorizing the Debtors to Maintain Their Prepetition Relationships and Practices With the Third Party Vendor, and (IV) Establishing Procedures for Determining Requests For Additional Adequate Assurance</i> Filed by Debtor Erickson Retirement Communities, LLC (Slusher, Vincent)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/19/2009</TD><TD valign=bottom>  &nbsp; <a href='/doc1/176018648790' onContextMenu='this.href="https://ecf.txnb.uscourts.gov/doc1/176018648790"'>14</a> &nbsp;<nobr>(4&nbsp;pgs)</nobr> Motion to Shorten time to /Request For Emergency Consideration of Certain First Day Matters Filed by Debtor Erickson Retirement Communities, LLC (Slusher, Vincent)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/20/2009</TD><TD valign=bottom>  &nbsp; <a href='/doc1/176018648800' onContextMenu='this.href="https://ecf.txnb.uscourts.gov/doc1/176018648800"'>15</a> &nbsp;<nobr>(58&nbsp;pgs)</nobr> Affidavit by Paul Rundell <i>in Support of First Day Motions</i> filed by Debtor Erickson Retirement Communities, LLC (RE: related document(s)<a href='https://ecf.txnb.uscourts.gov/doc1/176018646298'>2</a> Motion for joint administration of cases 09-37010, 09-37012, 09-37013, 09-37015, 09-37016, 09-37017, 09-37018, 09-37019, 09-37020, 09-37021, 09-37022, 09-37023, 09-37024, 09-37025, 09-37026, 09-37027 <i></i>, <a href='https://ecf.txnb.uscourts.gov/doc1/176018646568'>4</a> Motion to Extend time to Time for Filing Schedules and Statements of Financial Affairs Pursuant to Bankruptcy Rule 1007, <a href='https://ecf.txnb.uscourts.gov/doc1/176018647298'>7</a> Motion to limit notice<i>/Debtors' Motion for an Order Pursuant to 11 U.S.C. 105(a) and Bankruptcy Rule 2002 Establishing Notice Procedures</i>, <a href='https://ecf.txnb.uscourts.gov/doc1/176018647908'>8</a> Application to employ BMC Group, Inc. as Claims Agent <i>, Noticing Agent, and Balloting Agent for the Bankruptcy Court</i>, <a href='https://ecf.txnb.uscourts.gov/doc1/176018648500'>9</a> Motion to pay <i>/Motion of Debtors Pursuant to 11 U.S.C. 105(a) and 363(b) for an Order Authorizing Payment of Prepetition (I) Wages, Salaries and Other Compensation of Employees, (II) Employee Medical and Similar Benefits, (III) Reimbursable Employee, <a href='https://ecf.txnb.uscourts.gov/doc1/176018648708'>10</a> Motion to use cash collateral <i>/ Motion of Ashburn Campus, LLC, Columbus Campus, LP, Concord Campus, LP, Dallas Campus, LP, Houston Campus, LP, Kansas Campus, LLC, Littleton Campus, LLC, Novi Campus, LLC, and Warminster Campus, LP For Interim and Fin, <a href='https://ecf.txnb.uscourts.gov/doc1/176018648719'>11</a> Motion to use cash collateral <i>/Motion of ERC For Interim and Final Orders (I) Authorizing the Use of Cash Collateral, (II) Granting Adequate Protection to Secured Lenders, and (III) Scheduling a Final Hearing</i>, <a href='https://ecf.txnb.uscourts.gov/doc1/176018648728'>12</a> Motion to maintain bank accounts. <i>/Motion of Debtors For Order Authorizing (I) COntinued Use of Existing Cash Management System, (II) Maintenance of Existing Bank Accounts, (III) Continued Use of Existing Business Forms, and (IV) Maintenance of Exis, <a href='https://ecf.txnb.uscourts.gov/doc1/176018648778'>13</a> Motion regarding utilities. <i>/Motion of the Debtors for Interim and Final Orders (I) Prohibiting Utilities From Altering, Refusing or Discontinuing Service, (II) Deeming the Utility Companies Adequately Assured of Future Performance, (III) Authorizin, <a href='https://ecf.txnb.uscourts.gov/doc1/176018648790'>14</a> Motion to Shorten time to /Request For Emergency Consideration of Certain First Day Matters). (Slusher, Vincent)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/20/2009</TD><TD valign=bottom>  &nbsp; <a href='/doc1/176018650238' onContextMenu='this.href="https://ecf.txnb.uscourts.gov/doc1/176018650238"'>16</a> &nbsp;<nobr>(4&nbsp;pgs; 2&nbsp;docs)</nobr> Motion to appear pro hac vice for Brian I. Swett of Winston & Strawn LLP. Fee Amount $25 Filed by Creditor Bank of America, N.A. (Attachments: <a href='https://ecf.txnb.uscourts.gov/doc1/176118650239'>1</a> Proposed Order) (Everett, Scott)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/20/2009</TD><TD valign=bottom>  &nbsp; <a href='/doc1/176018650322' onContextMenu='this.href="https://ecf.txnb.uscourts.gov/doc1/176018650322"'>17</a> &nbsp;<nobr>(4&nbsp;pgs)</nobr> Notice of Appearance and Request for Notice <i></i> by Edith Stuart Phillips filed by Interested Party Texas Department of Insurance. (Phillips, Edith)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/20/2009</TD><TD valign=bottom>  &nbsp; <a href='/doc1/176018651453' onContextMenu='this.href="https://ecf.txnb.uscourts.gov/doc1/176018651453"'>18</a> &nbsp;<nobr>(3&nbsp;pgs)</nobr> Motion to appear pro hac vice for Adrienne K. Walker. Fee Amount $25 Filed by Creditor Capmark Finance Inc. (Blacker, Monica)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/20/2009</TD><TD valign=bottom>  &nbsp; <a href='/doc1/176018651497' onContextMenu='this.href="https://ecf.txnb.uscourts.gov/doc1/176018651497"'>19</a> &nbsp;<nobr>(3&nbsp;pgs)</nobr> Motion to appear pro hac vice for Daniel S. Bleck. Fee Amount $25 Filed by Creditor Capmark Finance Inc. (Blacker, Monica)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>10/20/2009</TD><TD valign=bottom>  &nbsp; <a href='/doc1/176018651586' onContextMenu='this.href="https://ecf.txnb.uscourts.gov/doc1/176018651586"'>20</a> &nbsp;<nobr>(3&nbsp;pgs)</nobr> Notice of Appearance and Request for Notice <i></i> by Monica Susan Blacker filed by Creditor Capmark Finance Inc.. (Blacker, Monica)</TD></TR>
+</TABLE><BR><BR><BR><BR>
+			<script type='text/javascript'>
+				document.cookie = 'RECENT_CASES=' + "331493^209416^358586;";
+			</script>
+		<HR><CENTER><TABLE BORDER=1 BGCOLOR=white width="400"><TR><TH COLSPAN=4><FONT SIZE=+1 COLOR=DARKRED>PACER Service Center </FONT></TH></TR><TR><TH COLSPAN=4><FONT COLOR=DARKBLUE>Transaction Receipt </FONT></TH></TR><TR></TR><TR></TR><TR><TD COLSPAN=4 ALIGN=CENTER><FONT SIZE=-1 COLOR=DARKBLUE>06/30/2017 13:25:24</FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> PACER Login: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> [ LOGIN REMOVED ] </FONT></TH></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Client Code: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE>  </FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Description: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Docket Report </FONT></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Search Criteria: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 09-37010-sgj11 Fil or Ent: filed From: 6/16/2000 To: 6/30/2017 Doc From: 1 Doc To: 20 Term: included  Headers: included  Format: html Page counts for documents: included </FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Billable Pages: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 5 </FONT></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Cost: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 0.50 </FONT></TD></TR><TR></TR><TR></TR></TABLE></CENTER></HR><BR></BR></div></body></html>

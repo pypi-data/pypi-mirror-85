@@ -1,0 +1,162 @@
+<html><head><title>Internal CM/ECF Live Database</title>
+<link rel="stylesheet" type="text/css" href="/css/default.css"><script type="text/javascript" src="/lib/core.js"></script><script type="text/javascript">if (top!=self) {top.location.replace(location.href);}</script></head><body BGCOLOR=FFFFF0 TEXT=000000 onLoad='SetFocus()'><div class="noprint"><img id="cmecfLogo" class="cmecfLogo" src="/graphics/cmecf-logo.gif" alt="CM/ECF" title=""  /><img src="/graphics/menubar-help.gif" alt="?" title="" class="helpImage" id="helpImage" onClick="CMECF.MainMenu.showHelpPage(''); return false" onMouseOver="CMECF.MainMenu.helpImageOn()" onMouseOut="CMECF.MainMenu.helpImageOff()" /><div id="topmenu" class="yuimenubar"><div class="bd"><ul class="first-of-type"><li class="yuimenubaritem" style="width:9%"><a class="yuimenubaritemlabel" href='/cgi-bin/iquery.pl'>Q</u>uery</a></li><li class="yuimenubaritem" style="width:11%"><a class="yuimenubaritemlabel" href='/cgi-bin/DisplayMenu.pl?Reports&id=-1'>R</u>eports</a></li><li class="yuimenubaritem" style="width:11%"><a class="yuimenubaritemlabel" href='/cgi-bin/DisplayMenu.pl?Utilities&id=-1'>U</u>tilities</a></li><li class="yuimenubaritem" style="width:10%"><a class="yuimenubaritemlabel" href='/cgi-bin/login.pl?logout'>Logout</a></li></ul></div></div></div><script type="text/javascript">if (navigator.appVersion.indexOf("MSIE")==-1){window.setTimeout( function(){ CMECF.MainMenu.renderSimpleMenu(); }, 0);}else{CMECF.util.Event.addListener(window, "load", CMECF.MainMenu.renderSimpleMenu);}</script><div id="cmecfMainContent"><input type="hidden" id="cmecfMainContentScroll" value="0"><SCRIPT LANGUAGE="JavaScript">
+		var IsForm = false;
+		var FirstField;
+		function SetFocus() {
+			if(IsForm) {
+				if(FirstField) {
+					var ind = FirstField.indexOf('document.',0);
+					if(ind == 0)
+					{
+						eval(FirstField);
+					}
+					else
+					{
+						var Code = "document.forms[0]."+FirstField+".focus();";
+						eval(Code);
+					}
+				} else {
+					var Cnt = 0;
+					while(document.forms[0].elements[Cnt] != null) {
+						if(document.forms[0].elements[Cnt].type != "hidden") {
+							document.forms[0].elements[Cnt].focus();
+							break;
+						}
+						Cnt += 1;
+					}
+				}
+			}
+			return(true);
+		}
+		</SCRIPT>
+<script type='text/JavaScript'>
+document.cookie="PDFHeaderReferer=247725076280486; path=/";
+</script>
+		<script type="text/javascript" src="/lib/widgits.js"></script>
+		<script>
+		var debtorPanel = null;
+
+		function create_panel(clid, message) {
+		    if (!debtorPanel) {
+		        debtorPanel = new CMECF.widget.Panel('debtorPanel', {
+				close:true,
+				draggable:false,
+				context:[clid, 'tl', 'br'],
+				width: "250" + "px",
+				height: "110" + "px",
+				constraintoviewport:true
+			});
+			debtorPanel.setHeader("Barred Debtor Information");
+			debtorPanel.setBody(message);
+			debtorPanel.body.style.height = "8em";
+			debtorPanel.render(document.body);
+		    } else {
+		        debtorPanel.show();
+		    }
+		}
+
+		function close_panel() {
+		    if (debtorPanel) {
+		        debtorPanel.destroy();
+		        debtorPanel = null;
+		    }
+		}
+		</script>
+		<TABLE width="100%" align=right BORDER=0 CELLSPACING=5><TR><TD ALIGN=right><h2> <FONT SIZE="3">CLOSED</FONT></h2></TD></TR></TABLE><BR><BR><BR><CENTER><B><FONT SIZE="+1">U.S. Bankruptcy Court<BR>District of Delaware (Delaware)<BR>Bankruptcy Petition #: 09-12390-CSS</FONT></B></CENTER><TABLE width="100%" BORDER=0 CELLSPACING=1><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><BR><I>Assigned to:</I>       Christopher S. Sontchi<BR>Chapter          11<BR>Voluntary<BR>Asset <br><div class="noprint"><A HREF='/cgi-bin/qryAscCases.pl?119343'>Show Associated Cases</A></div> <div class="noprint"><a href='/cgi-bin/SearchClaims.pl?caseid=119343;sc'>Claims Register</a></div><BR><BR><BR><I>Debtor disposition:</I>&nbsp;&nbsp;Discharge Not Applicable	</FONT></TD>
+	<TD VALIGN=top  WIDTH="50%" ALIGN=right><FONT SIZE="+0"><TABLE border=0 cellspacing=0 cellpadding=0 align=center><TR><td align="right" valign="top"><I>Date filed:</I></td><td align="left" valign="top">&nbsp;&nbsp;07/08/2009</td></TR><TR><td align="right" valign="top"><I>Date terminated:</I></td><td align="left" valign="top">&nbsp;&nbsp;04/03/2012</td></TR><TR><td align="right" valign="top"><I>Plan confirmed:</I></td><td align="left" valign="top">&nbsp;&nbsp;03/31/2010</td></TR></TABLE>	</FONT></TD>
+</TR>
+</TABLE><BR><FONT SIZE="5"><B></B>
+		</FONT><TABLE width="100%" BORDER=0 CELLSPACING=1><TR><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Debtor</B></I><BR><B>CCS Medical, Inc.</B>
+<BR>14255 49th Street, Suite 301
+<BR>Clearwater, FL 33762
+<BR>PINELLAS-FL
+<BR>Tax ID / EIN: 25-1926264     <BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Ryan M. Bartley</B>
+<BR>Young Conaway Stargatt & Taylor, LLP
+<BR>1000 North King Street
+<BR>Wilmington, DE 19801
+<BR>302-571-6600
+<BR>Email:&nbsp;<a href='mailto:bankfilings@ycst.com'>bankfilings@ycst.com</a><BR><BR><B>Robert S. Brady</B>
+<BR>Young, Conaway, Stargatt & Taylor, LLP
+<BR>1000 North King Street
+<BR>Wilmington, DE 19801
+<BR>302-571-6600
+<BR>Fax  : 302-571-1253
+<BR>Email:&nbsp;<a href='mailto:bankfilings@ycst.com'>bankfilings@ycst.com</a><BR><BR><B>Daniel K. Hogan</B>
+<BR>HoganMcDaniel
+<BR>1311 Delaware Ave
+<BR>Wilmington, DE 19806
+<BR>302 656-7540
+<BR>Fax  : 302-656-7599
+<BR>Email:&nbsp;<a href='mailto:dkhogan@dkhogan.com'>dkhogan@dkhogan.com</a><BR><BR><B>Matthew Barry Lunn</B>
+<BR>Young, Conaway, Stargatt & Taylor
+<BR>1000 North King Street
+<BR>Wilmington, DE 19809
+<BR>302-571-6600
+<BR>Email:&nbsp;<a href='mailto:bankfilings@ycst.com'>bankfilings@ycst.com</a><BR><BR><B>Justin H. Rucki</B>
+<BR>Young Conaway Stargatt & Taylor, LLP
+<BR>Rodney Square
+<BR>1000 North King Street
+<BR>Wilmington, DE 19801
+<BR>302-571-6600
+<BR>Email:&nbsp;<a href='mailto:bankfilings@ycst.com'>bankfilings@ycst.com</a><BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>U.S. Trustee</B></I><BR><B>U.S. Trustee</B>
+<BR>Office of United States Trustee
+<BR>J. Caleb Boggs Federal Building
+<BR>844 King Street, Suite 2207
+<BR>Lockbox 35
+<BR>Wilmington, DE 19899-0035
+<BR>302-573-6491<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  WIDTH="20%" ALIGN=right><FONT SIZE="+0">&nbsp;	</FONT></TD>
+<TD valign="top" WIDTH="40%" NOWRAP>
+  	                    <font size="+0">&nbsp;</font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Claims Agent</B></I><BR><B>Epiq Bankruptcy Solutions LLC</B>
+<BR>www.epiqsystems.com
+<BR>777 Third Avenue, 12th Floor
+<BR>New York, NY 10017
+<BR>646-282-2500
+<BR><I> TERMINATED: 03/21/2012</I><BR><BR>	</FONT></TD>
+	<TD VALIGN=top  WIDTH="20%" ALIGN=right><FONT SIZE="+0">&nbsp;	</FONT></TD>
+<TD valign="top" WIDTH="40%" NOWRAP>
+  	                    <font size="+0">&nbsp;</font></TD></TR><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Creditor Committee</B></I><BR><B>Tarrant County</B>
+<BR>Linebarger Goggan Blair & Sampson, LLP
+<BR>c/o Elizabeth Weller
+<BR>2323 Bryan Street
+<BR>Suite 1600
+<BR>Dallas, Tx 75201
+<BR>214-880-0089	</FONT></TD>
+	<TD VALIGN=top  WIDTH="20%" ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+	<TD VALIGN=top  WIDTH="40%"><FONT SIZE="+0"><B>Helen Elizabeth Weller</B>
+<BR>Linebarger Goggan Blair & Sampson, LLP
+<BR>2777 N. Stemmons Frwy, Ste 1000
+<BR>Dallas, TX 75207
+<BR>469-221-5075
+<BR>Fax  : 469-221-5003
+<BR>Email:&nbsp;<a href='mailto:dallas.bankruptcy@publicans.com'>dallas.bankruptcy@publicans.com</a>	</FONT></TD>
+</TR></TABLE><BR><TABLE BORDER=1 CELLPADDING=10 CELLSPACING=0><TR><TH width='94' nowrap>Filing Date</TH>
+<TH colspan=2 align='center'>#</TH><TH align=center>Docket Text</TH></TR>
+<TR><TD width="94" nowrap valign=bottom>07/08/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208618904' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208618904"'>20</a></nobr></TD><TD valign=bottom>  Application to Employ <i>and Retain</i> Willkie Farr & Gallagher LLP as Co-Counsel to Debtors and Debtors in Possession Filed by CCS Medical, Inc.. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218618905'>1</a> Exhibit A<a href='https://ecf.deb.uscourts.gov/doc1/04218618906'>2</a> Proposed Form of Order) (Lunn, Matthew) (Entered: 07/08/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>07/08/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208618864' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208618864"'>19</a></nobr></TD><TD valign=bottom>  Motion to Authorize <i>Debtors to Employ Professionals Utilized in the Ordinary Course of Business</i> Filed by CCS Medical, Inc.. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218618865'>1</a> Exhibit A<a href='https://ecf.deb.uscourts.gov/doc1/04218618866'>2</a> Exhibit B<a href='https://ecf.deb.uscourts.gov/doc1/04218618867'>3</a> Proposed Form of Order) (Lunn, Matthew) (Entered: 07/08/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>07/08/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208618848' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208618848"'>18</a></nobr></TD><TD valign=bottom>  Motion for Order Establishing Procedures for Interim Compensation and Reimbursement of Expenses of Professionals Filed by CCS Medical, Inc.. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218618849'>1</a> Proposed Form of Order) (Lunn, Matthew) (Entered: 07/08/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>07/08/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208617904' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208617904"'>17</a></nobr></TD><TD valign=bottom>  Notice of Hearing <i>to Consider First Day Motions and Applications</i> Filed by CCS Medical, Inc.. Hearing scheduled for 7/9/2009 at 11:30 AM at US Bankruptcy Court, 824 Market St., 6th Fl., Courtroom #1, Wilmington, Delaware. (Lunn, Matthew) (Entered: 07/08/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>07/08/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208617220' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208617220"'>16</a></nobr></TD><TD valign=bottom>  Motion to Approve Use of Cash Collateral <i></i> Filed By CCS Medical, Inc. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218617221'>1</a> Proposed Form of Order - Interim)(Brady, Robert) (Entered: 07/08/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>07/08/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208617146' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208617146"'>15</a></nobr></TD><TD valign=bottom>  Motion to Authorize <i>Debtors' to Continue Insurance Policies</i> Filed by CCS Medical, Inc.. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218617147'>1</a> Exhibit A<a href='https://ecf.deb.uscourts.gov/doc1/04218617148'>2</a> Proposed Form of Order) (Brady, Robert) (Entered: 07/08/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>07/08/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208617121' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208617121"'>14</a></nobr></TD><TD valign=bottom>  Motion to Pay Critical Trade Vendor Claims <i></i> Filed By CCS Medical, Inc. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218617122'>1</a> Exhibit A<a href='https://ecf.deb.uscourts.gov/doc1/04218617123'>2</a> Proposed Form of Order)(Brady, Robert) (Entered: 07/08/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>07/08/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208617096' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208617096"'>13</a></nobr></TD><TD valign=bottom>  Motion to Continue Customer Programs <i></i> Filed By CCS Medical, Inc. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218617097'>1</a> Proposed Form of Order)(Brady, Robert) (Entered: 07/08/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>07/08/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208617078' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208617078"'>12</a></nobr></TD><TD valign=bottom>  Motion to Authorize <i>/ Debtors' Motion for Order Authorizing Payment of Prepetition Common Carrier, Warehouse, and Related Obligations</i> Filed by CCS Medical, Inc.. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218617079'>1</a> Proposed Form of Order) (Brady, Robert) (Entered: 07/08/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>07/08/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208617047' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208617047"'>11</a></nobr></TD><TD valign=bottom>  Motion to Pay Employee Wages <i></i> Filed By CCS Medical, Inc. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218617048'>1</a> Exhibit A<a href='https://ecf.deb.uscourts.gov/doc1/04218617049'>2</a> Exhibit B)(Brady, Robert) (Entered: 07/08/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>07/08/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208617026' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208617026"'>10</a></nobr></TD><TD valign=bottom>  Motion to Pay Sales and Use Taxes <i>/ Debtors' Motion for Order Authorizing Payment of Certain Prepetition Taxes</i> Filed By CCS Medical, Inc. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218617027'>1</a> Proposed Form of Order)(Brady, Robert) (Entered: 07/08/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>07/08/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208617006' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208617006"'>9</a></nobr></TD><TD valign=bottom>  Motion for Continuation of Utility Service and Approval of Adequate Assurance of Payment to Utility Company Under Section 366(b) <i></i> Filed By CCS Medical, Inc. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218617007'>1</a> Exhibit A<a href='https://ecf.deb.uscourts.gov/doc1/04218617008'>2</a> Exhibit B<a href='https://ecf.deb.uscourts.gov/doc1/04218617009'>3</a> Exhibit C<a href='https://ecf.deb.uscourts.gov/doc1/04218617010'>4</a> Exhibit D)(Brady, Robert) (Entered: 07/08/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>07/08/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208616970' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208616970"'>8</a></nobr></TD><TD valign=bottom>  Motion Waiving Investment/Deposit Requirements <i>and Continued Use of the Debtor's Cash Management System and Procedures</i> Filed By CCS Medical, Inc. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218616971'>1</a> Exhibit A<a href='https://ecf.deb.uscourts.gov/doc1/04218616972'>2</a> Exhibit B<a href='https://ecf.deb.uscourts.gov/doc1/04218616973'>3</a> Proposed Form of Order)(Brady, Robert) (Entered: 07/08/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>07/08/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208616961' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208616961"'>7</a></nobr></TD><TD valign=bottom>  Motion to Extend Deadline to File Schedules or Provide Required Information <i></i> Filed by CCS Medical, Inc.. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218616963'>1</a> Proposed Form of Order) (Brady, Robert) (Entered: 07/08/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>07/08/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208616950' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208616950"'>6</a></nobr></TD><TD valign=bottom>  Application to Appoint Claims/Noticing Agent EPIQ BANKRUPTCY SOLUTIONS Filed By CCS Medical, Inc. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218616952'>1</a> Exhibit A<a href='https://ecf.deb.uscourts.gov/doc1/04218616954'>2</a> Exhibit B<a href='https://ecf.deb.uscourts.gov/doc1/04218616955'>3</a> Proposed Form of Order)(Brady, Robert) (Entered: 07/08/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>07/08/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208616930' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208616930"'>5</a></nobr></TD><TD valign=bottom>  Motion for Joint Administration <i></i> Filed By CCS Medical, Inc. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218616931'>1</a> Proposed Form of Order)(Brady, Robert) (Entered: 07/08/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>07/08/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208616902' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208616902"'>4</a></nobr></TD><TD valign=bottom>  Affidavit in Support <i>of Chapter 11 Petitions and First Day Pleadings</i> Filed By CCS Medical, Inc. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218616903'>1</a> Exhibit A<a href='https://ecf.deb.uscourts.gov/doc1/04218616904'>2</a> Exhibit B)(Lunn, Matthew) (Entered: 07/08/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>07/08/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208616785' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208616785"'>3</a></nobr></TD><TD valign=bottom>  List of Creditors <i></i> Filed by CCS Medical, Inc.. (Brady, Robert) (Entered: 07/08/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>07/08/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'>2</nobr></TD><TD valign=bottom>  Receipt of filing fee for Voluntary Petition (Chapter 11)(09-12390) [misc,volp11a] (1039.00). Receipt Number 4030646, amount $1039.00. (U.S. Treasury) (Entered: 07/08/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>07/08/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208616496' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208616496"'>1</a></nobr></TD><TD valign=bottom>  Chapter 11 Voluntary Petition <i></i>. Fee Amount $1039. Filed by CCS Medical, Inc.. (Brady, Robert) (Entered: 07/08/2009)</TD></TR>
+</TABLE><BR><BR><BR><BR>
+			<script type='text/javascript'>
+				document.cookie = 'RECENT_CASES=' + "119343^117129^105698^120629^118752^117911;";
+			</script>
+		<HR><CENTER><TABLE BORDER=1 BGCOLOR=white width="400"><TR><TH COLSPAN=4><FONT SIZE=+1 COLOR=DARKRED>PACER Service Center </FONT></TH></TR><TR><TH COLSPAN=4><FONT COLOR=DARKBLUE>Transaction Receipt </FONT></TH></TR><TR></TR><TR></TR><TR><TD COLSPAN=4 ALIGN=CENTER><FONT SIZE=-1 COLOR=DARKBLUE>06/30/2017 13:28:05</FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> PACER Login: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> [ LOGIN REMOVED ] </FONT></TH></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Client Code: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE>  </FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Description: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Docket Report </FONT></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Search Criteria: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 09-12390-CSS Fil or Ent: filed From: 5/1/2000 To: 6/30/2017 Doc From: 1 Doc To: 20 Term: included  Headers: included  Format: html  </FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Billable Pages: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 3 </FONT></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Cost: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 0.30 </FONT></TD></TR><TR></TR><TR></TR></TABLE></CENTER></HR><BR></BR></div></body></html>
