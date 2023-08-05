@@ -1,0 +1,42 @@
+![VIF vehicle](img/vehicle.jpg)
+
+# show-puntigam 
+
+![VIF vehicle](img/show_environment.png)
+
+#### Short Description
+Python packages to evaluate urban lidar datasets: 
+
+* Simulation of synthetic movements on lidar datasets (Planned)
+* Machine Learning, Deep Learning on LIDAR datasets (Planned)
+* Evaluation of Lidar datasets (Planned)
+* Use for ROS, Autoware (Planned)
+
+#### Installation
+
+`pip install show-puntigam`
+
+#### Documentation
+
+* [Contribution guidelines for this project](docs/CONTRIBUTING.md)
+* [Planned route](docs/ROUTE.md)
+
+#### Publications
+
+Please cite the following papers, if you use the publications:
+* Hartmann et. al. "Urban environments for synthetic movement generation" 2020 (to be published)
+* ... (TODO)
+
+
+#### VIF Team:
+* Joachim Hillebrand
+* Michael Hartmann
+* Markus Schratter
+
+#### Contact
+* Michael Hartmann (michael.hartmann@v2c2.at)
+
+#### Acknowledgement
+SHOW is co-funded by the EU under the H2020 Research and Innovation Programme (grant agreement No 875530). Package is provided by Virtual Vehicle Research GmbH. Virtual Vehicle Research Team: Joachim Hillebrand, Michael Hartmann, Markus Schratter'
+
+
