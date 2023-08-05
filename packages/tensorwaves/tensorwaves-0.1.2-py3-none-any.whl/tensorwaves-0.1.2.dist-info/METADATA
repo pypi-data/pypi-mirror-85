@@ -1,0 +1,142 @@
+Metadata-Version: 2.1
+Name: tensorwaves
+Version: 0.1.2
+Summary: UNKNOWN
+Home-page: UNKNOWN
+Author: Common Partial Wave Analysis
+Author-email: compwa-admin@ep1.rub.de
+Maintainer-email: compwa-admin@ep1.rub.de
+License: GPLv3 or later
+Project-URL: Tracker, https://github.com/ComPWA/tensorwaves/issues
+Project-URL: Changelog, https://github.com/ComPWA/tensorflow/releases
+Project-URL: Documentation, http://tensorwaves.rtfd.io
+Project-URL: Source, https://github.com/ComPWA/tensorwaves
+Keywords: HEP,PWA,particle physics,physics,tensorflow
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Typing :: Typed
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: amplitf (==0.0.1a2)
+Requires-Dist: expertsystem (==0.6.3)
+Requires-Dist: iminuit (==1.4.5)
+Requires-Dist: numpy (==1.18.0)
+Requires-Dist: pandas (==1.0.5)
+Requires-Dist: phasespace (==1.1.1)
+Requires-Dist: PyYAML (==5.3)
+Requires-Dist: sympy (==1.6)
+Requires-Dist: tensorflow (==2.3.0)
+Requires-Dist: tqdm (==4.51.0)
+Provides-Extra: dev
+Requires-Dist: doc8 (==0.8.1) ; extra == 'dev'
+Requires-Dist: graphviz (==0.14.2) ; extra == 'dev'
+Requires-Dist: ipywidgets (==7.5.1) ; extra == 'dev'
+Requires-Dist: jupyter (==1.0.0) ; extra == 'dev'
+Requires-Dist: matplotlib (==3.2.2) ; extra == 'dev'
+Requires-Dist: myst-nb (==0.10.1) ; extra == 'dev'
+Requires-Dist: pydeps (==1.9.11) ; extra == 'dev'
+Requires-Dist: Sphinx (==3.2.1) ; extra == 'dev'
+Requires-Dist: sphinx-book-theme (==0.0.39) ; extra == 'dev'
+Requires-Dist: sphinx-copybutton (==0.3.1) ; extra == 'dev'
+Requires-Dist: sphinx-panels (==0.5.2) ; extra == 'dev'
+Requires-Dist: sphinx-thebe (==0.0.8) ; extra == 'dev'
+Requires-Dist: sphinx-togglebutton (==0.2.3) ; extra == 'dev'
+Requires-Dist: sphobjinv (==2.0.1) ; extra == 'dev'
+Requires-Dist: pydot (==1.4.1) ; extra == 'dev'
+Requires-Dist: pytest (==6.1.2) ; extra == 'dev'
+Requires-Dist: pytest-cov (==2.10.1) ; extra == 'dev'
+Requires-Dist: pytest-profiling (==1.7.0) ; extra == 'dev'
+Requires-Dist: pytest-xdist (==2.1.0) ; extra == 'dev'
+Requires-Dist: black (==20.8b1) ; extra == 'dev'
+Requires-Dist: flake8 (==3.8.3) ; extra == 'dev'
+Requires-Dist: flake8-blind-except (==0.1.1) ; extra == 'dev'
+Requires-Dist: flake8-bugbear (==20.1.4) ; extra == 'dev'
+Requires-Dist: flake8-builtins (==1.5.3) ; extra == 'dev'
+Requires-Dist: flake8-rst-docstrings (==0.0.13) ; extra == 'dev'
+Requires-Dist: isort (==5.6.1) ; extra == 'dev'
+Requires-Dist: jupyterlab (==2.2.4) ; extra == 'dev'
+Requires-Dist: jupyterlab-code-formatter (==1.3.6) ; extra == 'dev'
+Requires-Dist: jupyter-nbextensions-configurator (==0.4.1) ; extra == 'dev'
+Requires-Dist: labels (==20.1.0) ; extra == 'dev'
+Requires-Dist: mypy (==0.782) ; extra == 'dev'
+Requires-Dist: pep8-naming (==0.11.1) ; extra == 'dev'
+Requires-Dist: pre-commit (==2.7.1) ; extra == 'dev'
+Requires-Dist: pydocstyle (==5.1.1) ; extra == 'dev'
+Requires-Dist: pylint (==2.6.0) ; extra == 'dev'
+Requires-Dist: rstcheck (==3.3.1) ; extra == 'dev'
+Requires-Dist: tox (==3.20.0) ; extra == 'dev'
+Provides-Extra: doc
+Requires-Dist: doc8 (==0.8.1) ; extra == 'doc'
+Requires-Dist: graphviz (==0.14.2) ; extra == 'doc'
+Requires-Dist: ipywidgets (==7.5.1) ; extra == 'doc'
+Requires-Dist: jupyter (==1.0.0) ; extra == 'doc'
+Requires-Dist: matplotlib (==3.2.2) ; extra == 'doc'
+Requires-Dist: myst-nb (==0.10.1) ; extra == 'doc'
+Requires-Dist: pydeps (==1.9.11) ; extra == 'doc'
+Requires-Dist: Sphinx (==3.2.1) ; extra == 'doc'
+Requires-Dist: sphinx-book-theme (==0.0.39) ; extra == 'doc'
+Requires-Dist: sphinx-copybutton (==0.3.1) ; extra == 'doc'
+Requires-Dist: sphinx-panels (==0.5.2) ; extra == 'doc'
+Requires-Dist: sphinx-thebe (==0.0.8) ; extra == 'doc'
+Requires-Dist: sphinx-togglebutton (==0.2.3) ; extra == 'doc'
+Requires-Dist: sphobjinv (==2.0.1) ; extra == 'doc'
+Provides-Extra: test
+Requires-Dist: pydot (==1.4.1) ; extra == 'test'
+Requires-Dist: pytest (==6.1.2) ; extra == 'test'
+Requires-Dist: pytest-cov (==2.10.1) ; extra == 'test'
+Requires-Dist: pytest-profiling (==1.7.0) ; extra == 'test'
+Requires-Dist: pytest-xdist (==2.1.0) ; extra == 'test'
+
+# TensorWaves
+
+[![Documentation build status](https://readthedocs.org/projects/tensorwaves/badge/?version=latest)](https://tensorwaves.readthedocs.io)
+[![Binder](https://static.mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ComPWA/tensorwaves/stable?filepath=docs/usage)
+[![Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ComPWA/tensorwaves/blob/stable)
+[![GPLv3+ license](https://img.shields.io/badge/License-GPLv3+-blue.svg)](https://www.gnu.org/licenses/gpl-3.0-standalone.html)
+[![GitPod](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/ComPWA/tensorwaves)
+<br>
+[![PyPI package](https://badge.fury.io/py/tensorwaves.svg)](https://pypi.org/project/tensorwaves)
+[![Supported Python versions](https://img.shields.io/pypi/pyversions/tensorwaves)](https://pypi.org/project/tensorwaves)
+[![Checked with mypy](http://www.mypy-lang.org/static/mypy_badge.svg)](https://mypy.readthedocs.io)
+[![CI status](https://github.com/ComPWA/tensorwaves/workflows/CI/badge.svg)](https://github.com/ComPWA/tensorwaves/actions?query=branch%3Amaster+workflow%3ACI)
+[![Test coverage](https://codecov.io/gh/ComPWA/tensorwaves/branch/master/graph/badge.svg)](https://codecov.io/gh/ComPWA/tensorwaves)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/db8f89e5588041d8a995968262c224ef)](https://www.codacy.com/gh/ComPWA/tensorwaves)
+<br>
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen)](https://github.com/pre-commit/pre-commit)
+[![Prettier](https://camo.githubusercontent.com/687a8ae8d15f9409617d2cc5a30292a884f6813a/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f636f64655f7374796c652d70726574746965722d6666363962342e7376673f7374796c653d666c61742d737175617265)](https://prettier.io/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort)
+
+TensorWaves is a Python package for doing Partial Wave Analysis with
+[TensorFlow](https://www.tensorflow.org/) as computational backend. The package
+originates from [pycompwa](https://compwa.github.io/), which did its
+computations through ([ComPWA](https://github.com/ComPWA/ComPWA)) ― ComPWA's
+function tree is similar to TensorFlow graphs and can therefore be replaced by
+the tools that TensorFlow already offers. The decision to completely migrate
+ComPWA to TensorFlow has been further inspired by
+[TensorFlowAnalysis](https://gitlab.cern.ch/poluekt/TensorFlowAnalysis) and
+[zfit](https://github.com/zfit/zfit/).
+
+All documentation can be found on
+[tensorwaves.rtfd.io](https://pwa.readthedocs.io/projects/tensorwaves/).
+
+For an overview of **upcoming releases and planned functionality**, see
+[here](https://github.com/ComPWA/tensorwaves/milestones?direction=asc&sort=title&state=open).
+
+## Contribute
+
+See [`CONTRIBUTING.md`](./CONTRIBUTING.md)
+
+
