@@ -1,0 +1,154 @@
+Metadata-Version: 2.1
+Name: PyMARE
+Version: 0.0.2
+Summary: PyMARE: Python Meta-Analysis & Regression Engine
+Home-page: https://github.com/neurostuff/PyMARE
+Author: PyMARE developers
+Author-email: tyarkoni@gmail.com
+Maintainer: Tal Yarkoni
+Maintainer-email: tyarkoni@gmail.com
+License: MIT
+Download-URL: https://github.com/neurostuff/PyMARE/archive/0.0.2.tar.gz
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Scientific/Engineering
+Description-Content-Type: text/markdown
+Requires-Dist: numpy (>=1.8.0)
+Requires-Dist: scipy
+Requires-Dist: pandas
+Requires-Dist: sympy
+Requires-Dist: wrapt
+Provides-Extra: all
+Requires-Dist: sphinx-rtd-theme ; extra == 'all'
+Requires-Dist: seaborn ; extra == 'all'
+Requires-Dist: sphinx-copybutton ; extra == 'all'
+Requires-Dist: codecov ; extra == 'all'
+Requires-Dist: sphinx-gallery ; extra == 'all'
+Requires-Dist: coveralls ; extra == 'all'
+Requires-Dist: pytest ; extra == 'all'
+Requires-Dist: numpydoc ; extra == 'all'
+Requires-Dist: arviz ; extra == 'all'
+Requires-Dist: sphinx-argparse ; extra == 'all'
+Requires-Dist: pillow ; extra == 'all'
+Requires-Dist: flake8 ; extra == 'all'
+Requires-Dist: matplotlib ; extra == 'all'
+Requires-Dist: m2r ; extra == 'all'
+Requires-Dist: pytest-cov ; extra == 'all'
+Requires-Dist: pystan ; extra == 'all'
+Requires-Dist: sphinx (~=2.4.2) ; extra == 'all'
+Requires-Dist: coverage ; extra == 'all'
+Provides-Extra: doc
+Requires-Dist: sphinx (~=2.4.2) ; extra == 'doc'
+Requires-Dist: sphinx-rtd-theme ; extra == 'doc'
+Requires-Dist: sphinx-argparse ; extra == 'doc'
+Requires-Dist: numpydoc ; extra == 'doc'
+Requires-Dist: m2r ; extra == 'doc'
+Requires-Dist: sphinx-copybutton ; extra == 'doc'
+Requires-Dist: sphinx-gallery ; extra == 'doc'
+Requires-Dist: pillow ; extra == 'doc'
+Requires-Dist: matplotlib ; extra == 'doc'
+Requires-Dist: seaborn ; extra == 'doc'
+Provides-Extra: stan
+Requires-Dist: pystan ; extra == 'stan'
+Requires-Dist: arviz ; extra == 'stan'
+Provides-Extra: tests
+Requires-Dist: codecov ; extra == 'tests'
+Requires-Dist: coverage ; extra == 'tests'
+Requires-Dist: coveralls ; extra == 'tests'
+Requires-Dist: flake8 ; extra == 'tests'
+Requires-Dist: pytest ; extra == 'tests'
+Requires-Dist: pytest-cov ; extra == 'tests'
+
+# PyMARE: Python Meta-Analysis & Regression Engine
+A Python library for mixed-effects meta-regression (including meta-analysis).
+
+[![Latest Version](https://img.shields.io/pypi/v/pymare.svg)](https://pypi.python.org/pypi/pymare/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pymare.svg)](https://pypi.python.org/pypi/pymare/)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![CircleCI](https://circleci.com/gh/neurostuff/PyMARE.svg?style=shield)](https://circleci.com/gh/neurostuff/PyMARE)
+[![Documentation Status](https://readthedocs.org/projects/pymare/badge/?version=latest)](http://pymare.readthedocs.io/en/latest/?badge=latest)
+[![Codecov](https://codecov.io/gh/neurostuff/PyMARE/branch/master/graph/badge.svg)](https://codecov.io/gh/neurostuff/pymare)
+
+**PyMARE is alpha software under heavy development; we reserve the right to make major changes to the API.**
+
+## Quickstart
+Install PyMARE from PyPI:
+```
+pip install pymare
+```
+
+
+Or for the bleeding-edge GitHub version:
+
+```
+pip install git+https://github.com/neurostuff/pymare.git
+```
+
+Suppose we have parameter estimates from 8 studies, along with corresponding variances, and a single (fixed) covariate:
+
+```python
+y = np.array([-1, 0.5, 0.5, 0.5, 1, 1, 2, 10]) # study-level estimates
+v = np.array([1, 1, 2.4, 0.5, 1, 1, 1.2, 1.5]) # study-level variances
+X = np.array([1, 1, 2, 2, 4, 4, 2.8, 2.8]) # a fixed study-level covariate
+```
+
+We can conduct a mixed-effects meta-regression using restricted maximum-likelihood (ReML)estimation in PyMARE using the high-level `meta_regression` function:
+
+```python
+from pymare import meta_regression
+
+result = meta_regression(y, v, X, names=['my_cov'], add_intercept=True,
+                         method='REML')
+print(result.to_df())
+```
+
+This produces the following output:
+
+```
+         name   estimate        se   z-score     p-val  ci_0.025   ci_0.975
+0  intercept  -0.106579  2.993715 -0.035601  0.971600 -5.974153   5.760994
+1     my_cov   0.769961  1.113344  0.691575  0.489204 -1.412153   2.952075
+```
+
+Alternatively, we can achieve the same outcome using PyMARE's object-oriented API (which the `meta_regression` function wraps):
+
+```python
+
+from pymare import Dataset
+from pymare.estimators import VarianceBasedLikelihoodEstimator
+
+# A handy container we can pass to any estimator
+dataset = Dataset(y, v, X)
+# Estimator class for likelihood-based methods when variances are known
+estimator = VarianceBasedLikelihoodEstimator(method='REML')
+# All estimators expose a fit_dataset() method that takes a `Dataset`
+# instance as the first (and usually only) argument.
+estimator.fit_dataset(dataset)
+# Post-fitting we can obtain a MetaRegressionResults instance via .summary()
+results = estimator.summary()
+# Print summary of results as a pandas DataFrame
+print(result.to_df())
+```
+
+And if we want to be even more explicit, we can avoid the `Dataset` abstraction
+entirely (though we'll lose some convenient validation checks):
+
+```python
+estimator = VarianceBasedLikelihoodEstimator(method='REML')
+
+# X must be 2-d; this is one of the things the Dataset implicitly handles.
+X = X[:, None]
+
+estimator.fit(y, v, X)
+
+results = estimator.summary()
+```
+
+
