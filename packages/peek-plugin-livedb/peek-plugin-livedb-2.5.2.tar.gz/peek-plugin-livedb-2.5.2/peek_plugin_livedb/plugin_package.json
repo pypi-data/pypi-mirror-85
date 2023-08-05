@@ -1,0 +1,45 @@
+{
+    "plugin": {
+        "title": "Live DB",
+        "packageName": "peek_plugin_livedb",
+    "version":"2.5.2",
+        "buildNumber": "#PLUGIN_BUILD#",
+        "buildDate": "#BUILD_DATE#",
+        "creator": "Synerty Pty Ltd",
+        "website": "www.synerty.com"
+    },
+    "requiresServices": [
+        "client",
+        "server",
+        "storage",
+        "admin",
+        "agent",
+        "worker",
+        "doc-dev",
+        "doc-admin"
+    ],
+    "doc-dev": {
+        "docDir": "doc-dev",
+        "docRst": "index.rst",
+        "hasApi": true
+    },
+    "doc-admin": {
+        "docDir": "doc-admin",
+        "docRst": "index.rst"
+    },
+    "server": {
+    },
+    "storage": {
+        "alembicDir": "_private/alembic"
+    },
+    "admin": {
+        "showHomeLink": true,
+        "appDir": "_private/admin-app",
+        "appModule": "livedb.module#LiveDBModule",
+        "moduleDir": "plugin-module"
+    },
+    "agent": {
+    },
+    "worker": {
+    }
+}
