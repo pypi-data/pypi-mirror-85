@@ -1,0 +1,358 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dyconnmap.sim_models package &mdash; dyconnmap  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dyconnmap.ts package" href="dyconnmap.ts.html" />
+    <link rel="prev" title="dyconnmap.graphs package" href="dyconnmap.graphs.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> dyconnmap
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="dyconnmap.html">dyconnmap package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dyconnmap.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dyconnmap.chronnectomics.html">dyconnmap.chronnectomics package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dyconnmap.cluster.html">dyconnmap.cluster package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dyconnmap.fc.html">dyconnmap.fc package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dyconnmap.graphs.html">dyconnmap.graphs package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">dyconnmap.sim_models package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-dyconnmap.sim_models.makinen">dyconnmap.sim_models.makinen module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-dyconnmap.sim_models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="dyconnmap.ts.html">dyconnmap.ts package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dyconnmap.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dyconnmap.html#module-dyconnmap.analytic_signal">dyconnmap.analytic_signal module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dyconnmap.html#module-dyconnmap.bands">dyconnmap.bands module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dyconnmap.html#module-dyconnmap.sliding_window">dyconnmap.sliding_window module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dyconnmap.html#module-dyconnmap.tvfcgs">dyconnmap.tvfcgs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dyconnmap.html#module-dyconnmap">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">dyconnmap</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="dyconnmap.html">dyconnmap package</a> &raquo;</li>
+        
+      <li>dyconnmap.sim_models package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/dyconnmap.sim_models.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="dyconnmap-sim-models-package">
+<h1>dyconnmap.sim_models package<a class="headerlink" href="#dyconnmap-sim-models-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-dyconnmap.sim_models.makinen">
+<span id="dyconnmap-sim-models-makinen-module"></span><h2>dyconnmap.sim_models.makinen module<a class="headerlink" href="#module-dyconnmap.sim_models.makinen" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="notes">
+<h3>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h3>
+<p>Based on the MATLAB code from <a class="reference external" href="http://www.cs.bris.ac.uk/home/rafal/phasereset/phase.zip">http://www.cs.bris.ac.uk/home/rafal/phasereset/phase.zip</a></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<hr class="docutils" />
+<dl class="citation">
+<dt class="label" id="yeung"><span class="brackets">Yeung</span></dt>
+<dd><p>Yeung, N., Bogacz, R., Holroyd, C. B., Nieuwenhuis, S., &amp; Cohen, J. D. (2007). Theta phase resetting and the error‐related negativity. Psychophysiology, 44(1), 39-49.</p>
+</dd>
+<dt class="label" id="makinen"><span class="brackets">Makinen</span></dt>
+<dd><p>Mäkinen, V., Tiitinen, H., &amp; May, P. (2005). Auditory event-related responses are generated independently of ongoing brain activity. Neuroimage, 24(4), 961-968.</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt id="dyconnmap.sim_models.makinen.makinen">
+<code class="sig-prename descclassname">dyconnmap.sim_models.makinen.</code><code class="sig-name descname">makinen</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">frames</span></em>, <em class="sig-param"><span class="n">epochs</span></em>, <em class="sig-param"><span class="n">fs</span></em>, <em class="sig-param"><span class="n">min_fr</span></em>, <em class="sig-param"><span class="n">max_fr</span></em>, <em class="sig-param"><span class="n">rng</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dyconnmap/sim_models/makinen.html#makinen"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dyconnmap.sim_models.makinen.makinen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makinen</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>frames</strong> : int</p>
+<blockquote>
+<div><p>Number of signal frames per each trial.</p>
+</div></blockquote>
+<p><strong>epochs</strong> : int</p>
+<blockquote>
+<div><p>Number of simulated trials.</p>
+</div></blockquote>
+<p><strong>fs</strong> : float</p>
+<blockquote>
+<div><p>Sampling frequency.</p>
+</div></blockquote>
+<p><strong>min_fr :</strong> :</p>
+<blockquote>
+<div><p>Minimum frequency of the sinusoid which is being reset.</p>
+</div></blockquote>
+<p><strong>max_fr :</strong> :</p>
+<blockquote>
+<div><p>Maximum frequency of the sinusoid which is being reset.</p>
+</div></blockquote>
+<p><strong>rng</strong> : object or None</p>
+<blockquote>
+<div><p>An object of type numpy.random.RandomState</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="dyconnmap.sim_models.makinen.phasereset">
+<code class="sig-prename descclassname">dyconnmap.sim_models.makinen.</code><code class="sig-name descname">phasereset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">frames</span></em>, <em class="sig-param"><span class="n">epochs</span></em>, <em class="sig-param"><span class="n">fs</span></em>, <em class="sig-param"><span class="n">min_fr</span></em>, <em class="sig-param"><span class="n">max_fr</span></em>, <em class="sig-param"><span class="n">rng</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dyconnmap/sim_models/makinen.html#phasereset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dyconnmap.sim_models.makinen.phasereset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Phasereset</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>frames :</strong> :</p>
+<p><strong>epochs :</strong> :</p>
+<p><strong>fs :</strong> :</p>
+<p><strong>min_fr :</strong> :</p>
+<p><strong>max_fr :</strong> :</p>
+<p><strong>rng</strong> : object or None</p>
+<blockquote>
+<div><p>An object of type numpy.random.RandomState</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-dyconnmap.sim_models">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-dyconnmap.sim_models" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="dyconnmap.sim_models.makinen">
+<code class="sig-prename descclassname">dyconnmap.sim_models.</code><code class="sig-name descname">makinen</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">frames</span></em>, <em class="sig-param"><span class="n">epochs</span></em>, <em class="sig-param"><span class="n">fs</span></em>, <em class="sig-param"><span class="n">min_fr</span></em>, <em class="sig-param"><span class="n">max_fr</span></em>, <em class="sig-param"><span class="n">rng</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dyconnmap/sim_models/makinen.html#makinen"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dyconnmap.sim_models.makinen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makinen</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>frames</strong> : int</p>
+<blockquote>
+<div><p>Number of signal frames per each trial.</p>
+</div></blockquote>
+<p><strong>epochs</strong> : int</p>
+<blockquote>
+<div><p>Number of simulated trials.</p>
+</div></blockquote>
+<p><strong>fs</strong> : float</p>
+<blockquote>
+<div><p>Sampling frequency.</p>
+</div></blockquote>
+<p><strong>min_fr :</strong> :</p>
+<blockquote>
+<div><p>Minimum frequency of the sinusoid which is being reset.</p>
+</div></blockquote>
+<p><strong>max_fr :</strong> :</p>
+<blockquote>
+<div><p>Maximum frequency of the sinusoid which is being reset.</p>
+</div></blockquote>
+<p><strong>rng</strong> : object or None</p>
+<blockquote>
+<div><p>An object of type numpy.random.RandomState</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="dyconnmap.sim_models.phasereset">
+<code class="sig-prename descclassname">dyconnmap.sim_models.</code><code class="sig-name descname">phasereset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">frames</span></em>, <em class="sig-param"><span class="n">epochs</span></em>, <em class="sig-param"><span class="n">fs</span></em>, <em class="sig-param"><span class="n">min_fr</span></em>, <em class="sig-param"><span class="n">max_fr</span></em>, <em class="sig-param"><span class="n">rng</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dyconnmap/sim_models/makinen.html#phasereset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dyconnmap.sim_models.phasereset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Phasereset</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>frames :</strong> :</p>
+<p><strong>epochs :</strong> :</p>
+<p><strong>fs :</strong> :</p>
+<p><strong>min_fr :</strong> :</p>
+<p><strong>max_fr :</strong> :</p>
+<p><strong>rng</strong> : object or None</p>
+<blockquote>
+<div><p>An object of type numpy.random.RandomState</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dyconnmap.ts.html" class="btn btn-neutral float-right" title="dyconnmap.ts package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dyconnmap.graphs.html" class="btn btn-neutral float-left" title="dyconnmap.graphs package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Avraam Marimpis &amp; Stavros Dimitriadis
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
