@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: bpc-utils
+Version: 0.9.1
+Summary: Utility library for the Python bpc compiler.
+Home-page: https://github.com/pybpc/bpc-utils
+Author: Saiyang Gou
+Author-email: gousaiyang223@gmail.com
+License: MIT
+Keywords: bpc backport utilities
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Software Development
+Classifier: Topic :: Utilities
+Classifier: Typing :: Typed
+Requires-Python: >=3.4
+Description-Content-Type: text/markdown
+Requires-Dist: parso (>=0.6.0)
+Requires-Dist: typing-extensions
+Requires-Dist: typing ; python_version < "3.5"
+Provides-Extra: docs
+Requires-Dist: Sphinx ; extra == 'docs'
+Requires-Dist: sphinx-autodoc-typehints ; extra == 'docs'
+Provides-Extra: lint
+Requires-Dist: flake8 ; extra == 'lint'
+Requires-Dist: pylint ; extra == 'lint'
+Requires-Dist: mypy ; extra == 'lint'
+Requires-Dist: bandit ; extra == 'lint'
+Requires-Dist: vermin (>=0.10.3) ; extra == 'lint'
+Requires-Dist: colorlabels ; extra == 'lint'
+Provides-Extra: test
+Requires-Dist: pytest (>=4.5.0) ; extra == 'test'
+Requires-Dist: coverage ; extra == 'test'
+
+# bpc-utils
+
+[![PyPI - Version](https://img.shields.io/pypi/v/bpc-utils.svg)](https://pypi.org/project/bpc-utils)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/bpc-utils.svg)](https://pypi.org/project/bpc-utils)
+
+[![GitHub Actions - Status](https://github.com/pybpc/bpc-utils/workflows/Build/badge.svg)](https://github.com/pybpc/bpc-utils/actions?query=workflow%3ABuild)
+[![Travis CI - Status](https://img.shields.io/travis/com/pybpc/bpc-utils.svg)](https://travis-ci.com/pybpc/bpc-utils)
+[![Codecov - Coverage](https://codecov.io/gh/pybpc/bpc-utils/branch/master/graph/badge.svg)](https://codecov.io/gh/pybpc/bpc-utils)
+[![Documentation Status](https://readthedocs.org/projects/bpc-utils/badge/?version=latest)](https://bpc-utils.readthedocs.io/en/latest/)
+
+Documentation: https://bpc-utils.readthedocs.io
+
+Utility library for the Python [bpc](https://github.com/pybpc/bpc) backport compiler.
+
+Currently, the three individual tools ([f2format](https://github.com/pybpc/f2format), [poseur](https://github.com/pybpc/poseur), [walrus](https://github.com/pybpc/walrus)) depend on this repo. The bpc compiler is a work in progress.
+
+
