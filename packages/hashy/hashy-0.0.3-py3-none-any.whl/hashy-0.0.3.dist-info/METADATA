@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: hashy
+Version: 0.0.3
+Summary: simple hash library for string, file, dict, set and list
+Home-page: https://github.com/jamesabel/hashy
+Author: abel
+Author-email: j@abel.co
+License: MIT License
+Download-URL: https://github.com/jamesabel/hashy
+Keywords: hash
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+
+
+# hashy
+
+Another hash library.
+
+hashy provides an md5, sha256 or sha512 for string, file, dict, list and set.
+
+String and file hashes are conventional and can be compared to other implementations. For example
+you can go to an online hash calculator for "a" and get the same hash as hashy generates.
+
+Hashes for complex data types like dict, list and set are specific to hashy.
+
+# Example
+
+```
+
+from hashy import get_string_sha256
+
+print(get_string_sha256("a"))
+
+# prints
+# ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb
+
+```
+
+
