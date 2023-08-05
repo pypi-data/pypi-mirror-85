@@ -1,0 +1,14 @@
+[Unit]
+Description=Raspcuterie dashboard
+After=network.target
+
+[Service]
+User=pi
+Environment=FLASK_APP=raspcuterie.app
+Environment=FLASK_ENV=production
+WorkingDirectory=/usr/local/lib/python3.7/dist-packages/
+ExecStart=/usr/local/bin/flask run --host 0.0.0.0 --port 5000
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
