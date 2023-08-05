@@ -1,0 +1,234 @@
+<h1 id="macroscopic-maxwell-solver">Macroscopic Maxwell Solver</h1>
+<h2 id="introduction">Introduction</h2>
+<p>This Python 3 module enables solving the macroscopic Maxwell equations in complex dielectric materials.</p>
+<p>The material properties are defined on a rectangular grid (1D, 2D, or 3D) for which each voxel defines an isotropic or anistropic permittivity. Optionally, a heterogeneous (anisotropic) permeability as well as bi-anisotropic coupling factors may be specified (e.g. for chiral media). The source, such as an incident laser field, is specified as an oscillating current-density distribution.</p>
+<p>The method iteratively corrects an estimated solution for the electric field (default: all zero). Its memory requirements are on the order of the storage requirements for the material properties and the electric field within the calculation volume. Full details can be found in the <a href="https://doi.org/10.1364/OE.27.011946">open-access</a> manuscript <a href="https://doi.org/10.1364/OE.27.011946">&quot;Calculating coherent light-wave propagation in large heterogeneous media.&quot;</a></p>
+<p><strong><a href="https://opensource.org/licenses/MIT">MIT License</a>: <a href="https://opensource.org/licenses/MIT" class="uri">https://opensource.org/licenses/MIT</a></strong></p>
+<h2 id="installation">Installation</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>This library requires Python 3 with the modules <code>numpy</code> and <code>scipy</code> for the main calculations. These modules will be automatically installed.<br />
+From the core library, the modules <code>sys</code>, <code>io</code>, and <code>os</code> are imported; as well as the modules <code>logging</code> and <code>time</code> for diagnostics.<br />
+The <code>multiprocessing</code> and <code>pyfftw</code> modules can help speed up the calculations.</p>
+<p>The examples require <code>matplotlib</code> for displaying the results.<br />
+The <code>pypandoc</code> module is required for translating this document to other formats.</p>
+<p>The code has been tested on Python 3.6.</p>
+<h3 id="installing">Installing</h3>
+<p>Installing the <code>macromax</code> module and its dependencies can be done by running the following command in a terminal:</p>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">pip</span> install macromax</code></pre></div>
+<p>The module comes with a submodule containing example code.</p>
+<p>The <code>pypandoc</code> module requires the separate installation of <code>pandoc</code>. Please refer to:<br />
+<a href="https://pypi.org/project/pypandoc/" class="uri">https://pypi.org/project/pypandoc/</a> for instructions on its installation for your operating system of choice.</p>
+<h2 id="usage">Usage</h2>
+<p>The basic calculation procedure consists of the following steps:</p>
+<ol>
+<li><p>define the material</p></li>
+<li><p>define the coherent light source</p></li>
+<li><p>call <code>solution = macromax.solve(...)</code></p></li>
+<li><p>display the solution</p></li>
+</ol>
+<p>The <code>macromax</code> module must be imported to be able to use the <code>solve</code> function. The module also contains several utility functions that may help in defining the property and source distributions.</p>
+<h3 id="loading-the-python-3-module">Loading the Python 3 module</h3>
+<p>The <code>macromax</code> module can be imported using:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> macromax</code></pre></div>
+<p><strong>Optional:</strong><br />
+If the module is installed without a package manager, it may not be on Python's search path.<br />
+If necessary, add the library to Python's search path, e.g. using:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> sys
+<span class="im">import</span> os
+sys.path.append(os.path.dirname(os.getcwd()))</code></pre></div>
+<p>Reminder: this library module requires Python 3, <code>numpy</code>, and <code>scipy</code>. Optionally, <code>pyfftw</code> can be used to speed up the calculations. The examples also require <code>matplotlib</code>.</p>
+<h3 id="specifying-the-material">Specifying the material</h3>
+<h4 id="defining-the-sampling-grid">Defining the sampling grid</h4>
+<p>The material properties are sampled on a plaid uniform rectangular grid of voxels. The sample points are defined by one or more linearly increasing coordinate ranges, one range per dimensions. The coordinates must be specified in meters, e.g.:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">x_range <span class="op">=</span> <span class="fl">50e-9</span> <span class="op">*</span> np.arange(<span class="dv">1000</span>)</code></pre></div>
+<p>Ranges for multiple dimensions can be passed to <code>solve(...)</code> as a tuple of ranges:<br />
+<code>ranges = (x_range, y_range)</code>, or the convenience function <code>utils.calc_ranges</code> can be used as follows:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> macromax <span class="im">import</span> utils
+data_shape <span class="op">=</span> (<span class="dv">200</span>, <span class="dv">400</span>)
+sample_pitch <span class="op">=</span> <span class="fl">50e-9</span>  <span class="co"># or (50e-9, 50e-9)</span>
+ranges <span class="op">=</span> utils.calc_ranges(data_shape, sample_pitch)</code></pre></div>
+<h4 id="defining-the-material-property-distributions">Defining the material property distributions</h4>
+<p>The material properties are defined by ndarrays of 2+N dimensions, where N can be up to 3 for three-dimensional samples. In each sample point, or voxel, a complex 3x3 matrix defines the anisotropy at that point in the sample volume. The first two dimensions of the ndarray are used to store the 3x3 matrix, the following dimensions are the spatial indices x, y, and z. Four complex ndarrays can be specified: <code>epsilon</code>, <code>mu</code>, <code>xi</code>, and <code>zeta</code>. These ndarrays represent the permittivity, permeability, and the two coupling factors, respectively.</p>
+<p>When the first two dimensions of a property are found to be both a singleton, i.e. 1x1, that property is assumed to be isotropic. Similarly, singleton spatial dimensions are interpreted as homogeneity in that property.<br />
+The default permeability <code>mu</code> is 1, and the coupling contants are zero by default.</p>
+<h5 id="boundary-conditions">Boundary conditions</h5>
+<p>The underlying algorithm assumes <a href="https://en.wikipedia.org/wiki/Periodic_boundary_conditions">periodic boundary conditions</a>.<br />
+Alternative boundary conditions can be implemented by surrounding the calculation area with absorbing (or reflective) layers.<br />
+Back reflections can be suppressed by e.g. linearly increasing the imaginary part of the permittivity with depth into a boundary with a thickness of a few wavelengths.</p>
+<h3 id="defining-the-source">Defining the source</h3>
+<p>The coherent source is defined by an oscillating current density, to model e.g. an incident laser beam.<br />
+It is sufficient to define its phase, amplitude, and the direction as a function the spatial coordinates; alongside the angular frequency, omega, of the coherent source.<br />
+To avoid issues with numerical precision, the current density is multiplied by the angular frequency, omega, and the vacuum permeability, mu_0. The source values is proportional to the current density, J, and related as follows: S = i omega mu_0 J with units of rad s^-1 H m^-1 A m^-2 = rad V m^-3.</p>
+<p>The source distribution is stored as a complex ndarray with 1+N dimensions. The first dimension contains the current 3D direction and amplitude for each voxel. The complex argument indicates the relative phase at each voxel.</p>
+<h3 id="calculating-the-electromagnetic-light-field">Calculating the electromagnetic light field</h3>
+<p>Once the <code>macromax</code> module is imported, the solution satisfying the macroscopic Maxwell's equations is calculated by calling:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">solution <span class="op">=</span> macromax.solve(...)</code></pre></div>
+<p>The function arguments to <code>macromax.solve(...)</code> can be the following:</p>
+<ul>
+<li><p><code>x_range|ranges</code>: A vector (1D) or tuple of vectors (2D, or 3D) indicating the spatial coordinates of the sample points. Each vector must be a uniformly increasing array of coordinates, sufficiently dense to avoid aliasing artefacts.</p></li>
+<li><p><code>vacuum_wavelength|wave_number|anguler_frequency</code>: The wavelength in vacuum of the coherent illumination in units of meters.</p></li>
+<li><p><code>source_distribution</code>: An ndarray of complex values indicating the source value and direction at each sample point. The source values define the current density in the sample. The first dimension contains the vector index, the following dimensions contain the spatial dimensions.</p></li>
+<li><p><code>epsilon</code>: A complex ndarray that defines the 3x3 permittivity matrix at all sample points. The first two dimensions contain the matrix indices, the following dimensions contain the spatial dimensions.</p></li>
+</ul>
+<p>Anisotropic material properties such as permittivity can be defined as a square 3x3 matrix at each sample point. Isotropic materials may be represented by 1x1 scalars instead (the first two dimensions are singletons). Homogeneous materials may be specified with spatial singleton dimensions.</p>
+<p>Optionally one can also specify magnetic and coupling factors:</p>
+<ul>
+<li><p><code>mu</code>: A complex ndarray that defines the 3x3 permeability matrix at all sample points. The first two dimensions contain the matrix indices, the following dimensions contain the spatial dimensions.</p></li>
+<li><p><code>xi</code> and <code>zeta</code>: Complex ndarray that define the 3x3 coupling matrices at all sample points. This may be useful to model chiral materials. The first two dimensions contain the matrix indices, the following dimensions contain the spatial dimensions.</p></li>
+</ul>
+<p>It is often useful to also specify a callback function that tracks progress. This can be done by defining the <code>callback</code>-argument as a function that takes an intermediate solution as argument. This user-defined callback function can display the intermediate solution and check if the convergence is adequate. The callback function should return <code>True</code> if more iterations are required, and <code>False</code> otherwise. E.g.:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">callback<span class="op">=</span><span class="kw">lambda</span> s: s.iteration <span class="op">&lt;</span> <span class="fl">1e4</span> <span class="kw">and</span> s.residue <span class="op">&gt;</span> <span class="fl">1e-4</span></code></pre></div>
+<p>The solution object (of the Solution class) fully defines the state of the iteration and the current solution as described below.</p>
+<p>The <code>macromax.solve(...)</code> function returns a solution object. This object contains the electric field vector distribution as well as diagnostic information such as the number of iterations used and the magnitude of the correction applied in the last iteration. It can also calculate the displacement, magnetizing, and magnetic fields on demand. These fields can be queried as follows:</p>
+<ul>
+<li><code>solution.E</code>: Returns the electric field distribution.</li>
+<li><code>solution.H</code>: Returns the magnetizing field distribution.</li>
+<li><code>solution.D</code>: Returns the electric displacement field distribution.</li>
+<li><code>solution.B</code>: Returns the magnetic flux density distribution.</li>
+<li><code>solution.S</code>: The Poynting vector distribution in the sample.</li>
+</ul>
+<p>The field distributions are returned as complex <code>numpy</code> ndarrays in which the first dimensions is the polarization or direction index. The following dimensions are the spatial dimensions of the problem, e.g. x, y, and z, for three-dimensional problems.</p>
+<p>The solution object also keeps track of the iteration itself. It has the following diagnostic properties:</p>
+<ul>
+<li><code>solution.iteration</code>: The number of iterations performed.</li>
+<li><code>solution.residue</code>: The relative magnitude of the correction during the previous iteration.<br />
+and it can be used as a Python iterator.</li>
+</ul>
+<p>Further information can be found in the examples and the function and class signature documentation. The examples can be imported using:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> macromax <span class="im">import</span> examples</code></pre></div>
+<h3 id="complete-example">Complete Example</h3>
+<p>The following code loads the library, defines the material and light source, calculates the result, and displays it.<br />
+To keep this example as simple as possible, the calculation is limited to one dimension. Higher dimensional calculations<br />
+simply require the definition of the material and light source in 2D or 3D.</p>
+<p>The first section of the code loads the <code>macromax</code> library module as well as its <code>utils</code> submodule. More</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> macromax
+
+<span class="im">import</span> numpy <span class="im">as</span> np
+<span class="im">import</span> scipy.constants <span class="im">as</span> const
+<span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
+<span class="op">%</span>matplotlib notebook
+
+<span class="co">#</span>
+<span class="co"># Define the material properties</span>
+<span class="co">#</span>
+wavelength <span class="op">=</span> <span class="fl">500e-9</span>
+angular_frequency <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> const.pi <span class="op">*</span> const.c <span class="op">/</span> wavelength
+source_amplitude <span class="op">=</span><span class="ot"> 1j</span> <span class="op">*</span> angular_frequency <span class="op">*</span> const.mu_0
+p_source <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>])  <span class="co"># y-polarized</span>
+
+<span class="co"># Set the sampling grid</span>
+nb_samples <span class="op">=</span> <span class="dv">1024</span>
+sample_pitch <span class="op">=</span> wavelength <span class="op">/</span> <span class="dv">16</span>
+x_range <span class="op">=</span> sample_pitch <span class="op">*</span> np.arange(nb_samples) <span class="op">-</span> <span class="fl">4e-6</span>
+
+<span class="co"># define the medium</span>
+permittivity <span class="op">=</span> np.ones((<span class="dv">1</span>, <span class="dv">1</span>, <span class="bu">len</span>(x_range)), dtype<span class="op">=</span>np.complex64)
+<span class="co"># Don&#39;t forget absorbing boundary:</span>
+dist_in_boundary <span class="op">=</span> np.maximum(<span class="op">-</span>(x_range <span class="op">-</span> <span class="op">-</span><span class="fl">1e-6</span>), x_range <span class="op">-</span> <span class="fl">26e-6</span>) <span class="op">/</span> <span class="fl">4e-6</span>
+permittivity[:, :, (x_range <span class="op">&lt;</span> <span class="op">-</span><span class="fl">1e-6</span>) <span class="op">|</span> (x_range <span class="op">&gt;</span> <span class="fl">26e-6</span>)] <span class="op">=</span> <span class="op">\</span>
+    <span class="fl">1.0</span> <span class="op">+</span> (<span class="fl">0.</span>8j <span class="op">*</span> dist_in_boundary[(x_range <span class="op">&lt;</span> <span class="op">-</span><span class="fl">1e-6</span>) <span class="op">|</span> (x_range <span class="op">&gt;</span> <span class="fl">26e-6</span>)])
+<span class="co"># glass has a refractive index of about 1.5</span>
+permittivity[:, :, (x_range <span class="op">&gt;=</span> <span class="fl">10e-6</span>) <span class="op">&amp;</span> (x_range <span class="op">&lt;</span> <span class="fl">20e-6</span>)] <span class="op">=</span> <span class="fl">1.5</span> <span class="op">**</span> <span class="dv">2</span>
+
+<span class="co">#</span>
+<span class="co"># Define the illumination source</span>
+<span class="co">#</span>
+<span class="co"># point source at x = 0</span>
+source <span class="op">=</span> <span class="op">-</span>source_amplitude <span class="op">*</span> sample_pitch <span class="op">*</span> (np.<span class="bu">abs</span>(x_range) <span class="op">&lt;</span> sample_pitch<span class="op">/</span><span class="dv">4</span>)
+source <span class="op">=</span> p_source[:, np.newaxis] <span class="op">*</span> source[np.newaxis, :]
+
+<span class="co">#</span>
+<span class="co"># Solve Maxwell&#39;s equations</span>
+<span class="co">#</span>
+<span class="co"># (the actual work is done in this line)</span>
+solution <span class="op">=</span> macromax.solve(x_range, vacuum_wavelength<span class="op">=</span>wavelength,
+    source_distribution<span class="op">=</span>source, epsilon<span class="op">=</span>permittivity)
+
+<span class="co">#</span>
+<span class="co"># Display the results</span>
+<span class="co">#</span>
+fig, ax <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>, frameon<span class="op">=</span><span class="va">False</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))
+
+x_range <span class="op">=</span> solution.ranges[<span class="dv">0</span>]  <span class="co"># coordinates</span>
+E <span class="op">=</span> solution.E[<span class="dv">1</span>, :]  <span class="co"># Electric field</span>
+H <span class="op">=</span> solution.H[<span class="dv">2</span>, :]  <span class="co"># Magnetizing field</span>
+S <span class="op">=</span> solution.S[<span class="dv">0</span>, :]  <span class="co"># Poynting vector</span>
+f <span class="op">=</span> solution.f[<span class="dv">0</span>, :]  <span class="co"># Optical force</span>
+<span class="co"># Display the field for the polarization dimension</span>
+field_to_display <span class="op">=</span> angular_frequency <span class="op">*</span> E
+max_val_to_display <span class="op">=</span> np.maximum(np.<span class="bu">max</span>(np.<span class="bu">abs</span>(field_to_display)),
+                                np.finfo(field_to_display.dtype).eps)
+poynting_normalization <span class="op">=</span> np.<span class="bu">max</span>(np.<span class="bu">abs</span>(S)) <span class="op">/</span> max_val_to_display
+ax[<span class="dv">0</span>].plot(x_range <span class="op">*</span> <span class="fl">1e6</span>,
+           np.<span class="bu">abs</span>(field_to_display) <span class="op">**</span> <span class="dv">2</span> <span class="op">/</span> max_val_to_display,
+           color<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>])[<span class="dv">0</span>]
+ax[<span class="dv">0</span>].plot(x_range <span class="op">*</span> <span class="fl">1e6</span>, np.real(S) <span class="op">/</span> poynting_normalization,
+           color<span class="op">=</span>[<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>])[<span class="dv">0</span>]
+ax[<span class="dv">0</span>].plot(x_range <span class="op">*</span> <span class="fl">1e6</span>, np.real(field_to_display),
+           color<span class="op">=</span>[<span class="dv">0</span>, <span class="fl">0.7</span>, <span class="dv">0</span>])[<span class="dv">0</span>]
+ax[<span class="dv">0</span>].plot(x_range <span class="op">*</span> <span class="fl">1e6</span>, np.imag(field_to_display),
+           color<span class="op">=</span>[<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>])[<span class="dv">0</span>]
+figure_title <span class="op">=</span> <span class="st">&quot;Iteration </span><span class="sc">%d</span><span class="st">, &quot;</span> <span class="op">%</span> solution.iteration
+ax[<span class="dv">0</span>].set_title(figure_title)
+ax[<span class="dv">0</span>].set_xlabel(<span class="st">&quot;x  [$\mu$m]&quot;</span>)
+ax[<span class="dv">0</span>].set_ylabel(<span class="st">&quot;I, E  [a.u.]&quot;</span>)
+ax[<span class="dv">0</span>].set_xlim(x_range[[<span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>]] <span class="op">*</span> <span class="fl">1e6</span>)
+
+ax[<span class="dv">1</span>].plot(x_range[<span class="op">-</span><span class="dv">1</span>] <span class="op">*</span> <span class="fl">2e6</span>, <span class="dv">0</span>,
+           color<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>], label<span class="op">=</span><span class="st">&#39;I&#39;</span>)
+ax[<span class="dv">1</span>].plot(x_range[<span class="op">-</span><span class="dv">1</span>] <span class="op">*</span> <span class="fl">2e6</span>, <span class="dv">0</span>,
+           color<span class="op">=</span>[<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>], label<span class="op">=</span><span class="st">&#39;$S_</span><span class="sc">{real}</span><span class="st">$&#39;</span>)
+ax[<span class="dv">1</span>].plot(x_range[<span class="op">-</span><span class="dv">1</span>] <span class="op">*</span> <span class="fl">2e6</span>, <span class="dv">0</span>,
+           color<span class="op">=</span>[<span class="dv">0</span>, <span class="fl">0.7</span>, <span class="dv">0</span>], label<span class="op">=</span><span class="st">&#39;$E_</span><span class="sc">{real}</span><span class="st">$&#39;</span>)
+ax[<span class="dv">1</span>].plot(x_range[<span class="op">-</span><span class="dv">1</span>] <span class="op">*</span> <span class="fl">2e6</span>, <span class="dv">0</span>,
+           color<span class="op">=</span>[<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>], label<span class="op">=</span><span class="st">&#39;$E_</span><span class="sc">{imag}</span><span class="st">$&#39;</span>)
+ax[<span class="dv">1</span>].plot(x_range <span class="op">*</span> <span class="fl">1e6</span>, permittivity[<span class="dv">0</span>, <span class="dv">0</span>].real,
+           color<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>], label<span class="op">=</span><span class="st">&#39;$\epsilon_</span><span class="sc">{real}</span><span class="st">$&#39;</span>)
+ax[<span class="dv">1</span>].plot(x_range <span class="op">*</span> <span class="fl">1e6</span>, permittivity[<span class="dv">0</span>, <span class="dv">0</span>].imag,
+           color<span class="op">=</span>[<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>], label<span class="op">=</span><span class="st">&#39;$\epsilon_</span><span class="sc">{imag}</span><span class="st">$&#39;</span>)
+ax[<span class="dv">1</span>].set_xlabel(<span class="st">&#39;x  [$\mu$m]&#39;</span>)
+ax[<span class="dv">1</span>].set_ylabel(<span class="st">&#39;$\epsilon$, $\mu$&#39;</span>)
+ax[<span class="dv">1</span>].set_xlim(x_range[[<span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>]] <span class="op">*</span> <span class="fl">1e6</span>)
+ax[<span class="dv">1</span>].legend(loc<span class="op">=</span><span class="st">&#39;upper right&#39;</span>)</code></pre></div>
+<h2 id="development">Development</h2>
+<h3 id="source-code-organization">Source code organization</h3>
+<p>The source code is organized as follows:</p>
+<ul>
+<li><p><code>/</code> (root): Module description and distribution files.</p></li>
+<li><p><code>/macromax</code>: The iterative solver.</p></li>
+<li><p><code>/macromax/examples</code>: Examples of how the solver can be used.</p></li>
+<li><p><code>/macromax/tests</code>: Automated unit tests of the solver's functionality. Use this after making modifications to the solver and extend it if new functionality is added.</p></li>
+</ul>
+<p>The library functions are contained in <code>/macromax</code>:</p>
+<ul>
+<li><p><code>solver</code>: Defines the <code>solve(...)</code> function and the <code>Solution</code> class.</p></li>
+<li><p><code>parallel_ops_column</code>: Defines linear algebra functions to work efficiently with large arrays of 3x3 matrices and 3-vectors.</p></li>
+<li><p><code>utils</code>: Defines utility functions that can be used to prepare and interpret function arguments.</p></li>
+</ul>
+<p>The included examples in the <code>/macromax/examples</code> folder are:</p>
+<ul>
+<li><p><code>notebook_example.ipynb</code>: An iPython notebook demonstrating basic usage of the library.</p></li>
+<li><p><code>air_glass_air_1D.py</code>: Calculation of the back reflection from an air-glass interface (one-dimensional calculation)</p></li>
+<li><p><code>air_glass_air_2D.py</code>: Calculation of the refraction and reflection of light hitting a glass window at an angle (two-dimensional calculation)</p></li>
+<li><p><code>birefringent_crystal.py</code>: Demonstration of how an anisotropic permittivity can split a diagonally polarized Gaussian beam into ordinary and extraordinary beams.</p></li>
+<li><p><code>polarizer.py</code>: Calculation of light wave traversing a set of two and a set of three polarizers as a demonstration of anisotropic absorption (non-Hermitian permittivity)</p></li>
+<li><p><code>rutile.py</code>: Scattering from disordered collection of birefringent rutile (TiO2) particles.</p></li>
+</ul>
+<h3 id="testing">Testing</h3>
+<p>Unit tests are contained in <code>macromax/tests</code>. The <code>ParallelOperations</code> class in<br />
+<code>parallel_ops_column.pi</code> is pretty well covered and some specific tests have been written for<br />
+the <code>Solution</code> class in <code>solver.py</code>. However, the <code>utils</code> module does not have any<br />
+tests at present.</p>
+<p>To run the tests:</p>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">pip</span> install nose
+<span class="ex">python</span> setup.py test</code></pre></div>
+<h3 id="building-and-distributing">Building and Distributing</h3>
+<p>The code consists of pure Python 3, hence only packaging is required for distribution.</p>
+<p>To prepare a package for distribution, increase the version number in <code>setup.py</code>, and run:</p>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">python</span> setup.py sdist bdist_wheel
+<span class="ex">pip</span> install . --upgrade</code></pre></div>
+<p>The package can then be uploaded to a test repository as follows:</p>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">twine</span> upload --repository-url https://test.pypi.org/legacy/ dist/*</code></pre></div>
+<p>Installing from the test repository is done as follows:</p>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">pip</span> install -i https://test.pypi.org/simple/ macromax</code></pre></div>
+<p>IntelliJ IDEA project files can be found in <code>MacroMax/python/</code>: <code>MacroMax/python/python.iml</code> and the folder <code>MacroMax/python/.idea</code>.</p>
