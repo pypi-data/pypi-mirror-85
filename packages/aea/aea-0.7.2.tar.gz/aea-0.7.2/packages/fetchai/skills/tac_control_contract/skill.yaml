@@ -1,0 +1,104 @@
+name: tac_control_contract
+author: fetchai
+version: 0.12.0
+type: skill
+description: The tac control skill implements the logic for an AEA to control an instance
+  of the TAC.
+license: Apache-2.0
+aea_version: '>=0.7.0, <0.8.0'
+fingerprint:
+  README.md: QmUiw6Dt97mXLzSizbnMNTsfLy3edGXKdYTNR5bke6sFsm
+  __init__.py: QmPvZw3KsUhs38TPGh1HsUniYdPrwv6innFgjWTLv34mj7
+  behaviours.py: QmV3Yxb1cNQNdZgCdY3JSg6A2RKLYJ4dSRmG4j7Q4NJm8U
+  dialogues.py: QmYFyqgevKLuRfj4q8wdJkWmSNk7FFDTpzpDCvLdtc7dnG
+  game.py: QmQwskD5DBVNv1ouRpqGNLb3zQ5krLUcR6XXHUcJ5EVc8L
+  handlers.py: QmQYGJfUL5a2xiJh7QDB4eNBTHwCtBhQ6VfohveRxXrHjb
+  helpers.py: QmX3iv37Z5CmGupCtikc4muTpJyQ9zvjeLbNKDLF7iPhSZ
+  parameters.py: QmVMNP52fPxkzEbXPhXtQXspnaj2f4ErZNcNdPAqv4cvwq
+fingerprint_ignore_patterns: []
+connections:
+- fetchai/ledger:0.9.0
+contracts:
+- fetchai/erc1155:0.12.0
+protocols:
+- fetchai/contract_api:0.8.0
+- fetchai/default:0.9.0
+- fetchai/ledger_api:0.7.0
+- fetchai/oef_search:0.10.0
+- fetchai/signing:0.7.0
+- fetchai/tac:0.10.0
+skills:
+- fetchai/tac_control:0.11.0
+behaviours:
+  tac:
+    args: {}
+    class_name: TacBehaviour
+handlers:
+  contract_api:
+    args: {}
+    class_name: ContractApiHandler
+  ledger_api:
+    args: {}
+    class_name: LedgerApiHandler
+  oef:
+    args: {}
+    class_name: OefSearchHandler
+  signing:
+    args: {}
+    class_name: SigningHandler
+  tac:
+    args: {}
+    class_name: TacHandler
+models:
+  contract_api_dialogues:
+    args: {}
+    class_name: ContractApiDialogues
+  default_dialogues:
+    args: {}
+    class_name: DefaultDialogues
+  game:
+    args: {}
+    class_name: Game
+  ledger_api_dialogues:
+    args: {}
+    class_name: LedgerApiDialogues
+  oef_search_dialogues:
+    args: {}
+    class_name: OefSearchDialogues
+  parameters:
+    args:
+      base_good_endowment: 4
+      competition_timeout: 360
+      currency_ids: []
+      good_ids: []
+      inactivity_timeout: 60
+      item_setup_timeout: 120
+      ledger_id: ethereum
+      location:
+        latitude: 51.5194
+        longitude: 0.127
+      lower_bound_factor: 1
+      min_nb_agents: 2
+      money_endowment: 2000000
+      nb_currencies: 1
+      nb_goods: 9
+      registration_start_time: 01 01 2020  00:01
+      registration_timeout: 60
+      service_data:
+        key: tac
+        value: v1
+      tx_fee: 1
+      upper_bound_factor: 1
+      whitelist: []
+    class_name: Parameters
+  signing_dialogues:
+    args: {}
+    class_name: SigningDialogues
+  tac_dialogues:
+    args: {}
+    class_name: TacDialogues
+dependencies:
+  numpy: {}
+  vyper:
+    version: ==0.1.0b12
+is_abstract: false
