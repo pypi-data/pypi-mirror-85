@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "drizm-commons"
+version = "0.3.3"
+description = "Python3 commons for the Drizm organization"
+authors = ["ThaRising <kochbe.ber@gmail.com>"]
+maintainers = ["Dominik Lewandowski <dominik.lewandow@gmail.com>"]
+
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/drizm-team/python-commons"
+repository = "https://github.com/drizm-team/python-commons"
+keywords = ["commons", "sqlalchemy"]
+classifiers = [
+    "Environment :: Web Environment",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+]
+include = ["LICENSE"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+sqlalchemy = { version = "1.3.20", optional = true }
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.1.2"
+
+[tool.poetry.extras]
+sqla = ["sqlalchemy"]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
