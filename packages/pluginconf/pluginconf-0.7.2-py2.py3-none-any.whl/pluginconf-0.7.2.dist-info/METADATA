@@ -1,0 +1,240 @@
+Metadata-Version: 2.1
+Name: pluginconf
+Version: 0.7.2
+Summary: Read meta data, pyz/package contents, module locating
+Home-page: http://fossil.include-once.org/streamtuner2/wiki/plugin+meta+data
+License: PD
+Project-URL: Docs, https://fossil.include-once.org/pluginspec/
+Keywords: config
+Platform: UNKNOWN
+Classifier: License :: Public Domain
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Topic :: Software Development :: Documentation
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >= 2.7
+Description-Content-Type: text/x-rst
+
+Provides meta data extraction and plugin basename lookup. And it’s meant
+for in-application feature and option management. The `descriptor
+format <https://fossil.include-once.org/pluginspec/index>`__
+(*self-contained* atop each script) is basically:
+
+::
+
+   # encoding: utf-8
+   # api: python
+   # type: handler
+   # category: io
+   # title: Plugin configuration
+   # description: Read meta data, pyz/package contents, module locating
+   # version: 0.5
+   # priority: core
+   # docs: http://fossil.include-once.org/streamtuner2/wiki/plugin+meta+data
+   # config: { name: xyz, value: 1, type: bool, description: "Sets..." }
+   #
+   # Documentation goes here...
+
+The ``key: value`` format is language-agnostic. It’s basically YAML in
+the topmost script comment. For Python only # hash comments are used.
+Defaults to rather common field names, encourages a documentation block,
+and an obvious `config: { .. }
+scheme <https://fossil.include-once.org/pluginspec/wiki/config>`__ for
+options and defaults.
+
+How it’s used:
+
+::
+
+   import pluginconf
+   meta = pluginconf.plugin_meta(fn="./plugin/func.py")
+   print(meta)
+
+What it’s not:
+
+   -  This is not another config reader/parser/storage class.
+   -  Doesn’t impose a specific plugin API.
+   -  Neither concerns itself with module/package loading. (See
+      `pluginbase <https://pypi.org/project/pluginbase/>`__ or just
+      ``__import__``.)
+
+What for then?
+
+   -  Separates code from meta data. Avoids keeping seldomly used
+      descriptors in variables.
+   -  Does away with externalized ini/json files for modules, yet
+      simplifies use of external tooling.
+   -  Minimizes premature module loading just to inspect meta
+      information.
+
+pluginconf is less about a concrete implementation/code, but pushing a
+universal meta data format.
+
+API
+===
+
+Lookup configuration is currently just done through injection:
+
+::
+
+   plugin_base = [__package__, "myapp.plugins", "/usr/share/app/extensions"]
+   module_base = "pluginconf"  # or any top-level app module
+
+| Which declares module and plugin basenames, which get used for lookups
+  by just module= names in e.g. \ ``module_list()``. (Works for literal
+  setups and within PYZ bundles).
+| This is unnecessary for plain ``plugin_meta(fn=)`` extraction.
+
+plugin_meta( module= \| fn= \| src= \| frame= )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Returns a meta data dictionary for the given module name, file, source
+code, or caller frame:
+
+::
+
+   {
+     "title": "Compound★",
+     "description": "...",
+     "version": "0.1",
+     "type": "channel",
+     "category": "virtual",
+     "config": […],
+     "doc": "The multiline comment \n following meta fields..."
+     …
+   }
+
+| And that’s already all it does.
+| All other methods in pluginconf are mostly just for module lookup or
+  data retrieval.
+
+module_list()
+^^^^^^^^^^^^^
+
+Returns basenames of available/installed plugins (from possible sources
+in ``plugin_base``).
+
+add_plugin_defaults()
+^^^^^^^^^^^^^^^^^^^^^
+
+Populates your config_options{} and plugin_states{} list. Can be a
+classic dict, or one of the hundreds of config parser/managers. You
+might want to combine config options and plugin states in a single dict
+even:
+
+::
+
+   import pluginconf
+   pluginconf.module_base = __name__
+   pluginconf.plugin_base = [__package__]
+
+   conf = {
+       "defaults": "123",
+   "plugins": {}       # ← stores the activation states
+   }
+
+   for module,meta in pluginconf.all_plugin_meta().items():
+       pluginconf.add_plugin_defaults(conf, conf["plugins"], meta, module)
+       #      share the same dict      ↑        ↑
+
+get_data( fn= )
+^^^^^^^^^^^^^^^
+
+Is mostly an alias for pkgutil.get_data(). Abstracts usage within PYZ
+packages a little.
+
+argparse_map()
+^^^^^^^^^^^^^^
+
+Provides a simpler way to specify ugly argparse definitions. And allows
+to amass options from plugins.
+
+GUI
+===
+
+There’s a Tkinter/PySimpleGUI variant of the option dialog from
+`streamtuner2 <https://fossil.include-once.org/streamtuner2/>`__
+included: |image0|
+
+The ``pluginconf.gui.window()`` implementation has a few less features,
+but might suffice for common applications. It just lists a single pane
+of settings, and doesn’t even attempt to group by categories.
+
+Its main function performs the plugin lookup (``*.py`` meta reading) and
+displays an editing window:
+
+::
+
+    import pluginconf.gui
+    config = {
+        "debug": 0, "verbose": 1, "temp_dir": "/tmp"
+    }
+    plugin_states = {
+        "core": 1, "printing_ui": 0
+    }
+    pluginconf.gui.window(config, plugin_states, files=["./library/*.py"])
+
+Where both ``config`` and ``plugin_states`` get updated after
+invocation. The function return value indicates whether save or cancel
+was pressed.
+
+-  ``plugin_states={}`` can be omitted/empty, but the GUI will still
+   display checkboxes for plugin files, even if they go unused.
+-  Supports only basic option types (bool, str, int, select), no
+   table/dict.
+-  Type casting is somewhat basic (no integer regex).
+-  And doesn’t support nested config names=\ ``app[module][var]`` yet.
+-  The config dict might be prefilled from either in-app defaults, or
+   ``json.load()``, and/or per ``pluginconf.add_plugin_defaults()``.
+-  It’s still up to the application how/where to store the config{} dict
+   (e.g. ``json.dumps()``).
+-  ``pluginconf.gui.plugins`` temporarily holds pre-parsed plugin meta
+   infos after each invocation.
+-  And alternatively to the \*.py glob list, you could inject a prepared
+   dictionary via ``.gui.plugins={}`` and leave ``files=None``.
+-  Any PySimpleGUI options (title=, theme=, resizable=) are passed
+   through to the config window.
+
+Overall it’s surprisingly short given the PySimpleGUI result set. It
+would likely behave as well, if e.g. additional tabs or input widgets
+were added.
+
+setup.py wrapper
+================
+
+Another obvious use case for PMD is simplifying packaging. A ``setup()``
+script can become as short as:
+
+::
+
+    from pluginconf.setup import setup
+    setup(
+        fn="main/pkg.py"
+    )
+
+Which will reuse version: and descriptors from the meta comment. For
+simple one-module packages, you might get away with just ``setup()`` and
+an all automatic lookup. The non-standard PMD field
+``# classifiers: x11, python`` can be used to lookup trove categories
+(crude search on select topics). All other ``setup(fields=…)`` are
+passed on to distutils/setuptools as is. – Btw,
+`setupmeta <https://pypi.org/project/setupmeta/>`__ is an even more
+versatile wrapper with sensible defaults and source scanning.
+
+Caveats
+^^^^^^^
+
+-  It’s currently just an excerpt from streamtuner2.
+-  Definitely needs customization prior use.
+-  The GUI implmentation is fairly simplistic.
+-  Doesn’t bundle any plugin repo loader logic.
+-  So doesn’t make use of the dependency class.
+-  The description fields can double as packaging source (setup.py).
+   There’s also a `# pack:
+   specifier <https://fossil.include-once.org/pluginspec/wiki/References>`__
+   for fpm (deb/rpm/arch/exe/pyzw/pip generation), unused in the
+   ``setup.py`` wrapper here however.
+
+.. |image0| image:: https://fossil.include-once.org/streamtuner2/raw/ba3d43061948b97087a38b45f015c7736843a631?m=image/png
+
+
+
