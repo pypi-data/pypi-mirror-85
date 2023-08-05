@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: scoutr
+Version: 1.2.2
+Summary: Generic full access control API for talking to Dynamo via API Gateway
+Home-page: https://github.com/GESkunkworks/scoutr
+Author: Michael Palmer
+License: UNKNOWN
+Keywords: dynamo api rbac
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Development Status :: 5 - Production/Stable
+Description-Content-Type: text/markdown
+Requires-Dist: boto3 (<1.16.0,>=1.12.39)
+Provides-Extra: flask
+Requires-Dist: Flask-API (<3.0,>=1.1) ; extra == 'flask'
+Requires-Dist: Flask (~=1.1.1) ; extra == 'flask'
+Requires-Dist: simplejson (<3.18,>=3.16) ; extra == 'flask'
+
+# Scoutr
+
+A simple way to put an API in front of a DynamoDB backend.
+
+A Golang implementation is available at https://github.com/MichaelPalmer1/scoutr-go.
+
+## Documentation
+
+Documentation is available at [https://geskunkworks.github.io/scoutr/](https://geskunkworks.github.io/scoutr/).
+
+
