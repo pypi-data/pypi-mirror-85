@@ -1,0 +1,131 @@
+.. _manpage-archive:
+
+bob-archive
+===========
+
+.. only:: not man
+
+   Name
+   ----
+
+   bob-archive - Manage binary artifacts archive
+
+Synopsis
+--------
+
+Generic command format:
+
+::
+
+    bob archive [-h] subcommand ...
+
+Available sub-commands:
+
+::
+
+    bob archive clean [-h] [--dry-run] [-n] [-v] [-f]
+                      expression [expression ...]
+    bob archive scan [-h] [-v] [-f]
+
+Description
+-----------
+
+The bob archive command can be used to manage local binary artifact archives.
+The command must be executed in the root of the archive and needs write access
+to create an index cache.
+
+Artifacts are managed by the information included in their
+:ref:`Audit Trail <audit-trail>`. See the Audit Trail documentation about the
+general included data. Currently the ``bob archive`` command has access to the
+``meta``, ``build`` and ``metaEnv`` sections of the audit trail.
+
+Options
+-------
+
+``--dry-run``
+    Do not actually delete any artifacts but show what would get removed.
+
+``-n``
+    Don't rescan the archive for new artifacts. The command will work on the
+    last scanned data. Useful if the scan takes a long time (e.g. big archive
+    on network mount) and was already run recently.
+
+``-v``
+    Be a bit more chatty on what is done.
+
+``-f``
+    Return a non-zero exit code in case of errors
+
+Commands
+--------
+
+clean
+    Remove unneeded artifacts from the archive.
+
+    The command takes one or more retention expressions. Any artifact that is
+    matched by at least one of the expressions or referenced transitively by a
+    matched artifact is kept. If an artifact is neither matched by any
+    expression nor referenced by a retained artifact it is deleted.
+
+    The expression language has the following general syntax:
+
+         *Predicate* [``LIMIT`` *Limit* [``ORDER BY`` *Field* [``ASC`` | ``DESC``]]]
+
+    The *Predicate* supports the following constructs:
+
+    * Strings are written with double quotes, e.g. ``"foo"``. To embed
+      double quotes in the string itself escape them with ``\``.
+    * Certain fields from the audit trail can be accessed by their name.
+      Sub-fields are specified with a dot operator, e.g. ``meta.package``. All
+      fields are case sensitive and of string type.
+    * Strings and fields can be compared by the following operators (in
+      decreasing precedence): ``<``, ``<=``, ``>``, ``>=``, ``==``, ``!=``.
+      They have the same semantics as in Python.
+    * String comparisons can be logically combined with ``&&`` (and)
+      respectively ``||`` (or). There is also a ``!`` (not) logical operator.
+    * Parenthesis can be used to override precedence.
+
+    The optional *Limit* field must be an integer number greater than zero. It
+    limits the number of artifacts that are retained by *Predicate*. If no
+    *Limit* is specified all matching artifacts are retained. By default the
+    artifacts are sorted by the ``build.date`` field in descending order so
+    that only the most recent *Limit* artifacts are retained.  If *Field* is
+    not populated the artifact is always put at the end of the list. Specify
+    ``ASC`` to sort the artifacts in ascending order by *Field*.
+
+    A typical usage of the ``clean`` command is to remove old artifacts from a
+    continuous build artifact archive. Suppose the root package that is built
+    is called ``platform/app`` and we want to retain only artifacts that are
+    referenced by builds that are at most seven days old::
+
+        bob archive clean "meta.package == \"platform/app\" && \
+                           build.date >= \"$(date -u -Idate -d-7days)\""
+
+    The following example retains only the last three builds from a recipe::
+
+        bob archive clean 'meta.recipe == "root" LIMIT 3'
+
+    Both examples above can be combined, e.g. to keep all builds of the last
+    week while making sure that at least the last build is kept, even if that
+    build is older. ::
+
+        bob archive clean "meta.package == \"platform/app\" && \
+                           build.date >= \"$(date -u -Idate -d-7days)\"" \
+                          'meta.package == \"platform/app\" LIMIT 1'
+
+scan
+    Scan for added artifacts.
+
+    The ``archive`` command keeps a cache of all indexed artifacts. To freshen
+    this cache use this command. Even though other sub-commands will do a scan
+    too (unless suppressed by ``-n``) it might be helpful to do the scan on a
+    more convenient time. If the archive is located e.g. on a slow network
+    drive it could be advantageous to scan the archive with a cron job over
+    night.
+
+Notes
+-----
+
+``bob archive`` only works for local binary artifact archives. If you're using a
+remote archive, you need shell access and a working Bob installation on the
+machine providing your archive in order to be able to use ``bob archive``.
