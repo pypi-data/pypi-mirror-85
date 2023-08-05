@@ -1,0 +1,12 @@
+[Unit]
+Description=pyinotifyd
+After=fs.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/pyinotifyd
+ExecReload=/bin/kill -HUP $MAINPID
+TimeoutStopSec=300
+
+[Install]
+WantedBy=multi-user.target
