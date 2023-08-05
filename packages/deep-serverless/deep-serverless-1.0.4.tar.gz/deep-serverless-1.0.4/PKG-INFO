@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: deep-serverless
+Version: 1.0.4
+Summary: Sharable modules from Deep serverlss
+Home-page: https://github.com/the-deep/serverless
+Author: TC Dev
+Author-email: dev@togglecorp.com
+License: MIT
+Description: # Deep serverless
+        
+        Deep serverless sharable modules.
+        
+        ## Deploy to pypi
+        
+        ```bash
+        # Create package
+        python3 setup.py sdist
+        
+        # Push to pypi (for test use twine -r testpypi)
+        twine upload dist/*
+        
+        # Clean build files
+        rm -rf deep_serverless.egg-info/ dist
+        ```
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Utilities
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
