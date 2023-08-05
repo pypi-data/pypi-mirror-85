@@ -1,0 +1,94 @@
+Metadata-Version: 2.1
+Name: deeplenstronomy
+Version: 0.0.1.0
+Summary: wrap lenstronomy for efficient simulation generation
+Home-page: https://github.com/deepskies/deeplenstronomy
+Author: DeepSkiesLab
+Author-email: deepskieslab@gmail.com
+License: MIT
+Keywords: deeplenstronomy
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Description-Content-Type: text/markdown
+Requires-Dist: wheel (>=0.22)
+Requires-Dist: scipy (>=1.5.2)
+Requires-Dist: pandas (>=1.1.2)
+Requires-Dist: numpy (>=1.19.1)
+Requires-Dist: matplotlib (>=3.3.2)
+Requires-Dist: astropy (>=4.0.1.post1)
+Requires-Dist: h5py (>=2.10.0)
+Requires-Dist: pyyaml (>=5.3.1)
+Requires-Dist: mpmath (>=1.1.0)
+Requires-Dist: future (>=0.18.2)
+Requires-Dist: lenstronomy (>=1.6.0)
+
+# Welcome to `deeplenstronomy`!
+
+`deeplenstronomy` is a tool for simulating large datasets for applying deep learning to strong gravitational lensing. 
+It works by wrapping the functionalities of [`lenstronomy`](https://github.com/sibirrer/lenstronomy) in a convenient yaml-style interface, allowing users to embrace the astronomer part of their brain rather than their programmer part when generating training datasets.
+
+## Installation
+
+- Step 0: Set up an environment. This can be done straightforwardly with a `conda` installation:
+
+```
+conda create -n deeplens python=3.7 jupyter scipy pandas numpy matplotlib astropy h5py PyYAML mpmath future
+conda activate deeplens
+```
+
+- Step 1: `pip install lenstronomy`
+- Step 2: `pip install deeplenstronomy`
+
+## Documentation
+
+Start by reading the [Getting Started Guide](https://github.com/deepskies/deeplenstronomy/blob/master/Notebooks/GettingStarted.ipynb) to familiarize yourself with the `deeplenstronomy` style.
+
+After that, check out the example notebooks below:
+
+### Notebooks for `deeplenstronomy` Utilities
+- [Creating `deeplenstronomy` Configuration Files](https://github.com/deepskies/deeplenstronomy/blob/master/Notebooks/ConfigFiles.md)
+- [Generating Datasets](https://github.com/deepskies/deeplenstronomy/blob/master/Notebooks/DeepLenstronomyDemo.ipynb)
+- [Visualizing `deeplenstronomy` Images](https://github.com/deepskies/deeplenstronomy/blob/master/Notebooks/Visualization.ipynb)
+- [Utilizing Astronomical Surveys](https://github.com/deepskies/deeplenstronomy/blob/master/Notebooks/Surveys.ipynb)
+- [Defining Your Own Probability Distributions](https://github.com/deepskies/deeplenstronomy/blob/master/Notebooks/UserDistributions.ipynb)
+- [Using Your Own Images as Backgrounds](https://github.com/deepskies/deeplenstronomy/blob/master/Notebooks/BackgroundsDemo.ipynb)
+- [Simulating Time-Series Datasets](https://github.com/deepskies/deeplenstronomy/blob/master/Notebooks/TimeSeriesDemo.ipynb)
+
+### Notebooks for Applying `deeplenstronomy` to Machine Learning Analyses
+- [Using `deeplenstronomy` for Active Learning](https://github.com/deepskies/deeplenstronomy/blob/master/Notebooks/ActiveUpdateDemo.ipynb)
+- [Using `deeplenstronomy` for Classification and Regression](https://github.com/deepskies/deeplenstronomy/blob/master/Notebooks/Metrics.ipynb)
+
+### Notebooks for Suggested Science Cases
+- [A Walkthrough of Using `deeplenstronomy` for Science](https://github.com/deepskies/deeplenstronomy/blob/master/Notebooks/FullExample.ipynb)
+
+## Contact
+
+If you have any questions or run into any errors with the beta release of `deeplenstronomy`, please don't hesitate to reach out:
+
+Rob Morgan 
+<br>
+robert [dot] morgan [at] wisc.edu
+
+You can also message me on the DES, DELVE, LSSTC, deepskies, or lenstronomers Slack workspaces
+
+
+
+
+
+<!---
+.. image:: https://badge.fury.io/py/deeplenstronomy.png
+    :target: http://badge.fury.io/py/deeplenstronomy
+
+.. image:: https://travis-ci.org/bnord/deeplenstronomy.png?branch=master
+    :target: https://travis-ci.org/bnord/deeplenstronomy
+--->
+
+
+
+
