@@ -1,0 +1,230 @@
+Metadata-Version: 2.1
+Name: raiden
+Version: 1.2.0
+Summary: UNKNOWN
+Home-page: https://github.com/raiden-network/raiden
+Author: Brainbot Labs Est.
+Author-email: contact@brainbot.li
+License: MIT
+Keywords: raiden
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: aniso8601 (==7.0.0)
+Requires-Dist: asn1crypto (==1.3.0)
+Requires-Dist: attrs (==19.3.0)
+Requires-Dist: backcall (==0.1.0)
+Requires-Dist: base58 (==2.0.0)
+Requires-Dist: bitarray (==1.2.1)
+Requires-Dist: cachetools (==4.1.1)
+Requires-Dist: certifi (==2019.3.9)
+Requires-Dist: cffi (==1.12.3)
+Requires-Dist: chardet (==3.0.4)
+Requires-Dist: click (==7.0)
+Requires-Dist: coincurve (==13.0.0)
+Requires-Dist: colorama (==0.4.3)
+Requires-Dist: cytoolz (==0.10.1)
+Requires-Dist: decorator (==4.4.0)
+Requires-Dist: eth-abi (==2.1.0)
+Requires-Dist: eth-account (==0.5.3)
+Requires-Dist: eth-hash[pycryptodome] (==0.2.0)
+Requires-Dist: eth-keyfile (==0.5.1)
+Requires-Dist: eth-keys (==0.3.3)
+Requires-Dist: eth-rlp (==0.1.2)
+Requires-Dist: eth-typing (==2.2.1)
+Requires-Dist: eth-utils (==1.9.5)
+Requires-Dist: filelock (==3.0.12)
+Requires-Dist: flask-cors (==3.0.9)
+Requires-Dist: flask-restful (==0.3.8)
+Requires-Dist: flask (==1.1.2)
+Requires-Dist: gevent (==20.6.2)
+Requires-Dist: graphviz (==0.13.2)
+Requires-Dist: greenlet (==0.4.16)
+Requires-Dist: guppy3 (==3.0.10.post1)
+Requires-Dist: hexbytes (==0.2.0)
+Requires-Dist: idna (==2.8)
+Requires-Dist: importlib-metadata (==1.7.0)
+Requires-Dist: ipfshttpclient (==0.6.0.post1)
+Requires-Dist: ipython-genutils (==0.2.0)
+Requires-Dist: ipython (==7.18.1)
+Requires-Dist: itsdangerous (==1.1.0)
+Requires-Dist: jedi (==0.17.0)
+Requires-Dist: jinja2 (==2.10.1)
+Requires-Dist: jsonschema (==3.2.0)
+Requires-Dist: lru-dict (==1.1.6)
+Requires-Dist: markupsafe (==1.1.1)
+Requires-Dist: marshmallow-dataclass (==6.0.0)
+Requires-Dist: marshmallow-enum (==1.5.1)
+Requires-Dist: marshmallow-polyfield (==5.9)
+Requires-Dist: marshmallow (==3.8.0)
+Requires-Dist: matrix-client (==0.3.2)
+Requires-Dist: mirakuru (==2.1.2)
+Requires-Dist: multiaddr (==0.0.9)
+Requires-Dist: mypy-extensions (==0.4.3)
+Requires-Dist: netaddr (==0.7.19)
+Requires-Dist: netifaces (==0.10.9)
+Requires-Dist: networkx (==2.5)
+Requires-Dist: objgraph (==3.4.1)
+Requires-Dist: parsimonious (==0.8.1)
+Requires-Dist: parso (==0.7.0)
+Requires-Dist: pexpect (==4.8.0)
+Requires-Dist: pickleshare (==0.7.5)
+Requires-Dist: prompt-toolkit (==3.0.5)
+Requires-Dist: protobuf (==3.11.3)
+Requires-Dist: psutil (==5.7.2)
+Requires-Dist: ptyprocess (==0.6.0)
+Requires-Dist: py-ecc (==1.4.7)
+Requires-Dist: py-solc (==3.2.0)
+Requires-Dist: pycparser (==2.19)
+Requires-Dist: pycryptodome (==3.8.2)
+Requires-Dist: pygments (==2.7.2)
+Requires-Dist: pyrsistent (==0.15.7)
+Requires-Dist: pysha3 (==1.0.2)
+Requires-Dist: pytz (==2019.1)
+Requires-Dist: raiden-contracts (==0.37.1)
+Requires-Dist: raiden-webui (==1.0.2)
+Requires-Dist: requests (==2.24.0)
+Requires-Dist: rlp (==1.1.0)
+Requires-Dist: semantic-version (==2.6.0)
+Requires-Dist: semver (==2.8.1)
+Requires-Dist: six (==1.12.0)
+Requires-Dist: structlog (==20.1.0)
+Requires-Dist: toml (==0.10.1)
+Requires-Dist: toolz (==0.9.0)
+Requires-Dist: traitlets (==4.3.2)
+Requires-Dist: typing-extensions (==3.7.4.3)
+Requires-Dist: typing-inspect (==0.4.0)
+Requires-Dist: urllib3 (==1.25.3)
+Requires-Dist: varint (==1.0.2)
+Requires-Dist: wcwidth (==0.1.9)
+Requires-Dist: web3 (==5.12.1)
+Requires-Dist: websockets (==8.1)
+Requires-Dist: werkzeug (==1.0.1)
+Requires-Dist: zipp (==3.1.0)
+Requires-Dist: zope.event (==4.4)
+Requires-Dist: zope.interface (==5.1.0)
+
+<!-- PROJECT SHIELDS -->
+
+[![Raiden](https://user-images.githubusercontent.com/35398162/54018436-ee3f6300-4188-11e9-9b4e-0666c44cda53.png)](https://raiden.network/)
+
+<h4 align="center">
+  Fast, cheap, scalable token transfers for Ethereum
+</h4>
+
+#### Quicklinks
+
+[![Python 3.7](https://img.shields.io/pypi/pyversions/raiden.svg)](https://raiden-network.readthedocs.io/en/stable/)  [![Chat on Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/raiden-network/raiden?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
+- [Getting Started](#getting-started)
+- [Repositories](#repositories)
+- [Contact](#contact)
+
+The Raiden Network is an off-chain scaling solution, enabling near-instant, low-fee and scalable payments. It's complementary to the Ethereum Blockchain and works with any ERC20 compatible token. The Raiden project is work in progress. Its goal is to research state channel technology, define protocols and develop reference implementations.
+
+>**INFO:** The Raiden client and smart contracts have been [released for Mainnet](https://medium.com/raiden-network/alderaan-mainnet-release-announcement-7f701e58c236) for the Alderaan release of the Raiden Network in May 2020.
+
+The Raiden Network is an infrastructure layer on top of the Ethereum Blockchain. While the basic idea is simple, the underlying protocol is quite complex and the implementation non-trivial. Nonetheless the technicalities can be abstracted away, such that developers can interface with a rather simple API to build scalable decentralized applications based on the Raiden Network.
+
+[![Raiden in a Nutshell](https://user-images.githubusercontent.com/35398162/59496225-46c18300-8e91-11e9-9253-1465f5fd5985.PNG)](https://youtu.be/R1tIy1XgdPw)
+
+## Table of Contents
+- [Table of Contents](#table-of-contents)
+- [Getting Started](#getting-started)
+  - [Learn about Raiden](#learn-about-raiden)
+  - [Use Raiden](#use-raiden)
+- [Specification](#specification)
+- [Repositories](#repositories)
+  - [Core](#core)
+  - [Tools](#tools)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+
+## Getting Started
+
+### Learn about Raiden
+
+If you haven't used Raiden before, you can
+
+* Checkout the [developer portal](http://developer.raiden.network)
+* Look at the [documentation](https://docs.raiden.network/)
+* Learn more by watching explanatory [videos](https://www.youtube.com/channel/UCoUP_hnjUddEvbxmtNCcApg)
+* Read the blog posts on [Medium](https://medium.com/@raiden_network)
+* Visit [Awesome-Raiden](https://github.com/raiden-network/awesome-raiden), a curated list of resources, links, projects, tools and hacks
+
+### Use Raiden
+
+If you want to use Raiden:
+* Install Raiden easily with the [Raiden Wizard](https://docs.raiden.network/quick-start)
+* Read [all installation options](https://raiden-network.readthedocs.io/en/stable/overview_and_guide.html) for Raiden
+* Read the updated [WebUI tutorial](https://docs.raiden.network/the-raiden-web-interface) to quickly get started doing payments
+* Read the thorough guide to [get started with the Raiden API](https://raiden-network.readthedocs.io/en/stable/api_walkthrough.html)
+
+## Specification
+Read the [tentative specification for the Raiden Network](https://raiden-network-specification.readthedocs.io/en/latest/index.html) to understand in detail how Raiden works. It is maintained within [this repository](https://github.com/raiden-network/spec).
+
+## Repositories
+The Raiden Network is getting created with a set of tools, which are maintained in different repositories.
+### Core
+- The [solidity smart contracts, libraries and deployment tools](https://github.com/raiden-network/raiden-contracts) are used to bootstrap a Raiden Network on an Ethereum Chain.
+
+- The Raiden Python client within the current repository is used to manage payment channels and to make token transfers.
+
+- A [configured matrix server](https://github.com/raiden-network/raiden-transport) joins a federation of Matrix servers which is used as the transport layer for the Raiden Network. 
+
+- The [Service repository](https://github.com/raiden-network/raiden-services) contains the code for following services:
+    - The Monitoring Service watches open payment channels when the user is not on-line. 
+    - The Pathfinding service supports users in finding the cheapest or shortest way to route a payment through the network.
+
+- The [Light Client repository](https://github.com/raiden-network/light-client) contains the code for following applications:
+    - The Raiden Light Client SDK is a Raiden Network compatible client written in JavaScript/Typescript.
+    - The Raiden DApp is a reference implementation of the Raiden Light Client SDK.
+
+### Tools
+- The [Raiden WebUI](https://github.com/raiden-network/webui) is Raiden Web User Inteface to manage channels and make token transfers.
+
+- The [Raiden Explorer](https://github.com/raiden-network/explorer) visualizes the nodes of the Raiden Networks and shows more statistical information.
+
+- The [Raiden Wizard](https://github.com/raiden-network/raiden-installer) makes it easy to install a Raiden client and join the Raiden Network.
+
+- The [Scenario Player](https://github.com/raiden-network/scenario-player) is an integration testing tool for the Raiden contracts, the Raiden client and the services.
+
+- The [Workshop Scripts](https://github.com/raiden-network/workshop) enable workshop facilitators to easily host a Raiden Workshop.
+
+## Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+Also have a look at the [Raiden Development Guide](./CONTRIBUTING.md) and the [Raiden Developer On-boarding Guide](https://raiden-network.readthedocs.io/en/stable/onboarding.html) for more info.
+
+## License
+
+Distributed under the [MIT License](./LICENSE).
+
+## Contact
+
+Dev Chat: [Gitter](https://gitter.im/raiden-network/raiden)
+
+Twitter: [@raiden_network](https://twitter.com/raiden_network)
+
+Website: [Raiden Network](https://raiden.network/)
+
+Blog: [Medium](https://medium.com/@raiden_network)
+
+Mail: contact@raiden.network 
+
+*The Raiden project is led by brainbot labs Est.*
+
+> Disclaimer: Please note, that even though we do our best to ensure the quality and accuracy of the information provided, this publication may contain views and opinions, errors and omissions for which the content creator(s) and any represented organization cannot be held liable. The wording and concepts regarding financial terminology (e.g. “payments”, “checks”, “currency”, “transfer” [of value]) are exclusively used in an exemplary way to describe technological principles and do not necessarily conform to the real world or legal equivalents of these terms and concepts.
+
+
+
+
