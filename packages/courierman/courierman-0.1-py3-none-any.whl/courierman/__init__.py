@@ -1,0 +1,1 @@
+from courierman.collection import Collection
