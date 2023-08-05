@@ -1,0 +1,24 @@
+{% extends "permafrost/base.html" %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}Permafrost - Roles{% endblock %}
+
+{% block content %}
+<h1>Update: {{object.name}}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{form|crispy}}
+    <h3>Perms:</h3>
+    <ul>
+    {% for perm in object.optional_permissions %}
+    <li>{{perm.name}}</li>
+    {% endfor %}
+    </ul>
+
+    <a href="{{object.get_absolute_url}}" class="btn btn-warning">Cancel</a>
+    <button type="submit" class="btn btn-primary"> {% trans 'Submit' %}</button>
+</form>
+{% endblock %}
