@@ -1,0 +1,27 @@
+version: '3.6'
+services:
+  dev:
+    build:
+      context: ./
+      dockerfile: .devcontainer/Dockerfile.dev.base
+      args:
+        USERNAME: vscode
+        USER_UID: 1000
+        ENV_ID: dev
+        ENV_DEV_BASE_FILE: "environment.dev.base.yml"
+        PROJECT_ID: ${project}
+        ENV_DEV_FILE: "environment.dev.yml"
+    volumes:
+      - ${LOCAL_PATH}:/workspace
+    env_file:
+      - .env
+    # ports:
+    #   - "8088:8088"
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '4'
+    #       memory: 4G
+    #     reservations:
+    #       cpus: '3'
+    #       memory: 3G
