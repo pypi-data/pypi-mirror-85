@@ -1,0 +1,53 @@
+#!/usr/bin/python3
+"library for programming objects"
+
+import os, sys
+sys.path.insert(0, "lib")
+sys.path.insert(0, "bot")
+
+from csl import Console
+from prs import parse_cli
+from trm import execute, os, sys, termreset
+
+def daemon():
+    "switch to background"
+    pid = os.fork()
+    if pid != 0:
+        termreset()
+        os._exit(0)
+    os.setsid()
+    os.umask(0)
+    si = open("/dev/null", 'r')
+    so = open("/dev/null", 'a+')
+    se = open("/dev/null", 'a+')
+    os.dup2(si.fileno(), sys.stdin.fileno())
+    os.dup2(so.fileno(), sys.stdout.fileno())
+    os.dup2(se.fileno(), sys.stderr.fileno())
+
+def privileges(name=""):
+    "lower privileges"
+    if os.getuid() != 0:
+        return
+    if not name:
+        name = getpass.getuser()
+    pwnam = pwd.getpwnam(name)
+    os.setgroups([])
+    os.setgid(pwnam.pw_gid)
+    os.setuid(pwnam.pw_uid)
+    old_umask = os.umask(0o22)
+
+def main():
+    cfg = parse_cli("bot")
+    c = Console()
+    c.scan("irc")
+    if cfg.txt:
+        return c.cmd(cfg.txt)
+    if "s" not in cfg.opts:
+        daemon()
+        privileges()
+    c.init(cfg.mods)
+    c.start()
+    c.wait()
+     
+execute(main)
+os._exit(0)
