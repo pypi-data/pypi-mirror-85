@@ -1,0 +1,215 @@
+Metadata-Version: 2.1
+Name: ciomaya
+Version: 0.1.44
+Summary: Maya plugin for Conductor Cloud Rendering Platform.
+Home-page: https://github.com/AtomicConductor/conductor-maya
+Author: conductor
+Author-email: info@conductortech.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python
+Classifier: Topic :: Multimedia :: Graphics :: 3D Rendering
+Requires-Python: ~=2.7
+Description-Content-Type: text/markdown
+Requires-Dist: ciocore (<1.0.0,>=0.2.15)
+
+# Conductor for Maya
+
+Maya plugin submitter for the Conductor Cloud rendering service.
+
+## Install
+
+**To install the latest version.**
+```bash
+pip install --upgrade ciomaya --target=$HOME/Conductor
+```
+
+**To install a specific version, for example 0.1.0.**
+```bash
+pip install --upgrade --force-reinstall ciomaya==0.1.0 --target=$HOME/Conductor
+```
+
+**Then setup the Maya module.** 
+
+```bash
+python ~/Conductor/ciomaya/post_install.py
+```
+
+## Usage
+
+Open the Plugin Manager and load **Conductor.py**.
+
+Go to **Conductor->About** to check the version and other info.
+
+To set up a render, choose **Conductor->Submitter->Create** from the **Conductor** menu. 
+
+For detailed help, checkout the [tutorial](https://docs.conductortech.com/tutorials/maya_beta) and [reference](https://docs.conductortech.com/reference/maya_beta) documentation.
+
+## Contributing
+
+For help setting up your dev environment please visit [https://docs.conductortech.com/dev/contributing](https://docs.conductortech.com/dev/contributing)
+
+Pull requests are welcome. For major changes, please [open an issue](https://github.com/AtomicConductor/conductor-maya/issues) to discuss what you would like to change.
+
+
+## License
+[MIT](https://choosealicense.com/licenses/mit)
+
+## Changelog
+
+### Version:0.1.44 -- 11 Nov 2020
+
+* Make scraper testing respect the show tracebacks setting.
+* Search for yeti internal files in search paths, including the basename of absolute files. 
+* Adds Validation notice for yeti windows users, to remind them to create a Conductor-legal PG_IMAGE_PATH
+* Don't scrape redshift if redshift plugin not loaded.
+
+### Version:0.1.43 -- 06 Nov 2020
+
+* Better scraper error handling. [aec25ed]
+* Removed WIP yeti scraper code for this release. [eea4f6d]
+* Adds yeti detection. [d2c1cc5]
+* Adds detect-plugins to node creation in menu, as opposed to post_constructor. [217af13]
+* Fix bug in reset scrapers where new scrapers would have py extension. [10b1299]
+* Specify fixtures path in the node as opposed to using an env var. [f6cc49f]
+* Use data from connections and remove post_constructor. This avoids attempts to reconnect or set defaults when merely opening a file. In addition, currentFrame and layer are now connections that affect the output via the attributeAffects mechanism, meaning cleaner compute function. [b8a6d66]
+* Scrapers can now accept node name or pynode. [cae8f04]
+
+### Version:0.1.42 -- 04 Nov 2020
+
+* Adds a validation to warn about the Renumber Frames setting. [772cc91]
+* Fixed a bug in destination path and frames section due to buggy attrControlGrp in pymel. [31fa87d]
+* Adds a visible Add Software button. [2c117ae]
+
+### Version:0.1.41 -- 21 Oct 2020
+
+* Adds ability to expand env vars for redhift nodes. [5f28081]
+
+### Version:0.1.40 -- 14 Oct 2020
+
+* Fix bug in presets to remove the output attribute so it doesn't barf on the json. [4968a82]
+
+### Version:0.1.39 -- 08 Oct 2020
+
+* Generate combined readme and changelog for pypi. [75ccebd]
+
+### Version:0.1.36 -- 07 Oct 2020
+
+* Fixed a bug where a Sequence could emit chunks that weren't progressions, and therefore could not be expressed as `start`, `end`, and `by` in the Render command. [ee65a28]
+* Some new scrapers are more efficient to work with as simple paths rather than objects containing a path. Therefore, handle both options when processing. [71312de]
+
+### Version:0.1.35 -- 18 Sep 2020
+
+* Bifrost cache optimized to frame range. [c913b41]
+* Tidy standin scraper. [ae734ef]
+* Recursive ass scraping. [4727c9d]
+* Image planes evaluate for frame range. [4f11718]
+* Better messages when scrapers invalid. [13e63aa]
+* Resolve sequence from tokens rather than glob. [b0eb38e]
+* Ass file scraping, attr tokens works. [887932e]
+
+### Version:0.1.34 -- 08 Sep 2020
+
+* Add Arnold attr: tokens, also add Bifrost scrape. [b6d8883]
+* Refactor scrapers and addd redshift proxy scrape. [3955e97]
+* Wider dropdowns for gpu descriptions. [3b342df]
+* Simplified readme. [e01166c]
+
+
+### Version:0.1.33 -- 01 Sep 2020
+
+* Fix missing chunk_size attributeAffects relationship. [216893a]
+* Guard against missing arnoldrRenderOptions in validations. [ea32a60]
+* Adds `<f4>` style scrape regex. [24120d9]
+
+### Version:0.1.32 -- 18 Aug 2020
+
+* Several validation and redshift improvements. Fixed a bug around software validation. Adds redshift scraping. Fixed some validation issues. [bec172b]
+
+### Version:0.1.31 -- 11 Aug 2020
+
+Testing PyPi url preferences.
+
+### Version:0.1.30 -- 11 Aug 2020
+
+* Production release.
+
+### Version:0.1.29 -- 10 Aug 2020
+
+* Handle name change for redshift in autodetect. [6c70bb4]
+
+### Version:0.1.28 -- 10 Aug 2020
+
+* Filter out non inage files when resizing icons.. [3cd5a82]
+
+### Version:0.1.27 -- 10 Aug 2020
+
+* Better icon for render node. [f7cb8de]
+* Remove_missing files is now handled in gpath_list. [2a7b10e]
+* Moves validator base class to core. [d774b92]
+
+### Version:0.1.26 -- 08 Aug 2020
+
+* Use v0.2.2 of Core, with Redshift fixes. [f2fc9e2]
+* Cleaner renderer detection, including redshift. [4f9a7fe]
+* Adds redshift to renderer validation table. [37b5530]
+* Adds redshift detection. [bad3899]
+* Detect render globals set to single frame. [76dd1e1]
+* Remove dry run logic. [05450f6]
+* Remove dry run from ui. [a89d625]
+
+### Version:0.1.25 -- 01 Aug 2020
+
+* Use coredata with init. [8e9dbf1]
+* Adds post_install script. [aa5a7b5]
+* Fix trailing comma bug. [e87efe8]
+
+### Version:0.1.24 -- 22 Jul 2020
+
+* Added Wizard instructions in README. [42b971f]
+* Fix bad output when scene has never been saved. [ddba6cf]
+
+### Version:0.1.23 -- 21 Jul 2020
+
+* Change given label in instance types to specified. [6502b12]
+
+### Version:0.1.22 -- 21 Jul 2020
+
+* Replace vars with cio. [f3c31b3]
+* Guard against bad dropdown index. [7899d50]
+
+### Version:0.1.21 -- 10 Jul 2020
+
+* Move data singletons to conductor core. [0851059]
+* Better instructions. [9c83e22]
+* Simplify and strengthen icon graphics. [d67621f]
+* Requirements uses relative ref to core. [1e233d1]
+* Fix bug when location field empty. [23785f4]
+
+### Version:0.1.20 -- 30 Jun 2020
+
+* Use asset cache and add auto threads validation. [a0886a2]
+* Adds hdr to images regex. [ce7f7b3]
+* Temp workaround for AE bug - handle inst-type descriptions that arrive as as lists. [fb7cf69]
+* Make sure tokens representing paths have no drive letter. [db008e4]
+* Adds asset cache and destination directory validation. [38b895a]
+
+### Version:0.1.19 -- 29 Jun 2020
+
+* Adds connection button and icon. [f4b7a47]
+* Made a layer connection so that the output is recomputed when the user changes layer. [1feee6f]
+* Dont attempt autosave if scene was never saved. Show a save-as dialog instead. [9c75be6]
+* Adds arnold tx validation. [cc41f1e]
+* Adds a Reset Scrapers function. [7049db2]
+* Connect function only forces when told to. [1c6d763]
+* Adds explicit connect button. [ff3bb29]
+* Adds connection progress bar and make errors red. [c13daec]
+* Notice window now differentiates between warnings and info with icons. [944a44e]
+* Renderer package validation. Warn if selected renderer not selected as a plugin. [67efa52]
+
+### Version:0.1.18 -- 22 Jun 2020
+
+* Flattened the structure, remove namespaces, and simplified the version file.
+
