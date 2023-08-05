@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: openGraphMatching
+Version: 0.0.8
+Summary: A subgraph matching programming framework.
+Home-page: UNKNOWN
+Author: 
+Author-email: 
+License: UNKNOWN
+Description: 
+        # openGraphMatching
+        
+        A graph/subgraph matching library. Still under construction.
+        
+        
+        
+        
+        
+        
+        
+        # Usage/Demo
+        
+        The NaiveMatch is the minium implementation of subgraph matching algorithm.
+        
+        Here is the demo code for running GQL: 
+        
+        ```python
+        import GQLMatcher from GQLMatcher
+        
+        # Prepare query graph q and target graph G in advance.
+        
+        matcherObj = GQLMatcher(G) # Initialize the object with targer graph G
+        matcherObj.is_subgraph_match(q) # Run the check match process
+        ```
+           
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
