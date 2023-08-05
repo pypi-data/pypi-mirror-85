@@ -1,0 +1,4 @@
+Admin Tasks
+-----------
+
+There are currently no admin tasks to perform for the EventDB plugin.

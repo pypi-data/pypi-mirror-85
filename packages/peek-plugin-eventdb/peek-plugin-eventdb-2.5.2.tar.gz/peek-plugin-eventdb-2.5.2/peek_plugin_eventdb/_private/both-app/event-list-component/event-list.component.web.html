@@ -1,0 +1,34 @@
+<nz-table #eventsTable [nzData]="events"
+          nzSize="small"
+          nzPageSize="20"
+          nzPaginationPosition="top"
+          nzShowSizeChanger="true"
+          [nzLoading]="isDataLoading">
+    <thead>
+    <tr>
+        <th>Date&nbsp;&nbsp;&nbsp;&nbsp;(Loaded {{events.length}})</th>
+        <!-- TODO: Enable sorting in nz-zorro 9 -->
+        <th *ngFor="let prop of displayProps"
+            [nzShowSort]="false"
+            [nzSortKey]="'value.' + prop.key">{{ prop.name }}
+        </th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let event of eventsTable.data"
+           (mouseenter)="tooltipEnter($event, event)"
+           (mouseleave)="tooltipExit($event, event)"
+           (click)="showSummaryPopup($event, event)">
+    <tr [ngStyle]="{'background-color': colorValue(event)}">
+        <td style="white-space: normal">
+            <span
+                style="white-space: nowrap">{{ event.dateTime | date:'HH:mm:ss.SSS' }}</span>
+            <span>&nbsp;</span>
+            <span
+                style="white-space: nowrap">{{ event.dateTime | date:'dd-MMM-yyyy' }}</span>
+        </td>
+        <td *ngFor="let prop of displayProps">
+            {{displayValue(event, prop)}}
+        </td>
+    </tr>
+    </tbody>
+</nz-table>

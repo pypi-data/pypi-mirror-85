@@ -1,0 +1,99 @@
+<button nz-button nzType="default" (click)="showModal()">
+    Filter
+</button>
+
+<nz-modal
+    [(nzVisible)]="isVisible"
+    nzTitle="Events Filter"
+    [nzFooter]="modalFooter"
+    (nzOnCancel)="onCancelClicked()">
+
+    <p *ngIf="liveEnabled">
+        Date range filtering is disabled when "Live" is enabled.
+    </p>
+    <div nz-row nzType="flex" nzJustify="center" nzAlign="top" *ngIf="!liveEnabled">
+        <div nz-col nzXs="12">
+            From Date
+            <nz-date-picker
+                [nzShowTime]="{ nzFormat: 'HH:mm' }"
+                nzFormat="HH:mm dd-MMM-yyyy"
+                [(ngModel)]="dateTimeRange.oldestDateTime"></nz-date-picker>
+        </div>
+        <div nz-col nzXs="12">
+            To Date
+            <nz-date-picker
+                [nzShowTime]="{ nzFormat: 'HH:mm' }"
+                nzFormat="HH:mm dd-MMM-yyyy"
+                [(ngModel)]="dateTimeRange.newestDateTime"></nz-date-picker>
+        </div>
+    </div>
+    <br/>
+
+
+    <nz-table #filterTable nzSize="small" [nzData]="filterProps">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Filter</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of filterTable.data">
+            <td>{{item.name}}</td>
+
+            <ng-container [ngSwitch]="item.showFilterAs">
+
+                <td *ngSwitchCase="FilterAsEnum.SHOW_FILTER_AS_FREE_TEXT">
+                    <input nz-input
+                           placeholder="Enter Text"
+                           [(ngModel)]="criteria(item).value">
+                </td>
+
+                <td *ngSwitchCase="FilterAsEnum.SHOW_FILTER_SELECT_MANY">
+                    <nz-select nzMode="tags" nzPlaceHolder="Select many"
+                               [(ngModel)]="criteria(item).value">
+                        <nz-option *ngFor="let option of item.values"
+                                   [nzLabel]="option.name"
+                                   [nzValue]="option.value">
+                        </nz-option>
+                    </nz-select>
+                </td>
+
+                <td *ngSwitchCase="FilterAsEnum.SHOW_FILTER_SELECT_ONE">
+                    <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select one"
+                               [(ngModel)]="criteria(item).value">
+                        <nz-option *ngFor="let option of item.values"
+                                   [nzLabel]="option.name"
+                                   [nzValue]="option.value">
+                        </nz-option>
+                    </nz-select>
+                </td>
+
+                <div *ngSwitchDefault>
+                    <td>
+                        <span nz-text>
+                            No Filter
+                        </span>
+                    </td>
+                </div>
+            </ng-container>
+
+        </tr>
+        </tbody>
+    </nz-table>
+
+</nz-modal>
+
+
+<ng-template #modalFooter>
+    <button nz-button nzType="warning" (click)="resetDefaults()" class="pull-left">Reset
+        Defaults
+    </button>
+
+    <button nz-button nzType="default" (click)="onCancelClicked()">Cancel</button>
+    <button nz-button nzType="primary" (click)="onOkClicked()">Apply</button>
+</ng-template>
+
+
+
+

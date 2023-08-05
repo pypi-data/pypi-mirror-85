@@ -1,0 +1,101 @@
+{
+    "plugin": {
+        "title": "Event DB",
+        "packageName": "peek_plugin_eventdb",
+    "version":"2.5.2",
+        "buildNumber": "#PLUGIN_BUILD#",
+        "buildDate": "#BUILD_DATE#",
+        "creator": "Synerty Pty Ltd",
+        "website": "www.synerty.com"
+    },
+    "requiresServices": [
+        "client",
+        "server",
+        "storage",
+        "admin",
+        "agent",
+        "doc-dev",
+        "doc-admin",
+        "client",
+        "mobile",
+        "desktop",
+        "doc-user"
+    ],
+    "doc-dev": {
+        "docDir": "doc-dev",
+        "docRst": "index.rst",
+        "hasApi": true
+    },
+    "doc-admin": {
+        "docDir": "doc-admin",
+        "docRst": "index.rst"
+    },
+    "doc-user": {
+        "docDir": "doc-user",
+        "docRst": "index.rst"
+    },
+    "server": {
+    },
+    "client": {
+    },
+    "storage": {
+        "alembicDir": "_private/alembic"
+    },
+    "admin": {
+        "showHomeLink": true,
+        "appDir": "_private/admin-app",
+        "appModule": "eventdb.module#EventDBModule"
+    },
+    "agent": {
+    },
+    "mobile": {
+        "homeLinkText": "Alarms / Events",
+        "showHomeLink": true,
+        "appDir": "_private/both-app",
+        "appModule": "eventdb.module#EventDBModule",
+        "assetDir": "_private/both-assets",
+        "icon": "/assets/peek_plugin_eventdb/icon.png",
+        "moduleDir": "plugin-module",
+        "rootServices": [
+            {
+                "file": "_private/EventDBTupleService",
+                "class": "EventDBTupleService"
+            },
+            {
+                "file": "EventDBService",
+                "class": "EventDBService",
+                "useExistingClass": "PrivateEventDBService"
+            },
+            {
+                "file": "_private/PrivateEventDBService",
+                "class": "PrivateEventDBService",
+                "persistent": true
+            }
+        ]
+    },
+    "desktop": {
+        "homeLinkText": "Alarms / Events",
+        "showHomeLink": true,
+        "appDir": "_private/both-app",
+        "appModule": "eventdb.module#EventDBModule",
+        "assetDir": "_private/both-assets",
+        "icon": "/assets/peek_plugin_eventdb/icon.png",
+        "moduleDir": "plugin-module",
+        "rootServices": [
+            {
+                "file": "_private/EventDBTupleService",
+                "class": "EventDBTupleService"
+            },
+            {
+                "file": "EventDBService",
+                "class": "EventDBService",
+                "useExistingClass": "PrivateEventDBService"
+            },
+            {
+                "file": "_private/PrivateEventDBService",
+                "class": "PrivateEventDBService",
+                "persistent": true
+            }
+        ]
+    }
+}
