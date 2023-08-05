@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: AutoDotEnv
+Version: 0.1.3
+Summary: Automatically set environment variables from .env file when running any Python command.
+Home-page: https://github.com/cchurch/autodotenv/
+Author: Chris Church
+Author-email: chris@ninemoreminutes.com
+License: BSD
+Project-URL: Documentation, https://github.com/cchurch/autodotenv/
+Project-URL: Source, https://github.com/cchurch/autodotenv/
+Project-URL: Tracker, https://github.com/cchurch/autodotenv/issues
+Description: |Build Status| |PyPI Version| |Python Versions|
+        
+        AutoDotEnv
+        ==========
+        
+        AutoDotEnv is a simple tool to automatically set environment variables from a
+        ``.env`` file when running any Python command.
+        
+        Usage
+        -----
+        
+        1. ``pip install AutoDotEnv``
+        2. Install your Python-based tools of choice that can be configured via environment variables (e.g. ``awscli``, ``ansible``).
+        3. Create a ``.env`` file in the current directory values set to configure the installed tools.
+        4. Run your installed tools and environment variables will be set automatically from the ``.env`` file.
+        
+        Roadmap
+        -------
+        
+        * Configure AutoDotEnv options via environment variables.
+        * Configure AutoDotEnv options via a config file.
+        * Load variables from file patterns other than ``.env``.
+        * Load variables only for certain Python scripts/tools.
+        
+        
+        .. |Build Status| image:: https://img.shields.io/github/workflow/status/cchurch/autodotenv/test
+           :target: https://github.com/cchurch/autodotenv/actions?query=workflow%3Atest
+        .. |PyPI Version| image:: https://img.shields.io/pypi/v/autodotenv.svg
+           :target: https://pypi.python.org/pypi/autodotenv
+        .. |Python Versions| image:: https://img.shields.io/pypi/pyversions/autodotenv.svg
+           :target: https://pypi.python.org/pypi/autodotenv
+        
+Keywords: dot env,env file,environ
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/x-rst
