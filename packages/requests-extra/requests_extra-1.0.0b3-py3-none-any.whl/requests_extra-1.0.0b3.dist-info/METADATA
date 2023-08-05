@@ -1,0 +1,109 @@
+Metadata-Version: 2.1
+Name: requests-extra
+Version: 1.0.0b3
+Summary: Drop-in wrapper around the Python Requests library that provides extra features.
+Home-page: https://github.com/gdubicki/requests-extra
+Author: Greg Dubicki and the upstream projects authors
+Author-email: UNKNOWN
+License: UNKNOWN
+Keywords: requests,timeout,retry,exception,brotli
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Internet :: WWW/HTTP
+Requires-Dist: requests (<3)
+Requires-Dist: urllib3 (<1.26,>=1.25.1)
+Requires-Dist: brotli
+
+requests-extra
+==============
+
+Drop-in wrapper around the
+`Requests <https://github.com/psf/requests>`__ library that provides
+these **extra** features:
+
+-  For resiliency:
+
+   -  Retry by default (3 times in total),
+   -  Timeout by default (10 seconds),
+   -  Exception on 4xx and 5xx responses by default (automatic
+      ``raise_for_status()``),
+
+-  For performance:
+
+   -  Support for Brotli enabled by default,
+
+How to use?
+-----------
+
+1. Replace ``requests`` with ``requests-extra`` in your dependencies
+   file
+2. Install ``requests-extra`` package
+3. Replace ``requests.`` with ``requests_extra.`` in your code.
+
+That’s it!
+
+Example:
+
+::
+
+   from requests_extra.api import get
+
+   get('https://httpbin.org/headers')
+
+TODO
+----
+
+Tests.
+
+And more features:
+
+-  Single line logging of requests and/or responses, with default
+   secrets redaction,
+-  HTTP/2 support (by switching to
+   `encode/httpx <https://github.com/encode/httpx>`__ as a backend),
+-  Rate limiting support, including respecting the appropriate HTTP
+   headers,
+-  Support for RFC-2782 style DNS SRV entries (for Consul) - see
+   `pstiasny/requests-srv <https://github.com/pstiasny/requests-srv>`__,
+-  Service-to-service authentication on GCP - see
+   `adrianchifor/requests-gcp <https://github.com/adrianchifor/requests-gcp>`__,
+-  Built-in support for caching responses? - maybe with
+   `reclosedev/requests-cache <https://github.com/reclosedev/requests-cache>`__
+   or
+   `bionikspoon/cache_requests <https://github.com/bionikspoon/cache_requests>`__
+
+Contributing
+------------
+
+*ALL* kinds of issues & PRs are very welcome! There are no formal rules
+of contributing yet, please use common sense. ;)
+
+Credits
+-------
+
+Of course big thanks to all the authors of the wrapped library,
+Requests!
+
+The code for timeouts and ``raise_for_status()`` is copied from the
+`better-requests/better-requests <https://github.com/better-requests/better-requests>`__
+library. Thank you!
+
+Some concepts from the
+`CarlosAMolina/requests_custom <https://github.com/CarlosAMolina/requests_custom>`__
+library are used too. Thank you!
+
+License
+-------
+
+Like the wrapped Requests, and the libraries we reused, this library
+uses the Apache 2.0 license.
+
+
