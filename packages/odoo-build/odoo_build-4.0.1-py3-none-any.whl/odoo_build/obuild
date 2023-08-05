@@ -1,0 +1,205 @@
+#!/usr/bin/env python
+# Part of odoo-build.
+# See LICENSE file for full copyright and licensing details.
+
+
+import configparser
+import os
+import re
+import shutil
+import sys
+
+import yaml
+from psycopg2 import sql
+
+from odoo_build.argument_parser import OBArgumentParser
+from odoo_build.command import Command, CommandError
+from odoo_build.console import out
+from odoo_build.database import Database
+
+
+class OdooBuild():
+    def __init__(self, arg_parser):
+        self.args = arg_parser.args
+        self.odoo_args = arg_parser.odoo_args
+
+        with open(r'obuild.yml') as f:
+            self.conf = yaml.load(f, Loader=yaml.FullLoader)
+
+        if self.args.func in ['odoo', 'i18n-export']:
+            self.odoo_conf_file = (
+                hasattr(self.args, 'odoo_test') and self.args.odoo_test and
+                self.conf.get('config', {}).get('test', '.odoo-test') or
+                self.conf.get('config', {}).get('dev', '.odoo-dev'))
+            self.odoo_conf = configparser.ConfigParser().read(
+                self.odoo_conf_file)
+
+        out(u'Entering {} mode'.format(self.args.func), 'info')
+
+        success = True
+        try:
+            if self.args.func == 'project-version':
+                self.set_version(self.args.project_version_new_version)
+            elif self.args.func == 'project-dist':
+                self.project_dist()
+            elif self.args.func == "i18n-export":
+                self.export_i18n()
+            else:
+                self.odoo()
+        except CommandError:
+            success = False
+        out(u'Terminate {} mode'.format(self.args.func), 'info')
+        if success:
+            out(u'[SUCCESS]', 'success')
+        else:
+            out(u'[ERROR]', 'success')
+            sys.exit(1)
+
+    def db_conf(self):
+        db_conf = {
+            'host': 'localhost',
+            'port': '5432',
+            'user': 'odoo',
+            'password': 'odoo'}
+        db_conf.update(self.conf.get('database', {}))
+        return db_conf
+
+    def odoo_db_args(self):
+        db_conf = self.db_conf()
+        return [
+            '--db_host', db_conf['host'],
+            '--db_port', str(db_conf['port']),
+            '--db_user', db_conf['user'],
+            '--db_password', db_conf['password']]
+
+    def odoo(self):
+        def addons(keys):
+            return keys == 'def' and ','.join(self.conf['addons']) or keys
+
+        def check_database():
+            if '-d' in self.odoo_args:
+                return
+            if '--database' in self.odoo_args:
+                return
+            out(
+                "Database (-d/--database) is required "
+                "for install or update mode!", 'error')
+            sys.exit(1)
+
+        args = self. odoo_db_args() + self.odoo_args
+        if self.args.odoo_update:
+            check_database()
+            args += ['-u', addons(self.args.odoo_update)]
+        if self.args.odoo_install:
+            check_database()
+            args += ['-i', addons(self.args.odoo_install)]
+        Command('odoo', '-c', self.odoo_conf_file, *args).call()
+
+    def set_version(self, new_version):
+        version_pattern = r"(['\"]version['\"]\s*:\s*['\"])(.*)(['\"])"
+        version_result = r"\g<1>%s\g<3>" % new_version
+        for addon in self.conf['addons']:
+            filepath = os.path.join(addon, '__manifest__.py')
+            out(u'Change version to {} in {}'.format(
+                new_version, filepath), 'important')
+            with open(filepath, 'r') as f:
+                content = f.read()
+            new_content = re.sub(
+                version_pattern, version_result, content)
+            with open(filepath, 'w') as f:
+                f.write(new_content)
+
+    def project_dist(self):
+        Command.run('rm -Rf dist')
+        for addon in self.conf['addons']:
+            Command.run((
+                '( cd "setup/{}" && '
+                'python setup.py sdist bdist_wheel )').format(addon))
+        Command.run('mkdir -p dist')
+        Command.run('cp setup/*/dist/*.whl dist/')
+        Command.run('cp requirements*.txt dist/')
+
+    def export_i18n(self):
+        addons = self.conf.get('i18n-addons')
+        if not addons:
+            out(u"No i18n addons defined, exited with no action.", 'error')
+            return
+        out(u'Modules to export: {}'.format(",".join(addons)), 'important')
+
+        try:
+            db = Database(self.conf).connect()
+        except BaseException:
+            out(u"Unable to connect to the database.", 'error')
+            sys.exit(1)
+
+        cr = db.cr()
+        cr.execute(
+            u"select * from pg_database where datname = %s",
+            (self.args.database,))
+        db_exists = cr.fetchall() or False
+        old_isolation_level = db.conn.isolation_level
+        db.conn.set_isolation_level(0)
+        if db_exists:
+            out(u'Drop database {}'.format(self.args.database), 'warning')
+            cr.execute(sql.SQL(u'drop database {}').format(
+                sql.Identifier(self.args.database)))
+            db.conn.commit()
+        out(u'Create database {}'.format(self.args.database), 'info')
+        cr.execute(sql.SQL(u"""
+            create database {} owner {}
+            encoding 'unicode';""").format(
+            sql.Identifier(self.args.database),
+            sql.Identifier(db.settings['user'])))
+        db.conn.commit()
+        cr.close()
+        db.conn.set_isolation_level(old_isolation_level)
+        db.disconnect()
+
+        args = self. odoo_db_args() + [
+            '-d', self.args.database,
+            '-i', ','.join(addons),
+            '--without-demo=all',
+            '--stop-after-init']
+        try:
+            out(u'Start OpenERP …', 'info')
+            Command('odoo', '-c', self.odoo_conf_file, *args).call()
+        except KeyboardInterrupt:
+            sys.exit(1)
+
+        for addon in addons:
+            addon_folder = os.path.join('.', addon, 'i18n')
+            i18n_file = os.path.join(addon_folder, 'templates.po')
+            if not os.path.exists(addon_folder):
+                os.makedirs(addon_folder)
+            args = self. odoo_db_args() + [
+                '-d', self.args.database,
+                '--modules=' + addon,
+                '--i18n-export=' + i18n_file,
+                '--stop-after-init']
+            try:
+                out(u'Start OpenERP …', 'info')
+                Command('odoo', '-c', self.odoo_conf_file, *args).call()
+            except KeyboardInterrupt:
+                sys.exit(1)
+            if os.path.exists(i18n_file):
+                shutil.move(i18n_file, i18n_file.replace('.po', '.pot'))
+
+        cr = db.connect().cr()
+        if self.args.drop_database:
+            old_isolation_level = db.conn.isolation_level
+            db.conn.set_isolation_level(0)
+            out(u'Drop database {}'.format(self.args.database), 'warning')
+            cr.execute(u'drop database "%s"', (args.run_database,))
+            db.conn.commit()
+            cr.close()
+            db.conn.set_isolation_level(old_isolation_level)
+        db.disconnect()
+
+
+def main():
+    arg_parser = OBArgumentParser()
+    OdooBuild(arg_parser)
+
+
+if __name__ == "__main__":
+    main()
