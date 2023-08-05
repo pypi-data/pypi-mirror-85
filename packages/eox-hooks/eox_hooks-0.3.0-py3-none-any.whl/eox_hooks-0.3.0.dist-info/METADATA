@@ -1,0 +1,73 @@
+Metadata-Version: 2.1
+Name: eox-hooks
+Version: 0.3.0
+Summary: EoxHooks
+Home-page: UNKNOWN
+Author: eduNEXT
+Author-email: contact@edunext.co
+License: AGPL
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Framework :: Django :: 1.11
+Classifier: Framework :: Django :: 2.2
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/x-rst
+Requires-Dist: djangorestframework
+Requires-Dist: Django
+
+========
+EoxHooks
+========
+
+
+Features
+########
+
+
+Installation
+############
+
+Open edX devstack
+*****************
+
+- Clone this repo in the src folder of your devstack.
+- Open a new Lms/Devstack shell.
+- Install the plugin as follows: pip install -e /path/to/your/src/folder
+- Restart Lms/Studio services.
+
+Usage
+#####
+
+Before using eox-hooks, this plugin must be configured using EOX_HOOKS_DEFINITIONS:
+
+.. code-block:: python
+
+        {
+            "trigger_event": {
+                "module": "path_to_module",
+                "action": "action_name",
+                "fail_silently": True,
+            },
+        }
+
+Where:
+
+- trigger_event: is the name of the signal sent by the platform. For example: pre_enrollment_trigger.
+- module: path to the module where the action to be executed is defined. For example: eox_hooks.tests.tests_utils.
+- action: name of the action to be executed. For example: custom_action.
+- fail_silently: defines what happens if an exception raises while executing the action. If False, then the exception is raised.
+
+
+Contributing
+############
+
+Add your contribution policy. (If required)
+
+
