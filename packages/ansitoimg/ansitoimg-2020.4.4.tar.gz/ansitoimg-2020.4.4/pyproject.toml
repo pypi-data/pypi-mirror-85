@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "ansitoimg"
+version = "2020.4.4"
+description = "Convert an ANSI string to an image. Great for adding terminal output into a readme."
+authors = ["FredHappyface"]
+classifiers = [
+	"Development Status :: 5 - Production/Stable",
+	"Intended Audience :: Developers",
+	"Intended Audience :: Education",
+	"License :: OSI Approved :: MIT License",
+	"Natural Language :: English",
+	"Operating System :: OS Independent",
+	"Programming Language :: Python :: 3.7",
+	"Programming Language :: Python :: 3.8",
+	"Programming Language :: Python :: 3.9",
+	"Programming Language :: Python :: Implementation :: CPython",
+	"Topic :: Software Development :: Libraries :: Python Modules",
+	"Topic :: Utilities"
+]
+homepage = "https://github.com/FHPythonUtils/AnsiToImg"
+repository = "https://github.com/FHPythonUtils/AnsiToImg"
+documentation = "https://github.com/FHPythonUtils/AnsiToImg/blob/master/README.md"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+svgwrite = "<3,>=1.4"
+PyYAML = "<7,>=5.3.1"
+Pillow = "<10,>=8.0.0"
+pyppeteer = "<2,>=0.2.2"
+MarkupSafe = "<3,>=1.1.1"
+
+
+[tool.poetry.dev-dependencies]
+catimage = "^2020.6.1"
+
+
+[tool.poetry.scripts]
+ansitoimg = 'ansitoimg:cli'
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
