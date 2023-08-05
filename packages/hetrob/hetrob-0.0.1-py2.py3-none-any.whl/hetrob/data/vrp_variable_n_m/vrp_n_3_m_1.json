@@ -1,0 +1,77 @@
+{
+    "doc": "\nThis script will generate a problem instance, which is compatible with the following problem representations:\n- OrderedHeterogeneousSkillTimeConstraintProblem\n\nThe generation will result in the following constant attributes of the instance\n- No cooperation: There will be no cooperative nodes present in the dataset\n- No heterogeneity: All the nodes will require the same skill; all the vehicles will offer the same skill\n- No precedence: No nodes will have a precedence relationship between them. All tasks are indepedendent.\n- Random node distribution: Node locations will be completely\n- 2D Coordinates: Everything will be on the same z coordinate\n\nThe following instance attributes can be set for the generation process:\n- Depot Coordinates\n- Vehicle speed\n- Range for the generation of random task coordinates\n- Range for the generation of task durations\n- The amount of nodes to be generated\n- The amount of vehicles available\n(- Location to save data)\n",
+    "nodes": {
+        "0": {
+            "coords": [
+                36,
+                14,
+                0
+            ],
+            "duration": 297,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "1": {
+            "coords": [
+                84,
+                22,
+                0
+            ],
+            "duration": 290,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "2": {
+            "coords": [
+                24,
+                33,
+                0
+            ],
+            "duration": 69,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "depot": {
+            "coords": [
+                60,
+                20,
+                0
+            ],
+            "duration": 0,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        }
+    },
+    "vehicles": {
+        "0": {
+            "skills": [
+                "skill"
+            ],
+            "speed": 1
+        }
+    }
+}

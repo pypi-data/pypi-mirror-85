@@ -1,0 +1,189 @@
+{
+    "doc": "\nThis script will generate a problem instance, which is compatible with the following problem representations:\n- OrderedHeterogeneousSkillTimeConstraintProblem\n\nThe generation will result in the following constant attributes of the instance\n- No cooperation: There will be no cooperative nodes present in the dataset\n- No heterogeneity: All the nodes will require the same skill; all the vehicles will offer the same skill\n- No precedence: No nodes will have a precedence relationship between them. All tasks are indepedendent.\n- Random node distribution: Node locations will be completely\n- 2D Coordinates: Everything will be on the same z coordinate\n\nThe following instance attributes can be set for the generation process:\n- Depot Coordinates\n- Vehicle speed\n- Range for the generation of random task coordinates\n- Range for the generation of task durations\n- The amount of nodes to be generated\n- The amount of vehicles available\n(- Location to save data)\n",
+    "nodes": {
+        "0": {
+            "coords": [
+                67,
+                36,
+                0
+            ],
+            "duration": 121,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "1": {
+            "coords": [
+                78,
+                16,
+                0
+            ],
+            "duration": 147,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "2": {
+            "coords": [
+                75,
+                36,
+                0
+            ],
+            "duration": 112,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "3": {
+            "coords": [
+                95,
+                35,
+                0
+            ],
+            "duration": 299,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "4": {
+            "coords": [
+                88,
+                11,
+                0
+            ],
+            "duration": 164,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "5": {
+            "coords": [
+                59,
+                3,
+                0
+            ],
+            "duration": 277,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "6": {
+            "coords": [
+                144,
+                42,
+                0
+            ],
+            "duration": 270,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "7": {
+            "coords": [
+                130,
+                32,
+                0
+            ],
+            "duration": 26,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "8": {
+            "coords": [
+                21,
+                41,
+                0
+            ],
+            "duration": 124,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "9": {
+            "coords": [
+                107,
+                16,
+                0
+            ],
+            "duration": 230,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "depot": {
+            "coords": [
+                60,
+                20,
+                0
+            ],
+            "duration": 0,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        }
+    },
+    "vehicles": {
+        "0": {
+            "skills": [
+                "skill"
+            ],
+            "speed": 1
+        }
+    }
+}

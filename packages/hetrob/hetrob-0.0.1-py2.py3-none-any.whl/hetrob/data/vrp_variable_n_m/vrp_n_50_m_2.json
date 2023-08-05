@@ -1,0 +1,835 @@
+{
+    "doc": "\nThis script will generate a problem instance, which is compatible with the following problem representations:\n- OrderedHeterogeneousSkillTimeConstraintProblem\n\nThe generation will result in the following constant attributes of the instance\n- No cooperation: There will be no cooperative nodes present in the dataset\n- No heterogeneity: All the nodes will require the same skill; all the vehicles will offer the same skill\n- No precedence: No nodes will have a precedence relationship between them. All tasks are indepedendent.\n- Random node distribution: Node locations will be completely\n- 2D Coordinates: Everything will be on the same z coordinate\n\nThe following instance attributes can be set for the generation process:\n- Depot Coordinates\n- Vehicle speed\n- Range for the generation of random task coordinates\n- Range for the generation of task durations\n- The amount of nodes to be generated\n- The amount of vehicles available\n(- Location to save data)\n",
+    "nodes": {
+        "0": {
+            "coords": [
+                18,
+                3,
+                0
+            ],
+            "duration": 206,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "1": {
+            "coords": [
+                47,
+                47,
+                0
+            ],
+            "duration": 92,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "10": {
+            "coords": [
+                119,
+                10,
+                0
+            ],
+            "duration": 138,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "11": {
+            "coords": [
+                88,
+                41,
+                0
+            ],
+            "duration": 199,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "12": {
+            "coords": [
+                98,
+                9,
+                0
+            ],
+            "duration": 43,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "13": {
+            "coords": [
+                57,
+                33,
+                0
+            ],
+            "duration": 122,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "14": {
+            "coords": [
+                114,
+                43,
+                0
+            ],
+            "duration": 157,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "15": {
+            "coords": [
+                33,
+                14,
+                0
+            ],
+            "duration": 158,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "16": {
+            "coords": [
+                88,
+                24,
+                0
+            ],
+            "duration": 201,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "17": {
+            "coords": [
+                49,
+                50,
+                0
+            ],
+            "duration": 139,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "18": {
+            "coords": [
+                72,
+                12,
+                0
+            ],
+            "duration": 133,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "19": {
+            "coords": [
+                92,
+                15,
+                0
+            ],
+            "duration": 254,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "2": {
+            "coords": [
+                0,
+                38,
+                0
+            ],
+            "duration": 25,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "20": {
+            "coords": [
+                130,
+                35,
+                0
+            ],
+            "duration": 142,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "21": {
+            "coords": [
+                16,
+                42,
+                0
+            ],
+            "duration": 290,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "22": {
+            "coords": [
+                135,
+                49,
+                0
+            ],
+            "duration": 189,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "23": {
+            "coords": [
+                12,
+                35,
+                0
+            ],
+            "duration": 183,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "24": {
+            "coords": [
+                10,
+                20,
+                0
+            ],
+            "duration": 296,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "25": {
+            "coords": [
+                98,
+                0,
+                0
+            ],
+            "duration": 61,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "26": {
+            "coords": [
+                29,
+                11,
+                0
+            ],
+            "duration": 168,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "27": {
+            "coords": [
+                26,
+                23,
+                0
+            ],
+            "duration": 20,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "28": {
+            "coords": [
+                31,
+                10,
+                0
+            ],
+            "duration": 289,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "29": {
+            "coords": [
+                76,
+                10,
+                0
+            ],
+            "duration": 240,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "3": {
+            "coords": [
+                133,
+                30,
+                0
+            ],
+            "duration": 141,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "30": {
+            "coords": [
+                56,
+                30,
+                0
+            ],
+            "duration": 273,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "31": {
+            "coords": [
+                66,
+                47,
+                0
+            ],
+            "duration": 78,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "32": {
+            "coords": [
+                93,
+                40,
+                0
+            ],
+            "duration": 222,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "33": {
+            "coords": [
+                115,
+                28,
+                0
+            ],
+            "duration": 264,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "34": {
+            "coords": [
+                81,
+                15,
+                0
+            ],
+            "duration": 137,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "35": {
+            "coords": [
+                105,
+                5,
+                0
+            ],
+            "duration": 188,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "36": {
+            "coords": [
+                9,
+                39,
+                0
+            ],
+            "duration": 128,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "37": {
+            "coords": [
+                72,
+                39,
+                0
+            ],
+            "duration": 86,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "38": {
+            "coords": [
+                12,
+                21,
+                0
+            ],
+            "duration": 37,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "39": {
+            "coords": [
+                36,
+                32,
+                0
+            ],
+            "duration": 32,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "4": {
+            "coords": [
+                92,
+                44,
+                0
+            ],
+            "duration": 118,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "40": {
+            "coords": [
+                138,
+                9,
+                0
+            ],
+            "duration": 154,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "41": {
+            "coords": [
+                31,
+                19,
+                0
+            ],
+            "duration": 34,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "42": {
+            "coords": [
+                19,
+                40,
+                0
+            ],
+            "duration": 149,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "43": {
+            "coords": [
+                92,
+                46,
+                0
+            ],
+            "duration": 188,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "44": {
+            "coords": [
+                34,
+                5,
+                0
+            ],
+            "duration": 251,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "45": {
+            "coords": [
+                1,
+                7,
+                0
+            ],
+            "duration": 109,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "46": {
+            "coords": [
+                40,
+                16,
+                0
+            ],
+            "duration": 261,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "47": {
+            "coords": [
+                72,
+                48,
+                0
+            ],
+            "duration": 81,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "48": {
+            "coords": [
+                93,
+                8,
+                0
+            ],
+            "duration": 148,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "49": {
+            "coords": [
+                135,
+                14,
+                0
+            ],
+            "duration": 29,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "5": {
+            "coords": [
+                120,
+                2,
+                0
+            ],
+            "duration": 180,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "6": {
+            "coords": [
+                14,
+                27,
+                0
+            ],
+            "duration": 169,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "7": {
+            "coords": [
+                102,
+                34,
+                0
+            ],
+            "duration": 211,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "8": {
+            "coords": [
+                53,
+                41,
+                0
+            ],
+            "duration": 204,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "9": {
+            "coords": [
+                53,
+                17,
+                0
+            ],
+            "duration": 232,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        },
+        "depot": {
+            "coords": [
+                60,
+                20,
+                0
+            ],
+            "duration": 0,
+            "precedes": [],
+            "requires": [
+                "skill"
+            ],
+            "tw": [
+                0,
+                100000000000
+            ]
+        }
+    },
+    "vehicles": {
+        "0": {
+            "skills": [
+                "skill"
+            ],
+            "speed": 1
+        },
+        "1": {
+            "skills": [
+                "skill"
+            ],
+            "speed": 1
+        }
+    }
+}
