@@ -1,0 +1,85 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2019-03-06T21:43:08",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\"grant_type\": \"password\", \"accessCode1\": \"foo\", \"accessCode2\": \"bar\"}"
+        },
+        "headers": {
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "70"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "User-Agent": [
+            "python-requests/2.21.0"
+          ]
+        },
+        "method": "POST",
+        "uri": "https://oidc.plus4u.net/uu-oidcg01-main/0-0/grantToken"
+      },
+      "response": {
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"uuAppErrorMap\":{\"uu-oidc-main/notAuthenticated\":{\"id\":\"047baf9fdcf67350590155b96dfba107\",\"timestamp\":\"2019-03-06T21:43:07.637Z\",\"type\":\"error\",\"message\":\"Unable to authenticate Account, user is not registered or invalid credentials used for realm 'users.realm.uu'!\",\"paramMap\":{\"realmCode\":\"users.realm.uu\",\"tenantId\":\"99923616732452117-4f06dafc03cb4c7f8c155aa53f0e86be\",\"error\":\"not_authenticated\"}}}}"
+        },
+        "headers": {
+          "Connection": [
+            "Keep-Alive"
+          ],
+          "Content-Length": [
+            "404"
+          ],
+          "Content-Type": [
+            "application/json; charset=UTF-8"
+          ],
+          "Date": [
+            "Wed, 06 Mar 2019 21:43:07 GMT"
+          ],
+          "Keep-Alive": [
+            "timeout=15, max=500"
+          ],
+          "Public-Key-Pins": [
+            "pin-sha256=\"WyLgTdGZdhFCWB34I6IPz5QSq/Zj+ULS/QDL011/L7Y=\"; max-age=7200; includeSubDomains"
+          ],
+          "Server": [
+            "Apache"
+          ],
+          "Strict-Transport-Security": [
+            "max-age=31536000; includeSubDomains"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Permitted-Cross-Domain-Policies": [
+            "none"
+          ],
+          "X-Request-Id": [
+            "97f754edbc746766-97f754edbc746766-04cee3dee7431e7d-0000"
+          ],
+          "X-XSS-Protection": [
+            "1; mode=block"
+          ]
+        },
+        "status": {
+          "code": 401,
+          "message": "Unauthorized"
+        },
+        "url": "https://oidc.plus4u.net/uu-oidcg01-main/0-0/grantToken"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.1"
+}

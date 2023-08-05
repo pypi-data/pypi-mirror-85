@@ -1,0 +1,93 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2019-10-17T06:57:46",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\"project\": \"Fake\", \"pageInfo\": {\"pageSize\": 1}}"
+        },
+        "headers": {
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Authorization": [
+            "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IkV0YUl4dmxfVzJnWVk4UG1hd2xzWWcifQ.eyJqdGkiOiI1ZGE3ZjZhMDA1N2U1OTAwMDkxYjc5NTciLCJpc3MiOiJodHRwczovL29pZGMucGx1czR1Lm5ldC91dS1vaWRjZzAxLW1haW4vOTk5MjM2MTY3MzI0NTIxMTctNGYwNmRhZmMwM2NiNGM3ZjhjMTU1YWE1M2YwZTg2YmUiLCJleHAiOjE1NzEyOTU5MzYsImlhdCI6MTU3MTI4ODczNiwibmJmIjoxNTcxMjg4NzM2LCJzaWQiOiIyZjkyNGVkOGZjMTQ0NDgxOTU0NDIzZGIzNDYyODllNSIsInN1YiI6IjViZWFhNDgyZmMyN2NhMDA0MGJkNDBhZCIsInV1X2lkZW50aXR5IjoiMjMtMjE0NS0xIiwidXVfaWQiOiIyMy0yMTQ1LTEiLCJpZGVudGl0eV90eXBlIjoidXVQZXJzb24iLCJuYW1lIjoiR2lvcmRvbiBTdGFyayIsImVtYWlsIjoiZ2lvcmRvbi5ob2x0c2Jlcmcuc3RhcmtAY2Vybi5jaCIsImxvY2FsZSI6ImVuIiwibG9hIjowLCJhY3IiOjIsImFtciI6WyJwd2QiXSwiYXV0aF90aW1lIjoxNTcxMjg4NzM2LCJjbGllbnRfYXBwX2lkIjoiNThjN2YxM2ExNjVhODgwMDA3NGQ0YTdjIiwiY2xpZW50X2FwcF9jb2RlIjoiVVUuVU5SRUdJU1RFUkVELUFQUCIsImNsaWVudF9hcHBfbmFtZSI6InVucmVnaXN0ZXJlZCIsImF6cCI6Ijc4NDA0N2I5MTQ0NjdmN2ZiOTM4M2UxZTg3NWU1ZGU5IiwiYXVkIjpbImh0dHBzOi8vb2lkYy5wbHVzNHUubmV0L3V1LW9pZGNnMDEtbWFpbi85OTkyMzYxNjczMjQ1MjExNy00ZjA2ZGFmYzAzY2I0YzdmOGMxNTVhYTUzZjBlODZiZSIsIjc4NDA0N2I5MTQ0NjdmN2ZiOTM4M2UxZTg3NWU1ZGU5IiwiL3V1LXVucmVnaXN0ZXJlZC1hcHAvMCJdfQ.QSKv5avfi45eDU7PgmIbvDY_n_s7IKzdk169171JKEUPcvwN8LirNTElg9PswMc-LSnRl8lRYLXGaT3l0mWSVN7AmCRHmylFV2NFApphaZruVWyGbidpJjgANkD8BigybeTRjMJUs9YSikNtZOVAoTU7mbFTEE0r_ncfPSI2Pzo"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "48"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "Cookie": [
+            "uu.app.bpl=0; uu.app.cbu=https://uuos9.plus4u.net/cern-itkpdg01-main/98234766872260181-dcb3f6d1f130482581ba1e7bbe34413c"
+          ],
+          "User-Agent": [
+            "python-requests/2.22.0"
+          ]
+        },
+        "method": "GET",
+        "uri": "https://itkpd-test.unicorncollege.cz/listComponents"
+      },
+      "response": {
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"uuAppErrorMap\":{\"cern-itkpd-main/listComponents/invalidDtoIn\":{\"id\":\"047bb9f7fdb90ba0fba208b4a6d70c99\",\"timestamp\":\"2019-10-17T06:57:46.618Z\",\"type\":\"error\",\"message\":\"DtoIn is not valid.\",\"paramMap\":{\"invalidValueKeyMap\":{\"$\":{\"shape.e002\":\"The content of shape must be valid.\"},\"$.project\":{\"oneOf.e001\":\"The value must be one of ['S', 'P', 'CM', 'CE'].\"}}}}}}"
+        },
+        "headers": {
+          "Connection": [
+            "close"
+          ],
+          "Content-Length": [
+            "364"
+          ],
+          "Content-Type": [
+            "application/json; charset=UTF-8"
+          ],
+          "Date": [
+            "Thu, 17 Oct 2019 06:57:46 GMT"
+          ],
+          "Server": [
+            "Apache"
+          ],
+          "Set-Cookie": [
+            "uu.app.bpl=0;path=",
+            "uu.app.cbu=https://uuos9.plus4u.net/cern-itkpdg01-main/98234766872260181-dcb3f6d1f130482581ba1e7bbe34413c;path="
+          ],
+          "Strict-Transport-Security": [
+            "max-age=31536000; includeSubDomains",
+            "max-age=31536000; includeSubDomains"
+          ],
+          "Vary": [
+            "Origin,Referer"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Permitted-Cross-Domain-Policies": [
+            "none"
+          ],
+          "X-Request-Id": [
+            "ba8b2191354321bd-ba8b2191354321bd-59ca9a4a2bfe19fa-0000"
+          ],
+          "X-XSS-Protection": [
+            "1; mode=block"
+          ]
+        },
+        "status": {
+          "code": 400,
+          "message": "Bad Request"
+        },
+        "url": "https://itkpd-test.unicorncollege.cz/listComponents"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.1"
+}

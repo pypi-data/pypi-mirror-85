@@ -1,0 +1,93 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2019-10-17T07:30:45",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\"project\": \"S\", \"pageInfo\": {\"pageSize\": 1}}"
+        },
+        "headers": {
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Authorization": [
+            "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik4yeTBwa3J0dGdyQ05WMUtzQnBZT1EifQ.eyJqdGkiOiI1ZGE4MThhNGY0ZGUxMTAwMDk5ODU5ZGQiLCJpc3MiOiJodHRwczovL29pZGMucGx1czR1Lm5ldC91dS1vaWRjZzAxLW1haW4vOTk5MjM2MTY3MzI0NTIxMTctNGYwNmRhZmMwM2NiNGM3ZjhjMTU1YWE1M2YwZTg2YmUiLCJleHAiOjE1NzEzMDQ2NDQsImlhdCI6MTU3MTI5NzQ0NCwibmJmIjoxNTcxMjk3NDQ0LCJzaWQiOiIwZmY4OWQ1MjViNmU0OWNmYmFmNjBjM2Q0OWQ0OGU0MSIsInN1YiI6IjU4YzdmMTNhMTY1YTg4MDAwNzRkNGE3NSIsInV1X2lkZW50aXR5IjoiMC0wIiwidXVfaWQiOiIwLTAiLCJpZGVudGl0eV90eXBlIjoidW5rbm93biIsIm5hbWUiOiJVc2VyIEFub255bW91cyIsImVtYWlsIjoiMC0wQHBsdXM0dS5uZXQiLCJsb2NhbGUiOiJlbl91cyIsImxvYSI6MCwiYWNyIjowLCJhbXIiOlsicHdkIl0sImF1dGhfdGltZSI6MTU3MTI5NzQ0NCwiY2xpZW50X2FwcF9pZCI6IjU4YzdmMTNhMTY1YTg4MDAwNzRkNGE3YyIsImNsaWVudF9hcHBfY29kZSI6IlVVLlVOUkVHSVNURVJFRC1BUFAiLCJjbGllbnRfYXBwX25hbWUiOiJ1bnJlZ2lzdGVyZWQiLCJhenAiOiI3ODQwNDdiOTE0NDY3ZjdmYjkzODNlMWU4NzVlNWRlOSIsImF1ZCI6WyJodHRwczovL29pZGMucGx1czR1Lm5ldC91dS1vaWRjZzAxLW1haW4vOTk5MjM2MTY3MzI0NTIxMTctNGYwNmRhZmMwM2NiNGM3ZjhjMTU1YWE1M2YwZTg2YmUiLCI3ODQwNDdiOTE0NDY3ZjdmYjkzODNlMWU4NzVlNWRlOSIsIi91dS11bnJlZ2lzdGVyZWQtYXBwLzAiXX0.I97X4Qfdiyj9YfTSOt77sJMw1gAFQpKfozidVrZH9lAQON1g81Pe9ji4Ojx5ye4G8VlI1eK5TAAKgjEZVAZ6aO2hUdogVn-pnc7cJHP_TiFrlMMh_1lfPGXDoAxoltp6CVKhgjWzGNemvkb8xoNCdZhhH0-hF7AE8hoYBmTzP_o"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "45"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "User-Agent": [
+            "python-requests/2.22.0"
+          ]
+        },
+        "method": "GET",
+        "uri": "https://itkpd-test.unicorncollege.cz/listComponents"
+      },
+      "response": {
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"uuAppErrorMap\":{\"uu-app-workspace/authorization/userIsNotAuthorized\":{\"id\":\"047bb9f804aeeda0c76891de1e5a4572\",\"timestamp\":\"2019-10-17T07:30:45.210Z\",\"type\":\"error\",\"message\":\"Logged user is not authorized to run use case.\"}}}"
+        },
+        "headers": {
+          "Connection": [
+            "Keep-Alive"
+          ],
+          "Content-Length": [
+            "227"
+          ],
+          "Content-Type": [
+            "application/json; charset=UTF-8"
+          ],
+          "Date": [
+            "Thu, 17 Oct 2019 07:30:45 GMT"
+          ],
+          "Keep-Alive": [
+            "timeout=5, max=100"
+          ],
+          "Server": [
+            "Apache"
+          ],
+          "Set-Cookie": [
+            "uu.app.bpl=0;path=",
+            "uu.app.cbu=https://uuos9.plus4u.net/cern-itkpdg01-main/98234766872260181-dcb3f6d1f130482581ba1e7bbe34413c;path="
+          ],
+          "Strict-Transport-Security": [
+            "max-age=31536000; includeSubDomains",
+            "max-age=31536000; includeSubDomains"
+          ],
+          "Vary": [
+            "Origin,Referer"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Permitted-Cross-Domain-Policies": [
+            "none"
+          ],
+          "X-Request-Id": [
+            "ba8b21912abdd0a1-ba8b21912abdd0a1-52df8ede2c917d6f-0000"
+          ],
+          "X-XSS-Protection": [
+            "1; mode=block"
+          ]
+        },
+        "status": {
+          "code": 403,
+          "message": "Forbidden"
+        },
+        "url": "https://itkpd-test.unicorncollege.cz/listComponents"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.1"
+}

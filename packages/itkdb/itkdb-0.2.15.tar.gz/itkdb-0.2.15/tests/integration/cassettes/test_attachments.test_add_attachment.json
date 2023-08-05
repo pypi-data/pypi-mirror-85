@@ -1,0 +1,89 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2019-03-06T21:39:52",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "--e1331022fc24ccbf223fae05bc35b101\r\nContent-Disposition: form-data; name=\"component\"\r\n\r\n20USE000000086\r\n--e1331022fc24ccbf223fae05bc35b101\r\nContent-Disposition: form-data; name=\"title\"\r\n\r\nthis is a test attachment\r\n--e1331022fc24ccbf223fae05bc35b101\r\nContent-Disposition: form-data; name=\"description\"\r\n\r\ndelete this attachment if you see it\r\n--e1331022fc24ccbf223fae05bc35b101\r\nContent-Disposition: form-data; name=\"type\"\r\n\r\nfile\r\n--e1331022fc24ccbf223fae05bc35b101\r\nContent-Disposition: form-data; name=\"url\"\r\n\r\ntest.txt\r\n--e1331022fc24ccbf223fae05bc35b101\r\nContent-Disposition: form-data; name=\"data\"; filename=\"test.txt\"\r\nContent-Type: text/plain\r\n\r\nthis is a fake attachment for testing purposes\r\n--e1331022fc24ccbf223fae05bc35b101--\r\n"
+        },
+        "headers": {
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Authorization": [
+            "Bearer <ACCESS_TOKEN>"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "740"
+          ],
+          "Content-Type": [
+            "multipart/form-data; boundary=e1331022fc24ccbf223fae05bc35b101"
+          ],
+          "User-Agent": [
+            "python-requests/2.21.0"
+          ]
+        },
+        "method": "POST",
+        "uri": "https://itkpd-test.unicorncollege.cz/createComponentAttachment"
+      },
+      "response": {
+        "body": {
+          "base64_string": "H4sIACc+gFwAA8xUTW/TQBD9K5avJGW/1+tbkSJAAoSacAFx2I9xa4iT1Lumjar8d2bt0qQiAokTli8zfvPe7pvxPJR+2+22G9iksn4o21DWpfSaEedAGlqJihBihNZBkXJW7vrtN/AILZcYtZuY2jSkdrvJZdYrBUwRE7TNZUpb4Z1A4JPGar+DDDVIV3kFQWnNESqpIj4ohMbBnYgsMJOmmivyhkxUHRLFsv7ygEHInxpNHWcBuKxICKEh0nvGIdMFm2DVdhnFCDVzwudErRiruaiJeUFoTTLrEKF/G5C3TfsM5XNGhZzToyBm000bC3xtkSCmooMY7TWUh6+z0qZk/c3xYOdk5YpWNdc1l0+yKLeG35mPbPkGEH3f7h5NDrCGBMVYcIQVbVPst0MRAYo2/fk+j3Y2LSrPfjlIFAFBgQlgjnnshrNO6Mr5ynOiDbfCCvDegQjOENM472RFuRNeeC2FHZk26djhBPfp5W5t2w1+ylob2035mC7SfSoPs/MuTc0xtaT/n0tNIEFarpgHrkkDYLTiWlJocNidsYFq1zBjqA6OqyoYVzEQFQTqmTeM/oNLOFsxoU2Y7MGGfTnG1/Bs/l9dXi3OzTqbM7Eioqa8JuzRzszoh77HQywz0bE8/6TZNlwBjV1HQBN6G29O4uvehlH5yPE6p8p6M6zXMzzh3bb/flIQhq7bP0W3djldZULf2o82xoye4hx0bn1Sbu/GfRS8440KtKGciIrh4DlLQeOG4kJQ7o8NkgIxwhmjpQMcXkm9UJoGgqPrRGXO9JzONTfV9KdPV3q39fbvKw1pWrv+MHQO+tHwT8sFmZ5q3GP7mBeqzwvhWTv41I4LaeRnxHUngGn86TT+F0KMgB5+lLU4HPDow+Vut+j7bf/e7pD8cPgJAAD//wMAU6tpQL4FAAA=",
+          "encoding": "UTF-8",
+          "string": ""
+        },
+        "headers": {
+          "Connection": [
+            "Keep-Alive"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Content-Type": [
+            "application/json; charset=UTF-8"
+          ],
+          "Date": [
+            "Wed, 06 Mar 2019 21:39:51 GMT"
+          ],
+          "Keep-Alive": [
+            "timeout=5, max=100"
+          ],
+          "Server": [
+            "Apache"
+          ],
+          "Set-Cookie": [
+            "uu.app.bpl=0;path="
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Permitted-Cross-Domain-Policies": [
+            "none"
+          ],
+          "X-Request-Id": [
+            "ce832aa89dfe3982-ce832aa89dfe3982-b0c423993a3d080b-0000"
+          ],
+          "X-XSS-Protection": [
+            "1; mode=block"
+          ]
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://itkpd-test.unicorncollege.cz/createComponentAttachment"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.1"
+}
