@@ -1,0 +1,90 @@
+<?xml version="0.5" encoding="UTF-8"?>
+<input>
+    <material>
+        <fraction> 2 </fraction>
+        <shape> ellipse </shape>
+        <a>
+            <dist_type> uniform </dist_type>
+            <loc> 0.2  </loc>
+            <scale> 0.35 </scale>
+        </a>
+        <b> 0.05 </b>
+        <angle_deg>
+            <dist_type> uniform </dist_type>
+            <loc> 0 </loc>
+            <scale> 20 </scale>
+        </angle_deg>
+        <color> orange </color>
+    </material>
+
+    <material>
+        <fraction> 1 </fraction>
+        <shape> circle </shape>
+        <area>
+            <dist_type> lognorm </dist_type>
+            <scale> 0.004 </scale>
+            <s> 1.0 </s>
+        </area>
+        <color> plum </color>
+    </material>
+
+    <material>
+        <fraction> 1 </fraction>
+        <shape> circle </shape>
+        <area>
+            <dist_type> lognorm </dist_type>
+            <scale> 0.004 </scale>
+            <s> 1.0 </s>
+        </area>
+        <color> lightblue </color>
+    </material>
+
+    <material>
+        <fraction> 1 </fraction>
+        <shape> circle </shape>
+        <area>
+            <dist_type> lognorm </dist_type>
+            <scale> 0.004 </scale>
+            <s> 1.0 </s>
+        </area>
+        <color> lightgreen </color>
+    </material>
+
+    <material>
+        <fraction> 1 </fraction>
+        <shape> circle </shape>
+        <area>
+            <dist_type> lognorm </dist_type>
+            <scale> 0.004 </scale>
+            <s> 1.0 </s>
+        </area>
+        <color> khaki </color>
+    </material>
+
+    <domain>
+        <shape> rectangle </shape>
+        <side_lengths> (2.4, 1.2) </side_lengths>
+    </domain>
+
+    <settings>
+        <verbose> True </verbose>
+        <mesh_min_angle> 20 </mesh_min_angle>
+        <mesh_max_edge_length> 0.01 </mesh_max_edge_length>
+        <mesh_max_volume> 0.004 </mesh_max_volume>
+
+        <directory> elliptical_grains </directory>
+        <plot_axes> False </plot_axes>
+
+        <seeds_kwargs>
+            <linewidth> 1.0 </linewidth>
+        </seeds_kwargs>
+
+        <poly_kwargs>
+            <linewidth> 1.0 </linewidth>
+        </poly_kwargs>
+
+        <tri_kwargs>
+            <linewidth> 0.1 </linewidth>
+        </tri_kwargs>
+    </settings>
+</input>
