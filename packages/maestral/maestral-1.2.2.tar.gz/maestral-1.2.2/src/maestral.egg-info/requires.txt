@@ -1,0 +1,38 @@
+alembic>=1.3.0
+bugsnag>=3.4.0
+click>=7.1.1
+dropbox>=10.4.1
+fasteners>=0.15
+keyring>=19.0.0
+keyrings.alt>=3.1.0
+packaging
+pathspec>=0.5.8
+Pyro5>=5.10
+requests>=2.16.2
+setuptools
+sdnotify>=0.3.2
+sqlalchemy>=1.3.0
+watchdog>=0.10.0
+
+[:python_version < "3.8"]
+importlib_metadata
+
+[:python_version < "3.9"]
+importlib_resources
+
+[:sys_platform == "darwin"]
+rubicon-objc>=0.3.1
+
+[:sys_platform == "linux"]
+dbus-next>=0.1.4
+
+[gui]
+
+[gui:sys_platform == "darwin"]
+maestral-cocoa>=1.2.2
+
+[gui:sys_platform == "linux"]
+maestral-qt>=1.2.2
+
+[syslog]
+systemd-python
