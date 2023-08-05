@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: ev3dev2simulator
+Version: 2.0.3
+Summary: EV3 simulator for the ev3dev2 library
+Home-page: https://github.com/ev3dev-python-tools/ev3dev2simulator
+Author: Harco Kuppens, Sam Jansen, Niels Okker
+Author-email: h.kuppens@cs.ru.nl
+License: MIT
+Keywords: IDE education programming EV3 mindstorms lego
+Platform: Windows
+Platform: macOS
+Platform: Linux
+Classifier: Environment :: MacOS X
+Classifier: Environment :: Win32 (MS Windows)
+Classifier: Environment :: X11 Applications
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: Freeware
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Education
+Classifier: Topic :: Software Development
+Requires-Python: >=3.6
+Requires-Dist: ev3devlogging
+Requires-Dist: arcade (==2.4.1)
+Requires-Dist: pymunk (==5.6.0)
+Requires-Dist: simpleaudio (==1.0.4)
+Requires-Dist: pyttsx3 (==2.7)
+Requires-Dist: numpy
+Requires-Dist: pyglet
+Requires-Dist: strictyaml
+Requires-Dist: pypiwin32 ; platform_system == "Windows"
+Requires-Dist: pyobjc ; sys_platform == "darwin"
+
+
+Simulator for an EV3 robot; a program using the ev3dev2 API can run both on the rover and on the simulator without any modifications to the code.
+
+For more info: https://github.com/ev3dev-python-tools/ev3dev2simulator
+
+
