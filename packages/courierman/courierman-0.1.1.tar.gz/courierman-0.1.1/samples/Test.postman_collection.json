@@ -1,0 +1,42 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Test",
+		"_postman_id": "316c63b6-9a3a-14b7-2dec-cc091f559bd9",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Request",
+			"request": {
+				"url": "http://127.0.0.1/get_request",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1/post_request",
+			"request": {
+				"url": "http://127.0.0.1/post_request",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"json\":\"data\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
