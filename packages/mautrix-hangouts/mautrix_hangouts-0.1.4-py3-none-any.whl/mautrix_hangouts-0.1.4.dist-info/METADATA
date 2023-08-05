@@ -1,0 +1,57 @@
+Metadata-Version: 2.1
+Name: mautrix-hangouts
+Version: 0.1.4
+Summary: A Matrix-Hangouts puppeting bridge.
+Home-page: https://github.com/tulir/mautrix-hangouts
+Author: Tulir Asokan
+Author-email: tulir@maunium.net
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: Topic :: Communications :: Chat
+Classifier: Framework :: AsyncIO
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Description-Content-Type: text/markdown
+Requires-Dist: SQLAlchemy (<2,>=1.2)
+Requires-Dist: aiohttp (<4,>=3)
+Requires-Dist: alembic (<2,>=1)
+Requires-Dist: commonmark (<0.10,>=0.8)
+Requires-Dist: hangups (<0.5,>=0.4.12)
+Requires-Dist: mautrix (<0.9,>=0.8.2)
+Requires-Dist: python-magic (<0.5,>=0.4)
+Requires-Dist: ruamel.yaml (<0.17,>=0.15.94)
+Requires-Dist: setuptools
+Requires-Dist: yarl (<2,>=1)
+Provides-Extra: all
+Requires-Dist: asyncpg (<0.22,>=0.20) ; extra == 'all'
+Requires-Dist: prometheus-client (<0.9,>=0.6) ; extra == 'all'
+Requires-Dist: psycopg2-binary (<3,>=2) ; extra == 'all'
+Requires-Dist: pycryptodome (<4,>=3) ; extra == 'all'
+Requires-Dist: python-olm (<4,>=3) ; extra == 'all'
+Requires-Dist: unpaddedbase64 (<2,>=1) ; extra == 'all'
+Provides-Extra: e2be
+Requires-Dist: asyncpg (<0.22,>=0.20) ; extra == 'e2be'
+Requires-Dist: pycryptodome (<4,>=3) ; extra == 'e2be'
+Requires-Dist: python-olm (<4,>=3) ; extra == 'e2be'
+Requires-Dist: unpaddedbase64 (<2,>=1) ; extra == 'e2be'
+Provides-Extra: metrics
+Requires-Dist: prometheus-client (<0.9,>=0.6) ; extra == 'metrics'
+Provides-Extra: postgres
+Requires-Dist: psycopg2-binary (<3,>=2) ; extra == 'postgres'
+
+# mautrix-hangouts
+A Matrix-Hangouts puppeting bridge.
+
+### [Wiki](https://github.com/tulir/mautrix-hangouts/wiki) 
+
+### [Features & Roadmap](https://github.com/tulir/mautrix-hangouts/blob/master/ROADMAP.md)
+
+## Discussion
+Matrix room: [`#hangouts:maunium.net`](https://matrix.to/#/#hangouts:maunium.net)
+
+
