@@ -1,0 +1,407 @@
+# pubsubplus-python-client
+#
+# Copyright 2020 Solace Corporation. All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# 	http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+"""
+Module for Message abstract base class
+
+Message is the base class for:
+
+- :py:class:`~solace.messaging.publisher.outbound_message.OutboundMessage`
+- :py:class:`~solace.messaging.receiver.inbound_message.InboundMessage`
+
+Messages are the objects that carry the payload and meta data to and from the
+:py:class:`~solace.messaging.message_service.MessageService`
+"""
+import ctypes
+import logging
+from abc import ABC, abstractmethod
+from enum import Enum
+from typing import Union
+
+from solace.messaging.config.sol_constants import SOLCLIENT_NOT_FOUND, SOLCLIENT_OK, SOLCLIENT_EOS, \
+    SOLCLIENT_FAIL, SOLCLIENT_NOT_SET_PRIORITY_VALUE
+from solace.messaging.core._solace_message import _SolaceMessage
+from solace.messaging.errors.pubsubplus_client_error import PubSubPlusClientError
+from solace.messaging.publisher.outbound_message_utility import get_next_field
+from solace.messaging.utils.solace_utilities import Util
+
+logger = logging.getLogger('solace.messaging.core')
+
+__all__ = ["Message", "_SolClientContextDestination"]
+
+
+class Message(ABC):
+    """
+    An abstract class that abstracts a Solace PubSub+ Message
+    """
+
+    @abstractmethod
+    def get_properties(self) -> dict:
+        """
+        Return the user properties attached to the message.
+
+        Message Properties are carried in Message meta data in addition to the Message payload.  Properties are
+        stored in a dictionary of (key,value) pairs where the 'key' is controlled by the application.
+        """
+
+    @abstractmethod
+    def has_property(self, name: str) -> bool:
+        """
+        Check if the message has a specific property attached.
+
+        Args:
+            name: the name of the property
+
+        Returns:
+            True if the property is present. False otherwise.
+        """
+
+    @abstractmethod
+    def get_property(self, name: str) -> Union[str, None]:
+        """
+        Retrieve  The value of a specific property.
+
+        Args:
+            name(str): The name of the property.
+
+        Returns:
+             str: The value of the named property if found in the message otherwise, returns None.
+        """
+
+    @abstractmethod
+    def get_payload_as_bytes(self) -> bytearray:
+        """
+        Retrieve the payload of the message.
+
+        Returns:
+            bytearray : the byte array with the message payload.
+        """
+
+    @abstractmethod
+    def get_payload_as_string(self) -> Union[str, None]:
+        """
+        Retrieve the string-encoded payload of message.
+
+        PubSub+ messages can be published with a string-encoded payload. This is a platform-agnostic string format
+        that allows strings to be sent and received in messages that is independent of the publisher or consumer
+        applications.  For example, in this way a non-Python publishing application can send a Unicode string that can still be
+        consumed by a Python-based application.
+
+        If message payload is not specifically encoded as a string, it cannot be retrieved as a string. For instance,
+        a publisher if the publisher sends a UTF-8 string as a bytearray, this method cannot be used to extract the
+        string.  Even though the payload is a string (``str``), it is not encoded to identify it as such.
+
+        Returns:
+            st String found in the payload or None if there is no payload, or the payload is not a String.
+        """
+
+    @abstractmethod
+    def get_correlation_id(self) -> Union[str, None]:
+        """
+        Get correlation id from the Message.
+
+        Returns:
+            str or None : unique identifier for the message set by producer or None
+        """
+
+    @abstractmethod
+    def get_expiration(self) -> int:
+        """
+        The UTC time (in ms, from midnight, January 1, 1970 UTC) when the message is considered
+        to expired. A value of 0 means the message never expires. The default value is 0.
+
+        Returns:
+            int: The UTC time when the message is discarded or moved to a Dead Message Queue by the PubSub+ broker.
+        """
+
+    @abstractmethod
+    def get_sequence_number(self) -> Union[int, None]:
+        """
+        Gets the sequence number of the message.
+
+        Sequence numbers may be set by publisher applications or automatically generated by publisher APIs.  The
+        sequence number is carried in the Message meta data in addition to the payload and may be retrieved by
+        consumer applications.
+
+        Returns:
+            int : The positive sequence number or None if it was not set.
+        """
+
+    @abstractmethod
+    def get_priority(self) -> Union[int, None]:
+        """
+        Retrieve the priority value. Valid values range from 0 to 255.
+
+        Returns:
+            int: A priority value from 0 to 255, or None if the priority is not set.
+
+        Raises:
+            PubSubPlusClientError: Any error if the priority of the message could not be retrieved.
+        """
+
+
+class _SolClientContextDestination(ctypes.Structure):  # pylint: disable=too-few-public-methods,missing-class-docstring
+    # A data structure to represent the message destination.
+    _fields_ = [
+        ("destType", ctypes.c_int),
+        ("dest", ctypes.c_char_p)
+    ]
+
+
+class _SolClientFieldType(Enum):  # pylint: disable=too-few-public-methods, missing-class-docstring
+    # class for determining the field types equivalent for the C Api
+    SOLCLIENT_BOOL = 0  # Boolean.
+    SOLCLIENT_UINT8 = 1  # 8-bit unsigned integer.
+    SOLCLIENT_INT8 = 2  # 8-bit signed integer.
+    SOLCLIENT_UINT16 = 3  # 16-bit unsigned integer.
+    SOLCLIENT_INT16 = 4  # 16-bit signed integer.
+    SOLCLIENT_UINT32 = 5  # 32-bit unsigned integer.
+    SOLCLIENT_INT32 = 6  # 32-bit signed integer.
+    SOLCLIENT_UINT64 = 7  # 64-bit unsigned integer.
+    SOLCLIENT_INT64 = 8  # 64-bit signed integer.
+    SOLCLIENT_WCHAR = 9  # 16-bit unicode character.
+    SOLCLIENT_STRING = 10  # Null terminated string (ASCII or UTF-8).
+    SOLCLIENT_BYTEARRAY = 11  # Byte array.
+    SOLCLIENT_FLOAT = 12  # 32-bit floating point number.
+    SOLCLIENT_DOUBLE = 13  # 64-bit floating point number.
+    SOLCLIENT_MAP = 14  # Solace Map (container class).
+    SOLCLIENT_STREAM = 15  # Solace Stream (container class).
+    SOLCLIENT_NULL = 16  # NULL field.
+    SOLCLIENT_DESTINATION = 17  # Destination field.
+    SOLCLIENT_SMF = 18  # A complete Solace Message Format (SMF) message is encapsulated in the container.
+    SOLCLIENT_UNKNOWN = -1  # A validly formatted but unrecognized data type was received.
+
+
+class _SolClientValue(ctypes.Union):  # pylint: disable=too-few-public-methods, missing-class-docstring
+    # this class is relevant to c union for creating solclient values
+    _fields_ = [('boolean', ctypes.c_bool),
+                ('uint8', ctypes.c_uint8),
+                ('int8', ctypes.c_int8),
+                ('uint16', ctypes.c_uint16),
+                ('int16', ctypes.c_int16),
+                ('uint32', ctypes.c_uint32),
+                ('int32', ctypes.c_int32),
+                ('uint64', ctypes.c_uint64),
+                ('int64', ctypes.c_int64),
+                ('wchar', ctypes.c_wchar),
+                ('float32', ctypes.c_float),
+                ('float64', ctypes.c_double),
+                ('string', ctypes.c_char_p),
+                ('bytearray', ctypes.c_char_p),
+                ('map', ctypes.c_uint64),
+                ('stream', ctypes.c_uint64),
+                ('dest', _SolClientContextDestination),
+                ('smf', ctypes.POINTER(ctypes.c_ubyte)),
+                ('unknownField', ctypes.POINTER(ctypes.c_ubyte))
+
+                ]
+
+
+class _SolClientField(ctypes.Structure):  # pylint: disable=too-few-public-methods, missing-class-docstring
+    # Conforms to solClient_field. The general solClient_field structure is returned by generic accessors to
+    # the container. The application must first check the fieldType to determine
+    # which member of the union to use."""
+    _fields_ = [
+        ("type", ctypes.c_int),
+        ("length", ctypes.c_uint32),
+        ("value", _SolClientValue)
+    ]
+
+
+class _Message(Message):  # pylint: disable=missing-class-docstring, missing-function-docstring
+    # implementation class for Message
+
+    def __init__(self, solace_message: _SolaceMessage):
+        logger.debug('[%s] initialized', type(self).__name__)
+        self._solace_message: _SolaceMessage = solace_message
+        self._user_properties = dict()
+
+    @property
+    def solace_message(self):
+        """Property holds and returns a PubSub+ message. """
+        return self._solace_message
+
+    def get_properties(self) -> dict:
+        # """
+        # Return the properties attached to the message
+        # """
+        map_p = ctypes.c_void_p(None)
+        return_code = self._solace_message.message_get_user_property_map(map_p)
+        if return_code in [SOLCLIENT_FAIL, SOLCLIENT_NOT_FOUND]:
+            if return_code == SOLCLIENT_FAIL:  # pragma: no cover
+                logger.warning("Unable to get payload user properties. status code: %d", return_code)
+            return {}
+        sol_client_field_t = _SolClientField()
+        key_p = ctypes.c_char_p()
+        while True:
+            return_code = get_next_field(map_p, sol_client_field_t, key_p)
+            if return_code == SOLCLIENT_FAIL:  # pragma: no cover
+                logger.warning("Unable to get message  next field. status code: %d", return_code)
+                break
+
+            if sol_client_field_t.type == _SolClientFieldType.SOLCLIENT_STRING.value:
+                self._user_properties[key_p.value.decode()] = sol_client_field_t.value.string.decode()
+            elif sol_client_field_t.type == _SolClientFieldType.SOLCLIENT_INT64.value:
+                self._user_properties[key_p.value.decode()] = sol_client_field_t.value.int64
+            elif sol_client_field_t.type == _SolClientFieldType.SOLCLIENT_BYTEARRAY.value:
+                self._user_properties[key_p.value.decode()] = sol_client_field_t.value.bytearray
+
+            if return_code == SOLCLIENT_EOS:
+                break
+        logger.debug("[%s] get Props: [%s]", Message.__name__, self._user_properties)
+        return self._user_properties
+
+    def has_property(self, name: str) -> bool:
+        # """ Test message has a specific property attached.
+        # :param name:
+        # :return: boolean value
+        # """
+        if not self._user_properties:
+            self.get_properties()
+        has_prop = name in self._user_properties
+        logger.debug("Is property: [%s] exists? %s", name, has_prop)
+        return has_prop
+
+    def get_property(self, name: str) -> str:
+        # """ Get the value of a specific property.
+        # :param: name the name of the property
+        # :return: the value of the property or None if the property was not defined
+        # """
+        if not self._user_properties:
+            self.get_properties()
+        user_prop = self._user_properties.get(name, None)
+        logger.debug("Get Prop:[%s] Values: [%s]", name, user_prop)
+        return user_prop
+
+    def get_payload_as_bytes(self) -> bytearray:
+        # """
+        # Get the raw payload of the message
+        # Returns:
+        #     bytearray : The byte [] with the message payload.
+        # """
+        logger.debug("Get [%s] payload as bytes", Message.__name__)
+        return self.get_binary_attachment()
+
+    def get_binary_attachment(self):  # pylint: disable=missing-function-docstring
+        # """this method is used to get the binary attachment from the receiver side"""
+        logger.debug("Get [%s] binary attachment", Message.__name__)
+        buffer_size, buffer_p = self._solace_message.get_buffer_details()
+        payload = bytearray(buffer_size)
+        char_array = ctypes.c_char * buffer_size
+        ctypes.memmove(char_array.from_buffer(payload), buffer_p, buffer_size)
+        return payload
+
+    def get_payload_as_string(self) -> Union[str, None]:
+        # """
+        # Get especially to String decoded payload
+        # Returns:
+        #     payload (str) : the String representation of a payload
+        # """
+        logger.debug("Get [%s] payload as string", Message.__name__)
+        binary_p = ctypes.c_char_p()
+        return_code = self._solace_message.message_get_binary_attachment_string(binary_p)
+        if return_code == SOLCLIENT_OK:
+            return str(binary_p.value.decode('utf-8'))
+        if return_code == SOLCLIENT_NOT_FOUND:
+            return None
+        logger.warning("Unable to get payload as string. Status code: %d", return_code)  # pragma: no cover
+        raise PubSubPlusClientError(f"Unable to get payload as string. "
+                                        f"Status code: {return_code}")  # pragma: no cover
+
+    def get_correlation_id(self) -> Union[str, None]:
+        # """
+        # Get correlation id passed from a message producer
+        # Returns:
+        #     str or None : the unique identifier for the message set by the producer or None
+        # """
+        return_code = SOLCLIENT_FAIL
+        try:
+            correlation_p = ctypes.c_char_p()
+            return_code = self._solace_message.message_get_correlation_id(correlation_p)
+            if return_code == SOLCLIENT_OK:
+                correlation_id = correlation_p.value.decode()
+                logger.debug("Get [%s] correlation id: [%d]", Message.__name__, correlation_id)
+                return correlation_id
+            if return_code == SOLCLIENT_NOT_FOUND:
+                return None
+            logger.warning("Unable to get correlation id. Status code: %d", return_code)  # pragma: no cover
+            raise PubSubPlusClientError(f"Unable to get correlation id. "
+                                            f"Status code: {return_code}")  # pragma: no cover
+        except PubSubPlusClientError as exception:
+            logger.warning("Unable to get correlation id. Status code: %d", return_code)  # pragma: no cover
+            raise PubSubPlusClientError(
+                f"Unable to get correlation id. Status code: {return_code}") from exception  # pragma: no cover
+
+    def get_expiration(self) -> int:
+        # """
+        # The UTC time (in ms, from midnight, January 1, 1970 UTC) when the message is supposed
+        # to expire.A value of 0 means the message never expires. The default value is 0.
+        # Returns:
+        #     int: The UTC time when the message is discarded or moved to a Dead Message Queue
+        # """
+        logger.debug("Get [%s] expiration", Message.__name__)
+        timestamp_p = ctypes.c_uint64(0)
+        return_code = self._solace_message.get_message_expiration(timestamp_p)
+        if return_code == SOLCLIENT_OK:
+            expiration_timestamp = timestamp_p.value
+            logger.debug("Get [%s] expiration: [%s]", Message.__name__, expiration_timestamp)
+            return expiration_timestamp
+        if return_code == SOLCLIENT_NOT_FOUND:  # pragma: no cover
+            return None
+        logger.warning("Unable to get expiration time. Status code: %d", return_code)  # pragma: no cover
+        raise PubSubPlusClientError(f"Unable to get expiration time. Status code:{return_code}")  # pragma: no cover
+
+    def get_sequence_number(self) -> Union[int, None]:
+        # """
+        # Gets the sequence number
+        # Returns:
+        #     int : The positive sequence number or -1 if it was not set.
+        # """
+        seq_num_p = ctypes.c_uint64(0)
+        return_code = self._solace_message.get_message_sequence_number(seq_num_p)
+        if return_code == SOLCLIENT_OK:
+            sequence_number = seq_num_p.value
+            logger.debug("Get [%s] sequence number: [%d]", Message.__name__, sequence_number)
+            return sequence_number
+        if return_code == SOLCLIENT_NOT_FOUND:
+            logger.debug("[%s] sequence number NOT FOUND", Message.__name__)
+            return None
+        logger.warning("Unable to get sequence number. Status code: %d", return_code)  # pragma: no cover
+        raise PubSubPlusClientError(f"Unable to get sequence number. "
+                                        f"Status code: {return_code}")  # pragma: no cover
+
+    def get_priority(self) -> Union[int, None]:
+        # """
+        # Gets priority value in the range of 0–255, or -1 if it is not set
+        #
+        # Returns:
+        #     int: priority value in the range of 0–255, or -1 if it is not set
+        # """
+        priority_p = ctypes.c_uint32(0)
+        return_code = self._solace_message.get_message_priority(priority_p)
+
+        if return_code == SOLCLIENT_OK:
+            if priority_p.value == SOLCLIENT_NOT_SET_PRIORITY_VALUE:
+                priority = None
+            else:
+                priority = priority_p.value
+            logger.debug("Get %s priority: %d", Message.__name__, priority)
+            return priority
+        if return_code == SOLCLIENT_NOT_FOUND:  # pragma: no cover
+            return None
+        logger.warning("Unable to get priority. Status code: %d", return_code)  # pragma: no cover
+        raise PubSubPlusClientError(f"Unable to get priority. Status code: {return_code}")  # pragma: no cover
