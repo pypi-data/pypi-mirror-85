@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: pyadaaah
+Version: 0.80
+Summary: Python extension adding automatic type and range checking support
+Home-page: https://www.blackward.de
+Author: Dominik Niedenzu
+Author-email: pyadaaah@blackward.de
+Maintainer: Dominik Niedenzu
+License: Proprietary License
+Platform: any platform which provides python
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Other Audience
+Classifier: License :: Other/Proprietary License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development
+Requires-Python: >= 2.2
+Description-Content-Type: text/markdown
+
+Pyadaaah expands Python by an automatic type checking resp. range checking mechanism. The line
+
+vardef int exampleVar = 0 in [0..5] with rw, check(strict)
+
+,for example, would create a 'variable' exampleVar of type integer and range 0..5. This means, that assignments alike:
+
+exampleVar = 1.234
+
+resp.
+
+exampleVar = 6
+
+would, after that, lead to a type mismatch resp. range mismatch exception. The former mechanism obviously resembles static types - as can be found in programming languages alike C and C++. Whereas the latter mechanism obviously resembles automatic range checking - as can be found in programming languages alike Ada. 
+
+But pyadaaah goes far beyond that. Beneath type and range checking, pyadaaah e.g. also provides cython types, signals (!), semi-automatic documentation means and a python2 to python3 compatibility layer.
+
+Pyadaaah is a pure python library (just a single '.py'-file) compatible with Python2 as well as Python3. It's license allows you to use it free of charge (please read the license text for details - it is quite short!)
+
+Further infomations and links can be found on my homepage (see the link on the left hand).
+
+
