@@ -1,0 +1,57 @@
+Metadata-Version: 2.1
+Name: scripyt-MWFN
+Version: 1.0.1
+Summary: A package for Cheminformatics.
+Home-page: https://github.com/jeffrichardchemistry/scripyt-MWFN
+Author: Jefferson Richard
+Author-email: jrichardquimica@gmail.com
+License: GNU GPL
+Description: # scripyt-MWFN
+        Script to scrap CP properties of multiwfn output
+        
+        # Install via setuptools
+        
+        ```
+        $ git clone https://github.com/jeffrichardchemistry/scripyt-MWFN
+        $ cd scripyt-MWFN
+        $ python3 setup.py install
+        ```
+        
+        # Install via pip
+        
+        ```
+        $ pip install scripyt-MWFN
+        ```
+        
+        # Run script
+        <b>Parameters:</b>
+        <ul>
+          <li><b>-p:</b> Path to Multiwfn output file</li>
+          <li><b>-cp:</b> CPs desired to extract the information</li>
+        </ul>
+        
+        ```
+        $ scripyt-MWFN -p path/to/Multiwfn_output_file -cp 1 2 3 4 5 6
+        ```
+        
+        Saving terminal output into a file:
+        
+        ```
+        $ scripyt-MWFN -p path/to/Multiwfn_output_file -cp 1 2 3 4 5 6 > log.txt
+        ```
+        
+Keywords: Cheminformatics,Chemistry,Multiwfn,quantum-chemistry
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Chemistry
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Description-Content-Type: text/markdown
