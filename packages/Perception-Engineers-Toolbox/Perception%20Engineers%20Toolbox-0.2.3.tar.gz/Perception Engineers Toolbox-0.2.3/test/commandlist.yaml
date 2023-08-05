@@ -1,0 +1,18 @@
+#- {plugin: "PersistenceCSV", action: "read", parameters: {filename: "test/test.csv", separator: ",", timestamp_to_ms_factor: 10, aliases: {"T": "Time", "X": "X", "Y": "Y", "V": "Valid"}}}
+- {plugin: "PersistenceCSV", action: "read", parameters: {filename: "test/data/SMI 120Hz.txt", separator: "\t", skip_header_lines: 42, comment_symbol: "#", invalid_value: 0.00, timestamp_to_ms_factor: 0.001, aliases: {"TIME": "Time", "LEFT_EYE_X": "L POR X [px]", "LEFT_EYE_Y": "L POR Y [px]", "RIGHT_EYE_X": "R POR X [px]", "RIGHT_EYE_Y": "R POR Y [px]"} } }
+#- {plugin: "PersistenceCSV", action: "read", parameters: {filename: "test/data/TobiiSpectrum120Hz.tsv", preset: "Tobii" } }
+#- {plugin: "VisualizationDataQuality"}
+- {plugin: "PreprocessGapFill", parameters: {max_gap_length: 70}}
+- {plugin: "PreprocessMedianFilter", parameters: {time_window: 50}}
+- {plugin: "EventdetectionIHMM", parameters: {classifier_type: "GMM"}}
+#- {plugin: "EventdetectionIDT"}
+#- {plugin: "EventdetectionIVT"}
+#- {plugin: "MetricFixation"}
+#- {plugin: "PreprocessMovingAverageFilter", parameters: {time_window: 50}}
+#- {plugin: "PersistenceHDF5", action: "write", parameters: {filename: "test/data/test.h5"}}
+#- {plugin: "PersistenceHDF5", action: "read", parameters: {filename: "test/data/test.h5"}}
+#- {plugin: "PersistenceCSV", action: "write", parameters: {filename: "test/test_copy.csv"}}
+# We write the numpy file from the csv file, that's why it is written before it is read
+#- {plugin: "PersistenceNumpy", action: "write", parameters: {filename: "test/test.npz"}}
+#- {plugin: "PersistenceNumpy", action: "read", parameters: {filename: "test/test.npz"}}
+- {plugin: "VisualizationGazeDensityMap", parameters: {spread: 20, sample_type="fixation_duration"}}
