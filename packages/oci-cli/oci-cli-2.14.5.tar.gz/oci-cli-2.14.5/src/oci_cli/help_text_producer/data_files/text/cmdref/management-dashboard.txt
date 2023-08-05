@@ -1,0 +1,53 @@
+management-dashboard
+********************
+
+
+Description
+===========
+
+Management Dashboard micro-service provides a set of CRUD, import,
+export, and compartment related CLI (such as change compartment)   to
+support dashboard and saved search metadata preservation.  These CLI
+are mainly for client UIs, for various UI activities such as get list
+of all saved searches in a compartment, create a dashboard, open a
+saved search, etc.  Use export to retrieve  dashboards and their saved
+searches, then edit the Json if necessary (for example change
+compartmentIds), then import the result to  destination dashboard
+service. CLI validate all required properties to ensure properties are
+present and have correct type and values.
+
+
+Available Commands
+==================
+
+* dashboard
+
+  * change-compartment
+
+  * create
+
+  * delete
+
+  * export
+
+  * get
+
+  * import
+
+  * list
+
+  * update
+
+* saved-search
+
+  * change-compartment
+
+  * create
+
+  * delete
+
+  * get
+
+  * list
+
+  * update
