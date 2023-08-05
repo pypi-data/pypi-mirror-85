@@ -1,0 +1,25 @@
+Super light UMLS connection. The goal is to feel similar to the UMLS browser.
+Requires no downloading, but the UMLS rest connection is somewhat slow so user beware.
+You need to make an account with UMLS.
+```python
+umls = UMLS(apikey)
+```
+Your api key can be found here: https://documentation.uts.nlm.nih.gov/rest/authentication.html
+You only need to supply the api key in step 1. We take care of all the ticket nonsense.
+
+Example:
+
+```python
+results = umls.search("joint pain hip", type="Term")
+#"CUI"|"Term"|"Code" default Term. CUI - the cui. Term - the text words. Code - the code.
+
+for result in results:
+    code = result.cui() # the CUI
+    name = result.name() # the main name
+    synonyms = result.synonyms() # all the different names of the atoms
+    if result.hasMapping("LNC"):
+        # check if this result maps to a certain codeset, eg. SNOMED-CT.
+        ## Note: you will need to give the UMLS short hand version of the codeset name.
+        ## e.g. "LNC" not "LOINC"
+        print("There is a map to LOIN-C!")
+```
