@@ -1,0 +1,52 @@
+<!-- REQUIRED SCRIPTS -->
+
+<script src="{{ url_for('static', filename='admin/plugins/jquery/jquery.min.js')}}"></script>
+<script src="{{ url_for('system_bp.config')}}"></script>
+<script src="{{ url_for('static', filename='app/assets/js/shared/jquery.logging.js')}}"></script>
+<script src="{{ url_for('static', filename='app/assets/js/shared/jquery.common.js')}}"></script>
+	
+<!-- Bootstrap 4 -->
+<script src="{{ url_for('static', filename='admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+
+<script src="{{ url_for('static', filename='app/assets/js/shared/moment-with-locales.js')}}"></script>
+
+<script src="{{ url_for('static', filename='admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
+<!-- Form Validation -->
+<script src="{{ url_for('static', filename='admin/assets/js/jquery.form.js')}}"></script>
+<script src="{{ url_for('static', filename='admin/assets/js/jquery.validate.min.js')}}"></script>
+
+<script src="{{ url_for('static', filename='app/assets/js/shared/notify.js')}}"></script>
+<script src="{{ url_for('static', filename='app/assets/js/shared/jquery.loading.block.js')}}"></script>
+
+<script src="{{ url_for('static', filename='admin/assets/js/adminlte.js')}}"></script>
+<script src="{{ url_for('static', filename='app/assets/js/shared/bootstrap-datetimepicker.min.js')}}"></script>
+{#
+<script src="{{ url_for('static', filename='app/assets/js/i18n/en_us.js')}}?version={{ DEPLOYED_VERSION_NO }}"></script>
+#}
+<script src="{{ url_for('system_bp.javascript_i18n_message')}}"></script>
+
+<script src="{{ url_for('static', filename='app/assets/js/main.js')}}?version={{ DEPLOYED_VERSION_NO }}"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+{#
+<script src="{{ url_for('static', filename='mdb/js/mdb.min.js')}}"></script>
+#}
+<script type="text/javascript">
+		
+		var AdminLTEOptions = {
+	          //Enable sidebar expand on hover effect for sidebar mini
+	          //This option is forced to true if both the fixed layout and sidebar mini
+	          //are used together
+	          sidebarExpandOnHover: false,
+	          //BoxRefresh Plugin
+	          enableBoxRefresh: true,
+	          //Bootstrap.js tooltip
+	          enableBSToppltip: true
+	        };
+</script>

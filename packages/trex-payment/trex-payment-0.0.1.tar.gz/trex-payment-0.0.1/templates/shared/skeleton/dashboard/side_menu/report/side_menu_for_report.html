@@ -1,0 +1,14 @@
+<li class="nav-item has-treeview {% if side_menu_group_name == 'report' %}menu-open{% endif %}">
+	<a href="#" class="nav-link {% if side_menu_group_name == 'report' %}active{% endif %}">
+  		<i class="nav-icon fas fa-chart-bar"></i>
+  		<p>
+    		Report
+    		<i class="right fas fa-angle-left"></i>
+  		</p>
+	</a>
+    <ul class="nav nav-treeview">
+    	{% include "shared/skeleton/dashboard/side_menu/report/sales/side_menu_for_sales_report.html" %}
+		{% include "shared/skeleton/dashboard/side_menu/report/member/side_menu_for_member_report.html" %}
+		
+    </ul>
+</li>

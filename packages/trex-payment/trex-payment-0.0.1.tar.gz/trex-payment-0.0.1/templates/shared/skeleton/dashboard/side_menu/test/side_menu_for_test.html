@@ -1,0 +1,77 @@
+<li class="nav-item has-treeview {% if side_menu_subgroup_name == 'test' %}menu-open{% endif %}">
+    <a href="#" class="nav-link {% if side_menu_subgroup_name == 'test' %}active{% endif %}">
+      <i class="nav-icon fas fa-vial"></i>
+      <p>
+        Test
+        <i class="right fas fa-angle-left"></i>
+      </p>
+    </a>
+    <ul class="nav nav-treeview level-3">
+      <li class="nav-item">
+        <a href="#" data-target-url="{{ url_for('test_bp.bootstrap_divider') }}"
+		class="nav-link nav-menu {% if side_menu_item == 'bootstrap_divider' %}active{% endif %}">
+          <i class="far fa-dot-circle nav-icon"></i>
+          <p class="d-inline-flex">
+			<span class="d-block long-text-next-line">
+	        Bootstrap Divider
+	       </span>  
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" data-target-url="{{ url_for('test_bp.bootstrap_breadcrumb') }}"
+		class="nav-link nav-menu {% if side_menu_item == 'bootstrap_breadcrumb' %}active{% endif %}">
+          <i class="far fa-dot-circle nav-icon"></i>
+		  <p class="d-inline-flex">
+			<span class="d-block long-text-next-line">
+	        Bootstrap Breadcrumb
+	       </span>  
+          </p>
+        </a>
+      </li>		
+      <li class="nav-item">
+        <a href="#" data-target-url="{{ url_for('test_bp.stripe_payment') }}" 
+		class="nav-link nav-menu {% if side_menu_item == 'stripe_payment' %}active{% endif %}">
+          <i class="far fa-dot-circle nav-icon"></i>
+   		  <p class="d-inline-flex">
+			<span class="d-block long-text-next-line">
+	        Stripe Payment
+	       </span>  
+          </p>
+        </a>
+      </li>
+	  <li class="nav-item">
+        <a href="#" data-target-url="{{ url_for('test_bp.loading_content') }}" 
+		class="nav-link nav-menu {% if side_menu_item == 'loading_content' %}active{% endif %}">
+          <i class="far fa-dot-circle nav-icon"></i>
+		  <p class="d-inline-flex">
+			<span class="d-block long-text-next-line">
+	        Loading Content
+	       </span>  
+          </p>
+        </a>
+      </li>
+	  <li class="nav-item">
+        <a href="#" data-target-url="{{ url_for('test_bp.input_element') }}" 
+		class="nav-link nav-menu {% if side_menu_item == 'input_element' %}active{% endif %}">
+          <i class="far fa-dot-circle nav-icon"></i>
+		  <p class="d-inline-flex">
+			<span class="d-block long-text-next-line">
+	        Input Element
+	       </span>  
+          </p>
+        </a>
+      </li>	
+	  <li class="nav-item">
+        <a href="#" data-target-url="{{ url_for('test_bp.multi_tabs') }}" 
+		class="nav-link nav-menu {% if side_menu_item == 'multi_tabs' %}active{% endif %}">
+          <i class="far fa-dot-circle nav-icon"></i>
+		  <p class="d-inline-flex">
+			<span class="d-block long-text-next-line">
+	        Multi Tabs
+	       </span>  
+          </p>
+        </a>
+      </li>		
+    </ul>
+</li>

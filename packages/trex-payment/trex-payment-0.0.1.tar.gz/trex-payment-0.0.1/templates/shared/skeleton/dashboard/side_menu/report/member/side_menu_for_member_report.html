@@ -1,0 +1,77 @@
+<li class="nav-item has-treeview {% if side_menu_subgroup_name == 'member' %}menu-open{% endif %}">
+    <a href="#" class="nav-link {% if side_menu_subgroup_name == 'member' %}active{% endif %}">
+      <i class="far fa-circle nav-icon"></i>
+      <p>
+        Member Report
+        <i class="right fas fa-angle-left"></i>
+      </p>
+    </a>
+    <ul class="nav nav-treeview">
+	  <li class="nav-item">
+        <a href="#" data-target-url="{{ url_for('member_report_bp.customer_growth_monthly_report') }}"
+		class="nav-link nav-menu {% if side_menu_item == 'customer_growth_monthly_report' %}active{% endif %}">
+          <i class="far fa-dot-circle nav-icon"></i>
+          <p class="d-inline-flex">
+			<span class="d-block long-text-next-line">
+	        Customer Growth Monthly Report
+	       </span>  
+          </p>
+        </a>
+      </li>
+	  <li class="nav-item">
+        <a href="#" data-target-url="{{ url_for('member_report_bp.outlet_membership_assign_daily_report') }}"
+		class="nav-link nav-menu {% if side_menu_item == 'outlet_membership_assign_daily_report' %}active{% endif %}">
+          <i class="far fa-dot-circle nav-icon"></i>
+          <p class="d-inline-flex">
+			<span class="d-block long-text-next-line">
+	        Outlet Membership Assignment Daily Report
+	       </span>  
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" data-target-url="{{ url_for('member_report_bp.outlet_membership_assign_monthly_report') }}"
+		class="nav-link nav-menu {% if side_menu_item == 'outlet_membership_assign_monthly_report' %}active{% endif %}">
+          <i class="far fa-dot-circle nav-icon"></i>
+          <p class="d-inline-flex">
+			<span class="d-block long-text-next-line">
+	        Outlet Membership Assignment Monthly Report
+	       </span>  
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" data-target-url="{{ url_for('member_report_bp.outlet_membership_assign_addhoc_report') }}"
+		class="nav-link nav-menu {% if side_menu_item == 'outlet_membership_assign_addhoc_report' %}active{% endif %}">
+          <i class="far fa-dot-circle nav-icon"></i>
+          <p class="d-inline-flex">
+			<span class="d-block long-text-next-line">
+	        Outlet Membership Assignment Addhoc Report
+	       </span>  
+          </p>
+        </a>
+      </li>
+	  <li class="nav-item">
+        <a href="#" data-target-url="{{ url_for('member_report_bp.all_outlet_membership_assign_daily_report') }}"
+		class="nav-link nav-menu {% if side_menu_item == 'all_outlet_membership_assign_daily_report' %}active{% endif %}">
+          <i class="far fa-dot-circle nav-icon"></i>
+          <p class="d-inline-flex">
+			<span class="d-block long-text-next-line">
+	        All Outlet Membership Assignment Daily Report
+	       </span>  
+          </p>
+        </a>
+      </li>
+	  <li class="nav-item">
+        <a href="#" data-target-url="{{ url_for('member_report_bp.all_outlet_membership_assign_monthly_report') }}"
+		class="nav-link nav-menu {% if side_menu_item == 'all_outlet_membership_assign_monthly_report' %}active{% endif %}">
+          <i class="far fa-dot-circle nav-icon"></i>
+          <p class="d-inline-flex">
+			<span class="d-block long-text-next-line">
+	        All Outlet Membership Assignment Monthly Report
+	       </span>  
+          </p>
+        </a>
+      </li>		
+    </ul>
+</li>

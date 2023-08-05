@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	
+  	{% block styling %}
+	{% include "shared/skeleton/dashboard/styling_content.html" %}
+	{% endblock %}
+	
+	<style>
+	{% block styling_extra %} 
+	
+	{% endblock %}
+	</style>
+	
+	{% if show_full %}
+	{% block javascript %}
+	{% include "shared/skeleton/dashboard/javascript_content.html" %}
+	{% endblock %}
+	{% endif %}
+	
+	{% block javascript_link_extra %}
+	{% endblock %}
+	
+	<script type="text/javascript">
+		
+		{% block javascript_extra %}
+		{% endblock %}
+		
+		$(document).ready(function() {
+			window.debug_mode = {{ DEBUG_MODE }};
+			{% block documentReady %}
+			{% endblock %}
+		});
+
+
+	</script>
+
+</head>
+<body>
+<div class="container-fluid py-1">
+    <div class="row-fluid">
+      <div class="col-lg-12 mx-auto">
+        {% block body_content %}
+
+		{% endblock %}
+        </div>
+      </div>
+    </div>	
+    
+</div>
+
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,53 @@
+
+{% import "shared/macro/side_menu_macro.html" as macros %}
+
+<!-- Sidebar Menu -->
+<nav class="mt-2">
+	<ul class="nav nav-pills nav-sidebar nav-child-indent flex-column" data-widget="treeview" role="menu" data-accordion="false">
+    <!-- Add icons to the links using the .nav-icon class
+           with font-awesome or any other icon font library -->
+    	{{ macros.side_menu_widget(settings_module_menu_config) }}
+		
+		{% if payment_module_menu_config %}
+		{{ macros.side_menu_widget(payment_module_menu_config) }}
+		{% endif %}
+		
+		{% if test_module_menu_config %}
+		{{ macros.side_menu_widget(test_module_menu_config) }}
+		{% endif %}
+		
+		
+		
+		
+		
+
+
+	 {% if current_user and not current_user.is_super_user %} 
+	  <li class="nav-item">
+        <a href="#" data-target-url="{{ url_for('system_bp.contact_us') }}"
+		class="nav-link nav-menu {% if side_menu_item == 'contact_us' %}active{% endif %}">
+          <i class="nav-icon fas fa-file-signature"></i>
+          <p class="d-inline-flex">
+			<span class="d-block long-text-next-line">
+	        Contact Us
+	       </span>  
+          </p>
+        </a>
+      </li>	
+      {% endif %}
+      {% if current_user and current_user.is_authenticated %}
+	  <li class="nav-item">
+        <a href="{{ url_for('security_bp.signout') }}"
+		class="nav-link">
+		  <i class="nav-icon fas fa-sign-out-alt"></i>
+          <p class="d-inline-flex">
+			<span class="d-block long-text-next-line">
+	        Sign Out
+	       </span>  
+          </p>
+        </a>
+      </li>	
+      {% endif %}
+    </ul>
+  </nav>
+  <!-- /.sidebar-menu -->

@@ -1,0 +1,57 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>{{ application_title }} </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+		{% block styling %}
+		{% include "shared/skeleton/landing/styling_content.html" %}
+		{% endblock %}
+		
+		{% block styling_extra %}
+        {% endblock %}
+
+		<script src="{{ url_for('static', filename='app/assets/js/vendor/jquery-1.12.4.min.js')}}"></script>
+		<script src="{{ url_for('system_bp.config')}}?version={{ DEPLOYED_VERSION_NO }}"></script>
+		
+		{% block javascript_link_extra %}
+		{% endblock %}
+		
+		<script type="text/javascript">
+		
+			{% block javascript_extra %}
+			{% endblock %}
+			
+			$(document).ready(function() {
+				window.debug_mode = {{ DEBUG_MODE }};
+				
+				{% block documentReady %}
+				{% endblock %}
+			});
+	
+	
+		</script>
+
+   </head>
+
+   <body>
+    <main class="pt-5">
+	{% block content %}
+		
+    {% endblock %}
+	</main>
+
+        
+
+	{% block javascript %}	
+	{% include "shared/skeleton/landing/javascript_content.html" %}
+	{% endblock %}
+	
+	
+	
+	
+    
+    </body>
+</html>

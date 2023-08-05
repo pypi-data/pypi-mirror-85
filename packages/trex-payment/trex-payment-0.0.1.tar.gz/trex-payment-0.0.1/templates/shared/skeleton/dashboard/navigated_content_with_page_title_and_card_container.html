@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	
+  	{% block styling %}
+	{% include "shared/skeleton/dashboard/styling_content.html" %}
+	{% endblock %}
+	
+	<style>
+	{% block styling_extra %} 
+	
+	{% endblock %}
+	</style>
+	
+	{% if show_full %}
+	{% block javascript %}
+	{% include "shared/skeleton/dashboard/javascript_content.html" %}
+	{% endblock %}
+	{% endif %}
+	
+	{% block javascript_link_extra %}
+	{% endblock %}
+	
+	<script type="text/javascript">
+		
+		{% block javascript_extra %}
+		{% endblock %}
+		
+		$(document).ready(function() {
+			window.debug_mode = {{ DEBUG_MODE }};
+			initInputBase();
+			$('#page_title').html("{{ page_title }}");
+			{% if page_url %}
+			$('#page_href').data('page-url',"{{ page_url }}");	
+			$.console.log('page_href='+$('#page_href').data('page-url'));
+			{% else %}
+			$('#page_href').hide();	
+			{% endif %}
+			{% block documentReady %}
+			{% endblock %}
+		});
+
+
+	</script>
+
+</head>
+<body>
+
+
+<div class="container py-1">
+    <div class="row">
+      <div class="col-lg-11 mx-auto">
+        <div class="card shadow mb-2 {% block card_css %}card-primary{% endblock %}">
+			{% block card_top %}
+
+			{% endblock %}
+          <div class="card-body shadow-sm p-5">
+            {% block card_content %}
+
+			{% endblock %}
+          </div>
+        </div>
+      </div>
+    </div>	
+    
+</div>
+
+
+{% block after_body %}
+{% endblock %}
+
+</body>
+
+
+
+</html>
+
+

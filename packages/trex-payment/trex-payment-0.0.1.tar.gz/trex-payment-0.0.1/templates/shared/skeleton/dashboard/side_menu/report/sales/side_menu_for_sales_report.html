@@ -1,0 +1,55 @@
+<li class="nav-item has-treeview {% if side_menu_subgroup_name == 'sales' %}menu-open{% endif %}">
+    <a href="#" class="nav-link {% if side_menu_subgroup_name == 'sales' %}active{% endif %}">
+      <i class="far fa-circle nav-icon"></i>
+      <p>
+        Sales Report
+        <i class="right fas fa-angle-left"></i>
+      </p>
+    </a>
+    <ul class="nav nav-treeview nav-child-indent">
+      <li class="nav-item">
+        <a href="#" data-target-url="{{ url_for('sales_report_bp.top_spender_report_page') }}"
+		class="nav-link nav-menu {% if side_menu_item == 'top_spender_report' %}active{% endif %}">
+          <i class="far fa-dot-circle nav-icon"></i>
+          <p class="d-inline-flex">
+			<span class="d-block long-text-next-line">
+	        Top Spender Report
+	       </span>  
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" data-target-url="{{ url_for('sales_report_bp.top_selling_item_report_page') }}"
+		class="nav-link nav-menu {% if side_menu_item == 'top_selling_item_report' %}active{% endif %}">
+          <i class="far fa-dot-circle nav-icon"></i>
+		  <p class="d-inline-flex">
+			<span class="d-block long-text-next-line">
+	        Top Selling Item Report
+	       </span>  
+          </p>
+        </a>
+      </li>		
+      <li class="nav-item">
+        <a href="#" data-target-url="{{ url_for('sales_report_bp.outlet_selling_item_daily_report_page') }}" 
+		class="nav-link nav-menu {% if side_menu_item == 'outlet_selling_item_daily_report' %}active{% endif %}">
+          <i class="far fa-dot-circle nav-icon"></i>
+   		  <p class="d-inline-flex">
+			<span class="d-block long-text-next-line">
+	        Outlet Selling Item Daily Report
+	       </span>  
+          </p>
+        </a>
+      </li>
+	  <li class="nav-item">
+        <a href="#" data-target-url="{{ url_for('sales_report_bp.outlet_selling_item_monthly_report_page') }}" 
+		class="nav-link nav-menu {% if side_menu_item == 'outlet_selling_item_monthly_report' %}active{% endif %}">
+          <i class="far fa-dot-circle nav-icon"></i>
+		  <p class="d-inline-flex">
+			<span class="d-block long-text-next-line">
+	        Outlet Selling Item Monthly Report
+	       </span>  
+          </p>
+        </a>
+      </li>		
+    </ul>
+</li>

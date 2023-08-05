@@ -1,0 +1,36 @@
+<li class="nav-item has-treeview {% if side_menu_subgroup_name == 'setting' %}menu-open{% endif %}">
+    {#
+	<a href="#" class="nav-link {% if side_menu_subgroup_name == 'setting' %}active{% endif %}">
+      <i class="nav-icon fas fa-cogs"></i>
+      <p>
+        Setting
+        <i class="right fas fa-angle-left"></i>
+      </p>
+    </a>
+    <ul class="nav nav-treeview level-3">
+      <li class="nav-item">
+        <a href="#" data-target-url="{{ url_for('setting_bp.setting_1') }}"
+		class="nav-link nav-menu {% if side_menu_item == 'setting_1' %}active{% endif %}">
+          <i class="far fa-dot-circle nav-icon"></i>
+          <p class="d-inline-flex">
+			<span class="d-block long-text-next-line">
+	        Setting 1
+	       </span>  
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" data-target-url="{{ url_for('setting_bp.setting_2') }}"
+		class="nav-link nav-menu {% if side_menu_item == 'setting_2' %}active{% endif %}">
+          <i class="far fa-dot-circle nav-icon"></i>
+		  <p class="d-inline-flex">
+			<span class="d-block long-text-next-line">
+	        Setting 2
+	       </span>  
+          </p>
+        </a>
+      </li>	
+	  #}	
+	  {% include "shared/skeleton/dashboard/side_menu/admin/side_menu_for_admin.html" %}		
+    </ul>
+</li>

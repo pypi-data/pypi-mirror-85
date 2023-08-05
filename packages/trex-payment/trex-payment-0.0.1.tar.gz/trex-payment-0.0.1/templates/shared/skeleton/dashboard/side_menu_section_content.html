@@ -1,0 +1,46 @@
+<!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      <img src="{{ url_for('static', filename='app/assets/img/logo/logo.png')}}" alt="Application Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light">{{ application_name }}</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+			{% if current_user and current_user.is_super_user %}
+				<img id="gravatar_image" src="{{ url_for('static', filename='admin/assets/img/superuser-avatar.jpg')}}" class="img-circle elevation-2 lazy" alt="User Image">
+			{% else %}
+				{% if current_user and current_user.is_admin_user %}
+					<img id="gravatar_image" src="{{ url_for('static', filename='admin/assets/img/admin-avatar.jpg')}}" class="img-circle elevation-2 lazy" alt="User Image">
+				{% else %}	
+					<img id="gravatar_image" src="{{ url_for('static', filename='admin/assets/img/anonymous-avatar.png')}}" class="img-circle elevation-2 lazy" alt="User Image">
+				{% endif %}		
+			{% endif %}	
+        </div>
+        <div class="info">
+          	<a href="#" class="d-block">
+			{% if current_user and current_user.is_authenticated %}
+			
+			
+				{{ current_user.name }}!
+			
+			{% else %}
+				Anonymous
+			{% endif %}
+			</a>		
+        </div>
+      </div>
+
+      	{% block side_menu %}
+		{% if current_user and current_user.is_authenticated %}
+			{% include "shared/skeleton/dashboard/side_bar_menu_content.html" %}
+		{% endif %}
+		{% endblock %}
+    </div>
+    <!-- /.sidebar -->
+  </aside>

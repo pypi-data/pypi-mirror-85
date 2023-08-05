@@ -1,0 +1,39 @@
+{% extends "shared/skeleton/landing/structure.html" %}
+{% block javascript_link_extra %}
+
+{% endblock %}
+
+
+{% block documentReady %}
+
+{% endblock %}
+{% block content %}
+
+
+<section class="section-padd4">
+    
+		<div class=" text-center">
+		  <h1 class="display-5">Thank You for your payment!</h1>
+		  <p class="lead">
+		    <a class="btn btn-primary btn-sm" href="{{ view_receipt_url }}" role="button" target='_blank'>Click to view Your Receipt</a>
+		  </p>
+		  <p>
+	        We appreciate your business!
+	        If you have any questions, please contact
+	        <a href="mailto:{{ support_email }}">support</a>
+	      </p> 
+
+	
+	      <p>
+			<small>
+			You may now close this window
+			</small>
+		  </p>	
+          
+		</div>
+    
+</section>
+{% endblock %}
+
+
+

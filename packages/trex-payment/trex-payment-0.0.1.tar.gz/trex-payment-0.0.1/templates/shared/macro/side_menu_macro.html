@@ -1,0 +1,35 @@
+
+{% macro side_menu_widget(side_menu) %}
+{% if side_menu.childs %}
+<li class="nav-item has-treeview {% if side_menu_subgroup_name == side_menu.menu_item %}menu-open{% endif %}">
+    <a href="#" class="nav-link {% if side_menu_subgroup_name == side_menu.menu_item %}active{% endif %}">
+      <i class="nav-icon {{ side_menu.icon_class }}"></i>
+      <p>
+        {{ _(side_menu.title) }}
+        <i class="right fas fa-angle-left"></i>
+      </p>
+    </a>
+	{% if side_menu.childs %}	
+	
+    <ul class="nav nav-treeview">
+		
+		{% for sm in side_menu.childs %}
+			{{ side_menu_widget(sm) }}
+		{% endfor %}
+	</ul>
+	{% endif %}
+{% else %}
+<li class="nav-item">
+    <a href="#" data-target-url="{{ url_for(side_menu.end_point) }}"
+	class="nav-link nav-menu {% if side_menu_item == side_menu.menu_item %}active{% endif %}">
+      <i class="far {{ side_menu.icon_class }} nav-icon"></i>
+      <p class="d-inline-flex">
+		<span class="d-block long-text-next-line">
+        {{ _(side_menu.title) }}
+       </span>  
+      </p>
+    </a>
+</li>
+{% endif %}
+	
+{% endmacro %}
