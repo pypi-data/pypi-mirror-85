@@ -1,0 +1,446 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dicom_parser.utils package &mdash; dicom_parser 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dicom_parser.utils.code_strings package" href="dicom_parser.utils.code_strings.html" />
+    <link rel="prev" title="dicom_parser package" href="dicom_parser.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> dicom_parser
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dicom_parser.html">dicom_parser package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="dicom_parser.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">dicom_parser.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="dicom_parser.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dicom_parser.html#module-dicom_parser.header">dicom_parser.header module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dicom_parser.html#module-dicom_parser.parser">dicom_parser.parser module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dicom_parser.html#module-dicom_parser">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">dicom_parser</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">Modules</a> &raquo;</li>
+        
+          <li><a href="dicom_parser.html">dicom_parser package</a> &raquo;</li>
+        
+      <li>dicom_parser.utils package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/dicom_parser.utils.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="dicom-parser-utils-package">
+<h1>dicom_parser.utils package<a class="headerlink" href="#dicom-parser-utils-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dicom_parser.utils.code_strings.html">dicom_parser.utils.code_strings package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dicom_parser.utils.code_strings.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dicom_parser.utils.code_strings.html#module-dicom_parser.utils.code_strings.modality">dicom_parser.utils.code_strings.modality module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dicom_parser.utils.code_strings.html#module-dicom_parser.utils.code_strings.patient_position">dicom_parser.utils.code_strings.patient_position module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dicom_parser.utils.code_strings.html#module-dicom_parser.utils.code_strings.scanning_sequence">dicom_parser.utils.code_strings.scanning_sequence module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dicom_parser.utils.code_strings.html#module-dicom_parser.utils.code_strings.sequence_variant">dicom_parser.utils.code_strings.sequence_variant module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dicom_parser.utils.code_strings.html#module-dicom_parser.utils.code_strings.sex">dicom_parser.utils.code_strings.sex module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dicom_parser.utils.code_strings.html#module-dicom_parser.utils.code_strings">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-dicom_parser.utils.choice_enum">
+<span id="dicom-parser-utils-choice-enum-module"></span><h2>dicom_parser.utils.choice_enum module<a class="headerlink" href="#module-dicom_parser.utils.choice_enum" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="dicom_parser.utils.choice_enum.ChoiceEnum">
+<em class="property">class </em><code class="sig-prename descclassname">dicom_parser.utils.choice_enum.</code><code class="sig-name descname">ChoiceEnum</code><a class="headerlink" href="#dicom_parser.utils.choice_enum.ChoiceEnum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.Enum" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></a></p>
+<p>A small adaptation to python’s built-in <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.Enum" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> class.</p>
+<dl class="attribute">
+<dt id="dicom_parser.utils.choice_enum.ChoiceEnum.choices">
+<code class="sig-name descname">choices</code><em class="property"> = &lt;bound method ChoiceEnum.choices of &lt;enum 'ChoiceEnum'&gt;&gt;</em><a class="headerlink" href="#dicom_parser.utils.choice_enum.ChoiceEnum.choices" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-dicom_parser.utils.value_representation">
+<span id="dicom-parser-utils-value-representation-module"></span><h2>dicom_parser.utils.value_representation module<a class="headerlink" href="#module-dicom_parser.utils.value_representation" title="Permalink to this headline">¶</a></h2>
+<p>This file contains an <a class="reference external" href="https://docs.python.org/3/library/enum.html">Enum</a> with the two-character codes of the
+various <a class="reference external" href="https://en.wikipedia.org/wiki/DICOM">DICOM</a>
+<a class="reference external" href="http://northstar-www.dartmouth.edu/doc/idl/html_6.2/Value_Representations.html">value-representations (VRs)</a>
+(also see <a class="reference external" href="http://dicom.nema.org/medical/dicom/current/output/chtml/part05/sect_6.2.html">here</a>)
+for header <a class="reference external" href="http://northstar-www.dartmouth.edu/doc/idl/html_6.2/DICOM_Attributes.html">data elements</a>.</p>
+<dl class="class">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation">
+<em class="property">class </em><code class="sig-prename descclassname">dicom_parser.utils.value_representation.</code><code class="sig-name descname">ValueRepresentation</code><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.Enum" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></a></p>
+<p>DICOM <a class="reference external" href="http://northstar-www.dartmouth.edu/doc/idl/html_6.2/Value_Representations.html">value-representations (VRs)</a>.</p>
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.AGE_STRING">
+<code class="sig-name descname">AGE_STRING</code><em class="property"> = 'AS'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.AGE_STRING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.APPLICATION_ENTITY">
+<code class="sig-name descname">APPLICATION_ENTITY</code><em class="property"> = 'AE'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.APPLICATION_ENTITY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.ATTRIBUTE_TAG">
+<code class="sig-name descname">ATTRIBUTE_TAG</code><em class="property"> = 'AT'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.ATTRIBUTE_TAG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.CODE_STRING">
+<code class="sig-name descname">CODE_STRING</code><em class="property"> = 'CS'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.CODE_STRING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.DATE">
+<code class="sig-name descname">DATE</code><em class="property"> = 'DA'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.DATE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.DATE_TIME">
+<code class="sig-name descname">DATE_TIME</code><em class="property"> = 'DT'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.DATE_TIME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.DECIMAL_STRING">
+<code class="sig-name descname">DECIMAL_STRING</code><em class="property"> = 'DS'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.DECIMAL_STRING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.FLOATING_POINT_DOUBLE">
+<code class="sig-name descname">FLOATING_POINT_DOUBLE</code><em class="property"> = 'FD'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.FLOATING_POINT_DOUBLE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.FLOATING_POINT_SINGLE">
+<code class="sig-name descname">FLOATING_POINT_SINGLE</code><em class="property"> = 'FL'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.FLOATING_POINT_SINGLE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.INTEGER_STRING">
+<code class="sig-name descname">INTEGER_STRING</code><em class="property"> = 'IS'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.INTEGER_STRING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.LONG_STRING">
+<code class="sig-name descname">LONG_STRING</code><em class="property"> = 'LO'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.LONG_STRING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.LONG_TEXT">
+<code class="sig-name descname">LONG_TEXT</code><em class="property"> = 'LT'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.LONG_TEXT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.OTHER_64_BIT_VERY_LONG">
+<code class="sig-name descname">OTHER_64_BIT_VERY_LONG</code><em class="property"> = 'OV'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.OTHER_64_BIT_VERY_LONG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.OTHER_BYTE">
+<code class="sig-name descname">OTHER_BYTE</code><em class="property"> = 'OB'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.OTHER_BYTE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.OTHER_DOUBLE">
+<code class="sig-name descname">OTHER_DOUBLE</code><em class="property"> = 'OD'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.OTHER_DOUBLE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.OTHER_FLOAT">
+<code class="sig-name descname">OTHER_FLOAT</code><em class="property"> = 'OF'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.OTHER_FLOAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.OTHER_LONG">
+<code class="sig-name descname">OTHER_LONG</code><em class="property"> = 'OL'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.OTHER_LONG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.OTHER_WORD">
+<code class="sig-name descname">OTHER_WORD</code><em class="property"> = 'OW'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.OTHER_WORD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.PERSON_NAME">
+<code class="sig-name descname">PERSON_NAME</code><em class="property"> = 'PN'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.PERSON_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.SEQUENCE_OF_ITEMS">
+<code class="sig-name descname">SEQUENCE_OF_ITEMS</code><em class="property"> = 'SQ'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.SEQUENCE_OF_ITEMS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.SHORT_STRING">
+<code class="sig-name descname">SHORT_STRING</code><em class="property"> = 'SH'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.SHORT_STRING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.SHORT_TEXT">
+<code class="sig-name descname">SHORT_TEXT</code><em class="property"> = 'ST'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.SHORT_TEXT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.SIGNED_64_BIT_VERY_LONG">
+<code class="sig-name descname">SIGNED_64_BIT_VERY_LONG</code><em class="property"> = 'SV'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.SIGNED_64_BIT_VERY_LONG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.SIGNED_LONG">
+<code class="sig-name descname">SIGNED_LONG</code><em class="property"> = 'SL'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.SIGNED_LONG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.SIGNED_SHORT">
+<code class="sig-name descname">SIGNED_SHORT</code><em class="property"> = 'SS'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.SIGNED_SHORT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.TIME">
+<code class="sig-name descname">TIME</code><em class="property"> = 'TM'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.TIME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.UNIQUE_IDENTIFIER">
+<code class="sig-name descname">UNIQUE_IDENTIFIER</code><em class="property"> = 'UI'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.UNIQUE_IDENTIFIER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.UNIVERSAL_RESOURCE">
+<code class="sig-name descname">UNIVERSAL_RESOURCE</code><em class="property"> = 'UR'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.UNIVERSAL_RESOURCE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.UNKNOWN">
+<code class="sig-name descname">UNKNOWN</code><em class="property"> = 'UN'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.UNKNOWN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.UNLIMITED_CHARACTERS">
+<code class="sig-name descname">UNLIMITED_CHARACTERS</code><em class="property"> = 'UC'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.UNLIMITED_CHARACTERS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.UNLIMITED_TEXT">
+<code class="sig-name descname">UNLIMITED_TEXT</code><em class="property"> = 'UT'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.UNLIMITED_TEXT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.UNSIGNED_64_BIT_VERY_LONG">
+<code class="sig-name descname">UNSIGNED_64_BIT_VERY_LONG</code><em class="property"> = 'UV'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.UNSIGNED_64_BIT_VERY_LONG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.UNSIGNED_LONG">
+<code class="sig-name descname">UNSIGNED_LONG</code><em class="property"> = 'UL'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.UNSIGNED_LONG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.value_representation.ValueRepresentation.UNSIGNED_SHORT">
+<code class="sig-name descname">UNSIGNED_SHORT</code><em class="property"> = 'US'</em><a class="headerlink" href="#dicom_parser.utils.value_representation.ValueRepresentation.UNSIGNED_SHORT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-dicom_parser.utils">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-dicom_parser.utils" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dicom_parser.utils.code_strings.html" class="btn btn-neutral float-right" title="dicom_parser.utils.code_strings package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dicom_parser.html" class="btn btn-neutral float-left" title="dicom_parser package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Zvi Baratz
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

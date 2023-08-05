@@ -1,0 +1,771 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dicom_parser.utils.code_strings package &mdash; dicom_parser 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="dicom_parser.utils package" href="dicom_parser.utils.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> dicom_parser
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dicom_parser.html">dicom_parser package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="dicom_parser.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="dicom_parser.utils.html">dicom_parser.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="dicom_parser.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dicom_parser.html#module-dicom_parser.header">dicom_parser.header module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dicom_parser.html#module-dicom_parser.parser">dicom_parser.parser module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dicom_parser.html#module-dicom_parser">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">dicom_parser</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">Modules</a> &raquo;</li>
+        
+          <li><a href="dicom_parser.html">dicom_parser package</a> &raquo;</li>
+        
+          <li><a href="dicom_parser.utils.html">dicom_parser.utils package</a> &raquo;</li>
+        
+      <li>dicom_parser.utils.code_strings package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/dicom_parser.utils.code_strings.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="dicom-parser-utils-code-strings-package">
+<h1>dicom_parser.utils.code_strings package<a class="headerlink" href="#dicom-parser-utils-code-strings-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-dicom_parser.utils.code_strings.modality">
+<span id="dicom-parser-utils-code-strings-modality-module"></span><h2>dicom_parser.utils.code_strings.modality module<a class="headerlink" href="#module-dicom_parser.utils.code_strings.modality" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="dicom_parser.utils.code_strings.modality.Modality">
+<em class="property">class </em><code class="sig-prename descclassname">dicom_parser.utils.code_strings.modality.</code><code class="sig-name descname">Modality</code><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dicom_parser.utils.html#dicom_parser.utils.choice_enum.ChoiceEnum" title="dicom_parser.utils.choice_enum.ChoiceEnum"><code class="xref py py-class docutils literal notranslate"><span class="pre">dicom_parser.utils.choice_enum.ChoiceEnum</span></code></a></p>
+<p>Represents the <a class="reference external" href="https://dicom.innolitics.com/ciods/mr-image/general-series/00080060">Modality</a> attribute.</p>
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.AR">
+<code class="sig-name descname">AR</code><em class="property"> = 'Autorefraction'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.AR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.ASMT">
+<code class="sig-name descname">ASMT</code><em class="property"> = 'Content Assessment Results'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.ASMT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.AU">
+<code class="sig-name descname">AU</code><em class="property"> = 'Audio'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.AU" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.BDUS">
+<code class="sig-name descname">BDUS</code><em class="property"> = 'Bone Densitometry (ultrasound)'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.BDUS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.BI">
+<code class="sig-name descname">BI</code><em class="property"> = 'Biomagnetic imaging'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.BI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.BMD">
+<code class="sig-name descname">BMD</code><em class="property"> = 'Bone Densitometry (X-Ray)'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.BMD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.CR">
+<code class="sig-name descname">CR</code><em class="property"> = 'Computed Radiography'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.CR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.CT">
+<code class="sig-name descname">CT</code><em class="property"> = 'Computed Tomography'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.CT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.CTPROTOCOL">
+<code class="sig-name descname">CTPROTOCOL</code><em class="property"> = 'CT Protocol (Performed)'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.CTPROTOCOL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.DG">
+<code class="sig-name descname">DG</code><em class="property"> = 'Diaphanography'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.DG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.DOC">
+<code class="sig-name descname">DOC</code><em class="property"> = 'Document'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.DOC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.DX">
+<code class="sig-name descname">DX</code><em class="property"> = 'Digital Radiography'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.DX" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.ECG">
+<code class="sig-name descname">ECG</code><em class="property"> = 'Electrocardiography'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.ECG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.EDS">
+<code class="sig-name descname">EDS</code><em class="property"> = 'Endoscopy'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.EDS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.EPS">
+<code class="sig-name descname">EPS</code><em class="property"> = 'Cardiac Electrophysiology'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.EPS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.FID">
+<code class="sig-name descname">FID</code><em class="property"> = 'Fiducials'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.FID" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.GM">
+<code class="sig-name descname">GM</code><em class="property"> = 'General Microscopy'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.GM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.HC">
+<code class="sig-name descname">HC</code><em class="property"> = 'Hard Copy'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.HC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.HD">
+<code class="sig-name descname">HD</code><em class="property"> = 'Hemodynamic Waveform'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.HD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.IO">
+<code class="sig-name descname">IO</code><em class="property"> = 'Intra-Oral Radiography'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.IO" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.IOL">
+<code class="sig-name descname">IOL</code><em class="property"> = 'Intraocular Lens Data'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.IOL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.IVOCT">
+<code class="sig-name descname">IVOCT</code><em class="property"> = 'Intravascular Optical Coherence Tomography'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.IVOCT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.IVUS">
+<code class="sig-name descname">IVUS</code><em class="property"> = 'Intravascular Ultrasound'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.IVUS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.KER">
+<code class="sig-name descname">KER</code><em class="property"> = 'Keratometry'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.KER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.KO">
+<code class="sig-name descname">KO</code><em class="property"> = 'Key Object Selection'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.KO" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.LEN">
+<code class="sig-name descname">LEN</code><em class="property"> = 'Lensometry'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.LEN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.LS">
+<code class="sig-name descname">LS</code><em class="property"> = 'Laser surface scan'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.LS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.M3D">
+<code class="sig-name descname">M3D</code><em class="property"> = 'Model for 3D Manufacturing'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.M3D" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.MG">
+<code class="sig-name descname">MG</code><em class="property"> = 'Mammography'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.MG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.MR">
+<code class="sig-name descname">MR</code><em class="property"> = 'Magnetic Resonance'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.MR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.NM">
+<code class="sig-name descname">NM</code><em class="property"> = 'Nuclear Medicine'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.NM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.OAM">
+<code class="sig-name descname">OAM</code><em class="property"> = 'Ophthalmic Axial Measurements'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.OAM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.OCT">
+<code class="sig-name descname">OCT</code><em class="property"> = 'Optical Coherence Tomography (non-Ophthalmic)'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.OCT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.OP">
+<code class="sig-name descname">OP</code><em class="property"> = 'Ophthalmic Photography'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.OP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.OPM">
+<code class="sig-name descname">OPM</code><em class="property"> = 'Ophthalmic Mapping'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.OPM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.OPT">
+<code class="sig-name descname">OPT</code><em class="property"> = 'Ophthalmic Tomography'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.OPT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.OPTBSV">
+<code class="sig-name descname">OPTBSV</code><em class="property"> = 'Ophthalmic Tomography B-scan Volume Analysis'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.OPTBSV" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.OPTENF">
+<code class="sig-name descname">OPTENF</code><em class="property"> = 'Ophthalmic Tomography En Face'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.OPTENF" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.OPV">
+<code class="sig-name descname">OPV</code><em class="property"> = 'Ophthalmic Visual Field'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.OPV" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.OSS">
+<code class="sig-name descname">OSS</code><em class="property"> = 'Optical Surface Scan'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.OSS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.OT">
+<code class="sig-name descname">OT</code><em class="property"> = 'Other'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.OT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.PLAN">
+<code class="sig-name descname">PLAN</code><em class="property"> = 'Plan'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.PLAN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.PR">
+<code class="sig-name descname">PR</code><em class="property"> = 'Presentation State'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.PR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.PT">
+<code class="sig-name descname">PT</code><em class="property"> = 'Positron emission tomography (PET)'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.PT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.PX">
+<code class="sig-name descname">PX</code><em class="property"> = 'Panoramic X-Ray'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.PX" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.REG">
+<code class="sig-name descname">REG</code><em class="property"> = 'Registration'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.REG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.RESP">
+<code class="sig-name descname">RESP</code><em class="property"> = 'Respiratory Waveform'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.RESP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.RF">
+<code class="sig-name descname">RF</code><em class="property"> = 'Radio Fluoroscopy'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.RF" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.RG">
+<code class="sig-name descname">RG</code><em class="property"> = 'Radiographic imaging (conventional film/screen)'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.RG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.RTDOSE">
+<code class="sig-name descname">RTDOSE</code><em class="property"> = 'Radiotherapy Dose'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.RTDOSE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.RTIMAGE">
+<code class="sig-name descname">RTIMAGE</code><em class="property"> = 'Radiotherapy Image'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.RTIMAGE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.RTPLAN">
+<code class="sig-name descname">RTPLAN</code><em class="property"> = 'Radiotherapy Plan'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.RTPLAN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.RTRECORD">
+<code class="sig-name descname">RTRECORD</code><em class="property"> = 'RT Treatment Record'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.RTRECORD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.RTSTRUCT">
+<code class="sig-name descname">RTSTRUCT</code><em class="property"> = 'Radiotherapy Structure Set'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.RTSTRUCT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.RWV">
+<code class="sig-name descname">RWV</code><em class="property"> = 'Real World Value Map'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.RWV" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.SEG">
+<code class="sig-name descname">SEG</code><em class="property"> = 'Segmentation'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.SEG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.SM">
+<code class="sig-name descname">SM</code><em class="property"> = 'Slide Microscopy'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.SM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.SMR">
+<code class="sig-name descname">SMR</code><em class="property"> = 'Stereometric Relationship'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.SMR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.SR">
+<code class="sig-name descname">SR</code><em class="property"> = 'SR Document'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.SR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.SRF">
+<code class="sig-name descname">SRF</code><em class="property"> = 'Subjective Refraction'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.SRF" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.STAIN">
+<code class="sig-name descname">STAIN</code><em class="property"> = 'Automated Slide Stainer'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.STAIN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.TG">
+<code class="sig-name descname">TG</code><em class="property"> = 'Thermography'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.TG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.US">
+<code class="sig-name descname">US</code><em class="property"> = 'Ultrasound'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.US" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.VA">
+<code class="sig-name descname">VA</code><em class="property"> = 'Visual Acuity'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.VA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.XA">
+<code class="sig-name descname">XA</code><em class="property"> = 'X-Ray Angiography'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.XA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.modality.Modality.XC">
+<code class="sig-name descname">XC</code><em class="property"> = 'External-camera Photography'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.modality.Modality.XC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-dicom_parser.utils.code_strings.patient_position">
+<span id="dicom-parser-utils-code-strings-patient-position-module"></span><h2>dicom_parser.utils.code_strings.patient_position module<a class="headerlink" href="#module-dicom_parser.utils.code_strings.patient_position" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="dicom_parser.utils.code_strings.patient_position.PatientPosition">
+<em class="property">class </em><code class="sig-prename descclassname">dicom_parser.utils.code_strings.patient_position.</code><code class="sig-name descname">PatientPosition</code><a class="headerlink" href="#dicom_parser.utils.code_strings.patient_position.PatientPosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dicom_parser.utils.html#dicom_parser.utils.choice_enum.ChoiceEnum" title="dicom_parser.utils.choice_enum.ChoiceEnum"><code class="xref py py-class docutils literal notranslate"><span class="pre">dicom_parser.utils.choice_enum.ChoiceEnum</span></code></a></p>
+<p>Represents the <a class="reference external" href="https://dicom.innolitics.com/ciods/mr-image/general-series/00185100">Patient Position</a> attribute.</p>
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.patient_position.PatientPosition.AFDL">
+<code class="sig-name descname">AFDL</code><em class="property"> = 'Anterior First-Decubitus Left'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.patient_position.PatientPosition.AFDL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.patient_position.PatientPosition.AFDR">
+<code class="sig-name descname">AFDR</code><em class="property"> = 'Anterior First-Decubitus Right'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.patient_position.PatientPosition.AFDR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.patient_position.PatientPosition.FFDL">
+<code class="sig-name descname">FFDL</code><em class="property"> = 'Feet First-Decubitus Left'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.patient_position.PatientPosition.FFDL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.patient_position.PatientPosition.FFDR">
+<code class="sig-name descname">FFDR</code><em class="property"> = 'Feet First-Decubitus Right'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.patient_position.PatientPosition.FFDR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.patient_position.PatientPosition.FFP">
+<code class="sig-name descname">FFP</code><em class="property"> = 'Feet First-Prone'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.patient_position.PatientPosition.FFP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.patient_position.PatientPosition.FFS">
+<code class="sig-name descname">FFS</code><em class="property"> = 'Feet First-Supine'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.patient_position.PatientPosition.FFS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.patient_position.PatientPosition.HFDL">
+<code class="sig-name descname">HFDL</code><em class="property"> = 'Head First-Decubitus Left'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.patient_position.PatientPosition.HFDL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.patient_position.PatientPosition.HFDR">
+<code class="sig-name descname">HFDR</code><em class="property"> = 'Head First-Decubitus Right'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.patient_position.PatientPosition.HFDR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.patient_position.PatientPosition.HFP">
+<code class="sig-name descname">HFP</code><em class="property"> = 'Head First-Prone'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.patient_position.PatientPosition.HFP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.patient_position.PatientPosition.HFS">
+<code class="sig-name descname">HFS</code><em class="property"> = 'Head First-Supine'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.patient_position.PatientPosition.HFS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.patient_position.PatientPosition.LFP">
+<code class="sig-name descname">LFP</code><em class="property"> = 'Left First-Prone'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.patient_position.PatientPosition.LFP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.patient_position.PatientPosition.LFS">
+<code class="sig-name descname">LFS</code><em class="property"> = 'Left First-Supine'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.patient_position.PatientPosition.LFS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.patient_position.PatientPosition.PFDL">
+<code class="sig-name descname">PFDL</code><em class="property"> = 'Posterior First-Decubitus Left'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.patient_position.PatientPosition.PFDL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.patient_position.PatientPosition.PFDR">
+<code class="sig-name descname">PFDR</code><em class="property"> = 'Posterior First-Decubitus Right'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.patient_position.PatientPosition.PFDR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.patient_position.PatientPosition.RFP">
+<code class="sig-name descname">RFP</code><em class="property"> = 'Right First-Prone'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.patient_position.PatientPosition.RFP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.patient_position.PatientPosition.RFS">
+<code class="sig-name descname">RFS</code><em class="property"> = 'Right First-Supine'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.patient_position.PatientPosition.RFS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-dicom_parser.utils.code_strings.scanning_sequence">
+<span id="dicom-parser-utils-code-strings-scanning-sequence-module"></span><h2>dicom_parser.utils.code_strings.scanning_sequence module<a class="headerlink" href="#module-dicom_parser.utils.code_strings.scanning_sequence" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="dicom_parser.utils.code_strings.scanning_sequence.ScanningSequence">
+<em class="property">class </em><code class="sig-prename descclassname">dicom_parser.utils.code_strings.scanning_sequence.</code><code class="sig-name descname">ScanningSequence</code><a class="headerlink" href="#dicom_parser.utils.code_strings.scanning_sequence.ScanningSequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dicom_parser.utils.html#dicom_parser.utils.choice_enum.ChoiceEnum" title="dicom_parser.utils.choice_enum.ChoiceEnum"><code class="xref py py-class docutils literal notranslate"><span class="pre">dicom_parser.utils.choice_enum.ChoiceEnum</span></code></a></p>
+<p>Represents the <a class="reference external" href="https://dicom.innolitics.com/ciods/mr-image/mr-image/00180020">Scanning Sequence</a> attribute.</p>
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.scanning_sequence.ScanningSequence.EP">
+<code class="sig-name descname">EP</code><em class="property"> = 'Echo Planar'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.scanning_sequence.ScanningSequence.EP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.scanning_sequence.ScanningSequence.GR">
+<code class="sig-name descname">GR</code><em class="property"> = 'Gradient Recalled'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.scanning_sequence.ScanningSequence.GR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.scanning_sequence.ScanningSequence.IR">
+<code class="sig-name descname">IR</code><em class="property"> = 'Inversion Recovery'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.scanning_sequence.ScanningSequence.IR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.scanning_sequence.ScanningSequence.RM">
+<code class="sig-name descname">RM</code><em class="property"> = 'Research Mode'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.scanning_sequence.ScanningSequence.RM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.scanning_sequence.ScanningSequence.SE">
+<code class="sig-name descname">SE</code><em class="property"> = 'Spin Echo'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.scanning_sequence.ScanningSequence.SE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-dicom_parser.utils.code_strings.sequence_variant">
+<span id="dicom-parser-utils-code-strings-sequence-variant-module"></span><h2>dicom_parser.utils.code_strings.sequence_variant module<a class="headerlink" href="#module-dicom_parser.utils.code_strings.sequence_variant" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="dicom_parser.utils.code_strings.sequence_variant.SequenceVariant">
+<em class="property">class </em><code class="sig-prename descclassname">dicom_parser.utils.code_strings.sequence_variant.</code><code class="sig-name descname">SequenceVariant</code><a class="headerlink" href="#dicom_parser.utils.code_strings.sequence_variant.SequenceVariant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dicom_parser.utils.html#dicom_parser.utils.choice_enum.ChoiceEnum" title="dicom_parser.utils.choice_enum.ChoiceEnum"><code class="xref py py-class docutils literal notranslate"><span class="pre">dicom_parser.utils.choice_enum.ChoiceEnum</span></code></a></p>
+<p>Represents the <a class="reference external" href="https://dicom.innolitics.com/ciods/mr-image/mr-image/00180021">Sequence Variant</a> attribute.</p>
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.sequence_variant.SequenceVariant.MP">
+<code class="sig-name descname">MP</code><em class="property"> = 'MAG Prepared'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.sequence_variant.SequenceVariant.MP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.sequence_variant.SequenceVariant.MTC">
+<code class="sig-name descname">MTC</code><em class="property"> = 'Magnetization Transfer Contrast'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.sequence_variant.SequenceVariant.MTC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.sequence_variant.SequenceVariant.NONE">
+<code class="sig-name descname">NONE</code><em class="property"> = 'None'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.sequence_variant.SequenceVariant.NONE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.sequence_variant.SequenceVariant.OSP">
+<code class="sig-name descname">OSP</code><em class="property"> = 'Oversampling Phase'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.sequence_variant.SequenceVariant.OSP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.sequence_variant.SequenceVariant.SK">
+<code class="sig-name descname">SK</code><em class="property"> = 'Segmented k-Space'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.sequence_variant.SequenceVariant.SK" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.sequence_variant.SequenceVariant.SP">
+<code class="sig-name descname">SP</code><em class="property"> = 'Spoiled'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.sequence_variant.SequenceVariant.SP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.sequence_variant.SequenceVariant.SS">
+<code class="sig-name descname">SS</code><em class="property"> = 'Steady State'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.sequence_variant.SequenceVariant.SS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.sequence_variant.SequenceVariant.TRSS">
+<code class="sig-name descname">TRSS</code><em class="property"> = 'Time Reversed Steady State'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.sequence_variant.SequenceVariant.TRSS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-dicom_parser.utils.code_strings.sex">
+<span id="dicom-parser-utils-code-strings-sex-module"></span><h2>dicom_parser.utils.code_strings.sex module<a class="headerlink" href="#module-dicom_parser.utils.code_strings.sex" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="dicom_parser.utils.code_strings.sex.Sex">
+<em class="property">class </em><code class="sig-prename descclassname">dicom_parser.utils.code_strings.sex.</code><code class="sig-name descname">Sex</code><a class="headerlink" href="#dicom_parser.utils.code_strings.sex.Sex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dicom_parser.utils.html#dicom_parser.utils.choice_enum.ChoiceEnum" title="dicom_parser.utils.choice_enum.ChoiceEnum"><code class="xref py py-class docutils literal notranslate"><span class="pre">dicom_parser.utils.choice_enum.ChoiceEnum</span></code></a></p>
+<p>Represents the <a class="reference external" href="https://dicom.innolitics.com/ciods/mr-image/mr-image/00100040">Patient’s Sex</a> attribute.</p>
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.sex.Sex.F">
+<code class="sig-name descname">F</code><em class="property"> = 'Female'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.sex.Sex.F" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.sex.Sex.M">
+<code class="sig-name descname">M</code><em class="property"> = 'Male'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.sex.Sex.M" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.code_strings.sex.Sex.O">
+<code class="sig-name descname">O</code><em class="property"> = 'Other'</em><a class="headerlink" href="#dicom_parser.utils.code_strings.sex.Sex.O" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-dicom_parser.utils.code_strings">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-dicom_parser.utils.code_strings" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/DICOM">DICOM</a> <a class="reference external" href="http://northstar-www.dartmouth.edu/doc/idl/html_6.2/DICOM_Attributes.html">data elements</a>
+with the Code String (CS) <a class="reference external" href="http://northstar-www.dartmouth.edu/doc/idl/html_6.2/Value_Representations.html">value-representation (VRs)</a>,
+represented as <a class="reference external" href="https://docs.python.org/3/library/enum.html">Enums</a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="dicom_parser.utils.html" class="btn btn-neutral float-left" title="dicom_parser.utils package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Zvi Baratz
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

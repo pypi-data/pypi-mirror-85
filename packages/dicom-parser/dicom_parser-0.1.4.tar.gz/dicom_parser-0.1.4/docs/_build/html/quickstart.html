@@ -1,0 +1,380 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Quickstart &mdash; dicom_parser 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Vendor-specific Information" href="vendors.html" />
+    <link rel="prev" title="Welcome to dicom_parser’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> dicom_parser
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#coversion-to-python-s-native-types">Coversion to Python’s native types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#read-dicom-series-directory-as-a-series">Read DICOM series directory as a <code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#siemens-4d-data">Siemens 4D data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vendors.html">Vendor-specific Information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/modules.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes.html">Release Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">dicom_parser</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Quickstart</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/quickstart.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="quickstart">
+<h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
+<p>The most basic usage case is reading a single DICOM image (<em>.dcm</em> file) as
+an <a class="reference internal" href="modules/dicom_parser.html#dicom_parser.image.Image" title="dicom_parser.image.Image"><code class="xref py py-class docutils literal notranslate"><span class="pre">Image</span></code></a> instance.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">dicom_parser</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="p">(</span><span class="s1">&#39;/path/to/dicom/file.dcm&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<div class="section" id="coversion-to-python-s-native-types">
+<h2>Coversion to Python’s native types<a class="headerlink" href="#coversion-to-python-s-native-types" title="Permalink to this headline">¶</a></h2>
+<p><cite>dicom_parser</cite> provides <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a>-like access to the parsed values of the
+<a class="reference external" href="https://dcm4che.atlassian.net/wiki/spaces/d2/pages/1835038/A+Very+Basic+DICOM+Introduction">header</a>’s data-elements. The raw values as read by <a class="reference external" href="https://pydicom.github.io/">pydicom</a> remain accessible
+through the <code class="xref py py-attr docutils literal notranslate"><span class="pre">raw</span></code> attribute.</p>
+<div class="section" id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<p>Decimal String (DS) to <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a> using the <a class="reference internal" href="modules/dicom_parser.html#dicom_parser.header.Header" title="dicom_parser.header.Header"><code class="xref py py-class docutils literal notranslate"><span class="pre">Header</span></code></a>
+class’s <a class="reference internal" href="modules/dicom_parser.html#dicom_parser.header.Header.get" title="dicom_parser.header.Header.get"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get()</span></code></a> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">raw_value</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">raw</span><span class="p">[</span><span class="s1">&#39;ImagingFrequency&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">raw_value</span>
+<span class="go">&quot;123.25993&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">raw_value</span><span class="p">)</span>
+<span class="go">str</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parsed_value</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ImagingFrequency&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parsed_value</span>
+<span class="go">123.25993</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">parsed_value</span><span class="p">)</span>
+<span class="go">float</span>
+</pre></div>
+</div>
+<p>Age String (AS) to <em>float</em>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">raw_value</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">raw</span><span class="p">[</span><span class="s1">&#39;PatientAge&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">raw_value</span>
+<span class="go">&quot;027Y&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">raw_value</span><span class="p">)</span>
+<span class="go">str</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parsed_value</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;PatientAge&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parsed_value</span>
+<span class="go">27.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">parsed_value</span><span class="p">)</span>
+<span class="go">float</span>
+</pre></div>
+</div>
+<p>Date String (DA) to <a class="reference external" href="https://docs.python.org/3/library/datetime.html#available-types">datetime.date</a> using the <a class="reference internal" href="modules/dicom_parser.html#dicom_parser.header.Header" title="dicom_parser.header.Header"><code class="xref py py-class docutils literal notranslate"><span class="pre">Header</span></code></a>
+class’s indexing operator/subscript notation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">raw_value</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">raw</span><span class="p">[</span><span class="s1">&#39;PatientBirthDate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">raw_value</span>
+<span class="go">&quot;19901214&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">raw_value</span><span class="p">)</span>
+<span class="go">str</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parsed_value</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;PatientBirthDate&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parsed_value</span>
+<span class="go">datetime.date(1990, 12, 14)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">parsed_value</span><span class="p">)</span>
+<span class="go">datetime.date</span>
+</pre></div>
+</div>
+<p>Code String (CS) to a verbose value or set of values:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">raw_value</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">raw</span><span class="p">[</span><span class="s1">&#39;SequenceVariant&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">raw_value</span>
+<span class="go">[&#39;SP&#39;, &#39;OSP&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">raw_value</span><span class="p">)</span>
+<span class="go">pydicom.multival.MultiValue</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parsed_value</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;SequenceVariant&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parsed_value</span>
+<span class="go">{&#39;Oversampling Phase&#39;, &#39;Spoiled&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">parsed_value</span><span class="p">)</span>
+<span class="go">set</span>
+</pre></div>
+</div>
+<p>Et cetera.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <em>dict</em>-like functionality also includes safe getting:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">image</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;MissingKey&#39;</span><span class="p">)</span>
+<span class="go">None</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">image</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;MissingKey&#39;</span><span class="p">,</span> <span class="s1">&#39;DefaultValue&#39;</span><span class="p">)</span>
+<span class="go">&#39;DefaultValue&#39;</span>
+</pre></div>
+</div>
+<p>As well as raising a KeyError for missing keys with the indexing operator:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">image</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;MissingKey&#39;</span><span class="p">]</span>
+<span class="go">KeyError: &quot;The keyword: &#39;MissingKey&#39; does not exist in the header!&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="read-dicom-series-directory-as-a-series">
+<h2>Read DICOM series directory as a <a class="reference internal" href="modules/dicom_parser.html#dicom_parser.series.Series" title="dicom_parser.series.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a><a class="headerlink" href="#read-dicom-series-directory-as-a-series" title="Permalink to this headline">¶</a></h2>
+<p>Another useful class this package offers is the
+<a class="reference internal" href="modules/dicom_parser.html#dicom_parser.series.Series" title="dicom_parser.series.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">dicom_parser</span> <span class="kn">import</span> <span class="n">Series</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">series</span> <span class="o">=</span> <span class="n">Series</span><span class="p">(</span><span class="s1">&#39;/some/dicom/series/&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="modules/dicom_parser.html#dicom_parser.series.Series" title="dicom_parser.series.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> instance allows us to easily
+query the underlying images’ headers using its
+<a class="reference internal" href="modules/dicom_parser.html#dicom_parser.series.Series.get" title="dicom_parser.series.Series.get"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get()</span></code></a> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Single value</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">series</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;EchoTime&#39;</span><span class="p">)</span>
+<span class="mf">3.04</span>
+
+<span class="c1"># Multiple values</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">series</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;InstanceNumber&#39;</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="c1"># No value</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">series</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;MissingKey&#39;</span><span class="p">)</span>
+<span class="kc">None</span>
+
+<span class="c1"># Default value</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">series</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;MissingKey&#39;</span><span class="p">,</span> <span class="s1">&#39;default_value&#39;</span><span class="p">)</span>
+<span class="s1">&#39;default_value&#39;</span>
+</pre></div>
+</div>
+<p>Similarly to the <a class="reference internal" href="modules/dicom_parser.html#dicom_parser.image.Image" title="dicom_parser.image.Image"><code class="xref py py-class docutils literal notranslate"><span class="pre">Image</span></code></a> class, we can also use
+the indexing operator:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Single value</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">series</span><span class="p">[</span><span class="s1">&#39;RepetitionTime&#39;</span><span class="p">]</span>
+<span class="mf">7.6</span>
+
+<span class="c1"># Multiple values</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">series</span><span class="p">[</span><span class="s1">&#39;SOPInstanceUID&#39;</span><span class="p">]</span>
+<span class="p">[</span><span class="s2">&quot;1.123.1241.123124124.12.1&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;1.123.1241.123124124.12.2&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;1.123.1241.123124124.12.3&quot;</span><span class="p">]</span>
+
+<span class="c1"># No value</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">series</span><span class="p">[</span><span class="s1">&#39;MissingKey&#39;</span><span class="p">]</span>
+<span class="ne">KeyError</span><span class="p">:</span> <span class="s2">&quot;The keyword: &#39;MissingKey&#39; does not exist in the header!&quot;</span>
+</pre></div>
+</div>
+<p>Another useful feature of the indexing operator is for querying an
+<a class="reference internal" href="modules/dicom_parser.html#dicom_parser.image.Image" title="dicom_parser.image.Image"><code class="xref py py-class docutils literal notranslate"><span class="pre">Image</span></code></a> instance based on its index in the series:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">series</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+<span class="go">dicom_parser.image.Image</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">series</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;InstanceNumber]</span>
+<span class="go">7   # InstanceNumber is 1-indexed</span>
+</pre></div>
+</div>
+<p>The <cite>data</cite> property returns a stacked volume of the images’ data:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">series</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="go">numpy.ndarray</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">series</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(224, 224, 208)</span>
+</pre></div>
+</div>
+<div class="section" id="siemens-4d-data">
+<h3>Siemens 4D data<a class="headerlink" href="#siemens-4d-data" title="Permalink to this headline">¶</a></h3>
+<p>Reading Siemens 4D data
+<a class="reference external" href="https://nipy.org/nibabel/dicom/dicom_mosaic.html">encoded as mosaics</a>
+is also supported:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fmri_series</span> <span class="o">=</span> <span class="n">Series</span><span class="p">(</span><span class="s1">&#39;/path/to/dicom/fmri/&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fmri_series</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(96, 96, 64, 200)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="vendors.html" class="btn btn-neutral float-right" title="Vendor-specific Information" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to dicom_parser’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Zvi Baratz
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

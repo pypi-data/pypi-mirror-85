@@ -1,0 +1,267 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CSA Headers &mdash; dicom_parser 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Reference" href="../modules/modules.html" />
+    <link rel="prev" title="Siemens" href="siemens.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> dicom_parser
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../vendors.html">Vendor-specific Information</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="siemens.html">Siemens</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">CSA Headers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/modules.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">dicom_parser</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../vendors.html">Vendor-specific Information</a> &raquo;</li>
+        
+          <li><a href="siemens.html">Siemens</a> &raquo;</li>
+        
+      <li>CSA Headers</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/siemens/csa_headers.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="csa-headers">
+<h1>CSA Headers<a class="headerlink" href="#csa-headers" title="Permalink to this headline">¶</a></h1>
+<p>Some Siemens MRI scans may include CSA headers that provide valuable information
+regarding the acquisition and storage of the data (for more information see
+<a class="reference external" href="https://nipy.org/nibabel/dicom/siemens_csa.html">this</a> excellent <a class="reference external" href="https://nipy.org/nibabel/index.html">NiBabel</a> article. These headers are stored as two
+<a class="reference external" href="http://dicom.nema.org/medical/dicom/current/output/html/part05.html#sect_7.8">private data elements</a>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>(0029, 1010) - CSA Image Header Info</p></li>
+<li><p>(0029, 1020) - CSA Series Header Info</p></li>
+</ul>
+</div></blockquote>
+<p>By default, the <a class="reference internal" href="../modules/dicom_parser.html#dicom_parser.header.Header" title="dicom_parser.header.Header"><code class="xref py py-class docutils literal notranslate"><span class="pre">Header</span></code></a> instance’s
+<a class="reference internal" href="../modules/dicom_parser.html#dicom_parser.header.Header.get" title="dicom_parser.header.Header.get"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get()</span></code></a> method will parsed the CSA header
+information as a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">dicom_parser</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="p">(</span><span class="s1">&#39;/path/to/siemens/csa.dcm&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">csa</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;CSASeriesHeaderInfo&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">csa</span><span class="p">[</span><span class="s1">&#39;SliceAcceleration&#39;</span><span class="p">][</span><span class="s1">&#39;MultiBandFactor&#39;</span><span class="p">]</span>
+<span class="go">3</span>
+</pre></div>
+</div>
+<p><cite>dicom_parser</cite> uses the <a class="reference internal" href="../modules/dicom_parser.utils.siemens.csa.html#dicom_parser.utils.siemens.csa.header.CsaHeader" title="dicom_parser.utils.siemens.csa.header.CsaHeader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CsaHeader</span></code></a>
+class in order to created the parsed dictionary.</p>
+<p>To learn more about the <a class="reference internal" href="../modules/dicom_parser.utils.siemens.csa.html#dicom_parser.utils.siemens.csa.header.CsaHeader" title="dicom_parser.utils.siemens.csa.header.CsaHeader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CsaHeader</span></code></a>
+class, let’s have a look at the raw CSA header value returned by
+<a class="reference external" href="https://github.com/pydicom/pydicom">pydicom</a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">dicom_parser.utils.siemens.csa.header</span> <span class="kn">import</span> <span class="n">CsaHeader</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">raw_csa</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;CSASeriesHeaderInfo&#39;</span><span class="p">,</span> <span class="n">parsed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">raw_csa</span><span class="p">)</span>
+<span class="go">bytes</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">raw_csa</span><span class="p">[:</span><span class="mi">35</span><span class="p">]</span>
+<span class="go">b&quot;SV10\x04\x03\x02\x01O\x00\x00\x00M\x00\x00\x00UsedPatientWeight\x00\x00\x00\xdc\xf7&quot;</span>
+</pre></div>
+</div>
+<p>Now, we will create an instance of the
+<a class="reference internal" href="../modules/dicom_parser.utils.siemens.csa.html#dicom_parser.utils.siemens.csa.header.CsaHeader" title="dicom_parser.utils.siemens.csa.header.CsaHeader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CsaHeader</span></code></a> class and use it to parse
+the raw header:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">csa_header</span> <span class="o">=</span> <span class="n">CsaHeader</span><span class="p">(</span><span class="n">raw_csa</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parsed_csa</span> <span class="o">=</span> <span class="n">csa_header</span><span class="o">.</span><span class="n">parse</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">parsed_csa</span><span class="p">)</span>
+<span class="go">dict</span>
+
+<span class="go"># (we can also use the `parsed` property)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">csa_header</span><span class="o">.</span><span class="n">parsed</span><span class="p">[</span><span class="s1">&#39;SliceArray&#39;</span><span class="p">][</span><span class="s1">&#39;Size&#39;</span><span class="p">]</span>
+<span class="go">60</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">instance_number</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;InstanceNumber&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parsed_csa</span><span class="p">[</span><span class="s2">&quot;SliceArray&quot;</span><span class="p">][</span><span class="s2">&quot;Slice&quot;</span><span class="p">][</span><span class="n">instance_number</span><span class="p">][</span><span class="s2">&quot;Position&quot;</span><span class="p">][</span><span class="s2">&quot;Tra&quot;</span><span class="p">]</span>
+<span class="go">-58.1979682425</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../modules/modules.html" class="btn btn-neutral float-right" title="Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="siemens.html" class="btn btn-neutral float-left" title="Siemens" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Zvi Baratz
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

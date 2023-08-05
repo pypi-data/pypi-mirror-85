@@ -1,0 +1,716 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dicom_parser.utils.siemens.csa package &mdash; dicom_parser 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="dicom_parser.utils.siemens package" href="dicom_parser.utils.siemens.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> dicom_parser
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors.html">Vendor-specific Information</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dicom_parser.html">dicom_parser package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="dicom_parser.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="dicom_parser.utils.html">dicom_parser.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="dicom_parser.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dicom_parser.html#module-dicom_parser.header">dicom_parser.header module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dicom_parser.html#module-dicom_parser.image">dicom_parser.image module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dicom_parser.html#module-dicom_parser.parser">dicom_parser.parser module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dicom_parser.html#module-dicom_parser.series">dicom_parser.series module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dicom_parser.html#module-dicom_parser">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">dicom_parser</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">Reference</a> &raquo;</li>
+        
+          <li><a href="dicom_parser.html">dicom_parser package</a> &raquo;</li>
+        
+          <li><a href="dicom_parser.utils.html">dicom_parser.utils package</a> &raquo;</li>
+        
+          <li><a href="dicom_parser.utils.siemens.html">dicom_parser.utils.siemens package</a> &raquo;</li>
+        
+      <li>dicom_parser.utils.siemens.csa package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/modules/dicom_parser.utils.siemens.csa.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="dicom-parser-utils-siemens-csa-package">
+<h1>dicom_parser.utils.siemens.csa package<a class="headerlink" href="#dicom-parser-utils-siemens-csa-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-dicom_parser.utils.siemens.csa">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-dicom_parser.utils.siemens.csa" title="Permalink to this headline">¶</a></h2>
+<p>CSA headers are Siemens-specific private data elements that are embedded
+in some DICOM headers, specifically as the (0029, 1010)/<cite>”CSA Image Header Info”</cite>
+and (0029, 1020)/<cite>”CSA Series Header Info”</cite> tags.
+For more information see
+<a class="reference external" href="https://nipy.org/nibabel/dicom/siemens_csa.html#siemens-format-dicom-with-csa-header">this</a>
+<a class="reference external" href="https://nipy.org/nibabel/index.html">NiBabel</a> article.</p>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-dicom_parser.utils.siemens.csa.data_element">
+<span id="dicom-parser-utils-siemens-csa-data-element-module"></span><h2>dicom_parser.utils.siemens.csa.data_element module<a class="headerlink" href="#module-dicom_parser.utils.siemens.csa.data_element" title="Permalink to this headline">¶</a></h2>
+<p>Definition of a single CSA header data element. These elements are parsed from
+the full string header using new line characters.</p>
+<dl class="class">
+<dt id="dicom_parser.utils.siemens.csa.data_element.CsaDataElement">
+<em class="property">class </em><code class="sig-prename descclassname">dicom_parser.utils.siemens.csa.data_element.</code><code class="sig-name descname">CsaDataElement</code><span class="sig-paren">(</span><em class="sig-param">raw_element: str</em><span class="sig-paren">)</span><a class="headerlink" href="#dicom_parser.utils.siemens.csa.data_element.CsaDataElement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Represents a single CSA header data element as extracted from the raw
+header information.</p>
+<dl class="attribute">
+<dt id="dicom_parser.utils.siemens.csa.data_element.CsaDataElement.CLEAN_PART_PATTERN">
+<code class="sig-name descname">CLEAN_PART_PATTERN</code><em class="property"> = '[A-Z].*'</em><a class="headerlink" href="#dicom_parser.utils.siemens.csa.data_element.CsaDataElement.CLEAN_PART_PATTERN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.siemens.csa.data_element.CsaDataElement.LIST_PART_PATTERN">
+<code class="sig-name descname">LIST_PART_PATTERN</code><em class="property"> = '\\[\\d+\\]'</em><a class="headerlink" href="#dicom_parser.utils.siemens.csa.data_element.CsaDataElement.LIST_PART_PATTERN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dicom_parser.utils.siemens.csa.data_element.CsaDataElement.clean_part">
+<code class="sig-name descname">clean_part</code><span class="sig-paren">(</span><em class="sig-param">part: str</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#dicom_parser.utils.siemens.csa.data_element.CsaDataElement.clean_part" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a the part’s name without any prefixed lowercase characters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>part</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – One of the listed key’s parts</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Prefix-omitted part name</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dicom_parser.utils.siemens.csa.data_element.CsaDataElement.key_to_list">
+<code class="sig-name descname">key_to_list</code><span class="sig-paren">(</span><em class="sig-param">chained_key: str</em><span class="sig-paren">)</span> &#x2192; list<a class="headerlink" href="#dicom_parser.utils.siemens.csa.data_element.CsaDataElement.key_to_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>The string data elements represents nested keys using a ‘.’ character.
+Returns a clean (prefix-omitted) list of the nested key structure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>chained_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – CSA header data element key</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Clean and listed representation of the provided key</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dicom_parser.utils.siemens.csa.data_element.CsaDataElement.search_array_pattern">
+<code class="sig-name descname">search_array_pattern</code><span class="sig-paren">(</span><em class="sig-param">part: str</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#dicom_parser.utils.siemens.csa.data_element.CsaDataElement.search_array_pattern" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the pattern indicating a particular key part represents an array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>part</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Some part of a listed key</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The value’s index if array pattern found, else None</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dicom_parser.utils.siemens.csa.data_element.CsaDataElement.split">
+<code class="sig-name descname">split</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; tuple<a class="headerlink" href="#dicom_parser.utils.siemens.csa.data_element.CsaDataElement.split" title="Permalink to this definition">¶</a></dt>
+<dd><p>Splits the raw CSA element to a clean and listed key and a value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>key, value</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)">tuple</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-dicom_parser.utils.siemens.csa.header">
+<span id="dicom-parser-utils-siemens-csa-header-module"></span><h2>dicom_parser.utils.siemens.csa.header module<a class="headerlink" href="#module-dicom_parser.utils.siemens.csa.header" title="Permalink to this headline">¶</a></h2>
+<p>Definition of the <a class="reference internal" href="#dicom_parser.utils.siemens.csa.header.CsaHeader" title="dicom_parser.utils.siemens.csa.header.CsaHeader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CsaHeader</span></code></a>
+class which handles the parsing of
+<a class="reference external" href="https://nipy.org/nibabel/dicom/siemens_csa.html">CSA header</a> values
+returned by <a class="reference external" href="https://github.com/pydicom/pydicom">pydicom</a> as bytes.</p>
+<dl class="class">
+<dt id="dicom_parser.utils.siemens.csa.header.CsaHeader">
+<em class="property">class </em><code class="sig-prename descclassname">dicom_parser.utils.siemens.csa.header.</code><code class="sig-name descname">CsaHeader</code><span class="sig-paren">(</span><em class="sig-param">header: bytes</em><span class="sig-paren">)</span><a class="headerlink" href="#dicom_parser.utils.siemens.csa.header.CsaHeader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Represents a full CSA header data element, i.e. either
+(0029, 1010)/<cite>”CSA Image Header Info”</cite> or (0029, 1020)/<cite>”CSA Series Header Info”</cite>,
+and provides access to the header as a parsed dictionary.
+This implementation is heavily based on
+<a class="reference external" href="https://github.com/icometrix/dicom2nifti">dicom2nifti</a>’s
+code (particularly
+<a class="reference external" href="https://github.com/icometrix/dicom2nifti/blob/6722420a7673d36437e4358ce3cb2a7c77c91820/dicom2nifti/convert_siemens.py#L342">this module</a>).</p>
+<dl class="attribute">
+<dt id="dicom_parser.utils.siemens.csa.header.CsaHeader.CSA_HEADER_PATTERN">
+<code class="sig-name descname">CSA_HEADER_PATTERN</code><em class="property"> = '### ASCCONV BEGIN(.*?)### ASCCONV END ###'</em><a class="headerlink" href="#dicom_parser.utils.siemens.csa.header.CsaHeader.CSA_HEADER_PATTERN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.siemens.csa.header.CsaHeader.ELEMENT_PATTERN">
+<code class="sig-name descname">ELEMENT_PATTERN</code><em class="property"> = '([A-Z][^\\n]*)'</em><a class="headerlink" href="#dicom_parser.utils.siemens.csa.header.CsaHeader.ELEMENT_PATTERN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dicom_parser.utils.siemens.csa.header.CsaHeader.ENCODING">
+<code class="sig-name descname">ENCODING</code><em class="property"> = 'ISO-8859-1'</em><a class="headerlink" href="#dicom_parser.utils.siemens.csa.header.CsaHeader.ENCODING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dicom_parser.utils.siemens.csa.header.CsaHeader.create_csa_data_elements">
+<code class="sig-name descname">create_csa_data_elements</code><span class="sig-paren">(</span><em class="sig-param">raw_elements: list = None</em><span class="sig-paren">)</span> &#x2192; list<a class="headerlink" href="#dicom_parser.utils.siemens.csa.header.CsaHeader.create_csa_data_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates <a class="reference internal" href="#dicom_parser.utils.siemens.csa.data_element.CsaDataElement" title="dicom_parser.utils.siemens.csa.data_element.CsaDataElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">CsaDataElement</span></code></a>
+instances that parse the key and the value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>raw_elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – Raw (string) CSA header elements</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><a class="reference internal" href="#dicom_parser.utils.siemens.csa.data_element.CsaDataElement" title="dicom_parser.utils.siemens.csa.data_element.CsaDataElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">CsaDataElement</span></code></a>
+instances.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dicom_parser.utils.siemens.csa.header.CsaHeader.csa_data_elements">
+<em class="property">property </em><code class="sig-name descname">csa_data_elements</code><a class="headerlink" href="#dicom_parser.utils.siemens.csa.header.CsaHeader.csa_data_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Caches the <a class="reference internal" href="#dicom_parser.utils.siemens.csa.data_element.CsaDataElement" title="dicom_parser.utils.siemens.csa.data_element.CsaDataElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">CsaDataElement</span></code></a>
+instances representing the entire header information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#dicom_parser.utils.siemens.csa.data_element.CsaDataElement" title="dicom_parser.utils.siemens.csa.data_element.CsaDataElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">CsaDataElement</span></code></a> instances</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dicom_parser.utils.siemens.csa.header.CsaHeader.decode">
+<code class="sig-name descname">decode</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#dicom_parser.utils.siemens.csa.header.CsaHeader.decode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decodes the raw (ASCII) information to string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Decoded information</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dicom_parser.utils.siemens.csa.header.CsaHeader.get_header_information">
+<code class="sig-name descname">get_header_information</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#dicom_parser.utils.siemens.csa.header.CsaHeader.get_header_information" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the decoded and extracted header information from the full
+data element’s value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Decoded clean header information</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dicom_parser.utils.siemens.csa.header.CsaHeader.get_raw_data_elements">
+<code class="sig-name descname">get_raw_data_elements</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; list<a class="headerlink" href="#dicom_parser.utils.siemens.csa.header.CsaHeader.get_raw_data_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Splits the decoded header information into a list of raw (string) data
+elements, each containing a key-value pair.
+The first item is skipped because it is an unrequired heading.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>CSA data elements in raw string format</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dicom_parser.utils.siemens.csa.header.CsaHeader.n_slices">
+<em class="property">property </em><code class="sig-name descname">n_slices</code><a class="headerlink" href="#dicom_parser.utils.siemens.csa.header.CsaHeader.n_slices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of slices (tiles) in a mosaic.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Number of slices encoded as a 2D mosaic.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dicom_parser.utils.siemens.csa.header.CsaHeader.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">csa_data_elements: list = None</em><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#dicom_parser.utils.siemens.csa.header.CsaHeader.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses a list of
+<a class="reference internal" href="#dicom_parser.utils.siemens.csa.data_element.CsaDataElement" title="dicom_parser.utils.siemens.csa.data_element.CsaDataElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">CsaDataElement</span></code></a>
+instances (or all if left None) as a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>csa_data_elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em>, </em><em>optional</em>) – <a class="reference internal" href="#dicom_parser.utils.siemens.csa.data_element.CsaDataElement" title="dicom_parser.utils.siemens.csa.data_element.CsaDataElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">CsaDataElement</span></code></a>
+instances, by default None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Header information as a dictionary</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dicom_parser.utils.siemens.csa.header.CsaHeader.parsed">
+<em class="property">property </em><code class="sig-name descname">parsed</code><a class="headerlink" href="#dicom_parser.utils.siemens.csa.header.CsaHeader.parsed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Caches the parsed dictionary as a private attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Header information as dictionary</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dicom_parser.utils.siemens.csa.header.CsaHeader.raw_elements">
+<em class="property">property </em><code class="sig-name descname">raw_elements</code><a class="headerlink" href="#dicom_parser.utils.siemens.csa.header.CsaHeader.raw_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Caches the raw (sting) CSA data elements as a private attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Raw CSA header data elements</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-dicom_parser.utils.siemens.csa.parser">
+<span id="dicom-parser-utils-siemens-csa-parser-module"></span><h2>dicom_parser.utils.siemens.csa.parser module<a class="headerlink" href="#module-dicom_parser.utils.siemens.csa.parser" title="Permalink to this headline">¶</a></h2>
+<p>Definition of parser that accepts
+<code class="xref py py-class docutils literal notranslate"><span class="pre">CsaDataElement</span></code>
+instances to be parsed and keeps a pointer to a dictionary that
+may aggregate the results.</p>
+<dl class="class">
+<dt id="dicom_parser.utils.siemens.csa.parser.CsaParser">
+<em class="property">class </em><code class="sig-prename descclassname">dicom_parser.utils.siemens.csa.parser.</code><code class="sig-name descname">CsaParser</code><span class="sig-paren">(</span><em class="sig-param">destination: dict = None</em><span class="sig-paren">)</span><a class="headerlink" href="#dicom_parser.utils.siemens.csa.parser.CsaParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Parses CSA header data elements given as
+<code class="xref py py-class docutils literal notranslate"><span class="pre">CsaDataElement</span></code>
+instances into a public dictionary.</p>
+<dl class="method">
+<dt id="dicom_parser.utils.siemens.csa.parser.CsaParser.assign_list_element">
+<code class="sig-name descname">assign_list_element</code><span class="sig-paren">(</span><em class="sig-param">part: str</em>, <em class="sig-param">value</em>, <em class="sig-param">destination: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#dicom_parser.utils.siemens.csa.parser.CsaParser.assign_list_element" title="Permalink to this definition">¶</a></dt>
+<dd><p>Appends to an existing list value or creates a new list instance for it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>part</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Last part’s name</p></li>
+<li><p><strong>value</strong> (<em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.8)"><em>type</em></a><em>]</em>) – The <a class="reference internal" href="#dicom_parser.utils.siemens.csa.data_element.CsaDataElement" title="dicom_parser.utils.siemens.csa.data_element.CsaDataElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">CsaDataElement</span></code></a>’s
+value</p></li>
+<li><p><strong>destination</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – A pointer to the appropriate destination with the parsed dictionary</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dicom_parser.utils.siemens.csa.parser.CsaParser.assign_listed_element">
+<code class="sig-name descname">assign_listed_element</code><span class="sig-paren">(</span><em class="sig-param">csa_data_element: dicom_parser.utils.siemens.csa.data_element.CsaDataElement</em>, <em class="sig-param">destination: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#dicom_parser.utils.siemens.csa.parser.CsaParser.assign_listed_element" title="Permalink to this definition">¶</a></dt>
+<dd><p>Once the destination for the
+<a class="reference internal" href="#dicom_parser.utils.siemens.csa.data_element.CsaDataElement" title="dicom_parser.utils.siemens.csa.data_element.CsaDataElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">CsaDataElement</span></code></a>’s
+value has been retrieved or created, this method assigns the value at
+that destination.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>csa_data_element</strong> (<a class="reference internal" href="#dicom_parser.utils.siemens.csa.data_element.CsaDataElement" title="dicom_parser.utils.siemens.csa.data_element.CsaDataElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">CsaDataElement</span></code></a>) – The instance from which to assign the value</p></li>
+<li><p><strong>destination</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – The appropriate destination within the parsed values dictionary</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dicom_parser.utils.siemens.csa.parser.CsaParser.create_new_element_list">
+<code class="sig-name descname">create_new_element_list</code><span class="sig-paren">(</span><em class="sig-param">part_name: str</em>, <em class="sig-param">destination: dict</em><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#dicom_parser.utils.siemens.csa.parser.CsaParser.create_new_element_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>If an array part (part containing the <cite>[&lt;index&gt;]</cite> pattern) exists as any part
+of the listed key except for the last, it indicates a list of dictionary
+instances. This method creates a new list with a single dict instances and
+returns a pointer to it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>part_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The key for the list in the current dict level of the constructed
+scaffolding.</p></li>
+<li><p><strong>destination</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – The current level of scaffolding within the parsed dictionary</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The next level of the key’s scaffolding within the parsed dictionary</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dicom_parser.utils.siemens.csa.parser.CsaParser.fix_value">
+<code class="sig-name descname">fix_value</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#dicom_parser.utils.siemens.csa.parser.CsaParser.fix_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Covert a CSA header element’s value to float or int if possible.
+Also cleans up redundant quotation marks and decodes hexadecimal values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.8)"><em>type</em></a><em>]</em>) – Some CSA header element value</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Fixed (converted) value</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a>, or <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dicom_parser.utils.siemens.csa.parser.CsaParser.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">csa_data_element: dicom_parser.utils.siemens.csa.data_element.CsaDataElement</em><span class="sig-paren">)</span><a class="headerlink" href="#dicom_parser.utils.siemens.csa.parser.CsaParser.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses a raw CSA header element into the provided dictionary or creates
+a new one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>csa_data_element</strong> (<a class="reference internal" href="#dicom_parser.utils.siemens.csa.data_element.CsaDataElement" title="dicom_parser.utils.siemens.csa.data_element.CsaDataElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">CsaDataElement</span></code></a>) – CSA header element to be parsed</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dicom_parser.utils.siemens.csa.parser.CsaParser.scaffold_dict_part">
+<code class="sig-name descname">scaffold_dict_part</code><span class="sig-paren">(</span><em class="sig-param">part: str</em>, <em class="sig-param">destination: dict</em><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#dicom_parser.utils.siemens.csa.parser.CsaParser.scaffold_dict_part" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the destination of a given key’s dict part within the parsed dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>part</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – List part’s name</p></li>
+<li><p><strong>destination</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – The current level of scaffolding within the parsed dictionary</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The next level of the key’s scaffolding within the parsed dictionary</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dicom_parser.utils.siemens.csa.parser.CsaParser.scaffold_list_part">
+<code class="sig-name descname">scaffold_list_part</code><span class="sig-paren">(</span><em class="sig-param">part: str</em>, <em class="sig-param">index: int</em>, <em class="sig-param">destination: dict</em><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#dicom_parser.utils.siemens.csa.parser.CsaParser.scaffold_list_part" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the destination of a given key’s list part within the parsed dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>part</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – List part’s name</p></li>
+<li><p><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The index within the list for the next part in the nested key</p></li>
+<li><p><strong>destination</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – The current level of scaffolding within the parsed dictionary</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The next level of the key’s scaffolding within the parsed dictionary</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dicom_parser.utils.siemens.csa.parser.CsaParser.scaffold_listed_key">
+<code class="sig-name descname">scaffold_listed_key</code><span class="sig-paren">(</span><em class="sig-param">csa_data_element: dicom_parser.utils.siemens.csa.data_element.CsaDataElement</em>, <em class="sig-param">destination: dict = None</em><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#dicom_parser.utils.siemens.csa.parser.CsaParser.scaffold_listed_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a scaffolding within the parsed values dictionary. This means that it
+runs over the data elements nested key structure
+(LevelA.ListLevelB[5].LevelC = ‘value’) and returns a pointer to the appropriate
+destination for the value within the parsed values dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>csa_data_element</strong> (<a class="reference internal" href="#dicom_parser.utils.siemens.csa.data_element.CsaDataElement" title="dicom_parser.utils.siemens.csa.data_element.CsaDataElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">CsaDataElement</span></code></a>) – Instance to scaffold a destination for</p></li>
+<li><p><strong>destination</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a><em>, </em><em>optional</em>) – An existing destination dictionary, by default None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A pointer to the appropriate destination for the
+<a class="reference internal" href="#dicom_parser.utils.siemens.csa.data_element.CsaDataElement" title="dicom_parser.utils.siemens.csa.data_element.CsaDataElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">CsaDataElement</span></code></a>’s value</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dicom_parser.utils.siemens.csa.parser.CsaParser.scaffold_part">
+<code class="sig-name descname">scaffold_part</code><span class="sig-paren">(</span><em class="sig-param">csa_data_element: dicom_parser.utils.siemens.csa.data_element.CsaDataElement</em>, <em class="sig-param">part: str</em>, <em class="sig-param">destination: dict</em><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#dicom_parser.utils.siemens.csa.parser.CsaParser.scaffold_part" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the destination of a given key’s part within the parsed dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>csa_data_element</strong> (<a class="reference internal" href="#dicom_parser.utils.siemens.csa.data_element.CsaDataElement" title="dicom_parser.utils.siemens.csa.data_element.CsaDataElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">CsaDataElement</span></code></a>) – The source instance</p></li>
+<li><p><strong>part</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – List part’s name</p></li>
+<li><p><strong>destination</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – The current level of scaffolding within the parsed dictionary</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The next level of the key’s scaffolding within the parsed dictionary</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dicom_parser.utils.siemens.csa.parser.CsaParser.update_existing_element_list">
+<code class="sig-name descname">update_existing_element_list</code><span class="sig-paren">(</span><em class="sig-param">part_name: str</em>, <em class="sig-param">index: int</em>, <em class="sig-param">destination: dict</em><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#dicom_parser.utils.siemens.csa.parser.CsaParser.update_existing_element_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>If an array part (part containing the <cite>[&lt;index&gt;]</cite> pattern) exists as any part
+of the listed key except for the last, it indicates a list of dictionary
+instances. This method check whether a dictionary exists already at the given
+list’s index. If it does, returns that dict instance, otherwise, creates a new one
+and returns it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>part_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The list’s key within the destination dictionary</p></li>
+<li><p><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The index of the nested part</p></li>
+<li><p><strong>destination</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – The current level of scaffolding within the parsed dictionary</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The next level of the key’s scaffolding within the parsed dictionary</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="dicom_parser.utils.siemens.html" class="btn btn-neutral float-left" title="dicom_parser.utils.siemens package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Zvi Baratz
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

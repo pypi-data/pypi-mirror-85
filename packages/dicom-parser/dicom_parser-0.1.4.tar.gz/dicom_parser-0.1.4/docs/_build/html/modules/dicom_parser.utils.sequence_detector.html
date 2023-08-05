@@ -1,0 +1,320 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dicom_parser.utils.sequence_detector package &mdash; dicom_parser 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="dicom_parser.utils.siemens package" href="dicom_parser.utils.siemens.html" />
+    <link rel="prev" title="dicom_parser.utils.code_strings package" href="dicom_parser.utils.code_strings.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> dicom_parser
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors.html">Vendor-specific Information</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dicom_parser.html">dicom_parser package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="dicom_parser.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="dicom_parser.utils.html">dicom_parser.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="dicom_parser.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dicom_parser.html#module-dicom_parser.header">dicom_parser.header module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dicom_parser.html#module-dicom_parser.image">dicom_parser.image module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dicom_parser.html#module-dicom_parser.parser">dicom_parser.parser module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dicom_parser.html#module-dicom_parser.series">dicom_parser.series module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dicom_parser.html#module-dicom_parser">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">dicom_parser</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">Reference</a> &raquo;</li>
+        
+          <li><a href="dicom_parser.html">dicom_parser package</a> &raquo;</li>
+        
+          <li><a href="dicom_parser.utils.html">dicom_parser.utils package</a> &raquo;</li>
+        
+      <li>dicom_parser.utils.sequence_detector package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/modules/dicom_parser.utils.sequence_detector.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="dicom-parser-utils-sequence-detector-package">
+<h1>dicom_parser.utils.sequence_detector package<a class="headerlink" href="#dicom-parser-utils-sequence-detector-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-dicom_parser.utils.sequence_detector.messages">
+<span id="dicom-parser-utils-sequence-detector-messages-module"></span><h2>dicom_parser.utils.sequence_detector.messages module<a class="headerlink" href="#module-dicom_parser.utils.sequence_detector.messages" title="Permalink to this headline">¶</a></h2>
+<p>Messages to be used by the
+<a class="reference internal" href="#dicom_parser.utils.sequence_detector.sequence_detector.SequenceDetector" title="dicom_parser.utils.sequence_detector.sequence_detector.SequenceDetector"><code class="xref py py-class docutils literal notranslate"><span class="pre">SequenceDetector</span></code></a>
+class.</p>
+</div>
+<div class="section" id="module-dicom_parser.utils.sequence_detector.sequence_detector">
+<span id="dicom-parser-utils-sequence-detector-sequence-detector-module"></span><h2>dicom_parser.utils.sequence_detector.sequence_detector module<a class="headerlink" href="#module-dicom_parser.utils.sequence_detector.sequence_detector" title="Permalink to this headline">¶</a></h2>
+<p>Definition of the
+<a class="reference internal" href="#dicom_parser.utils.sequence_detector.sequence_detector.SequenceDetector" title="dicom_parser.utils.sequence_detector.sequence_detector.SequenceDetector"><code class="xref py py-class docutils literal notranslate"><span class="pre">SequenceDetector</span></code></a>
+class.</p>
+<dl class="class">
+<dt id="dicom_parser.utils.sequence_detector.sequence_detector.SequenceDetector">
+<em class="property">class </em><code class="sig-prename descclassname">dicom_parser.utils.sequence_detector.sequence_detector.</code><code class="sig-name descname">SequenceDetector</code><span class="sig-paren">(</span><em class="sig-param">sequences: dict = None</em><span class="sig-paren">)</span><a class="headerlink" href="#dicom_parser.utils.sequence_detector.sequence_detector.SequenceDetector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="dicom_parser.utils.sequence_detector.sequence_detector.SequenceDetector.check_definition">
+<code class="sig-name descname">check_definition</code><span class="sig-paren">(</span><em class="sig-param">definition</em>, <em class="sig-param">values: dict</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#dicom_parser.utils.sequence_detector.sequence_detector.SequenceDetector.check_definition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks whether the specified header information values satisfy the provided
+definition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>definition</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – The imaging sequence definition, as a dict or list of dict instances.</p></li>
+<li><p><strong>values</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – Header information provided for the comparison.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether the given header information fits the definition.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.8)"><strong>TypeError</strong></a> – Encountered a definition of an invalid type.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dicom_parser.utils.sequence_detector.sequence_detector.SequenceDetector.detect">
+<code class="sig-name descname">detect</code><span class="sig-paren">(</span><em class="sig-param">modality: str</em>, <em class="sig-param">values: dict</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#dicom_parser.utils.sequence_detector.sequence_detector.SequenceDetector.detect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tries to detect the imaging sequence according to the modality and provided
+header information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>modality</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The imaging modality as described in the DICOM header.</p></li>
+<li><p><strong>values</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – Sequence identifying header elements.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The detected sequence name or None.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dicom_parser.utils.sequence_detector.sequence_detector.SequenceDetector.get_known_modality_sequences">
+<code class="sig-name descname">get_known_modality_sequences</code><span class="sig-paren">(</span><em class="sig-param">modality: str</em><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#dicom_parser.utils.sequence_detector.sequence_detector.SequenceDetector.get_known_modality_sequences" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dictionary of imaging sequence definitions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>modality</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The modality for which to return imaging sequence defitions.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Imaging sequence definitions.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><strong>NotImplementedError</strong></a> – The <cite>sequences</cite> dictionary does not include the provided modality.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-dicom_parser.utils.sequence_detector.sequences">
+<span id="dicom-parser-utils-sequence-detector-sequences-module"></span><h2>dicom_parser.utils.sequence_detector.sequences module<a class="headerlink" href="#module-dicom_parser.utils.sequence_detector.sequences" title="Permalink to this headline">¶</a></h2>
+<p>Known sequences defined by the expected (parsed) data element values from the header.</p>
+</div>
+<div class="section" id="module-dicom_parser.utils.sequence_detector">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-dicom_parser.utils.sequence_detector" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dicom_parser.utils.siemens.html" class="btn btn-neutral float-right" title="dicom_parser.utils.siemens package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dicom_parser.utils.code_strings.html" class="btn btn-neutral float-left" title="dicom_parser.utils.code_strings package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Zvi Baratz
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
