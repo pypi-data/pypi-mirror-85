@@ -1,0 +1,61 @@
+user_address_settings:
+- match: someQueue
+  dead_letter_address:
+  auto_create_dead_letter_resources: false
+  dead_letter_queue_prefix:
+  dead_letter_queue_suffix:
+  expiry_address:
+  auto_create_expiry_resources: false
+  expiry_queue_prefix:
+  expiry_queue_suffix:
+  expiry_delay: 0
+  min_expiry_delay: 0
+  max_expiry_delay: 0
+  redelivery_delay: 0
+  redelivery_delay_multiplier: 0
+  redelivery_collision_avoidance_factor: 32
+  max_redelivery_delay: 0
+  max_delivery_attempts: 0
+  max_size_bytes:
+  max_size_bytes_reject_threshold: 0
+  page_max_cache_size: 0
+  address_full_policy: PAGE
+  message_counter_history_day_limit: 0
+  last_value_queue: false
+  default_last_value_queue: false
+  default_last_value_key:
+  default_non_destructive: false
+  default_exclusive_queue: false
+  default_group_rebalance: false
+  default_group_buckets: 0
+  default_group_first_key:
+  default_consumers_before_dispatch: 0
+  default_delay_before_dispatch: 0
+  redistribution_delay: 0
+  send_to_dla_on_no_route: false
+  slow_consumer_threshold: 0
+  slow_consumer_policy: NOTIFY
+  slow_consumer_check_period: 0
+  auto_create_jms_queues: false
+  auto_delete_jms_queues: false
+  auto_create_jms_topics: false
+  auto_delete_jms_topics: false
+  auto_create_queues: false
+  auto_delete_queues: false
+  auto_delete_created_queues: false
+  auto_delete_queues_delay: 0
+  auto_delete_queues_message_count: 0
+  config_delete_queues: OFF
+  auto_create_addresses: false
+  auto_delete_addresses: false
+  auto_delete_addresses_delay: 0
+  config_delete_addresses: OFF
+  management_browse_page_size: 0
+  default_purge_on_no_consumers: false
+  default_max_consumers: 0
+  default_queue_routing_type: MULTICAST
+  default_address_routing_type: MULTICAST
+  default_consumer_window_size: 0
+  default_ring_size: 0
+  retroactive_message_count: 0
+  enable_metrics: false
