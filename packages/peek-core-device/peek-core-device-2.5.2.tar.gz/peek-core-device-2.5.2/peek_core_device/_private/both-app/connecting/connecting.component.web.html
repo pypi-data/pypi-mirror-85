@@ -1,0 +1,35 @@
+<div class="peek-details-section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="title">Connecting To Server</div>
+                <p>
+                    Server connecting is in progress. If you see this screen for
+                    more than 10 seconds, there is a problem some where.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <i nz-icon nzType="loading" nzTheme="outline"></i>
+            </div>
+        </div>
+
+        <!--  -->
+        <hr />
+        <div class="row">
+            <div class="col-xs-12">
+                <button class="btn btn-block" (click)="reconnectClicked()">
+                    Reconnect
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <button class="btn btn-block" (click)="workOfflineClicked()">
+                    Work Offline
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
