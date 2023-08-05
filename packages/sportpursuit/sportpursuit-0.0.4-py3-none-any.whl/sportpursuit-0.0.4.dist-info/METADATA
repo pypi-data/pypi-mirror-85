@@ -1,0 +1,67 @@
+Metadata-Version: 2.1
+Name: sportpursuit
+Version: 0.0.4
+Summary: A package containing key sp functions
+Home-page: https://github.com/georgebiggs/sp_py_pkg
+Author: georgebiggs
+Author-email: george.biggs@sportpursuit.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: pandas
+Requires-Dist: psycopg2
+
+
+![Image of SportPursuit](https://www.yellowjersey.co.uk/wp-content/uploads/2019/10/SP-Strip-Logo-darktext-e1570098684384.png)
+
+# This is the official SportPursuit Python Package
+
+# SportPursuit is the UKs first sport-specific flash sales website featuring top quality sports products and services from the world's best brands. During their 7 days flash sales, members receive exclusive access to sales at up to 70% off RRP in a fun, content rich, personalised environment.  
+# The main site can be found here: https://www.sportpursuit.com/
+
+# Currently primarily contains functions for getting data from Redshift but will be extended in the future
+
+## Installing the package
+This package can be installed using pip, e.g. pip install sportpursuit  
+The recommended way to call the functions is by importing sportpursuit.sportpursuit as sp then invoking the GetData class as sp.GetData.function_name()  
+
+For example a minimum set of commands to get Redshift data in a Jupyter Notebook would look like the following:  
+!pip install sportpursuit   
+import sportpursuit.sportpursuit as sp   
+test_sql_string = "select * from example_table limit 10;"      
+sp.GetData.get_redshift_data(test_sql_string)    
+
+Please note that you will have to have environment variables saved that match the form of "redshift_password" and "redshift_username" for the function to read data, or else be in a cloud environment.
+
+# Description of functions present in package
+
+## Get Secret Function
+
+### The purpose of this function is to read the cloud based credentials to enable connecting to Redshift. It takes as input what is essentially a cloud username and returns the password associated with that username. Please note, it is not necessary to run this function when attempting to read Redshift data as it is run automatically as part of that anyway. Example usage: 			
+redshift_password = sp.GetData.get_secret("database/redshift/dataops")   
+redshift_username = "dataops"
+
+## Get Redshift Credentials
+
+### The purpose of this function is to read in whatever credentials are present on the system, preferentially it will use local credentials and then load cloud credentials if they are there. An error is raised if neither are present. Please note, it is not necessary to run this function when attempting to read Redshift data as it is run automatically as part of that anyway. Example usage:
+redshift_username, redshift_password = sp.GetData.get_redshift_credentials()
+
+## Get Redshift Data
+
+### The purpose of this function is to take a sql query as input and return a dataframe with the results of that query. It will attempt to read in credentials automatically as part of this and will fail if none can be found. Example usage:
+
+test_sql_string = "select * from example_table limit 10;"   
+sp.GetData.get_redshift_data(test_sql_string)
+
+## Execute Redshift Command
+
+### The purpose of this function is very similar to the get data function, however it differs in that it executes a command and doesn't return any data. This is used when you want to make Redshift do something internal, such as copying data into a table, or creating a new table etc. Example usage:
+
+example_redshift_sql_command = "copy example_table from existing_table;"   
+sp.GetData.execute_redshift_command(example_redshift_sql_command)
+
+
