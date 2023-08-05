@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: deepspeed
+Version: 0.3.1.dev5
+Summary: DeepSpeed library
+Home-page: http://deepspeed.ai
+Author: DeepSpeed Team
+Author-email: deepspeed@microsoft.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: torch (>=1.2)
+Requires-Dist: torchvision (>=0.4.0)
+Requires-Dist: tqdm
+Requires-Dist: psutil
+Requires-Dist: tensorboardX (==1.8)
+Requires-Dist: ninja
+Requires-Dist: cpufeature
+Provides-Extra: 1bit_adam
+Requires-Dist: mpi4py ; extra == '1bit_adam'
+Requires-Dist: cupy-cuda100 ; extra == '1bit_adam'
+Provides-Extra: all
+Requires-Dist: clang-format ; extra == 'all'
+Requires-Dist: sphinx-rtd-theme ; extra == 'all'
+Requires-Dist: pytest ; extra == 'all'
+Requires-Dist: recommonmark ; extra == 'all'
+Requires-Dist: cupy-cuda100 ; extra == 'all'
+Requires-Dist: psutil ; extra == 'all'
+Requires-Dist: tqdm ; extra == 'all'
+Requires-Dist: pre-commit ; extra == 'all'
+Requires-Dist: mpi4py ; extra == 'all'
+Requires-Dist: pytest-forked ; extra == 'all'
+Requires-Dist: sphinx ; extra == 'all'
+Provides-Extra: dev
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-forked ; extra == 'dev'
+Requires-Dist: pre-commit ; extra == 'dev'
+Requires-Dist: clang-format ; extra == 'dev'
+Requires-Dist: sphinx ; extra == 'dev'
+Requires-Dist: recommonmark ; extra == 'dev'
+Requires-Dist: sphinx-rtd-theme ; extra == 'dev'
+Provides-Extra: readthedocs
+Requires-Dist: tqdm ; extra == 'readthedocs'
+Requires-Dist: psutil ; extra == 'readthedocs'
+
+UNKNOWN
+
+
