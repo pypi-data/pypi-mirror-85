@@ -1,0 +1,60 @@
+Metadata-Version: 2.1
+Name: predictnow-api-client
+Version: 0.0.5
+Summary: A restful client library, designed to access predictnow restful api.
+Home-page: https://github.com/predictnow/predictnow-mono
+Author: PredictNow SDK Dev
+Author-email: rikky.hermanto@gmail.com
+License: UNKNOWN
+Description: Usage:
+        
+        from predictnow.pdapi import PredictNowClient
+        
+        # Setup client along with its api key
+        api_key = "<YOUR_API_KEY>"
+        client = PredictNowClient(api_key)
+        
+        # Train demo
+        train_input_path = 'C:/Users/devstack/Documents/example_input_train.csv'
+        train_params = {
+            "username": "welly",
+            "email": "welly@predictnow.ai",
+            "label": "futreturn",
+            "timeseries": "yes",
+            "type": "classification",
+            "feature_selection": "shap",
+            "analysis": "small",
+            "boost": "gbdt",
+            "mode": "train",
+            "testsize": "0.2",
+            "weights": "no",
+            "prob_calib": "no",
+            "suffix": "myfirstsuffix",
+            "eda": "no",
+        }
+        
+        response = client.train(train_input_path, train_params)
+        print(response)
+        
+        # Predict demo
+        live_input_path = 'C:/Users/devstack/Documents/example_input_live.csv'
+        username = train_params["username"]
+        suffix = train_params["suffix"]
+        path = "../" + train_params["username"]
+        predict_params = {
+            "username": username,
+            "model_name": "saved_model_" + suffix + ".pkl",  # TODO proper model name
+            "eda": "no",
+        }
+        response = client.predict(live_input_path, params=predict_params)
+        print(response)
+        
+        # Save Result demo
+        response = client.save_to_output({"username": "welly", "output": "C:/Users/devstack/Documents"})
+        print(response)
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
