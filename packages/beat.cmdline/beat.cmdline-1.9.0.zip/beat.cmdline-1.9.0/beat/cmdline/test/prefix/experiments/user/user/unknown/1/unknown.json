@@ -1,0 +1,38 @@
+{
+    "schema_version": 2,
+    "blocks": {
+        "some_block": {
+            "algorithm": "user/unknown/1",
+            "inputs": {
+                "in1": "in1"
+            },
+            "outputs": {
+                "out": "out"
+            }
+        }
+    },
+    "loops": {
+    },
+    "analyzers": {
+        "analysis": {
+            "algorithm": "user/integers_echo_analyzer_v2/1",
+            "inputs": {
+                "in_data": "input"
+            }
+        }
+    },
+    "datasets": {
+        "integers": {
+            "database": "simple/1",
+            "protocol": "protocol",
+            "set": "set"
+        }
+    },
+    "globals": {
+        "environment": {
+            "name": "Python for tests",
+            "version": "1.3.0"
+        },
+        "queue": "queue"
+    }
+}

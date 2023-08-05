@@ -1,0 +1,155 @@
+[beat.algorithms.cli]
+check = beat.cmdline.algorithms:check
+create = beat.cmdline.algorithms:create
+diff = beat.cmdline.algorithms:diff
+edit = beat.cmdline.algorithms:edit
+execute = beat.cmdline.algorithms:execute
+fork = beat.cmdline.algorithms:fork
+list = beat.cmdline.algorithms:list
+path = beat.cmdline.algorithms:path
+pull = beat.cmdline.algorithms:pull
+push = beat.cmdline.algorithms:push
+rm = beat.cmdline.algorithms:rm
+status = beat.cmdline.algorithms:status
+version = beat.cmdline.algorithms:version
+
+[beat.cache.cli]
+clear = beat.cmdline.cache:clear
+info = beat.cmdline.cache:info
+view = beat.cmdline.cache:view
+
+[beat.cli]
+algorithms = beat.cmdline.algorithms:algorithms
+cache = beat.cmdline.cache:cache
+config = beat.cmdline.config:config
+databases = beat.cmdline.databases:databases
+dataformats = beat.cmdline.dataformats:dataformats
+environments = beat.cmdline.environments:environments
+experiments = beat.cmdline.experiments:experiments
+libraries = beat.cmdline.libraries:libraries
+plotterparameters = beat.cmdline.plotterparameters:plotterparameters
+plotters = beat.cmdline.plotters:plotters
+protocoltemplates = beat.cmdline.protocoltemplates:protocoltemplates
+status = beat.cmdline.status:status
+toolchains = beat.cmdline.toolchains:toolchains
+
+[beat.config.cli]
+get = beat.cmdline.config:get
+set = beat.cmdline.config:set
+show = beat.cmdline.config:show
+
+[beat.databases.cli]
+check = beat.cmdline.databases:check
+diff = beat.cmdline.databases:diff
+edit = beat.cmdline.databases:edit
+index = beat.cmdline.databases:index
+list = beat.cmdline.databases:list
+path = beat.cmdline.databases:path
+pull = beat.cmdline.databases:pull
+push = beat.cmdline.databases:push
+status = beat.cmdline.databases:status
+version = beat.cmdline.databases:version
+view = beat.cmdline.databases:view
+
+[beat.dataformats.cli]
+check = beat.cmdline.dataformats:check
+create = beat.cmdline.dataformats:create
+diff = beat.cmdline.dataformats:diff
+edit = beat.cmdline.dataformats:edit
+fork = beat.cmdline.dataformats:fork
+list = beat.cmdline.dataformats:list
+path = beat.cmdline.dataformats:path
+pull = beat.cmdline.dataformats:pull
+push = beat.cmdline.dataformats:push
+rm = beat.cmdline.dataformats:rm
+status = beat.cmdline.dataformats:status
+version = beat.cmdline.dataformats:version
+
+[beat.environments.cli]
+list = beat.cmdline.environments:list
+
+[beat.experiments.cli]
+caches = beat.cmdline.experiments:caches
+cancel = beat.cmdline.experiments:cancel
+check = beat.cmdline.experiments:check
+diff = beat.cmdline.experiments:diff
+draw = beat.cmdline.experiments:draw
+edit = beat.cmdline.experiments:edit
+fork = beat.cmdline.experiments:fork
+list = beat.cmdline.experiments:list
+monitor = beat.cmdline.experiments:monitor
+path = beat.cmdline.experiments:path
+plot = beat.cmdline.experiments:plot
+pull = beat.cmdline.experiments:pull
+push = beat.cmdline.experiments:push
+reset = beat.cmdline.experiments:reset
+rm = beat.cmdline.experiments:rm
+run = beat.cmdline.experiments:run
+runstatus = beat.cmdline.experiments:runstatus
+start = beat.cmdline.experiments:start
+status = beat.cmdline.experiments:status
+
+[beat.libraries.cli]
+check = beat.cmdline.libraries:check
+create = beat.cmdline.libraries:create
+diff = beat.cmdline.libraries:diff
+edit = beat.cmdline.libraries:edit
+fork = beat.cmdline.libraries:fork
+list = beat.cmdline.libraries:list
+path = beat.cmdline.libraries:path
+pull = beat.cmdline.libraries:pull
+push = beat.cmdline.libraries:push
+rm = beat.cmdline.libraries:rm
+status = beat.cmdline.libraries:status
+version = beat.cmdline.libraries:version
+
+[beat.plotterparameters.cli]
+check = beat.cmdline.plotterparameters:check
+create = beat.cmdline.plotterparameters:create
+edit = beat.cmdline.plotterparameters:edit
+fork = beat.cmdline.plotterparameters:fork
+list = beat.cmdline.plotterparameters:list
+path = beat.cmdline.plotterparameters:path
+pull = beat.cmdline.plotterparameters:pull
+rm = beat.cmdline.plotterparameters:rm
+version = beat.cmdline.plotterparameters:version
+
+[beat.plotters.cli]
+check = beat.cmdline.plotters:check
+create = beat.cmdline.plotters:create
+edit = beat.cmdline.plotters:edit
+fork = beat.cmdline.plotters:fork
+list = beat.cmdline.plotters:list
+path = beat.cmdline.plotters:path
+plot = beat.cmdline.plotters:plot
+pull = beat.cmdline.plotters:pull
+rm = beat.cmdline.plotters:rm
+version = beat.cmdline.plotters:version
+
+[beat.protocoltemplates.cli]
+create = beat.cmdline.protocoltemplates:create
+edit = beat.cmdline.protocoltemplates:edit
+fork = beat.cmdline.protocoltemplates:fork
+list = beat.cmdline.protocoltemplates:list
+path = beat.cmdline.protocoltemplates:path
+rm = beat.cmdline.protocoltemplates:rm
+version = beat.cmdline.protocoltemplates:version
+
+[beat.toolchains.cli]
+check = beat.cmdline.toolchains:check
+create = beat.cmdline.toolchains:create
+diff = beat.cmdline.toolchains:diff
+draw = beat.cmdline.toolchains:draw
+edit = beat.cmdline.toolchains:edit
+fork = beat.cmdline.toolchains:fork
+list = beat.cmdline.toolchains:list
+path = beat.cmdline.toolchains:path
+pull = beat.cmdline.toolchains:pull
+push = beat.cmdline.toolchains:push
+rm = beat.cmdline.toolchains:rm
+status = beat.cmdline.toolchains:status
+version = beat.cmdline.toolchains:version
+
+[console_scripts]
+beat = beat.cmdline.scripts.main_cli:main
+
