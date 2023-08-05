@@ -1,0 +1,16 @@
+{% extends "page.html" %}
+
+{% block subtitle %}{{ _('Changelog') }}{% endblock %}
+
+{% block breadcrumb_content %}
+  <li class="active">{% link_for _('Changelog'), controller='ckanext.openenergy.plugin:ExtraPagesController', action='changelog' %}</li>
+{% endblock %}
+
+{% block primary %}
+  <article class="module">
+    <div class="module-content">
+    </div>
+  </article>
+{% endblock %}
+
+{% block secondary %}{% endblock %}
