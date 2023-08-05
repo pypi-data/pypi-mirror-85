@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "bitmex-async-rest"
+version = "0.4.3"
+description = "Async REST Api wrapper for BitMEX cryptocurrency derivatives exchange."
+authors = ["Anders Ellenshøj Andersen <andersa@ellenshoej.dk>"]
+license = "MIT"
+homepage = "https://github.com/andersea/bitmex-async-rest"
+readme = "README.md"
+keywords = ["BitMEX", "REST", "AnyIO", "asks", "async"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Framework :: Trio",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+asks = "^2.4.8"
+ujson = "^4.0.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+bump2version = "^1.0.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
