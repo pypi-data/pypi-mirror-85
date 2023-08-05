@@ -1,0 +1,1 @@
+from .tweepyAuth import auto_authenticate
