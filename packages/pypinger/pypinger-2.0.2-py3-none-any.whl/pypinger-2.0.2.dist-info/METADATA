@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: pypinger
+Version: 2.0.2
+Summary: Another way to ping in Python
+Home-page: https://github.com/DataKnox/pypinger
+Author: Knox Hutchinson
+Author-email: knox@knoxsdata.com
+License: MIT
+Keywords: ping,icmp,network
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: System Administrators
+Classifier: Natural Language :: English
+Description-Content-Type: text/markdown
+
+# A Quick Way to Ping in Python
+
+## Install
+Currently in Test
+```
+pip install -i https://test.pypi.org/simple/ pypinger
+```
+
+## From the CLI
+
+You can use Pyping from the CLI like so
+```
+pyping -s 10.10.10.1
+```
+Or ping a whole subnet with
+```
+pyping -s 10.10.10.0/24
+```
+
+## Programmatically 
+
+The pypinger function will not only print the output to the console but also will return a list of hosts that had successful pings
+```
+from pypinger import pyping
+
+hosts = pyping('10.10.21.0/24')
+print(hosts)
+```
+Or you can be prompted at runtime for the hosts/subnet
+```
+from pypinger import pyping
+
+hosts = pyping()
+print(hosts)
+```
+
+# Contact
+- https://twitter.com/data_knox
+- https://youtube.com/c/dataknox
+
