@@ -1,0 +1,46 @@
+
+include 'constants.bnf'
+include 'protocols/http.bnf'
+
+<%pre
+    import socket
+    import logging
+
+    nelly.encode = 'utf-8'
+
+    host = $host
+
+    try:
+        port = int($port)
+    except KeyError:
+        port = 80
+
+    try:
+        skt
+    except NameError:
+        try:
+            skt = socket.socket()
+            skt.connect((host,port))
+        except socket.error as e:
+            logging.error('%s', e)
+            exit()
+%>
+
+::HTTP_HOST: &host;
+
+::HTTP_BODY: "matt";
+
+$SEND_HTTP_REQUEST(start):
+    HTTP_POST
+    <%
+        print($$.decode('utf-8'))
+        print()
+
+        skt.send($$)
+        $* = skt.recv(1500)
+
+        headers,body = $*.decode('utf-8').split('\r\n\r\n', 1)
+
+        print(headers)
+        print(body)
+    %>;

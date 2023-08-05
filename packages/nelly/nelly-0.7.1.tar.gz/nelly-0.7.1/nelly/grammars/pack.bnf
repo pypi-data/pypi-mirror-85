@@ -1,0 +1,17 @@
+
+<%pre
+    def BYTE(i):   return struct.pack('B', i)
+    def WORD(i):   return struct.pack('H', i)
+    def DWORD(i):  return struct.pack('I', i)
+    def QWORD(i):  return struct.pack('Q', i)
+
+    def LBYTE(i):  return struct.pack('<B', i)
+    def LWORD(i):  return struct.pack('<H', i)
+    def LDWORD(i): return struct.pack('<I', i)
+    def LQWORD(i): return struct.pack('<Q', i)
+
+    def BBYTE(i):  return struct.pack('>B', i)
+    def BWORD(i):  return struct.pack('>H', i)
+    def BDWORD(i): return struct.pack('>I', i)
+    def BQWORD(i): return struct.pack('>Q', i)
+%>

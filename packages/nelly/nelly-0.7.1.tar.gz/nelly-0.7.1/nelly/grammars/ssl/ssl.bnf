@@ -1,0 +1,297 @@
+include "constants.bnf"
+
+include "ssl/cipher_suites.bnf"
+
+<%pre
+    import random
+    import struct
+    import os
+    import hashlib
+    import time
+    import socket
+    import select
+
+    import cryptography.x509
+    import cryptography.hazmat.primitives.asymmetric.rsa
+    import cryptography.hazmat.primitives.asymmetric.padding
+    import cryptography.hazmat.primitives.hashes
+    import cryptography.hazmat.primitives.serialization
+    import cryptography.exceptions
+
+    backend = cryptography.hazmat.backends.default_backend()
+
+    nelly.encode = 'iso-8859-1'
+
+    skt = socket.socket()
+    skt.connect(('localhost',4433))
+
+    def c24(sLen):
+        (nHigh,nLow) = struct.unpack('!BH', sLen)
+        return (nHigh << 16) + nLow
+
+    def _timeout(fd, wait=10.0):
+        fds = select.select([fd], [], [], wait)
+        return 0 == len(fds[0])
+
+%>
+
+VERSION: \x03 \x01;
+
+// -----------------------------------------------------------------------------
+//
+// TYPES FOUND AT BEGINNING OF RECORD
+//
+
+TYPE_HANDSHAKE: \x16;
+TYPE_CHANGE_CIPHER_SPEC: \x14;
+
+// -----------------------------------------------------------------------------
+
+$TIME: <% $* = int(time.time()) %>;
+
+$PREMASTER
+    : VERSION RANDCHAR{46}
+    <%
+        handshake = b''
+        premaster = $$
+        $* = b''
+    %>
+    ;
+
+// -----------------------------------------------------------------------------
+
+SSL_START(start):
+    $PREMASTER              // generate the premaster secret
+    $SSL_FIRST_PACKET       // then generate the first packet
+    $SSL_SECOND_PACKET      // followed by the second packet (brilliant!)
+    ;
+
+// -----------------------------------------------------------------------------
+
+$SSL_FIRST_PACKET:
+    // the first packet is pretty simple
+    ( TYPE_HANDSHAKE VERSION %struct.pack('!H', %len(SSL_CLIENT_HELLO_HDR)) \SSL_CLIENT_HELLO_HDR )
+    <%
+
+    serverHelloRandom = None
+    x509 = None
+    # send it out on the socket
+    ok = skt.send($$)
+    if not ok:
+        skt.close()
+
+    shouldQuit = False
+    while False == shouldQuit:
+        if _timeout(skt):
+            break
+
+        # read the first 5 bytes
+        data = skt.recv(5)
+        if not data or 5 != len(data):
+            # XXX: handle this error
+            print('[!] Read error from server')
+            exit()
+
+
+        # unpack the data
+        (ct,vers,nLen) = struct.unpack('!BHH', data)
+        data = skt.recv(nLen)
+
+        # is it the right type?
+        if ct != 22:
+            # XXX: handle this error
+            print('[!] Invalid response from server')
+            nelly.utils.fail()
+
+        # add it to the handshake data
+        handshake += data
+
+        # parse the data
+        while data:
+            nType = data[0]
+            nLen = c24(data[1:4])
+            data = data[4:]
+
+            server_hello = data[:nLen]
+
+            # server hello
+            if 2 == nType:
+                print('[+] Received Server Hello')
+                serverHelloRandom = server_hello[2:34]
+                nSessLen = server_hello[34]
+
+                # SSL Session...
+                #self.sSession = server_hello[:nSessLen]
+                #(nSuite,nComp) = struct.unpack('!HB', server_hello[nSessLen:])
+
+            # the X.509 certificate
+            elif 11 == nType:
+                x509 = server_hello[6:]
+
+            # end of records
+            elif 14 == nType:
+                shouldQuit = True
+                break
+
+            data = data[nLen:]
+
+    # generate the master and mac
+
+    randstr = premaster + clientHelloRandom + serverHelloRandom
+    master  = hashlib.md5(premaster + hashlib.sha1(b'A'   + randstr).digest()).digest()
+    master += hashlib.md5(premaster + hashlib.sha1(b'BB'  + randstr).digest()).digest()
+    master += hashlib.md5(premaster + hashlib.sha1(b'CCC' + randstr).digest()).digest()
+
+    randstr = master + serverHelloRandom + clientHelloRandom
+    writeMAC  = hashlib.md5(master + hashlib.sha1(b'A'   + randstr).digest()).digest()
+    writeMAC += hashlib.md5(master + hashlib.sha1(b'BB'  + randstr).digest()).digest()
+    writeMAC += hashlib.md5(master + hashlib.sha1(b'CCC' + randstr).digest()).digest()
+
+    $* = ''
+
+    %>
+    ;
+
+// -----------------------------------------------------------------------------
+
+$SSL_SECOND_PACKET
+    :
+    TYPE_HANDSHAKE
+    VERSION
+    %struct.pack('!H', %len(SSL_CLIENT_KEY_EXCHANGE))
+    \SSL_CLIENT_KEY_EXCHANGE
+
+    TYPE_CHANGE_CIPHER_SPEC
+    VERSION
+    \x00 \x01 \x01
+
+    TYPE_HANDSHAKE
+    VERSION
+    \x00 \x20
+
+    $SSL_FINISHED_MESSAGE
+
+    <%
+    print('[+] GEN...')
+    #nelly.utils.hexdump($$)
+
+    ok = skt.send($$)
+    if not ok:
+        skt.close()
+
+    $* = skt.recv(5)
+    if $*:
+        (ct,vers,nLen) = struct.unpack('!BHH', $*)
+        $* += skt.recv(nLen)
+        nelly.utils.hexdump($*)
+
+    print('>>>>', len($*))
+    %>
+    ;
+
+// -----------------------------------------------------------------------------
+
+::SSL_CLIENT_HELLO_HDR:
+    // HANDSHAKE_TYPE: Client Hello
+    \x01
+    // Length of the next section
+    %struct.pack('!I', %len(SSL_CLIENT_HELLO))[1:]
+    // The next sesction
+    \SSL_CLIENT_HELLO
+    <%
+        handshake += $$
+        #print('[+] SSL_CLIENT_HELLO_HDR')
+        #nelly.utils.hexdump($$)
+    %>
+    ;
+
+::SSL_CLIENT_HELLO:
+    VERSION
+    CLIENT_HELLO_RANDOM_STRING
+    \x00                                // Session ID Length
+
+    CIPHER_SUITES
+
+//    \x00 \x02
+//    \x00 \x0A
+
+    \x01                                // Compression Methods Length
+    \x00                                // Compression Method
+    ;
+
+CLIENT_HELLO_RANDOM_STRING:
+    %struct.pack('!I', $TIME) RANDCHAR{28}
+    <% clientHelloRandom = $$ %>
+    ;
+
+
+::CIPHER_SUITES:
+    %struct.pack('!H', %len(_CIPHER_SUITES))
+    \_CIPHER_SUITES
+    ;
+
+::_CIPHER_SUITES:
+    CIPHER_SUITE_RSA_WITH_DES_CBC_SHA
+    ;
+
+
+// -----------------------------------------------------------------------------
+
+SSL_CLIENT_KEY_EXCHANGE:
+    \x10                                // HANDSHAKE_TYPE: Client Key Exchange
+    %struct.pack('!I', %len(SSL_ENCRYPTED))[1:]
+    \SSL_ENCRYPTED
+    <%
+        handshake += $$
+    %>
+    ;
+
+// -----------------------------------------------------------------------------
+
+SSL_ENCRYPTED:
+    %struct.pack('!H', %len($SSL_ENCRYPTED2))
+    \$SSL_ENCRYPTED2
+    ;
+
+$SSL_ENCRYPTED2:
+    <%
+        cert = cryptography.x509.load_der_x509_certificate(x509, backend)
+
+        print('[+] Certificate Subject:', cert.subject.rfc4514_string())
+
+        server_public_key = cert.public_key()
+
+        $* = server_public_key.encrypt(premaster, cryptography.hazmat.primitives.asymmetric.padding.PKCS1v15())
+
+        print('Pre-Master')
+        nelly.utils.hexdump(premaster)
+        print()
+
+        print('Encrypted Pre-Master')
+        nelly.utils.hexdump($*)
+        print()
+    %>
+    ;
+
+$SSL_FINISHED_MESSAGE:
+    <%
+        p1 = b'\x36'
+        p2 = b'\x5c'
+        sndr = b'CLNT'
+
+        m = hashlib.md5(master  + p2*40 + hashlib.md5(handshake + sndr + master + p1*40).digest()).digest()
+        s = hashlib.sha1(master + p2*48 + hashlib.sha1(handshake + sndr + master + p1*48).digest()).digest()
+
+        $* = m + s[:16]
+
+        #print(len(m), len(s))
+        #print(':::', `$*`)
+        #print()
+    %>
+    ;
+
+<%post
+    print('Closing...')
+    skt.close()
+    print('[+] Done')
+%>
