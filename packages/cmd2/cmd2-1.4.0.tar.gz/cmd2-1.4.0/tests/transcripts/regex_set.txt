@@ -1,0 +1,16 @@
+# Run this transcript with "python example.py -t transcript_regex.txt"
+# The regex for colors shows all possible settings for colors
+# The regex for editor will match whatever program you use.
+# Regexes on prompts just make the trailing space obvious
+
+(Cmd) set
+allow_style: /'(Terminal|Always|Never)'/
+always_show_hint: False
+debug: False
+echo: False
+editor: /'.*'/
+feedback_to_output: False
+max_completion_items: 50
+maxrepeats: 3
+quiet: False
+timing: False

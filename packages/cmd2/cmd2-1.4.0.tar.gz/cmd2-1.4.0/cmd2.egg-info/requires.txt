@@ -1,0 +1,45 @@
+attrs>=16.3.0
+colorama>=0.3.7
+pyperclip>=1.6
+wcwidth>=0.1.7
+
+[:python_version < "3.8"]
+importlib_metadata>=1.6.0
+
+[:sys_platform=='win32']
+pyreadline
+
+[dev]
+pytest>=4.6
+codecov
+pytest-cov
+pytest-mock
+flake8
+sphinx
+sphinx-rtd-theme
+sphinx-autobuild
+doc8
+invoke
+twine>=1.11
+
+[dev:python_version < "3.6"]
+mock
+
+[dev:python_version == "3.5.2"]
+nox==2019.11.9
+
+[dev:python_version > "3.5.2"]
+nox
+
+[test]
+codecov
+coverage
+pytest>=4.6
+pytest-cov
+pytest-mock
+
+[test:python_version < "3.6"]
+mock
+
+[test:sys_platform == "darwin"]
+gnureadline
