@@ -1,0 +1,86 @@
+
+How csvslice compares to existing tools
+=======================================
+
+Given :download:`ids.csv <../../../examples/ids.csv>` (TK: not sure I need to repeat this reference?)
+
+
+head: Get the first n rows
+--------------------------
+
+The issue with :command:`head` is that it only understands text and newline characters. Thus, specifying ``-n 3`` returns 3 lines, one of which is the header line.
+
+
+.. code-block:: sh
+
+    $ head -n 3 ids.csv
+    id,val
+    0,a
+    1,b
+
+
+
+In contrast, :command:`csvslice` has a notion of comma-delimited *data*, in which the first line is **not** data, but the header. Thus, an argument equivalent to ``-n 3`` would return *4 lines* in total: 1 header line and 3 data lines.
+
+
+.. code-block:: sh
+
+    $ csvslice --head 3 ids.csv
+    id,val
+    0,a
+    1,b
+    2,c
+
+
+tail: Get the last n rows
+-------------------------
+
+TK lorem with :command:`tail`
+
+
+.. code-block:: sh
+
+    $ tail -n 2 ids.csv
+    4,e
+    5,f
+
+
+
+TK lorem with :command:`csvslice`
+
+
+.. code-block:: sh
+
+    $ csvslice --tail 2 ids.csv
+    id,val
+    4,e
+    5,f
+
+
+csvformat: Skip the first n lines
+---------------------------------
+
+.. code-block:: sh
+
+    $ TKTK ids.csv
+
+
+.. include:: comparison-xsv-slice.rstinc
+
+
+The agate library
+-----------------
+
+TK Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut
+
+
+The pandas library
+------------------
+
+TK Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur.

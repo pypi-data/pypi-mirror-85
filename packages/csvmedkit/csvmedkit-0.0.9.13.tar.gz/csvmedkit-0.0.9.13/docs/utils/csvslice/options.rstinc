@@ -1,0 +1,40 @@
+
+
+Options and flags
+=================
+
+:command:`csvslice` has 3 unique options, ``--indexes, --head, and --tail``. Each of these specify a *mode*, and one and only one mode can be specified.
+
+
+-i, --indexes <values>
+----------------------
+
+`<values>` is a comma-delimited list of values representing individual indexes or ranges of indexes to be sliced and included from the 0-indexed dataset.
+
+An index value can take these forms:
+
+- An individual row: ``-i 0`` returns the very first row
+- A range of rows: ``-i 2-4`` returns rows in the inclusive index range of 2 through 4
+- An open-ended range: ``-i 3-`` returns all rows starting from row index 3
+
+
+
+Multiple interval values can be passed into ``-i/--indexes``, e.g.
+
+.. code-block:: sh
+
+    csvslice -i '0-5,12,15-18,42-' data.csv
+
+
+
+--head <int>
+------------
+
+Return the header and the *first* `<int>` rows; `<int>` must be greater than 0.
+
+
+
+--tail <int>
+------------
+
+Return the header and the *last* `<int>` rows; `<int>` must be greater than 0.
