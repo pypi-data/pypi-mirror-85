@@ -1,0 +1,57 @@
+Metadata-Version: 2.1
+Name: py-lingo
+Version: 0.0.1b1
+Summary: Utilities for saving Scikit-Learn Linear Models in HDF5 format.
+Home-page: https://github.com/markdouthwaite/py-lingo
+Author: Mark Douthwaite
+Author-email: mark@douthwaite.io
+License: MIT
+Description: # py-lingo
+        
+        Utilities for helping you deploy a subset of Scikit-Learn linear models in Go. See the 
+        `lingo` repository for more details.
+        
+        This package is particularly focussed on saving linear models _for inference_ purposes.
+        
+        The package has been tested and supports the following Linear Model variants:
+        
+        * **LinearRegression**
+        * **LogisticRegression**
+        * **Ridge**
+        * **RidgeClassifier**
+        * **Lasso**
+        * **SGDRegressor**
+        * **SGDClassifier**
+        
+        ## Quickstart
+        
+        You can install `py-lingo` with.
+        
+        ```bash
+        pip install py-lingo
+        ```  
+        
+        You'll then be able to import it in your code with:
+        
+        ```python
+        import pylingo
+        from sklearn.linear_model import LinearRegression
+        
+        model = LinearRegression()
+        
+        pylingo.dump(model, "model.h5")
+        
+        loaded_model = pylingo.load("model.h5")
+        ```
+        
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
+Provides-Extra: tests
