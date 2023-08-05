@@ -1,0 +1,154 @@
+Metadata-Version: 2.1
+Name: finance-calculator
+Version: 0.0.6
+Summary: A simple python tool for calculating ratios used to measure portfolio performance.
+Home-page: https://github.com/sprksh/finance-calculator
+Author: Surya Prakash
+Author-email: sprksh.j@gmail.com
+License: BSD-2-Clause
+Project-URL: Documentation, https://finance-calculator.readthedocs.io/
+Project-URL: Changelog, https://finance-calculator.readthedocs.io/en/latest/changelog.html
+Project-URL: Issue Tracker, https://github.com/sprksh/finance-calculator/issues
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Utilities
+Requires-Python: >=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*
+Requires-Dist: numpy (>=1.18.0)
+Requires-Dist: pandas (>=0.25.0)
+
+========
+Overview
+========
+
+
+
+A simple python tool for calculating ratios used to measure portfolio performance.
+Ratios include alpha, beta, sharpe, volatility, upside capture, downside capture, sortino ratio,
+treynor ratio, drawdown etc.
+
+It also can be used to calculating portfolio returns like XIRR. (twirr, holding period return etc. will be added).
+
+The tool is largely based on pandas and numpy and is capable of giving continuous (rolling) values of ratios
+wherever required in the form of a pandas dataframe. All data (portfolio/ navs/ market) needs to be passed in
+arguments based on the function getting called.
+
+For example
+- XIRR can be calculated from portfolio cashflows [(date, amount)].
+- Sharpe ratio will need scheme/portfolio nav [(date, nav)].
+- Alpha will need both scheme nav as well as benchmark nav.
+
+
+For definitions of above terms, check Investopedia. You can find the examples of
+few of these ratios here. https://www.valueresearchonline.com/funds/197/sbi-large-and-midcap-fund
+
+* Free software: BSD 2-Clause License
+
+Installation
+============
+
+::
+
+    pip install finance-calculator
+
+You can also install the in-development version with::
+
+    pip install https://github.com/sprksh/finance-calculator/archive/master.zip
+
+
+Documentation
+=============
+
+
+https://finance-calculator.readthedocs.io/
+
+
+Development
+===========
+
+To run all the tests run::
+
+    tox
+
+Note, to combine the coverage data from all the tox environments run:
+
+.. list-table::
+    :widths: 10 90
+    :stub-columns: 1
+
+    - - Windows
+      - ::
+
+            set PYTEST_ADDOPTS=--cov-append
+            tox
+
+    - - Other
+      - ::
+
+            PYTEST_ADDOPTS=--cov-append tox
+
+=====
+Usage
+=====
+
+To use finance_calculator in a project::
+
+	import finance_calculator as fc
+
+
+.. code-block:: python
+
+    drawdown = fc.get_drawdown(scheme_data, 250, 22)
+    volatility = fc.get_volatility(scheme_data, 250, 22)
+    sharpe = fc.get_sharpe(scheme_data, 250, 22)
+    sortino = fc.get_sortino(scheme_data, 250, 22)
+    treynor = fc.get_treynor(scheme_data, benchmark_data, 250, 22)
+    alpha = fc.get_alpha(scheme_data, benchmark_data, 250, 22)
+    beta = fc.get_beta(scheme_data, benchmark_data, 250, 22)
+    upside_capture = fc.get_upside_capture(scheme_data, benchmark_data, 250, 22)
+    downside_capture = fc.get_downside_capture(scheme_data, benchmark_data, 250, 22)
+
+If you want only current value of a given ratio, you can use ``tail=True`` as a keyword argument
+in all of these functions. With ``tail=False`` it will give a pandas dataframe with values in a
+rolling window fashion.
+
+The scheme data and the benchmark data can either be a pandas dataframe or list of tuples: (date, nav).
+
+Also you can use it to calculate xirr:
+
+.. code-block:: python
+
+    >>> import finance_calculator as fc
+    >>> cashflow_data = [
+        (datetime.date(2020, 3, 1), 10000),
+        (datetime.date(2020, 4, 1), 10000),
+        (datetime.date(2020, 5, 1), 10000),
+        (datetime.date(2020, 6, 1), 10000),
+        (datetime.date(2020, 7, 1), 10000),
+        (datetime.date(2020, 8, 1), -60000),
+    ]
+    >>> xirr = fc.get_xirr(cashflow_data)
+
+
+Changelog
+=========
+
+0.0.0 (2020-07-29)
+------------------
+
+* First release on PyPI.
+
+
