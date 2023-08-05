@@ -1,0 +1,10 @@
+<tr>
+    {# Created Time #}
+    <td>{{ announcement.created_at|date:"SHORT_DATETIME_FORMAT"}}</td>
+    {# Subject #}
+    <td>{{ announcement.subject }}</td>
+    {# Status #}
+    <td>{{ announcement.status }}</td>
+    {# Last updated Time #}
+    <td>{{ announcement.updated_at|date:"SHORT_DATETIME_FORMAT" }}</td>
+</tr>
