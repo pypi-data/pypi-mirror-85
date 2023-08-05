@@ -1,0 +1,13 @@
+PRO.CATG                                                use     required grouping keys
+------------------------------------------------------- ------- -------- -----------------------------------------------------------------------------
+SINGLE_SCI_RAW,SINGLE_CAL_RAW,DUAL_SCI_RAW,DUAL_CAL_RAW all     1        TPL.START,DET2.SEQ1.DIT,DET3.SEQ1.DIT,INS.SPEC.RES,INS.POLA.MODE,FT.POLA.MODE
+SINGLE_SKY_RAW,DUAL_SKY_RAW                             all     1        TPL.START,DET2.SEQ1.DIT,DET3.SEQ1.DIT,INS.SPEC.RES,INS.POLA.MODE,FT.POLA.MODE
+FLAT                                                    closest 1        INS.SPEC.RES,INS.POLA.MODE,FT.POLA.MODE
+BAD                                                     closest 1        INS.SPEC.RES,INS.POLA.MODE,FT.POLA.MODE
+WAVE                                                    closest 1        INS.SPEC.RES,INS.POLA.MODE,FT.POLA.MODE
+P2VM                                                    closest 1        INS.SPEC.RES,INS.POLA.MODE,FT.POLA.MODE
+DARK                                                    closest 0        DET2.SEQ1.DIT,DET3.SEQ1.DIT,INS.SPEC.RES,INS.POLA.MODE,FT.POLA.MODE
+DISP_MODEL                                              closest 0    
+DIODE_POSITION                                          closest 0    
+DIAMETER_CAT                                            closest 0        
+
