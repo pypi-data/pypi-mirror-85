@@ -1,0 +1,82 @@
+<div class="requirement requirement_{{ requirement_view_type }}"
+{%- if requirement.status %}
+data-status='{{ requirement.status.lower() }}'
+{%- endif %}>
+
+<div class="requirement_section" data-role='meta'>
+
+  <h{{ requirement.ng_level }} class="section-title" data-level="{{ requirement.context.title_number_string }}">
+    {{ requirement.title if requirement.title else (requirement.uid if requirement.uid else '') }}
+  </h{{ requirement.ng_level }}>
+
+  {%- if requirement.has_meta -%}
+    <dl class="requirement-meta">
+      {%- if requirement.uid %}
+      <div><dt>UID</dt><dd>{{ requirement.uid }}</dd></div>
+      {%- endif %}
+      {%- if requirement.status %}
+      <div><dt>Status</dt><dd>{{ requirement.status }}</dd></div>
+      {%- endif %}
+      {%- if requirement.tags %}
+      <div><dt>Tags</dt><dd>{{ ', '.join(requirement.tags) }}</dd></div>
+      {%- endif %}
+    </dl>
+  {%- endif %}
+
+  {%- if traceability_index.has_parent_requirements(requirement) %}
+  <ul class="requirement-parent">
+    {%- for requirement in traceability_index.get_parent_requirements(requirement) %}
+    <li><a href="#">
+      {%- if requirement.uid %}
+      <span class="requirement-parent_uid">{{ requirement.uid }} </span>
+      {%- endif %}
+      {{ requirement.title }}
+    </a></li>
+    {%- endfor %}
+    </ul>
+  {%- endif %}
+
+  </div>
+  <div class="requirement_section" data-role='statement'>
+
+  {%- if requirement.statement or requirement.statement_multiline -%}
+    <div class="requirement-statement">
+      {{ renderer.render_requirement_statement(requirement) }}
+    </div>
+  {%- endif -%}
+
+  {%- if requirement.body %}
+    <div><p>
+      {{ requirement.body }}
+    </p></div>
+  {%- endif %}
+
+  </div>
+  <div class="requirement_section" data-role='comment'>
+
+  {%- if requirement.comments %}
+    {%- for comment in requirement.comments %}
+      <div class="comment">
+        {{ renderer.render_comment(comment) }}
+      </div>
+    {%- endfor %}
+  {%- endif %}
+
+  </div>
+
+<!-- TODO: remove when certain with tags comes -->
+<!--
+  {%- if requirement.tags %}
+    <div>
+    {%- for tag in requirement.tags %}
+      <span class="tag">
+
+        {{ tag }}
+
+      </span>
+    {%- endfor %}
+    </div>
+  {%- endif %}
+-->
+
+</div>
