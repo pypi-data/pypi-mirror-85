@@ -1,0 +1,33 @@
+# BD103's Personal Coding Package
+A bunch of random developer related functions and modules that I use.
+## Patch Notes
+### 0.0.3
+Updated short description. Added `__all__` variable in `__init__.py`. Created `parser.py`. Updated `README.md` to have full module names. Renamed `color()` function to `print()`. Updated 0.0.1 description. Added `load.py` module. Created the `parser.py` module.
+```python
+bd103.parser.grid(path) # Loads a text file and creates a list. Each item is a sepperate line of the file. Returns the list (array)
+bd103.parser.space(text) # Parses given string and returns an array. Each item is sepperated by spaces. "hi there" would return ["hi", "there"]
+bd103.load.load(length=100) # Automatically makes a useless loading bar
+bd103.load.loadbar(value, length=100) # Allows you to manually create a load bar that syncs with data.
+bd103.parser.grid(path) # Loads file and creates an array line by line
+bd103.parser.space(text, indentifier=" ") # Loads a text and adds an item to a list for every word. Uses spaces to identify filler.
+```
+### 0.0.2
+Emptied `__init__.py` to fix error. Updated `setup.py` and redid `README.md`.
+### 0.0.1
+Initial package. Contains a basic color formatting module.
+```python
+''' Functions '''
+bd103.color.print(text, color) # Prints with text then resets formatting
+bd103.color.paint(color) # Sets color permanently until reset
+
+''' Colors '''
+reset = "reset
+red = "red"
+yellow = "yellow"
+green = "green"
+cyan = "cyan"
+blue = "blue"
+magenta = "magenta"
+black = "black"
+white = "white"
+```
