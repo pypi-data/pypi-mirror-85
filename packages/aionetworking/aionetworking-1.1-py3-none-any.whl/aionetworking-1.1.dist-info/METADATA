@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: aionetworking
+Version: 1.1
+Summary: Various utilities for asyncio networking
+Home-page: https://github.com/primal100/aionetworking
+Author: Paul Martin
+Author-email: greatestloginnameever@gmail.com
+License: MIT License
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Framework :: AsyncIO
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Requires-Dist: wheel (>=0.35.1)
+Requires-Dist: aiofiles (>=0.6.0)
+Requires-Dist: inflect (>=4.1.0)
+Requires-Dist: dataclasses (>=0.7) ; python_version < "3.7"
+Requires-Dist: pep562 (>=1.0) ; python_version < "3.7"
+Requires-Dist: typing-extensions (>=3.7.4.3) ; python_version < "3.8"
+Requires-Dist: cached-property (>=1.5.1) ; python_version < "3.8"
+Provides-Extra: all
+Requires-Dist: asyncssh (>=2.4.2) ; extra == 'all'
+Requires-Dist: psutil (>=5.7.3) ; extra == 'all'
+Requires-Dist: pyyaml (>=5.3.1) ; extra == 'all'
+Requires-Dist: pywin32 (>=228) ; (os_name == "nt") and extra == 'all'
+Requires-Dist: pamela (>=1.0.0) ; (os_name == "posix") and extra == 'all'
+Requires-Dist: uvloop (>=0.14.0) ; (os_name == "posix") and extra == 'all'
+Provides-Extra: optional
+Requires-Dist: psutil (>=5.7.3) ; extra == 'optional'
+Requires-Dist: pyyaml (>=5.3.1) ; extra == 'optional'
+Requires-Dist: uvloop (>=0.14.0) ; (os_name == "posix") and extra == 'optional'
+Provides-Extra: sftp
+Requires-Dist: asyncssh (>=2.4.2) ; extra == 'sftp'
+Requires-Dist: pywin32 (>=228) ; (os_name == "nt") and extra == 'sftp'
+Requires-Dist: pamela (>=1.0.0) ; (os_name == "posix") and extra == 'sftp'
+
+Various utilities for networking with asyncio
+
+
