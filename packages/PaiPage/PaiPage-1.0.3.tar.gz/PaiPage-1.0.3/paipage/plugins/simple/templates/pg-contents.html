@@ -1,0 +1,18 @@
+{% extends layout_template %}
+{% import "_utils.html" as utils with context %}
+
+{% block title %}{{ text.title }}{% endblock %}
+
+{% block page_content %}
+	{{ utils.make_upper(upper) }}
+	<h1>{{ text.title }}</h1>
+
+	<div class="page-main-content">
+		{% if text.text_full|length > 1 -%}
+		{{ text.text_full |safe }}
+		<br><br>
+		{%- endif %}
+
+		{{ utils.page_contents(children) }}
+	</div>
+{% endblock %}

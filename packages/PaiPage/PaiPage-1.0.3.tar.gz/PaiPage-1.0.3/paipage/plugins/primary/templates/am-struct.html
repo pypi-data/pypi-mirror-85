@@ -1,0 +1,470 @@
+{% extends "am-lo.html" %}
+
+{% block title %}Website structure{% endblock %}
+
+{% block meta %}
+{{ super() }}
+<style type="text/css">
+	.record {
+		position: relative;
+		padding-top: 12px;
+		z-index: 1;
+	}
+	.record .record {
+		padding-top: 4px;
+		padding-left: 14px;
+	} 
+	.record .record:before {
+		content: "";
+		display: block;
+		position: absolute;
+		top: 14px;
+		bottom: 0px;
+		left: 0px;
+		width: 12px;
+		/*background-color: hsla(100,60%,50%,0.2);*/
+		border-top: 1px solid DarkGray;
+		z-index: -1;
+	}
+	.record .record:after {
+		content: "";
+		display: block;
+		position: absolute;
+		top: 0px;
+		bottom: 0px;
+		left: 0px;
+		width: 32px;
+		/*background-color: hsla(0,60%,50%,0.2);*/
+		border-left: 1px solid DarkGray;
+		z-index: -1;
+	}
+	.record:last-child:after {
+		top: 0px;
+		bottom: unset;
+		height: 14px;
+	}
+	.record-parent {
+		/*margin-top: 4px;*/
+	}
+	.clickable:hover ~ .record, .selected > .record {
+		background: rgba(0,95,191,0.1);
+	}
+	.button-box {
+		display: inline-block;
+		float: right;
+		margin: 0px 8px;
+		text-align: right;
+		text-decoration: underline;
+	}
+	#editor {
+		margin-bottom: 16px;
+		padding-top: 8px;
+		padding-left: 16px;
+		padding-right: 8px;
+		border-radius: 16px;
+		border-left: 1px solid gray;
+		border-bottom: 1px solid DarkGray;
+		background: rgba(24,64,160,0.05);
+	}
+</style>
+<script src="/static/paf.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.css"/>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+{% endblock %}
+
+{% block page_content %}
+<div class="page-main col-xs-12">
+<div class="col-xs-12 col-md-6">
+	<h1>Website structure</h1>
+	<div class="page-main-content" id="structure"></div>
+</div>
+<div class="col-xs-12 col-md-6">
+	<h3>Page info</h3>
+	<div class="page-main-content" id="editor">Select a page</div>
+</div>
+</div>
+<script type="text/javascript">
+const $structure = $('#structure');
+const roots = [];
+let editing_page = null;
+const PREFIX_PAGE_EDITOR = 'form-pg-edit-';
+const $blind = $('#blind');
+
+const ACTION_EDIT = 'edit';
+const ACTION_EDITSP = 'edit-special';
+const ACTION_CREATE = 'create';
+const ACTION_VIEW = 'view';
+
+const formPage = PAF.preprocessForm({
+	elements: [
+		{
+			type: 'slug',
+			code: 'url',
+			name: 'Address',
+			max_len: '250',
+			desc: '',
+		}, {
+			type: 'bool',
+			code: 'public',
+			name: 'Public',
+			on: 'yes',
+			off: 'no',
+			default: true,
+		}, {
+			type: 'select',
+			subtype: 'page',
+			allow_clear: true,
+			code: 'upper',
+			name: 'Upper page',
+		}, {
+			type: 'select',
+			subtype: 'template_layout',
+			empty_option: `Default (${default_layout})`,
+			allow_clear: true,
+			code: 'template_layout',
+			name: 'Layout template',
+		}, {
+			type: 'select',
+			subtype: 'template_page',
+			empty_option: `Default (${default_page})`,
+			allow_clear: true,
+			code: 'template_page',
+			name: 'Page template',
+		}, {
+			type: 'pages',
+			code: 'children',
+			name: 'Children pages',
+			hideCreate: true,
+			hideEdit: true,
+		}, {
+			type: 'str2str',
+			code: 'titles',
+			name: 'Titles',
+			hideCreate: true,
+			hideEdit: true,
+		},
+	],
+	type: 'page',
+});
+
+
+// handler_forms is a dict with element arrays initially
+Object.keys(handler_forms).map(function(key, index) {
+	handler_forms[key] = PAF.preprocessForm({
+		elements: handler_forms[key],
+		type: key,
+	});
+});
+
+
+function pageSpecialForm(page) {
+	return handler_forms[
+		page.template_page ? page.template_page : default_page
+	];
+}
+
+
+function checkNotChild(initial_pk, compared_pk) {
+	let current_pk = initial_pk;
+	if (compared_pk == current_pk) {
+		return false;
+	}
+	while (true) {
+		let page = all_pages[current_pk];
+		if (!page) break;  // finish
+		current_pk = page.upper;
+		if (current_pk == initial_pk) break;  // prevent looping
+		if (compared_pk == current_pk) {
+			return false;
+		}
+	}
+	return true;
+}
+
+PAF.addCustomSelectable('page', {
+	view: function (found, value) {
+		if (found) {
+			let page = all_pages[value];
+			return `<span class="clickable" onclick="clickRecord(${page.pk})">${page.url}</span>`
+		}
+	},
+	options: function (element, options) {
+		return options.filter(function (pair) {
+			return checkNotChild(pair[0], editing_page.pk);
+		});
+	},
+	validate: function (element, initial_pk) {
+		if (editing_page.pk == initial_pk) {
+			return 'Cannot link page to itself!';
+		}
+		if (!checkNotChild(initial_pk, editing_page.pk))
+			return 'Cannot link page to its child!';
+	},
+});
+PAF.addCustomSelectable('template_page', {
+	extract: function (element, value) {
+		if (value == null)
+			return '';
+		else
+			return value;
+	},
+});
+PAF.addCustomSelectable('template_layout', {
+	extract: function (element, value) {
+		if (value == null)
+			return '';
+		else
+			return value;
+	},
+});
+PAF.addCustomType('pages', {
+	view: function (element, value) {
+		if (value.length > 0) {
+			let result = '';
+			value.forEach(function (pk) {
+				let page = all_pages[pk];
+				result += `<span class="clickable" onclick="clickRecord(${page.pk})">${page.url}</span> `;
+			});
+			return result;
+		}
+	},
+});
+PAF.addCustomType('slug', {
+	view: PAF.ElementViewHandlers['str'],
+	edit: PAF.ElementEditHandlers['str'],
+	extract: PAF.ElementExtractHandlers['str'],
+	validate: function (element, value) {
+		if (! /^[-a-zA-Z0-9]+$/.test(value)) {
+			return 'Bad address characters!';
+		}
+	},
+});
+
+
+function smallButton(text, onclick, url) {
+	if (url) {
+		return `<div class="button-box">
+				<a class="clickable" href="${url}">${text}</a>
+				</div>`;
+	} else {
+		return `<div class="button-box">
+				<span class="clickable" onclick="${onclick};">${text}</a>
+				</div>`;
+	}
+}
+
+
+function uploadPage() {
+	$blind.show();
+	$.ajax({
+		url: `/adminka/page/${editing_page.pk < 0 ? 'create' : editing_page.pk}`,
+		method: 'POST',
+		data: JSON.stringify(editing_page),
+		contentType: 'application/json',
+		dataType: 'json',
+		crossDomain: true
+	}).done(function (data, textStatus, jqXHR) {
+		if (data.success) {
+			alert('Saved!');
+			if (editing_page.pk < 0) {
+				all_pages[data.obj.pk] = data.obj;
+				editing_page = data.obj;
+			} else {
+				all_pages[editing_page.pk] = Object.assign(
+					all_pages[editing_page.pk],
+					editing_page
+				);
+			}
+			buildStruct();
+			clickRecord(editing_page.pk)
+		} else {
+			alert(`Error: ${data.comment}`);
+		}
+	}).fail(function (jqXHR, textStatus, errorThrown) {
+		console.error('Error!', textStatus, errorThrown, jqXHR);
+	}).always(function () {
+		$blind.hide();
+	});
+}
+
+
+function saveSpecialEdit(pk) {
+	const special_form = pageSpecialForm(editing_page);
+	let form = PAF.validateForm(special_form, PREFIX_PAGE_EDITOR, false);
+	if (!form)
+		return;
+
+	editing_page.other_settings = Object.assign(editing_page.other_settings, form);
+	uploadPage();
+}
+function buildSpecialEdit(pk, skipHist) {
+	editing_page = all_pages[pk];
+	const special_form = pageSpecialForm(editing_page);
+	let result = PAF.buildFormEdit(
+		special_form, editing_page.other_settings,
+		PREFIX_PAGE_EDITOR, false
+	);
+	result += smallButton('Save', `saveSpecialEdit(${pk})`);
+	result += smallButton('Cancel', `clickRecord(${pk})`);
+	$('#editor').html(result);
+	PAF.updateEditor();
+
+	cleanSelected();
+	$(`#page-${pk}`).addClass('selected');
+
+	if (skipHist) return;
+	const state = {action: ACTION_EDITSP, page: pk};
+	const args = $.param(state);
+	history.pushState(state, '', `${DOMAIN}?${args}`);
+}
+function savePageEdit(pk) {
+	let form = PAF.validateForm(formPage, PREFIX_PAGE_EDITOR, false);
+	if (!form)
+		return;
+
+	editing_page = Object.assign(editing_page, form);
+	uploadPage();
+}
+function buildPageEdit(pk, skipHist) {
+	editing_page = all_pages[pk];
+	let result = PAF.buildFormEdit(formPage, editing_page, PREFIX_PAGE_EDITOR, false);
+	result += smallButton('Save', `savePageEdit(${pk})`);
+	result += smallButton('Cancel', `clickRecord(${pk})`);
+	$('#editor').html(result);
+	PAF.updateEditor();
+
+	cleanSelected();
+	$(`#page-${pk}`).addClass('selected');
+
+	if (skipHist) return;
+	const state = {action: ACTION_EDIT, page: pk};
+	const args = $.param(state);
+	history.pushState(state, '', `${DOMAIN}?${args}`);
+}
+function buildPageCreate(upper_pk, skipHist) {
+	editing_page = {
+		pk: -1,
+		upper: upper_pk,
+	}
+	let result = PAF.buildFormEdit(formPage, editing_page, PREFIX_PAGE_EDITOR, true);
+	result += smallButton('Create', `savePageEdit()`);
+	result += smallButton('Cancel', `clickRecord(${upper_pk})`);
+	$('#editor').html(result);
+	PAF.updateEditor();
+
+	cleanSelected();
+	$(`#page-${upper_pk}`).addClass('selected');
+
+	if (skipHist) return;
+	const state = {action: ACTION_CREATE, upper: upper_pk}
+	const args = $.param(state);
+	history.pushState(state, '', `${DOMAIN}?${args}`);
+}
+function buildPageView(pk, skipHist) {
+	editing_page = null;
+	const page = all_pages[pk];
+	const special_form = pageSpecialForm(page);
+	let result = PAF.buildFormView(formPage, page);
+	if (special_form) {
+		result += PAF.buildFormView(special_form, page.other_settings);
+	}
+	result += smallButton('Visit', null, `/${page.url}`);
+	result += smallButton('Add subpage', `buildPageCreate(${pk})`);
+	result += smallButton('Edit Texts', null, `/adminka/page/${page.pk}`);
+	result += smallButton('Edit Settings', `buildPageEdit(${pk})`);
+	if (special_form)
+		result += smallButton('Edit Special', `buildSpecialEdit(${pk})`);
+	$('#editor').html(result);
+
+	cleanSelected();
+	$(`#page-${pk}`).addClass('selected');
+
+	if (skipHist) return;
+	const state = {action: ACTION_VIEW, page: pk};
+	const args = $.param(state);
+	history.pushState(state, '', `${DOMAIN}?${args}`);
+}
+function cleanSelected() {
+	$('.selected').removeClass('selected');
+}
+function clickRecord(pk) {
+	buildPageView(pk);
+}
+
+
+function buildSection(keys, shift) {
+	let result = '';
+	// TODO: order pages / use specified order
+	keys.forEach(function (pk) {
+		let page = all_pages[pk];
+		result += `
+<div id="page-${pk}" class="record record-${page.children.length>0?'parent':'leaf'}">
+<span class="clickable"
+	onclick="event.stopPropagation(); clickRecord(${pk});">
+<b>/${page.url}</b>
+</span>`;
+
+		// TODO: add red color if not all
+		result += ` (${page.lang_no ? 'c+' : ''}${Object.keys(page.titles).length}/${language_selectable.length})`;
+		// TODO: add hint:
+		//`Texts: ${Object.keys(page.titles).length} of ${language_selectable.length} languages`;
+
+		result += ` ${page.template_page ? page.template_page : '_'} :`;
+		result += ` ${page.template_layout ? page.template_layout : '_'}`;
+
+		if (page.children) {
+			result += buildSection(page.children, shift+1);
+		}
+		result += '</div>';
+	});
+	return result;
+}
+function buildStruct() {
+	roots.length = 0;
+	selectables['page'] = [];
+	Object.keys(all_pages).forEach(function(pk) {
+		let page = all_pages[pk];
+		page.children = [];
+		selectables['page'].push([pk, page.url]);
+	});
+	Object.keys(all_pages).forEach(function(pk) {
+		let page = all_pages[pk];
+		if (page.upper) {
+			let upper = all_pages[page.upper];
+			if (!upper.children) upper.children = [];
+			upper.children.push(pk);
+		} else {
+			roots.push(pk);
+		}
+	});
+	$structure.html(buildSection(roots, 0));
+}
+
+function buildState(args) {
+	if (!args) return;
+	if (args.action == ACTION_VIEW && args.page) {
+		buildPageView(+args.page, true);
+	}
+	if (args.action == ACTION_EDIT && args.page) {
+		buildPageEdit(+args.page, true);
+	}
+	if (args.action == ACTION_EDITSP && args.page) {
+		buildSpecialEdit(+args.page, true);
+	}
+	if (args.action == ACTION_CREATE && args.upper) {
+		buildPageCreate(+args.upper, true);
+	}
+}
+
+$(document).ready(function() {
+	buildStruct();
+	buildState(getUrlArguments());
+
+	window.addEventListener('popstate', function(e) {
+		buildState(e.state);
+	});
+});
+</script>
+{% endblock %}

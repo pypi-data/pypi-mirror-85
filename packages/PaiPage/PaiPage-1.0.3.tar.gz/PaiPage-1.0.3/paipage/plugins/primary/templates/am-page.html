@@ -1,0 +1,432 @@
+{% extends "am-lo.html" %}
+
+{% block title %}Texts edit{% endblock %}
+
+{% block meta %}
+{{ super() }}
+<script src="/static/paf.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.css"/>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<style type="text/css">
+	textarea {
+		resize: vertical;
+		width: 100%;
+		min-height: 8em;
+	}
+	#controls img {
+		max-width: 160px;
+	}
+	.button-box {
+		display: inline-block;
+		margin: 0px 8px;
+		text-align: right;
+		text-decoration: underline;
+	}
+	#preview {
+		float: left;
+		width: 100%;
+	}
+	#preview-iframe {
+		width: 100%;
+		height: 400px;
+		border: 3px solid red;
+		border-radius: 16px;
+	}
+</style>
+{% endblock %}
+
+{% block page_content %}
+<div class="page-main col-xs-12">
+	<h1>Texts edit</h1>
+	<div class="page-main-content">
+		<div id="controls"></div>
+	</div>
+</div>
+<div id="preview" class="page-main" style="display: none;">
+	<div class="col-xs-12 text-center"><h3><i>- Preview begin -</i></h3></div>
+	<iframe id="preview-iframe" sandbox="allow-same-origin"></iframe>
+	<div class="col-xs-12 text-center"><h3><i>- Preview end -</i></h3></div>
+</div>
+
+<script type="text/javascript">
+const $controls = $('#controls');
+const $preview = $('#preview');
+const $preview_iframe = $('#preview-iframe');
+const roots = [];
+let editing_lang = null;
+let is_view = true;
+const PREFIX_PAGE_EDITOR = 'form-pg-edit-';
+const PREFIX_TEXT_EDITOR = 'form-tx-edit-';
+const $blind = $('#blind');
+const LANG_NO = '_';
+
+const formPage = PAF.preprocessForm({
+	elements: [
+		{
+			type: 'slug',
+			code: 'url',
+			name: 'Address',
+			max_len: '250',
+		// }, {
+		// 	type: 'bool',
+		// 	code: 'public',
+		// 	on: 'yes',
+		// 	off: 'no',
+		// 	default: true,
+		// }, {
+		// 	type: 'select',
+		// 	subtype: 'page',
+		// 	allow_clear: true,
+		// 	code: 'upper',
+		// 	name: 'Upper page',
+		}, {
+			type: 'select',
+			subtype: 'template_layout',
+			empty_option: `Default (${default_layout})`,
+			allow_clear: true,
+			code: 'template_layout',
+			name: 'Layout template',
+		}, {
+			type: 'select',
+			subtype: 'template_page',
+			empty_option: `Default (${default_page})`,
+			allow_clear: true,
+			code: 'template_page',
+			name: 'Page template',
+		},
+	],
+	type: 'page',
+});
+
+const formText = PAF.preprocessForm({
+	elements: [
+		{
+			type: 'const',
+			value: the_page.pk,
+			code: 'page',
+		}, {
+			type: 'select',
+			subtype: 'language',
+			allow_clear: false,
+			code: 'language',
+			name: 'Language',
+		}, {
+			type: 'str',
+			code: 'title',
+			name: 'Title',
+			min_len: '1',
+			max_len: '128',
+		}, {
+			type: 'str',
+			code: 'keywords',
+			name: 'Keywords',
+			desc: 'Comma-separated words for search-engines',
+		}, {
+			type: 'str',
+			long: true,
+			code: 'description',
+			name: 'Description',
+			desc: 'Short description to be used by search-engines and social media previews',
+		}, {
+			type: 'str',
+			long: true,
+			code: 'text_short',
+			name: 'Short text',
+			desc: 'To be shown on other pages of the website. May be empty',
+		}, {
+			type: 'str',
+			long: true,
+			code: 'text_full',
+			name: 'Full text',
+			desc: 'Page main content. May use Jinja2',
+		},
+	],
+	type: 'text',
+});
+
+
+function checkNotChild(initial_pk, compared_pk) {
+	let current_pk = initial_pk;
+	if (compared_pk == current_pk) {
+		return false;
+	}
+	while (true) {
+		let page = all_pages[current_pk];
+		if (!page) break;  // finish
+		current_pk = page.upper;
+		if (current_pk == initial_pk) break;  // prevent looping
+		if (compared_pk == current_pk) {
+			return false;
+		}
+	}
+	return true;
+}
+
+PAF.addCustomSelectable('page', {
+	view: function (found, value) {
+		if (found) {
+			let page = all_pages[value];
+			return `<span class="clickable" onclick="clickRecord(${page.pk})">${page.url}</span>`
+		}
+	},
+	options: function (element, options) {
+		return options.filter(function (pair) {
+			return checkNotChild(pair[0], editing_page.pk);
+		});
+	},
+	validate: function (element, initial_pk) {
+		if (editing_page.pk == initial_pk) {
+			return 'Cannot link page to itself!';
+		}
+		if (!checkNotChild(initial_pk, editing_page.pk))
+			return 'Cannot link page to its child!';
+	},
+});
+PAF.addCustomSelectable('template_page', {
+	extract: function (element, value) {
+		if (value == null)
+			return '';
+		else
+			return value;
+	},
+});
+PAF.addCustomSelectable('template_layout', {
+	extract: function (element, value) {
+		if (value == null)
+			return '';
+		else
+			return value;
+	},
+});
+PAF.addCustomType('slug', {
+	view: PAF.ElementViewHandlers['str'],
+	edit: PAF.ElementEditHandlers['str'],
+	extract: PAF.ElementExtractHandlers['str'],
+	validate: function (element, value) {
+		if (! /^[-a-zA-Z0-9]+$/.test(value)) {
+			return 'Bad address characters!';
+		}
+	},
+});
+PAF.addCustomSelectable('language', {
+	options: function (element, options) {
+		return options.filter(function (key) {
+			return (key == editing_lang) || (texts[key] == null);
+		});
+	},
+});
+
+
+function smallButton(text, onclick, url) {
+	if (url) {
+		return `<div class="button-box">
+				<a class="clickable" href="${url}">${text}</a>
+				</div>`;
+	} else {
+		return `<div class="button-box">
+				<span class="clickable" onclick="${onclick};">${text}</a>
+				</div>`;
+	}
+}
+
+function viewText(lang) {
+	editing_lang = lang;
+	is_view = true;
+	buildEditor();
+}
+
+function editText(lang) {
+	editing_lang = lang;
+	is_view = false;
+	buildEditor();
+}
+
+function saveText() {
+	let form = PAF.validateForm(formText, PREFIX_TEXT_EDITOR, false);
+	if (!form)
+		return;
+
+	$blind.show();
+	$.ajax({
+		url: `/adminka/text/${the_page.pk}/${editing_lang}`,
+		method: 'POST',
+		data: JSON.stringify(form),
+		contentType: 'application/json',
+		dataType: 'json',
+		crossDomain: true
+	}).done(function (data, textStatus, jqXHR) {
+		if (data.success) {
+			alert('Saved!');
+			let old_one = texts[editing_lang];
+			if (old_one == null) {
+				old_one = {};
+			}
+			if (editing_lang == form.language) {
+				texts[editing_lang] = Object.assign(old_one, form);
+			} else {
+				texts[form.language] = Object.assign(old_one, form);
+				texts[editing_lang] = undefined;
+			}
+			if (!confirm('Keep editing?'))
+				editing_lang = null;
+			buildEditor();
+		} else {
+			alert(`Error: ${data.comment}`);
+		}
+	}).fail(function (jqXHR, textStatus, errorThrown) {
+		console.error('Error!', textStatus, errorThrown, jqXHR);
+	}).always(function () {
+		$blind.hide();
+	});
+}
+
+function closeText() {
+	if (!is_view) {
+		if (!confirm(`Are you sure to discard changes for text lang "${editing_lang}" of page "${the_page.url}"?`))
+			return;
+	}
+	editing_lang = null;
+	buildEditor();
+}
+
+function previewText() {
+	let form = PAF.validateForm(formText, PREFIX_TEXT_EDITOR, false);
+	if (!form)
+		return;
+
+	$blind.show();
+	$preview.hide();
+	let content = form.text_full;
+	$.ajax({
+		url: `/adminka/preview/${the_page.pk}`,
+		method: 'POST',
+		data: JSON.stringify(form),
+		contentType: 'application/json',
+		dataType: 'html',
+		crossDomain: true
+	}).done(function (data, textStatus, jqXHR) {
+		$preview.show();
+		try {
+			$preview_iframe.contents().find('html').html(data);
+		} catch (er) {
+			/*
+			jQuery raises some error when builing iFrame content,
+			although it works fine.
+			*/
+		}
+		$preview_iframe.ready(function() {
+			$preview_iframe.contents().find('a').removeAttr('href');
+		});
+	}).fail(function (jqXHR, textStatus, errorThrown) {
+		console.error('Error!', textStatus, errorThrown, jqXHR);
+	}).always(function () {
+		$blind.hide();
+	});
+
+}
+
+function buildEditor(skipHist) {
+	$preview.hide();
+	$blind.hide();
+	let result = '';
+
+	if (editing_lang == null) {
+		result += `
+			<div class="col-xs-12 col-md-6">
+			${PAF.buildFormView(formPage, the_page)}
+			<br>
+			${smallButton('<span class="glyphicon glyphicon-cog"></span> Open page settings', null, `/adminka/structure?action=view&page=${the_page.pk}`)}
+			</div>
+		`;
+
+		result += `<div class="col-xs-12 col-md-6">`;
+		result += `<b>Texts:</b>`;
+		function addLang(lang) {
+			result += `<br><i>${lang}:</i> `;
+			if (texts[lang]) {
+				result += `"${texts[lang].title}"`;
+				result += smallButton('<span class="glyphicon glyphicon-edit"></span> Open text', `viewText('${lang}')`);
+				result += smallButton('<span class="glyphicon glyphicon-eye-open"></span> View page', null, `/${lang}/${the_page.url}`);
+			} else {
+				result += 'none';
+				result += smallButton('<span class="glyphicon glyphicon-file"></span> Add text', `editText('${lang}')`);
+			}
+		}
+		language_selectable.forEach(addLang);
+		addLang(LANG_NO);
+		result += `</div>`;
+
+	} else {
+		result += `<div class="col-xs-12">`;
+		if (is_view) {
+			result += `
+				<div class="col-xs-12">
+				${PAF.buildFormView(formText, texts[editing_lang])}
+				</div>
+				<div class="col-xs-12 text-center">
+				<br>
+				<br>
+				${smallButton('<span class="glyphicon glyphicon-edit"></span> Edit text', `editText('${editing_lang}')`)}
+				${smallButton('<span class="glyphicon glyphicon-remove"></span> Close', `closeText()`)}
+				</div>
+			`;
+		} else {
+			let obj = texts[editing_lang];
+			let sv_txt_lbl = '<span class="glyphicon glyphicon-floppy-disk"></span> Save text';
+			if (!obj) {
+				obj = {
+					language: editing_lang,
+				}
+				sv_txt_lbl = '<span class="glyphicon glyphicon-file"></span> Create text';
+			}
+			result += `
+				<div class="col-xs-12">
+				${PAF.buildFormEdit(formText, obj,
+					PREFIX_TEXT_EDITOR, texts[editing_lang]==null)}
+				</div>
+				<div class="col-xs-12 text-center">
+				<br><br>
+				${smallButton('<span class="glyphicon glyphicon-eye-open"></span> Preview page', `previewText()`)}
+				${smallButton(sv_txt_lbl, `saveText()`)}
+				${smallButton('<span class="glyphicon glyphicon-remove"></span> Close', `closeText()`)}
+				</div>
+			`;
+		}
+	}
+
+	$controls.html(result);
+	PAF.updateEditor();
+
+	if (skipHist) return;
+	const state = {editing_lang: editing_lang, is_view: +is_view};
+	const args = $.param(state);
+	history.pushState(state, '', `${DOMAIN}?${args}`);
+}
+
+function buildState(args) {
+	if (!args) {
+		editing_lang = null;
+	} else {
+		if (typeof args.editing_lang !== 'undefined') {
+			editing_lang = args.editing_lang;
+			if (editing_lang == '')
+				editing_lang = null;
+		}
+		if (typeof args.is_view !== 'undefined') {
+			is_view = !!(+args.is_view);
+		}
+	}
+	buildEditor(true);
+}
+
+$(document).ready(function() {
+	buildState(getUrlArguments());
+
+	window.addEventListener('popstate', function(e) {
+		buildState(e.state);
+	});
+});
+</script>
+{% endblock %}

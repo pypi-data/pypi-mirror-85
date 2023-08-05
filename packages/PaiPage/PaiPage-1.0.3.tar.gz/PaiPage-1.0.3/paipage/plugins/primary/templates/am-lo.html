@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>{% block title %}{% endblock %}</title>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" href="/static/main.css">
+	<link rel="stylesheet" href="/static/adminka.css">
+	<script src="/static/jquery.masonry.min.js"></script>
+	{% block meta %}{% endblock %}
+</head>
+<body>
+<script type="text/javascript">
+	{% for key, value in scripted.items() -%}
+	const {{ key }} = {{ value|safe_json|safe }};
+	{% endfor %}
+
+	{# https://docs.djangoproject.com/en/2.0/ref/csrf/ #}
+	{# https://stackoverflow.com/a/5107878/5308802 #}
+	$.ajaxSetup({
+		beforeSend: function(xhr, settings) {
+			function getCookie(name) {
+				var cookieValue = null;
+				if (document.cookie && document.cookie != '') {
+					var cookies = document.cookie.split(';');
+					for (var i = 0; i < cookies.length; i++) {
+						var cookie = jQuery.trim(cookies[i]);
+						if (cookie.substring(0, name.length + 1) == (name + '=')) {
+							cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+							break;
+						}
+					}
+				}
+				return cookieValue;
+			}
+			if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+				xhr.setRequestHeader('X-CSRFToken', getCookie('csrftoken'));
+			}
+		}
+	});
+
+	const DOMAIN = window.location.href.split('?')[0];
+
+	function getUrlArguments() {
+		let sURLVariables = window.location.search.substring(1).split('&'), sParameterName, i;
+		let res = {};
+		for (i = 0; i < sURLVariables.length; i++) {
+			sParameterName = sURLVariables[i].split('=');
+			res[sParameterName[0]] = sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+		}
+		return res;
+	}
+</script>
+{% import "_macros.html" as macros with context %}
+<div class="container-fluid">
+	<div id="blind">
+		<div class="blind-inner col-xs-12 text-center">
+			<div class="loader"></div>
+		</div>
+	</div>
+
+	{% block content %}
+		{# Admin header #}
+		{{ macros.adminka() }}
+
+		{# Page data #}
+		{% block page_content %}{% endblock %}
+
+		{{ macros.footer() }}
+	{% endblock %}
+</div><!-- container-fluid -->
+</body>
+</html>
