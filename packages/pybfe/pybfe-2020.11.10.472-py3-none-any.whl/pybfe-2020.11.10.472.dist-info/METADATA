@@ -1,0 +1,65 @@
+Metadata-Version: 2.1
+Name: pybfe
+Version: 2020.11.10.472
+License: Proprietary, included with Pybatfish Enterprise at pybfe/LICENSE
+Requires-Dist: grpcio<1.27
+Requires-Dist: pandas<0.26
+Requires-Dist: protobuf<3.12
+Requires-Dist: pybatfish>=2020.10.8.667
+Requires-Dist: pytz==2019.3
+Requires-Dist: requests<3
+Provides-Extra: capirca
+Requires-Dist: capirca<1.123; extra == 'capirca'
+
+
+Pybatfish Enterprise
+--------------------
+
+Pybatfish Enterprise is a Python client for `Batfish Enterprise <https://www.intentionet.com/product/batfish-enterprise/>`_.
+
+For the Python client for open-source Batfish, see `Pybatfish <https://github.com/batfish/pybatfish>`_.
+
+Getting Started
+---------------
+
+Prerequisites
+-------------
+Pybatfish Enterprise requires a `Batfish Enterprise <https://www.intentionet.com/product/batfish-enterprise/>`_ backend to work.
+
+Install Pybatfish Enterprise
+----------------------------
+
+We highly recommend that you install Pybatfish Enterprise in a Python 3 virtual environment. Details on how to set one up can be found `here <https://docs.python.org/3/library/venv.html>`_. Once your virtual environment is setup and activated, run:
+
+::
+
+   python3 -m pip install pybfe
+
+
+Using Pybatfish Enterprise
+--------------------------
+
+After Pybatfish Enterprise is installed, you can use it in place of Pybatfish in your Ansible plays (which use `Batfish Roles <https://github.com/batfish/ansible>`_).
+
+In your Ansible task that sets up a Batfish service connection, simply add ``session_type: bfe`` under ``parameters``, e.g. change your setup task from:
+
+::
+
+   - name: Setup connection to service
+     bf_session:
+       host: localhost
+       name: local_batfish
+
+to:
+
+::
+
+   - name: Setup connection to service
+     bf_session:
+       host: localhost
+       name: local_batfish
+       parameters:
+         session_type: bfe
+
+After this change, Batfish tasks will benefit from Batfish Enterprise features, and allow you to do things like view the results of your Batfish assertions or fact validation on the Enterprise Dashboard.
+
