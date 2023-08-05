@@ -1,0 +1,66 @@
+taler-util
+==========
+
+taler-util contains util code for the GNU Taler project,
+specifically it contains python code for:
+
+- amount representation
+- logging
+- configuration parsing
+
+tests
+-----
+
+To run the unittests, execute
+
+	tox
+
+or
+
+	make check
+
+Taler Error Codes
+-----------------
+
+Error codes are defined in taler/util/errorcodes.py.
+
+To generate the C header, run
+
+	python3 taler/util/gen_errcodes_c.py
+
+Installation
+------------
+
+The wheel release can be installed as-is from pypi.org
+as it includes only what is necessary.
+
+The source distribution tarball (sdist) includes two
+build-systems:
+
+1. a small GNU guidelines following wrapper around python's pip
+2. python's default build-facility used via setup
+
+How to upload to pypi.org
+-------------------------
+
+1) From top-level directory:
+
+$ make dist
+
+2) Install Twine, if it's not installed yet:
+
+$ pip3 install twine
+
+3) Upload the files to PyPI (interactively providing the credentials):
+
+$ twine upload dist/*
+
+ 
+License
+-------
+
+Python modules contained in this package are licensed LGPL 3 (or later).
+
+This does not cover code contained in build-system/taler-build-scripts,
+which is included in the source distribution of this software.
+taler-build-scripts is (mostly) 0BSD / public-domain software.
