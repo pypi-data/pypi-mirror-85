@@ -1,0 +1,39 @@
+{
+    "blocks": {
+        "addition": {
+            "algorithm": "user/shared_datasets/1",
+            "inputs": {
+                "in1": "a",
+                "in2": "b"
+            },
+            "outputs": {
+                "out": "sum"
+            }
+        }
+    },
+    "datasets": {
+        "integers": {
+            "database": "integers_db/1",
+            "protocol": "double",
+            "set": "double"
+        }
+    },
+    "analyzers": {
+        "analysis": {
+            "algorithm": "v1/integers_analysis/1",
+            "inputs": {
+                "input": "input"
+            }
+        }
+    },
+    "globals": {
+        "environment": {
+            "name": "Python for tests",
+            "version": "1.3.0"
+        },
+        "queue": "queue",
+        "user/shared_datasets/1": {
+            "sync": "in1"
+        }
+    }
+}
