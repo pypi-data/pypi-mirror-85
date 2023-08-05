@@ -1,0 +1,68 @@
+Metadata-Version: 2.1
+Name: pyfitit
+Version: 2.0.7
+Summary: Python implementation of FitIt software to fit X-ray absorption near edge structure (XANES) extended with additional features
+Home-page: http://hpc.nano.sfedu.ru/pyfitit/
+Author: Sergey Guda, Grigory Smolentsev, Alexander Soldatov, Carlo Lamberti, Alexander Guda, Oleg Usoltsev, Andrea Martini, Alexander Chebanny, Alexander Algasov, Danil Pashkov, Yuriy Fedorov
+Author-email: gudasergey@gmail.com
+Maintainer: Sergey Guda
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: matplotlib (>=2.2.3)
+Requires-Dist: numpy (>=1.14.3)
+Requires-Dist: scikit-learn (>=0.20.0)
+Requires-Dist: parsy (>=1.2.0)
+Requires-Dist: scipy (>=1.1.0)
+Requires-Dist: pandas (>=0.23.0)
+Requires-Dist: jupyter (>=1.0.0)
+Requires-Dist: PuLP (>=1.6.8)
+Requires-Dist: ipywidgets (>=7.2.1)
+Requires-Dist: ipython (>=7.0.1)
+Requires-Dist: jupytext (>=0.8.6)
+Requires-Dist: nbformat (>=4.4.0)
+Requires-Dist: numba (>=0.38.0)
+Requires-Dist: tqdm (>=4.38.0)
+Requires-Dist: statsmodels (>=0.9.0)
+Requires-Dist: lmfit (>=1.0.0)
+
+![Logo](http://hpc.nano.sfedu.ru/pyfitit/assets/logo.png)
+# pyFitIt
+Python implementation of FitIt software to fit X-ray absorption near edge structure (XANES). The python version is extended with additional features: machine learning, automatic component analysis, joint convolution fitting and others.
+
+[PyFitIt website](http://hpc.nano.sfedu.ru/pyfitit/)
+
+## Features
+- Uses ipywidgets to construct the portable GUI
+- Calculates XANES by [FDMNES](http://neel.cnrs.fr/spip.php?rubrique1007&lang=en) or [FEFF](http://monalisa.phys.washington.edu/)
+- Interpolates XANES in order to speedup fitting. Support different types of interpolation point generation: grid, random, [IHS](http://people.sc.fsu.edu/~jburkardt/cpp_src/ihs/ihs.html) and various interpolation methods including machine learning algorithms
+- Using multidimensional interpolation approximation you can vary parameters by sliders and see immediately theoretical spectrum, which corresponds to this geometry. Fitting can be performed on the basis of visual comparison with experiment or using automatic procedure and quantitative criteria.
+- Supports direct prediction of geometry parameters by machine learning
+- Includes automatic and semi-automatic component analysis
+
+## Installation
+pip install pyfitit
+
+## Usage
+See [examples](http://hpc.nano.sfedu.ru/pyfitit/download/examples.zip). Manual is included in the examples archive.
+
+### This project is developing thanks to
+- Grigory Smolentsev
+- Sergey Guda
+- Alexandr Soldatov
+- Carlo Lamberti
+- Alexander Guda
+- Oleg Usoltsev
+- Yury Rusalev
+- Andrea Martini
+- Alexandr Algasov
+- Aram Bugaev
+- Mikhail Soldatov
+
+### If you like the software acknowledge it using the references below:
+A. Martini, S. A. Guda, A. A. Guda, G. Smolentsev, A. Algasov, O. Usoltsev, M. A. Soldatov, A. Bugaev, Yu. Rusalev, C. Lamberti, A. V. Soldatov "PyFitit: the software for quantitative analysis of XANES spectra using machine-learning algorithms" Computer Physics Communications. 2019. DOI: 10.1016/j.cpc.2019.107064
+
+
