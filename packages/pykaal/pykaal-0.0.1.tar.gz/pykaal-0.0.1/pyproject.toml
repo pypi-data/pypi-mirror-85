@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "pykaal"
+version = "0.0.1"
+description = "Fluorescence time analysis"
+authors = ["Sarthak Jariwala <jariwala@uw.edu>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+importlib_metadata = {version = "^1.7.0", python = "<3.8"}
+numpy = "1.19.1"
+matplotlib = "3.3.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.1.1"
+flake8 = "^3.8.3"
+flake8-bandit = "^2.1.2"
+flake8-black = "^0.2.1"
+flake8-bugbear = "^20.1.4"
+safety = "^1.9.0"
+coverage = {extras = ["toml"], version = "^5.3"}
+pytest-cov = "^2.10.1"
+flake8-docstrings = "^1.5.0"
+sphinx = "^3.2.1"
+codecov = "^2.1.9"
+black = "^20.8b1"
+xdoctest = "^0.15.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
