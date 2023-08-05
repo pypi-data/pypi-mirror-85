@@ -1,0 +1,211 @@
+* 61.3.12 "Harris Tzovanakis <me@drjova.com>"
+    MINOR b3f90827: Merge pull request #410 from MJedr/author-hidden-fields
+    MINOR 60bddb0b: authors: add hidden to advisors, positions, projects
+
+* 61.3.11 "Harun Urhan <harunurhan17@gmail.com>"
+    MINOR fef1ac84: Merge pull request #411 from harunurhan/fix-url
+    MINOR 16d8df82: literature: fix uri-reference format typo
+
+* 61.3.10 "Harun Urhan <harunurhan17@gmail.com>"
+    MINOR 9c4a4782: Merge pull request #409 from harunurhan/stricter-file-url
+    MINOR 13a4b9f6: literature: stricter file url validation
+
+* 61.3.9 "Micha Moskovic <michamos@gmail.com>"
+    MINOR ab35f92f: Merge pull request #407 from michamos/fix-country-code
+    MINOR c74cd020: utils: prefer current countries over old countries
+
+* 61.3.8 "Micha Moskovic <michamos@gmail.com>"
+    MINOR b3267581: Merge pull request #406 from michamos/fix-proc-roy-soc-lond
+    MINOR db4e26e0: utils: fix conversion of Proc.Roy.Soc.Lond.
+    MINOR 9b1bae4f: Avoid adding nofollow to links created by bleach
+
+* 61.3.7 "Marcjanna <42305444+MJedr@users.noreply.github.com>"
+    MINOR 41210c51: Merge pull request #405 from MJedr/reference-builder
+    MINOR 64de8d98: utils: improve arxiv recognition
+
+* 61.3.6 "Micha Moskovic <michamos@gmail.com>"
+    MINOR f554e92c: Merge pull request #404 from MJedr/journal-title-bug
+    MINOR 499ccda1: utils: fix conversion of journal title and volume to new
+    version
+
+* 61.3.5 "Miguel García García <miguel.garcia.garcia@cern.ch>"
+    MINOR 26a963ba: Merge pull request #403 from
+    miguelgrc/seminars_accessibility
+    MINOR dd1c4f42: seminars: add accessibility info
+
+* 61.3.4 "Micha Moskovic <michamos@gmail.com>"
+    MINOR 09b5920c: Merge pull request #402 from
+    michamos/clarify-control-number
+    MINOR c9fceb56: records: clarify meaning of control_number
+
+* 61.3.3 "Mona <awi_moni@yahoo.com>"
+    MINOR a0039d26: seminars: add literature records field
+
+* 61.3.2 "Micha Moskovic <michamos@gmail.com>"
+    MINOR 94f6db96: Merge pull request #401 from MJedr/experiment-schema
+    MINOR 3a8623ef: experiments: add inspire_classification instead of class
+    number
+
+* 61.3.1 "Harris Tzovanakis <me@drjova.com>"
+    MINOR 3e91dc06: Merge pull request #400 from drjova/npm-deps-to-dev
+    MINOR e7633da6: npm: move dependencies to dev
+
+* 61.3.0 "Harris Tzovanakis <me@drjova.com>"
+    FEATURE 90a8aaf7: Merge pull request #398 from drjova/dulwich
+    FEATURE 7ee2e151: setup: fix build issue with setuptools
+
+* 61.2.6 "Harris Tzovanakis <me@drjova.com>"
+    MINOR 5b3b39e9: travis: fix deployment
+
+* 61.2.5 "Harris Tzovanakis <me@drjova.com>"
+    MINOR 1bec2b84: Merge pull request #397 from drjova/add-countries
+    MINOR 3ecb7f1f: global: addition of countries
+
+* 61.2.4 "Micha Moskovic <michamos@gmail.com>"
+    MINOR 7211463a: Merge pull request #396 from michamos/fix-docs
+    MINOR f12a96ad: docs: correctly generate documentation
+
+* 61.2.3 "Micha Moskovic <michamos@gmail.com>"
+    MINOR 5659e8ab: Merge pull request #394 from michamos/fix-seminars-address
+    MINOR be18868c: Remove useless keys in seminars.address
+
+* 61.2.2 "Harun Urhan <harunurhan17@gmail.com>"
+    MINOR 7301b5c6: Merge pull request #393 from harunurhan/seminar-builder
+    MINOR a2c2499d: seminars: add builder
+
+* 61.2.1 "Micha Moskovic <michamos@gmail.com>"
+    MINOR 086c8bbc: Merge pull request #385 from jacquerie/refactor-builders
+    MINOR 21b8eabb: builders: refactor using inheritance
+
+* 61.2.0 "Micha Moskovic <michamos@gmail.com>"
+    FEATURE acb3af25: Merge pull request #392 from michamos/add-seminars
+    FEATURE 38d6d6ad: seminars: add new schema type
+
+* 61.1.4 "MJedr <42305444+MJedr@users.noreply.github.com>"
+    MINOR 56d762a7: Merge pull request #391 from MJedr/jhep
+    MINOR 08db4b10: utils: handle None journal_title in
+    convert_publication_info_old_to_new
+
+* 61.1.3 "Micha Moskovic <michamos@gmail.com>"
+    MINOR 1187ca4e: Merge pull request #390 from MJedr/jhep
+    MINOR a30d9f48: utils: make check if input in journals with year added
+    case unsensitive
+
+* 61.1.2 "Micha Moskovic <michamos@gmail.com>"
+    MINOR 6a7f24d6: Merge pull request #389 from
+    michamos/fix-pubnote-conversion
+    MINOR 665a10a9: utils: use raw strings for regexes
+    MINOR f34b3552: utils: handle dashes in volumes in old->new
+
+* 61.1.1 "Micha Moskovic <michamos@gmail.com>"
+    MINOR e3d66cbf: Merge pull request #388 from
+    michamos/fix-multiple-additional-pubnotes
+    MINOR dc6f54df: ReferenceBuilder: fix multiple additional pubnotes
+
+* 61.1.0 "Micha Moskovic <michamos@gmail.com>"
+    FEATURE 3532b6a8: Merge pull request #387 from
+    michamos/refs-additional-pubnotes
+    FEATURE 84b8b0a1: ReferenceBuilder: handle additional pubnotes
+
+* 61.0.3 "Miguel García García <miguel.garcia.garcia@cern.ch>"
+    MINOR 5ae3b131: Merge pull request #386 from miguelgrc/limit_commas_in_name
+    MINOR d229fb3d: records: limit commas in name to two
+
+* 61.0.2 "Antonio Cesarano <cesarano2607@gmail.com>"
+    MINOR 95acb735: Merge pull request #384 from
+    ammirate/sanitize_conference_descr
+    MINOR 20f37362: conference: builder sanitizes `short_description`
+
+* 61.0.1 "Antonio Cesarano <cesarano2607@gmail.com>"
+    MINOR 0dcc9f87: Merge pull request #383 from ammirate/conferences_builder
+    MINOR cbde0d0f: builder: add conference builder
+
+* 61.0.0 "Micha Moskovic <michamos@gmail.com>"
+    MAJOR f945432c: Merge pull request #382 from pazembrz/address_fix
+    MAJOR be234aa1: conference: change address field to addresses
+
+* 60.1.2 "Micha Moskovic <michamos@gmail.com>"
+    MINOR c7773637: Merge pull request #381 from harunurhan/allow-div-job-desc
+    MINOR 9316557f: jobs: allow `div` in description
+
+* 60.1.1 "Micha Moskovic <michamos@gmail.com>"
+    MINOR 7c6051e8: Merge pull request #380 from michamos/conf-schema
+    MINOR 35180f13: conferences: add missing metadata
+
+* 60.1.0 "Micha Moskovic <michamos@gmail.com>"
+    FEATURE 07bf99b5: Merge pull request #379 from michamos/add-ror
+    FEATURE 9dff51c2: records: add missing constraints
+    FEATURE ddd501ad: records: add ROR identifiers
+
+* 60.0.15 "Mona <awi_moni@yahoo.com>"
+    MINOR 965302b1: schemas: add method beard for acquisition source
+
+* 60.0.14 "Antonio Cesarano <cesarano2607@gmail.com>"
+    MINOR ac80aca5: Merge pull request #377 from
+    michamos/fix-trailing-whitespace-journal-title
+    MINOR 997a41a1: utils: strip trailing space in journal title
+
+* 60.0.13 "Antonio Cesarano <cesarano2607@gmail.com>"
+    MINOR 997749c0: Merge pull request #374 from pazembrz/update_urllib3_pin
+    MINOR af3c9d26: setup: Update pinning to urllib3
+
+* 60.0.12 "Harris Tzovanakis <me@drjova.com>"
+    MINOR 3d345af1: Merge pull request #373 from pazembrz/INSPIR-2589
+    MINOR 464edab8: Merge branch 'master' into INSPIR-2589
+    MINOR 52477569: schemas: Update author and record schemas for invenio
+    compatibility
+
+* 60.0.11 "Micha Moskovic <michamos@gmail.com>"
+    MINOR 4072767d: Merge pull request #372 from michamos/fix-unicode-issues
+    MINOR 5f809ba6: builders: fix unicode issues in LiteratureBuilder
+
+* 60.0.10 "Micha Moskovic <michamos@gmail.com>"
+    MINOR 415271cc: Merge pull request #371 from tsgit/builder_extid
+    MINOR 9a15a372: literature builder: add external_system_identifier
+
+* 60.0.9 "Harris Tzovanakis <me@drjova.com>"
+    MINOR 40f096a2: Merge pull request #370 from
+    drjova/fix-resolved-records-for-docs
+    MINOR 64d89a1b: setup: remove ``resolved_records`` directory
+
+* 60.0.8 "pazembrz <41995670+pazembrz@users.noreply.github.com>"
+    MINOR 75dca5b2: job builder: contact details do not require email nor name
+    (#368)
+
+* 60.0.7 "Micha Moskovic <michamos@gmail.com>"
+    MINOR 34597d96: Merge pull request #367 from michamos/add-eess.SY
+    MINOR 0d2df9b7: elements: add eess.SY arXiv category
+
+* 60.0.6 "pazembrz <41995670+pazembrz@users.noreply.github.com>"
+    MINOR 9f97e54b: job builder:Add sanitaze html for description field (#366)
+
+* 60.0.5 "pazembrz <41995670+pazembrz@users.noreply.github.com>"
+    MINOR d3236b50: Job builder: add a way to process list of reference
+    urls/emails together (#365)
+
+* 60.0.4 "pazembrz <41995670+pazembrz@users.noreply.github.com>"
+    MINOR 53ad7681: job_builder: Fix wrong comparsion betwen two strings (#364)
+
+* 60.0.3 "pazembrz <41995670+pazembrz@users.noreply.github.com>"
+    MINOR 9761abd4: job_builder: Add missing filter_empty_parameters decorator
+    (#363)
+
+* 60.0.2 "pazembrz <41995670+pazembrz@users.noreply.github.com>"
+    MINOR ecc090df: builder: Added builder for Jobs (#362)
+
+* 60.0.1 "Micha Moskovic <michamos@gmail.com>"
+    MINOR 7b24ad4b: Merge pull request #361 from michamos/sanitize-html
+    MINOR 8abf89ec: utils: add sanitize_html
+
+* 60.0.0 "Micha Moskovic <michamos@gmail.com>"
+    MAJOR be25e41c: Merge pull request #360 from michamos/jobs-schema
+    MAJOR db9cd0a9: records: normalize YAML files
+    MAJOR 0bd439ff: jobs: finalize schema
+
+* 0.0.2 "Harun Urhan <harunurhan17@gmail.com>"
+    MINOR b36f6d4c: Merge pull request #359 from harunurhan/add-record-methods
+    MINOR 29400e09: literature: add record params
+
+* 0.0.1 "Antonio Cesarano <cesarano2607@gmail.com>"
+    MINOR 34bc124b: Merge pull request #358 from
+    ammirate/builder_add_name_variant
