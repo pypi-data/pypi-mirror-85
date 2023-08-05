@@ -1,0 +1,41 @@
+<templateSet group="Rust">
+  <template name="for" value="for $iter$ in 0..$LAST$ { $END$ }" description="for loop" toReformat="false" toShortenFQNames="true">
+    <variable name="iter" expression="" defaultValue="i" alwaysStopAt="true" />
+    <variable name="LAST" expression="" defaultValue="n" alwaysStopAt="true" />
+  </template>
+  <template name="forrev" value="for $iter$ in (0..$LAST$).rev() { $END$ }" description="for loop" toReformat="false" toShortenFQNames="true">
+    <variable name="iter" expression="" defaultValue="i" alwaysStopAt="true" />
+    <variable name="LAST" expression="" defaultValue="n" alwaysStopAt="true" />
+  </template>
+  <template name="let mut" value="let mut " description="let mut;" toReformat="false" toShortenFQNames="true" />
+  <template name="let (n, k)" value="let (n, k$END$) = (v[0], v[1]);" description="bind" toReformat="false" toShortenFQNames="true" />
+  <template name="collect" value="collect::&lt;Vec&lt;_&gt;&gt;();" description="collect vector" toReformat="false" toShortenFQNames="true"/>
+  <template name="cond" value="let a$END$ = if { } else { };" description="conditional operator" toReformat="false" toShortenFQNames="true" />
+  <template name="map" value="map(|&amp;x| x$END$)" description="map iterator" toReformat="false" toShortenFQNames="true" />
+  <template name="filter" value="filter(|&amp;&amp;x| x$END$)" description="filter iterator" toReformat="false" toShortenFQNames="true" />
+  <template name="unwrap" value="unwrap()" description="filter iterator" toReformat="false" toShortenFQNames="true" />
+  <template name="let vv" value="let mut dp = vec![vec![; ]; ];" description="2d vec" toReformat="false" toShortenFQNames="true" />
+  <template name="let vvv" value="let mut dp = vec![vec![vec![; ]; ];];" description="2d vec" toReformat="false" toShortenFQNames="true" />
+  <template name="chars" value="chars().collect::&lt;Vec&lt;_&gt;&gt;();" description="collect chars" toReformat="false" toShortenFQNames="true"/>
+  <template name="turbo" value="::&lt;&gt;" description="collect chars" toReformat="false" toShortenFQNames="true"/>
+  <template name="print" value="println!(&quot;{}&quot;, $VAR$$END$);" description="p" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR" expression="" defaultValue="ans" alwaysStopAt="true" />
+  </template>
+  <template name="print-1" value="println!(&quot;-1$END$&quot;);return;" description="p" toReformat="false" toShortenFQNames="true" />
+  <template name="yn" value='if true$END$ { println!("Yes"); } else { println!("No"); } ' description="print Yes or No" toReformat="false" toShortenFQNames="true" />
+  <template name="YN" value='if true$END$ { println!("YES"); } else { println!("NO"); } ' description="print YES or NO" toReformat="false" toShortenFQNames="true" />
+  <template name="match" value='match x$END$ { _ => , }' description="print YES or NO" toReformat="false" toShortenFQNames="true" />
+  <template name="return" value="return" description="return" toReformat="false" toShortenFQNames="true" />
+  <template name="continue;" value="continue;" description="continue;" toReformat="false" toShortenFQNames="true" />
+  <template name="swap" value="std::mem::swap(&amp;mut a, &amp;mut b);" description="swap" toReformat="false" toShortenFQNames="true" />
+  <template name="vec" value="vec![$END$];" description="vec" toReformat="false" toShortenFQNames="true" />
+  <template name="entry_or_insert" value="entry(k$END$).or_insert(0) += 1;" description="map iterator" toReformat="false" toShortenFQNames="true" />
+  <template name="read_tree" value="let mut edges = vec![vec![]; n]; for i in 0..n - 1 { let v = read_vec::&lt;usize&gt;(); let (a, b) = (v[0] - 1, v[1] - 1); edges[a].push(b); edges[b].push(a);}" description="read tree" toReformat="false" toShortenFQNames="true" />
+  <template name="dfs_on_tree" value="fn dfs(cur: usize, parent: usize, edges: &amp;Vec&lt;Vec&lt;usize&gt;&gt;) { for &amp;to in edges[cur].iter().filter(|&amp;&amp;x| x != parent) { dfs(to, cur, edges);}}" description="read tree" toReformat="false" toShortenFQNames="true" />
+  <template name="fact" value="let mut fact = vec![Modulo(1); n + 1]; for i in 1..fact.len() { fact[i] = fact[i - 1] * i as i64;} let fact_inv = fact.iter().map(|&amp;x| x.inv()).collect::&lt;Vec&lt;_&gt;&gt;();" description="read tree" toReformat="false" toShortenFQNames="true" />
+  <template name="Vec" value="Vec&lt;$END$&gt;" description="vector type" toReformat="false" toShortenFQNames="true" />
+  <template name="to_digit36" value="to_digit(36).unwrap() as usize - 10" description="char to digit" toReformat="false" toShortenFQNames="true" />
+  <template name="to_digit10" value="to_digit(10).unwrap() as i64" description="char to digit" toReformat="false" toShortenFQNames="true" />
+  <template name="asusize" value="as usize" description="cast" toReformat="false" toShortenFQNames="true" />
+  <template name="asi64" value="as i64" description="cast" toReformat="false" toShortenFQNames="true" />
+</templateSet>
