@@ -1,0 +1,73 @@
+Metadata-Version: 2.1
+Name: TOPSIS-DishaSharma-101803637
+Version: 0.0.1
+Summary: To calculate TOPSIS
+Home-page: UNKNOWN
+Author: Disha Sharma
+Author-email: dishasharmaj7@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+TOPSIS
+===================
+
+It is a method of compensatory aggregation that compares a set of alternatives by identifying weights for each criterion, normalising scores for each criterion and calculating the geometric distance between each alternative and the ideal alternative, which is the best score in each criterion.
+
+----------
+
+
+TopsisPy
+-------------
+TopsisPy is a Python Package implementing Topsis method used for multi-criteria decision analysis. Topsis stands for 'Technique for Order of Preference by Similarity to Ideal Solution'.
+
+TopsisPy intends to make the process of TOPSIS simple in python. Key features of the package are -
+
+> - Easy to use
+> - Numpy based
+> - Ideal for Students
+
+--------
+Topsis for decision making
+-------------
+
+#### Step 1. Construct the decision matrixes and determine the weights of criteria for k-decision makers. 
+
+
+
+#### Step 2. Calculate the normalized decision matrix for each decision maker. 
+
+This step transforms various attribute dimensions into non-dimensional
+attributes which allows comparisons across criteria. Because various criteria
+are usually measured in various units, the scores in the evaluation matrix X
+have to be transformed to a normalized scale. The normalization of values
+can be carried out by one of the several known standardized formulas. 
+
+
+#### Step 3. Determine the positive ideal and negative ideal solutions for each decision maker
+
+The weighted normalized value  v is calculated by multiplying it with weight.
+
+#### Step 4. Calculate the separation measures from the positive ideal solution and the negative ideal solution. 
+
+Identify the positive ideal alternative (extreme performance on each criterion)
+and identify the negative ideal alternative (reverse extreme performance on each
+criterion). The ideal positive solution is the solution that maximizes the benefit
+criteria and minimizes the cost criteria whereas the negative ideal solution
+maximizes the cost criteria and minimizes the benefit criteria. 
+
+#### Step 5. Calculate the separation measures.
+
+In the TOPSIS method a number of distance metrics can be applied.
+
+#### Step 6. Calculate the relative closeness to the positive ideal solution. 
+
+#### Step 7. Rank the preference order or select the alternative closest to 1.
+A set of alternatives now can be ranked by the descending order of the value
+of Ri.
+
+
+
