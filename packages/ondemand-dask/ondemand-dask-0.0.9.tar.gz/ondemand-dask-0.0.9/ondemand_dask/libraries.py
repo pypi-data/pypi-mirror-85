@@ -1,0 +1,31 @@
+important_libraries = [
+    'dask[complete]',
+    'distributed',
+    'ondemand-dask',
+    'google-api-python-client',
+    'jupyter-server-proxy',
+    'google-cloud-storage',
+    'bokeh',
+    'google-cloud-bigquery',
+    'gcsfs',
+    'sqlalchemy',
+    'dill',
+]
+
+extra_libraries = [
+    'streamz',
+    'confluent-kafka',
+    'requests',
+    'prometheus_client',
+    'elasticsearch',
+    'sentry-sdk',
+    'influxdb',
+    'pandas==0.25.3',
+    'psycopg2-binary',
+    'sklearn',
+    'scikit-learn==0.22.1',
+    'numpy',
+    'scipy',
+    'fuzzywuzzy[speedup]',
+    'pendulum',
+]
