@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: scrapysplashwrapper
+Version: 1.2.8
+Summary: Scrapy splash wrapper as a standalone library.
+Home-page: https://github.com/Lookyloo/ScrapySplashWrapper
+License: BSD-3-Clause
+Author: Raphaël Vinot
+Author-email: raphael.vinot@circl.lu
+Requires-Python: >=3.7,<4.0
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Telecommunications Industry
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Internet
+Classifier: Topic :: Security
+Requires-Dist: Scrapy (>=2.3.0,<3.0.0)
+Requires-Dist: scrapy-splash (>=0.7.2,<0.8.0)
+Project-URL: Repository, https://github.com/Lookyloo/ScrapySplashWrapper
+Description-Content-Type: text/markdown
+
+# ScrapySplashWrapper
+A wrapper that uses scrappy and splash to crawl a website.
+
+# Usage
+
+*Warning*: it requires a splash instance (docker is recommendended).
+
+```
+usage: scraper [-h] [-s SPLASH] -u URL [-d DEPTH] [-o OUTPUT] [-ua USERAGENT]
+               [--debug]
+
+Crawl a URL.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -s SPLASH, --splash SPLASH
+                        Splash URL to use for crawling.
+  -u URL, --url URL     URL to crawl
+  -d DEPTH, --depth DEPTH
+                        Depth of the crawl.
+  -o OUTPUT, --output OUTPUT
+                        Output directory
+  -ua USERAGENT, --useragent USERAGENT
+                        User-Agent to use for crawling
+  --debug               Enable debug mode on scrapy/splash
+
+```
+
+
