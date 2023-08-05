@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: tree-inspector
+Version: 2.1.2
+Summary: Inspect a Python object with an interactive tree view
+Home-page: https://github.com/slinjhu/tree-inspector
+Author: Sen Lin
+Author-email: slinjhu@gmail.com
+License: MIT
+Platform: UNKNOWN
+Requires-Python: >=3.5.0
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: jinja2
+
+# Inspector for Python objects
+
+Tree Inspector is a package to inspect generic Python object interactively as a tree structure.
+
+![Sample](https://slinjhu.github.io/tree-inspector/static/Sample.png)
+
+**Try** the [sample html page](https://slinjhu.github.io/tree-inspector/static/Sample.html)
+
+## Install
+It is very simple to install Tree Inspector. Just do
+
+```
+pip install tree-inspector
+```
+
+## Usage
+Using Tree Inspector is even simpler.
+
+```python
+from tree_inspector import dump_tree_to_file
+
+dump_tree_to_file(any_object, '/tmp/outfile.html', name='Optional Name')
+```
+
+## Configuring the tree view
+To be continued
+
