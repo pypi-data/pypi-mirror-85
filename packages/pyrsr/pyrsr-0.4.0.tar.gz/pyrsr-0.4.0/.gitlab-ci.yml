@@ -1,0 +1,117 @@
+before_script:
+  - git lfs pull
+
+
+stages:
+  - test
+  - deploy
+
+
+test_pyrsr:
+  stage: test
+  script:
+    - source /root/miniconda3/bin/activate ci_env
+    - make nosetests
+
+    # create the docs
+    - pip install sphinx_rtd_theme  # Read-the-docs theme for SPHINX documentation
+    - pip install sphinx-autodoc-typehints
+    - make docs
+  artifacts:
+    paths:
+    - htmlcov/
+    - docs/_build/html/
+    - nosetests.html
+    - nosetests.xml
+    when: always
+
+
+test_styles:
+  stage: test
+  script:
+    - source /root/miniconda3/bin/activate ci_env
+    - make lint
+  artifacts:
+    paths:
+    - tests/linting/flake8.log
+    - tests/linting/pycodestyle.log
+    - tests/linting/pydocstyle.log
+    when: always
+
+
+test_pyrsr_install:
+  stage: test
+  script:
+    - source /root/miniconda3/bin/activate
+
+    - conda update -n base -c conda-forge conda
+    # - conda update -c conda-forge python
+
+    - conda create -y -q -c conda-forge --name pyrsr_testinstall python=3
+    - conda activate pyrsr_testinstall
+
+     # resolve some requirements with conda
+    - conda install --y -q -c conda-forge numpy matplotlib pandas
+
+    # run installer
+    - python setup.py install
+
+    # test if its importable
+    - cd ..
+    - pwd
+    - ls
+    - python -c "import pyrsr; print(pyrsr)"
+    - python -c "from pyrsr import RSR"
+  only:
+    - master
+
+
+pages:  # this job must be called 'pages' to advise GitLab to upload content to GitLab Pages
+  stage: deploy
+  dependencies:
+    - test_pyrsr
+  script:
+    # Create the public directory
+    - rm -rf public
+    - mkdir public
+    - mkdir -p public/doc
+    - mkdir -p public/coverage
+    - mkdir -p public/nosetests_reports
+
+    # Copy over the docs
+    - cp -r docs/_build/html/* public/doc/
+
+    # Copy over the coverage reports
+    - cp -r htmlcov/* public/coverage/
+
+    # Copy over the nosetests reports
+    - cp nosetests.* public/nosetests_reports/
+
+    # Check if everything is working great
+    - ls -al public
+    - ls -al public/doc
+    - ls -al public/coverage
+    - ls -al public/nosetests_reports
+  artifacts:
+    paths:
+      - public
+    expire_in: 30 days
+  only:
+    - master
+    - enhancement/improve_docs
+
+
+deploy_pypi:
+  stage: deploy
+  dependencies:
+    - test_pyrsr
+  script:
+    - source /root/miniconda3/bin/activate
+    - conda activate ci_env
+    - pip install -U twine
+    - python setup.py sdist
+    - twine upload dist/*  # requires creds as environment variables
+  only:
+    - /^v\d+\.\d+\.\d+([abc]\d*)?$/  # PEP-440 compliant version (tags)
+  except:
+    - dev

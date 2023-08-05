@@ -1,0 +1,26 @@
+name: pyrsr
+
+channels: &id1
+  - conda-forge
+
+dependencies:
+  - python=3.*.*
+  - pip
+  - matplotlib
+  - numpy
+  - pandas
+
+  - pip:
+    - scipy
+
+    # test and doc dependencies
+    - coverage
+    - flake8
+    - nose
+    - nose2
+    - nose-htmloutput
+    - pycodestyle
+    - pylint
+    - pydocstyle
+    - rednose
+    - sphinx-argparse
