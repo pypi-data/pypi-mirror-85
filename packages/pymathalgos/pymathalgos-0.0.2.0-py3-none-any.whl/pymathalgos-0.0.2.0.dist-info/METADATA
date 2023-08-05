@@ -1,0 +1,81 @@
+Metadata-Version: 2.1
+Name: pymathalgos
+Version: 0.0.2.0
+Summary: 
+Author: Adi58816
+Author-email: adisalimgereev@gmail.com
+Requires-Python: >=3.8,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
+
+# PyMathAlgoS
+
+## 1. Установка
+
+```bash
+$ pip install pymathalgos
+```
+
+## 2. Функционал
+
+### Простая арифметика
+
+Функция вычисления факториала:
+
+```python
+import pymathalgos
+print(pymathalgos.factorial(2))	 # 1
+print(pymathalgos.factorial(-1)) # ArithmeticError: argument value must be bigger then zero!
+```
+
+Функции для вычисления большего, меньшего числа из аргументов, а также суммы аргументов:
+
+```python
+import pymathalgos
+
+print(pymathalgos._min(2, 8, 1)) # 1
+print(pymathalgos._max(2, 8, 9)) # 9
+print(pymathalgos._sum(1, 2, 3)) # 6
+
+```
+
+### Геометрия
+
+Здесь вы можете увидеть готовые функции для геометрии
+
+
+Здесь просто функции из тригонометрии:
+```python
+import pymathalgos
+import pymathalgos.geometry as geometry
+
+print(geometry.sin())
+print(geometry.cos())
+
+# Функции tan() и tg(), а также подобные функции означают одно и тоже 
+print(geometry.tan())
+print(geometry.tg())
+
+print(geometry.asin())
+print(geometry.acos())
+print(geometry.atan())
+
+print(geometry.sinh())
+print(geometry.cosh())
+print(geometry.tanh())
+
+print(geometry.asinh())
+print(geometry.acosh())
+print(geometry.atanh())
+```
+
+Если вы хотите узнать синус от градусов, а не от радиан
+есть простая функция sin_d(degrees).
+
+```python
+import pymathalgos
+# Эти две строки кода означают одно и тоже
+print(pymathalgos.sin_r(pymathalgos.to_radians(90)))
+print(pymathalgos.sin_d(90))
+```
