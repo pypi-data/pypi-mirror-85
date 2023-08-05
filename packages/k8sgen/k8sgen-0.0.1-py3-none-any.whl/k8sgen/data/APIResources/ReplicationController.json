@@ -1,0 +1,302 @@
+{
+    "description": "ReplicationController represents the configuration of a replication controller.",
+    "json": {
+        "apiVersion": "v1",
+        "kind": "ReplicationController",
+        "metadata": "<COMPONENT.Metadata>",
+        "spec": {
+            "minReadySeconds": "<integer>",
+            "replicas": "<integer>",
+            "selector": "<map[string]string>",
+            "template": {
+                "metadata": "<COMPONENT.Metadata>",
+                "spec": {
+                    "activeDeadlineSeconds": "<integer>",
+                    "affinity": {
+                        "nodeAffinity": "<COMPONENT.NodeAffinity>",
+                        "podAffinity": "<COMPONENT.PodAffinity>",
+                        "podAntiAffinity": "<COMPONENT.PodAntiAffinity>"
+                    },
+                    "automountServiceAccountToken": "<boolean>",
+                    "containers": "<[]COMPONENT.Container>",
+                    "dnsConfig": "<COMPONENT.DNSConfig>",
+                    "dnsPolicy": "<string>",
+                    "enableServiceLinks": "<boolean>",
+                    "ephemeralContainers": [
+                        {
+                            "args": "<[]string>",
+                            "command": "<[]string>",
+                            "env": [
+                                {
+                                    "name": "<string>",
+                                    "value": "<string>",
+                                    "valueFrom": {
+                                        "configMapKeyRef": {
+                                            "key": "<string>",
+                                            "name": "<string>",
+                                            "optional": "<boolean>"
+                                        },
+                                        "fieldRef": {
+                                            "apiVersion": "<string>",
+                                            "fieldPath": "<string>"
+                                        },
+                                        "resourceFieldRef": {
+                                            "containerName": "<string>",
+                                            "divisor": "<string>",
+                                            "resource": "<string>"
+                                        },
+                                        "secretKeyRef": {
+                                            "key": "<string>",
+                                            "name": "<string>",
+                                            "optional": "<boolean>"
+                                        }
+                                    }
+                                }
+                            ],
+                            "envFrom": [
+                                {
+                                    "configMapRef": {
+                                        "name": "<string>",
+                                        "optional": "<boolean>"
+                                    },
+                                    "prefix": "<string>",
+                                    "secretRef": {
+                                        "name": "<string>",
+                                        "optional": "<boolean>"
+                                    }
+                                }
+                            ],
+                            "image": "<string>",
+                            "imagePullPolicy": "<string>",
+                            "lifecycle": {
+                                "postStart": {
+                                    "exec": {
+                                        "command": "<[]string>"
+                                    },
+                                    "httpGet": {
+                                        "host": "<string>",
+                                        "httpHeaders": [
+                                            {
+                                                "name": "<string>",
+                                                "value": "<string>"
+                                            }
+                                        ],
+                                        "path": "<string>",
+                                        "port": "<string>",
+                                        "scheme": "<string>"
+                                    },
+                                    "tcpSocket": {
+                                        "host": "<string>",
+                                        "port": "<string>"
+                                    }
+                                },
+                                "preStop": {
+                                    "exec": {
+                                        "command": "<[]string>"
+                                    },
+                                    "httpGet": {
+                                        "host": "<string>",
+                                        "httpHeaders": [
+                                            {
+                                                "name": "<string>",
+                                                "value": "<string>"
+                                            }
+                                        ],
+                                        "path": "<string>",
+                                        "port": "<string>",
+                                        "scheme": "<string>"
+                                    },
+                                    "tcpSocket": {
+                                        "host": "<string>",
+                                        "port": "<string>"
+                                    }
+                                }
+                            },
+                            "livenessProbe": {
+                                "exec": {
+                                    "command": "<[]string>"
+                                },
+                                "failureThreshold": "<integer>",
+                                "httpGet": {
+                                    "host": "<string>",
+                                    "httpHeaders": [
+                                        {
+                                            "name": "<string>",
+                                            "value": "<string>"
+                                        }
+                                    ],
+                                    "path": "<string>",
+                                    "port": "<string>",
+                                    "scheme": "<string>"
+                                },
+                                "initialDelaySeconds": "<integer>",
+                                "periodSeconds": "<integer>",
+                                "successThreshold": "<integer>",
+                                "tcpSocket": {
+                                    "host": "<string>",
+                                    "port": "<string>"
+                                },
+                                "timeoutSeconds": "<integer>"
+                            },
+                            "name": "<string>",
+                            "ports": [
+                                {
+                                    "containerPort": "<integer>",
+                                    "hostIP": "<string>",
+                                    "hostPort": "<integer>",
+                                    "name": "<string>",
+                                    "protocol": "<string>"
+                                }
+                            ],
+                            "readinessProbe": {
+                                "exec": {
+                                    "command": "<[]string>"
+                                },
+                                "failureThreshold": "<integer>",
+                                "httpGet": {
+                                    "host": "<string>",
+                                    "httpHeaders": [
+                                        {
+                                            "name": "<string>",
+                                            "value": "<string>"
+                                        }
+                                    ],
+                                    "path": "<string>",
+                                    "port": "<string>",
+                                    "scheme": "<string>"
+                                },
+                                "initialDelaySeconds": "<integer>",
+                                "periodSeconds": "<integer>",
+                                "successThreshold": "<integer>",
+                                "tcpSocket": {
+                                    "host": "<string>",
+                                    "port": "<string>"
+                                },
+                                "timeoutSeconds": "<integer>"
+                            },
+                            "resources": {
+                                "limits": "<map[string]string>",
+                                "requests": "<map[string]string>"
+                            },
+                            "securityContext": {
+                                "allowPrivilegeEscalation": "<boolean>",
+                                "capabilities": {
+                                    "add": "<[]string>",
+                                    "drop": "<[]string>"
+                                },
+                                "privileged": "<boolean>",
+                                "procMount": "<string>",
+                                "readOnlyRootFilesystem": "<boolean>",
+                                "runAsGroup": "<integer>",
+                                "runAsNonRoot": "<boolean>",
+                                "runAsUser": "<integer>",
+                                "seLinuxOptions": {
+                                    "level": "<string>",
+                                    "role": "<string>",
+                                    "type": "<string>",
+                                    "user": "<string>"
+                                },
+                                "windowsOptions": {
+                                    "gmsaCredentialSpec": "<string>",
+                                    "gmsaCredentialSpecName": "<string>",
+                                    "runAsUserName": "<string>"
+                                }
+                            },
+                            "startupProbe": {
+                                "exec": {
+                                    "command": "<[]string>"
+                                },
+                                "failureThreshold": "<integer>",
+                                "httpGet": {
+                                    "host": "<string>",
+                                    "httpHeaders": [
+                                        {
+                                            "name": "<string>",
+                                            "value": "<string>"
+                                        }
+                                    ],
+                                    "path": "<string>",
+                                    "port": "<string>",
+                                    "scheme": "<string>"
+                                },
+                                "initialDelaySeconds": "<integer>",
+                                "periodSeconds": "<integer>",
+                                "successThreshold": "<integer>",
+                                "tcpSocket": {
+                                    "host": "<string>",
+                                    "port": "<string>"
+                                },
+                                "timeoutSeconds": "<integer>"
+                            },
+                            "stdin": "<boolean>",
+                            "stdinOnce": "<boolean>",
+                            "targetContainerName": "<string>",
+                            "terminationMessagePath": "<string>",
+                            "terminationMessagePolicy": "<string>",
+                            "tty": "<boolean>",
+                            "volumeDevices": [
+                                {
+                                    "devicePath": "<string>",
+                                    "name": "<string>"
+                                }
+                            ],
+                            "volumeMounts": [
+                                {
+                                    "mountPath": "<string>",
+                                    "mountPropagation": "<string>",
+                                    "name": "<string>",
+                                    "readOnly": "<boolean>",
+                                    "subPath": "<string>",
+                                    "subPathExpr": "<string>"
+                                }
+                            ],
+                            "workingDir": "<string>"
+                        }
+                    ],
+                    "hostAliases": "<[]COMPONENT.HostAlias>",
+                    "hostIPC": "<boolean>",
+                    "hostNetwork": "<boolean>",
+                    "hostPID": "<boolean>",
+                    "hostname": "<string>",
+                    "imagePullSecrets": "<[]COMPONENT.ImagePullSecret>",
+                    "initContainers": "<[]COMPONENT.Container>",
+                    "nodeName": "<string>",
+                    "nodeSelector": "<map[string]string>",
+                    "overhead": "<map[string]string>",
+                    "preemptionPolicy": "<string>",
+                    "priority": "<integer>",
+                    "priorityClassName": "<string>",
+                    "readinessGates": "<[]COMPONENT.ReadinessGate>",
+                    "restartPolicy": "<string>",
+                    "runtimeClassName": "<string>",
+                    "schedulerName": "<string>",
+                    "securityContext": "<COMPONENT.SecurityContext>",
+                    "serviceAccount": "<string>",
+                    "serviceAccountName": "<string>",
+                    "shareProcessNamespace": "<boolean>",
+                    "subdomain": "<string>",
+                    "terminationGracePeriodSeconds": "<integer>",
+                    "tolerations": "<[]COMPONENT.Tolerations>",
+                    "topologySpreadConstraints": [
+                        {
+                            "labelSelector": {
+                                "matchExpressions": [
+                                    {
+                                        "key": "<string>",
+                                        "operator": "<string>",
+                                        "values": "<[]string>"
+                                    }
+                                ],
+                                "matchLabels": "<map[string]string>"
+                            },
+                            "maxSkew": "<integer>",
+                            "topologyKey": "<string>",
+                            "whenUnsatisfiable": "<string>"
+                        }
+                    ],
+                    "volumes": "<[]COMPONENT.Volume>"
+                }
+            }
+        }
+    }
+}

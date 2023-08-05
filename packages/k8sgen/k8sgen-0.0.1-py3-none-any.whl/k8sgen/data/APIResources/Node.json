@@ -1,0 +1,25 @@
+{
+    "description": "Node is a worker node in Kubernetes. Each node will have a unique identifier in the cache (i.e. in etcd).",
+    "json": {
+        "apiVersion": "v1",
+        "kind": "Node",
+        "metadata": "<COMPONENT.Metadata>",
+        "spec": {
+            "configSource": {
+                "configMap": {
+                    "kubeletConfigKey": "<string>",
+                    "name": "<string>",
+                    "namespace": "<string>",
+                    "resourceVersion": "<string>",
+                    "uid": "<string>"
+                }
+            },
+            "externalID": "<string>",
+            "podCIDR": "<string>",
+            "podCIDRs": "<[]string>",
+            "providerID": "<string>",
+            "taints": "<[]COMPONENT.Taint>",
+            "unschedulable": "<boolean>"
+        }
+    }
+}

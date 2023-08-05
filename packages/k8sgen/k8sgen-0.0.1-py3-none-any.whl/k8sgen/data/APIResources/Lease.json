@@ -1,0 +1,15 @@
+{
+    "description": "Lease defines a lease concept.",
+    "json": {
+        "apiVersion": "coordination.k8s.io/v1",
+        "kind": "Lease",
+        "metadata": "<COMPONENT.Metadata>",
+        "spec": {
+            "acquireTime": "<string>",
+            "holderIdentity": "<string>",
+            "leaseDurationSeconds": "<integer>",
+            "leaseTransitions": "<integer>",
+            "renewTime": "<string>"
+        }
+    }
+}

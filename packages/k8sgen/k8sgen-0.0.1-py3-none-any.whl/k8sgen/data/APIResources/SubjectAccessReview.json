@@ -1,0 +1,16 @@
+{
+    "description": "SubjectAccessReview checks whether or not a user or group can perform an action.",
+    "json": {
+        "apiVersion": "authorization.k8s.io/v1",
+        "kind": "SubjectAccessReview",
+        "metadata": "<COMPONENT.Metadata>",
+        "spec": {
+            "extra": "<map[string][]string>",
+            "groups": "<[]string>",
+            "nonResourceAttributes": "<[]COMPONENT.NonResourceAttribute>",
+            "resourceAttributes": "<COMPONENT.ResourceAttribute>",
+            "uid": "<string>",
+            "user": "<string>"
+        }
+    }
+}
