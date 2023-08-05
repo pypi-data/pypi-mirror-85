@@ -1,0 +1,71 @@
+Metadata-Version: 2.1
+Name: stwno-canteen
+Version: 0.1
+Summary: simple API to access the STWNO canteen's menus
+Home-page: https://github.com/somsky/stwno_canteen
+Author: Stefan Sommer aka somsky
+Author-email: stefan.sommer.per@gmail.com
+License: MIT
+Keywords: stwno
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+
+
+<p align="center">
+  <img style="width:40%"src="https://github.com/somsky/stwno_canteen_python/raw/master/logo.png"/>
+</p>
+
+STWNO Canteen is a simple python API for querying the menu of the canteens operated by the STWNO (Studentenwerk Niederbayern/Oberpfalz) in Lower Bavaria and Upper Palatinate.
+
+
+# Features
+* Simple to use API for querying the menu for any given day in any STWNO canteen
+* Command Line Interface to print todays menu to the terminal
+
+# Usage
+
+```python
+import datetime
+import stwno_canteen
+
+today = datetime.date.today()
+menu = getMenu(stwno_canteen.Canteen.OTH_RGB_CANTEEN_LUNCH, datetime.date.today())
+print(menu)
+
+```
+
+# Requirements
+```
+$ python --version >= 3.8.0
+```
+
+# Installation
+
+You can install the API manually, or by using pip:
+```
+$ python -m pip install stwno_canteen
+```
+
+# Command Line Interface
+
+The command line interface allows to fetch the menu for the current day of a given canteen:
+
+```
+$ python -m stwno_canteen -c <canteen_identifier>
+```
+
+For a list of available identifiers, check out the Canteens dictionary in the
+[constants file](https://github.com/somsky/stwno_canteen_python/blob/master/stwno_constants.py).
+
+# Additional Notes
+I do not guarantee for the correctness and completeness of the parsed ingredients/allergenes.
+This is mostly because there tend to be errors in the CSV files from STWNO frequently, which
+makes it hard to parse. If you suffer from an allergy, you should not rely on this API.
+
+
+
