@@ -1,0 +1,1 @@
+This is a lib that tries to make math animation easier to show live by being able to control them.
