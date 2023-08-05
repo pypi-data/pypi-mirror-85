@@ -1,0 +1,67 @@
+Metadata-Version: 2.1
+Name: pyrcs
+Version: 0.2.12
+Summary: A web-scraping tool for collecting railway codes used in different UK rail industry systems.
+Home-page: https://github.com/mikeqfu/pyrcs
+Author: Qian Fu
+Author-email: qian.fu@outlook.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX :: Linux
+Description-Content-Type: text/x-rst
+Requires-Dist: beautifulsoup4 (~=4.9.3)
+Requires-Dist: fake-useragent
+Requires-Dist: fuzzywuzzy (~=0.18.0)
+Requires-Dist: html5lib
+Requires-Dist: lxml
+Requires-Dist: measurement (~=3.2.0)
+Requires-Dist: more-itertools (~=8.6.0)
+Requires-Dist: numpy (~=1.19.4)
+Requires-Dist: pandas (~=1.1.4)
+Requires-Dist: pyhelpers (>=1.2.6)
+Requires-Dist: requests (~=2.24.0)
+
+PyRCS
+=====
+
+|PyPI| |Python| |License| |Downloads| |DOI|
+
+.. |PyPI| image:: https://img.shields.io/pypi/v/pyrcs?color=important&label=PyPI
+   :target: https://pypi.org/project/pyrcs/
+.. |Python| image:: https://img.shields.io/pypi/pyversions/pyrcs?color=informational&label=Python
+   :target: https://www.python.org/downloads/
+.. |License| image:: https://img.shields.io/pypi/l/pyrcs?color=green&label=License
+   :target: https://github.com/mikeqfu/pyrcs/blob/master/LICENSE
+.. |Downloads| image:: https://img.shields.io/pypi/dm/pyrcs?color=yellow&label=Downloads
+   :target: https://pypistats.org/packages/pyrcs
+.. |DOI| image:: https://zenodo.org/badge/92501006.svg
+   :target: https://zenodo.org/badge/latestdoi/92501006
+
+**Author**: Qian Fu
+
+PyRCS is a web-scraping tool for collecting |Railway Codes|_ used in different UK rail industry systems.
+
+Resources
+---------
+
+- `Documentation <https://pyrcs.readthedocs.io/>`_
+- `Issue Tracker <https://github.com/mikeqfu/pyrcs/issues>`_
+
+License
+-------
+
+PyRCS is licensed under `GNU General Public License v3.0 (GPLv3) <https://github.com/mikeqfu/pyrcs/blob/master/LICENSE>`_.
+
+Acknowledgement
+---------------
+
+The development of the PyRCS is mainly built on data from the |Railway Codes|_ website. The author of the package would like to thank the website editor and `all contributors <http://www.railwaycodes.org.uk/misc/acknowledgements.shtm>`_ to the data resources.
+
+.. _Railway Codes: http://www.railwaycodes.org.uk/index.shtml
+
+.. |Railway Codes| replace:: *Railway Codes*
+
+
