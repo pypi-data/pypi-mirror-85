@@ -1,0 +1,37 @@
+{
+    "plugin": {
+        "title": "Email",
+        "packageName": "peek_core_email",
+    "version":"2.5.2",
+        "buildNumber": "#PLUGIN_BUILD#",
+        "buildDate": "#BUILD_DATE#",
+        "creator": "Synerty Pty Ltd",
+        "website": "www.synerty.com"
+    },
+    "requiresServices": [
+        "server",
+        "admin",
+        "storage",
+        "doc-dev",
+        "doc-admin"
+    ],
+    "doc-dev": {
+        "docDir": "doc-dev",
+        "docRst": "index.rst",
+        "hasApi": true
+    },
+    "doc-admin": {
+        "docDir": "doc-admin",
+        "docRst": "index.rst"
+    },
+    "admin": {
+        "moduleDir": "plugin-module",
+        "appDir": "_private/admin-app",
+        "appModule": "core-email.module#CoreEmailAdminModule"
+    },
+    "server": {
+    },
+    "storage": {
+        "alembicDir": "_private/alembic"
+    }
+}
