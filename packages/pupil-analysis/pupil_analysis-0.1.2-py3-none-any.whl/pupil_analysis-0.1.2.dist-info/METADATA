@@ -1,0 +1,72 @@
+Metadata-Version: 2.1
+Name: pupil-analysis
+Version: 0.1.2
+Summary: Spatial motion analysis program
+Home-page: https://github.com/jkemppainen/pupil-analysis
+Author: Joni Kemppainen
+Author-email: jjtkemppainen1@sheffield.ac.uk
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3) 
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.0
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: tifffile
+Requires-Dist: matplotlib
+Requires-Dist: tk-steroids (>=0.1.0)
+Requires-Dist: roimarker (>=0.1.0)
+Requires-Dist: movemeter
+Requires-Dist: python-biosystfiles
+
+<h1>Pseudopupil analysis suite</h1>
+Specialised spatial motion analysis software for Pupil Imsoft data.
+
+Can be used for data that follows hierarchy
+```
+data_directory
+├── specimen_01
+│   ├── experiment_01
+│   │   ├── image_001.tif
+│   │   └── image_002.tif
+│   └── ...
+└── ...
+```
+
+
+<h2>Installing with pip</h2>
+
+The latest version from PyPi can be installed with the command
+
+```
+pip install pupil-analysis
+```
+
+This should install all the required dependencies, except when on Windows, OpenCV may require
+[Visual C++ Runtime 2015](https://www.microsoft.com/download/details.aspx?id=48145) to be installed.
+
+
+Then to upgrade an existing installation to the latest version
+
+```
+pip install --upgrade pupil-analysis
+```
+
+
+<h2>Graphical user interface (GUI)</h2>
+
+To open the GUI from Python
+
+```python
+import pupilanalysis.tkgui as gui
+gui.run()
+```
+
+or from command line
+```
+python -m pupilanalysis.tkgui
+```
+
+
