@@ -1,0 +1,55 @@
+#This is the tentativeinput file of AVBP pytohon Gasout.
+# Enable YAML syntax highlighting in you IDE for the best experience.
+
+# input files
+inst_solut: ./dummy.sol.h5
+mesh: ./dummy.mesh.h5
+inst_solut_output: ./gasouted.sol.h5
+
+# list (each - block) of actions to take
+actions:
+- type: directional_linear_mask 
+  direction: "x"             #direction 0: x , 1: y, 2: z
+  max_abcissa: 0.11        #If None, takes  70% of CAO size
+  min_abcissa: 0.1         #If None, takes  30% of CAO size
+  new_pressure: null       #use null if you dont want to edit this field
+  new_temperature: 2000.0. # Temp in K.
+  new_yk: null
+
+- type: spherical_tanh_mask
+  center: [0.1, 0.1, 0]    # center sphere. If None, takes CAO center.
+  rad_0: 0.01              # radius sphere [m]. If None, takes from CAO size
+  delta: 0.05              # transition thickness [m], If None, takes half rad_0
+  new_pressure: null
+  new_temperature: 1600.
+  new_yk:                  # dictionnary of species Yk
+    N2: 0.8                # order and competion does not matter
+    O2: 0.2                # Sum MUST be 1!
+  
+- type: fraction_z_mask
+  specfuel: KERO_LUCHE     # Fuel spec name
+  atom_ref: C              # reference atom for Z computation
+  mix_oxy:                 # Mixture oxidizer, for Z computation.
+    O2: 0.233              #   If None, takes AIR
+    N2: 0.767
+  mix_fuel:  None          # Mixture fuel. dict of Yk.
+  z_max: 0.02              #   If None, takes the mix at the Higesh Yk fuel
+  z_mix: 0.01
+  new_pressure: 103000.0.  # Pressure in Pa
+  new_temperature: null
+  new_yk: null
+
+- type: fraction_z_mask    # You can repeat several treatments
+  specfuel: KERO_LUCHE
+  atom_ref: C              
+  mix_oxy:                 
+    O2: 0.233   
+    N2: 0.767
+  mix_fuel:  None          
+  z_max: 0.05
+  z_mix: 0.04
+  new_pressure: 103000.0.  
+  new_temperature: null
+  new_yk: null
+  
+  
