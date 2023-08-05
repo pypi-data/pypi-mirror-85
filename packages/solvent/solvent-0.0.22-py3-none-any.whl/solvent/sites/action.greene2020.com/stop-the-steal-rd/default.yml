@@ -1,0 +1,162 @@
+active_locators:
+  - mode: ''
+    value: ''
+    index: 0
+    score: 0.5
+inactive_locators:
+  - mode: ''
+    value: ''
+    index: 0
+    score: 0.5
+actions:
+  - verb: fill
+    name: full_name
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.25
+      - mode: name
+        value: full_name
+        index: 0
+        score: 1.0
+      - mode: name
+        value: full-name
+        index: 0
+        score: 0.5
+      - mode: id
+        value: full_name
+        index: 0
+        score: 0.5
+      - mode: id
+        value: full-name
+        index: 0
+        score: 0.5
+      - mode: css
+        value: '[aria-label="Full Name"]'
+        index: 0
+        score: 0.5
+      - mode: id
+        value: FullName
+        index: 0
+        score: 0.5
+  - verb: fill
+    name: phone_number
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.25
+      - mode: name
+        value: phone_number
+        index: 0
+        score: 1.0
+      - mode: name
+        value: phone-number
+        index: 0
+        score: 0.5
+      - mode: id
+        value: phone_number
+        index: 0
+        score: 0.5
+      - mode: id
+        value: phone-number
+        index: 0
+        score: 0.5
+      - mode: css
+        value: '[aria-label="Phone Number"]'
+        index: 0
+        score: 0.5
+      - mode: id
+        value: PhoneNumber
+        index: 0
+        score: 0.5
+  - verb: click
+    name: stop_the_steal
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.0078
+      - mode: text
+        value: Stop The Steal
+        index: 0
+        score: 0.0078
+      - mode: text
+        value: Stop the steal
+        index: 0
+        score: 0.0078
+      - mode: value
+        value: STOP THE STEAL
+        index: 0
+        score: 0.0078
+      - mode: value
+        value: Stop the steal
+        index: 0
+        score: 0.0078
+      - mode: id
+        value: lp-pom-button-17
+        index: 0
+        score: 0.9765
+  - verb: fill
+    name: email
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.25
+      - mode: name
+        value: email
+        index: 0
+        score: 1.0
+      - mode: name
+        value: email
+        index: 0
+        score: 0.5
+      - mode: id
+        value: email
+        index: 0
+        score: 0.5
+      - mode: id
+        value: email
+        index: 0
+        score: 0.5
+      - mode: css
+        value: '[aria-label="Email"]'
+        index: 0
+        score: 0.5
+      - mode: id
+        value: Email
+        index: 0
+        score: 0.5
+  - verb: fill
+    name: zip_code
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.25
+      - mode: name
+        value: zip_code
+        index: 0
+        score: 1.0
+      - mode: name
+        value: zip-code
+        index: 0
+        score: 0.5
+      - mode: id
+        value: zip_code
+        index: 0
+        score: 0.5
+      - mode: id
+        value: zip-code
+        index: 0
+        score: 0.5
+      - mode: css
+        value: '[aria-label="Zip Code"]'
+        index: 0
+        score: 0.5
+      - mode: id
+        value: ZipCode
+        index: 0
+        score: 0.5
