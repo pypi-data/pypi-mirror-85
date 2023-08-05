@@ -1,0 +1,38 @@
+notifications:
+  email:
+    on_success: never
+language: cpp
+sudo: false
+os:
+  - osx
+env:
+  global:
+    - NINJA_STATUS="[%p %u/%t@%o %r]"
+    - PROJECT_NAME=${PWD##*/}
+  matrix:
+    - BUILD_TYPE=Debug OPTIONAL=ON
+    - BUILD_TYPE=Release OPTIONAL=ON
+    - BUILD_TYPE=Debug OPTIONAL=OFF
+    - BUILD_TYPE=Release OPTIONAL=OFF
+matrix:
+  fast_finish: true
+before_install:
+  - brew update
+  - brew outdated cmake || brew upgrade cmake
+  # We need to install gcc before hdf5 because otherwise hdf5 will fail.
+  # The or statement is a hack to ensure we override the existing gcc without
+  # having an error
+  - brew install gcc || brew link --overwrite gcc
+  - brew install cppcheck doxygen ninja
+  - brew list hdf5@1.10 || brew install hdf5@1.10
+  - brew install boost-python3
+  - brew install lcov
+  - brew unlink numpy@1.19
+  - pip3 install numpy==1.17.3
+script:
+  - HDF5_INSTALL_PATH=`brew list hdf5@1.10 | grep libhdf5.a`
+  - pip install gcovr
+  - mkdir $BUILD_TYPE
+  - cd $BUILD_TYPE
+  - HDF5_ROOT=${HDF5_INSTALL_PATH%/*/*} cmake -GNinja -DCMAKE_INSTALL_PREFIX=$PWD/install -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DEXTLIB_FROM_SUBMODULES=ON ..
+  - ninja all && ninja $PROJECT_NAME-tests && ninja smoketests
