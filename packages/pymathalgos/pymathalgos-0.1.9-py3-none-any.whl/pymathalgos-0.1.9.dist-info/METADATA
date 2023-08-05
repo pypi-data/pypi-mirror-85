@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: pymathalgos
+Version: 0.1.9
+Summary: 
+Author: Adi58816
+Author-email: adisalimgereev@gmail.com
+Requires-Python: >=3.8,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
+
+# PyMathAlgoS
+
+## 1. Установка
+
+```bash
+$ pip install pymathalgos
+```
+
+## 2. Функционал
+
+### Simple arithmetic
+
+Функция вычисления факториала:
+
+```python
+import pymathalgos
+print(pymathalgos.factorial(2))
+print(pymathalgos.factorial(-1))
+```
+
+Результат:
+
+```
+1
+ArithmeticError: argument value must be bigger then zero!
+```
+
+### Геометрия
+
+Здесь вы можете увидеть готовые функции для геометрии
+
+
+Если вы хотите узнать синус от градусов, а не от радиан
+есть простая функция sin_d(degrees).
+```python
+import pymathalgos
+# These 2 lines of code are means the same thinks
+print(pymathalgos.sin_r(pymathalgos.to_radians(90)))
+print(pymathalgos.sin_d(90))
+```
