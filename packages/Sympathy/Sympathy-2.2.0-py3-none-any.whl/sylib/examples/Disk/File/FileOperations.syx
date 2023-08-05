@@ -1,0 +1,1073 @@
+<?xml version='1.0' encoding='US-ASCII'?>
+<flow xmlns="http://www.sysess.org/sympathyfordata/workflow/1.0" cls="Flow" uuid="{4ae9288a-6ef6-41a3-8d1a-6f0f19c973f4}">
+  <label></label>
+  <ports/>
+  <node id="org.sysess.sympathy.slice.slicelist" port_format="1.1" uuid="{266b915e-d04d-470c-88b6-b1b845d4bacf}" x="1700.0" y="2175.0">
+    <label>Slice List</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "limit": {
+        "editor": null,
+        "label": "Limit preview to",
+        "order": 1,
+        "type": "integer",
+        "value": 100
+      },
+      "slice": {
+        "editor": null,
+        "label": "Slice",
+        "order": 0,
+        "type": "string",
+        "value": "[1:3]"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="list" scheme="text" type="[datasource]" type_base="[&lt;a&gt;]" uuid="{2300c589-ee8d-4b0b-9c2b-abbc5542b740}">
+        <label>Input List</label>
+      </input>
+      <output key="list" scheme="hdf5" type="[datasource]" type_base="[&lt;a&gt;]" uuid="{bfe04276-bbdd-4672-9218-483d0c058f16}">
+        <label>Sliced output List</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.files.movefiles" port_format="1.1" uuid="{33547396-fde5-44f6-9c74-5b2205b79689}" x="2000.0" y="2875.0">
+    <label>Move Files</label>
+    <version>1.0</version>
+    <description>Moves a file to new location using a datasource with the location</description>
+    <author>Andreas T&#229;gerud</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "error": {
+        "editor": null,
+        "label": "Do not raise exceptions",
+        "order": 0,
+        "type": "boolean",
+        "value": false
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port1" scheme="hdf5" type="[datasource]" type_base="[datasource]" uuid="{3cfd5d3d-5a31-4348-a845-cda1a6e70dfe}">
+        <label>File to be moved</label>
+      </input>
+      <input key="port2" scheme="text" type="[datasource]" type_base="[datasource]" uuid="{e3b2a030-d8f5-4280-8acf-d507514a8436}">
+        <label>New location</label>
+      </input>
+      <output key="port1" scheme="text" type="[datasource]" type_base="[datasource]" uuid="{2b2f4e51-a341-41d1-98b2-5078976d08e7}">
+        <label>Moved file</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.create.createtable" port_format="1.1" uuid="{42bdb986-ab29-4db8-9dbe-cf10f0b819a7}" x="1700.0" y="2950.0">
+    <label>Manually Create Table</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Magnus Sand&#233;n</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "json_table": {
+        "editor": null,
+        "label": "GUI",
+        "order": 0,
+        "type": "string",
+        "value": "[[\"new\", \"U\", [\"moved/0.csv\", \"moved/1.csv\"]]]"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{67c578bf-3e07-49d7-82da-650e0b4ca532}">
+        <label>Manually created table</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.files.movefile" port_format="1.1" uuid="{51fc61ce-eebc-4924-b3bc-bed016ae1cdc}" x="2025.0" y="2575.0">
+    <label>Move File</label>
+    <version>1.0</version>
+    <description>Moves a file to new location using a datasource with the location</description>
+    <author>Andreas T&#229;gerud</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "error": {
+        "editor": null,
+        "label": "Do not raise exceptions",
+        "order": 0,
+        "type": "boolean",
+        "value": false
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port1" scheme="hdf5" type="datasource" type_base="datasource" uuid="{48fae0a6-60aa-4d8c-9bb0-8adf81384e7b}">
+        <label>File to be moved</label>
+      </input>
+      <input key="port2" scheme="text" type="datasource" type_base="datasource" uuid="{3747e69b-cd48-41f6-bae7-f5d46650e3c3}">
+        <label>New location</label>
+      </input>
+      <output key="port1" scheme="text" type="datasource" type_base="datasource" uuid="{942ccf20-b8f5-4d38-b6e0-5735f95d4770}">
+        <label>Moved file</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.generic.propagatefirst" port_format="1.1" uuid="{64c060fb-3907-4b58-9427-1a696dd48664}" x="2050.0" y="1775.0">
+    <label>Propagate First Input</label>
+    <version>1.0</version>
+    <description>Propagate first input to output</description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="item1" scheme="hdf5" type="datasource" type_base="&lt;a&gt;" uuid="{b9294c27-0ef0-4be0-b459-15102ba1515d}">
+        <label>The Item to be propagated</label>
+      </input>
+      <input key="item2" scheme="text" type="datasource" type_base="&lt;b&gt;" uuid="{0c5cf354-e353-4ae3-82f1-83657c024d6a}">
+        <label>Item that will not be propagated</label>
+      </input>
+      <output key="item" scheme="hdf5" type="datasource" type_base="&lt;a&gt;" uuid="{12ec8513-63d4-4dcb-8059-76583b5d3acc}">
+        <label>Propagated Item</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.datasources.rename" port_format="1.1" uuid="{667142ca-4b98-472e-a939-6aa52a5eb647}" x="1850.0" y="2625.0">
+    <label>Rename datasource with Regex</label>
+    <version>1.1</version>
+    <description>Applies a regular expression to modify the PATH of a datasource.</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "replace": {
+        "editor": null,
+        "label": "Replace",
+        "order": 1,
+        "type": "string",
+        "value": "renamed1.csv"
+      },
+      "search": {
+        "editor": null,
+        "label": "Search",
+        "order": 0,
+        "type": "string",
+        "value": "test_3.csv"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="input" scheme="hdf5" type="datasource" type_base="datasource" uuid="{7607a14a-ad84-4021-a847-9fcb18801b34}">
+        <label>Datasource input</label>
+      </input>
+      <output key="output" scheme="text" type="datasource" type_base="datasource" uuid="{e40a1ca7-be03-4c85-b328-58da8aa1f91c}">
+        <label>Datasource output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.files.deletefiles" port_format="1.1" uuid="{6ab0f190-98c5-4e67-9b72-ca26265cc1f9}" x="2675.0" y="2275.0">
+    <label>Delete files</label>
+    <version>1.0</version>
+    <description>Delete a file</description>
+    <author>Magnus Sand&#233;n &amp; Andreas T&#229;gerud</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "delete_folder": {
+        "editor": null,
+        "label": "Delete current folder if empty",
+        "order": 0,
+        "type": "boolean",
+        "value": true
+      },
+      "error": {
+        "editor": null,
+        "label": "Do not raise exceptions",
+        "order": 1,
+        "type": "boolean",
+        "value": false
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port1" scheme="text" type="[datasource]" type_base="[datasource]" uuid="{e4cebd63-c790-404c-854e-621d9e9cd11f}">
+        <label>File to delete</label>
+      </input>
+      <output key="port1" scheme="text" type="[datasource]" type_base="[datasource]" uuid="{dec03131-e955-48d5-963e-8a1de754c2f3}">
+        <label>Path to deleted file</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.tabletodsrcs" port_format="1.1" uuid="{82520ce6-5275-4464-a39a-9684d8a43c42}" x="1850.0" y="2950.0">
+    <label>Table to Datasources</label>
+    <version>1.1</version>
+    <description>Convert a table with file paths into a list of data sources pointing to those files.</description>
+    <author>Greger Cronquist</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "files": {
+        "editor": {
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "File names",
+        "list": ["new"],
+        "mode": "selected",
+        "order": 0,
+        "passthrough": false,
+        "type": "list",
+        "value": [0],
+        "value_names": []
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="" scheme="hdf5" type="table" type_base="table" uuid="{a1d1617e-8b1f-452e-a3fb-e8b9e9ad8691}">
+        <label>Table containing a column of filepaths.</label>
+      </input>
+      <output key="" scheme="text" type="[datasource]" type_base="[datasource]" uuid="{e344d289-cb34-495d-9140-b6061c749a65}">
+        <label>Datasources</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.files.deletefiles" port_format="1.1" uuid="{86c66beb-b367-4481-844d-c4f5bdb75466}" x="2675.0" y="2875.0">
+    <label>Delete files</label>
+    <version>1.0</version>
+    <description>Delete a file</description>
+    <author>Magnus Sand&#233;n &amp; Andreas T&#229;gerud</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "delete_folder": {
+        "editor": null,
+        "label": "Delete current folder if empty",
+        "order": 0,
+        "type": "boolean",
+        "value": true
+      },
+      "error": {
+        "editor": null,
+        "label": "Do not raise exceptions",
+        "order": 1,
+        "type": "boolean",
+        "value": true
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port1" scheme="text" type="[datasource]" type_base="[datasource]" uuid="{e40176ef-acd2-4746-b87a-2d429522c332}">
+        <label>File to delete</label>
+      </input>
+      <output key="port1" scheme="text" type="[datasource]" type_base="[datasource]" uuid="{c70da4a6-deb5-4de6-a22a-a4aca17c41ad}">
+        <label>Path to deleted file</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.generic.propagatefirst" port_format="1.1" uuid="{8717da4b-15bb-40c3-a690-e42e6262a4e6}" x="2200.0" y="2175.0">
+    <label>Propagate First Input</label>
+    <version>1.0</version>
+    <description>Propagate first input to output</description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="item1" scheme="hdf5" type="[datasource]" type_base="&lt;a&gt;" uuid="{18b9796a-bd09-4845-8ead-8cbe8a7fc555}">
+        <label>The Item to be propagated</label>
+      </input>
+      <input key="item2" scheme="text" type="[datasource]" type_base="&lt;b&gt;" uuid="{bf659c8f-e4be-49e9-850d-b550cbfb1695}">
+        <label>Item that will not be propagated</label>
+      </input>
+      <output key="item" scheme="hdf5" type="[datasource]" type_base="&lt;a&gt;" uuid="{a2471568-8e80-40db-8a0b-7f0de8605d9e}">
+        <label>Propagated Item</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.list.getitemlist" port_format="1.1" uuid="{8b0b9b78-eae5-40c9-a7cc-11c57300dc84}" x="1725.0" y="1775.0">
+    <label>Get Item List</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "index": {
+        "editor": {
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Index",
+        "list": ["0", "1", "2", "3", "4"],
+        "mode": "selected",
+        "order": 0,
+        "passthrough": false,
+        "type": "list",
+        "value": [0],
+        "value_names": []
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="list" scheme="text" type="[datasource]" type_base="[&lt;a&gt;]" uuid="{3267c969-de2a-459f-b753-f0392e090b75}">
+        <label>Input List</label>
+      </input>
+      <output key="item" scheme="hdf5" type="datasource" type_base="&lt;a&gt;" uuid="{581e2ba0-019d-4cf0-9df0-b09deb694926}">
+        <label>Output selected Item from List</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.files.copyfile" port_format="1.1" uuid="{9b7d74a9-e735-495a-89ed-f5b5e6797d1e}" x="1875.0" y="1850.0">
+    <label>Copy file</label>
+    <version>1.0</version>
+    <description>Copy files to another location. It is possible to name the copies using a regular expression.</description>
+    <author>Alexander Busck &amp; Andreas T&#229;gerud</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "error": {
+        "editor": null,
+        "label": "Do not raise exceptions",
+        "order": 4,
+        "type": "boolean",
+        "value": false
+      },
+      "filename": {
+        "editor": {
+          "filter": ["Any files (*)"],
+          "states": null,
+          "type": "savename"
+        },
+        "label": "Filename",
+        "order": 0,
+        "type": "string",
+        "value": "copied.csv"
+      },
+      "pattern": {
+        "editor": null,
+        "label": "Search",
+        "order": 2,
+        "type": "string",
+        "value": ""
+      },
+      "replace": {
+        "editor": null,
+        "label": "Replace",
+        "order": 3,
+        "type": "string",
+        "value": ""
+      },
+      "type": "group",
+      "use_regex": {
+        "editor": null,
+        "label": "Regex",
+        "order": 1,
+        "type": "boolean",
+        "value": false
+      }
+    }
+    </parameters>
+    <ports>
+      <input key="port1" scheme="hdf5" type="datasource" type_base="datasource" uuid="{abb591bd-47e6-4ea7-80e2-c50a6b7a3682}">
+        <label>Datasource of file to be copied</label>
+      </input>
+      <output key="port1" scheme="text" type="datasource" type_base="datasource" uuid="{53e0a000-aa5a-4e32-8012-f5cc43aae57b}">
+        <label>Datasource of copied file</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.files.copyfileswithdsrc" port_format="1.1" uuid="{9f0edb90-08f1-413f-ba46-69864ae0aef4}" x="2000.0" y="2275.0">
+    <label>Copy files with Datasources</label>
+    <version>1.0</version>
+    <description>Copy files to another location using a table with paths</description>
+    <author>Andreas T&#229;gerud</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "error": {
+        "editor": null,
+        "label": "Do not raise exceptions",
+        "order": 0,
+        "type": "boolean",
+        "value": false
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port1" scheme="hdf5" type="[datasource]" type_base="[datasource]" uuid="{8eee05fe-020d-4a3f-962f-72ce343c6ae6}">
+        <label>Files to be copied</label>
+      </input>
+      <input key="port2" scheme="text" type="[datasource]" type_base="[datasource]" uuid="{91fc324c-2bdc-49f8-aa4a-264b0ee04a28}">
+        <label>File destinations to copy to</label>
+      </input>
+      <output key="port1" scheme="text" type="[datasource]" type_base="[datasource]" uuid="{e4545e3f-1d98-493b-959e-26a7e674e17e}">
+        <label>Copied files</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.tabletodsrcs" port_format="1.1" uuid="{a60501f3-d20f-4674-9353-0edae8723175}" x="1850.0" y="2300.0">
+    <label>Table to Datasources</label>
+    <version>1.1</version>
+    <description>Convert a table with file paths into a list of data sources pointing to those files.</description>
+    <author>Greger Cronquist</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "files": {
+        "editor": {
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "File names",
+        "list": ["filepaths"],
+        "mode": "selected",
+        "order": 0,
+        "passthrough": false,
+        "type": "list",
+        "value": [0],
+        "value_names": []
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="" scheme="hdf5" type="table" type_base="table" uuid="{130c72f2-12cd-424e-97da-80270045b2d3}">
+        <label>Table containing a column of filepaths.</label>
+      </input>
+      <output key="" scheme="text" type="[datasource]" type_base="[datasource]" uuid="{313db659-ac4d-451a-9874-ddbf30fc469b}">
+        <label>Datasources</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.files.deletefiles" port_format="1.1" uuid="{b42b0ac4-937a-4518-b30b-9127aee5f679}" x="2675.0" y="2175.0">
+    <label>Delete files</label>
+    <version>1.0</version>
+    <description>Delete a file</description>
+    <author>Magnus Sand&#233;n &amp; Andreas T&#229;gerud</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "delete_folder": {
+        "editor": null,
+        "label": "Delete current folder if empty",
+        "order": 0,
+        "type": "boolean",
+        "value": false
+      },
+      "error": {
+        "editor": null,
+        "label": "Do not raise exceptions",
+        "order": 1,
+        "type": "boolean",
+        "value": true
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port1" scheme="hdf5" type="[datasource]" type_base="[datasource]" uuid="{dd2f342b-0462-4127-9481-2688ae88ea05}">
+        <label>File to delete</label>
+      </input>
+      <output key="port1" scheme="text" type="[datasource]" type_base="[datasource]" uuid="{bfef8ad4-819a-4746-ba55-63298df1e6b6}">
+        <label>Path to deleted file</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.files.deletefile" port_format="1.1" uuid="{b51bbaf1-c217-4442-b242-a0c446fcf6fd}" x="2675.0" y="1775.0">
+    <label>Delete file</label>
+    <version>1.0</version>
+    <description>Delete a file</description>
+    <author>Magnus Sand&#233;n &amp; Andreas T&#229;gerud</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="port1" scheme="hdf5" type="datasource" type_base="datasource" uuid="{4697e51d-658e-4e38-976f-6befb50226f6}">
+        <label>File to delete</label>
+      </input>
+      <output key="port1" scheme="text" type="datasource" type_base="datasource" uuid="{92971a2d-3377-418d-8f0e-3f13c95c102c}">
+        <label>Path to deleted file</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.random.randomtables" port_format="1.1" uuid="{b52f7274-e929-46a6-9618-409f757663cc}" x="1250.0" y="2225.0">
+    <label>Random Tables</label>
+    <version>0.1</version>
+    <description>Random Tables generator.</description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "column_entries": {
+        "editor": {
+          "max": 1000000,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "Columns:",
+        "order": 0,
+        "type": "integer",
+        "value": 5
+      },
+      "column_length": {
+        "editor": {
+          "max": 100000000,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "Rows:",
+        "order": 1,
+        "type": "integer",
+        "value": 5
+      },
+      "length": {
+        "editor": {
+          "max": 10000,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "List length",
+        "order": 3,
+        "type": "integer",
+        "value": 6
+      },
+      "mask_values": {
+        "editor": null,
+        "label": "Randomly mask values",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="[table]" type_base="[table]" uuid="{a7d65f62-8b58-4a03-85a3-1ff8f4a36b14}">
+        <label>Tables with random numbers. The specifications of the Tables are declared in the configuration.</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.create.createtable" port_format="1.1" uuid="{b81ea516-7710-4c05-85ba-209f52b54099}" x="1700.0" y="2300.0">
+    <label>Manually Create Table</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Magnus Sand&#233;n</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "json_table": {
+        "editor": null,
+        "label": "GUI",
+        "order": 0,
+        "type": "string",
+        "value": "[[\"filepaths\", \"U\", [\"copied/1.csv\", \"copied/2.csv\"]]]"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{66a2bbc9-3ff0-411b-ac86-49e452cad563}">
+        <label>Manually created table</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.files.deletefile" port_format="1.1" uuid="{c6175f12-0bc5-4b59-b5ff-3c11f91d7101}" x="2675.0" y="2575.0">
+    <label>Delete file</label>
+    <version>1.0</version>
+    <description>Delete a file</description>
+    <author>Magnus Sand&#233;n &amp; Andreas T&#229;gerud</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="port1" scheme="text" type="datasource" type_base="datasource" uuid="{62196c17-fdc7-4331-94f1-ce401157bd54}">
+        <label>File to delete</label>
+      </input>
+      <output key="port1" scheme="text" type="datasource" type_base="datasource" uuid="{e6a6f35f-f88f-49c7-854d-810b9d32d3bf}">
+        <label>Path to deleted file</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.list.getitemlist" port_format="1.1" uuid="{c8f681bb-ff75-45e6-821a-32db25581b47}" x="1700.0" y="2575.0">
+    <label>Get Item List</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "fail_strategy": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Action on index out of bounds",
+        "list": ["Error", "Create Empty Item"],
+        "mode": "selected",
+        "order": 1,
+        "type": "list",
+        "value": [0],
+        "value_names": ["Error"]
+      },
+      "index": {
+        "editor": {
+          "display": null,
+          "edit": true,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Index",
+        "list": [],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [],
+        "value_names": ["3"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="list" scheme="text" type="[datasource]" type_base="[&lt;a&gt;]" uuid="{4823c161-a70a-4915-9ba6-e7dddde9ee1d}">
+        <label>Input List</label>
+      </input>
+      <output key="item" scheme="hdf5" type="datasource" type_base="&lt;a&gt;" uuid="{d26bae30-206a-4d9f-b647-fcd92ada8a89}">
+        <label>Output selected Item from List</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.slice.slicelist" port_format="1.1" uuid="{da5e85ae-24bd-4658-9e22-8ecc0619493f}" x="1700.0" y="2850.0">
+    <label>Slice List</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "limit": {
+        "editor": null,
+        "label": "Limit preview to",
+        "order": 1,
+        "type": "integer",
+        "value": 100
+      },
+      "slice": {
+        "editor": null,
+        "label": "Slice",
+        "order": 0,
+        "type": "string",
+        "value": "[4:]"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="list" scheme="text" type="[datasource]" type_base="[&lt;a&gt;]" uuid="{38055176-0c37-461c-bfe6-ba4f998f7af9}">
+        <label>Input List</label>
+      </input>
+      <output key="list" scheme="hdf5" type="[datasource]" type_base="[&lt;a&gt;]" uuid="{f3b52b76-14ff-4c25-9689-60edcda52331}">
+        <label>Sliced output List</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.files.deletefile" port_format="1.1" uuid="{dec2ddf9-baa1-4a26-bb2e-1f79e0054a0b}" x="2675.0" y="1850.0">
+    <label>Delete file</label>
+    <version>1.0</version>
+    <description>Delete a file</description>
+    <author>Magnus Sand&#233;n &amp; Andreas T&#229;gerud</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="port1" scheme="text" type="datasource" type_base="datasource" uuid="{57f64aa4-161f-421c-ad6b-7afdd47466d6}">
+        <label>File to delete</label>
+      </input>
+      <output key="port1" scheme="text" type="datasource" type_base="datasource" uuid="{bc459bc9-28c9-45a2-b8cf-3addd852840d}">
+        <label>Path to deleted file</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.export.exporttables" port_format="1.1" uuid="{e78f1585-b9c0-45a3-a9f0-143cb363362b}" x="1425.0" y="2225.0">
+    <label>Export Tables</label>
+    <version>0.1</version>
+    <description>Export Tables</description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "active_exporter": {
+        "editor": null,
+        "label": "Exporter",
+        "order": 0,
+        "type": "string",
+        "value": "CSV"
+      },
+      "custom_exporter_data": {
+        "CSV": {
+          "encoding": {
+            "editor": {
+              "options": [],
+              "type": "combobox"
+            },
+            "label": "Character encoding",
+            "list": ["Western (ASCII)", "Western (ISO 8859-1)", "Western (ISO 8859-15)", "Western (Windows 1252)", "UTF-8", "UTF-8 with signature byte"],
+            "passthrough": false,
+            "type": "list",
+            "value": [4],
+            "value_names": []
+          },
+          "filename_extension": {
+            "editor": null,
+            "label": "Filename extension",
+            "type": "string",
+            "value": "csv"
+          },
+          "header": {
+            "editor": null,
+            "label": "Export header",
+            "type": "boolean",
+            "value": true
+          },
+          "label": "",
+          "table_names": {
+            "editor": null,
+            "label": "Use table names as filenames",
+            "type": "boolean",
+            "value": false
+          },
+          "type": "group"
+        },
+        "HDF5": {
+          "filename_extension": {
+            "editor": null,
+            "label": "Filename extension",
+            "type": "string",
+            "value": "sydata"
+          },
+          "label": "",
+          "table_names": {
+            "editor": null,
+            "label": "Use table names as filenames",
+            "type": "boolean",
+            "value": false
+          },
+          "type": "group"
+        },
+        "MAT": {
+          "filename_extension": {
+            "editor": null,
+            "label": "Filename extension",
+            "type": "string",
+            "value": "mat"
+          },
+          "header": {
+            "editor": null,
+            "label": "Export header",
+            "type": "boolean",
+            "value": true
+          },
+          "label": "",
+          "table_names": {
+            "editor": null,
+            "label": "Use table names as filenames",
+            "type": "boolean",
+            "value": false
+          },
+          "type": "group"
+        },
+        "SQL": {
+          "connection_string": {
+            "editor": null,
+            "label": "Connection string",
+            "type": "string",
+            "value": ""
+          },
+          "db_method": {
+            "editor": {
+              "options": ["ODBC", "SQLAlchemy"],
+              "type": "combobox"
+            },
+            "label": "Database connection method",
+            "type": "string",
+            "value": "ODBC"
+          },
+          "db_sqlalchemy_engine_url": {
+            "editor": null,
+            "label": "SQLAlchemy engine URL",
+            "type": "string",
+            "value": "mssql+pyodbc:///"
+          },
+          "drop_table": {
+            "editor": null,
+            "label": "Drop table",
+            "type": "boolean",
+            "value": false
+          },
+          "label": "",
+          "odbc": {
+            "editor": {
+              "options": [],
+              "type": "combobox"
+            },
+            "label": "ODBC method",
+            "list": ["default", "pyodbc", "ceODBC"],
+            "order": 0,
+            "passthrough": false,
+            "type": "list",
+            "value": [0],
+            "value_names": []
+          },
+          "table_name": {
+            "editor": null,
+            "label": "Table name",
+            "type": "string",
+            "value": ""
+          },
+          "type": "group",
+          "use_nvarchar_size": {
+            "editor": null,
+            "label": "Use nvarchar(size)",
+            "type": "boolean",
+            "value": false
+          }
+        },
+        "SQLite": {
+          "filename_extension": {
+            "editor": null,
+            "label": "Filename extension",
+            "type": "string",
+            "value": "db"
+          },
+          "label": "",
+          "type": "group"
+        },
+        "XLS": {
+          "filename_extension": {
+            "editor": null,
+            "label": "Filename extension",
+            "type": "string",
+            "value": "xls"
+          },
+          "header": {
+            "editor": null,
+            "label": "Export header",
+            "type": "boolean",
+            "value": true
+          },
+          "label": "",
+          "type": "group"
+        },
+        "XLSX": {
+          "filename_extension": {
+            "editor": null,
+            "label": "Filename extension",
+            "type": "string",
+            "value": "xlsx"
+          },
+          "header": {
+            "editor": null,
+            "label": "Export header",
+            "type": "boolean",
+            "value": true
+          },
+          "label": "",
+          "table_names": {
+            "editor": null,
+            "label": "Use table names as filenames",
+            "type": "boolean",
+            "value": false
+          },
+          "to_plot": {
+            "editor": null,
+            "label": "Embed plot in output file(s)",
+            "type": "boolean",
+            "value": false
+          },
+          "to_sheets": {
+            "editor": null,
+            "label": "Export data to sheets",
+            "type": "boolean",
+            "value": false
+          },
+          "type": "group"
+        },
+        "label": "",
+        "order": 1,
+        "type": "group"
+      },
+      "directory": {
+        "editor": {
+          "type": "dirname"
+        },
+        "label": "Output directory",
+        "order": 2,
+        "type": "string",
+        "value": "."
+      },
+      "filename": {
+        "editor": null,
+        "label": "Filename",
+        "order": 3,
+        "type": "string",
+        "value": "test"
+      },
+      "plot": {
+        "editor": {
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Output separate plot file with the following extension:",
+        "list": ["-", "eps", "pdf", "svg", "png"],
+        "order": 4,
+        "passthrough": false,
+        "type": "list",
+        "value": [0],
+        "value_names": []
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port0" scheme="hdf5" type="[table]" type_base="[table]" uuid="{d7797be9-ed33-40d1-9e0c-6bc05d9aa669}">
+        <label>Tables to be exported</label>
+      </input>
+      <output key="port0" scheme="text" type="[datasource]" type_base="[datasource]" uuid="{b80f9c44-bc9f-4a83-b9a5-2334775116ea}">
+        <label>Datasources of exported files</label>
+      </output>
+    </ports>
+  </node>
+  <connection type="table" uuid="{0849f995-4b81-4348-ad32-7cb6e7138802}">
+    <source node="{42bdb986-ab29-4db8-9dbe-cf10f0b819a7}" port="{67c578bf-3e07-49d7-82da-650e0b4ca532}"/>
+    <destination node="{82520ce6-5275-4464-a39a-9684d8a43c42}" port="{a1d1617e-8b1f-452e-a3fb-e8b9e9ad8691}"/>
+  </connection>
+  <connection type="[datasource]" uuid="{0914f4fd-19f3-4b61-abd4-2c2b87684c08}">
+    <source node="{e78f1585-b9c0-45a3-a9f0-143cb363362b}" port="{b80f9c44-bc9f-4a83-b9a5-2334775116ea}"/>
+    <destination node="{8b0b9b78-eae5-40c9-a7cc-11c57300dc84}" port="{3267c969-de2a-459f-b753-f0392e090b75}"/>
+  </connection>
+  <connection type="[datasource]" uuid="{21c427bf-1e36-4d56-b57f-88229de4f875}">
+    <source node="{9f0edb90-08f1-413f-ba46-69864ae0aef4}" port="{e4545e3f-1d98-493b-959e-26a7e674e17e}"/>
+    <destination node="{6ab0f190-98c5-4e67-9b72-ca26265cc1f9}" port="{e4cebd63-c790-404c-854e-621d9e9cd11f}"/>
+  </connection>
+  <connection type="[datasource]" uuid="{24655edd-59e3-4e8b-8ea0-a240ccfe9bf2}">
+    <source node="{82520ce6-5275-4464-a39a-9684d8a43c42}" port="{e344d289-cb34-495d-9140-b6061c749a65}"/>
+    <destination node="{33547396-fde5-44f6-9c74-5b2205b79689}" port="{e3b2a030-d8f5-4280-8acf-d507514a8436}"/>
+  </connection>
+  <connection type="datasource" uuid="{27b8393a-22b5-40f7-a9f2-1eb57a9929bc}">
+    <source node="{51fc61ce-eebc-4924-b3bc-bed016ae1cdc}" port="{942ccf20-b8f5-4d38-b6e0-5735f95d4770}"/>
+    <destination node="{c6175f12-0bc5-4b59-b5ff-3c11f91d7101}" port="{62196c17-fdc7-4331-94f1-ce401157bd54}"/>
+  </connection>
+  <connection type="[table]" uuid="{3354624d-f227-4741-b4ae-e0363a1253b0}">
+    <source node="{b52f7274-e929-46a6-9618-409f757663cc}" port="{a7d65f62-8b58-4a03-85a3-1ff8f4a36b14}"/>
+    <destination node="{e78f1585-b9c0-45a3-a9f0-143cb363362b}" port="{d7797be9-ed33-40d1-9e0c-6bc05d9aa669}"/>
+  </connection>
+  <connection type="[datasource]" uuid="{38718131-58cd-4a3c-97f4-0fd83520a5d6}">
+    <source node="{9f0edb90-08f1-413f-ba46-69864ae0aef4}" port="{e4545e3f-1d98-493b-959e-26a7e674e17e}"/>
+    <destination node="{8717da4b-15bb-40c3-a690-e42e6262a4e6}" port="{bf659c8f-e4be-49e9-850d-b550cbfb1695}"/>
+  </connection>
+  <connection type="[datasource]" uuid="{3a47ba32-aecc-4f85-b2fe-c7b86494add0}">
+    <source node="{33547396-fde5-44f6-9c74-5b2205b79689}" port="{2b2f4e51-a341-41d1-98b2-5078976d08e7}"/>
+    <destination node="{86c66beb-b367-4481-844d-c4f5bdb75466}" port="{e40176ef-acd2-4746-b87a-2d429522c332}"/>
+  </connection>
+  <connection type="[datasource]" uuid="{3c8e35ff-9298-4650-9879-9824cb52dbf0}">
+    <source node="{a60501f3-d20f-4674-9353-0edae8723175}" port="{313db659-ac4d-451a-9874-ddbf30fc469b}"/>
+    <destination node="{9f0edb90-08f1-413f-ba46-69864ae0aef4}" port="{91fc324c-2bdc-49f8-aa4a-264b0ee04a28}"/>
+  </connection>
+  <connection type="datasource" uuid="{3c928160-2838-4543-ac1c-b2e02e8a8d7a}">
+    <source node="{64c060fb-3907-4b58-9427-1a696dd48664}" port="{12ec8513-63d4-4dcb-8059-76583b5d3acc}"/>
+    <destination node="{b51bbaf1-c217-4442-b242-a0c446fcf6fd}" port="{4697e51d-658e-4e38-976f-6befb50226f6}"/>
+  </connection>
+  <connection type="datasource" uuid="{46119e67-087a-4f78-9b7b-d30a425f5daf}">
+    <source node="{c8f681bb-ff75-45e6-821a-32db25581b47}" port="{d26bae30-206a-4d9f-b647-fcd92ada8a89}"/>
+    <destination node="{667142ca-4b98-472e-a939-6aa52a5eb647}" port="{7607a14a-ad84-4021-a847-9fcb18801b34}"/>
+  </connection>
+  <connection type="[datasource]" uuid="{46de18ab-fbb5-44cc-85f5-5e4d4067cfc4}">
+    <source node="{e78f1585-b9c0-45a3-a9f0-143cb363362b}" port="{b80f9c44-bc9f-4a83-b9a5-2334775116ea}"/>
+    <destination node="{266b915e-d04d-470c-88b6-b1b845d4bacf}" port="{2300c589-ee8d-4b0b-9c2b-abbc5542b740}"/>
+  </connection>
+  <connection type="datasource" uuid="{4a133b6a-8263-40f7-8e94-d1a261f68538}">
+    <source node="{667142ca-4b98-472e-a939-6aa52a5eb647}" port="{e40a1ca7-be03-4c85-b328-58da8aa1f91c}"/>
+    <destination node="{51fc61ce-eebc-4924-b3bc-bed016ae1cdc}" port="{3747e69b-cd48-41f6-bae7-f5d46650e3c3}"/>
+  </connection>
+  <connection type="datasource" uuid="{4e1c057d-6fab-4604-be51-e4eb75cbe8df}">
+    <source node="{9b7d74a9-e735-495a-89ed-f5b5e6797d1e}" port="{53e0a000-aa5a-4e32-8012-f5cc43aae57b}"/>
+    <destination node="{dec2ddf9-baa1-4a26-bb2e-1f79e0054a0b}" port="{57f64aa4-161f-421c-ad6b-7afdd47466d6}"/>
+  </connection>
+  <connection type="[datasource]" uuid="{52ef2a96-078c-4eb4-8772-b09504bbe8ee}">
+    <source node="{e78f1585-b9c0-45a3-a9f0-143cb363362b}" port="{b80f9c44-bc9f-4a83-b9a5-2334775116ea}"/>
+    <destination node="{da5e85ae-24bd-4658-9e22-8ecc0619493f}" port="{38055176-0c37-461c-bfe6-ba4f998f7af9}"/>
+  </connection>
+  <connection type="datasource" uuid="{55060e6e-78d6-4966-a009-a6a02a509b50}">
+    <source node="{9b7d74a9-e735-495a-89ed-f5b5e6797d1e}" port="{53e0a000-aa5a-4e32-8012-f5cc43aae57b}"/>
+    <destination node="{64c060fb-3907-4b58-9427-1a696dd48664}" port="{0c5cf354-e353-4ae3-82f1-83657c024d6a}"/>
+  </connection>
+  <connection type="table" uuid="{64291d7f-bc65-44fa-8803-bca4c2b80254}">
+    <source node="{b81ea516-7710-4c05-85ba-209f52b54099}" port="{66a2bbc9-3ff0-411b-ac86-49e452cad563}"/>
+    <destination node="{a60501f3-d20f-4674-9353-0edae8723175}" port="{130c72f2-12cd-424e-97da-80270045b2d3}"/>
+  </connection>
+  <connection type="datasource" uuid="{8789bd9a-807e-428a-a3b7-c3a84dc087ab}">
+    <source node="{8b0b9b78-eae5-40c9-a7cc-11c57300dc84}" port="{581e2ba0-019d-4cf0-9df0-b09deb694926}"/>
+    <destination node="{64c060fb-3907-4b58-9427-1a696dd48664}" port="{b9294c27-0ef0-4be0-b459-15102ba1515d}"/>
+  </connection>
+  <connection type="datasource" uuid="{bbdda91f-985b-4d4b-aaeb-0f0470422c4f}">
+    <source node="{c8f681bb-ff75-45e6-821a-32db25581b47}" port="{d26bae30-206a-4d9f-b647-fcd92ada8a89}"/>
+    <destination node="{51fc61ce-eebc-4924-b3bc-bed016ae1cdc}" port="{48fae0a6-60aa-4d8c-9bb0-8adf81384e7b}"/>
+  </connection>
+  <connection type="[datasource]" uuid="{c988124f-8804-4b30-9c2c-6ef2a7fff239}">
+    <source node="{e78f1585-b9c0-45a3-a9f0-143cb363362b}" port="{b80f9c44-bc9f-4a83-b9a5-2334775116ea}"/>
+    <destination node="{c8f681bb-ff75-45e6-821a-32db25581b47}" port="{4823c161-a70a-4915-9ba6-e7dddde9ee1d}"/>
+  </connection>
+  <connection type="[datasource]" uuid="{e5d322e3-2a39-43d8-95e2-50a09ea1aca7}">
+    <source node="{266b915e-d04d-470c-88b6-b1b845d4bacf}" port="{bfe04276-bbdd-4672-9218-483d0c058f16}"/>
+    <destination node="{9f0edb90-08f1-413f-ba46-69864ae0aef4}" port="{8eee05fe-020d-4a3f-962f-72ce343c6ae6}"/>
+  </connection>
+  <connection type="[datasource]" uuid="{f51bbed5-db83-4549-a80b-024df14f8b3b}">
+    <source node="{266b915e-d04d-470c-88b6-b1b845d4bacf}" port="{bfe04276-bbdd-4672-9218-483d0c058f16}"/>
+    <destination node="{8717da4b-15bb-40c3-a690-e42e6262a4e6}" port="{18b9796a-bd09-4845-8ead-8cbe8a7fc555}"/>
+  </connection>
+  <connection type="[datasource]" uuid="{f641dde6-500e-418c-af75-d69f8e79532b}">
+    <source node="{8717da4b-15bb-40c3-a690-e42e6262a4e6}" port="{a2471568-8e80-40db-8a0b-7f0de8605d9e}"/>
+    <destination node="{b42b0ac4-937a-4518-b30b-9127aee5f679}" port="{dd2f342b-0462-4127-9481-2688ae88ea05}"/>
+  </connection>
+  <connection type="[datasource]" uuid="{fae9422e-74ac-4f57-b869-aaea214ae627}">
+    <source node="{da5e85ae-24bd-4658-9e22-8ecc0619493f}" port="{f3b52b76-14ff-4c25-9689-60edcda52331}"/>
+    <destination node="{33547396-fde5-44f6-9c74-5b2205b79689}" port="{3cfd5d3d-5a31-4348-a845-cda1a6e70dfe}"/>
+  </connection>
+  <connection type="datasource" uuid="{fdd6b599-415c-4821-bbff-8e8dfd9643fa}">
+    <source node="{8b0b9b78-eae5-40c9-a7cc-11c57300dc84}" port="{581e2ba0-019d-4cf0-9df0-b09deb694926}"/>
+    <destination node="{9b7d74a9-e735-495a-89ed-f5b5e6797d1e}" port="{abb591bd-47e6-4ea7-80e2-c50a6b7a3682}"/>
+  </connection>
+  <text color="Beige" height="50.0" uuid="{033e4994-f4d3-44ce-a0ed-b77196dd00dc}" width="300.0" x="1200.0" y="2325.0">Create some dummy files that we can play around with.</text>
+  <text color="Beige" height="50.0" uuid="{3e6ee1ff-92da-4185-b8bb-8f06a6d8b74c}" width="625.0" x="1675.0" y="2100.0">**Example 2: Copy 2 files to a new directory.**</text>
+  <text color="Beige" height="50.0" uuid="{557af39d-580a-461f-b946-ecd7b149a625}" width="625.0" x="1675.0" y="2500.0">**Example 3: Move one file.**</text>
+  <text color="Beige" height="50.0" uuid="{56be3a23-d770-48f7-bab8-a713145bced6}" width="625.0" x="1675.0" y="1700.0">**Example 1: Copy one of the dummy files.**</text>
+  <text color="Beige" height="100.0" uuid="{686ddfde-de9a-4e35-a900-69a4f76c35d2}" width="200.0" x="1975.0" y="1900.0">Propagate First Input  is used to delay execution so that the original file isn't deleted until after the copy has been made.</text>
+  <text color="Beige" height="50.0" uuid="{a1ae1b0b-02ab-4a90-a531-3e754850bd8e}" width="625.0" x="1675.0" y="2775.0">**Example 4: Move two file to a new directory.**</text>
+  <text color="Beige" height="150.0" uuid="{2d775f1f-a08e-4aa0-95f6-de9d3fdf6f24}" width="350.0" x="1700.0" y="3050.0">
+- Node example: *org.sysess.sympathy.files.copyfile*
+- Node example: *org.sysess.sympathy.files.copyfileswithdsrc*
+- Node example: *org.sysess.sympathy.files.deletefile*
+- Node example: *org.sysess.sympathy.files.deletefiles*
+- Node example: *org.sysess.sympathy.files.movefiles*
+- Node example: *org.sysess.sympathy.generic.propagatefirst*
+- Node example: *org.sysess.sympathy.datasources.rename*</text>
+  <text color="Light" height="1300.0" uuid="{d0013366-e680-4053-8beb-0f1bd9fc04ba}" width="125.0" x="2650.0" y="1700.0">Cleanup</text>
+  <text color="Beige" height="100.0" uuid="{9d79ebf3-014f-4e02-8e65-d33c6dec2071}" width="200.0" x="2125.0" y="2325.0">Propagate First Input  is used to delay execution so that the original file isn't deleted until after the copy has been made.</text>
+</flow>

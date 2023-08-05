@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='US-ASCII'?>
+<flow xmlns="http://www.sysess.org/sympathyfordata/workflow/1.0" cls="Flow" uuid="{4ae9288a-6ef6-41a3-8d1a-6f0f19c973f4}">
+  <label></label>
+  <ports/>
+  <node id="org.sysess.sympathy.create.createtable" port_format="1.1" uuid="{701c83ff-ec24-4f7b-9902-4dde58d0efc1}" x="1725.0" y="1825.0">
+    <label>Table with user info</label>
+    <version>1.0</version>
+    <description>Create a Table from scratch in a configuration Gui.</description>
+    <author>Magnus Sand&#233;n</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "json_table": {
+        "editor": null,
+        "label": "GUI",
+        "order": 0,
+        "type": "string",
+        "value": "[[\"User id\", \"U\", [\"0\", \"1\", \"2\", \"3\"]], [\"Full name\", \"U\", [\"Alice Alison\", \"Bob McBobbin\", \"Chloe Clementine\", \"Dave Davidson\"]], [\"Email adress\", \"U\", [\"aalison@example.com\", \"bmcbobbi@example.com\", \"cclement@example.com\", \"ddavidso@example.com\"]]]"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{adb79fc2-6a0c-4515-bcd6-0a43d37b6110}">
+        <label>Manually created table</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.create.createtable" port_format="1.1" uuid="{cb200960-aa99-4225-983c-8571d2a10074}" x="1725.0" y="1975.0">
+    <label>Logins</label>
+    <version>1.0</version>
+    <description>Create a Table from scratch in a configuration Gui.</description>
+    <author>Magnus Sand&#233;n</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "json_table": {
+        "editor": null,
+        "label": "GUI",
+        "order": 0,
+        "type": "string",
+        "value": "[[\"User id\", \"U\", [\"1\", \"0\", \"2\", \"0\", \"2\", \"2\", \"1\"]], [\"Time\", \"M\", [\"2011-12-17T12:01:33\", \"2011-12-23T04:55:47\", \"2012-01-03T07:01:53\", \"2012-01-05T03:29:08\", \"2012-01-10T06:58:16\", \"2012-01-12T07:02:22\", \"2012-01-12T12:13:05\"]]]"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{8cd42402-e551-4dd0-91cd-7014b209d08c}">
+        <label>Manually created table</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.lookuptable" port_format="1.1" uuid="{e5a98046-0f41-417a-a74d-338162be187e}" x="1875.0" y="1900.0">
+    <label>Lookup Table</label>
+    <version>1.0</version>
+    <description>Take rows from the lookup table in the order defined by the control table.</description>
+    <author>Alexander Busck &amp; Magnus Sanden</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "copy_input": {
+        "editor": null,
+        "label": "Copy input",
+        "order": 5,
+        "type": "boolean",
+        "value": true
+      },
+      "event_column": {
+        "editor": null,
+        "label": "Event column",
+        "order": 2,
+        "type": "integer",
+        "value": -1
+      },
+      "lookupee_columns": {
+        "_old_list_storage": true,
+        "editor": null,
+        "label": "Control columns",
+        "list": ["User id"],
+        "mode": "selected",
+        "order": 1,
+        "type": "list",
+        "value": [],
+        "value_names": []
+      },
+      "nomasks": {
+        "editor": null,
+        "label": "Use zero-like values instead of masks",
+        "order": 4,
+        "type": "boolean",
+        "value": false
+      },
+      "perfect_match": {
+        "editor": null,
+        "label": "Require perfect match",
+        "order": 3,
+        "type": "boolean",
+        "value": true
+      },
+      "template_columns": {
+        "_old_list_storage": true,
+        "editor": null,
+        "label": "Lookup columns",
+        "list": ["User id"],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [],
+        "value_names": []
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="lookup" scheme="hdf5" type="table" type_base="table" uuid="{a87e3169-3cef-4574-b76d-c07c6d38fb27}">
+        <label>Lookup table</label>
+      </input>
+      <input key="lookupee" scheme="hdf5" type="table" type_base="table" uuid="{396c12a7-02b1-4673-9a2f-99b135a0e4cb}">
+        <label>Control table</label>
+      </input>
+      <output key="out" scheme="hdf5" type="table" type_base="table" uuid="{6831a62c-401b-4f49-87ed-39d2bfa438fd}">
+        <label>Result table</label>
+      </output>
+    </ports>
+  </node>
+  <connection type="table" uuid="{349c0d7e-f5e1-4930-bbe5-9bdd3018bbb8}">
+    <source node="{cb200960-aa99-4225-983c-8571d2a10074}" port="{8cd42402-e551-4dd0-91cd-7014b209d08c}"/>
+    <destination node="{e5a98046-0f41-417a-a74d-338162be187e}" port="{396c12a7-02b1-4673-9a2f-99b135a0e4cb}"/>
+  </connection>
+  <connection type="table" uuid="{6393708f-79c2-4009-a36d-b58e2dc41c7b}">
+    <source node="{701c83ff-ec24-4f7b-9902-4dde58d0efc1}" port="{adb79fc2-6a0c-4515-bcd6-0a43d37b6110}"/>
+    <destination node="{e5a98046-0f41-417a-a74d-338162be187e}" port="{a87e3169-3cef-4574-b76d-c07c6d38fb27}"/>
+  </connection>
+  <text color="Beige" height="50.0" uuid="{4d46a10a-66a4-4e81-ba1b-bc1f6fc667bf}" width="325.0" x="1675.0" y="2075.0">
+- Node example: *org.sysess.sympathy.data.table.lookuptable*</text>
+</flow>

@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='US-ASCII'?>
+<flow xmlns="http://www.sysess.org/sympathyfordata/workflow/1.0" cls="Flow" uuid="{4ae9288a-6ef6-41a3-8d1a-6f0f19c973f4}">
+  <label></label>
+  <ports/>
+  <node id="org.sysess.sympathy.data.table.dropnantable" port_format="1.1" uuid="{4066743c-6ee7-4756-976a-7392950f57bd}" x="1950.0" y="1975.0">
+    <label>Drop NaN Table - columns</label>
+    <version>1.0</version>
+    <description>Drop columns or rows with NaN values</description>
+    <author>Greger Cronquist</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "direction": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Drop",
+        "list": ["Rows with NaN", "Columns with NaN"],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [1],
+        "value_names": ["Columns with NaN"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="Input" scheme="hdf5" type="table" type_base="table" uuid="{7400547a-4bde-4093-9ffe-449729f7b317}">
+        <label>Input</label>
+      </input>
+      <output key="Output" scheme="hdf5" type="table" type_base="table" uuid="{409138b0-d31f-4f25-bcc0-4d8d38c1daf1}">
+        <label>Output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.dropnantable" port_format="1.1" uuid="{4f588c20-b90e-4458-8952-8d590adb9719}" x="1950.0" y="1875.0">
+    <label>Drop NaN Table - rows</label>
+    <version>1.0</version>
+    <description>Drop columns or rows with NaN values</description>
+    <author>Greger Cronquist</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "direction": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Drop",
+        "list": ["Rows with NaN", "Columns with NaN"],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [0],
+        "value_names": ["Rows with NaN"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="Input" scheme="hdf5" type="table" type_base="table" uuid="{d0e41a4a-9f81-4622-9021-1d9a3d96b65f}">
+        <label>Input</label>
+      </input>
+      <output key="Output" scheme="hdf5" type="table" type_base="table" uuid="{6a7b0432-829b-44c6-8b89-ab84c9849d00}">
+        <label>Output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.create.createtable" port_format="1.1" uuid="{ba221621-f114-4b04-aab3-e5affe34a413}" x="1800.0" y="1975.0">
+    <label>Manually Create Table</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Magnus Sand&#233;n</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "json_table": {
+        "editor": null,
+        "label": "GUI",
+        "order": 0,
+        "type": "string",
+        "value": "[[\"float0\", \"f\", [0.0, NaN, NaN, 1.0]], [\"float1\", \"f\", [0.0, 1.0, 0.0, 1.0]], [\"float2\", \"f\", [1.5, 2.0, 3.1, 4.0]]]"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{8220d190-c29f-44fe-8ff4-db305e20119b}">
+        <label>Manually created table</label>
+      </output>
+    </ports>
+  </node>
+  <connection type="table" uuid="{0bf062bf-8bda-4f79-a3b1-bf9b6496dd4f}">
+    <source node="{ba221621-f114-4b04-aab3-e5affe34a413}" port="{8220d190-c29f-44fe-8ff4-db305e20119b}"/>
+    <destination node="{4066743c-6ee7-4756-976a-7392950f57bd}" port="{7400547a-4bde-4093-9ffe-449729f7b317}"/>
+  </connection>
+  <connection type="table" uuid="{b3a1c5b8-6e7c-4acd-9c38-433a20b441ea}">
+    <source node="{ba221621-f114-4b04-aab3-e5affe34a413}" port="{8220d190-c29f-44fe-8ff4-db305e20119b}"/>
+    <destination node="{4f588c20-b90e-4458-8952-8d590adb9719}" port="{d0e41a4a-9f81-4622-9021-1d9a3d96b65f}"/>
+  </connection>
+  <text color="Beige" height="50.0" uuid="{5cf4e54f-c799-49f8-bb27-ec77194089d3}" width="375.0" x="1800.0" y="2075.0">
+- Node example: *org.sysess.sympathy.data.table.dropnantable*</text>
+</flow>

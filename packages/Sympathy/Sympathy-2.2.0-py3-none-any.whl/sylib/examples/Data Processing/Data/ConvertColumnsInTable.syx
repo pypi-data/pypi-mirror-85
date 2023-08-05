@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='US-ASCII'?>
+<flow xmlns="http://www.sysess.org/sympathyfordata/workflow/1.0" cls="Flow" uuid="{4ae9288a-6ef6-41a3-8d1a-6f0f19c973f4}">
+  <label></label>
+  <ports/>
+  <node id="org.sysess.sympathy.data.table.selecttablecolumns" port_format="1.1" uuid="{15b389ac-58df-4c50-a0f3-3bbe012907bf}" x="1775.0" y="1975.0">
+    <label>Select columns in Table</label>
+    <version>1.0</version>
+    <description>Select columns from input to propagate to output.</description>
+    <author>Alexander Busck &amp; Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "columns": {
+        "editor": {
+          "edit": true,
+          "filter": true,
+          "mode": true,
+          "selection": "multi",
+          "type": "listview"
+        },
+        "label": "Select columns",
+        "list": [],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [],
+        "value_names": ["float to string"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="" scheme="hdf5" type="table" type_base="table" uuid="{adfd6619-c706-4199-92d1-479df1b88fd9}">
+        <label>Input</label>
+      </input>
+      <output key="" scheme="hdf5" type="table" type_base="table" uuid="{5f38401a-2fcf-4e97-98a6-60f58670acbe}">
+        <label>Output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.convertcolumnstable" port_format="1.1" uuid="{e0f60508-a5ab-421d-8eac-91d96f60e371}" x="1925.0" y="1975.0">
+    <label>Convert columns in Table</label>
+    <version>1.0</version>
+    <description>Select columns to convert to specified data type.</description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "columns": {
+        "editor": {
+          "filter": true,
+          "mode": true,
+          "selection": "multi",
+          "type": "listview"
+        },
+        "label": "Select columns",
+        "list": ["float to string", "int to bool", "string to float"],
+        "mode": "selected",
+        "order": 0,
+        "passthrough": false,
+        "type": "list",
+        "value": [0],
+        "value_names": ["float to string"]
+      },
+      "type": "group",
+      "types": {
+        "editor": {
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Select type",
+        "list": ["binary", "bool", "datetime (UTC)", "datetime (naive)", "float", "integer", "text"],
+        "mode": "selected",
+        "order": 1,
+        "passthrough": false,
+        "type": "list",
+        "value": [6],
+        "value_names": ["text"]
+      }
+    }
+    </parameters>
+    <ports>
+      <input key="" scheme="hdf5" type="table" type_base="table" uuid="{060dd024-d034-4aa8-b125-1d762ff00889}">
+        <label>Input</label>
+      </input>
+      <output key="" scheme="hdf5" type="table" type_base="table" uuid="{d76c6451-94fa-45e4-a66a-e771ec55ee7a}">
+        <label>Output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.create.createtable" port_format="1.1" uuid="{f559cd5d-4c70-4a8a-8a41-747801b53f8c}" x="1625.0" y="1975.0">
+    <label>Manually Create Table</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Magnus Sand&#233;n</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "json_table": {
+        "editor": null,
+        "label": "GUI",
+        "order": 0,
+        "type": "string",
+        "value": "[[\"string to float\", \"U\", [\"0.0\", \"nan\", \"nan\", \"1\"]], [\"int to bool\", \"i\", [0, 1, 0, 1]], [\"float to string\", \"f\", [1.5, 2.0, 3.1, 4.0]]]"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{a79fc527-71e7-4909-875f-e31e7a23adb3}">
+        <label>Manually created table</label>
+      </output>
+    </ports>
+  </node>
+  <connection type="table" uuid="{1c85ffd8-5eec-44dd-a4b9-eab4ba039363}">
+    <source node="{f559cd5d-4c70-4a8a-8a41-747801b53f8c}" port="{a79fc527-71e7-4909-875f-e31e7a23adb3}"/>
+    <destination node="{15b389ac-58df-4c50-a0f3-3bbe012907bf}" port="{adfd6619-c706-4199-92d1-479df1b88fd9}"/>
+  </connection>
+  <connection type="table" uuid="{6cf6426d-737f-451c-bc9b-e2bbba2383a5}">
+    <source node="{15b389ac-58df-4c50-a0f3-3bbe012907bf}" port="{5f38401a-2fcf-4e97-98a6-60f58670acbe}"/>
+    <destination node="{e0f60508-a5ab-421d-8eac-91d96f60e371}" port="{060dd024-d034-4aa8-b125-1d762ff00889}"/>
+  </connection>
+  <text color="Beige" height="50.0" uuid="{5d88b18f-0fb1-4ee8-921f-813aba7a6e1c}" width="425.0" x="1625.0" y="2075.0">
+- Node example: *org.sysess.sympathy.data.table.convertcolumnstable*</text>
+</flow>

@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='US-ASCII'?>
+<flow xmlns="http://www.sysess.org/sympathyfordata/workflow/1.0" cls="Flow" uuid="{466429b6-086c-4f35-9443-5c466dfeaf7b}">
+  <label></label>
+  <ports/>
+  <node id="org.sysess.sympathy.export.exportexts" port_format="1.1" uuid="{158ed095-1009-4864-a1a5-c633a91de538}" x="2300.0" y="1900.0">
+    <label>Export Texts</label>
+    <version>0.1</version>
+    <description>Export Texts</description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2018, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "active_exporter": {
+        "editor": null,
+        "label": "Exporter",
+        "order": 0,
+        "type": "string",
+        "value": "Text"
+      },
+      "custom_exporter_data": {
+        "Text": {
+          "filename_extension": {
+            "editor": null,
+            "label": "Filename extension",
+            "type": "string",
+            "value": "html"
+          },
+          "label": "",
+          "type": "group"
+        },
+        "label": "",
+        "order": 1,
+        "type": "group"
+      },
+      "directory": {
+        "editor": {
+          "type": "dirname"
+        },
+        "label": "Output directory",
+        "order": 2,
+        "type": "string",
+        "value": "."
+      },
+      "filename": {
+        "editor": null,
+        "label": "Filename",
+        "order": 3,
+        "type": "string",
+        "value": "index"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port0" scheme="hdf5" type="[text]" type_base="[text]" uuid="{ae5569d4-e783-4629-9a34-d1307562801e}">
+        <label>Texts to be exported</label>
+      </input>
+      <output key="port0" scheme="text" type="[datasource]" type_base="[datasource]" uuid="{da08658b-1ef3-4a73-aa13-c565278c54c2}">
+        <label>Datasources of exported files</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.list.itemtolist" port_format="1.1" uuid="{2e5041fb-909f-4df9-868a-495816d22131}" x="2150.0" y="1900.0">
+    <label>Item to List</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2018, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="item" scheme="hdf5" type="text" type_base="&lt;a&gt;" uuid="{b4b18f24-1476-4f34-b134-a3e11cd0c6c3}">
+        <label>Input Item</label>
+      </input>
+      <output key="list" scheme="hdf5" type="[text]" type_base="[&lt;a&gt;]" uuid="{336d91e5-17f4-4a29-a629-303570c60a62}">
+        <label>Item as List</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.texts.generic_jinja2template" port_format="1.1" uuid="{b5b82e74-deed-400a-93fd-624e13bd2276}" x="2000.0" y="1900.0">
+    <label>Jinja2 template</label>
+    <version>0.1</version>
+    <description>Create and render a jinja2 template. Use "{{arg}}" for access to the data.</description>
+    <author>Magnus Sand&#233;n</author>
+    <copyright>Copyright (c) 2011-2018, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "template": {
+        "editor": {
+          "language": "jinja",
+          "type": "code"
+        },
+        "label": "Template:",
+        "order": 0,
+        "type": "string",
+        "value": "&lt;html&gt;\n    &lt;header&gt;\n        &lt;title&gt;{{arg['Parameters'][0]}}&lt;/title&gt;\n    &lt;/header&gt;\n    &lt;body&gt;\n        {{arg['Parameters'][1]}}\n    &lt;/body&gt;\n&lt;/html&gt;"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="in" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{29b5fa60-333c-4473-a945-b4a2efec6923}">
+        <label>Input</label>
+      </input>
+      <output key="out" scheme="hdf5" type="text" type_base="text" uuid="{5f94694a-133c-421a-896a-380afc8e0beb}">
+        <label>Rendered Template</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.create.createtable" port_format="1.1" uuid="{e9b7216a-5f2d-46f5-a96d-c9b13f338b7e}" x="1825.0" y="1900.0">
+    <label>Manually Create Table</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Magnus Sand&#233;n</author>
+    <copyright>Copyright (c) 2011-2018, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "json_table": {
+        "editor": null,
+        "label": "GUI",
+        "order": 0,
+        "type": "string",
+        "value": "[[\"Parameters\", \"U\", [\"Title\", \"Hello World!\"]]]"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{37890e11-ee9f-48e4-b6b9-aa9f46770563}">
+        <label>Manually created table</label>
+      </output>
+    </ports>
+  </node>
+  <connection type="text" uuid="{7bac9a44-31c8-4ab2-9073-d937b4191f5c}">
+    <source node="{b5b82e74-deed-400a-93fd-624e13bd2276}" port="{5f94694a-133c-421a-896a-380afc8e0beb}"/>
+    <destination node="{2e5041fb-909f-4df9-868a-495816d22131}" port="{b4b18f24-1476-4f34-b134-a3e11cd0c6c3}"/>
+  </connection>
+  <connection type="table" uuid="{cd3a2e09-60f7-4ff0-a2dd-d42a9ad6d8c1}">
+    <source node="{e9b7216a-5f2d-46f5-a96d-c9b13f338b7e}" port="{37890e11-ee9f-48e4-b6b9-aa9f46770563}"/>
+    <destination node="{b5b82e74-deed-400a-93fd-624e13bd2276}" port="{29b5fa60-333c-4473-a945-b4a2efec6923}"/>
+  </connection>
+  <connection type="[text]" uuid="{e09fa7eb-1815-48be-a4ef-b5fb0c5a8d8a}">
+    <source node="{2e5041fb-909f-4df9-868a-495816d22131}" port="{336d91e5-17f4-4a29-a629-303570c60a62}"/>
+    <destination node="{158ed095-1009-4864-a1a5-c633a91de538}" port="{ae5569d4-e783-4629-9a34-d1307562801e}"/>
+  </connection>
+  <text color="Beige" height="50.0" uuid="{d4089a9a-7c00-4f91-b09d-f7cbd664c92b}" width="175.0" x="1750.0" y="1825.0">Values to populate HTML</text>
+  <text color="Beige" height="50.0" uuid="{b97ed4d2-4cf2-4571-9fd1-331ad081bb82}" width="150.0" x="1950.0" y="1825.0">HTML Template</text>
+  <text color="Beige" height="50.0" uuid="{cec9697c-45f9-4f6c-b1d6-b17114e25a09}" width="475.0" x="1825.0" y="2000.0">- Node example: *org.sysess.sympathy.texts.generic_jinja2template*
+</text>
+  <text color="Beige" height="50.0" uuid="{13ae5b6e-7a7e-4d8a-92aa-9a85531e77f3}" width="100.0" x="2275.0" y="1825.0">Export HTML</text>
+</flow>

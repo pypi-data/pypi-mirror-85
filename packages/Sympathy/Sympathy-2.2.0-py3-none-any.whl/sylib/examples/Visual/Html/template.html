@@ -1,0 +1,21 @@
+{% import 'macros.html' as macros %}
+{% extends 'base.html' %}
+
+{% if not context %}
+{% set bokeh = arg[0]|get_json %}
+{% set meta_table = arg[1]|to_result_table %}
+{% set fancy_meta_table = {'Project name': meta_table.name,
+                           'Creation date': meta_table.date,
+                           'Max price': meta_table.max_price,
+                           'Min price': meta_table.min_price} %}
+{% endif %}
+
+{% block postamble %}
+  {{ bokeh.script }}
+{% endblock postamble %}
+
+{% block contents %}
+  {{ macros.header(meta_table.name, 'sy_logo.png'|image_path) }}
+  {{ macros.col_2_table('Project data', fancy_meta_table) }}
+  {{ macros.section('Cardata interactive plots', macros.bokeh_plots(bokeh.div)) }}
+{% endblock contents %}

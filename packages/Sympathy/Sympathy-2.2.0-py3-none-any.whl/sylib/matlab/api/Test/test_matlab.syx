@@ -1,0 +1,531 @@
+<?xml version='1.0' encoding='ASCII'?>
+<flow xmlns="http://www.sysess.org/sympathyfordata/workflow/1.0" cls="Flow" height="50.0" id="" is_locked="False" uuid="{729466f4-fb49-47f4-9d56-fa7ac7fec34b}" width="50.0" x="0.0" y="0.0">
+  <label></label>
+  <description></description>
+  <author></author>
+  <copyright></copyright>
+  <version></version>
+  <source></source>
+  <aggregation type="json"><![CDATA[null]]></aggregation>
+  <libraries type="json"><![CDATA[[]]]></libraries>
+  <pythonpaths type="json"><![CDATA[[]]]></pythonpaths>
+  <overrides type="json"><![CDATA[{}]]></overrides>
+  <environment type="json"><![CDATA[{}]]></environment>
+  <parameters type="json"><![CDATA[{"environment": {}}]]></parameters>
+  <ports/>
+  <node height="50.0" id="org.sysess.sympathy.matlab.matlabcalculator" uuid="{12ab60c7-7321-434f-9e16-bdb46e18c614}" width="50.0" x="1725.0" y="1875.0">
+    <label>Matlab Calculator</label>
+    <description>Performs user-defined Matlab calculations</description>
+    <author>Greger Cronquist &lt;greger.cronquist@combine.se, Sara Gustafzelius &lt;sara.gustafzelius@combine.se&gt;</author>
+    <copyright>(c) 2016 Combine Control Systems AB</copyright>
+    <version>1.0</version>
+    <parameters type="json"><![CDATA[{"type": "group", "calc_list": {"description": "List of calculations.", "editor": null, "label": "List of calculations", "order": 0, "passthrough": false, "type": "list", "list": ["${data1} = ${data1} #ENABLED:1", "${data2} = ${data2} #ENABLED:1"], "value": [0], "value_names": []}, "same_length_res": {"description": "Gather all the results generated from an incoming Table into a common output table. This requires that the results all have the same length. An error will be given if the lengths of the outgoing results differ.", "editor": null, "label": "Put results in common outputs.", "order": 1, "type": "boolean", "value": true}, "copy_input": {"description": "If enabled the incoming data will be copied to the output before running the calculations. This requires that the results will all have the same length. An exception will be raised if the lengths of the outgoing results differ.", "editor": null, "label": "Copy input", "order": 2, "type": "boolean", "value": false}, "fail_strategy": {"description": "Decide how a failed calculation should be handled", "label": "Action on calculation failure", "order": 3, "passthrough": false, "type": "list", "list": ["Exception", "Skip calculation"], "value": [0], "value_names": [], "editor": {"type": "combobox", "options": []}}}]]></parameters>
+    <ports>
+      <input key="port0" scheme="hdf5" type="[table]" type_base="[table]" uuid="{926f8c50-b772-4d89-88a7-849c0ee78563}">
+        <label>Input Table</label>
+        <description>Input Table</description>
+      </input>
+      <output key="port1" scheme="hdf5" type="[table]" type_base="[table]" uuid="{d99eca21-bfc5-43a0-aeb5-667d80b0d990}">
+        <label>Table applied with MATLAB functions</label>
+        <description>Table applied with MATLAB functions</description>
+      </output>
+    </ports>
+  </node>
+  <node height="50.0" id="org.sysess.sympathy.data.table.assertequaltable" uuid="{1ecdb7b2-0e9e-46ff-a291-e0d8a1246d82}" width="50.0" x="2000.0" y="1775.0">
+    <label>Assert Equal Table</label>
+    <description></description>
+    <author>Magnus Sand&#233;n &lt;magnus.sanden@combine.se&gt;</author>
+    <copyright>Copyright (c) 2016 Combine Control Systems AB</copyright>
+    <version>1.0</version>
+    <parameters type="json"><![CDATA[{"type": "group", "col_order": {"description": "Differing column order will trigger error", "editor": null, "label": "Compare column order", "order": 0, "type": "boolean", "value": false}, "col_attrs": {"description": "Differing column attributes will trigger error", "editor": null, "label": "Compare column attributes", "order": 1, "type": "boolean", "value": false}, "tbl_names": {"description": "Differing table name will trigger error", "editor": null, "label": "Compare table names", "order": 2, "type": "boolean", "value": true}, "tbl_attrs": {"description": "Differing table attributes will trigger error", "editor": null, "label": "Compare table attributes", "order": 3, "type": "boolean", "value": true}, "inexact_float": {"description": "If any arithemtics is invovled floats should probably be compared approximately.", "editor": null, "label": "Approximate comparison of floats", "order": 4, "type": "boolean", "value": true}, "rel_tol": {"description": "Floats are considered unequal if the relative difference between them is larger than this value.", "editor": null, "label": "Relative tolerance", "order": 5, "type": "float", "value": 1e-05}, "abs_tol": {"description": "Floats are considered unequal if the absolute difference between them is larger than this value.", "editor": null, "label": "Absolute tolerance", "order": 6, "type": "float", "value": 1e-08}}]]></parameters>
+    <ports>
+      <input key="table1" scheme="hdf5" type="table" type_base="table" uuid="{fafdb6e4-5f0c-4b6f-8f0a-3149026f9490}">
+        <label>Table A</label>
+        <description>Table A</description>
+      </input>
+      <input key="table2" scheme="hdf5" type="table" type_base="table" uuid="{b7bf9b68-0720-4e9d-a8f0-8dff763a2bef}">
+        <label>Table B</label>
+        <description>Table B</description>
+      </input>
+      <output key="out" scheme="hdf5" type="table" type_base="table" uuid="{09b24bd7-9482-44e8-b1ac-ec1cad0b994f}">
+        <label>Output Table</label>
+        <description>Output Table</description>
+      </output>
+    </ports>
+  </node>
+  <node height="50.0" id="org.sysess.sympathy.datasources.filedatasource" uuid="{2e39b3c4-4d9b-43b0-bb4f-e06be5653862}" width="50.0" x="1425.0" y="1575.0">
+    <label>Datasource</label>
+    <description>Select a data source.</description>
+    <author>Alexander Busck &lt;alexander.busck@combine.se&gt;</author>
+    <copyright>(C) 2013 Combine Control Systems AB</copyright>
+    <version>1.1</version>
+    <parameters type="json"><![CDATA[{"type": "group", "filename": {"description": "A filename including path if needed", "label": "Filename", "order": 0, "type": "string", "value": "../Examples/Example1.m", "editor": {"type": "filename", "filter": ["Any files (*)"]}}, "db_sqlalchemy_engine_url": {"description": "SQLAlchemy engine URL for connecting to the database", "editor": null, "label": "SQLAlchemy engine URL", "order": 1, "type": "string", "value": "mssql+pyodbc:///"}, "db_method": {"description": "Select which Database connection method that you want to use.", "label": "Database connection method", "order": 2, "type": "string", "value": "ODBC", "editor": {"type": "combobox", "options": ["ODBC", "SQLAlchemy"]}}, "db_driver": {"description": "Database driver to use.", "label": "Database driver", "order": 3, "passthrough": false, "type": "list", "list": ["SQL Server"], "value": [0], "value_names": [], "editor": {"type": "combobox", "options": []}}, "db_servername": {"description": "A valid name to a database server.", "editor": null, "label": "Server name", "order": 4, "type": "string", "value": ""}, "db_databasename": {"description": "The name of the database.", "editor": null, "label": "Database name", "order": 5, "type": "string", "value": ""}, "db_user": {"description": "A valid database user.", "editor": null, "label": "User", "order": 6, "type": "string", "value": ""}, "db_password": {"description": "A valid password for the selected user.", "editor": null, "label": "Password", "order": 7, "type": "string", "value": ""}, "db_connection_string": {"description": "A connection string that will override other settings.", "editor": null, "label": "Connection string", "order": 8, "type": "string", "value": ""}, "datasource_type": {"description": "Type of datasource.", "editor": null, "label": "Datasource type", "order": 9, "passthrough": false, "type": "list", "list": ["File", "Database"], "value": [0], "value_names": []}}]]></parameters>
+    <ports>
+      <output key="port1" scheme="text" type="datasource" type_base="datasource" uuid="{450f52bc-3f97-4aa2-b6c8-b0829a78d813}">
+        <label>Datasource with path to file</label>
+        <description>Datasource with path to file</description>
+      </output>
+    </ports>
+  </node>
+  <node height="50.0" id="org.sysess.sympathy.data.table.matlabtables" uuid="{36b33726-09f7-47e0-9a92-e9a0fb875415}" width="50.0" x="1725.0" y="1775.0">
+    <label>Matlab Tables</label>
+    <description>Execute Matlab code</description>
+    <author>Sara Gustafzelius &lt;sara.gustafzelius@combine.se&gt;</author>
+    <copyright>(C) 2013 Combine Control Systems AB</copyright>
+    <version>1.0</version>
+    <parameters type="json"><![CDATA[{"type": "group"}]]></parameters>
+    <ports>
+      <input key="port2" scheme="text" type="datasource" type_base="datasource" uuid="{4c525742-3eed-4d22-bc47-6861cd5534e1}">
+        <label>M-file (.m)</label>
+        <description>M-file (.m)</description>
+      </input>
+      <input key="port0" scheme="hdf5" type="[table]" type_base="[table]" uuid="{a9ab4b55-83a0-4296-903b-11e1334f45a9}">
+        <label>Input Tables</label>
+        <description>Input Tables</description>
+      </input>
+      <output key="port1" scheme="hdf5" type="[table]" type_base="[table]" uuid="{6b0ebb35-232f-4b4e-82ab-d777a905a5ed}">
+        <label>Tables with MATLAB script applied</label>
+        <description>Tables with MATLAB script applied</description>
+      </output>
+    </ports>
+  </node>
+  <node height="50.0" id="org.sysess.sympathy.datasources.filedatasource" uuid="{3c4d2806-8805-49b0-a90e-5e22eae13def}" width="50.0" x="1425.0" y="1975.0">
+    <label>Datasource</label>
+    <description>Select a data source.</description>
+    <author>Alexander Busck &lt;alexander.busck@combine.se&gt;</author>
+    <copyright>(C) 2013 Combine Control Systems AB</copyright>
+    <version>1.1</version>
+    <parameters type="json"><![CDATA[{"type": "group", "filename": {"description": "A filename including path if needed", "label": "Filename", "order": 0, "type": "string", "value": "test_file.m", "editor": {"type": "filename", "filter": ["Any files (*)"]}}, "db_sqlalchemy_engine_url": {"description": "SQLAlchemy engine URL for connecting to the database", "editor": null, "label": "SQLAlchemy engine URL", "order": 1, "type": "string", "value": "mssql+pyodbc:///"}, "db_method": {"description": "Select which Database connection method that you want to use.", "label": "Database connection method", "order": 2, "type": "string", "value": "ODBC", "editor": {"type": "combobox", "options": ["ODBC", "SQLAlchemy"]}}, "db_driver": {"description": "Database driver to use.", "label": "Database driver", "order": 3, "passthrough": false, "type": "list", "list": ["SQL Server"], "value": [0], "value_names": [], "editor": {"type": "combobox", "options": []}}, "db_servername": {"description": "A valid name to a database server.", "editor": null, "label": "Server name", "order": 4, "type": "string", "value": ""}, "db_databasename": {"description": "The name of the database.", "editor": null, "label": "Database name", "order": 5, "type": "string", "value": ""}, "db_user": {"description": "A valid database user.", "editor": null, "label": "User", "order": 6, "type": "string", "value": ""}, "db_password": {"description": "A valid password for the selected user.", "editor": null, "label": "Password", "order": 7, "type": "string", "value": ""}, "db_connection_string": {"description": "A connection string that will override other settings.", "editor": null, "label": "Connection string", "order": 8, "type": "string", "value": ""}, "datasource_type": {"description": "Type of datasource.", "editor": null, "label": "Datasource type", "order": 9, "passthrough": false, "type": "list", "list": ["File", "Database"], "value": [0], "value_names": []}}]]></parameters>
+    <ports>
+      <output key="port1" scheme="text" type="datasource" type_base="datasource" uuid="{451cd1e2-6ace-48fe-a50c-ac9090e5a29a}">
+        <label>Datasource with path to file</label>
+        <description>Datasource with path to file</description>
+      </output>
+    </ports>
+  </node>
+  <node height="50.0" id="org.sysess.sympathy.data.table.matlabtable" uuid="{40891b70-e42c-47ec-a575-70f946d58fda}" width="50.0" x="1725.0" y="2000.0">
+    <label>Matlab Table</label>
+    <description>Execute Matlab code</description>
+    <author>Alexander Busck &lt;alexander.busck@combine.se&gt;, Sara Gustafzelius &lt;sara.gustafzelius@combine.se&gt;</author>
+    <copyright>(C) 2013 Combine Control Systems AB</copyright>
+    <version>1.0</version>
+    <parameters type="json"><![CDATA[{"type": "group"}]]></parameters>
+    <ports>
+      <input key="port2" scheme="text" type="datasource" type_base="datasource" uuid="{693293bf-f266-4538-91da-b34203b8a694}">
+        <label>M-file (.m)</label>
+        <description>M-file (.m)</description>
+      </input>
+      <input key="port0" scheme="hdf5" type="table" type_base="table" uuid="{774d6f16-7aae-4acb-9846-9360da72ed29}">
+        <label>Input Table</label>
+        <description>Input Table</description>
+      </input>
+      <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{c7da7bf9-7c8f-4522-8dfb-19e842102438}">
+        <label>Table with MATLAB script applied</label>
+        <description>Table with MATLAB script applied</description>
+      </output>
+    </ports>
+  </node>
+  <node height="50.0" id="org.sysess.sympathy.datasources.filedatasource" uuid="{43190855-a33d-4b23-a8dd-fde3480a362b}" width="50.0" x="1422.0" y="1675.0">
+    <label>Datasource</label>
+    <description>Select a data source.</description>
+    <author>Alexander Busck &lt;alexander.busck@combine.se&gt;</author>
+    <copyright>(C) 2013 Combine Control Systems AB</copyright>
+    <version>1.1</version>
+    <parameters type="json"><![CDATA[{"type": "group", "filename": {"description": "A filename including path if needed", "label": "Filename", "order": 0, "type": "string", "value": "../Examples/Example2.m", "editor": {"type": "filename", "filter": ["Any files (*)"]}}, "db_sqlalchemy_engine_url": {"description": "SQLAlchemy engine URL for connecting to the database", "editor": null, "label": "SQLAlchemy engine URL", "order": 1, "type": "string", "value": "mssql+pyodbc:///"}, "db_method": {"description": "Select which Database connection method that you want to use.", "label": "Database connection method", "order": 2, "type": "string", "value": "ODBC", "editor": {"type": "combobox", "options": ["ODBC", "SQLAlchemy"]}}, "db_driver": {"description": "Database driver to use.", "label": "Database driver", "order": 3, "passthrough": false, "type": "list", "list": ["SQL Server"], "value": [0], "value_names": [], "editor": {"type": "combobox", "options": []}}, "db_servername": {"description": "A valid name to a database server.", "editor": null, "label": "Server name", "order": 4, "type": "string", "value": ""}, "db_databasename": {"description": "The name of the database.", "editor": null, "label": "Database name", "order": 5, "type": "string", "value": ""}, "db_user": {"description": "A valid database user.", "editor": null, "label": "User", "order": 6, "type": "string", "value": ""}, "db_password": {"description": "A valid password for the selected user.", "editor": null, "label": "Password", "order": 7, "type": "string", "value": ""}, "db_connection_string": {"description": "A connection string that will override other settings.", "editor": null, "label": "Connection string", "order": 8, "type": "string", "value": ""}, "datasource_type": {"description": "Type of datasource.", "editor": null, "label": "Datasource type", "order": 9, "passthrough": false, "type": "list", "list": ["File", "Database"], "value": [0], "value_names": []}}]]></parameters>
+    <ports>
+      <output key="port1" scheme="text" type="datasource" type_base="datasource" uuid="{53602944-9113-4f81-8951-d048b46a7c49}">
+        <label>Datasource with path to file</label>
+        <description>Datasource with path to file</description>
+      </output>
+    </ports>
+  </node>
+  <node height="50.0" id="org.sysess.sympathy.create.createtable" uuid="{48c4fb9c-0e88-4a78-8d64-ec50d51aee0a}" width="50.0" x="1425.0" y="1825.0">
+    <label>Manually Create Table</label>
+    <description></description>
+    <author>Magnus Sand&#233;n &lt;magnus.sanden@combine.se&gt;</author>
+    <copyright>(c) 2016 Combine Control Systems AB</copyright>
+    <version>1.0</version>
+    <parameters type="json"><![CDATA[{"type": "group", "json_table": {"description": "Configuration window", "editor": null, "label": "GUI", "order": 0, "type": "string", "value": "[[\"data1\", \"f\", [0.8, 1.0]], [\"data2\", \"f\", [1.5, 0.1]]]"}}]]></parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{86de38e9-1b31-4a0c-b32a-d20296201439}">
+        <label>Manually created table</label>
+        <description>Manually created table</description>
+      </output>
+    </ports>
+  </node>
+  <node height="50.0" id="org.sysess.sympathy.data.table.assertequaltable" uuid="{51e61900-246a-4a63-a172-deed3e26ea38}" width="50.0" x="2000.0" y="1625.0">
+    <label>Assert Equal Table</label>
+    <description></description>
+    <author>Magnus Sand&#233;n &lt;magnus.sanden@combine.se&gt;</author>
+    <copyright>Copyright (c) 2016 Combine Control Systems AB</copyright>
+    <version>1.0</version>
+    <parameters type="json"><![CDATA[{"type": "group", "col_order": {"description": "Differing column order will trigger error", "editor": null, "label": "Compare column order", "order": 0, "type": "boolean", "value": false}, "col_attrs": {"description": "Differing column attributes will trigger error", "editor": null, "label": "Compare column attributes", "order": 1, "type": "boolean", "value": false}, "tbl_names": {"description": "Differing table name will trigger error", "editor": null, "label": "Compare table names", "order": 2, "type": "boolean", "value": true}, "tbl_attrs": {"description": "Differing table attributes will trigger error", "editor": null, "label": "Compare table attributes", "order": 3, "type": "boolean", "value": true}, "inexact_float": {"description": "If any arithemtics is invovled floats should probably be compared approximately.", "editor": null, "label": "Approximate comparison of floats", "order": 4, "type": "boolean", "value": true}, "rel_tol": {"description": "Floats are considered unequal if the relative difference between them is larger than this value.", "editor": null, "label": "Relative tolerance", "order": 5, "type": "float", "value": 1e-05}, "abs_tol": {"description": "Floats are considered unequal if the absolute difference between them is larger than this value.", "editor": null, "label": "Absolute tolerance", "order": 6, "type": "float", "value": 1e-08}}]]></parameters>
+    <ports>
+      <input key="table1" scheme="hdf5" type="table" type_base="table" uuid="{18da6964-5100-412a-b018-7f1d839543c9}">
+        <label>Table A</label>
+        <description>Table A</description>
+      </input>
+      <input key="table2" scheme="hdf5" type="table" type_base="table" uuid="{9f5a2df6-f99b-4412-a833-18a9270d3c95}">
+        <label>Table B</label>
+        <description>Table B</description>
+      </input>
+      <output key="out" scheme="hdf5" type="table" type_base="table" uuid="{519f3845-539a-42bb-8631-0031bd061fe3}">
+        <label>Output Table</label>
+        <description>Output Table</description>
+      </output>
+    </ports>
+  </node>
+  <node height="50.0" id="org.sysess.sympathy.matlab.matlabcalculator" uuid="{67cd9924-d25e-429c-b011-e51a76a1e388}" width="50.0" x="1725.0" y="2225.0">
+    <label>Matlab Calculator</label>
+    <description>Performs user-defined Matlab calculations</description>
+    <author>Greger Cronquist &lt;greger.cronquist@combine.se, Sara Gustafzelius &lt;sara.gustafzelius@combine.se&gt;</author>
+    <copyright>(c) 2016 Combine Control Systems AB</copyright>
+    <version>1.0</version>
+    <parameters type="json"><![CDATA[{"type": "group", "calc_list": {"description": "List of calculations.", "editor": null, "label": "List of calculations", "order": 0, "passthrough": false, "type": "list", "list": ["${data1} = ${data1} #ENABLED:1", "${data2} = ${data2} #ENABLED:1"], "value": [0], "value_names": []}, "same_length_res": {"description": "Gather all the results generated from an incoming Table into a common output table. This requires that the results all have the same length. An error will be given if the lengths of the outgoing results differ.", "editor": null, "label": "Put results in common outputs.", "order": 1, "type": "boolean", "value": true}, "copy_input": {"description": "If enabled the incoming data will be copied to the output before running the calculations. This requires that the results will all have the same length. An exception will be raised if the lengths of the outgoing results differ.", "editor": null, "label": "Copy input", "order": 2, "type": "boolean", "value": false}, "fail_strategy": {"description": "Decide how a failed calculation should be handled", "label": "Action on calculation failure", "order": 3, "passthrough": false, "type": "list", "list": ["Exception", "Skip calculation"], "value": [0], "value_names": [], "editor": {"type": "combobox", "options": []}}}]]></parameters>
+    <ports>
+      <input key="port0" scheme="hdf5" type="[table]" type_base="[table]" uuid="{24192df9-1c3d-478a-b753-6582b8cef035}">
+        <label>Input Table</label>
+        <description>Input Table</description>
+      </input>
+      <output key="port1" scheme="hdf5" type="[table]" type_base="[table]" uuid="{4bd4ac25-e2f2-4dca-9d84-819a197824ea}">
+        <label>Table applied with MATLAB functions</label>
+        <description>Table applied with MATLAB functions</description>
+      </output>
+    </ports>
+  </node>
+  <node height="50.0" id="org.sysess.sympathy.list.itemtolist" uuid="{7c82c2b9-6794-4c60-a252-2f035630424b}" width="50.0" x="1575.0" y="1875.0">
+    <label>Item to List</label>
+    <description></description>
+    <author>Erik der Hagopian &lt;erik.hagopian@combine.se&gt;</author>
+    <copyright>(C) 2015 Combine Control Systems AB</copyright>
+    <version>1.0</version>
+    <parameters type="json"><![CDATA[{"type": "group"}]]></parameters>
+    <ports>
+      <input key="item" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{f34ca910-c698-43b1-98bd-7e4a567fda5c}">
+        <label>Input Item</label>
+        <description>Input Item</description>
+      </input>
+      <output key="list" scheme="hdf5" type="[table]" type_base="[&lt;a&gt;]" uuid="{027e43ba-adc8-4960-88ed-c4ed34e3dbf1}">
+        <label>Item as List</label>
+        <description>Item as List</description>
+      </output>
+    </ports>
+  </node>
+  <node height="50.0" id="org.sysess.sympathy.data.table.matlabtable" uuid="{7cb5cb87-a356-4946-82d5-71d74ef3bc86}" width="50.0" x="1725.0" y="1675.0">
+    <label>Matlab Table</label>
+    <description>Execute Matlab code</description>
+    <author>Alexander Busck &lt;alexander.busck@combine.se&gt;, Sara Gustafzelius &lt;sara.gustafzelius@combine.se&gt;</author>
+    <copyright>(C) 2013 Combine Control Systems AB</copyright>
+    <version>1.0</version>
+    <parameters type="json"><![CDATA[{"type": "group"}]]></parameters>
+    <ports>
+      <input key="port2" scheme="text" type="datasource" type_base="datasource" uuid="{d14820c3-d514-46e0-9cb8-b9e7fcd85180}">
+        <label>M-file (.m)</label>
+        <description>M-file (.m)</description>
+      </input>
+      <input key="port0" scheme="hdf5" type="table" type_base="table" uuid="{0fb3de63-212f-480f-ab35-3a33bc7ff018}">
+        <label>Input Table</label>
+        <description>Input Table</description>
+      </input>
+      <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{3f323502-dff4-49a4-b855-1a34f7074d60}">
+        <label>Table with MATLAB script applied</label>
+        <description>Table with MATLAB script applied</description>
+      </output>
+    </ports>
+  </node>
+  <node height="50.0" id="org.sysess.sympathy.create.createtable" uuid="{8109e735-55b2-4f6f-af04-17a9580f1784}" width="50.0" x="1850.0" y="1700.0">
+    <label>Manually Create Table</label>
+    <description></description>
+    <author>Magnus Sand&#233;n &lt;magnus.sanden@combine.se&gt;</author>
+    <copyright>(c) 2016 Combine Control Systems AB</copyright>
+    <version>1.0</version>
+    <parameters type="json"><![CDATA[{"type": "group", "json_table": {"description": "Configuration window", "editor": null, "label": "GUI", "order": 0, "type": "string", "value": "[[\"s\", \"f\", [1.2, 0.1]], [\"a\", \"f\", [1.2, 0.1]]]"}}]]></parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{6d5efb99-aab9-4932-a8f5-83f1cd270373}">
+        <label>Manually created table</label>
+        <description>Manually created table</description>
+      </output>
+    </ports>
+  </node>
+  <node height="50.0" id="org.sysess.sympathy.data.table.assertequaltable" uuid="{8dd21b69-0267-443c-96f5-dd45f9a2de05}" width="50.0" x="2000.0" y="1525.0">
+    <label>Assert Equal Table</label>
+    <description></description>
+    <author>Magnus Sand&#233;n &lt;magnus.sanden@combine.se&gt;</author>
+    <copyright>Copyright (c) 2016 Combine Control Systems AB</copyright>
+    <version>1.0</version>
+    <parameters type="json"><![CDATA[{"type": "group", "col_order": {"description": "Differing column order will trigger error", "editor": null, "label": "Compare column order", "order": 0, "type": "boolean", "value": false}, "col_attrs": {"description": "Differing column attributes will trigger error", "editor": null, "label": "Compare column attributes", "order": 1, "type": "boolean", "value": false}, "tbl_names": {"description": "Differing table name will trigger error", "editor": null, "label": "Compare table names", "order": 2, "type": "boolean", "value": true}, "tbl_attrs": {"description": "Differing table attributes will trigger error", "editor": null, "label": "Compare table attributes", "order": 3, "type": "boolean", "value": true}, "inexact_float": {"description": "If any arithemtics is invovled floats should probably be compared approximately.", "editor": null, "label": "Approximate comparison of floats", "order": 4, "type": "boolean", "value": true}, "rel_tol": {"description": "Floats are considered unequal if the relative difference between them is larger than this value.", "editor": null, "label": "Relative tolerance", "order": 5, "type": "float", "value": 1e-05}, "abs_tol": {"description": "Floats are considered unequal if the absolute difference between them is larger than this value.", "editor": null, "label": "Absolute tolerance", "order": 6, "type": "float", "value": 1e-08}}]]></parameters>
+    <ports>
+      <input key="table1" scheme="hdf5" type="table" type_base="table" uuid="{ebac7396-479e-43df-b8c6-b3790c28963b}">
+        <label>Table A</label>
+        <description>Table A</description>
+      </input>
+      <input key="table2" scheme="hdf5" type="table" type_base="table" uuid="{6ec36760-4b2a-40ce-b644-3cb761feaffb}">
+        <label>Table B</label>
+        <description>Table B</description>
+      </input>
+      <output key="out" scheme="hdf5" type="table" type_base="table" uuid="{94fa28a6-2e75-4f06-9b65-238c38a2bf44}">
+        <label>Output Table</label>
+        <description>Output Table</description>
+      </output>
+    </ports>
+  </node>
+  <node height="50.0" id="org.sysess.sympathy.create.createtable" uuid="{9a0c2d02-c6ab-4ec9-9625-a2566f0ac533}" width="50.0" x="1725.0" y="1475.0">
+    <label>Manually Create Table</label>
+    <description></description>
+    <author>Magnus Sand&#233;n &lt;magnus.sanden@combine.se&gt;</author>
+    <copyright>(c) 2016 Combine Control Systems AB</copyright>
+    <version>1.0</version>
+    <parameters type="json"><![CDATA[{"type": "group", "json_table": {"description": "Configuration window", "editor": null, "label": "GUI", "order": 0, "type": "string", "value": "[[\"MAX_PRICE\", \"f\", [1.0]], [\"MIN_PRICE\", \"f\", [0.8]]]"}}]]></parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{80aab12d-d3f0-4900-9d95-e178d0233211}">
+        <label>Manually created table</label>
+        <description>Manually created table</description>
+      </output>
+    </ports>
+  </node>
+  <node height="50.0" id="org.sysess.sympathy.matlab.matlabcalculator" uuid="{b6d92f82-59aa-4296-9b85-8ab4afd55c05}" width="50.0" x="1725.0" y="2325.0">
+    <label>Matlab Calculator</label>
+    <description>Performs user-defined Matlab calculations</description>
+    <author>Greger Cronquist &lt;greger.cronquist@combine.se, Sara Gustafzelius &lt;sara.gustafzelius@combine.se&gt;</author>
+    <copyright>(c) 2016 Combine Control Systems AB</copyright>
+    <version>1.0</version>
+    <parameters type="json"><![CDATA[{"type": "group", "calc_list": {"description": "List of calculations.", "editor": null, "label": "List of calculations", "mode": "selected", "order": 0, "passthrough": false, "type": "list", "list": [], "value": [0], "value_names": []}, "same_length_res": {"description": "Gather all the results generated from an incoming data into a common output table. This requires that the results all have the same length. An error will be given if the lengths of the outgoing results differ.", "editor": null, "label": "Put results in common outputs.", "order": 1, "type": "boolean", "value": true}, "copy_input": {"description": "If enabled the incoming data will be copied to the output before running the calculations. This requires that the results will all have the same length. An exception will be raised if the lengths of the outgoing results differ.", "editor": null, "label": "Copy input", "order": 2, "type": "boolean", "value": false}, "fail_strategy": {"description": "Decide how a failed calculation should be handled", "label": "Action on calculation failure", "mode": "selected", "order": 3, "passthrough": false, "type": "list", "list": ["Exception", "Skip calculation"], "value": [0], "value_names": [], "editor": {"type": "combobox", "options": []}}}]]></parameters>
+    <ports>
+      <input key="port0" scheme="hdf5" type="[table]" type_base="[table]" uuid="{1223131e-6b7e-4638-8b13-b216c31afb99}">
+        <label>Input Table</label>
+        <description>Input Table</description>
+      </input>
+      <output key="port1" scheme="hdf5" type="[table]" type_base="[table]" uuid="{9f31823a-423b-4da6-aba3-462d936a2b30}">
+        <label>Table applied with MATLAB functions</label>
+        <description>Table applied with MATLAB functions</description>
+      </output>
+    </ports>
+  </node>
+  <node height="50.0" id="org.sysess.sympathy.data.table.assertequaltable" uuid="{b95d5070-c7e2-4281-b230-95bc9d756004}" width="50.0" x="2000.0" y="1850.0">
+    <label>Assert Equal Table</label>
+    <description></description>
+    <author>Magnus Sand&#233;n &lt;magnus.sanden@combine.se&gt;</author>
+    <copyright>Copyright (c) 2016 Combine Control Systems AB</copyright>
+    <version>1.0</version>
+    <parameters type="json"><![CDATA[{"type": "group", "col_order": {"description": "Differing column order will trigger error", "editor": null, "label": "Compare column order", "order": 0, "type": "boolean", "value": false}, "col_attrs": {"description": "Differing column attributes will trigger error", "editor": null, "label": "Compare column attributes", "order": 1, "type": "boolean", "value": false}, "tbl_names": {"description": "Differing table name will trigger error", "editor": null, "label": "Compare table names", "order": 2, "type": "boolean", "value": true}, "tbl_attrs": {"description": "Differing table attributes will trigger error", "editor": null, "label": "Compare table attributes", "order": 3, "type": "boolean", "value": true}, "inexact_float": {"description": "If any arithemtics is invovled floats should probably be compared approximately.", "editor": null, "label": "Approximate comparison of floats", "order": 4, "type": "boolean", "value": true}, "rel_tol": {"description": "Floats are considered unequal if the relative difference between them is larger than this value.", "editor": null, "label": "Relative tolerance", "order": 5, "type": "float", "value": 1e-05}, "abs_tol": {"description": "Floats are considered unequal if the absolute difference between them is larger than this value.", "editor": null, "label": "Absolute tolerance", "order": 6, "type": "float", "value": 1e-08}}]]></parameters>
+    <ports>
+      <input key="table1" scheme="hdf5" type="table" type_base="table" uuid="{986ffb27-2e02-42f0-af1b-46026742b7b3}">
+        <label>Table A</label>
+        <description>Table A</description>
+      </input>
+      <input key="table2" scheme="hdf5" type="table" type_base="table" uuid="{481faa3a-f86f-4a85-8b1f-8861efadde97}">
+        <label>Table B</label>
+        <description>Table B</description>
+      </input>
+      <output key="out" scheme="hdf5" type="table" type_base="table" uuid="{edda91c6-d670-48ef-ae6c-adad767ef7a5}">
+        <label>Output Table</label>
+        <description>Output Table</description>
+      </output>
+    </ports>
+  </node>
+  <node height="50.0" id="org.sysess.sympathy.data.table.matlabtables" uuid="{c0e7b559-c980-4804-9192-f6fec5a6d123}" width="50.0" x="1725.0" y="2125.0">
+    <label>Matlab Tables</label>
+    <description>Execute Matlab code</description>
+    <author>Sara Gustafzelius &lt;sara.gustafzelius@combine.se&gt;</author>
+    <copyright>(C) 2013 Combine Control Systems AB</copyright>
+    <version>1.0</version>
+    <parameters type="json"><![CDATA[{"type": "group"}]]></parameters>
+    <ports>
+      <input key="port2" scheme="text" type="datasource" type_base="datasource" uuid="{4b91623a-2b5a-4371-a7df-d44c31644762}">
+        <label>M-file (.m)</label>
+        <description>M-file (.m)</description>
+      </input>
+      <input key="port0" scheme="hdf5" type="[table]" type_base="[table]" uuid="{2750d62e-e78a-454d-bf42-b227407ff583}">
+        <label>Input Tables</label>
+        <description>Input Tables</description>
+      </input>
+      <output key="port1" scheme="hdf5" type="[table]" type_base="[table]" uuid="{294a6cb0-1f96-4ee5-9eba-82c476afc4f1}">
+        <label>Tables with MATLAB script applied</label>
+        <description>Tables with MATLAB script applied</description>
+      </output>
+    </ports>
+  </node>
+  <node height="50.0" id="org.sysess.sympathy.data.table.matlabtable" uuid="{cb8bfa74-d546-4c44-960e-ebdc8337bd61}" width="50.0" x="1725.0" y="1575.0">
+    <label>Matlab Table</label>
+    <description>Execute Matlab code</description>
+    <author>Alexander Busck &lt;alexander.busck@combine.se&gt;, Sara Gustafzelius &lt;sara.gustafzelius@combine.se&gt;</author>
+    <copyright>(C) 2013 Combine Control Systems AB</copyright>
+    <version>1.0</version>
+    <parameters type="json"><![CDATA[{"type": "group"}]]></parameters>
+    <ports>
+      <input key="port2" scheme="text" type="datasource" type_base="datasource" uuid="{92a19d39-f31b-4924-bea6-96e9a06bb98f}">
+        <label>M-file (.m)</label>
+        <description>M-file (.m)</description>
+      </input>
+      <input key="port0" scheme="hdf5" type="table" type_base="table" uuid="{f6ebd159-1903-43d1-8f9f-375050c5c4d2}">
+        <label>Input Table</label>
+        <description>Input Table</description>
+      </input>
+      <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{bc994af8-7bf3-48cf-82fa-53d9bfe73686}">
+        <label>Table with MATLAB script applied</label>
+        <description>Table with MATLAB script applied</description>
+      </output>
+    </ports>
+  </node>
+  <node height="50.0" id="org.sysess.sympathy.list.getitemlist" uuid="{dd525c4c-bfde-44a2-8ece-59a2395939b2}" width="50.0" x="1850.0" y="1875.0">
+    <label>Get Item List</label>
+    <description></description>
+    <author>Erik der Hagopian &lt;erik.hagopian@combine.se&gt;</author>
+    <copyright>(C) 2015 Combine Control Systems AB</copyright>
+    <version>1.0</version>
+    <parameters type="json"><![CDATA[{"type": "group", "index": {"description": "Choose item index in list.", "label": "Index", "order": 0, "passthrough": false, "type": "list", "list": ["0"], "value": [0], "value_names": [], "editor": {"type": "combobox", "options": []}}}]]></parameters>
+    <ports>
+      <input key="list" scheme="hdf5" type="[table]" type_base="[&lt;a&gt;]" uuid="{b1ebbed4-acf2-4efe-a49a-9195531e0b6b}">
+        <label>Input List</label>
+        <description>Input List</description>
+      </input>
+      <output key="item" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{8e868a05-4860-4a5b-8e82-db3e86bd831b}">
+        <label>Output selected Item from List</label>
+        <description>Output selected Item from List</description>
+      </output>
+    </ports>
+  </node>
+  <node height="50.0" id="org.sysess.sympathy.list.getitemlist" uuid="{dfaaa0d0-d703-4f4c-8e86-c13578513d37}" width="50.0" x="1850.0" y="1775.0">
+    <label>Get Item List</label>
+    <description></description>
+    <author>Erik der Hagopian &lt;erik.hagopian@combine.se&gt;</author>
+    <copyright>(C) 2015 Combine Control Systems AB</copyright>
+    <version>1.0</version>
+    <parameters type="json"><![CDATA[{"type": "group", "index": {"description": "Choose item index in list.", "label": "Index", "order": 0, "passthrough": false, "type": "list", "list": ["0"], "value": [0], "value_names": [], "editor": {"type": "combobox", "options": []}}}]]></parameters>
+    <ports>
+      <input key="list" scheme="hdf5" type="[table]" type_base="[&lt;a&gt;]" uuid="{602c56bc-bfe2-4339-bce6-9e2d0e465a72}">
+        <label>Input List</label>
+        <description>Input List</description>
+      </input>
+      <output key="item" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{565efda8-5331-4806-b4f9-33da78d1f2a5}">
+        <label>Output selected Item from List</label>
+        <description>Output selected Item from List</description>
+      </output>
+    </ports>
+  </node>
+  <node height="50.0" id="org.sysess.builtin.empty" uuid="{eb74540b-ece6-410a-8752-4828c1e9dc32}" width="50.0" x="1425.0" y="2075.0">
+    <label>Empty</label>
+    <description>Generate empty data of inferred or defined datatype</description>
+    <author>Erik der Hagopian &lt;erik.hagopian@combine.se&gt;, Benedikt Ziegler &lt;benedikt.ziegler@combine.se&gt;</author>
+    <copyright>(C) 2016 Combine Control Systems AB</copyright>
+    <version>1.1</version>
+    <parameters type="json"><![CDATA[{"type": "group", "datatype": {"description": "Define the datatype of the output port.", "editor": null, "label": "Datatype", "order": 0, "type": "string", "value": "<a>"}}]]></parameters>
+    <ports>
+      <output key="" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{c4f8a1ec-6d29-44d9-a234-098c6deb42c8}">
+        <label>Output port containing empty data (must be connected or defined)</label>
+        <description>Output port containing empty data (must be connected or defined)</description>
+      </output>
+    </ports>
+  </node>
+  <node height="50.0" id="org.sysess.builtin.empty" uuid="{efad0706-42c5-4920-8bda-3ae184a2c60f}" width="50.0" x="1425.0" y="2175.0">
+    <label>Empty</label>
+    <description>Generate empty data of inferred or defined datatype</description>
+    <author>Erik der Hagopian &lt;erik.hagopian@combine.se&gt;, Benedikt Ziegler &lt;benedikt.ziegler@combine.se&gt;</author>
+    <copyright>(C) 2016 Combine Control Systems AB</copyright>
+    <version>1.1</version>
+    <parameters type="json"><![CDATA[{"type": "group", "datatype": {"description": "Define the datatype of the output port.", "editor": null, "label": "Datatype", "order": 0, "type": "string", "value": "<a>"}}]]></parameters>
+    <ports>
+      <output key="" scheme="hdf5" type="[table]" type_base="&lt;a&gt;" uuid="{456fd357-6160-411f-bce9-0a03ddc0891f}">
+        <label>Output port containing empty data (must be connected or defined)</label>
+        <description>Output port containing empty data (must be connected or defined)</description>
+      </output>
+    </ports>
+  </node>
+  <connection type="[table]" uuid="{29553afc-d00d-471a-ace4-8f73891ee38d}">
+    <source node="{efad0706-42c5-4920-8bda-3ae184a2c60f}" port="{456fd357-6160-411f-bce9-0a03ddc0891f}"/>
+    <destination node="{67cd9924-d25e-429c-b011-e51a76a1e388}" port="{24192df9-1c3d-478a-b753-6582b8cef035}"/>
+  </connection>
+  <connection type="[table]" uuid="{4628e32e-dcf7-47f8-ace8-5e4ccc26cecb}">
+    <source node="{36b33726-09f7-47e0-9a92-e9a0fb875415}" port="{6b0ebb35-232f-4b4e-82ab-d777a905a5ed}"/>
+    <destination node="{dfaaa0d0-d703-4f4c-8e86-c13578513d37}" port="{602c56bc-bfe2-4339-bce6-9e2d0e465a72}"/>
+  </connection>
+  <connection type="[table]" uuid="{52577576-7e90-4150-ad8b-9859ad3499b3}">
+    <source node="{12ab60c7-7321-434f-9e16-bdb46e18c614}" port="{d99eca21-bfc5-43a0-aeb5-667d80b0d990}"/>
+    <destination node="{dd525c4c-bfde-44a2-8ece-59a2395939b2}" port="{b1ebbed4-acf2-4efe-a49a-9195531e0b6b}"/>
+  </connection>
+  <connection type="datasource" uuid="{5351e6b8-19ed-4ebb-a3f2-a0df9df9cfd1}">
+    <source node="{3c4d2806-8805-49b0-a90e-5e22eae13def}" port="{451cd1e2-6ace-48fe-a50c-ac9090e5a29a}"/>
+    <destination node="{40891b70-e42c-47ec-a575-70f946d58fda}" port="{693293bf-f266-4538-91da-b34203b8a694}"/>
+  </connection>
+  <connection type="table" uuid="{5a229873-23de-4cce-9fed-94362fa48785}">
+    <source node="{8109e735-55b2-4f6f-af04-17a9580f1784}" port="{6d5efb99-aab9-4932-a8f5-83f1cd270373}"/>
+    <destination node="{51e61900-246a-4a63-a172-deed3e26ea38}" port="{9f5a2df6-f99b-4412-a833-18a9270d3c95}"/>
+  </connection>
+  <connection type="table" uuid="{60f89ba3-6bdf-4ebd-8136-e1155e504858}">
+    <source node="{8109e735-55b2-4f6f-af04-17a9580f1784}" port="{6d5efb99-aab9-4932-a8f5-83f1cd270373}"/>
+    <destination node="{1ecdb7b2-0e9e-46ff-a291-e0d8a1246d82}" port="{fafdb6e4-5f0c-4b6f-8f0a-3149026f9490}"/>
+  </connection>
+  <connection type="table" uuid="{61c65639-c162-4093-917a-6a5a3abed4d6}">
+    <source node="{48c4fb9c-0e88-4a78-8d64-ec50d51aee0a}" port="{86de38e9-1b31-4a0c-b32a-d20296201439}"/>
+    <destination node="{7cb5cb87-a356-4946-82d5-71d74ef3bc86}" port="{0fb3de63-212f-480f-ab35-3a33bc7ff018}"/>
+  </connection>
+  <connection type="table" uuid="{649d0599-11ca-4c3a-add3-19ecb15e644c}">
+    <source node="{48c4fb9c-0e88-4a78-8d64-ec50d51aee0a}" port="{86de38e9-1b31-4a0c-b32a-d20296201439}"/>
+    <destination node="{7c82c2b9-6794-4c60-a252-2f035630424b}" port="{f34ca910-c698-43b1-98bd-7e4a567fda5c}"/>
+  </connection>
+  <connection type="datasource" uuid="{695fdfe5-46db-4723-9646-79a7c6772839}">
+    <source node="{43190855-a33d-4b23-a8dd-fde3480a362b}" port="{53602944-9113-4f81-8951-d048b46a7c49}"/>
+    <destination node="{7cb5cb87-a356-4946-82d5-71d74ef3bc86}" port="{d14820c3-d514-46e0-9cb8-b9e7fcd85180}"/>
+  </connection>
+  <connection type="datasource" uuid="{7234766e-ac44-4172-9027-83fb92a5509f}">
+    <source node="{2e39b3c4-4d9b-43b0-bb4f-e06be5653862}" port="{450f52bc-3f97-4aa2-b6c8-b0829a78d813}"/>
+    <destination node="{cb8bfa74-d546-4c44-960e-ebdc8337bd61}" port="{92a19d39-f31b-4924-bea6-96e9a06bb98f}"/>
+  </connection>
+  <connection type="table" uuid="{80b44d05-ba77-402b-b300-599b6a2a98de}">
+    <source node="{cb8bfa74-d546-4c44-960e-ebdc8337bd61}" port="{bc994af8-7bf3-48cf-82fa-53d9bfe73686}"/>
+    <destination node="{8dd21b69-0267-443c-96f5-dd45f9a2de05}" port="{6ec36760-4b2a-40ce-b644-3cb761feaffb}"/>
+  </connection>
+  <connection type="[table]" uuid="{904d8d11-fbbc-4dd2-a2c2-9a366a7f2827}">
+    <source node="{efad0706-42c5-4920-8bda-3ae184a2c60f}" port="{456fd357-6160-411f-bce9-0a03ddc0891f}"/>
+    <destination node="{c0e7b559-c980-4804-9192-f6fec5a6d123}" port="{2750d62e-e78a-454d-bf42-b227407ff583}"/>
+  </connection>
+  <connection type="[table]" uuid="{94eb200e-6392-4402-98a9-dcb24b4e3be4}">
+    <source node="{efad0706-42c5-4920-8bda-3ae184a2c60f}" port="{456fd357-6160-411f-bce9-0a03ddc0891f}"/>
+    <destination node="{b6d92f82-59aa-4296-9b85-8ab4afd55c05}" port="{1223131e-6b7e-4638-8b13-b216c31afb99}"/>
+  </connection>
+  <connection type="datasource" uuid="{b2a57aba-129b-4fd7-b4c9-b1fa5b74ec3d}">
+    <source node="{43190855-a33d-4b23-a8dd-fde3480a362b}" port="{53602944-9113-4f81-8951-d048b46a7c49}"/>
+    <destination node="{36b33726-09f7-47e0-9a92-e9a0fb875415}" port="{4c525742-3eed-4d22-bc47-6861cd5534e1}"/>
+  </connection>
+  <connection type="table" uuid="{b488a3d7-0100-4114-bc88-5bf11dc70b7f}">
+    <source node="{dd525c4c-bfde-44a2-8ece-59a2395939b2}" port="{8e868a05-4860-4a5b-8e82-db3e86bd831b}"/>
+    <destination node="{b95d5070-c7e2-4281-b230-95bc9d756004}" port="{481faa3a-f86f-4a85-8b1f-8861efadde97}"/>
+  </connection>
+  <connection type="table" uuid="{b6bd3d1e-3f74-4cb4-8395-8c3c43cafc15}">
+    <source node="{48c4fb9c-0e88-4a78-8d64-ec50d51aee0a}" port="{86de38e9-1b31-4a0c-b32a-d20296201439}"/>
+    <destination node="{cb8bfa74-d546-4c44-960e-ebdc8337bd61}" port="{f6ebd159-1903-43d1-8f9f-375050c5c4d2}"/>
+  </connection>
+  <connection type="table" uuid="{c5591e1b-b7ce-49e5-aabf-a1fbf4d1d22b}">
+    <source node="{eb74540b-ece6-410a-8752-4828c1e9dc32}" port="{c4f8a1ec-6d29-44d9-a234-098c6deb42c8}"/>
+    <destination node="{40891b70-e42c-47ec-a575-70f946d58fda}" port="{774d6f16-7aae-4acb-9846-9360da72ed29}"/>
+  </connection>
+  <connection type="[table]" uuid="{c6de457a-00e2-4cfc-8839-149db93b6bd3}">
+    <source node="{7c82c2b9-6794-4c60-a252-2f035630424b}" port="{027e43ba-adc8-4960-88ed-c4ed34e3dbf1}"/>
+    <destination node="{36b33726-09f7-47e0-9a92-e9a0fb875415}" port="{a9ab4b55-83a0-4296-903b-11e1334f45a9}"/>
+  </connection>
+  <connection type="table" uuid="{d1b12988-a21f-4403-939c-12641b0f9696}">
+    <source node="{9a0c2d02-c6ab-4ec9-9625-a2566f0ac533}" port="{80aab12d-d3f0-4900-9d95-e178d0233211}"/>
+    <destination node="{8dd21b69-0267-443c-96f5-dd45f9a2de05}" port="{ebac7396-479e-43df-b8c6-b3790c28963b}"/>
+  </connection>
+  <connection type="table" uuid="{d6860e35-e83a-450b-b217-2a96bedad99a}">
+    <source node="{48c4fb9c-0e88-4a78-8d64-ec50d51aee0a}" port="{86de38e9-1b31-4a0c-b32a-d20296201439}"/>
+    <destination node="{b95d5070-c7e2-4281-b230-95bc9d756004}" port="{986ffb27-2e02-42f0-af1b-46026742b7b3}"/>
+  </connection>
+  <connection type="datasource" uuid="{e89bb2b0-b90c-4b35-9b32-bed814345673}">
+    <source node="{3c4d2806-8805-49b0-a90e-5e22eae13def}" port="{451cd1e2-6ace-48fe-a50c-ac9090e5a29a}"/>
+    <destination node="{c0e7b559-c980-4804-9192-f6fec5a6d123}" port="{4b91623a-2b5a-4371-a7df-d44c31644762}"/>
+  </connection>
+  <connection type="[table]" uuid="{f7989fb5-2fff-4d1c-9eff-ec72dc715361}">
+    <source node="{7c82c2b9-6794-4c60-a252-2f035630424b}" port="{027e43ba-adc8-4960-88ed-c4ed34e3dbf1}"/>
+    <destination node="{12ab60c7-7321-434f-9e16-bdb46e18c614}" port="{926f8c50-b772-4d89-88a7-849c0ee78563}"/>
+  </connection>
+  <connection type="table" uuid="{fa27a5c2-a490-4785-b656-bd7f780cf267}">
+    <source node="{dfaaa0d0-d703-4f4c-8e86-c13578513d37}" port="{565efda8-5331-4806-b4f9-33da78d1f2a5}"/>
+    <destination node="{1ecdb7b2-0e9e-46ff-a291-e0d8a1246d82}" port="{b7bf9b68-0720-4e9d-a8f0-8dff763a2bef}"/>
+  </connection>
+  <connection type="table" uuid="{ff2fd48e-e011-4793-8a88-1ef9d8ee3931}">
+    <source node="{7cb5cb87-a356-4946-82d5-71d74ef3bc86}" port="{3f323502-dff4-49a4-b855-1a34f7074d60}"/>
+    <destination node="{51e61900-246a-4a63-a172-deed3e26ea38}" port="{18da6964-5100-412a-b018-7f1d839543c9}"/>
+  </connection>
+  <text color="Beige" height="50.0" uuid="{58e52c2f-d193-43d1-aba3-8ab48a6023a8}" width="200.0" x="1800.0" y="2000.0">Run unit tests in test_file.m</text>
+</flow>

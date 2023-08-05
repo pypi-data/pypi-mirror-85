@@ -1,0 +1,465 @@
+<?xml version='1.0' encoding='US-ASCII'?>
+<flow xmlns="http://www.sysess.org/sympathyfordata/workflow/1.0" cls="Flow" uuid="{dd87add2-a28b-4522-af39-c59dca922871}">
+  <label></label>
+  <ports/>
+  <node id="org.sysess.sympathy.machinelearning.crossval_kfold" port_format="1.1" uuid="{1907918a-0d9b-4091-abb2-9bdd8f935b95}" x="2450.0" y="2275.0">
+    <label>K-fold cross validation</label>
+    <version>0.1</version>
+    <description>Gives splits for K-fold cross validation</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "n_splits": {
+        "editor": null,
+        "label": "Number of splits",
+        "order": 0,
+        "type": "integer",
+        "value": 3
+      },
+      "shuffle": {
+        "editor": null,
+        "label": "Shuffle",
+        "order": 1,
+        "type": "boolean",
+        "value": true
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="X" scheme="hdf5" type="table" type_base="table" uuid="{a322802b-b09c-4351-a855-ce9fe652c4e9}">
+        <label>X</label>
+      </input>
+      <input key="Y" scheme="hdf5" type="table" type_base="table" uuid="{f0f11484-a269-4d02-a6af-173460a57663}">
+        <label>Y</label>
+      </input>
+      <output key="out" scheme="hdf5" type="[(table, table)]" type_base="[(table, table)]" uuid="{7866d043-8369-45cb-b145-4a2cc5f51eed}">
+        <label>out</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.machinelearning.pipeline" port_format="1.1" uuid="{1d9d8e54-294d-4382-81fc-e97750fd980d}" x="2400.0" y="2025.0">
+    <label>Pipeline</label>
+    <version>0.1</version>
+    <description>Applies one model on the output of another</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "flatten": {
+        "editor": null,
+        "label": "Flatten: ",
+        "order": 1,
+        "type": "boolean",
+        "value": true
+      },
+      "names": {
+        "editor": null,
+        "label": "Model names: ",
+        "order": 0,
+        "type": "string",
+        "value": "pre, NN"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="models" scheme="hdf5" type="model" type_base="model" uuid="{7eb48c95-0c00-46fd-abc1-203ceb9d57aa}">
+        <label>models</label>
+      </input>
+      <input key="models" scheme="hdf5" type="model" type_base="model" uuid="{f192283b-6f45-4a69-9fcb-364663e74419}">
+        <label>models</label>
+      </input>
+      <output key="out-model" scheme="hdf5" type="model" type_base="model" uuid="{2aa283de-d333-4467-a56d-460e8530ff9c}">
+        <label>Output model</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.create.createtable" port_format="1.1" uuid="{2569d9c5-d1fa-4eb5-a21b-890428a8a1af}" x="2200.0" y="2225.0">
+    <label>Hyper parameters</label>
+    <version>1.0</version>
+    <description>Create a Table from scratch in a configuration Gui.</description>
+    <author>Magnus Sand&#233;n</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "json_table": {
+        "editor": null,
+        "label": "GUI",
+        "order": 0,
+        "type": "string",
+        "value": "[[\"NN__hidden_layer_sizes\", \"U\", [\"42\", \"11\", \"12\"]], [\"NN__activation\", \"U\", [\"relu\", \"tanh\", null]]]"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{635b3bec-1dbe-4418-98ad-ba361d2ed1c0}">
+        <label>Manually created table</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.machinelearning.binarizer" port_format="1.1" uuid="{4b6911f5-9a44-4769-874c-fab96aec4dab}" x="2225.0" y="1925.0">
+    <label>Binarizer</label>
+    <version>0.1</version>
+    <description>
+Binarize data (set feature values to 0 or 1) according to a threshold.
+
+Values greater than the threshold map to 1, while values less than or
+equal to the threshold map to 0. With the default threshold of 0, only
+positive values map to 1. Binarization is a common operation on text
+count data where the analyst can decide to only consider the presence
+or absence of a feature rather than a quantified number of occurrences
+for instance. It can also be used as a pre-processing step for
+estimators that consider boolean random variables (e.g. modelled using
+the Bernoulli distribution in a Bayesian setting).</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "threshold": {
+        "editor": null,
+        "label": "threshold",
+        "order": 0,
+        "type": "string",
+        "value": "10"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="model" scheme="hdf5" type="model" type_base="model" uuid="{e50aec98-79a9-4e0a-a980-4ae91e221646}">
+        <label>Model</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.create.createtable" port_format="1.1" uuid="{7c6b3528-4c0f-4e4f-82f5-bc9fa4d59046}" x="2200.0" y="2150.0">
+    <label>Hyper parameters</label>
+    <version>1.0</version>
+    <description>Create a Table from scratch in a configuration Gui.</description>
+    <author>Magnus Sand&#233;n</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "json_table": {
+        "editor": null,
+        "label": "GUI",
+        "order": 0,
+        "type": "string",
+        "value": "[[\"NN__hidden_layer_sizes\", \"U\", [\"50\", \"100\", \"50, 50\"]], [\"NN__activation\", \"U\", [\"relu\", \"tanh\", null]], [\"NN__beta_1\", \"f\", [0.9, 0.99, null]]]"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{61f1b2be-d073-412b-9872-45461e870a57}">
+        <label>Manually created table</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.machinelearning.grid_parsearch" port_format="1.1" uuid="{a9b78da4-fbce-4038-91ec-99b0324b1944}" x="2575.0" y="2075.0">
+    <label>Grid Parameter Search</label>
+    <version>0.1</version>
+    <description>Evaluates each parameter combination in the set of parameter hypercubes given by each table in the list of parameter tables. Each parameter table specify a hypercube of dimension N where N is the number of columns in the table. Every combination of paramater values in each such cube will be sampled.</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "cv": {
+        "editor": null,
+        "label": "Cross validation splits",
+        "order": 0,
+        "type": "integer",
+        "value": 3
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="in-model" scheme="hdf5" type="model" type_base="model" uuid="{2db6df81-2f0a-433f-b5ba-891ee23be66f}">
+        <label>in-model</label>
+      </input>
+      <input key="parameter space" scheme="hdf5" type="[table]" type_base="[table]" uuid="{c8e5e303-9e27-42e9-95cb-5ff0a1d3ce55}">
+        <label>param-space</label>
+      </input>
+      <input key="X" scheme="hdf5" type="table" type_base="table" uuid="{3c99f604-f7d6-4d28-8453-273355c90117}">
+        <label>X</label>
+      </input>
+      <input key="Y" scheme="hdf5" type="table" type_base="table" uuid="{ab079845-affc-4d0f-954c-de18fd54f534}">
+        <label>Y</label>
+      </input>
+      <input key="cross-validation" scheme="hdf5" type="[(table, table)]" type_base="[(table, table)]" uuid="{02226d00-9bac-42e5-8e1b-342052deefa4}">
+        <label>cross-validation</label>
+      </input>
+      <output key="results" scheme="hdf5" type="table" type_base="table" uuid="{3a6f0e8c-cbe5-4617-88bd-95dc31a6840a}">
+        <label>results</label>
+      </output>
+      <output key="parameters" scheme="hdf5" type="table" type_base="table" uuid="{5c7e6025-6e6f-4ab3-a618-49bfb93e741f}">
+        <label>parameters</label>
+      </output>
+      <output key="out-model" scheme="hdf5" type="model" type_base="model" uuid="{a66b2236-9737-4e65-bf0a-9d813ffc8c9b}">
+        <label>out-model</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.list.itemtolist" port_format="1.1" uuid="{b857073a-971d-4222-82dc-838d2146ab98}" x="2350.0" y="2150.0">
+    <label>Item to List</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="item" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{a79ff9af-dfbe-42c2-96b9-da18173567a7}">
+        <label>Input Item</label>
+      </input>
+      <input key="item" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{ac4769bc-c39f-478e-97ff-7d49b8397d3c}">
+        <label>Input Item</label>
+      </input>
+      <output key="list" scheme="hdf5" type="[table]" type_base="[&lt;a&gt;]" uuid="{48e6f2f1-88cc-4023-97dd-9eaa5447a565}">
+        <label>Item as List</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.machinelearning.example_datasets" port_format="1.1" uuid="{dd3a427d-6d11-4dd6-b64f-43e4c5c97c11}" x="2275.0" y="2275.0">
+    <label>Example dataset: 
+MNIST digits</label>
+    <version>0.1</version>
+    <description>Exposes the example datasets from sklearn</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "classnames": {
+        "editor": null,
+        "label": "Class names",
+        "order": 1,
+        "type": "boolean",
+        "value": true
+      },
+      "dataset": {
+        "editor": {
+          "options": ["Digits", "Boston", "Diabetes", "linnerud", "Iris"],
+          "type": "combobox"
+        },
+        "label": "Dataset",
+        "order": 0,
+        "type": "string",
+        "value": "Digits"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="X" scheme="hdf5" type="table" type_base="table" uuid="{443b3963-7daa-45da-990c-b7886e2e1733}">
+        <label>X</label>
+      </output>
+      <output key="Y" scheme="hdf5" type="table" type_base="table" uuid="{096f7d6e-a2eb-43fd-87db-631d8a0338ab}">
+        <label>Y</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.machinelearning.mlp_classifier" port_format="1.1" uuid="{f49e61bc-16c7-4ff9-82c7-d8dc7695bb7d}" x="2225.0" y="2025.0">
+    <label>Multi-Layer Perceptron Classifier</label>
+    <version>0.1</version>
+    <description>Multi-layer perceptron classifier</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "activation": {
+        "editor": null,
+        "label": "activation",
+        "order": 2,
+        "type": "string",
+        "value": "relu"
+      },
+      "alpha": {
+        "editor": null,
+        "label": "alpha",
+        "order": 9,
+        "type": "string",
+        "value": "1e-05"
+      },
+      "batch_size": {
+        "editor": null,
+        "label": "batch_size",
+        "order": 4,
+        "type": "string",
+        "value": "auto"
+      },
+      "beta_1": {
+        "editor": null,
+        "label": "beta_1",
+        "order": 15,
+        "type": "string",
+        "value": "0.9"
+      },
+      "beta_2": {
+        "editor": null,
+        "label": "beta_2",
+        "order": 16,
+        "type": "string",
+        "value": "0.999"
+      },
+      "early_stopping": {
+        "editor": null,
+        "label": "early_stopping",
+        "order": 7,
+        "type": "string",
+        "value": "False"
+      },
+      "epsilon": {
+        "editor": null,
+        "label": "epsilon",
+        "order": 17,
+        "type": "string",
+        "value": "1e-08"
+      },
+      "hidden_layer_sizes": {
+        "editor": null,
+        "label": "hidden_layer_sizes",
+        "order": 1,
+        "type": "string",
+        "value": "100"
+      },
+      "learning_rate": {
+        "editor": null,
+        "label": "learning_rate",
+        "order": 5,
+        "type": "string",
+        "value": "constant"
+      },
+      "learning_rate_init": {
+        "editor": null,
+        "label": "learning_rate_init",
+        "order": 11,
+        "type": "string",
+        "value": "0.001"
+      },
+      "max_iter": {
+        "editor": null,
+        "label": "max_iter",
+        "order": 0,
+        "type": "string",
+        "value": "200"
+      },
+      "momentum": {
+        "editor": null,
+        "label": "momentum",
+        "order": 13,
+        "type": "string",
+        "value": "0.9"
+      },
+      "nesterovs_momentum": {
+        "editor": null,
+        "label": "nesterovs_momentum",
+        "order": 14,
+        "type": "string",
+        "value": "True"
+      },
+      "power_t": {
+        "editor": null,
+        "label": "power_t",
+        "order": 12,
+        "type": "string",
+        "value": "0.5"
+      },
+      "random_state": {
+        "editor": null,
+        "label": "random_state",
+        "order": 18,
+        "type": "string",
+        "value": "None"
+      },
+      "shuffle": {
+        "editor": null,
+        "label": "shuffle",
+        "order": 6,
+        "type": "string",
+        "value": "True"
+      },
+      "solver": {
+        "editor": null,
+        "label": "solver",
+        "order": 3,
+        "type": "string",
+        "value": "adam"
+      },
+      "tol": {
+        "editor": null,
+        "label": "tol",
+        "order": 10,
+        "type": "string",
+        "value": "0.0001"
+      },
+      "type": "group",
+      "validation_fraction": {
+        "editor": null,
+        "label": "validation_fraction",
+        "order": 8,
+        "type": "string",
+        "value": "0.1"
+      },
+      "warm_start": {
+        "editor": null,
+        "label": "warm_start",
+        "order": 19,
+        "type": "string",
+        "value": "False"
+      }
+    }
+    </parameters>
+    <ports>
+      <output key="model" scheme="hdf5" type="model" type_base="model" uuid="{8e3df08a-59eb-4886-b6cc-ce0306a6ebb8}">
+        <label>Model</label>
+      </output>
+    </ports>
+  </node>
+  <connection type="table" uuid="{205b5042-5a81-4aa4-84b2-d95d6197e8c0}">
+    <source node="{2569d9c5-d1fa-4eb5-a21b-890428a8a1af}" port="{635b3bec-1dbe-4418-98ad-ba361d2ed1c0}"/>
+    <destination node="{b857073a-971d-4222-82dc-838d2146ab98}" port="{ac4769bc-c39f-478e-97ff-7d49b8397d3c}"/>
+  </connection>
+  <connection type="model" uuid="{4785f258-11ef-4d43-9cce-98dd7fbff3fd}">
+    <source node="{f49e61bc-16c7-4ff9-82c7-d8dc7695bb7d}" port="{8e3df08a-59eb-4886-b6cc-ce0306a6ebb8}"/>
+    <destination node="{1d9d8e54-294d-4382-81fc-e97750fd980d}" port="{f192283b-6f45-4a69-9fcb-364663e74419}"/>
+  </connection>
+  <connection type="table" uuid="{61ec5e4c-9203-4f4e-9176-67bf85a13924}">
+    <source node="{dd3a427d-6d11-4dd6-b64f-43e4c5c97c11}" port="{096f7d6e-a2eb-43fd-87db-631d8a0338ab}"/>
+    <destination node="{1907918a-0d9b-4091-abb2-9bdd8f935b95}" port="{f0f11484-a269-4d02-a6af-173460a57663}"/>
+  </connection>
+  <connection type="[(table, table)]" uuid="{67a294fd-721b-4b0c-958d-61ceb585fc3d}">
+    <source node="{1907918a-0d9b-4091-abb2-9bdd8f935b95}" port="{7866d043-8369-45cb-b145-4a2cc5f51eed}"/>
+    <destination node="{a9b78da4-fbce-4038-91ec-99b0324b1944}" port="{02226d00-9bac-42e5-8e1b-342052deefa4}"/>
+  </connection>
+  <connection type="table" uuid="{69c380e1-50c7-48f2-b129-fe4443245322}">
+    <source node="{dd3a427d-6d11-4dd6-b64f-43e4c5c97c11}" port="{443b3963-7daa-45da-990c-b7886e2e1733}"/>
+    <destination node="{1907918a-0d9b-4091-abb2-9bdd8f935b95}" port="{a322802b-b09c-4351-a855-ce9fe652c4e9}"/>
+  </connection>
+  <connection type="model" uuid="{6c833024-3ecd-4207-bc6e-289b48630e2b}">
+    <source node="{4b6911f5-9a44-4769-874c-fab96aec4dab}" port="{e50aec98-79a9-4e0a-a980-4ae91e221646}"/>
+    <destination node="{1d9d8e54-294d-4382-81fc-e97750fd980d}" port="{7eb48c95-0c00-46fd-abc1-203ceb9d57aa}"/>
+  </connection>
+  <connection type="[table]" uuid="{a40ffda0-d139-4f4d-a5c1-19187f301319}">
+    <source node="{b857073a-971d-4222-82dc-838d2146ab98}" port="{48e6f2f1-88cc-4023-97dd-9eaa5447a565}"/>
+    <destination node="{a9b78da4-fbce-4038-91ec-99b0324b1944}" port="{c8e5e303-9e27-42e9-95cb-5ff0a1d3ce55}"/>
+  </connection>
+  <connection type="table" uuid="{b7e4fed5-912f-4167-b606-d94bb01be796}">
+    <source node="{dd3a427d-6d11-4dd6-b64f-43e4c5c97c11}" port="{096f7d6e-a2eb-43fd-87db-631d8a0338ab}"/>
+    <destination node="{a9b78da4-fbce-4038-91ec-99b0324b1944}" port="{ab079845-affc-4d0f-954c-de18fd54f534}"/>
+  </connection>
+  <connection type="table" uuid="{c668929d-7c52-4679-bc06-940acd608c1a}">
+    <source node="{7c6b3528-4c0f-4e4f-82f5-bc9fa4d59046}" port="{61f1b2be-d073-412b-9872-45461e870a57}"/>
+    <destination node="{b857073a-971d-4222-82dc-838d2146ab98}" port="{a79ff9af-dfbe-42c2-96b9-da18173567a7}"/>
+  </connection>
+  <connection type="table" uuid="{ce6b3a31-1007-42f3-a38c-a7cde4a74e1b}">
+    <source node="{dd3a427d-6d11-4dd6-b64f-43e4c5c97c11}" port="{443b3963-7daa-45da-990c-b7886e2e1733}"/>
+    <destination node="{a9b78da4-fbce-4038-91ec-99b0324b1944}" port="{3c99f604-f7d6-4d28-8453-273355c90117}"/>
+  </connection>
+  <connection type="model" uuid="{d9bc09b5-1193-4c36-8638-1aae8e0658a7}">
+    <source node="{1d9d8e54-294d-4382-81fc-e97750fd980d}" port="{2aa283de-d333-4467-a56d-460e8530ff9c}"/>
+    <destination node="{a9b78da4-fbce-4038-91ec-99b0324b1944}" port="{2db6df81-2f0a-433f-b5ba-891ee23be66f}"/>
+  </connection>
+  <text color="Beige" height="75.0" uuid="{2e658cd8-2a14-4a9f-8016-da25baf4daa0}" width="450.0" x="2575.0" y="2225.0">We add here custom cross-validation settings. Right click on grid parameter search to add the cross validation input port. </text>
+</flow>

@@ -1,0 +1,1172 @@
+<?xml version='1.0' encoding='US-ASCII'?>
+<flow xmlns="http://www.sysess.org/sympathyfordata/workflow/1.0" cls="Flow" uuid="{c6ca09bc-f5e8-4ee4-b250-06cc795730b4}">
+  <label></label>
+  <ports/>
+  <node id="org.sysess.sympathy.data.table.calculatorgeneric" port_format="1.1" uuid="{0d86caea-1eb1-4eaa-94d0-6d8d25bb4de4}" x="2475.0" y="1625.0">
+    <label>Calculator - np.vectorize</label>
+    <version>3.0</version>
+    <description>Create columns by evaluating python calculations.</description>
+    <author>Greger Cronquist, Magnus Sand&#233;n, Sara Gustafzelius &amp; Benedikt Ziegler</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "calc_attrs_dict": {
+        "editor": null,
+        "label": "",
+        "order": 1,
+        "type": "string",
+        "value": "[]"
+      },
+      "calc_list": {
+        "editor": null,
+        "label": "List of calculations",
+        "list": ["length = np.vectorize(len)(arg['Name']) #ENABLED:1", "ends_with_e = np.vectorize(lambda name: name.endswith('e'))(arg['Name']) #ENABLED:1"],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [],
+        "value_names": []
+      },
+      "copy_input": {
+        "editor": null,
+        "label": "Copy input",
+        "order": 2,
+        "type": "boolean",
+        "value": true
+      },
+      "fail_strategy": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Action on calculation failure",
+        "list": ["Exception", "Skip calculation"],
+        "mode": "selected",
+        "order": 3,
+        "type": "list",
+        "value": [0],
+        "value_names": ["Exception"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port0" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{4482fe17-5d17-4c6d-acc5-80ac8b495472}">
+        <label>Generic Input</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{37a958ed-02ac-47bb-a2f4-6f6004a488e8}">
+        <label>Table with results from the calculations.</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.create.createtable" port_format="1.1" uuid="{0fdfd06e-25f7-4436-ba77-08f5f2dec8d8}" x="1525.0" y="1925.0">
+    <label>Manually Create Table</label>
+    <version>1.0</version>
+    <description>Create a Table from scratch in a configuration Gui.</description>
+    <author>Magnus Sand&#233;n</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "json_table": {
+        "editor": null,
+        "label": "GUI",
+        "order": 0,
+        "type": "string",
+        "value": "[[\"N\", \"i\", [1, 2, 3, 4, 5, 6]], [\"M\", \"i\", [3, 4, 1, 5, 3, 2]]]"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{07ab5519-497b-43c1-aef5-663c2edc1f74}">
+        <label>Manually created table</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.calculatorgenericlist" port_format="1.1" uuid="{12bff207-bb11-4dc0-994c-6b5cfd946045}" x="1875.0" y="1725.0">
+    <label>Calculator List - skip calculation</label>
+    <version>3.0</version>
+    <description>Create columns by evaluating python calculations.</description>
+    <author>Greger Cronquist, Magnus Sand&#233;n, Sara Gustafzelius &amp; Benedikt Ziegler</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "calc_attrs_dict": {
+        "editor": null,
+        "label": "",
+        "order": 1,
+        "type": "string",
+        "value": "[]"
+      },
+      "calc_list": {
+        "editor": null,
+        "label": "List of calculations",
+        "list": ["N squared = arg['N']**2 #ENABLED:1"],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [],
+        "value_names": []
+      },
+      "copy_input": {
+        "editor": null,
+        "label": "Copy input",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "fail_strategy": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Action on calculation failure",
+        "list": ["Exception", "Skip calculation"],
+        "mode": "selected",
+        "order": 3,
+        "type": "list",
+        "value": [1],
+        "value_names": ["Skip calculation"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port0" scheme="hdf5" type="[table]" type_base="[&lt;a&gt;]" uuid="{f17c31df-55a3-4a3f-95d1-1d9f8eddad42}">
+        <label>Generic Input</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="[table]" type_base="[table]" uuid="{99671162-551d-4d71-8cac-da0ebdca6e25}">
+        <label>Tables with results from the calculations.</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.calculatorgeneric" port_format="1.1" uuid="{1eb61771-19f7-48fd-9d3c-a8dfff78b186}" x="2475.0" y="1725.0">
+    <label>Calculator - np.vectorize with otypes</label>
+    <version>3.0</version>
+    <description>Create columns by evaluating python calculations.</description>
+    <author>Greger Cronquist, Magnus Sand&#233;n, Sara Gustafzelius &amp; Benedikt Ziegler</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "calc_attrs_dict": {
+        "editor": null,
+        "label": "",
+        "order": 1,
+        "type": "string",
+        "value": "[]"
+      },
+      "calc_list": {
+        "editor": null,
+        "label": "List of calculations",
+        "list": ["length = np.vectorize(len, otypes=[int])(arg['Name']) #ENABLED:1", "ends_with_e = np.vectorize(lambda name: name.endswith('e'), otypes=[bool])(arg['Name']) #ENABLED:1"],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [],
+        "value_names": []
+      },
+      "copy_input": {
+        "editor": null,
+        "label": "Copy input",
+        "order": 2,
+        "type": "boolean",
+        "value": true
+      },
+      "fail_strategy": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Action on calculation failure",
+        "list": ["Exception", "Skip calculation"],
+        "mode": "selected",
+        "order": 3,
+        "type": "list",
+        "value": [0],
+        "value_names": ["Exception"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port0" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{d4db972e-07b2-4ba2-ae6d-7d1ec6bfb61a}">
+        <label>Generic Input</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{b21a4cf8-f322-4537-a362-ffa4e995d0a4}">
+        <label>Table with results from the calculations.</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.create.createtable" port_format="1.1" uuid="{3e45d681-812c-4897-8d50-624ff2d1d5b3}" x="1525.0" y="1525.0">
+    <label>Manually Create Table</label>
+    <version>1.0</version>
+    <description>Create a Table from scratch in a configuration Gui.</description>
+    <author>Magnus Sand&#233;n</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "json_table": {
+        "editor": null,
+        "label": "GUI",
+        "order": 0,
+        "type": "string",
+        "value": "[[\"data1\", \"f\", [0.8, 1.0, 2.5, 0.2, 1.1, 1.6]], [\"data2\", \"f\", [1.5, 0.1, 1.1, 2.0, 1.3, 0.2]]]"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{4d792dd9-45a8-48e5-9ec8-4e92f7732b04}">
+        <label>Manually created table</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.calculatorgenericlist" port_format="1.1" uuid="{5989840f-c17c-48b6-ac82-41c22c3b2083}" x="1875.0" y="1825.0">
+    <label>Calculator List - first column</label>
+    <version>3.0</version>
+    <description>Create columns by evaluating python calculations.</description>
+    <author>Greger Cronquist, Magnus Sand&#233;n, Sara Gustafzelius &amp; Benedikt Ziegler</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "calc_attrs_dict": {
+        "editor": null,
+        "label": "",
+        "order": 1,
+        "type": "string",
+        "value": "[]"
+      },
+      "calc_list": {
+        "editor": null,
+        "label": "List of calculations",
+        "list": ["N squared = arg[arg.column_names()[0]]**2 #ENABLED:1"],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [],
+        "value_names": []
+      },
+      "copy_input": {
+        "editor": null,
+        "label": "Copy input",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "fail_strategy": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Action on calculation failure",
+        "list": ["Exception", "Skip calculation"],
+        "mode": "selected",
+        "order": 3,
+        "type": "list",
+        "value": [0],
+        "value_names": ["Exception"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port0" scheme="hdf5" type="[table]" type_base="[&lt;a&gt;]" uuid="{50818fc0-59f3-408d-967a-824139c5cbaa}">
+        <label>Generic Input</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="[table]" type_base="[table]" uuid="{1da745d3-cb21-47af-b047-6e5008b87e1e}">
+        <label>Tables with results from the calculations.</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.transposetablenew" port_format="1.1" uuid="{6621359e-2526-4fc9-85ba-4878c7638559}" x="1875.0" y="2100.0">
+    <label>Transpose Table</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Andreas Tagerud</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "columns": {
+        "editor": {
+          "display": null,
+          "edit": true,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Column names column",
+        "list": ["columns", "min"],
+        "mode": "selected",
+        "order": 2,
+        "passthrough": false,
+        "type": "list",
+        "value": [0],
+        "value_names": ["columns"]
+      },
+      "reverse_col_names": {
+        "editor": null,
+        "label": "Use selected column as column names",
+        "order": 1,
+        "type": "boolean",
+        "value": true
+      },
+      "type": "group",
+      "use_col_names": {
+        "editor": null,
+        "label": "Column names as first column",
+        "order": 0,
+        "type": "boolean",
+        "value": false
+      }
+    }
+    </parameters>
+    <ports>
+      <input key="input" scheme="hdf5" type="table" type_base="table" uuid="{8ca34fb8-25d1-4b24-be70-d55e65e85f6c}">
+        <label>The Table to transpose</label>
+      </input>
+      <output key="output" scheme="hdf5" type="table" type_base="table" uuid="{7d5691f3-42f2-4156-a2f6-341e25be7f7a}">
+        <label>The transposed Table</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.create.createtable" port_format="1.1" uuid="{8058c93e-1d3d-4db8-a412-d9bb30261760}" x="2125.0" y="1875.0">
+    <label>Manually Create Table</label>
+    <version>1.0</version>
+    <description>Create a Table from scratch in a configuration Gui.</description>
+    <author>Magnus Sand&#233;n</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "json_table": {
+        "editor": null,
+        "label": "GUI",
+        "order": 0,
+        "type": "string",
+        "value": "[[\"time\", \"M\", [\"2000-01-01T00:00:00\", \"2000-01-01T00:00:01\", \"2000-01-01T00:00:02\", \"2000-01-01T00:00:03\", \"2000-01-01T00:00:04\", \"2000-01-01T00:00:05\", \"2000-01-01T00:00:06\", \"2000-01-01T00:00:07\", \"2000-01-01T00:00:08\", \"2000-01-01T00:00:09\"]]]"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{538ef6fe-f791-436c-a855-9af5bbf96dd3}">
+        <label>Manually created table</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.dsrcstotable" port_format="1.1" uuid="{8408d42a-382e-4fcf-af11-53ff76826466}" x="2300.0" y="2025.0">
+    <label>Datasources to Table</label>
+    <version>1.1</version>
+    <description>Converts a list of data sources into a table of filenames.</description>
+    <author>Magnus Sanden</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "relpath": {
+        "editor": null,
+        "label": "Output paths relative to the current top-flow",
+        "order": 0,
+        "type": "boolean",
+        "value": false
+      },
+      "subpath": {
+        "editor": null,
+        "label": "Output paths relative to the current sub-flow",
+        "order": 1,
+        "type": "boolean",
+        "value": false
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="in" scheme="text" type="[datasource]" type_base="[datasource]" uuid="{b7f907a7-9318-4a2e-aeb6-f255068471bb}">
+        <label>Datasources with filepaths</label>
+      </input>
+      <output key="out" scheme="hdf5" type="table" type_base="table" uuid="{47bd6659-8971-490d-a6b6-4e2bb1131de5}">
+        <label>Table with a single column with a filepath</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.create.createtable" port_format="1.1" uuid="{922d3f75-d6f1-4514-ba10-c09cd5766958}" x="1525.0" y="1725.0">
+    <label>Manually Create Table</label>
+    <version>1.0</version>
+    <description>Create a Table from scratch in a configuration Gui.</description>
+    <author>Magnus Sand&#233;n</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "json_table": {
+        "editor": null,
+        "label": "GUI",
+        "order": 0,
+        "type": "string",
+        "value": "[[\"N\", \"i\", [1, 2, 3, 4, 5, 6]], [\"M\", \"i\", [3, 4, 1, 5, 3, 2]]]"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{040b8fee-867d-449b-a003-ad4091a2a05c}">
+        <label>Manually created table</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.calculatorgeneric" port_format="1.1" uuid="{9554141b-0c30-459a-a13a-bb23e1fdbdc9}" x="1700.0" y="2100.0">
+    <label>Calculator:
+Minimum of each column</label>
+    <version>3.0</version>
+    <description>Create columns by evaluating python calculations.</description>
+    <author>Greger Cronquist, Magnus Sand&#233;n, Sara Gustafzelius &amp; Benedikt Ziegler</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "calc_attrs_dict": {
+        "editor": null,
+        "label": "",
+        "order": 1,
+        "type": "string",
+        "value": "[]"
+      },
+      "calc_list": {
+        "editor": null,
+        "label": "List of calculations",
+        "list": ["columns = ['min({})'.format(col.name) for col in arg.cols()] #ENABLED:1", "min = [np.min(col.data) for col in arg.cols()] #ENABLED:1"],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [],
+        "value_names": []
+      },
+      "copy_input": {
+        "editor": null,
+        "label": "Copy input",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "fail_strategy": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Action on calculation failure",
+        "list": ["Exception", "Skip calculation"],
+        "mode": "selected",
+        "order": 3,
+        "type": "list",
+        "value": [0],
+        "value_names": ["Exception"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port0" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{d79df166-4f7a-42c6-8572-0754cc2b4ed8}">
+        <label>Generic Input</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{c3b0a265-f847-4a04-933f-157a038d1c13}">
+        <label>Table with results from the calculations.</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.random.randomtable" port_format="1.1" uuid="{99e06140-9ae8-4ff8-bfa5-afb836d39a50}" x="2125.0" y="2175.0">
+    <label>Random Table</label>
+    <version>0.1</version>
+    <description>Generate a Table with random numbers between 0 and 1.</description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "column_entries": {
+        "editor": {
+          "max": 1000000,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "Columns:",
+        "order": 0,
+        "type": "integer",
+        "value": 1
+      },
+      "column_length": {
+        "editor": {
+          "max": 100000000,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "Rows:",
+        "order": 1,
+        "type": "integer",
+        "value": 20
+      },
+      "mask_values": {
+        "editor": null,
+        "label": "Randomly mask values",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{5eae0a7e-e357-4eb8-ae22-1baeba9110e0}">
+        <label>Table with random numbers.</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.datasources.filedatasourcemultiple" port_format="1.1" uuid="{a03e4f50-c10c-471b-85e2-dea266c669d0}" x="2125.0" y="2025.0">
+    <label>File Datasources</label>
+    <version>1.1</version>
+    <description>Select data sources.</description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "directory": {
+        "editor": {
+          "states": null,
+          "type": "dirname"
+        },
+        "label": "Directory",
+        "order": 1,
+        "type": "string",
+        "value": "."
+      },
+      "include_types": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": ["Files", "Directories", "Files and Directories"],
+          "type": "combobox"
+        },
+        "label": "Include",
+        "order": 3,
+        "type": "string",
+        "value": "Files"
+      },
+      "recursive": {
+        "editor": null,
+        "label": "Recursive",
+        "order": 0,
+        "type": "boolean",
+        "value": false
+      },
+      "search_pattern": {
+        "editor": null,
+        "label": "Search pattern",
+        "order": 2,
+        "type": "string",
+        "value": "*.syx"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port1" scheme="text" type="[datasource]" type_base="[datasource]" uuid="{b277e200-d719-4e42-abcd-104134977d14}">
+        <label>Datasources with paths files</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.calculatorgeneric" port_format="1.1" uuid="{a0d78c9a-f3d7-42d6-a89c-5160864b4711}" x="2475.0" y="2025.0">
+    <label>Calculator - paths example</label>
+    <version>3.0</version>
+    <description>Create columns by evaluating python calculations.</description>
+    <author>Greger Cronquist, Magnus Sand&#233;n, Sara Gustafzelius &amp; Benedikt Ziegler</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "calc_attrs_dict": {
+        "editor": null,
+        "label": "",
+        "order": 1,
+        "type": "string",
+        "value": "[]"
+      },
+      "calc_list": {
+        "editor": null,
+        "label": "List of calculations",
+        "list": ["basename = # os.path includes a lot of functions for manipulating paths.\n[os.path.splitext(os.path.basename(p))[0] for p in arg['filepaths']] #ENABLED:1"],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [],
+        "value_names": []
+      },
+      "copy_input": {
+        "editor": null,
+        "label": "Copy input",
+        "order": 2,
+        "type": "boolean",
+        "value": true
+      },
+      "fail_strategy": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Action on calculation failure",
+        "list": ["Exception", "Skip calculation"],
+        "mode": "selected",
+        "order": 3,
+        "type": "list",
+        "value": [0],
+        "value_names": ["Exception"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port0" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{d4d0eb85-aaff-4c66-af9d-983be31f45bc}">
+        <label>Generic Input</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{523ef7e2-0870-477c-b658-be461d832d8b}">
+        <label>Table with results from the calculations.</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.calculatorgeneric" port_format="1.1" uuid="{bae1b7fa-f4de-4e0f-b8a5-e1c27747e9fc}" x="2475.0" y="1525.0">
+    <label>Calculator - list comprehensions</label>
+    <version>3.0</version>
+    <description>Create columns by evaluating python calculations.</description>
+    <author>Greger Cronquist, Magnus Sand&#233;n, Sara Gustafzelius &amp; Benedikt Ziegler</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "calc_attrs_dict": {
+        "editor": null,
+        "label": "",
+        "order": 1,
+        "type": "string",
+        "value": "[]"
+      },
+      "calc_list": {
+        "editor": null,
+        "label": "List of calculations",
+        "list": ["length = [len(name) for name in arg['Name']] #ENABLED:1", "ends_with_e = [name.endswith('e') for name in arg['Name']] #ENABLED:1"],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [],
+        "value_names": []
+      },
+      "copy_input": {
+        "editor": null,
+        "label": "Copy input",
+        "order": 2,
+        "type": "boolean",
+        "value": true
+      },
+      "fail_strategy": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Action on calculation failure",
+        "list": ["Exception", "Skip calculation"],
+        "mode": "selected",
+        "order": 3,
+        "type": "list",
+        "value": [0],
+        "value_names": ["Exception"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port0" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{6dfc95b4-2eda-437a-8be2-0a36eda23c98}">
+        <label>Generic Input</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{087e9602-e3cc-4ca9-be8a-2979f09ff9ec}">
+        <label>Table with results from the calculations.</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.calculatorgeneric" port_format="1.1" uuid="{e4c24b10-134e-453c-b49a-df3ca4022f05}" x="2475.0" y="1875.0">
+    <label>Calculator - datetimes example</label>
+    <version>3.0</version>
+    <description>Create columns by evaluating python calculations.</description>
+    <author>Greger Cronquist, Magnus Sand&#233;n, Sara Gustafzelius &amp; Benedikt Ziegler</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "calc_attrs_dict": {
+        "editor": null,
+        "label": "",
+        "order": 1,
+        "type": "string",
+        "value": "[]"
+      },
+      "calc_list": {
+        "editor": null,
+        "label": "List of calculations",
+        "list": ["timedelta = # Subtracting datetimes results in a timedelta type column\narg['time'] - np.datetime64('2000-01-01T00:00:00') #ENABLED:1", "number_of_seconds = # Timedeltas can easily be converted to integers, but in this case we must\n# first change its resolution to seconds to get the number of seconds.\nres['timedelta'].astype('timedelta64[s]').astype(int) #ENABLED:1", "time_string = # Datetimes are always stored as np.datetime64, but are converted to\n# datetime.datetime objects when using the .tolist() method.\n[t.isoformat() for t in arg['time'].tolist()] #ENABLED:1"],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [],
+        "value_names": []
+      },
+      "copy_input": {
+        "editor": null,
+        "label": "Copy input",
+        "order": 2,
+        "type": "boolean",
+        "value": true
+      },
+      "fail_strategy": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Action on calculation failure",
+        "list": ["Exception", "Skip calculation"],
+        "mode": "selected",
+        "order": 3,
+        "type": "list",
+        "value": [0],
+        "value_names": ["Exception"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port0" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{bafc58cb-723a-4a17-83d7-5f353a83cc06}">
+        <label>Generic Input</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{c02df454-d391-4509-bebb-13ee4683726a}">
+        <label>Table with results from the calculations.</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.create.createtable" port_format="1.1" uuid="{e5301ea7-5caa-44e3-99f5-7121bfd62c31}" x="1525.0" y="1825.0">
+    <label>Manually Create Table</label>
+    <version>1.0</version>
+    <description>Create a Table from scratch in a configuration Gui.</description>
+    <author>Magnus Sand&#233;n</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "json_table": {
+        "editor": null,
+        "label": "GUI",
+        "order": 0,
+        "type": "string",
+        "value": "[[\"M\", \"i\", [3, 4, 1, 5, 3, 2]]]"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{b02cb34c-2c0d-4755-abe3-67b4ecde1faf}">
+        <label>Manually created table</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.calculatorgeneric" port_format="1.1" uuid="{e8de4743-2c8e-420d-aa78-b0fa4cbcaab7}" x="1875.0" y="1525.0">
+    <label>Calculator - Combine event detection functions</label>
+    <version>3.0</version>
+    <description>Create columns by evaluating python calculations.</description>
+    <author>Greger Cronquist, Magnus Sand&#233;n, Sara Gustafzelius &amp; Benedikt Ziegler</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "calc_attrs_dict": {
+        "editor": null,
+        "label": "",
+        "order": 1,
+        "type": "string",
+        "value": "[]"
+      },
+      "calc_list": {
+        "editor": null,
+        "label": "List of calculations",
+        "list": ["condition1 = ca.changed_up(arg['data1']) #ENABLED:0", "condition2 = arg['data2'] &gt; 1 #ENABLED:0", "condition = np.logical_and(res['condition1'], res['condition2']) #ENABLED:1"],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [],
+        "value_names": []
+      },
+      "copy_input": {
+        "editor": null,
+        "label": "Copy input",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "fail_strategy": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Action on calculation failure",
+        "list": ["Exception", "Skip calculation"],
+        "mode": "selected",
+        "order": 3,
+        "type": "list",
+        "value": [0],
+        "value_names": ["Exception"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port0" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{93add310-98f4-4da6-94c8-b9ff88e6caae}">
+        <label>Generic Input</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{0b2fdecd-364e-424b-8986-f9ac6ceed41a}">
+        <label>Table with results from the calculations.</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.random.randomtable" port_format="1.1" uuid="{e94a03a5-fc1d-47bd-9d95-61584f6ab4c8}" x="1525.0" y="2100.0">
+    <label>Random Table</label>
+    <version>0.1</version>
+    <description>Generate a Table with random numbers between 0 and 1.</description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "column_entries": {
+        "editor": {
+          "max": 1000000,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "Columns:",
+        "order": 0,
+        "type": "integer",
+        "value": 5
+      },
+      "column_length": {
+        "editor": {
+          "max": 100000000,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "Rows:",
+        "order": 1,
+        "type": "integer",
+        "value": 5
+      },
+      "mask_values": {
+        "editor": null,
+        "label": "Randomly mask values",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{41a9b3fc-88e0-4f4e-825c-64af6a1c58dc}">
+        <label>Table with random numbers.</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.list.itemtolist" port_format="1.1" uuid="{eabfe92c-c799-4d1d-8164-809c6d2050f5}" x="1700.0" y="1825.0">
+    <label>Item to List</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "n": {
+        "editor": null,
+        "label": "Repeat number of times",
+        "order": 0,
+        "type": "integer",
+        "value": 1
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="item" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{09a20b8a-400f-4949-ab28-9a882fa4d8cf}">
+        <label>Input Item</label>
+      </input>
+      <input key="item" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{8ffb1128-68d2-4a1e-afee-f1548ec309bc}">
+        <label>Input Item</label>
+      </input>
+      <input key="item" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{ff202fc6-bb6b-4deb-b21e-e24cae0fae65}">
+        <label>Input Item</label>
+      </input>
+      <output key="list" scheme="hdf5" type="[table]" type_base="[&lt;a&gt;]" uuid="{b996d303-25cc-42e2-bff4-0bc7c986a5c1}">
+        <label>Item as List</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.calculatorgenericlist" port_format="1.1" uuid="{f44910a3-fd5c-45d7-a0cb-85ff80b38147}" x="1875.0" y="1925.0">
+    <label>Calculator List - explicit check</label>
+    <version>3.0</version>
+    <description>Create columns by evaluating python calculations.</description>
+    <author>Greger Cronquist, Magnus Sand&#233;n, Sara Gustafzelius &amp; Benedikt Ziegler</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "calc_attrs_dict": {
+        "editor": null,
+        "label": "",
+        "order": 1,
+        "type": "string",
+        "value": "[]"
+      },
+      "calc_list": {
+        "editor": null,
+        "label": "List of calculations",
+        "list": ["sum = arg['N']**2 if 'N' in arg else np.zeros(arg.number_of_rows(), dtype=int) #ENABLED:1"],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [],
+        "value_names": []
+      },
+      "copy_input": {
+        "editor": null,
+        "label": "Copy input",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "fail_strategy": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Action on calculation failure",
+        "list": ["Exception", "Skip calculation"],
+        "mode": "selected",
+        "order": 3,
+        "type": "list",
+        "value": [0],
+        "value_names": ["Exception"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port0" scheme="hdf5" type="[table]" type_base="[&lt;a&gt;]" uuid="{7f25943e-2f47-4526-bd61-ed5246b4e272}">
+        <label>Generic Input</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="[table]" type_base="[table]" uuid="{1418e484-9230-4e9a-bd19-8a09f7e83249}">
+        <label>Tables with results from the calculations.</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.calculatorgeneric" port_format="1.1" uuid="{fc6392c8-f64a-48e9-ae3e-d0f80d7bef6d}" x="2475.0" y="2175.0">
+    <label>Calculator - np.where</label>
+    <version>3.0</version>
+    <description>Create columns by evaluating python calculations.</description>
+    <author>Greger Cronquist, Magnus Sand&#233;n, Sara Gustafzelius &amp; Benedikt Ziegler</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "calc_attrs_dict": {
+        "editor": null,
+        "label": "",
+        "order": 1,
+        "type": "string",
+        "value": "[]"
+      },
+      "calc_list": {
+        "editor": null,
+        "label": "List of calculations",
+        "list": ["limited = np.where(arg['0'] &lt; 0.5, arg['0'], 0.5) #ENABLED:1"],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [],
+        "value_names": ["New Column 0 = arg[0].col('data1').data + arg[1].col('data2').data #ENABLED:1"]
+      },
+      "copy_input": {
+        "editor": null,
+        "label": "Copy input",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "fail_strategy": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Action on calculation failure",
+        "list": ["Exception", "Skip calculation"],
+        "mode": "selected",
+        "order": 3,
+        "type": "list",
+        "value": [0],
+        "value_names": ["Exception"]
+      },
+      "same_length_res": {
+        "editor": null,
+        "label": "Put results in common outputs.",
+        "order": 1,
+        "type": "boolean",
+        "value": true
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port0" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{8fb04e07-bf57-4de5-9aea-b07f1682068f}">
+        <label>Generic Input</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{641f43f5-7cab-402b-9a75-35d439deee02}">
+        <label>Table with results from the calculations.</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.create.createtable" port_format="1.1" uuid="{fe4020fb-87e4-401c-85a3-de6a77963d13}" x="2125.0" y="1525.0">
+    <label>Manually Create Table</label>
+    <version>1.0</version>
+    <description>Create a Table from scratch in a configuration Gui.</description>
+    <author>Magnus Sand&#233;n</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "json_table": {
+        "editor": null,
+        "label": "GUI",
+        "order": 0,
+        "type": "string",
+        "value": "[[\"Name\", \"U\", [\"Alice\", \"Bob\", \"Charlie\", \"Dave\", \"Eve\", \"Francis\"]]]"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{9834b9e5-f116-4f68-8383-8f69bc2d3c54}">
+        <label>Manually created table</label>
+      </output>
+    </ports>
+  </node>
+  <connection type="table" uuid="{0f8996ce-b01d-4b73-8403-fae602a60970}">
+    <source node="{fe4020fb-87e4-401c-85a3-de6a77963d13}" port="{9834b9e5-f116-4f68-8383-8f69bc2d3c54}"/>
+    <destination node="{0d86caea-1eb1-4eaa-94d0-6d8d25bb4de4}" port="{4482fe17-5d17-4c6d-acc5-80ac8b495472}"/>
+  </connection>
+  <connection type="[table]" uuid="{207409ba-60f4-4eb5-ab10-a57bab5c5054}">
+    <source node="{eabfe92c-c799-4d1d-8164-809c6d2050f5}" port="{b996d303-25cc-42e2-bff4-0bc7c986a5c1}"/>
+    <destination node="{f44910a3-fd5c-45d7-a0cb-85ff80b38147}" port="{7f25943e-2f47-4526-bd61-ed5246b4e272}"/>
+  </connection>
+  <connection type="table" uuid="{5905aa08-d109-4987-881f-4977a706a77e}">
+    <source node="{e94a03a5-fc1d-47bd-9d95-61584f6ab4c8}" port="{41a9b3fc-88e0-4f4e-825c-64af6a1c58dc}"/>
+    <destination node="{9554141b-0c30-459a-a13a-bb23e1fdbdc9}" port="{d79df166-4f7a-42c6-8572-0754cc2b4ed8}"/>
+  </connection>
+  <connection type="table" uuid="{5b67becc-a45f-4674-a672-f58689578c3d}">
+    <source node="{fe4020fb-87e4-401c-85a3-de6a77963d13}" port="{9834b9e5-f116-4f68-8383-8f69bc2d3c54}"/>
+    <destination node="{bae1b7fa-f4de-4e0f-b8a5-e1c27747e9fc}" port="{6dfc95b4-2eda-437a-8be2-0a36eda23c98}"/>
+  </connection>
+  <connection type="table" uuid="{78fa84c8-5174-4c46-a14d-e66a2b6eb1dc}">
+    <source node="{e5301ea7-5caa-44e3-99f5-7121bfd62c31}" port="{b02cb34c-2c0d-4755-abe3-67b4ecde1faf}"/>
+    <destination node="{eabfe92c-c799-4d1d-8164-809c6d2050f5}" port="{8ffb1128-68d2-4a1e-afee-f1548ec309bc}"/>
+  </connection>
+  <connection type="table" uuid="{79b03061-4803-404d-9c53-895e708b676c}">
+    <source node="{fe4020fb-87e4-401c-85a3-de6a77963d13}" port="{9834b9e5-f116-4f68-8383-8f69bc2d3c54}"/>
+    <destination node="{1eb61771-19f7-48fd-9d3c-a8dfff78b186}" port="{d4db972e-07b2-4ba2-ae6d-7d1ec6bfb61a}"/>
+  </connection>
+  <connection type="table" uuid="{7f29417b-1aa2-4d2f-b3dc-7f7e64f27c8b}">
+    <source node="{0fdfd06e-25f7-4436-ba77-08f5f2dec8d8}" port="{07ab5519-497b-43c1-aef5-663c2edc1f74}"/>
+    <destination node="{eabfe92c-c799-4d1d-8164-809c6d2050f5}" port="{ff202fc6-bb6b-4deb-b21e-e24cae0fae65}"/>
+  </connection>
+  <connection type="table" uuid="{839a6de3-47aa-4656-b916-d7cc1d4e25c4}">
+    <source node="{3e45d681-812c-4897-8d50-624ff2d1d5b3}" port="{4d792dd9-45a8-48e5-9ec8-4e92f7732b04}"/>
+    <destination node="{e8de4743-2c8e-420d-aa78-b0fa4cbcaab7}" port="{93add310-98f4-4da6-94c8-b9ff88e6caae}"/>
+  </connection>
+  <connection type="[table]" uuid="{9003afb6-e94c-48f6-9940-c7765157faed}">
+    <source node="{eabfe92c-c799-4d1d-8164-809c6d2050f5}" port="{b996d303-25cc-42e2-bff4-0bc7c986a5c1}"/>
+    <destination node="{5989840f-c17c-48b6-ac82-41c22c3b2083}" port="{50818fc0-59f3-408d-967a-824139c5cbaa}"/>
+  </connection>
+  <connection type="table" uuid="{983dc962-9d55-45bd-bb14-1cf1af31bdc4}">
+    <source node="{8058c93e-1d3d-4db8-a412-d9bb30261760}" port="{538ef6fe-f791-436c-a855-9af5bbf96dd3}"/>
+    <destination node="{e4c24b10-134e-453c-b49a-df3ca4022f05}" port="{bafc58cb-723a-4a17-83d7-5f353a83cc06}"/>
+  </connection>
+  <connection type="table" uuid="{9cdb3436-219c-416f-b78f-a2c2844f341e}">
+    <source node="{8408d42a-382e-4fcf-af11-53ff76826466}" port="{47bd6659-8971-490d-a6b6-4e2bb1131de5}"/>
+    <destination node="{a0d78c9a-f3d7-42d6-a89c-5160864b4711}" port="{d4d0eb85-aaff-4c66-af9d-983be31f45bc}"/>
+  </connection>
+  <connection type="table" uuid="{a6a49ef2-7a54-453e-94fe-25ea3c99ef1b}">
+    <source node="{9554141b-0c30-459a-a13a-bb23e1fdbdc9}" port="{c3b0a265-f847-4a04-933f-157a038d1c13}"/>
+    <destination node="{6621359e-2526-4fc9-85ba-4878c7638559}" port="{8ca34fb8-25d1-4b24-be70-d55e65e85f6c}"/>
+  </connection>
+  <connection type="table" uuid="{ace414c3-a270-411a-89f3-860999c793f0}">
+    <source node="{922d3f75-d6f1-4514-ba10-c09cd5766958}" port="{040b8fee-867d-449b-a003-ad4091a2a05c}"/>
+    <destination node="{eabfe92c-c799-4d1d-8164-809c6d2050f5}" port="{09a20b8a-400f-4949-ab28-9a882fa4d8cf}"/>
+  </connection>
+  <connection type="[table]" uuid="{afa2d640-1b2d-4fe9-9428-5bc4db1838c3}">
+    <source node="{eabfe92c-c799-4d1d-8164-809c6d2050f5}" port="{b996d303-25cc-42e2-bff4-0bc7c986a5c1}"/>
+    <destination node="{12bff207-bb11-4dc0-994c-6b5cfd946045}" port="{f17c31df-55a3-4a3f-95d1-1d9f8eddad42}"/>
+  </connection>
+  <connection type="table" uuid="{d44742fe-3af8-4459-b803-43c2076013d0}">
+    <source node="{99e06140-9ae8-4ff8-bfa5-afb836d39a50}" port="{5eae0a7e-e357-4eb8-ae22-1baeba9110e0}"/>
+    <destination node="{fc6392c8-f64a-48e9-ae3e-d0f80d7bef6d}" port="{8fb04e07-bf57-4de5-9aea-b07f1682068f}"/>
+  </connection>
+  <connection type="[datasource]" uuid="{e8375fcc-2da5-4caa-8517-312e8b3269bd}">
+    <source node="{a03e4f50-c10c-471b-85e2-dea266c669d0}" port="{b277e200-d719-4e42-abcd-104134977d14}"/>
+    <destination node="{8408d42a-382e-4fcf-af11-53ff76826466}" port="{b7f907a7-9318-4a2e-aeb6-f255068471bb}"/>
+  </connection>
+  <text color="Beige" height="125.0" uuid="{5ac01807-ca7a-4d7c-9cd3-3376dc7d0175}" width="200.0" x="1250.0" y="2075.0">Example of how to do the same key-value calculation to all columns in a table without specifying each one by name.</text>
+  <text color="Beige" height="300.0" uuid="{98fef60d-f580-4c6f-9f75-4d3ff7d36523}" width="200.0" x="1250.0" y="1700.0">A few examples of how to work with a list of tables where some of the required column might not exist in all tables.</text>
+  <text color="Beige" height="100.0" uuid="{40e9efe3-28a4-4170-9f12-a8d245139825}" width="200.0" x="2575.0" y="1850.0">datetime calculations</text>
+  <text color="Beige" height="100.0" uuid="{97722325-e464-4f3f-8cba-cf99872eb8a7}" width="200.0" x="2575.0" y="2000.0">Paths calculations</text>
+  <text color="Beige" height="100.0" uuid="{cb550867-ec20-4203-8808-5b5907015350}" width="200.0" x="1250.0" y="1500.0">Intermediary calculations</text>
+  <text color="Beige" height="100.0" uuid="{773a2db2-312e-4ef0-8bec-a1732d377223}" width="200.0" x="2575.0" y="2150.0">np.where</text>
+  <text color="Beige" height="250.0" uuid="{fdcfb79e-3c84-4f36-a134-cea158b2c773}" width="200.0" x="2575.0" y="1525.0">String calculations (list comprehension and np.vectorize)</text>
+  <text color="Beige" height="75.0" uuid="{8c29f74a-9eb7-4d26-a7e7-591719bfb8a2}" width="375.0" x="1825.0" y="2400.0">
+- Node example: *org.sysess.sympathy.data.table.calculatorgeneric*
+- Node example: *org.sysess.sympathy.data.table.calculatorgenericlist*
+</text>
+</flow>

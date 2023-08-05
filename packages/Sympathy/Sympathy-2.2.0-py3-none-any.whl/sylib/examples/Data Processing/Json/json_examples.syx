@@ -1,0 +1,207 @@
+<?xml version='1.0' encoding='US-ASCII'?>
+<flow xmlns="http://www.sysess.org/sympathyfordata/workflow/1.0" cls="Flow" uuid="{951ca0d6-f63a-480f-9a09-5d03a5009252}">
+  <label></label>
+  <ports/>
+  <node id="org.sysess.sympathy.create.createjson" port_format="1.1" uuid="{073e89d6-b51e-4556-8ad7-8d6b88937744}" x="1650.0" y="1975.0">
+    <label>Manually Create JSON</label>
+    <version>0.1</version>
+    <description></description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "code": {
+        "editor": {
+          "language": "python",
+          "type": "code"
+        },
+        "label": "",
+        "order": 0,
+        "type": "string",
+        "value": "{\n    \"dist-version\": \"0.0.1\", \n    \"pieces\": [\n        {\n            \"coordinates\": [\n                {\n                    \"x\": 10, \n                    \"y\": 15\n                }, \n                {\n                    \"x\": 35, \n                    \"y\": 25\n                }\n            ], \n            \"diameter\": 10, \n            \"shape\": \"circle\", \n            \"version\": \"1.0\"\n        }, \n        {\n            \"coordinates\": [\n                {\n                    \"x\": 0.5, \n                    \"y\": 15\n                }, \n                {\n                    \"x\": -45, \n                    \"y\": 25\n                }, \n                {\n                    \"x\": -45, \n                    \"y\": 0\n                }\n            ], \n            \"label\": \"parking\", \n            \"length\": 50, \n            \"shape\": \"rectangle\", \n            \"version\": \"2.0\"\n        }\n    ], \n    \"software\": \"alpha\"\n}"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="output" scheme="hdf5" type="json" type_base="json" uuid="{e46e1708-2202-4cf5-b522-585a760576d1}">
+        <label>Output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.json.splitonkeyjson" port_format="1.1" uuid="{28df6b66-6084-495c-b983-7693373c6878}" x="2125.0" y="1975.0">
+    <label>Split on key JSON</label>
+    <version>0.1</version>
+    <description>Split a JSON structure into multiple JSONs</description>
+    <author>Samuel Genheden</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "key": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "JSON key",
+        "list": ["&lt;root&gt;", "coordinates"],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [0],
+        "value_names": ["&lt;root&gt;"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="input" scheme="hdf5" type="json" type_base="json" uuid="{2ec11e0f-a967-40a4-8391-5db536cbc423}">
+        <label>Input</label>
+      </input>
+      <output key="output" scheme="hdf5" type="[json]" type_base="[json]" uuid="{80571e8b-3183-4437-ab38-9f786bfbca34}">
+        <label>Output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.json.selectkeyjson" port_format="1.1" uuid="{d1c12dec-24c7-45d5-ab4a-87bd7954f7bb}" x="1975.0" y="1975.0">
+    <label>Select key JSON</label>
+    <version>0.1</version>
+    <description></description>
+    <author>Samuel Genheden</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "key": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "JSON key",
+        "list": ["coordinates", "pieces"],
+        "mode": "selected",
+        "order": 0,
+        "passthrough": false,
+        "type": "list",
+        "value": [1],
+        "value_names": ["pieces"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="input" scheme="hdf5" type="json" type_base="json" uuid="{99801364-e17a-42ca-99c6-fa81f500d3b9}">
+        <label>Input</label>
+      </input>
+      <output key="output" scheme="hdf5" type="json" type_base="json" uuid="{7841be68-234a-414d-a40d-303782e371cd}">
+        <label>Output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.json.removekeyjson" port_format="1.1" uuid="{e4ae51c6-8d36-4730-b412-6088ca1116de}" x="1800.0" y="1975.0">
+    <label>Remove key JSON</label>
+    <version>0.1</version>
+    <description></description>
+    <author>Samuel Genheden</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "all": {
+        "editor": null,
+        "label": "Remove all",
+        "order": 1,
+        "type": "boolean",
+        "value": true
+      },
+      "key": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "JSON key",
+        "list": ["diamter", "dist-version", "length", "coordinates", "pieces", "shape", "version", "y", "x", "label", "software"],
+        "mode": "selected",
+        "order": 0,
+        "passthrough": false,
+        "type": "list",
+        "value": [6],
+        "value_names": ["version"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="input" scheme="hdf5" type="json" type_base="json" uuid="{47c9c51a-2d67-4013-9ab3-2f3cd05390fc}">
+        <label>Input</label>
+      </input>
+      <output key="output" scheme="hdf5" type="json" type_base="json" uuid="{98ce6492-e82c-48bd-98d7-825787b28270}">
+        <label>Output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.json.jsonstotables" port_format="1.1" uuid="{f1732a3c-1e90-46f7-815f-756b6f379b08}" x="2300.0" y="1975.0">
+    <label>JSONs to Tables</label>
+    <version>0.1</version>
+    <description></description>
+    <author>Samuel Genheden</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "minimize_col_names": {
+        "editor": null,
+        "label": "Minimize colum names",
+        "order": 1,
+        "type": "boolean",
+        "value": true
+      },
+      "nomask": {
+        "editor": null,
+        "label": "Use zero-like values instead of masks",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "table_kind": {
+        "editor": null,
+        "label": "",
+        "order": 0,
+        "type": "string",
+        "value": "Multiple rows"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="input" scheme="hdf5" type="[json]" type_base="[json]" uuid="{7c3b8298-a727-427f-9dfa-bee45d0c5189}">
+        <label>Input JSON object</label>
+      </input>
+      <output key="output" scheme="hdf5" type="[table]" type_base="[table]" uuid="{bc57c66a-1505-48ae-97b9-152510225c3e}">
+        <label>Output table</label>
+      </output>
+    </ports>
+  </node>
+  <connection type="json" uuid="{1471b8b4-1bf2-4214-99f3-b429d97165ac}">
+    <source node="{d1c12dec-24c7-45d5-ab4a-87bd7954f7bb}" port="{7841be68-234a-414d-a40d-303782e371cd}"/>
+    <destination node="{28df6b66-6084-495c-b983-7693373c6878}" port="{2ec11e0f-a967-40a4-8391-5db536cbc423}"/>
+  </connection>
+  <connection type="[json]" uuid="{94ace07f-9d5d-4860-ae2b-4cf89d2f8878}">
+    <source node="{28df6b66-6084-495c-b983-7693373c6878}" port="{80571e8b-3183-4437-ab38-9f786bfbca34}"/>
+    <destination node="{f1732a3c-1e90-46f7-815f-756b6f379b08}" port="{7c3b8298-a727-427f-9dfa-bee45d0c5189}"/>
+  </connection>
+  <connection type="json" uuid="{e19ee086-b3ff-4b66-b69f-11f39c30e8bb}">
+    <source node="{e4ae51c6-8d36-4730-b412-6088ca1116de}" port="{98ce6492-e82c-48bd-98d7-825787b28270}"/>
+    <destination node="{d1c12dec-24c7-45d5-ab4a-87bd7954f7bb}" port="{99801364-e17a-42ca-99c6-fa81f500d3b9}"/>
+  </connection>
+  <connection type="json" uuid="{e1a19b12-cf48-40f0-ac68-8e5f4ee67b70}">
+    <source node="{073e89d6-b51e-4556-8ad7-8d6b88937744}" port="{e46e1708-2202-4cf5-b522-585a760576d1}"/>
+    <destination node="{e4ae51c6-8d36-4730-b412-6088ca1116de}" port="{47c9c51a-2d67-4013-9ab3-2f3cd05390fc}"/>
+  </connection>
+</flow>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% block head %}
+  <head>
+    {% block inner_head %}
+    {% block resources %}
+        {% block css_resources %}
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+          <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-{{ 0|bokeh_version }}.min.css" type="text/css" />
+          <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-widgets-{{ 0|bokeh_version }}.min.css" type="text/css" />
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.14.33/css/grapes.min.css" type="text/css" />
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css" type="text/css" />
+          {% for css_link in css_links %}
+            <link rel="stylesheet" href="{{ css_link }}" type="text/css" />
+          {% endfor %}
+        {% endblock css_resources %}
+        {% block js_resources %}
+
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.14.33/grapes.min.js"></script>
+          <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+          <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-{{ 0|bokeh_version }}.min.js"></script>
+          <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-{{ 0|bokeh_version }}.min.js"></script>
+          <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-api-{{ 0|bokeh_version }}.min.js"></script>
+
+          <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
+          {% for js_script in js_scripts %}
+            <script type="text/javascript" src="{{ js_script }}"></script>
+          {% endfor %}
+        {% endblock js_resources %}
+    {% endblock resources %}
+
+    {% block postamble %}
+    {% endblock postamble %}
+
+    {% endblock inner_head %}
+  </head>
+  {% endblock head %}
+  <body>
+    {% block contents %}
+    {% endblock contents %}
+  </body>
+</html>

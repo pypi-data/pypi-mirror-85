@@ -1,0 +1,726 @@
+<?xml version='1.0' encoding='US-ASCII'?>
+<flow xmlns="http://www.sysess.org/sympathyfordata/workflow/1.0" cls="Flow" uuid="{4ae9288a-6ef6-41a3-8d1a-6f0f19c973f4}">
+  <label></label>
+  <ports/>
+  <node id="org.sysess.sympathy.data.table.selecttablecolumns" port_format="1.1" uuid="{093f36c2-673d-465b-8fbf-443cd00e9d53}" x="1675.0" y="1800.0">
+    <label>Select columns in Table</label>
+    <version>1.0</version>
+    <description>Select columns from input to propagate to output.</description>
+    <author>Alexander Busck &amp; Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "columns": {
+        "editor": {
+          "buttons": true,
+          "filter": true,
+          "invertbutton": true,
+          "selection": "multi",
+          "type": "listview"
+        },
+        "label": "Select columns",
+        "list": ["cosines1", "index"],
+        "order": 1,
+        "passthrough": false,
+        "type": "list",
+        "value": [0],
+        "value_names": ["cosines1"]
+      },
+      "complement": {
+        "editor": null,
+        "label": "Remove selected columns",
+        "order": 0,
+        "type": "boolean",
+        "value": false
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="" scheme="hdf5" type="table" type_base="table" uuid="{f828f723-14e3-4532-b850-3969945e45ed}">
+        <label>Input</label>
+      </input>
+      <output key="" scheme="hdf5" type="table" type_base="table" uuid="{2bd41f3e-5808-4b51-a711-fc4863834e08}">
+        <label>Output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.generate.signaltable" port_format="1.1" uuid="{1852140d-8b0f-4c72-827e-e0afa7a8d9cf}" x="1525.0" y="1900.0">
+    <label>Generate Signal Table</label>
+    <version>0.1</version>
+    <description></description>
+    <author>Benedikt Ziegler</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "signal_params": {
+        "add_noise": {
+          "editor": null,
+          "label": "Add random noise",
+          "order": 6,
+          "type": "boolean",
+          "value": true
+        },
+        "amplitude": {
+          "editor": null,
+          "label": "Amplitude",
+          "order": 1,
+          "type": "float",
+          "value": 1.0
+        },
+        "frequency": {
+          "editor": null,
+          "label": "Frequency",
+          "order": 2,
+          "type": "float",
+          "value": 0.01
+        },
+        "index_column": {
+          "editor": null,
+          "label": "First column as index",
+          "order": 8,
+          "type": "boolean",
+          "value": true
+        },
+        "label": "Signal",
+        "noise_amplitude": {
+          "editor": {
+            "decimals": 2,
+            "step": 0.05,
+            "type": "spinbox"
+          },
+          "label": "Amplitude of noise",
+          "order": 7,
+          "type": "float",
+          "value": 0.1
+        },
+        "order": 1,
+        "period": {
+          "editor": null,
+          "label": "Period",
+          "order": 3,
+          "type": "float",
+          "value": 100.0
+        },
+        "phase_offset": {
+          "editor": null,
+          "label": "Phase offset",
+          "order": 5,
+          "type": "float",
+          "value": 0.0
+        },
+        "signal_type": {
+          "editor": {
+            "options": [],
+            "type": "combobox"
+          },
+          "label": "Signal type",
+          "list": ["cosines", "sinus", "tangent"],
+          "order": 0,
+          "passthrough": false,
+          "type": "list",
+          "value": [0],
+          "value_names": []
+        },
+        "type": "page",
+        "use_period": {
+          "editor": null,
+          "label": "Period or Frequency",
+          "order": 4,
+          "type": "boolean",
+          "value": true
+        }
+      },
+      "table_params": {
+        "column_entries": {
+          "editor": {
+            "max": 1000000,
+            "min": 0,
+            "step": 1,
+            "type": "spinbox"
+          },
+          "label": "Column entries",
+          "order": 0,
+          "type": "integer",
+          "value": 2
+        },
+        "column_length": {
+          "editor": {
+            "max": 100000000,
+            "min": 0,
+            "step": 1,
+            "type": "spinbox"
+          },
+          "label": "Column length",
+          "order": 1,
+          "type": "integer",
+          "value": 100
+        },
+        "label": "Table",
+        "order": 0,
+        "type": "page"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{c5a51609-63ec-4f1a-8dd5-31e40326daf5}">
+        <label>Signal Table</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.visualize.figuresubplot" port_format="1.1" uuid="{2c87aa04-edb7-463f-ad2c-0edd5cc7dada}" x="3025.0" y="2000.0">
+    <label>Layout Figures in Subplots</label>
+    <version>0.2</version>
+    <description>Layout a list of Figures in a Subplot</description>
+    <author>Benedikt Ziegler</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "columns": {
+        "editor": {
+          "max": 100,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "Number of columns (0 = best):",
+        "order": 1,
+        "type": "integer",
+        "value": 0
+      },
+      "join_colorbars": {
+        "editor": null,
+        "label": "Make first colorbar global",
+        "order": 4,
+        "type": "boolean",
+        "value": false
+      },
+      "join_legends": {
+        "editor": null,
+        "label": "Make first legend global",
+        "order": 5,
+        "type": "boolean",
+        "value": false
+      },
+      "recolor": {
+        "editor": null,
+        "label": "Auto recolor",
+        "order": 2,
+        "type": "boolean",
+        "value": true
+      },
+      "remove_internal_ticks": {
+        "editor": null,
+        "label": "Remove internal ticks",
+        "order": 3,
+        "type": "boolean",
+        "value": false
+      },
+      "rows": {
+        "editor": {
+          "max": 100,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "Number of rows (0 = best):",
+        "order": 0,
+        "type": "integer",
+        "value": 0
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="input" scheme="hdf5" type="[figure]" type_base="[figure]" uuid="{9884e4cb-0af1-4746-ba12-547e9bf3840c}">
+        <label>List of Figures</label>
+      </input>
+      <output key="figure" scheme="text" type="figure" type_base="figure" uuid="{21721091-65e2-4921-a15c-8ae23360135c}">
+        <label>A Figure with several subplot axes</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.renamesingletablecolumns" port_format="1.1" uuid="{388c16ab-54ba-453f-b08e-63e9f83825a0}" x="2125.0" y="1900.0">
+    <label>Rename columns in Table</label>
+    <version>1.0</version>
+    <description>Rename the Table columns by using regular expressions.</description>
+    <author>Greger Cronquist</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "dst_expr": {
+        "editor": null,
+        "label": "Replacement expression",
+        "order": 0,
+        "type": "string",
+        "value": "trend"
+      },
+      "src_expr": {
+        "editor": null,
+        "label": "Search expression",
+        "order": 1,
+        "type": "string",
+        "value": "cosines1"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="Input" scheme="hdf5" type="table" type_base="table" uuid="{4ba32f20-58d0-42f0-ae85-058258de9808}">
+        <label>Input</label>
+      </input>
+      <output key="Output" scheme="hdf5" type="table" type_base="table" uuid="{5e703972-4389-485e-8362-13689313a844}">
+        <label>Output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.hjointable" port_format="1.1" uuid="{4de8eb2e-6c91-411e-b008-efde046b8791}" x="2275.0" y="1800.0">
+    <label>HJoin Table</label>
+    <version>1.1</version>
+    <description>Horizontal join of two Tables</description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "name": {
+        "editor": {
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Input port name for joined table",
+        "list": ["Lower", "Upper"],
+        "order": 0,
+        "passthrough": false,
+        "type": "list",
+        "value": [0],
+        "value_names": []
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port1" scheme="hdf5" type="table" type_base="table" uuid="{f69c99a5-657a-44b0-b311-0a1b754ec342}">
+        <label>Input Table</label>
+      </input>
+      <input key="port2" scheme="hdf5" type="table" type_base="table" uuid="{cff9090a-788a-4dd7-b3f9-365d96233870}">
+        <label>Input Table</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{7946353b-28b8-4c2c-8004-57250c8f5f79}">
+        <label>Table with horizontally joined data</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.adaf.adaf2table" port_format="1.1" uuid="{9b040987-0eb2-4188-8f57-11397adf1f27}" x="1975.0" y="1900.0">
+    <label>ADAF to Table</label>
+    <version>1.0</version>
+    <description>Export of data from an ADAF to a Table.</description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "export_group": {
+        "editor": {
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Export group",
+        "list": ["Meta", "Result", "Time series"],
+        "order": 0,
+        "passthrough": false,
+        "type": "list",
+        "value": [2],
+        "value_names": ["Time series"]
+      },
+      "tb": {
+        "editor": {
+          "filter": true,
+          "type": "listview"
+        },
+        "label": "Time basis raster",
+        "list": ["cosine/t/"],
+        "order": 1,
+        "passthrough": false,
+        "type": "list",
+        "value": [0],
+        "value_names": ["cosine/t/"]
+      },
+      "tb_col_name": {
+        "editor": null,
+        "label": "Time basis column name",
+        "order": 2,
+        "type": "string",
+        "value": ""
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port1" scheme="hdf5" type="adaf" type_base="adaf" uuid="{ba17092e-86a8-4ee6-8f37-295b1c3abf30}">
+        <label>Input ADAF</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{6fa43d89-2c46-469f-9ab3-483bd094394e}">
+        <label>Table with the content of a specified group in the incoming ADAF</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.list.appendlistnew" port_format="1.1" uuid="{a60428ad-3234-4f39-9fdb-d5d3da328187}" x="2875.0" y="2000.0">
+    <label>Append List</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="list" scheme="hdf5" type="[figure]" type_base="[&lt;a&gt;]" uuid="{e4e79359-89a7-457e-a54a-6fa20a1e54d9}">
+        <label>Appended List</label>
+      </input>
+      <input key="item" scheme="text" type="figure" type_base="&lt;a&gt;" uuid="{c2cd2040-01fc-4298-95ad-47b9b0ed3904}">
+        <label>The Item to be appended</label>
+      </input>
+      <output key="list" scheme="hdf5" type="[figure]" type_base="[&lt;a&gt;]" uuid="{829442f3-7484-464a-8ed7-9c18db790850}">
+        <label>Appended List</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.visualize.figure" port_format="1.1" uuid="{b3d14814-7f66-4b34-8e6a-47d1cfd213b2}" x="1675.0" y="2000.0">
+    <label>Figure</label>
+    <version>0.1</version>
+    <description>Create a Figure from some data.</description>
+    <author>Benedikt Ziegler &amp; Magnus Sand&#233;n</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "parameters": {
+        "description": "The full configuration for this figure.",
+        "editor": null,
+        "label": "",
+        "order": 0,
+        "type": "json",
+        "value": {"axes": [{"xaxis": {"position": ["bottom", "value"]}, "yaxis": {"position": ["left", "value"]}, "plots": [{"xdata": ["arg['index']", "py"], "ydata": ["arg['cosines1']", "py"], "type": "line"}]}]}
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="input" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{c6361bea-96c3-416b-b7b5-d185774e45cc}">
+        <label>Input</label>
+      </input>
+      <output key="figure" scheme="text" type="figure" type_base="figure" uuid="{ac7986d7-47e6-41ed-9bbc-02ae58c77254}">
+        <label>Output figure</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.visualize.figure" port_format="1.1" uuid="{c2348efe-9ca3-48cd-86e7-0801c23676d7}" x="2575.0" y="1800.0">
+    <label>Figure</label>
+    <version>0.1</version>
+    <description>Create a Figure from some data.</description>
+    <author>Benedikt Ziegler &amp; Magnus Sand&#233;n</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "parameters": {
+        "description": "The full configuration for this figure.",
+        "editor": null,
+        "label": "",
+        "order": 0,
+        "type": "json",
+        "value": {"axes": [{"xaxis": {"position": ["bottom", "value"]}, "yaxis": {"position": ["left", "value"]}, "plots": [{"xdata": ["arg['t']", "py"], "ydata": ["arg['cosines']", "py"], "type": "line"}]}]}
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="input" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{9bced587-05ec-4f6b-9514-e8a330f47630}">
+        <label>Input</label>
+      </input>
+      <output key="figure" scheme="text" type="figure" type_base="figure" uuid="{7af0fb43-b768-49bb-a961-a7882c68015d}">
+        <label>Output figure</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.table2adaf" port_format="1.1" uuid="{d4b916cb-73d2-4f4e-b369-161be3f8fef9}" x="1675.0" y="1900.0">
+    <label>Table to ADAF</label>
+    <version>1.0</version>
+    <description>Export content of Table to specified container in ADAF.</description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "export_to_group": {
+        "editor": {
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Export to group",
+        "list": ["Meta", "Result", "Time series"],
+        "order": 0,
+        "passthrough": false,
+        "type": "list",
+        "value": [2],
+        "value_names": ["Time series"]
+      },
+      "raster": {
+        "editor": null,
+        "label": "Time series raster name",
+        "order": 2,
+        "type": "string",
+        "value": "t"
+      },
+      "system": {
+        "editor": null,
+        "label": "Time series system name",
+        "order": 1,
+        "type": "string",
+        "value": "cosine"
+      },
+      "tb": {
+        "editor": {
+          "filter": true,
+          "type": "listview"
+        },
+        "label": "Time basis column",
+        "list": ["index", "cosines1"],
+        "order": 3,
+        "passthrough": false,
+        "type": "list",
+        "value": [0],
+        "value_names": ["index"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port1" scheme="hdf5" type="table" type_base="table" uuid="{19409d24-852d-4263-857c-2de268d297ba}">
+        <label>Input Table</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="adaf" type_base="adaf" uuid="{477c5730-0478-48d6-b72a-e6ca80999f7e}">
+        <label>ADAF with data in input Table</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.list.itemtolist" port_format="1.1" uuid="{d8f92aa0-473a-4673-8fdb-d7f3ce79d439}" x="2725.0" y="1800.0">
+    <label>Item to List</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="item" scheme="text" type="figure" type_base="&lt;a&gt;" uuid="{65e9e676-4450-4c88-91ba-3dbd4f3e764d}">
+        <label>Input Item</label>
+      </input>
+      <output key="list" scheme="hdf5" type="[figure]" type_base="[&lt;a&gt;]" uuid="{7a2cfae6-383b-443d-be1e-78a98c69eeeb}">
+        <label>Item as List</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.calculatorgeneric" port_format="1.1" uuid="{ed97e69d-7c56-48e6-8023-a411aaab5243}" x="2425.0" y="1800.0">
+    <label>Calculator</label>
+    <version>3.0</version>
+    <description>Performs user-defined python calculations</description>
+    <author>Greger Cronquist, Magnus Sand&#233;n, Sara Gustafzelius &amp; Benedikt Ziegler</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "calc_attrs_dict": {
+        "editor": null,
+        "label": "",
+        "order": 1,
+        "type": "string",
+        "value": "[]"
+      },
+      "calc_list": {
+        "editor": null,
+        "label": "List of calculations",
+        "list": ["t = arg['t'] #ENABLED:1", "cosines = arg['cosines1'] - arg['trend'] #ENABLED:1"],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [],
+        "value_names": []
+      },
+      "copy_input": {
+        "editor": null,
+        "label": "Copy input",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "fail_strategy": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Action on calculation failure",
+        "list": ["Exception", "Skip calculation"],
+        "mode": "selected",
+        "order": 3,
+        "type": "list",
+        "value": [0],
+        "value_names": ["Exception"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port0" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{b65b394d-0e73-42e9-ab83-05f83e64c281}">
+        <label>Generic Input</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{4563a1eb-e419-4fb7-8a3b-cf2c09fb572a}">
+        <label>Table with results from the calculations.</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.adaf.detrendadafnode" port_format="1.1" uuid="{f7c6eaf5-6649-4edd-97d5-23f7cc34d836}" x="1825.0" y="1900.0">
+    <label>Detrend ADAF</label>
+    <version>1.0</version>
+    <description>Remove trends from timeseries data</description>
+    <author>Helena Olen</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "detrend_function": {
+        "editor": {
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Detrend function",
+        "list": ["Constant", "Linear", "2nd degree poly", "3rd degree poly", "4th degree poly"],
+        "order": 2,
+        "passthrough": false,
+        "type": "list",
+        "value": [4],
+        "value_names": ["4th degree poly"]
+      },
+      "tb": {
+        "editor": {
+          "filter": true,
+          "type": "listview"
+        },
+        "label": "Time basis column",
+        "list": ["cosine/t/"],
+        "order": 0,
+        "passthrough": false,
+        "type": "list",
+        "value": [0],
+        "value_names": ["cosine/t/"]
+      },
+      "ts": {
+        "editor": {
+          "filter": true,
+          "selection": "multi",
+          "type": "listview"
+        },
+        "label": "Time series columns",
+        "list": ["cosines1"],
+        "order": 1,
+        "passthrough": false,
+        "type": "list",
+        "value": [0],
+        "value_names": ["cosines1"]
+      },
+      "type": "group",
+      "x_axis": {
+        "editor": {
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "X axis",
+        "list": ["cosine/t/"],
+        "order": 3,
+        "passthrough": false,
+        "type": "list",
+        "value": [0],
+        "value_names": []
+      },
+      "y_axis": {
+        "editor": {
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Y axis",
+        "list": ["cosines1"],
+        "order": 4,
+        "passthrough": false,
+        "type": "list",
+        "value": [0],
+        "value_names": []
+      }
+    }
+    </parameters>
+    <ports>
+      <input key="port1" scheme="hdf5" type="adaf" type_base="adaf" uuid="{b09b3a5b-fe3c-478b-a354-0cd5a45cdee1}">
+        <label>Input ADAF</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="adaf" type_base="adaf" uuid="{c7d31810-36d3-4eac-b846-d7ab95832d40}">
+        <label>Output ADAF with detrended data</label>
+      </output>
+    </ports>
+  </node>
+  <connection type="table" uuid="{025cd787-dd1a-479a-8a9f-5312f3373c7d}">
+    <source node="{1852140d-8b0f-4c72-827e-e0afa7a8d9cf}" port="{c5a51609-63ec-4f1a-8dd5-31e40326daf5}"/>
+    <destination node="{b3d14814-7f66-4b34-8e6a-47d1cfd213b2}" port="{c6361bea-96c3-416b-b7b5-d185774e45cc}"/>
+  </connection>
+  <connection type="adaf" uuid="{0284dac5-31cb-4bd8-ada1-dc8dd95d8891}">
+    <source node="{f7c6eaf5-6649-4edd-97d5-23f7cc34d836}" port="{c7d31810-36d3-4eac-b846-d7ab95832d40}"/>
+    <destination node="{9b040987-0eb2-4188-8f57-11397adf1f27}" port="{ba17092e-86a8-4ee6-8f37-295b1c3abf30}"/>
+  </connection>
+  <connection type="table" uuid="{3d96cad4-c20c-4c11-ba6a-b6729a2333d4}">
+    <source node="{1852140d-8b0f-4c72-827e-e0afa7a8d9cf}" port="{c5a51609-63ec-4f1a-8dd5-31e40326daf5}"/>
+    <destination node="{d4b916cb-73d2-4f4e-b369-161be3f8fef9}" port="{19409d24-852d-4263-857c-2de268d297ba}"/>
+  </connection>
+  <connection type="adaf" uuid="{4ad80387-e87f-4a5d-b3ef-ee87bf19999b}">
+    <source node="{d4b916cb-73d2-4f4e-b369-161be3f8fef9}" port="{477c5730-0478-48d6-b72a-e6ca80999f7e}"/>
+    <destination node="{f7c6eaf5-6649-4edd-97d5-23f7cc34d836}" port="{b09b3a5b-fe3c-478b-a354-0cd5a45cdee1}"/>
+  </connection>
+  <connection type="table" uuid="{5a2d3544-7dc8-4fc0-a7ee-c9d200502d92}">
+    <source node="{093f36c2-673d-465b-8fbf-443cd00e9d53}" port="{2bd41f3e-5808-4b51-a711-fc4863834e08}"/>
+    <destination node="{4de8eb2e-6c91-411e-b008-efde046b8791}" port="{f69c99a5-657a-44b0-b311-0a1b754ec342}"/>
+  </connection>
+  <connection type="[figure]" uuid="{6f49709e-5463-41f3-9122-9b8d757346d3}">
+    <source node="{a60428ad-3234-4f39-9fdb-d5d3da328187}" port="{829442f3-7484-464a-8ed7-9c18db790850}"/>
+    <destination node="{2c87aa04-edb7-463f-ad2c-0edd5cc7dada}" port="{9884e4cb-0af1-4746-ba12-547e9bf3840c}"/>
+  </connection>
+  <connection type="figure" uuid="{731d649b-9102-4721-a3c7-eca7f7e563bc}">
+    <source node="{c2348efe-9ca3-48cd-86e7-0801c23676d7}" port="{7af0fb43-b768-49bb-a961-a7882c68015d}"/>
+    <destination node="{d8f92aa0-473a-4673-8fdb-d7f3ce79d439}" port="{65e9e676-4450-4c88-91ba-3dbd4f3e764d}"/>
+  </connection>
+  <connection type="table" uuid="{89438125-484e-41c2-b604-b7dfa4e9d478}">
+    <source node="{4de8eb2e-6c91-411e-b008-efde046b8791}" port="{7946353b-28b8-4c2c-8004-57250c8f5f79}"/>
+    <destination node="{ed97e69d-7c56-48e6-8023-a411aaab5243}" port="{b65b394d-0e73-42e9-ab83-05f83e64c281}"/>
+  </connection>
+  <connection type="table" uuid="{d94d6df6-baa9-42e1-bd95-7b92228d252a}">
+    <source node="{1852140d-8b0f-4c72-827e-e0afa7a8d9cf}" port="{c5a51609-63ec-4f1a-8dd5-31e40326daf5}"/>
+    <destination node="{093f36c2-673d-465b-8fbf-443cd00e9d53}" port="{f828f723-14e3-4532-b850-3969945e45ed}"/>
+  </connection>
+  <connection type="[figure]" uuid="{db7ac7db-dfb8-46f2-80d0-a2848080613c}">
+    <source node="{d8f92aa0-473a-4673-8fdb-d7f3ce79d439}" port="{7a2cfae6-383b-443d-be1e-78a98c69eeeb}"/>
+    <destination node="{a60428ad-3234-4f39-9fdb-d5d3da328187}" port="{e4e79359-89a7-457e-a54a-6fa20a1e54d9}"/>
+  </connection>
+  <connection type="table" uuid="{e78d89f0-74cc-41c1-aac7-232bc70ca9c1}">
+    <source node="{ed97e69d-7c56-48e6-8023-a411aaab5243}" port="{4563a1eb-e419-4fb7-8a3b-cf2c09fb572a}"/>
+    <destination node="{c2348efe-9ca3-48cd-86e7-0801c23676d7}" port="{9bced587-05ec-4f6b-9514-e8a330f47630}"/>
+  </connection>
+  <connection type="table" uuid="{f3cd25bb-89c2-409f-a1c4-0b7100728b83}">
+    <source node="{9b040987-0eb2-4188-8f57-11397adf1f27}" port="{6fa43d89-2c46-469f-9ab3-483bd094394e}"/>
+    <destination node="{388c16ab-54ba-453f-b08e-63e9f83825a0}" port="{4ba32f20-58d0-42f0-ae85-058258de9808}"/>
+  </connection>
+  <connection type="table" uuid="{fb1cebba-959f-4716-80ab-25605cd03d0f}">
+    <source node="{388c16ab-54ba-453f-b08e-63e9f83825a0}" port="{5e703972-4389-485e-8362-13689313a844}"/>
+    <destination node="{4de8eb2e-6c91-411e-b008-efde046b8791}" port="{cff9090a-788a-4dd7-b3f9-365d96233870}"/>
+  </connection>
+  <connection type="figure" uuid="{fe2ddc82-3609-4af5-a4cd-4b521509cbde}">
+    <source node="{b3d14814-7f66-4b34-8e6a-47d1cfd213b2}" port="{ac7986d7-47e6-41ed-9bbc-02ae58c77254}"/>
+    <destination node="{a60428ad-3234-4f39-9fdb-d5d3da328187}" port="{c2cd2040-01fc-4298-95ad-47b9b0ed3904}"/>
+  </connection>
+  <text color="Red" height="75.0" uuid="{2846fa9c-a6bd-4f96-909e-09c419d9cc1a}" width="1550.0" x="1500.0" y="1650.0">**Clean up a noisy signal by using detrending**
+
+After detrend, only the noise remains. This is later subtracted from the original signal.</text>
+  <text color="Beige" height="50.0" uuid="{e3e9ec0f-ac6b-43ec-a64d-e56a3c07d826}" width="275.0" x="1525.0" y="2100.0">
+- Node example: *org.sysess.sympathy.data.adaf.detrendadafnode*</text>
+</flow>

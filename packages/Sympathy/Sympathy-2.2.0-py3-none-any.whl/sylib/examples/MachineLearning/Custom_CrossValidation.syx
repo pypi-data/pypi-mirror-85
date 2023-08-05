@@ -1,0 +1,547 @@
+<?xml version='1.0' encoding='US-ASCII'?>
+<flow xmlns="http://www.sysess.org/sympathyfordata/workflow/1.0" cls="Flow" uuid="{3029a4f4-9245-48bf-b104-2676d56fdb9b}">
+  <label></label>
+  <ports/>
+  <flow cls="Lambda" uuid="{1b0cd1a6-030b-4401-b18a-4aa2887f4428}" x="2525.0" y="2100.0">
+    <label>Custom CV</label>
+    <ports>
+      <input index="0" key="Port" parent="False" scheme="hdf5" type="model" uuid="{d18c488b-cac6-41de-a982-52c2fce5e45a}" x="1500.0" y="1975.0">
+        <label>Port</label>
+      </input>
+      <input index="1" key="Port" parent="False" scheme="hdf5" type="(table, table, table, table)" uuid="{a21b0d1e-90c0-444c-9df1-a36b49633314}" x="1500.0" y="2075.0">
+        <label>Port</label>
+      </input>
+      <output index="0" key="Port" parent="False" scheme="hdf5" type="table" uuid="{437e136e-fa66-46bd-87b5-cb04176b6faa}" x="2150.0" y="2075.0">
+        <label>Port</label>
+      </output>
+    </ports>
+    <basic_ports>
+      <output key="Function" scheme="hdf5" type="model -&gt; (table, table, table, table) -&gt; table" type_base="&lt;a&gt;" uuid="{67069edb-be39-4874-9719-b0e90c1f215e}">
+        <label>Lambda function</label>
+      </output>
+    </basic_ports>
+    <node id="org.sysess.sympathy.machinelearning.score" port_format="1.1" uuid="{1c47a129-35de-47c3-8b22-41613cb8c1ce}" x="2000.0" y="2075.0">
+      <label>Score</label>
+      <version>0.1</version>
+      <description>Scores the model using given X and Y data. Exact semantics
+depends on the type of model (classifier, regressor, etc).</description>
+      <author>Mathias Broxvall</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">{"type": "group"}</parameters>
+      <ports>
+        <input key="in-model" scheme="hdf5" type="model" type_base="model" uuid="{598751ca-e1ee-45fd-a6f8-a5bbb173b76f}">
+          <label>Input model</label>
+        </input>
+        <input key="X" scheme="hdf5" type="table" type_base="table" uuid="{c9b8803c-4c99-481c-80aa-d7e3a84722c6}">
+          <label>X</label>
+        </input>
+        <input key="Y" scheme="hdf5" type="table" type_base="table" uuid="{31a13694-4a9c-4886-8515-8fe1c4ea1332}">
+          <label>Y</label>
+        </input>
+        <output key="Score" scheme="hdf5" type="table" type_base="table" uuid="{62fb72dd-9000-49b6-86b1-0760499c4657}">
+          <label>Score</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.tuple.untuple2" port_format="1.1" uuid="{55c60e6c-2660-41df-a986-267a7e8bce29}" x="1700.0" y="2075.0">
+      <label>Untuple</label>
+      <version>1.0</version>
+      <description></description>
+      <author>Erik der Hagopian</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">{"type": "group"}</parameters>
+      <ports>
+        <input key="input" scheme="hdf5" type="(table, table, table, table)" type_base="(&lt;a&gt;, &lt;b&gt;, &lt;c&gt;, &lt;d&gt;)" uuid="{f5c8749d-a5d8-43b4-900f-7f35115e7cec}">
+          <label>Input</label>
+        </input>
+        <output key="output" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{4758ad39-6e84-44d6-b9a1-a4c36c3c2125}">
+          <label>Output</label>
+        </output>
+        <output key="output" scheme="hdf5" type="table" type_base="&lt;b&gt;" uuid="{fc699620-c981-4dee-a063-0da0b8e3a356}">
+          <label>Output</label>
+        </output>
+        <output key="output" scheme="hdf5" type="table" type_base="&lt;c&gt;" uuid="{516ed981-cfca-41ef-be2c-d8c4bc87f464}">
+          <label>Output</label>
+        </output>
+        <output key="output" scheme="hdf5" type="table" type_base="&lt;d&gt;" uuid="{c000e6e7-3aba-4126-bf38-74bc9b4f9efa}">
+          <label>Output</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.machinelearning.fit" port_format="1.1" uuid="{bc9f0f02-2290-4724-b459-0a9daeccc9fb}" x="1850.0" y="1975.0">
+      <label>Fit</label>
+      <version>0.1</version>
+      <description>Trains a model. Use "Create Input Port &gt; Y" for supervised training</description>
+      <author>Mathias Broxvall</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">{"type": "group"}</parameters>
+      <ports>
+        <input key="in-model" scheme="hdf5" type="model" type_base="model" uuid="{26db0669-63ec-4216-9d4c-3a8425e7f532}">
+          <label>Input model</label>
+        </input>
+        <input key="X" scheme="hdf5" type="table" type_base="table" uuid="{04057018-a348-4f60-bd44-977ff84123fe}">
+          <label>X</label>
+        </input>
+        <input key="Y0" scheme="hdf5" type="table" type_base="table" uuid="{27310db6-8093-4652-acef-f821453f1ba9}">
+          <label>Y</label>
+        </input>
+        <output key="out-model" scheme="hdf5" type="model" type_base="model" uuid="{b9fb1745-d39b-4a74-a40e-1dfb893621eb}">
+          <label>Output model</label>
+        </output>
+      </ports>
+    </node>
+    <connection type="model" uuid="{2ed983b9-67eb-4905-a1a4-e471fcdce1c5}">
+      <source node="{1b0cd1a6-030b-4401-b18a-4aa2887f4428}" port="{d18c488b-cac6-41de-a982-52c2fce5e45a}"/>
+      <destination node="{bc9f0f02-2290-4724-b459-0a9daeccc9fb}" port="{26db0669-63ec-4216-9d4c-3a8425e7f532}"/>
+    </connection>
+    <connection type="(table, table, table, table)" uuid="{3553fac0-b380-49ba-8122-723af4a74014}">
+      <source node="{1b0cd1a6-030b-4401-b18a-4aa2887f4428}" port="{a21b0d1e-90c0-444c-9df1-a36b49633314}"/>
+      <destination node="{55c60e6c-2660-41df-a986-267a7e8bce29}" port="{f5c8749d-a5d8-43b4-900f-7f35115e7cec}"/>
+    </connection>
+    <connection type="table" uuid="{846b9183-aeb5-4443-8eba-f9dde1f16cc1}">
+      <source node="{1c47a129-35de-47c3-8b22-41613cb8c1ce}" port="{62fb72dd-9000-49b6-86b1-0760499c4657}"/>
+      <destination node="{1b0cd1a6-030b-4401-b18a-4aa2887f4428}" port="{437e136e-fa66-46bd-87b5-cb04176b6faa}"/>
+    </connection>
+    <connection type="model" uuid="{8853f98b-fff4-4331-9180-a1fec94fd60b}">
+      <source node="{bc9f0f02-2290-4724-b459-0a9daeccc9fb}" port="{b9fb1745-d39b-4a74-a40e-1dfb893621eb}"/>
+      <destination node="{1c47a129-35de-47c3-8b22-41613cb8c1ce}" port="{598751ca-e1ee-45fd-a6f8-a5bbb173b76f}"/>
+    </connection>
+    <connection type="table" uuid="{a602954b-32bc-4aa6-9bb1-7806e4d99f40}">
+      <source node="{55c60e6c-2660-41df-a986-267a7e8bce29}" port="{fc699620-c981-4dee-a063-0da0b8e3a356}"/>
+      <destination node="{bc9f0f02-2290-4724-b459-0a9daeccc9fb}" port="{27310db6-8093-4652-acef-f821453f1ba9}"/>
+    </connection>
+    <connection type="table" uuid="{edff88e1-aaa2-485b-83dc-0b0de07dc22b}">
+      <source node="{55c60e6c-2660-41df-a986-267a7e8bce29}" port="{4758ad39-6e84-44d6-b9a1-a4c36c3c2125}"/>
+      <destination node="{bc9f0f02-2290-4724-b459-0a9daeccc9fb}" port="{04057018-a348-4f60-bd44-977ff84123fe}"/>
+    </connection>
+    <connection type="table" uuid="{f61fa474-58f4-4e4a-990a-bc1c9e849337}">
+      <source node="{55c60e6c-2660-41df-a986-267a7e8bce29}" port="{c000e6e7-3aba-4126-bf38-74bc9b4f9efa}"/>
+      <destination node="{1c47a129-35de-47c3-8b22-41613cb8c1ce}" port="{31a13694-4a9c-4886-8515-8fe1c4ea1332}"/>
+    </connection>
+    <connection type="table" uuid="{fa399ce2-a76e-486b-885d-c82dc9a270b6}">
+      <source node="{55c60e6c-2660-41df-a986-267a7e8bce29}" port="{516ed981-cfca-41ef-be2c-d8c4bc87f464}"/>
+      <destination node="{1c47a129-35de-47c3-8b22-41613cb8c1ce}" port="{c9b8803c-4c99-481c-80aa-d7e3a84722c6}"/>
+    </connection>
+    <text color="Beige" height="75.0" uuid="{b80ce815-5a6d-4ee6-8cce-22838c76e1e8}" width="300.0" x="1625.0" y="2150.0">The CV splitted data consists of:
+ Xtrain, Ytran, Xtest, Ytest</text>
+  </flow>
+  <node id="org.sysess.builtin.apply" port_format="1.1" uuid="{121ad597-f5d1-41c9-88e8-6a99d23d8f43}" x="2675.0" y="2200.0">
+    <label>Apply</label>
+    <version>1.0</version>
+    <description>Apply Lambda function to Argument</description>
+    <author>Erik der Hagopian &lt;erik.hagopian@combine.se&gt;</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="Function" scheme="hdf5" type="model -&gt; (table, table, table, table) -&gt; table" type_base="&lt;a&gt; -&gt; &lt;b&gt;" uuid="{f5a9776e-242f-4161-88d1-8a5dc31fba58}">
+        <label>Lambda Function to Apply</label>
+      </input>
+      <input key="Argument" scheme="hdf5" type="model" type_base="&lt;a&gt;" uuid="{47a1eb53-4dfa-4a18-8d93-2fb265c01456}">
+        <label>Argument</label>
+      </input>
+      <output key="Output" scheme="hdf5" type="(table, table, table, table) -&gt; table" type_base="&lt;b&gt;" uuid="{b95ec13e-2a8d-4cd6-9f7c-e3fcd249c7a5}">
+        <label>Output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.machinelearning.crossval_kfold" port_format="1.1" uuid="{1dfbf380-ea60-4c03-8628-0ab67b88b465}" x="2375.0" y="2200.0">
+    <label>K-fold cross validation</label>
+    <version>0.1</version>
+    <description>Gives splits for K-fold cross validation</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "n_splits": {
+        "editor": null,
+        "label": "Number of splits",
+        "order": 0,
+        "type": "integer",
+        "value": 3
+      },
+      "shuffle": {
+        "editor": null,
+        "label": "Shuffle",
+        "order": 1,
+        "type": "boolean",
+        "value": true
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="X" scheme="hdf5" type="table" type_base="table" uuid="{0072f375-7046-4f30-82bf-7510af4ad875}">
+        <label>X</label>
+      </input>
+      <input key="Y" scheme="hdf5" type="table" type_base="table" uuid="{26a752ed-a364-420f-8473-c9fe3e831554}">
+        <label>Y</label>
+      </input>
+      <output key="out" scheme="hdf5" type="[(table, table)]" type_base="[(table, table)]" uuid="{c424d324-b94b-4c7d-b41a-ffc4c25b8ac6}">
+        <label>out</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.vjointablenodes" port_format="1.1" uuid="{77fd5f85-4cee-42a1-b24b-11befe901e60}" x="2975.0" y="2300.0">
+    <label>VJoin Tables</label>
+    <version>1.0</version>
+    <description>Vertical join of Tables.</description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "fill": {
+        "editor": null,
+        "label": "Complement missing columns",
+        "order": 0,
+        "type": "boolean",
+        "value": true
+      },
+      "fill_strategy": {
+        "editor": {
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Complement strategy",
+        "list": ["Complement with nan or empty string", "Mask missing values"],
+        "mode": "selected",
+        "order": 1,
+        "passthrough": false,
+        "type": "list",
+        "value": [1],
+        "value_names": []
+      },
+      "minimum_increment": {
+        "editor": {
+          "max": 1,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "Increment for empty tables",
+        "order": 3,
+        "type": "integer",
+        "value": 1
+      },
+      "output_index": {
+        "editor": {
+          "placeholder": "(none)",
+          "type": "lineedit"
+        },
+        "label": "Output index",
+        "order": 2,
+        "type": "string",
+        "value": ""
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port1" scheme="hdf5" type="[table]" type_base="[table]" uuid="{d4a11e4f-f8cb-4e99-88d4-ea99a51d3751}">
+        <label>Input Tables</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{f710bb2e-881a-4e81-9584-30daf265a96c}">
+        <label>Joined Tables</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.builtin.map" port_format="1.1" uuid="{84ded066-d667-4058-9d7c-5a99cf7ed826}" x="2825.0" y="2300.0">
+    <label>Map</label>
+    <version>1.0</version>
+    <description>Map Lambda function over each element in argument list</description>
+    <author>Erik der Hagopian &lt;erik.hagopian@combine.se&gt;</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "fail_strategy": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Action on exception",
+        "list": ["Error", "Create Empty Item", "Skip Item"],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [0],
+        "value_names": ["Error"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="Function" scheme="hdf5" type="(table, table, table, table) -&gt; table" type_base="&lt;a&gt; -&gt; &lt;b&gt;" uuid="{73184eec-38a3-4772-b17a-8cd2d7a9db7a}">
+        <label>Lambda Function to Map</label>
+      </input>
+      <input key="List" scheme="hdf5" type="[(table, table, table, table)]" type_base="[&lt;a&gt;]" uuid="{5d808e0e-244e-4860-bce9-1c426734d266}">
+        <label>Argument List</label>
+      </input>
+      <output key="List" scheme="hdf5" type="[table]" type_base="[&lt;b&gt;]" uuid="{26075f4e-4fc8-44c8-9bb5-61bffef4e009}">
+        <label>Output List</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.machinelearning.example_datasets" port_format="1.1" uuid="{8a94425f-dba8-48bb-ada1-e0c668c5b080}" x="2225.0" y="2300.0">
+    <label>Example datasets</label>
+    <version>0.1</version>
+    <description>Exposes the example datasets from sklearn</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "classnames": {
+        "editor": null,
+        "label": "Class names",
+        "order": 1,
+        "type": "boolean",
+        "value": true
+      },
+      "dataset": {
+        "editor": {
+          "options": ["Digits", "Boston", "Diabetes", "linnerud", "Iris"],
+          "type": "combobox"
+        },
+        "label": "Dataset",
+        "order": 0,
+        "type": "string",
+        "value": "Iris"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="X" scheme="hdf5" type="table" type_base="table" uuid="{6fa3575a-ef51-4295-8af7-c1757f9ed2da}">
+        <label>X</label>
+      </output>
+      <output key="Y" scheme="hdf5" type="table" type_base="table" uuid="{639fb0e9-db14-4c8a-98bb-cec33ac510aa}">
+        <label>Y</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.machinelearning.crossval_split" port_format="1.1" uuid="{c996fda6-8701-4e43-8617-cd9bfd534831}" x="2525.0" y="2300.0">
+    <label>Split data for cross validation</label>
+    <version>0.1</version>
+    <description>Partitions the data as per given training and test indicies. Returns list of tuples: (X training, Y training, X test, Y test)</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="splits" scheme="hdf5" type="[(table, table)]" type_base="[(table, table)]" uuid="{12d8d04e-d9b7-472d-b379-6c8a6d90352e}">
+        <label>splits</label>
+      </input>
+      <input key="data" scheme="hdf5" type="table" type_base="table" uuid="{2e19a51f-8f11-4c66-bad0-859c00ebb6d3}">
+        <label>data</label>
+      </input>
+      <input key="data" scheme="hdf5" type="table" type_base="table" uuid="{c03c9bf4-855c-4c63-b64e-cc33890a0d8d}">
+        <label>data</label>
+      </input>
+      <output key="out" scheme="hdf5" type="[(table, table, table, table)]" type_base="[(table, table, table, table)]" uuid="{0f09f9b0-2a52-4e90-bfea-a6e98d90f5ad}">
+        <label>out</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.machinelearning.mlp_classifier" port_format="1.1" uuid="{dd1b08db-7701-4a92-8f3b-e7d4a79607ba}" x="2550.0" y="2200.0">
+    <label>Multi-Layer Perceptron Classifier</label>
+    <version>0.1</version>
+    <description>Multi-layer perceptron classifier</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "activation": {
+        "editor": null,
+        "label": "activation",
+        "order": 2,
+        "type": "string",
+        "value": "relu"
+      },
+      "alpha": {
+        "editor": null,
+        "label": "alpha",
+        "order": 9,
+        "type": "string",
+        "value": "1e-05"
+      },
+      "batch_size": {
+        "editor": null,
+        "label": "batch_size",
+        "order": 4,
+        "type": "string",
+        "value": "auto"
+      },
+      "beta_1": {
+        "editor": null,
+        "label": "beta_1",
+        "order": 15,
+        "type": "string",
+        "value": "0.9"
+      },
+      "beta_2": {
+        "editor": null,
+        "label": "beta_2",
+        "order": 16,
+        "type": "string",
+        "value": "0.999"
+      },
+      "early_stopping": {
+        "editor": null,
+        "label": "early_stopping",
+        "order": 7,
+        "type": "string",
+        "value": "False"
+      },
+      "epsilon": {
+        "editor": null,
+        "label": "epsilon",
+        "order": 17,
+        "type": "string",
+        "value": "1e-08"
+      },
+      "hidden_layer_sizes": {
+        "editor": null,
+        "label": "hidden_layer_sizes",
+        "order": 1,
+        "type": "string",
+        "value": "100"
+      },
+      "learning_rate": {
+        "editor": null,
+        "label": "learning_rate",
+        "order": 5,
+        "type": "string",
+        "value": "constant"
+      },
+      "learning_rate_init": {
+        "editor": null,
+        "label": "learning_rate_init",
+        "order": 11,
+        "type": "string",
+        "value": "0.001"
+      },
+      "max_iter": {
+        "editor": null,
+        "label": "max_iter",
+        "order": 0,
+        "type": "string",
+        "value": "200"
+      },
+      "momentum": {
+        "editor": null,
+        "label": "momentum",
+        "order": 13,
+        "type": "string",
+        "value": "0.9"
+      },
+      "nesterovs_momentum": {
+        "editor": null,
+        "label": "nesterovs_momentum",
+        "order": 14,
+        "type": "string",
+        "value": "True"
+      },
+      "power_t": {
+        "editor": null,
+        "label": "power_t",
+        "order": 12,
+        "type": "string",
+        "value": "0.5"
+      },
+      "random_state": {
+        "editor": null,
+        "label": "random_state",
+        "order": 18,
+        "type": "string",
+        "value": "None"
+      },
+      "shuffle": {
+        "editor": null,
+        "label": "shuffle",
+        "order": 6,
+        "type": "string",
+        "value": "True"
+      },
+      "solver": {
+        "editor": null,
+        "label": "solver",
+        "order": 3,
+        "type": "string",
+        "value": "adam"
+      },
+      "tol": {
+        "editor": null,
+        "label": "tol",
+        "order": 10,
+        "type": "string",
+        "value": "0.0001"
+      },
+      "type": "group",
+      "validation_fraction": {
+        "editor": null,
+        "label": "validation_fraction",
+        "order": 8,
+        "type": "string",
+        "value": "0.1"
+      },
+      "warm_start": {
+        "editor": null,
+        "label": "warm_start",
+        "order": 19,
+        "type": "string",
+        "value": "False"
+      }
+    }
+    </parameters>
+    <ports>
+      <output key="model" scheme="hdf5" type="model" type_base="model" uuid="{b30b123a-80b2-4694-90bf-746a0f862aa1}">
+        <label>Model</label>
+      </output>
+    </ports>
+  </node>
+  <connection type="[table]" uuid="{23c97085-3196-4763-a1a7-c05ec128854b}">
+    <source node="{84ded066-d667-4058-9d7c-5a99cf7ed826}" port="{26075f4e-4fc8-44c8-9bb5-61bffef4e009}"/>
+    <destination node="{77fd5f85-4cee-42a1-b24b-11befe901e60}" port="{d4a11e4f-f8cb-4e99-88d4-ea99a51d3751}"/>
+  </connection>
+  <connection type="[(table, table, table, table)]" uuid="{297308dd-c74f-4081-9843-09e2e62cb010}">
+    <source node="{c996fda6-8701-4e43-8617-cd9bfd534831}" port="{0f09f9b0-2a52-4e90-bfea-a6e98d90f5ad}"/>
+    <destination node="{84ded066-d667-4058-9d7c-5a99cf7ed826}" port="{5d808e0e-244e-4860-bce9-1c426734d266}"/>
+  </connection>
+  <connection type="[(table, table)]" uuid="{54101e8f-dc06-47c1-8282-66fa2dc8ea39}">
+    <source node="{1dfbf380-ea60-4c03-8628-0ab67b88b465}" port="{c424d324-b94b-4c7d-b41a-ffc4c25b8ac6}"/>
+    <destination node="{c996fda6-8701-4e43-8617-cd9bfd534831}" port="{12d8d04e-d9b7-472d-b379-6c8a6d90352e}"/>
+  </connection>
+  <connection type="model" uuid="{6d9f9ad2-2bb0-495e-bfa5-baf83322430a}">
+    <source node="{dd1b08db-7701-4a92-8f3b-e7d4a79607ba}" port="{b30b123a-80b2-4694-90bf-746a0f862aa1}"/>
+    <destination node="{121ad597-f5d1-41c9-88e8-6a99d23d8f43}" port="{47a1eb53-4dfa-4a18-8d93-2fb265c01456}"/>
+  </connection>
+  <connection type="table" uuid="{7f5797e6-edd6-4399-ab7b-26f1281b1801}">
+    <source node="{8a94425f-dba8-48bb-ada1-e0c668c5b080}" port="{6fa3575a-ef51-4295-8af7-c1757f9ed2da}"/>
+    <destination node="{c996fda6-8701-4e43-8617-cd9bfd534831}" port="{2e19a51f-8f11-4c66-bad0-859c00ebb6d3}"/>
+  </connection>
+  <connection type="table" uuid="{80c84dc4-19dc-4dd0-9022-c984765112e5}">
+    <source node="{8a94425f-dba8-48bb-ada1-e0c668c5b080}" port="{639fb0e9-db14-4c8a-98bb-cec33ac510aa}"/>
+    <destination node="{c996fda6-8701-4e43-8617-cd9bfd534831}" port="{c03c9bf4-855c-4c63-b64e-cc33890a0d8d}"/>
+  </connection>
+  <connection type="model -&gt; (table, table, table, table) -&gt; table" uuid="{94c4cd5c-90a5-4401-8fb3-d505f1412190}">
+    <source node="{1b0cd1a6-030b-4401-b18a-4aa2887f4428}" port="{67069edb-be39-4874-9719-b0e90c1f215e}"/>
+    <destination node="{121ad597-f5d1-41c9-88e8-6a99d23d8f43}" port="{f5a9776e-242f-4161-88d1-8a5dc31fba58}"/>
+  </connection>
+  <connection type="(table, table, table, table) -&gt; table" uuid="{b2315c45-0d9f-4ccf-883d-b3fd1d492216}">
+    <source node="{121ad597-f5d1-41c9-88e8-6a99d23d8f43}" port="{b95ec13e-2a8d-4cd6-9f7c-e3fcd249c7a5}"/>
+    <destination node="{84ded066-d667-4058-9d7c-5a99cf7ed826}" port="{73184eec-38a3-4772-b17a-8cd2d7a9db7a}"/>
+  </connection>
+  <connection type="table" uuid="{bab13114-7c73-4d65-bd80-6aeafa2652a7}">
+    <source node="{8a94425f-dba8-48bb-ada1-e0c668c5b080}" port="{6fa3575a-ef51-4295-8af7-c1757f9ed2da}"/>
+    <destination node="{1dfbf380-ea60-4c03-8628-0ab67b88b465}" port="{0072f375-7046-4f30-82bf-7510af4ad875}"/>
+  </connection>
+  <connection type="table" uuid="{db63a407-348f-4059-9dd5-760669f37b26}">
+    <source node="{8a94425f-dba8-48bb-ada1-e0c668c5b080}" port="{639fb0e9-db14-4c8a-98bb-cec33ac510aa}"/>
+    <destination node="{1dfbf380-ea60-4c03-8628-0ab67b88b465}" port="{26a752ed-a364-420f-8473-c9fe3e831554}"/>
+  </connection>
+  <text color="Beige" height="275.0" uuid="{076c7803-a7cc-4356-819f-26f1a3e26798}" width="275.0" x="2650.0" y="2125.0">Note how the first argument (the model) is bound to the lambda before passing to the map function</text>
+  <text color="Red" height="100.0" uuid="{d1116281-3d13-4c64-9923-080e77f2de0e}" width="800.0" x="2225.0" y="1975.0">This example demonstrates how to use the node 'Split data for cross validation' to generate a list of CV splits, and to apply a custom lambda for evaluating (scoring) the model for each such split. 
+
+Note:  there exists more efficient built-in methods for most cross validation scenarios, this method are only for maximum flexibility of customizing how the scoring is done. </text>
+</flow>

@@ -1,0 +1,1790 @@
+<?xml version='1.0' encoding='US-ASCII'?>
+<flow xmlns="http://www.sysess.org/sympathyfordata/workflow/1.0" cls="Flow" uuid="{b007c341-b37c-421b-b1d2-42ccb79d91a2}">
+  <label></label>
+  <author>Mathias Broxvall</author>
+  <copyright>(c) 2016 Combine Control Systems AB</copyright>
+  <ports/>
+  <node id="syip.threshold" port_format="1.1" uuid="{0c9bf981-2267-4d09-9aac-405addec316b}" x="1125.0" y="1825.0">
+    <label>Threshold image</label>
+    <version>0.1</version>
+    <description>Applies a threshold to an image giving a boolean output</description>
+    <author>Mathias Broxvall</author>
+    <copyright>(C) 2017 Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "adaptive kernel size": {
+        "editor": null,
+        "label": "",
+        "order": 12,
+        "type": "integer",
+        "value": 4
+      },
+      "add alpha": {
+        "editor": null,
+        "label": "",
+        "order": 29,
+        "type": "boolean",
+        "value": false
+      },
+      "algorithm": {
+        "editor": null,
+        "label": "",
+        "order": 0,
+        "type": "string",
+        "value": "adaptive"
+      },
+      "angle": {
+        "editor": null,
+        "label": "",
+        "order": 23,
+        "type": "float",
+        "value": 0.0
+      },
+      "aspect": {
+        "editor": null,
+        "label": "",
+        "order": 15,
+        "type": "boolean",
+        "value": false
+      },
+      "auto threshold method": {
+        "editor": null,
+        "label": "",
+        "order": 34,
+        "type": "string",
+        "value": "otsu"
+      },
+      "bins": {
+        "editor": null,
+        "label": "",
+        "order": 33,
+        "type": "integer",
+        "value": 256
+      },
+      "border mode": {
+        "editor": null,
+        "label": "",
+        "order": 11,
+        "type": "string",
+        "value": "constant"
+      },
+      "cmap": {
+        "editor": null,
+        "label": "",
+        "order": 35,
+        "type": "string",
+        "value": "viridis"
+      },
+      "cutoff": {
+        "editor": null,
+        "label": "",
+        "order": 2,
+        "type": "float",
+        "value": 0.5
+      },
+      "diagonal neighborhood": {
+        "editor": null,
+        "label": "",
+        "order": 9,
+        "type": "boolean",
+        "value": false
+      },
+      "eps": {
+        "editor": null,
+        "label": "",
+        "order": 38,
+        "type": "float",
+        "value": 1e-06
+      },
+      "gain": {
+        "editor": null,
+        "label": "",
+        "order": 14,
+        "type": "float",
+        "value": 10.0
+      },
+      "gamma": {
+        "editor": null,
+        "label": "",
+        "order": 41,
+        "type": "float",
+        "value": 1.0
+      },
+      "harris method": {
+        "editor": null,
+        "label": "",
+        "order": 42,
+        "type": "string",
+        "value": "k"
+      },
+      "height": {
+        "editor": null,
+        "label": "",
+        "order": 10,
+        "type": "integer",
+        "value": 512
+      },
+      "histogram selection": {
+        "editor": null,
+        "label": "",
+        "order": 8,
+        "type": "string",
+        "value": "min"
+      },
+      "horizontal/vertical": {
+        "editor": null,
+        "label": "",
+        "order": 3,
+        "type": "string",
+        "value": "horizontal"
+      },
+      "interpolation degree": {
+        "editor": null,
+        "label": "",
+        "order": 19,
+        "type": "integer",
+        "value": 3
+      },
+      "inverse": {
+        "editor": null,
+        "label": "",
+        "order": 21,
+        "type": "boolean",
+        "value": false
+      },
+      "k": {
+        "editor": null,
+        "label": "",
+        "order": 25,
+        "type": "float",
+        "value": 0.05
+      },
+      "kernel size": {
+        "editor": null,
+        "label": "",
+        "order": 18,
+        "type": "integer",
+        "value": 81
+      },
+      "luminance preserving": {
+        "editor": null,
+        "label": "",
+        "order": 13,
+        "type": "boolean",
+        "value": true
+      },
+      "maximum": {
+        "editor": null,
+        "label": "",
+        "order": 5,
+        "type": "float",
+        "value": 1.0
+      },
+      "minimum": {
+        "editor": null,
+        "label": "",
+        "order": 31,
+        "type": "float",
+        "value": 0.0
+      },
+      "n": {
+        "editor": null,
+        "label": "",
+        "order": 28,
+        "type": "integer",
+        "value": 12
+      },
+      "offset": {
+        "editor": null,
+        "label": "",
+        "order": 16,
+        "type": "float",
+        "value": -0.15
+      },
+      "padding": {
+        "editor": null,
+        "label": "",
+        "order": 1,
+        "type": "boolean",
+        "value": false
+      },
+      "positive/negative diagonal": {
+        "editor": null,
+        "label": "",
+        "order": 32,
+        "type": "string",
+        "value": "default"
+      },
+      "preserve alpha": {
+        "editor": null,
+        "label": "",
+        "order": 40,
+        "type": "boolean",
+        "value": true
+      },
+      "resize": {
+        "editor": null,
+        "label": "",
+        "order": 20,
+        "type": "boolean",
+        "value": true
+      },
+      "scale": {
+        "editor": null,
+        "label": "",
+        "order": 22,
+        "type": "float",
+        "value": 1.0
+      },
+      "scale x": {
+        "editor": null,
+        "label": "",
+        "order": 7,
+        "type": "float",
+        "value": 1.0
+      },
+      "scale y": {
+        "editor": null,
+        "label": "",
+        "order": 6,
+        "type": "float",
+        "value": 1.0
+      },
+      "sigma": {
+        "editor": null,
+        "label": "",
+        "order": 39,
+        "type": "float",
+        "value": 1.0
+      },
+      "sigma-x": {
+        "editor": null,
+        "label": "",
+        "order": 27,
+        "type": "float",
+        "value": 1.0
+      },
+      "sigma-y": {
+        "editor": null,
+        "label": "",
+        "order": 26,
+        "type": "float",
+        "value": 1.0
+      },
+      "threshold": {
+        "editor": null,
+        "label": "",
+        "order": 17,
+        "type": "float",
+        "value": 0.15
+      },
+      "threshold method": {
+        "editor": null,
+        "label": "",
+        "order": 24,
+        "type": "string",
+        "value": "mean"
+      },
+      "type": "group",
+      "width": {
+        "editor": null,
+        "label": "",
+        "order": 30,
+        "type": "integer",
+        "value": 512
+      },
+      "window size": {
+        "editor": null,
+        "label": "",
+        "order": 4,
+        "type": "integer",
+        "value": 1
+      },
+      "x": {
+        "editor": null,
+        "label": "",
+        "order": 37,
+        "type": "integer",
+        "value": 0
+      },
+      "y": {
+        "editor": null,
+        "label": "",
+        "order": 36,
+        "type": "integer",
+        "value": 0
+      }
+    }
+    </parameters>
+    <ports>
+      <input key="source" scheme="hdf5" type="image" type_base="image" uuid="{6ed45ac8-a84b-4a25-a910-118418dad61f}">
+        <label>source image to filter</label>
+      </input>
+      <output key="result" scheme="hdf5" type="image" type_base="image" uuid="{14783aa4-8fa0-46e4-a16e-87a486bb6e11}">
+        <label>result after filtering</label>
+      </output>
+    </ports>
+  </node>
+  <node id="syip.splitchannels" port_format="1.1" uuid="{37eaa9e8-9c88-4bc6-8550-8a7d75f6b8ce}" x="1125.0" y="1725.0">
+    <label>create RGB image
+from grayscale</label>
+    <version>0.1</version>
+    <description>Copies the given channels from the input image to the first output image, remaining channels are copied to second output image</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "selected_channels": {
+        "editor": null,
+        "label": "selected channels",
+        "order": 0,
+        "type": "string",
+        "value": "red,red,red"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="input" scheme="hdf5" type="image" type_base="image" uuid="{c37c2aba-aaaa-474f-a9e6-dcfbf6b73f94}">
+        <label>Input image</label>
+      </input>
+      <output key="output1" scheme="hdf5" type="image" type_base="image" uuid="{b5e9f64d-9d13-4556-a055-49ab2a846951}">
+        <label>Image with selected channels</label>
+      </output>
+      <output key="output2" scheme="hdf5" type="image" type_base="image" uuid="{05d93989-4f2d-4703-9654-af3abce1dc67}">
+        <label>All non-selected channels</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.calculatorgeneric" port_format="1.1" uuid="{38137a56-929a-421c-8d17-6194a8e5a86c}" x="1800.0" y="1725.0">
+    <label>Calculator - regions to
+integrate</label>
+    <version>3.0</version>
+    <description>Performs user-defined python calculations</description>
+    <author>Greger Cronquist, Magnus Sand&#233;n, Sara Gustafzelius &amp; Benedikt Ziegler</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "calc_attrs_dict": {
+        "editor": null,
+        "label": "",
+        "order": 1,
+        "type": "string",
+        "value": "[]"
+      },
+      "calc_list": {
+        "editor": null,
+        "label": "List of calculations",
+        "list": ["x0 = arg['X']-arg['sigma']*0.5 #ENABLED:1", "y0 = arg['Y']-arg['sigma']*0.5 #ENABLED:1", "x1 = arg['X']+arg['sigma']*0.5 #ENABLED:1", "y1 = arg['Y']+arg['sigma']*0.5 #ENABLED:1"],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [],
+        "value_names": []
+      },
+      "copy_input": {
+        "editor": null,
+        "label": "Copy input",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "fail_strategy": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Action on calculation failure",
+        "list": ["Exception", "Skip calculation"],
+        "mode": "selected",
+        "order": 3,
+        "type": "list",
+        "value": [0],
+        "value_names": ["Exception"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port0" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{7a201936-a5c1-499d-8232-da2fa47d14b3}">
+        <label>Generic Input</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{0ab40a8e-2ae5-406e-a351-0d044ec9e668}">
+        <label>Table with results from the calculations.</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.hjointable" port_format="1.1" uuid="{3be3971a-8ad7-405c-a858-b9205b60d540}" x="2250.0" y="1725.0">
+    <label>HJoin Table</label>
+    <version>1.1</version>
+    <description>Horizontal join of two Tables</description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "name": {
+        "editor": {
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Input port name for joined table",
+        "list": ["Lower", "Upper"],
+        "order": 0,
+        "passthrough": false,
+        "type": "list",
+        "value": [0],
+        "value_names": []
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port1" scheme="hdf5" type="table" type_base="table" uuid="{0d17e2b6-bbc0-46a3-999c-30511bc8ad6d}">
+        <label>Input Table</label>
+      </input>
+      <input key="port2" scheme="hdf5" type="table" type_base="table" uuid="{780a9784-dd58-431a-a9bb-b4834dacd80f}">
+        <label>Input Table</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{4221722a-433d-42ce-b027-e7b7d6d83b73}">
+        <label>Table with horizontally joined data</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.calculatorgeneric" port_format="1.1" uuid="{76c6708e-5989-49c7-bd5a-3414e8dc0b78}" x="2100.0" y="1625.0">
+    <label>Calculator - "Value" of coins
+in image</label>
+    <version>3.0</version>
+    <description>Performs user-defined python calculations</description>
+    <author>Greger Cronquist, Magnus Sand&#233;n, Sara Gustafzelius &amp; Benedikt Ziegler</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "calc_attrs_dict": {
+        "editor": null,
+        "label": "",
+        "order": 1,
+        "type": "string",
+        "value": "[]"
+      },
+      "calc_list": {
+        "editor": null,
+        "label": "List of calculations",
+        "list": ["Value = # Large coins (integral &gt; 170) worth 5, small coins worth 1\nnp.sum(arg['ch0_integral'] &gt; 170) * 5 + np.sum(arg['ch0_integral'] &lt;= 170) * 1 #ENABLED:1"],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [],
+        "value_names": []
+      },
+      "copy_input": {
+        "editor": null,
+        "label": "Copy input",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "fail_strategy": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Action on calculation failure",
+        "list": ["Exception", "Skip calculation"],
+        "mode": "selected",
+        "order": 3,
+        "type": "list",
+        "value": [0],
+        "value_names": ["Exception"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port0" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{46e25bba-1e85-4953-994a-0bdd4e42e697}">
+        <label>Generic Input</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{f54ef998-4044-4147-a9b6-f815545c5d40}">
+        <label>Table with results from the calculations.</label>
+      </output>
+    </ports>
+  </node>
+  <node id="syip.imagegenerate" port_format="1.1" uuid="{8a4484ba-a79b-442f-8e7c-099a04109e68}" x="1125.0" y="1925.0">
+    <label>Structuring element</label>
+    <version>0.1</version>
+    <description>Generates an image or structuring element of a given size</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "algorithm": {
+        "editor": null,
+        "label": "",
+        "order": 0,
+        "type": "string",
+        "value": "disk"
+      },
+      "channels": {
+        "editor": null,
+        "label": "",
+        "order": 1,
+        "type": "integer",
+        "value": 1
+      },
+      "height": {
+        "editor": null,
+        "label": "",
+        "order": 5,
+        "type": "integer",
+        "value": 512
+      },
+      "other size": {
+        "editor": null,
+        "label": "",
+        "order": 4,
+        "type": "integer",
+        "value": 12
+      },
+      "size": {
+        "editor": null,
+        "label": "",
+        "order": 3,
+        "type": "integer",
+        "value": 3
+      },
+      "type": "group",
+      "width": {
+        "editor": null,
+        "label": "",
+        "order": 2,
+        "type": "integer",
+        "value": 512
+      }
+    }
+    </parameters>
+    <ports>
+      <output key="output" scheme="hdf5" type="image" type_base="image" uuid="{b86153e9-2917-4f4f-9b6e-11b60fc8ac3d}">
+        <label>Resulting image</label>
+      </output>
+    </ports>
+  </node>
+  <node id="syip.general_filters" port_format="1.1" uuid="{8d531fd8-296c-41b4-a37f-7690150d1533}" x="1125.0" y="1625.0">
+    <label>Create integral image</label>
+    <version>0.1</version>
+    <description>Applies simple filtering or scaling algorithms on an image. For more complex operations see the more specialized image manipulation nodes</description>
+    <author>Mathias Broxvall</author>
+    <copyright>(C) 2017 Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "adaptive kernel size": {
+        "editor": null,
+        "label": "",
+        "order": 12,
+        "type": "integer",
+        "value": 4
+      },
+      "add alpha": {
+        "editor": null,
+        "label": "",
+        "order": 29,
+        "type": "boolean",
+        "value": false
+      },
+      "algorithm": {
+        "editor": null,
+        "label": "",
+        "order": 0,
+        "type": "string",
+        "value": "integral image"
+      },
+      "angle": {
+        "editor": null,
+        "label": "",
+        "order": 23,
+        "type": "float",
+        "value": 0.0
+      },
+      "aspect": {
+        "editor": null,
+        "label": "",
+        "order": 15,
+        "type": "boolean",
+        "value": false
+      },
+      "auto threshold method": {
+        "editor": null,
+        "label": "",
+        "order": 34,
+        "type": "string",
+        "value": "otsu"
+      },
+      "bins": {
+        "editor": null,
+        "label": "",
+        "order": 33,
+        "type": "integer",
+        "value": 256
+      },
+      "border mode": {
+        "editor": null,
+        "label": "",
+        "order": 11,
+        "type": "string",
+        "value": "constant"
+      },
+      "cmap": {
+        "editor": null,
+        "label": "",
+        "order": 35,
+        "type": "string",
+        "value": "viridis"
+      },
+      "cutoff": {
+        "editor": null,
+        "label": "",
+        "order": 2,
+        "type": "float",
+        "value": 0.5
+      },
+      "diagonal neighborhood": {
+        "editor": null,
+        "label": "",
+        "order": 9,
+        "type": "boolean",
+        "value": false
+      },
+      "eps": {
+        "editor": null,
+        "label": "",
+        "order": 38,
+        "type": "float",
+        "value": 1e-06
+      },
+      "gain": {
+        "editor": null,
+        "label": "",
+        "order": 14,
+        "type": "float",
+        "value": 10.0
+      },
+      "gamma": {
+        "editor": null,
+        "label": "",
+        "order": 41,
+        "type": "float",
+        "value": 1.0
+      },
+      "harris method": {
+        "editor": null,
+        "label": "",
+        "order": 42,
+        "type": "string",
+        "value": "k"
+      },
+      "height": {
+        "editor": null,
+        "label": "",
+        "order": 10,
+        "type": "integer",
+        "value": 512
+      },
+      "histogram selection": {
+        "editor": null,
+        "label": "",
+        "order": 8,
+        "type": "string",
+        "value": "min"
+      },
+      "horizontal/vertical": {
+        "editor": null,
+        "label": "",
+        "order": 3,
+        "type": "string",
+        "value": "horizontal"
+      },
+      "interpolation degree": {
+        "editor": null,
+        "label": "",
+        "order": 19,
+        "type": "integer",
+        "value": 3
+      },
+      "inverse": {
+        "editor": null,
+        "label": "",
+        "order": 21,
+        "type": "boolean",
+        "value": false
+      },
+      "k": {
+        "editor": null,
+        "label": "",
+        "order": 25,
+        "type": "float",
+        "value": 0.05
+      },
+      "kernel size": {
+        "editor": null,
+        "label": "",
+        "order": 18,
+        "type": "integer",
+        "value": 3
+      },
+      "luminance preserving": {
+        "editor": null,
+        "label": "",
+        "order": 13,
+        "type": "boolean",
+        "value": true
+      },
+      "maximum": {
+        "editor": null,
+        "label": "",
+        "order": 5,
+        "type": "float",
+        "value": 1.0
+      },
+      "minimum": {
+        "editor": null,
+        "label": "",
+        "order": 31,
+        "type": "float",
+        "value": 0.0
+      },
+      "n": {
+        "editor": null,
+        "label": "",
+        "order": 28,
+        "type": "integer",
+        "value": 12
+      },
+      "offset": {
+        "editor": null,
+        "label": "",
+        "order": 16,
+        "type": "float",
+        "value": 0.0
+      },
+      "padding": {
+        "editor": null,
+        "label": "",
+        "order": 1,
+        "type": "boolean",
+        "value": false
+      },
+      "positive/negative diagonal": {
+        "editor": null,
+        "label": "",
+        "order": 32,
+        "type": "string",
+        "value": "default"
+      },
+      "preserve alpha": {
+        "editor": null,
+        "label": "",
+        "order": 40,
+        "type": "boolean",
+        "value": true
+      },
+      "resize": {
+        "editor": null,
+        "label": "",
+        "order": 20,
+        "type": "boolean",
+        "value": true
+      },
+      "scale": {
+        "editor": null,
+        "label": "",
+        "order": 22,
+        "type": "float",
+        "value": 1.0
+      },
+      "scale x": {
+        "editor": null,
+        "label": "",
+        "order": 7,
+        "type": "float",
+        "value": 1.0
+      },
+      "scale y": {
+        "editor": null,
+        "label": "",
+        "order": 6,
+        "type": "float",
+        "value": 1.0
+      },
+      "sigma": {
+        "editor": null,
+        "label": "",
+        "order": 39,
+        "type": "float",
+        "value": 1.0
+      },
+      "sigma-x": {
+        "editor": null,
+        "label": "",
+        "order": 27,
+        "type": "float",
+        "value": 1.0
+      },
+      "sigma-y": {
+        "editor": null,
+        "label": "",
+        "order": 26,
+        "type": "float",
+        "value": 1.0
+      },
+      "threshold": {
+        "editor": null,
+        "label": "",
+        "order": 17,
+        "type": "float",
+        "value": 0.15
+      },
+      "threshold method": {
+        "editor": null,
+        "label": "",
+        "order": 24,
+        "type": "string",
+        "value": "gaussian"
+      },
+      "type": "group",
+      "width": {
+        "editor": null,
+        "label": "",
+        "order": 30,
+        "type": "integer",
+        "value": 512
+      },
+      "window size": {
+        "editor": null,
+        "label": "",
+        "order": 4,
+        "type": "integer",
+        "value": 1
+      },
+      "x": {
+        "editor": null,
+        "label": "",
+        "order": 37,
+        "type": "integer",
+        "value": 0
+      },
+      "y": {
+        "editor": null,
+        "label": "",
+        "order": 36,
+        "type": "integer",
+        "value": 0
+      }
+    }
+    </parameters>
+    <ports>
+      <input key="source" scheme="hdf5" type="image" type_base="image" uuid="{ec0fda5a-4ef7-4fc1-bbad-cf4d0c45156e}">
+        <label>source image to filter</label>
+      </input>
+      <output key="result" scheme="hdf5" type="image" type_base="image" uuid="{d5d79a9f-95cc-4270-ba6b-4efcc793adf8}">
+        <label>result after filtering</label>
+      </output>
+    </ports>
+  </node>
+  <node id="syip.imagestatistics" port_format="1.1" uuid="{8f48c225-0caa-4462-af2c-8789cba8c4f7}" x="1575.0" y="1825.0">
+    <label>Blob 
+detection</label>
+    <version>0.1</version>
+    <description>Extracts tabular data from an image using one of a selection of algorithms. The implemented filters are to a large extent based on `scikit-image`, but some filters are not from this package.</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "algorithm": {
+        "editor": null,
+        "label": "",
+        "order": 0,
+        "type": "string",
+        "value": "blob, LoG"
+      },
+      "bins": {
+        "editor": null,
+        "label": "",
+        "order": 16,
+        "type": "integer",
+        "value": 256
+      },
+      "daisy normalization": {
+        "editor": null,
+        "label": "",
+        "order": 15,
+        "type": "string",
+        "value": "l1"
+      },
+      "histograms": {
+        "editor": null,
+        "label": "",
+        "order": 7,
+        "type": "integer",
+        "value": 8
+      },
+      "log scale": {
+        "editor": null,
+        "label": "",
+        "order": 4,
+        "type": "boolean",
+        "value": true
+      },
+      "max sigma": {
+        "editor": null,
+        "label": "",
+        "order": 11,
+        "type": "float",
+        "value": 35.0
+      },
+      "max_sigma": {
+        "editor": null,
+        "label": "",
+        "order": 2,
+        "type": "float",
+        "value": 50.0
+      },
+      "min distance": {
+        "editor": null,
+        "label": "",
+        "order": 6,
+        "type": "integer",
+        "value": 1
+      },
+      "min sigma": {
+        "editor": null,
+        "label": "",
+        "order": 3,
+        "type": "float",
+        "value": 10.0
+      },
+      "min_sigma": {
+        "editor": null,
+        "label": "",
+        "order": 6,
+        "type": "float",
+        "value": 1.0
+      },
+      "num sigma": {
+        "editor": null,
+        "label": "",
+        "order": 1,
+        "type": "integer",
+        "value": 20
+      },
+      "orientations": {
+        "editor": null,
+        "label": "",
+        "order": 13,
+        "type": "integer",
+        "value": 8
+      },
+      "overlap": {
+        "editor": null,
+        "label": "",
+        "order": 10,
+        "type": "float",
+        "value": 0.5
+      },
+      "radius": {
+        "editor": null,
+        "label": "",
+        "order": 12,
+        "type": "integer",
+        "value": 15
+      },
+      "rings": {
+        "editor": null,
+        "label": "",
+        "order": 8,
+        "type": "integer",
+        "value": 3
+      },
+      "sigma_ratio": {
+        "editor": null,
+        "label": "",
+        "order": 5,
+        "type": "float",
+        "value": 1.6
+      },
+      "step": {
+        "editor": null,
+        "label": "",
+        "order": 9,
+        "type": "integer",
+        "value": 4
+      },
+      "threshold": {
+        "editor": null,
+        "label": "",
+        "order": 14,
+        "type": "float",
+        "value": 0.2
+      },
+      "threshold relative": {
+        "editor": null,
+        "label": "",
+        "order": 2,
+        "type": "float",
+        "value": 0.0
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="source" scheme="hdf5" type="image" type_base="image" uuid="{c2e012b6-7ecb-40f2-9b13-a379737c3043}">
+        <label>Image to extract statistics from</label>
+      </input>
+      <output key="result" scheme="hdf5" type="table" type_base="table" uuid="{a46e6950-bdf9-46b5-8c0e-102c2deaee6e}">
+        <label>Table with results</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.calculatorgeneric" port_format="1.1" uuid="{9297c9a7-be32-47f0-9136-870e141b5687}" x="2100.0" y="1725.0">
+    <label>Calculator - Alpha value
+from integral</label>
+    <version>3.0</version>
+    <description>Performs user-defined python calculations</description>
+    <author>Greger Cronquist, Magnus Sand&#233;n, Sara Gustafzelius &amp; Benedikt Ziegler</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "calc_attrs_dict": {
+        "editor": null,
+        "label": "",
+        "order": 1,
+        "type": "string",
+        "value": "[]"
+      },
+      "calc_list": {
+        "editor": null,
+        "label": "List of calculations",
+        "list": ["red = np.where(arg['ch0_integral'] &gt; 170.0, 0.0, 1.0) #ENABLED:1", "green = np.where(arg['ch0_integral'] &gt; 170.0, 1.0, 0.0) #ENABLED:1", "blue = np.where(arg['ch0_integral'] &gt; 170.0, 0.5, 0.5) #ENABLED:1"],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [],
+        "value_names": []
+      },
+      "copy_input": {
+        "editor": null,
+        "label": "Copy input",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "fail_strategy": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Action on calculation failure",
+        "list": ["Exception", "Skip calculation"],
+        "mode": "selected",
+        "order": 3,
+        "type": "list",
+        "value": [0],
+        "value_names": ["Exception"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port0" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{06d9e26a-38c3-4aa8-941c-26016f01e3e5}">
+        <label>Generic Input</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{c394ee7a-3568-408f-a6c1-ef6045545733}">
+        <label>Table with results from the calculations.</label>
+      </output>
+    </ports>
+  </node>
+  <node id="syip.imagemorphology" port_format="1.1" uuid="{96851b72-4b15-4901-a9d0-0932579291f0}" x="1275.0" y="1825.0">
+    <label>Binary closing</label>
+    <version>0.1</version>
+    <description>Performs one of a selection of morphological or rank operations on a target image (top) that uses a given structuring element (bottom). Other morphological operations can be found under the "filter" node</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "algorithm": {
+        "editor": null,
+        "label": "",
+        "order": 0,
+        "type": "string",
+        "value": "binary, closing"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="target" scheme="hdf5" type="image" type_base="image" uuid="{4c1c32a6-b617-4ca1-bac8-49ca0537b405}">
+        <label>Target image</label>
+      </input>
+      <input key="structuring_element" scheme="hdf5" type="image" type_base="image" uuid="{6c6b10f3-f3b1-446b-a96b-6e5a3c8f1e87}">
+        <label>Structuring element</label>
+      </input>
+      <output key="output" scheme="hdf5" type="image" type_base="image" uuid="{af668674-bc3d-49c3-8ae1-a7ac6799457d}">
+        <label>Resulting image</label>
+      </output>
+    </ports>
+  </node>
+  <node id="syip.extractdata" port_format="1.1" uuid="{bb6e7bd4-9cf2-4c40-82f3-5671c4f0f1df}" x="1950.0" y="1725.0">
+    <label>Integral
+of each coin</label>
+    <version>0.1</version>
+    <description>Extracts table data from an image based on tabular input data</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "algorithm": {
+        "editor": null,
+        "label": "",
+        "order": 0,
+        "type": "string",
+        "value": "integrate"
+      },
+      "end x": {
+        "editor": null,
+        "label": "",
+        "order": 4,
+        "type": "string",
+        "value": "x1"
+      },
+      "end y": {
+        "editor": null,
+        "label": "",
+        "order": 3,
+        "type": "string",
+        "value": "y1"
+      },
+      "start x": {
+        "editor": null,
+        "label": "",
+        "order": 2,
+        "type": "string",
+        "value": "x0"
+      },
+      "start y": {
+        "editor": null,
+        "label": "",
+        "order": 1,
+        "type": "string",
+        "value": "y0"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="source_im" scheme="hdf5" type="image" type_base="image" uuid="{b8d517d8-14df-42c2-b259-64908d6fb844}">
+        <label>Source image to extract data from</label>
+      </input>
+      <input key="source_table" scheme="hdf5" type="table" type_base="table" uuid="{d4c797ea-41f3-4271-9a44-c4f5af5811c1}">
+        <label>Table with parameters for data extraction</label>
+      </input>
+      <output key="result" scheme="hdf5" type="table" type_base="table" uuid="{9c6881e0-c25e-4b1a-8f23-8c35596bc9dc}">
+        <label>Table with results</label>
+      </output>
+    </ports>
+  </node>
+  <node id="syip.imagedraw" port_format="1.1" uuid="{cc39c2d1-0a2c-4b43-91ba-a38a845e7a31}" x="2400.0" y="1725.0">
+    <label>Draw on Image</label>
+    <version>0.1</version>
+    <description>Annotates an image with drawings based on tabular data.</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "N": {
+        "editor": null,
+        "label": "N",
+        "order": 5,
+        "type": "string",
+        "value": "N"
+      },
+      "algorithm": {
+        "editor": null,
+        "label": "Algorithm",
+        "order": 0,
+        "type": "string",
+        "value": "filled circle"
+      },
+      "alpha value": {
+        "editor": null,
+        "label": "alpha value",
+        "order": 10,
+        "type": "string",
+        "value": "0.5"
+      },
+      "blue color": {
+        "editor": null,
+        "label": "blue color",
+        "order": 9,
+        "type": "string",
+        "value": "0.5"
+      },
+      "green color": {
+        "editor": null,
+        "label": "green color",
+        "order": 8,
+        "type": "string",
+        "value": "green"
+      },
+      "radius": {
+        "editor": null,
+        "label": "radius",
+        "order": 6,
+        "type": "string",
+        "value": "radius"
+      },
+      "red color": {
+        "editor": null,
+        "label": "red color",
+        "order": 7,
+        "type": "string",
+        "value": "red"
+      },
+      "type": "group",
+      "x": {
+        "editor": null,
+        "label": "x",
+        "order": 1,
+        "type": "string",
+        "value": "X"
+      },
+      "x2": {
+        "editor": null,
+        "label": "x2",
+        "order": 3,
+        "type": "string",
+        "value": "X2"
+      },
+      "y": {
+        "editor": null,
+        "label": "y",
+        "order": 2,
+        "type": "string",
+        "value": "Y"
+      },
+      "y2": {
+        "editor": null,
+        "label": "y2",
+        "order": 4,
+        "type": "string",
+        "value": "Y2"
+      }
+    }
+    </parameters>
+    <ports>
+      <input key="image" scheme="hdf5" type="image" type_base="image" uuid="{69f3086b-b490-487e-b98d-78aaf9157fd2}">
+        <label>Image to draw on</label>
+      </input>
+      <input key="table" scheme="hdf5" type="table" type_base="table" uuid="{9ff7726d-be89-4309-9c9a-b28c68a59822}">
+        <label>Table used for drawing</label>
+      </input>
+      <output key="output" scheme="hdf5" type="image" type_base="image" uuid="{b7956b12-a47b-48a3-bc59-1646e82c06ae}">
+        <label>Resulting image</label>
+      </output>
+    </ports>
+  </node>
+  <node id="syip.morphology_single_input" port_format="1.1" uuid="{d52726d7-d42e-4db1-8f9c-e80d58294ef4}" x="1425.0" y="1825.0">
+    <label>Morphology (single input)</label>
+    <version>0.1</version>
+    <description>Uses morphology based algorithms with a built-in structuring element</description>
+    <author>Mathias Broxvall</author>
+    <copyright>(C) 2017 Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "adaptive kernel size": {
+        "editor": null,
+        "label": "",
+        "order": 12,
+        "type": "integer",
+        "value": 4
+      },
+      "add alpha": {
+        "editor": null,
+        "label": "",
+        "order": 29,
+        "type": "boolean",
+        "value": false
+      },
+      "algorithm": {
+        "editor": null,
+        "label": "",
+        "order": 0,
+        "type": "string",
+        "value": "remove small holes"
+      },
+      "angle": {
+        "editor": null,
+        "label": "",
+        "order": 23,
+        "type": "float",
+        "value": 0.0
+      },
+      "aspect": {
+        "editor": null,
+        "label": "",
+        "order": 15,
+        "type": "boolean",
+        "value": false
+      },
+      "auto threshold method": {
+        "editor": null,
+        "label": "",
+        "order": 34,
+        "type": "string",
+        "value": "otsu"
+      },
+      "bins": {
+        "editor": null,
+        "label": "",
+        "order": 33,
+        "type": "integer",
+        "value": 256
+      },
+      "border mode": {
+        "editor": null,
+        "label": "",
+        "order": 11,
+        "type": "string",
+        "value": "constant"
+      },
+      "cmap": {
+        "editor": null,
+        "label": "",
+        "order": 35,
+        "type": "string",
+        "value": "viridis"
+      },
+      "cutoff": {
+        "editor": null,
+        "label": "",
+        "order": 2,
+        "type": "float",
+        "value": 0.5
+      },
+      "diagonal neighborhood": {
+        "editor": null,
+        "label": "",
+        "order": 9,
+        "type": "boolean",
+        "value": false
+      },
+      "eps": {
+        "editor": null,
+        "label": "",
+        "order": 38,
+        "type": "float",
+        "value": 1e-06
+      },
+      "gain": {
+        "editor": null,
+        "label": "",
+        "order": 14,
+        "type": "float",
+        "value": 10.0
+      },
+      "gamma": {
+        "editor": null,
+        "label": "",
+        "order": 41,
+        "type": "float",
+        "value": 1.0
+      },
+      "harris method": {
+        "editor": null,
+        "label": "",
+        "order": 42,
+        "type": "string",
+        "value": "k"
+      },
+      "height": {
+        "editor": null,
+        "label": "",
+        "order": 10,
+        "type": "integer",
+        "value": 512
+      },
+      "histogram selection": {
+        "editor": null,
+        "label": "",
+        "order": 8,
+        "type": "string",
+        "value": "min"
+      },
+      "horizontal/vertical": {
+        "editor": null,
+        "label": "",
+        "order": 3,
+        "type": "string",
+        "value": "horizontal"
+      },
+      "interpolation degree": {
+        "editor": null,
+        "label": "",
+        "order": 19,
+        "type": "integer",
+        "value": 3
+      },
+      "inverse": {
+        "editor": null,
+        "label": "",
+        "order": 21,
+        "type": "boolean",
+        "value": false
+      },
+      "k": {
+        "editor": null,
+        "label": "",
+        "order": 25,
+        "type": "float",
+        "value": 0.05
+      },
+      "kernel size": {
+        "editor": null,
+        "label": "",
+        "order": 18,
+        "type": "integer",
+        "value": 3
+      },
+      "luminance preserving": {
+        "editor": null,
+        "label": "",
+        "order": 13,
+        "type": "boolean",
+        "value": true
+      },
+      "maximum": {
+        "editor": null,
+        "label": "",
+        "order": 5,
+        "type": "float",
+        "value": 1.0
+      },
+      "minimum": {
+        "editor": null,
+        "label": "",
+        "order": 31,
+        "type": "float",
+        "value": 0.0
+      },
+      "n": {
+        "editor": null,
+        "label": "",
+        "order": 28,
+        "type": "integer",
+        "value": 200
+      },
+      "offset": {
+        "editor": null,
+        "label": "",
+        "order": 16,
+        "type": "float",
+        "value": 0.0
+      },
+      "padding": {
+        "editor": null,
+        "label": "",
+        "order": 1,
+        "type": "boolean",
+        "value": false
+      },
+      "positive/negative diagonal": {
+        "editor": null,
+        "label": "",
+        "order": 32,
+        "type": "string",
+        "value": "default"
+      },
+      "preserve alpha": {
+        "editor": null,
+        "label": "",
+        "order": 40,
+        "type": "boolean",
+        "value": true
+      },
+      "resize": {
+        "editor": null,
+        "label": "",
+        "order": 20,
+        "type": "boolean",
+        "value": true
+      },
+      "scale": {
+        "editor": null,
+        "label": "",
+        "order": 22,
+        "type": "float",
+        "value": 1.0
+      },
+      "scale x": {
+        "editor": null,
+        "label": "",
+        "order": 7,
+        "type": "float",
+        "value": 1.0
+      },
+      "scale y": {
+        "editor": null,
+        "label": "",
+        "order": 6,
+        "type": "float",
+        "value": 1.0
+      },
+      "sigma": {
+        "editor": null,
+        "label": "",
+        "order": 39,
+        "type": "float",
+        "value": 1.0
+      },
+      "sigma-x": {
+        "editor": null,
+        "label": "",
+        "order": 27,
+        "type": "float",
+        "value": 1.0
+      },
+      "sigma-y": {
+        "editor": null,
+        "label": "",
+        "order": 26,
+        "type": "float",
+        "value": 1.0
+      },
+      "threshold": {
+        "editor": null,
+        "label": "",
+        "order": 17,
+        "type": "float",
+        "value": 0.15
+      },
+      "threshold method": {
+        "editor": null,
+        "label": "",
+        "order": 24,
+        "type": "string",
+        "value": "gaussian"
+      },
+      "type": "group",
+      "width": {
+        "editor": null,
+        "label": "",
+        "order": 30,
+        "type": "integer",
+        "value": 512
+      },
+      "window size": {
+        "editor": null,
+        "label": "",
+        "order": 4,
+        "type": "integer",
+        "value": 1
+      },
+      "x": {
+        "editor": null,
+        "label": "",
+        "order": 37,
+        "type": "integer",
+        "value": 0
+      },
+      "y": {
+        "editor": null,
+        "label": "",
+        "order": 36,
+        "type": "integer",
+        "value": 0
+      }
+    }
+    </parameters>
+    <ports>
+      <input key="source" scheme="hdf5" type="image" type_base="image" uuid="{718a748d-ce3b-472c-972b-9fd66b31e483}">
+        <label>source image to filter</label>
+      </input>
+      <output key="result" scheme="hdf5" type="image" type_base="image" uuid="{b119c9c0-57f4-4c7a-af88-e5d00689840c}">
+        <label>result after filtering</label>
+      </output>
+    </ports>
+  </node>
+  <node id="syip.exampleimage" port_format="1.1" uuid="{f0d1bedf-20c1-4390-b4a9-af5d8bb7e07a}" x="975.0" y="1725.0">
+    <label>Example image
+"coins"</label>
+    <version>0.1</version>
+    <description>Loads an image from the built-in default example images in scikit-image</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "source": {
+        "editor": {
+          "options": ["astronaut", "camera", "checkerboard", "chelsea (cat)", "clock", "coffee", "coins", "horse", "hubble deep field", "immunohistochemistry", "moon", "rocket", "text"],
+          "type": "combobox"
+        },
+        "label": "Image:",
+        "order": 0,
+        "type": "string",
+        "value": "coins"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="output" scheme="hdf5" type="image" type_base="image" uuid="{cf085650-717e-441f-8cb0-8c29b35d4f30}">
+        <label>Output image</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.calculatorgeneric" port_format="1.1" uuid="{f51adb5c-9515-4fec-9160-3776ccd689d1}" x="1800.0" y="1825.0">
+    <label>Calculator - radius
+from std deviation</label>
+    <version>3.0</version>
+    <description>Performs user-defined python calculations</description>
+    <author>Greger Cronquist, Magnus Sand&#233;n, Sara Gustafzelius &amp; Benedikt Ziegler</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "calc_attrs_dict": {
+        "editor": null,
+        "label": "",
+        "order": 1,
+        "type": "string",
+        "value": "[]"
+      },
+      "calc_list": {
+        "editor": null,
+        "label": "List of calculations",
+        "list": ["X = arg['X'] #ENABLED:1", "Y = arg['Y'] #ENABLED:1", "radius = 1.414*arg['sigma']+2 #ENABLED:1"],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [],
+        "value_names": []
+      },
+      "copy_input": {
+        "editor": null,
+        "label": "Copy input",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "fail_strategy": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Action on calculation failure",
+        "list": ["Exception", "Skip calculation"],
+        "mode": "selected",
+        "order": 3,
+        "type": "list",
+        "value": [0],
+        "value_names": ["Exception"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port0" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{461241a9-1558-429b-926c-873abca43b33}">
+        <label>Generic Input</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{4c522022-907b-4d19-a88f-80ed58fda1fc}">
+        <label>Table with results from the calculations.</label>
+      </output>
+    </ports>
+  </node>
+  <connection type="table" uuid="{0cb1fcb9-d02a-4a52-be50-84a9e9f6f7cd}">
+    <source node="{bb6e7bd4-9cf2-4c40-82f3-5671c4f0f1df}" port="{9c6881e0-c25e-4b1a-8f23-8c35596bc9dc}"/>
+    <destination node="{9297c9a7-be32-47f0-9136-870e141b5687}" port="{06d9e26a-38c3-4aa8-941c-26016f01e3e5}"/>
+  </connection>
+  <connection type="image" uuid="{1f107000-baf3-43f9-bf62-46352516251e}">
+    <source node="{8d531fd8-296c-41b4-a37f-7690150d1533}" port="{d5d79a9f-95cc-4270-ba6b-4efcc793adf8}"/>
+    <destination node="{bb6e7bd4-9cf2-4c40-82f3-5671c4f0f1df}" port="{b8d517d8-14df-42c2-b259-64908d6fb844}"/>
+  </connection>
+  <connection type="table" uuid="{1fa5a6dc-e4a0-4e86-b3c5-4b8bc7d33d9e}">
+    <source node="{f51adb5c-9515-4fec-9160-3776ccd689d1}" port="{4c522022-907b-4d19-a88f-80ed58fda1fc}"/>
+    <destination node="{3be3971a-8ad7-405c-a858-b9205b60d540}" port="{780a9784-dd58-431a-a9bb-b4834dacd80f}"/>
+    <route x="2200.0" y="1825.0"/>
+  </connection>
+  <connection type="image" uuid="{229a5009-1cb2-422d-8fbe-9f7ee3e51a87}">
+    <source node="{0c9bf981-2267-4d09-9aac-405addec316b}" port="{14783aa4-8fa0-46e4-a16e-87a486bb6e11}"/>
+    <destination node="{96851b72-4b15-4901-a9d0-0932579291f0}" port="{4c1c32a6-b617-4ca1-bac8-49ca0537b405}"/>
+  </connection>
+  <connection type="table" uuid="{46103684-6f5b-489e-b2a6-b69acc4f330a}">
+    <source node="{9297c9a7-be32-47f0-9136-870e141b5687}" port="{c394ee7a-3568-408f-a6c1-ef6045545733}"/>
+    <destination node="{3be3971a-8ad7-405c-a858-b9205b60d540}" port="{0d17e2b6-bbc0-46a3-999c-30511bc8ad6d}"/>
+  </connection>
+  <connection type="image" uuid="{5b6d8ad4-efed-4042-a3b0-e7b5a5f787df}">
+    <source node="{f0d1bedf-20c1-4390-b4a9-af5d8bb7e07a}" port="{cf085650-717e-441f-8cb0-8c29b35d4f30}"/>
+    <destination node="{37eaa9e8-9c88-4bc6-8550-8a7d75f6b8ce}" port="{c37c2aba-aaaa-474f-a9e6-dcfbf6b73f94}"/>
+  </connection>
+  <connection type="table" uuid="{5eb9eb8b-2b24-4b7a-bd21-6329553bf5ad}">
+    <source node="{8f48c225-0caa-4462-af2c-8789cba8c4f7}" port="{a46e6950-bdf9-46b5-8c0e-102c2deaee6e}"/>
+    <destination node="{38137a56-929a-421c-8d17-6194a8e5a86c}" port="{7a201936-a5c1-499d-8232-da2fa47d14b3}"/>
+  </connection>
+  <connection type="table" uuid="{6d62d95b-50a7-4348-95e9-367dff5aee86}">
+    <source node="{38137a56-929a-421c-8d17-6194a8e5a86c}" port="{0ab40a8e-2ae5-406e-a351-0d044ec9e668}"/>
+    <destination node="{bb6e7bd4-9cf2-4c40-82f3-5671c4f0f1df}" port="{d4c797ea-41f3-4271-9a44-c4f5af5811c1}"/>
+  </connection>
+  <connection type="image" uuid="{84e6331e-3912-4099-85eb-dd2f48a31f28}">
+    <source node="{8a4484ba-a79b-442f-8e7c-099a04109e68}" port="{b86153e9-2917-4f4f-9b6e-11b60fc8ac3d}"/>
+    <destination node="{96851b72-4b15-4901-a9d0-0932579291f0}" port="{6c6b10f3-f3b1-446b-a96b-6e5a3c8f1e87}"/>
+  </connection>
+  <connection type="image" uuid="{87be28a7-bc83-41a3-a400-49e5e15e812f}">
+    <source node="{37eaa9e8-9c88-4bc6-8550-8a7d75f6b8ce}" port="{b5e9f64d-9d13-4556-a055-49ab2a846951}"/>
+    <destination node="{cc39c2d1-0a2c-4b43-91ba-a38a845e7a31}" port="{69f3086b-b490-487e-b98d-78aaf9157fd2}"/>
+    <route x="2125.0" y="1600.0"/>
+  </connection>
+  <connection type="table" uuid="{8c75b7ed-047f-4765-9c1d-508bdfa06f69}">
+    <source node="{bb6e7bd4-9cf2-4c40-82f3-5671c4f0f1df}" port="{9c6881e0-c25e-4b1a-8f23-8c35596bc9dc}"/>
+    <destination node="{76c6708e-5989-49c7-bd5a-3414e8dc0b78}" port="{46e25bba-1e85-4953-994a-0bdd4e42e697}"/>
+  </connection>
+  <connection type="table" uuid="{9094ea9c-2c20-46a3-b5b4-70339c9bc186}">
+    <source node="{8f48c225-0caa-4462-af2c-8789cba8c4f7}" port="{a46e6950-bdf9-46b5-8c0e-102c2deaee6e}"/>
+    <destination node="{f51adb5c-9515-4fec-9160-3776ccd689d1}" port="{461241a9-1558-429b-926c-873abca43b33}"/>
+  </connection>
+  <connection type="image" uuid="{a0649fb4-95e7-41ea-b250-d6d9d64fcd86}">
+    <source node="{96851b72-4b15-4901-a9d0-0932579291f0}" port="{af668674-bc3d-49c3-8ae1-a7ac6799457d}"/>
+    <destination node="{d52726d7-d42e-4db1-8f9c-e80d58294ef4}" port="{718a748d-ce3b-472c-972b-9fd66b31e483}"/>
+  </connection>
+  <connection type="table" uuid="{cdab6570-0672-4685-9f23-779153405142}">
+    <source node="{3be3971a-8ad7-405c-a858-b9205b60d540}" port="{4221722a-433d-42ce-b027-e7b7d6d83b73}"/>
+    <destination node="{cc39c2d1-0a2c-4b43-91ba-a38a845e7a31}" port="{9ff7726d-be89-4309-9c9a-b28c68a59822}"/>
+  </connection>
+  <connection type="image" uuid="{d4d55877-b3d7-46c7-b05e-62aaf6e19847}">
+    <source node="{d52726d7-d42e-4db1-8f9c-e80d58294ef4}" port="{b119c9c0-57f4-4c7a-af88-e5d00689840c}"/>
+    <destination node="{8f48c225-0caa-4462-af2c-8789cba8c4f7}" port="{c2e012b6-7ecb-40f2-9b13-a379737c3043}"/>
+  </connection>
+  <connection type="image" uuid="{dea001be-9b5d-4fab-9e01-767d0ae098da}">
+    <source node="{f0d1bedf-20c1-4390-b4a9-af5d8bb7e07a}" port="{cf085650-717e-441f-8cb0-8c29b35d4f30}"/>
+    <destination node="{8d531fd8-296c-41b4-a37f-7690150d1533}" port="{ec0fda5a-4ef7-4fc1-bbad-cf4d0c45156e}"/>
+  </connection>
+  <connection type="image" uuid="{e7ebe928-e1c2-4269-a7cc-4b22a256f719}">
+    <source node="{f0d1bedf-20c1-4390-b4a9-af5d8bb7e07a}" port="{cf085650-717e-441f-8cb0-8c29b35d4f30}"/>
+    <destination node="{0c9bf981-2267-4d09-9aac-405addec316b}" port="{6ed45ac8-a84b-4a25-a910-118418dad61f}"/>
+  </connection>
+  <text color="Red" height="125.0" uuid="{899ef09b-b0a2-4caa-a9e8-4f531e916c92}" width="425.0" x="975.0" y="1425.0">**Example that extracts tabular information from each found coin, available as a table of data.**
+
+Arbitrary value of 5 or 1 assigned to coins depending on size. 
+
+Also draws a simple visualization (cirlces) based on the found coins. </text>
+</flow>

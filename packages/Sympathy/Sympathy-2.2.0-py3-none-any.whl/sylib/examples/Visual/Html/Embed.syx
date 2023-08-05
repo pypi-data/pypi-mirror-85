@@ -1,0 +1,499 @@
+<?xml version='1.0' encoding='US-ASCII'?>
+<flow xmlns="http://www.sysess.org/sympathyfordata/workflow/1.0" cls="Flow" uuid="{f1ad9679-7f7b-414c-926c-a882a79542ee}">
+  <label></label>
+  <ports/>
+  <node id="org.sysess.sympathy.data.text.importtext" port_format="1.1" uuid="{5446c82f-ca1a-4447-be27-41b9c4d05675}" x="1850.0" y="1500.0">
+    <label>Text</label>
+    <version>1.0</version>
+    <description>Data source as text</description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "active_importer": {
+        "editor": null,
+        "label": "Importer",
+        "order": 0,
+        "type": "string",
+        "value": "Auto"
+      },
+      "custom_importer_data": {
+        "Auto": {
+          "label": "",
+          "order": 0,
+          "type": "group"
+        },
+        "label": "",
+        "order": 1,
+        "type": "group"
+      },
+      "fail_strategy": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Action on import failure",
+        "list": ["Exception", "Create Empty Entry"],
+        "mode": "selected",
+        "order": 2,
+        "type": "list",
+        "value": [0],
+        "value_names": ["Exception"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="" scheme="text" type="datasource" type_base="datasource" uuid="{453d38f6-f10b-426e-bd4e-5461e1f2e7a2}">
+        <label>Datasource</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="text" type_base="text" uuid="{6d5b280c-4c27-427d-87bc-5a2033e342ec}">
+        <label>Imported Text</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.export.exportexts" port_format="1.1" uuid="{5e8cbc4e-0c2d-4c34-9229-f44923696874}" x="2150.0" y="1225.0">
+    <label>Export</label>
+    <version>0.1</version>
+    <description>Export Texts</description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "active_exporter": {
+        "editor": null,
+        "label": "Exporter",
+        "order": 0,
+        "type": "string",
+        "value": "Text"
+      },
+      "custom_exporter_data": {
+        "Text": {
+          "encoding": {
+            "editor": {
+              "display": null,
+              "edit": false,
+              "filter": false,
+              "include_empty": false,
+              "options": ["Western (ASCII)", "Western (ISO 8859-1)", "Western (ISO 8859-15)", "Western (Windows 1252)", "UTF-16 BE", "UTF-16 LE", "UTF-16", "UTF-8"],
+              "type": "combobox"
+            },
+            "label": "Output encoding",
+            "type": "string",
+            "value": "UTF-8"
+          },
+          "filename_extension": {
+            "editor": null,
+            "label": "Filename extension",
+            "type": "string",
+            "value": "html"
+          },
+          "label": "",
+          "type": "group"
+        },
+        "label": "",
+        "order": 1,
+        "type": "group"
+      },
+      "directory": {
+        "editor": {
+          "states": null,
+          "type": "dirname"
+        },
+        "label": "Output directory",
+        "order": 2,
+        "type": "string",
+        "value": "."
+      },
+      "filename": {
+        "editor": null,
+        "label": "Filename",
+        "order": 3,
+        "type": "string",
+        "value": "embedded"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port0" scheme="hdf5" type="[text]" type_base="[text]" uuid="{f78635ac-e9b7-4757-9947-a47a6d73036e}">
+        <label>Texts to be exported</label>
+      </input>
+      <output key="port0" scheme="text" type="[datasource]" type_base="[datasource]" uuid="{bb325ff9-e5e5-485f-8437-41a6a73ddcc6}">
+        <label>Datasources of exported files</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.text.importtext" port_format="1.1" uuid="{6a9149af-a7de-4ce5-9039-6a90534cfacb}" x="2600.0" y="1500.0">
+    <label>Text</label>
+    <version>1.0</version>
+    <description>Data source as text</description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "active_importer": {
+        "editor": null,
+        "label": "Importer",
+        "order": 0,
+        "type": "string",
+        "value": "Auto"
+      },
+      "custom_importer_data": {
+        "Auto": {
+          "label": "",
+          "order": 0,
+          "type": "group"
+        },
+        "label": "",
+        "order": 1,
+        "type": "group"
+      },
+      "fail_strategy": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Action on import failure",
+        "list": ["Exception", "Create Empty Entry"],
+        "mode": "selected",
+        "order": 2,
+        "type": "list",
+        "value": [0],
+        "value_names": ["Exception"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="" scheme="hdf5" type="datasource" type_base="datasource" uuid="{6ceac9be-76a0-461c-8a64-1f408ae18c97}">
+        <label>Datasource</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="text" type_base="text" uuid="{eb096efa-ac35-419c-8458-442d1bfa8f40}">
+        <label>Imported Text</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.list.itemtolist" port_format="1.1" uuid="{76157785-2ffe-49f3-b809-ac35f7e06edb}" x="2000.0" y="1225.0">
+    <label>List</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "n": {
+        "editor": null,
+        "label": "Repeat number of times",
+        "order": 0,
+        "type": "integer",
+        "value": 1
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="item" scheme="hdf5" type="text" type_base="&lt;a&gt;" uuid="{af58abad-10c8-475b-8472-0693d7c62a07}">
+        <label>Input Item</label>
+      </input>
+      <output key="list" scheme="hdf5" type="[text]" type_base="[&lt;a&gt;]" uuid="{5b98338a-28da-452a-97e8-adffbdb0c2b0}">
+        <label>Item as List</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.datasources.filedatasource" port_format="1.1" uuid="{973c9966-9bb6-4f13-83df-ae0272d11769}" x="1550.0" y="1225.0">
+    <label>Datasource</label>
+    <version>1.1</version>
+    <description></description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "datasource_type": {
+        "editor": null,
+        "label": "Datasource type",
+        "list": ["File", "Database", "Url"],
+        "mode": "selected",
+        "order": 11,
+        "type": "list",
+        "value": [0],
+        "value_names": ["File"]
+      },
+      "db_connection_string": {
+        "editor": null,
+        "label": "Connection string",
+        "order": 8,
+        "type": "string",
+        "value": ""
+      },
+      "db_databasename": {
+        "editor": null,
+        "label": "Database name",
+        "order": 5,
+        "type": "string",
+        "value": ""
+      },
+      "db_driver": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Database driver",
+        "list": ["SQL Server"],
+        "mode": "selected",
+        "order": 3,
+        "type": "list",
+        "value": [0],
+        "value_names": ["SQL Server"]
+      },
+      "db_method": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": ["ODBC", "SQLAlchemy"],
+          "type": "combobox"
+        },
+        "label": "Database connection method",
+        "order": 2,
+        "type": "string",
+        "value": "ODBC"
+      },
+      "db_password": {
+        "editor": null,
+        "label": "Password",
+        "order": 7,
+        "type": "string",
+        "value": ""
+      },
+      "db_servername": {
+        "editor": null,
+        "label": "Server name",
+        "order": 4,
+        "type": "string",
+        "value": ""
+      },
+      "db_sqlalchemy_engine_url": {
+        "editor": null,
+        "label": "SQLAlchemy engine URL",
+        "order": 1,
+        "type": "string",
+        "value": "mssql+pyodbc:///"
+      },
+      "db_user": {
+        "editor": null,
+        "label": "User",
+        "order": 6,
+        "type": "string",
+        "value": ""
+      },
+      "filename": {
+        "editor": {
+          "filter": ["Any files (*)"],
+          "states": null,
+          "type": "filename"
+        },
+        "label": "Filename",
+        "order": 0,
+        "type": "string",
+        "value": "Embed/separate.html"
+      },
+      "type": "group",
+      "url_env": {
+        "description": "Environment for URL. Used as headers in case of HTTP URL. Input as a Python expression that evaluates to.",
+        "editor": {
+          "headers": ["Name", "Value"],
+          "type": "table",
+          "types": ["text", "text"],
+          "unique": ["Name"]
+        },
+        "label": "Url environment",
+        "order": 10,
+        "type": "json",
+        "value": []
+      },
+      "url_str": {
+        "editor": null,
+        "label": "URL string",
+        "order": 9,
+        "type": "string",
+        "value": ""
+      }
+    }
+    </parameters>
+    <ports>
+      <output key="port1" scheme="text" type="datasource" type_base="datasource" uuid="{652981f5-f16b-4e09-99eb-988c84fd825b}">
+        <label>Datasource with path to file</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.html.report" port_format="1.1" uuid="{cc0c9ba9-d106-40c6-bba0-046d6f71c8f0}" x="1700.0" y="1225.0">
+    <label>Html Report</label>
+    <version>0.1</version>
+    <description>Create and render a Jinja2 template. Use "{{arg name}}" for access to the data.</description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "custom_base": {
+        "editor": null,
+        "label": "Use custom base",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "relative_tempfile": {
+        "editor": null,
+        "label": "Relative tempfile",
+        "order": 3,
+        "type": "boolean",
+        "value": true
+      },
+      "standalone": {
+        "editor": null,
+        "label": "Standalone HTML",
+        "order": 1,
+        "type": "boolean",
+        "value": true
+      },
+      "template": {
+        "editor": {
+          "language": "jinja",
+          "type": "code"
+        },
+        "label": "Template:",
+        "order": 0,
+        "type": "string",
+        "value": ""
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="in_ds" scheme="text" type="datasource" type_base="datasource" uuid="{5df2e1f0-8318-4eaa-bf7c-f3126a642a8d}">
+        <label>Datasource input</label>
+      </input>
+      <output key="out" scheme="hdf5" type="html" type_base="html" uuid="{6383f463-01af-4950-8345-442f1dc4ecc9}">
+        <label>HTML output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.html.htmltotext" port_format="1.1" uuid="{d9cc0212-2ee9-458a-a75f-ce204a442e6f}" x="1850.0" y="1225.0">
+    <label>HTML to Text</label>
+    <version>1.0</version>
+    <description>Convert HTML to text.</description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="in" scheme="hdf5" type="html" type_base="html" uuid="{882cda73-bd03-4fdb-9b98-7ec98345bafd}">
+        <label>HTML input</label>
+      </input>
+      <output key="out" scheme="hdf5" type="text" type_base="text" uuid="{853104d3-1ba9-450a-abcb-d496110b802b}">
+        <label>Text output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.list.getitemlist" port_format="1.1" uuid="{f2475fde-bdfd-4c68-afac-9043dcfd6490}" x="2300.0" y="1225.0">
+    <label>Get Item List</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "fail_strategy": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Action on index out of bounds",
+        "list": ["Error", "Create Empty Item"],
+        "mode": "selected",
+        "order": 1,
+        "type": "list",
+        "value": [0],
+        "value_names": ["Error"]
+      },
+      "index": {
+        "editor": {
+          "display": null,
+          "edit": true,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Index",
+        "list": [],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [],
+        "value_names": ["0"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="list" scheme="text" type="[datasource]" type_base="[&lt;a&gt;]" uuid="{b52bf4ab-ef6e-4e27-b332-16031957f6b8}">
+        <label>Input List</label>
+      </input>
+      <output key="item" scheme="hdf5" type="datasource" type_base="&lt;a&gt;" uuid="{d31d8f03-557f-417e-bf36-88ea131a6408}">
+        <label>Output selected Item from List</label>
+      </output>
+    </ports>
+  </node>
+  <connection type="text" uuid="{0fee7ec7-176f-4902-a0f0-2396dcbc8306}">
+    <source node="{d9cc0212-2ee9-458a-a75f-ce204a442e6f}" port="{853104d3-1ba9-450a-abcb-d496110b802b}"/>
+    <destination node="{76157785-2ffe-49f3-b809-ac35f7e06edb}" port="{af58abad-10c8-475b-8472-0693d7c62a07}"/>
+  </connection>
+  <connection type="datasource" uuid="{9a791525-ee2c-4bad-8fbf-cdaeef3ed76d}">
+    <source node="{973c9966-9bb6-4f13-83df-ae0272d11769}" port="{652981f5-f16b-4e09-99eb-988c84fd825b}"/>
+    <destination node="{cc0c9ba9-d106-40c6-bba0-046d6f71c8f0}" port="{5df2e1f0-8318-4eaa-bf7c-f3126a642a8d}"/>
+  </connection>
+  <connection type="[datasource]" uuid="{9be70737-24d5-4e20-8326-4897f7455fae}">
+    <source node="{5e8cbc4e-0c2d-4c34-9229-f44923696874}" port="{bb325ff9-e5e5-485f-8437-41a6a73ddcc6}"/>
+    <destination node="{f2475fde-bdfd-4c68-afac-9043dcfd6490}" port="{b52bf4ab-ef6e-4e27-b332-16031957f6b8}"/>
+  </connection>
+  <connection type="[text]" uuid="{adf1f8fe-267b-4946-806a-6a4265536078}">
+    <source node="{76157785-2ffe-49f3-b809-ac35f7e06edb}" port="{5b98338a-28da-452a-97e8-adffbdb0c2b0}"/>
+    <destination node="{5e8cbc4e-0c2d-4c34-9229-f44923696874}" port="{f78635ac-e9b7-4757-9947-a47a6d73036e}"/>
+  </connection>
+  <connection type="datasource" uuid="{b4c7ee71-d1d4-407d-a8b4-39da55dab344}">
+    <source node="{973c9966-9bb6-4f13-83df-ae0272d11769}" port="{652981f5-f16b-4e09-99eb-988c84fd825b}"/>
+    <destination node="{5446c82f-ca1a-4447-be27-41b9c4d05675}" port="{453d38f6-f10b-426e-bd4e-5461e1f2e7a2}"/>
+    <route x="1625.0" y="1525.0"/>
+  </connection>
+  <connection type="html" uuid="{e278ea10-e435-4735-a7ba-3c028f9fb513}">
+    <source node="{cc0c9ba9-d106-40c6-bba0-046d6f71c8f0}" port="{6383f463-01af-4950-8345-442f1dc4ecc9}"/>
+    <destination node="{d9cc0212-2ee9-458a-a75f-ce204a442e6f}" port="{882cda73-bd03-4fdb-9b98-7ec98345bafd}"/>
+  </connection>
+  <connection type="datasource" uuid="{e7223318-fa79-46bd-926b-cff45687dae1}">
+    <source node="{f2475fde-bdfd-4c68-afac-9043dcfd6490}" port="{d31d8f03-557f-417e-bf36-88ea131a6408}"/>
+    <destination node="{6a9149af-a7de-4ce5-9039-6a90534cfacb}" port="{6ceac9be-76a0-461c-8a64-1f408ae18c97}"/>
+    <route x="2375.0" y="1525.0"/>
+  </connection>
+  <text color="Light" height="225.0" uuid="{9a672af4-4cef-4c15-be29-a1b1a6026650}" width="350.0" x="1700.0" y="1375.0">separate.html: input file which references an image using a relative path.</text>
+  <text color="Light" height="225.0" uuid="{3621065e-75dd-46e5-aac4-073693394cfe}" width="350.0" x="2450.0" y="1375.0">embedded.html: output file with embedded image.</text>
+  <text color="Beige" height="100.0" uuid="{d88adeaa-991f-4faa-ab27-3edd353b8eda}" width="800.0" x="1550.0" y="900.0">An example of using the Html Report node to create a stand-alone HTML page based on another but with images embedded inside.</text>
+  <text color="Beige" height="175.0" uuid="{4356f81e-e2c0-489e-ba3f-b0039b626510}" width="250.0" x="1600.0" y="1050.0">Use standalone HTML and relative tempfile</text>
+  <text color="Beige" height="175.0" uuid="{cb9eca37-e68f-4562-bf01-80279c446f83}" width="250.0" x="2050.0" y="1050.0">Select filename for output HTML file</text>
+</flow>

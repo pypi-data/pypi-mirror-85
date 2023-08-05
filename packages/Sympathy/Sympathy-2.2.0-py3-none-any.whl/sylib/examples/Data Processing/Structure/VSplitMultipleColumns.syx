@@ -1,0 +1,332 @@
+<?xml version='1.0' encoding='US-ASCII'?>
+<flow xmlns="http://www.sysess.org/sympathyfordata/workflow/1.0" cls="Flow" uuid="{d7db1cc7-e2de-46ce-8a0c-461d5ca3085b}">
+  <label></label>
+  <ports/>
+  <node id="org.sysess.sympathy.data.table.vsplittablenodes" port_format="1.1" uuid="{0567b180-4ca1-4859-8780-f3018307c4ae}" x="1975.0" y="1850.0">
+    <label>VSplit Tables</label>
+    <version>1.0</version>
+    <description>Vertical split of Tables into Tables.</description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "input_index": {
+        "editor": {
+          "display": null,
+          "edit": true,
+          "filter": false,
+          "include_empty": false,
+          "options": ["Letter", "Number"],
+          "type": "combobox"
+        },
+        "label": "Index column",
+        "order": 1,
+        "type": "string",
+        "value": "Number"
+      },
+      "missing_index": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": ["Multiple tables, one for each row", "Single table, one table for all rows", "Error"],
+          "type": "combobox"
+        },
+        "label": "Action on missing index",
+        "order": 2,
+        "type": "string",
+        "value": "Multiple tables, one for each row"
+      },
+      "no_index": {
+        "editor": null,
+        "label": "One table for each row.",
+        "order": 0,
+        "type": "boolean",
+        "value": false
+      },
+      "remove_fill": {
+        "editor": null,
+        "label": "Remove complement columns",
+        "order": 3,
+        "type": "boolean",
+        "value": false
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port1" scheme="hdf5" type="[table]" type_base="[table]" uuid="{3228515d-40b4-474a-bc61-8e7c4e882274}">
+        <label>Input Tables</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="[table]" type_base="[table]" uuid="{0a186907-e62c-47b3-bc79-f7032a082126}">
+        <label>Split Tables</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.createindextable" port_format="1.1" uuid="{4c5755cf-30a5-43e4-8a95-cd4d69064bce}" x="1725.0" y="2050.0">
+    <label>Create Index Table</label>
+    <version></version>
+    <description>Create an index column for table data</description>
+    <author></author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "columns": {
+        "editor": {
+          "edit": true,
+          "filter": true,
+          "mode": true,
+          "selection": "multi",
+          "type": "listview"
+        },
+        "label": "Select columns",
+        "list": ["Letter", "Number"],
+        "mode": "selected",
+        "order": 1,
+        "type": "list",
+        "value": [0, 1],
+        "value_names": ["Letter", "Number"]
+      },
+      "method": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": ["Enumerate rows", "Enumerate unique rows"],
+          "type": "combobox"
+        },
+        "label": "Select index creation method",
+        "order": 0,
+        "type": "string",
+        "value": "Enumerate unique rows"
+      },
+      "name": {
+        "editor": null,
+        "label": "Name of index column",
+        "order": 2,
+        "type": "string",
+        "value": "index"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="input" scheme="hdf5" type="table" type_base="table" uuid="{4d18beac-f4ae-4aa0-a634-27b4d4fadbff}">
+        <label>Input table</label>
+      </input>
+      <output key="output" scheme="hdf5" type="table" type_base="table" uuid="{f0c88d5e-191b-47b4-ae6b-2adbd60afd50}">
+        <label>Output table</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.create.createtable" port_format="1.1" uuid="{5b39e918-d443-4ca2-ac32-4fa32da76395}" x="1525.0" y="1925.0">
+    <label>Manually Create Table</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Magnus Sand&#233;n</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "json_table": {
+        "editor": null,
+        "label": "GUI",
+        "order": 0,
+        "type": "string",
+        "value": "[[\"Letter\", \"U\", [\"A\", \"A\", \"A\", \"B\", \"B\", \"B\", \"C\", \"C\", \"C\", \"A\", \"B\", \"C\"]], [\"Number\", \"i\", [1, 1, 2, 1, 2, 2, 1, 1, 2, 1, 2, 2]]]"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{91bb4087-c5b8-46de-8db3-60dfb1b63867}">
+        <label>Manually created table</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.vsplittablenode" port_format="1.1" uuid="{7193b511-4e5b-470f-8a43-e2df5ae89526}" x="1850.0" y="2050.0">
+    <label>VSplit Table</label>
+    <version>1.0</version>
+    <description>Vertical split of Table into Tables.</description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "input_index": {
+        "editor": {
+          "display": null,
+          "edit": true,
+          "filter": false,
+          "include_empty": false,
+          "options": ["Letter", "Number", "index"],
+          "type": "combobox"
+        },
+        "label": "Index column",
+        "order": 1,
+        "type": "string",
+        "value": "index"
+      },
+      "missing_index": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": ["Multiple tables, one for each row", "Single table, one table for all rows", "Error"],
+          "type": "combobox"
+        },
+        "label": "Action on missing index",
+        "order": 2,
+        "type": "string",
+        "value": "Multiple tables, one for each row"
+      },
+      "no_index": {
+        "editor": null,
+        "label": "One table for each row.",
+        "order": 0,
+        "type": "boolean",
+        "value": false
+      },
+      "remove_fill": {
+        "editor": null,
+        "label": "Remove complement columns",
+        "order": 3,
+        "type": "boolean",
+        "value": false
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port1" scheme="hdf5" type="table" type_base="table" uuid="{64fdc72c-9d88-4d35-88ae-0f672098faa4}">
+        <label>Input Table</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="[table]" type_base="[table]" uuid="{e40b6b56-0352-413b-8d41-a6a31450a089}">
+        <label>Split Tables</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.selecttablescolumns" port_format="1.1" uuid="{7e9dd053-dc18-496d-97bf-40304137869d}" x="1975.0" y="2050.0">
+    <label>Select columns in Tables</label>
+    <version>1.0</version>
+    <description>Select columns from input to propagate to output.</description>
+    <author>Alexander Busck &amp; Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "columns": {
+        "editor": {
+          "edit": true,
+          "filter": true,
+          "mode": true,
+          "selection": "multi",
+          "type": "listview"
+        },
+        "label": "Select columns",
+        "list": ["Letter", "Number", "index"],
+        "mode": "unselected",
+        "order": 0,
+        "type": "list",
+        "value": [2],
+        "value_names": ["index"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="" scheme="hdf5" type="[table]" type_base="[table]" uuid="{b824afe4-9f2d-4e62-8e99-6fc5e716d555}">
+        <label>Input</label>
+      </input>
+      <output key="" scheme="hdf5" type="[table]" type_base="[table]" uuid="{cdb98707-8686-49c6-9094-d776a32bdee1}">
+        <label>Output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.vsplittablenode" port_format="1.1" uuid="{ee2681cf-20f7-4ddf-a4ee-a6e93032eb7a}" x="1850.0" y="1850.0">
+    <label>VSplit Table</label>
+    <version>1.0</version>
+    <description>Vertical split of Table into Tables.</description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "input_index": {
+        "editor": {
+          "display": null,
+          "edit": true,
+          "filter": false,
+          "include_empty": false,
+          "options": ["Letter", "Number"],
+          "type": "combobox"
+        },
+        "label": "Index column",
+        "order": 1,
+        "type": "string",
+        "value": "Letter"
+      },
+      "missing_index": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": ["Multiple tables, one for each row", "Single table, one table for all rows", "Error"],
+          "type": "combobox"
+        },
+        "label": "Action on missing index",
+        "order": 2,
+        "type": "string",
+        "value": "Multiple tables, one for each row"
+      },
+      "no_index": {
+        "editor": null,
+        "label": "One table for each row.",
+        "order": 0,
+        "type": "boolean",
+        "value": false
+      },
+      "remove_fill": {
+        "editor": null,
+        "label": "Remove complement columns",
+        "order": 3,
+        "type": "boolean",
+        "value": false
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port1" scheme="hdf5" type="table" type_base="table" uuid="{be514ec5-5bde-431e-9c19-2b79ba33839c}">
+        <label>Input Table</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="[table]" type_base="[table]" uuid="{2889cd03-2b77-4686-aa83-69661c5fbf52}">
+        <label>Split Tables</label>
+      </output>
+    </ports>
+  </node>
+  <connection type="table" uuid="{3cabff11-6364-4369-9e1e-842bff5d0c81}">
+    <source node="{5b39e918-d443-4ca2-ac32-4fa32da76395}" port="{91bb4087-c5b8-46de-8db3-60dfb1b63867}"/>
+    <destination node="{4c5755cf-30a5-43e4-8a95-cd4d69064bce}" port="{4d18beac-f4ae-4aa0-a634-27b4d4fadbff}"/>
+  </connection>
+  <connection type="table" uuid="{b1cdf123-0e8e-4cd4-85b0-020f4efd8693}">
+    <source node="{4c5755cf-30a5-43e4-8a95-cd4d69064bce}" port="{f0c88d5e-191b-47b4-ae6b-2adbd60afd50}"/>
+    <destination node="{7193b511-4e5b-470f-8a43-e2df5ae89526}" port="{64fdc72c-9d88-4d35-88ae-0f672098faa4}"/>
+  </connection>
+  <connection type="table" uuid="{c518cdb8-28d8-4592-87b8-94a00a40b67a}">
+    <source node="{5b39e918-d443-4ca2-ac32-4fa32da76395}" port="{91bb4087-c5b8-46de-8db3-60dfb1b63867}"/>
+    <destination node="{ee2681cf-20f7-4ddf-a4ee-a6e93032eb7a}" port="{be514ec5-5bde-431e-9c19-2b79ba33839c}"/>
+  </connection>
+  <connection type="[table]" uuid="{eb5b2d85-2f49-4004-9487-ac8455538853}">
+    <source node="{7193b511-4e5b-470f-8a43-e2df5ae89526}" port="{e40b6b56-0352-413b-8d41-a6a31450a089}"/>
+    <destination node="{7e9dd053-dc18-496d-97bf-40304137869d}" port="{b824afe4-9f2d-4e62-8e99-6fc5e716d555}"/>
+  </connection>
+  <connection type="[table]" uuid="{f340cff3-9e45-4274-810b-d00c60c7fcdc}">
+    <source node="{ee2681cf-20f7-4ddf-a4ee-a6e93032eb7a}" port="{2889cd03-2b77-4686-aa83-69661c5fbf52}"/>
+    <destination node="{0567b180-4ca1-4859-8780-f3018307c4ae}" port="{3228515d-40b4-474a-bc61-8e7c4e882274}"/>
+  </connection>
+  <text color="Beige" height="100.0" uuid="{72d9553c-d2ca-4863-ad8e-2f21401c8d75}" width="250.0" x="2125.0" y="2025.0">**Alternative 2:** this can easily be adapted to other nodes than VSplit.</text>
+  <text color="Beige" height="100.0" uuid="{5e9db056-55ee-4cb7-ab1a-128ddaf41bf9}" width="250.0" x="2125.0" y="1825.0">**Alternative 1:** This is the simplest alternative specifically for VSplit.</text>
+  <text color="Beige" height="81.0" uuid="{e6c816d0-f26b-4f38-9707-92784e41016b}" width="275.0" x="1825.0" y="2225.0">- Node example: *org.sysess.sympathy.data.table.vsplittablenode*
+- Node example: *org.sysess.sympathy.data.table.vsplittablenodes*</text>
+</flow>

@@ -1,0 +1,530 @@
+<?xml version='1.0' encoding='US-ASCII'?>
+<flow xmlns="http://www.sysess.org/sympathyfordata/workflow/1.0" cls="Flow" uuid="{4d3a075b-46c6-4b3e-bb34-4b0bb83ce208}">
+  <label></label>
+  <ports/>
+  <node id="org.sysess.sympathy.machinelearning.predict_proba" port_format="1.1" uuid="{2874edbd-b4a2-41e4-94aa-d8d2635f605f}" x="1825.0" y="1925.0">
+    <label>Predict probabilities</label>
+    <version>0.1</version>
+    <description>Uses a model to predict Y given X and returns the estimatedprobabilities for each class in Y</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "names method": {
+        "editor": {
+          "options": ["From classes", "By index", "From model Y names"],
+          "type": "combobox"
+        },
+        "label": "Output names",
+        "order": 0,
+        "type": "string",
+        "value": "From classes"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="in-model" scheme="hdf5" type="model" type_base="model" uuid="{b7a5c4f6-f9b2-450d-b788-454175f4e335}">
+        <label>Input model</label>
+      </input>
+      <input key="X" scheme="hdf5" type="table" type_base="table" uuid="{c61c5b2f-cf91-489a-9ad5-fb5c0d37cceb}">
+        <label>X</label>
+      </input>
+      <output key="Y" scheme="hdf5" type="table" type_base="table" uuid="{cd86b802-33e1-4d95-b041-ab9dcd9c5533}">
+        <label>Y</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.selecttablecolumns" port_format="1.1" uuid="{2b4b39b1-e675-4dba-b4a7-1ffc74e76dbf}" x="1975.0" y="1925.0">
+    <label>Digit 3</label>
+    <version>1.0</version>
+    <description>Select columns from input to propagate to output.</description>
+    <author>Alexander Busck &amp; Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "columns": {
+        "editor": {
+          "filter": true,
+          "mode": true,
+          "selection": "multi",
+          "type": "listview"
+        },
+        "label": "Select columns",
+        "list": ["3", "0", "1", "2", "4", "5", "6", "7", "8", "9"],
+        "mode": "selected",
+        "order": 0,
+        "passthrough": false,
+        "type": "list",
+        "value": [0],
+        "value_names": ["3"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="" scheme="hdf5" type="table" type_base="table" uuid="{4d70517a-a0dd-4c6c-8bdf-8e9d6e65f729}">
+        <label>Input</label>
+      </input>
+      <output key="" scheme="hdf5" type="table" type_base="table" uuid="{1f6f8116-6377-43f1-b6f3-3ba99f939d8a}">
+        <label>Output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.visualize.figure" port_format="1.1" uuid="{4b0f6bc2-abde-4023-b024-9d64e2b1db6d}" x="2275.0" y="1925.0">
+    <label>Figure - ROC curve</label>
+    <version>0.1</version>
+    <description>Create a Figure from some data.</description>
+    <author>Benedikt Ziegler &amp; Magnus Sand&#233;n</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "parameters": {
+        "description": "The full configuration for this figure.",
+        "editor": null,
+        "label": "",
+        "order": 0,
+        "type": "json",
+        "value": {"axes": [{"xaxis": {"position": ["bottom", "value"]}, "yaxis": {"position": ["left", "value"]}, "plots": [{"xdata": ["arg['false positive rate']", "py"], "ydata": ["arg['true positive rate']", "py"], "type": "line"}], "title": ["ROC", "value"]}]}
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="input" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{d80189a6-947e-4518-be2e-88104a8a04f2}">
+        <label>Input</label>
+      </input>
+      <output key="figure" scheme="text" type="figure" type_base="figure" uuid="{af618441-715c-441f-8ed5-0a3bda3be0cf}">
+        <label>Output figure</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.machinelearning.example_datasets" port_format="1.1" uuid="{79e19f1a-c1d1-4e42-a19c-442a71f0ef11}" x="1375.0" y="1925.0">
+    <label>Example datasets</label>
+    <version>0.1</version>
+    <description>Exposes the example datasets from sklearn</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "classnames": {
+        "editor": null,
+        "label": "Class names",
+        "order": 1,
+        "type": "boolean",
+        "value": true
+      },
+      "dataset": {
+        "editor": {
+          "options": ["Digits", "Boston", "Diabetes", "linnerud", "Iris"],
+          "type": "combobox"
+        },
+        "label": "Dataset",
+        "order": 0,
+        "type": "string",
+        "value": "Digits"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="X" scheme="hdf5" type="table" type_base="table" uuid="{41c7c1a0-160f-4fa0-8cc0-4e5e9a7e58a0}">
+        <label>X</label>
+      </output>
+      <output key="Y" scheme="hdf5" type="table" type_base="table" uuid="{1afa3acd-a918-41b0-a694-85cf4000c58c}">
+        <label>Y</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.machinelearning.roc_prob" port_format="1.1" uuid="{7e27faf8-2b03-448d-9dff-bb07d30e67c5}" x="2125.0" y="1925.0">
+    <label>ROC from probabilities</label>
+    <version>0.1</version>
+    <description>Computes Receiver operating characteristics (ROC) based on calculated Y-probabilities and from true Y.</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "drop_intermediate": {
+        "editor": null,
+        "label": "drop_intermediate",
+        "order": 0,
+        "type": "string",
+        "value": "True"
+      },
+      "header as label": {
+        "editor": null,
+        "label": "header as label",
+        "order": 1,
+        "type": "string",
+        "value": "True"
+      },
+      "pos_label": {
+        "editor": null,
+        "label": "pos_label",
+        "order": 2,
+        "type": "string",
+        "value": "None"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="Y-prob" scheme="hdf5" type="table" type_base="table" uuid="{6b088db6-ce38-413a-98fb-b30250552c0e}">
+        <label>Y-prob</label>
+      </input>
+      <input key="Y-true" scheme="hdf5" type="table" type_base="table" uuid="{45515e7f-9dea-414d-bb07-1b2158bb1c5f}">
+        <label>Y-true</label>
+      </input>
+      <output key="roc" scheme="hdf5" type="table" type_base="table" uuid="{3f8c4947-de91-4e34-bfac-996dc39aadba}">
+        <label>roc</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.machinelearning.mlp_classifier" port_format="1.1" uuid="{864258cc-92ad-4ad5-a395-809289375544}" x="1400.0" y="1825.0">
+    <label>Multi-Layer Perceptron Classifier</label>
+    <version>0.1</version>
+    <description>Multi-layer perceptron classifier</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "activation": {
+        "editor": null,
+        "label": "activation",
+        "order": 2,
+        "type": "string",
+        "value": "relu"
+      },
+      "alpha": {
+        "editor": null,
+        "label": "alpha",
+        "order": 9,
+        "type": "string",
+        "value": "1e-05"
+      },
+      "batch_size": {
+        "editor": null,
+        "label": "batch_size",
+        "order": 4,
+        "type": "string",
+        "value": "auto"
+      },
+      "beta_1": {
+        "editor": null,
+        "label": "beta_1",
+        "order": 15,
+        "type": "string",
+        "value": "0.9"
+      },
+      "beta_2": {
+        "editor": null,
+        "label": "beta_2",
+        "order": 16,
+        "type": "string",
+        "value": "0.999"
+      },
+      "early_stopping": {
+        "editor": null,
+        "label": "early_stopping",
+        "order": 7,
+        "type": "string",
+        "value": "False"
+      },
+      "epsilon": {
+        "editor": null,
+        "label": "epsilon",
+        "order": 17,
+        "type": "string",
+        "value": "1e-08"
+      },
+      "hidden_layer_sizes": {
+        "editor": null,
+        "label": "hidden_layer_sizes",
+        "order": 1,
+        "type": "string",
+        "value": "100"
+      },
+      "learning_rate": {
+        "editor": null,
+        "label": "learning_rate",
+        "order": 5,
+        "type": "string",
+        "value": "constant"
+      },
+      "learning_rate_init": {
+        "editor": null,
+        "label": "learning_rate_init",
+        "order": 11,
+        "type": "string",
+        "value": "0.001"
+      },
+      "max_iter": {
+        "editor": null,
+        "label": "max_iter",
+        "order": 0,
+        "type": "string",
+        "value": "200"
+      },
+      "momentum": {
+        "editor": null,
+        "label": "momentum",
+        "order": 13,
+        "type": "string",
+        "value": "0.9"
+      },
+      "nesterovs_momentum": {
+        "editor": null,
+        "label": "nesterovs_momentum",
+        "order": 14,
+        "type": "string",
+        "value": "True"
+      },
+      "power_t": {
+        "editor": null,
+        "label": "power_t",
+        "order": 12,
+        "type": "string",
+        "value": "0.5"
+      },
+      "random_state": {
+        "editor": null,
+        "label": "random_state",
+        "order": 18,
+        "type": "string",
+        "value": "None"
+      },
+      "shuffle": {
+        "editor": null,
+        "label": "shuffle",
+        "order": 6,
+        "type": "string",
+        "value": "True"
+      },
+      "solver": {
+        "editor": null,
+        "label": "solver",
+        "order": 3,
+        "type": "string",
+        "value": "adam"
+      },
+      "tol": {
+        "editor": null,
+        "label": "tol",
+        "order": 10,
+        "type": "string",
+        "value": "0.0001"
+      },
+      "type": "group",
+      "validation_fraction": {
+        "editor": null,
+        "label": "validation_fraction",
+        "order": 8,
+        "type": "string",
+        "value": "0.1"
+      },
+      "warm_start": {
+        "editor": null,
+        "label": "warm_start",
+        "order": 19,
+        "type": "string",
+        "value": "False"
+      }
+    }
+    </parameters>
+    <ports>
+      <output key="model" scheme="hdf5" type="model" type_base="model" uuid="{1dae9e4b-8741-4537-865f-8354dd71fd4a}">
+        <label>Model</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.machinelearning.confusion" port_format="1.1" uuid="{def74f3f-b345-4bdf-8da1-cddbf43d7693}" x="1975.0" y="1825.0">
+    <label>Confusion Matrix</label>
+    <version>0.1</version>
+    <description>Computes the confusion matrix given predictions and true Y-values.</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "include heading": {
+        "editor": null,
+        "label": "include heading",
+        "order": 0,
+        "type": "string",
+        "value": "True"
+      },
+      "labels": {
+        "editor": null,
+        "label": "labels",
+        "order": 1,
+        "type": "string",
+        "value": ""
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="Y-pred" scheme="hdf5" type="table" type_base="table" uuid="{37c63492-fa0e-42cb-9a73-5f96ddf8cfea}">
+        <label>Y-pred</label>
+      </input>
+      <input key="Y-true" scheme="hdf5" type="table" type_base="table" uuid="{0a55948d-c676-4ab9-9c44-79c231937fbc}">
+        <label>Y-true</label>
+      </input>
+      <output key="confusion-matrix" scheme="hdf5" type="table" type_base="table" uuid="{c01ba969-b855-439d-82ef-2a510fbccb50}">
+        <label>confusion-matrix</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.machinelearning.predict" port_format="1.1" uuid="{df4436fd-3810-4c5c-b99f-a73cd0bb28a8}" x="1825.0" y="1825.0">
+    <label>Predict</label>
+    <version>0.1</version>
+    <description>Uses a model to predict Y given X</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="in-model" scheme="hdf5" type="model" type_base="model" uuid="{79402afb-5288-4abe-bbbc-84d17150cee5}">
+        <label>Input model</label>
+      </input>
+      <input key="X" scheme="hdf5" type="table" type_base="table" uuid="{412a7621-88f9-4df5-bb57-86227b8e7c97}">
+        <label>X</label>
+      </input>
+      <output key="Y" scheme="hdf5" type="table" type_base="table" uuid="{713f870e-0afd-46cf-9bbc-7ae9728fe098}">
+        <label>Y</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.machinelearning.fit" port_format="1.1" uuid="{ed5fc9b6-58cb-402b-b38a-b6bcc612a2a8}" x="1675.0" y="1825.0">
+    <label>Fit</label>
+    <version>0.1</version>
+    <description>Trains a model. Use "Create Input Port &gt; Y" for supervised training</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="in-model" scheme="hdf5" type="model" type_base="model" uuid="{e5354933-8b4a-469a-9535-b4c1665c8050}">
+        <label>Input model</label>
+      </input>
+      <input key="X" scheme="hdf5" type="table" type_base="table" uuid="{2800fb27-b055-4a56-8160-27641340528c}">
+        <label>X</label>
+      </input>
+      <input key="Y0" scheme="hdf5" type="table" type_base="table" uuid="{0e58d0f8-1529-4d3f-a80e-ac14e9e8ac8d}">
+        <label>Y</label>
+      </input>
+      <output key="out-model" scheme="hdf5" type="model" type_base="model" uuid="{4da7bb72-21fe-4481-baa1-1645162f45a3}">
+        <label>Output model</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.machinelearning.simple_split" port_format="1.1" uuid="{f6cc0c1c-235f-4846-8cce-61c25bad56aa}" x="1525.0" y="1925.0">
+    <label>Simple train-test partitioning</label>
+    <version>0.1</version>
+    <description>Splits input data into a training and a test dataset</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "stratify": {
+        "editor": null,
+        "label": "Stratify",
+        "order": 1,
+        "type": "boolean",
+        "value": true
+      },
+      "test_size": {
+        "editor": null,
+        "label": "Test size",
+        "order": 0,
+        "type": "float",
+        "value": 0.25
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="X" scheme="hdf5" type="table" type_base="table" uuid="{4ec72900-d96b-4059-8d73-23e38addb61a}">
+        <label>X</label>
+      </input>
+      <input key="Y" scheme="hdf5" type="table" type_base="table" uuid="{530e59f8-adec-451a-ae3f-742b782910d6}">
+        <label>Y</label>
+      </input>
+      <output key="X_train" scheme="hdf5" type="table" type_base="table" uuid="{235018a7-b258-4207-be33-0b285614e00e}">
+        <label>X_train</label>
+      </output>
+      <output key="Y_train" scheme="hdf5" type="table" type_base="table" uuid="{b0dcb23a-815c-4bf0-9cc4-0dd8ff1461ab}">
+        <label>Y_train</label>
+      </output>
+      <output key="X_test" scheme="hdf5" type="table" type_base="table" uuid="{fdf99bb0-761e-47bc-85f3-e81ad3f08525}">
+        <label>X_test</label>
+      </output>
+      <output key="Y_test" scheme="hdf5" type="table" type_base="table" uuid="{f265fdc1-9a30-4b92-a413-c729a7203e87}">
+        <label>Y_test</label>
+      </output>
+    </ports>
+  </node>
+  <connection type="table" uuid="{0a06c6fb-f2e8-46b8-89db-85e53d503ad1}">
+    <source node="{2874edbd-b4a2-41e4-94aa-d8d2635f605f}" port="{cd86b802-33e1-4d95-b041-ab9dcd9c5533}"/>
+    <destination node="{2b4b39b1-e675-4dba-b4a7-1ffc74e76dbf}" port="{4d70517a-a0dd-4c6c-8bdf-8e9d6e65f729}"/>
+  </connection>
+  <connection type="table" uuid="{1eadad8a-0585-4f2c-899a-b00827d67f31}">
+    <source node="{f6cc0c1c-235f-4846-8cce-61c25bad56aa}" port="{235018a7-b258-4207-be33-0b285614e00e}"/>
+    <destination node="{ed5fc9b6-58cb-402b-b38a-b6bcc612a2a8}" port="{2800fb27-b055-4a56-8160-27641340528c}"/>
+  </connection>
+  <connection type="table" uuid="{6413048e-b4f3-47b3-bb6a-356f98bf8482}">
+    <source node="{7e27faf8-2b03-448d-9dff-bb07d30e67c5}" port="{3f8c4947-de91-4e34-bfac-996dc39aadba}"/>
+    <destination node="{4b0f6bc2-abde-4023-b024-9d64e2b1db6d}" port="{d80189a6-947e-4518-be2e-88104a8a04f2}"/>
+  </connection>
+  <connection type="table" uuid="{7f94b212-5994-4d5b-97ac-1d854d400bb9}">
+    <source node="{2b4b39b1-e675-4dba-b4a7-1ffc74e76dbf}" port="{1f6f8116-6377-43f1-b6f3-3ba99f939d8a}"/>
+    <destination node="{7e27faf8-2b03-448d-9dff-bb07d30e67c5}" port="{6b088db6-ce38-413a-98fb-b30250552c0e}"/>
+  </connection>
+  <connection type="model" uuid="{7fa1c0f4-c806-49f7-9124-49acb60b484c}">
+    <source node="{ed5fc9b6-58cb-402b-b38a-b6bcc612a2a8}" port="{4da7bb72-21fe-4481-baa1-1645162f45a3}"/>
+    <destination node="{2874edbd-b4a2-41e4-94aa-d8d2635f605f}" port="{b7a5c4f6-f9b2-450d-b788-454175f4e335}"/>
+  </connection>
+  <connection type="table" uuid="{95db832b-de40-4e7e-80c1-97e34348cdcc}">
+    <source node="{df4436fd-3810-4c5c-b99f-a73cd0bb28a8}" port="{713f870e-0afd-46cf-9bbc-7ae9728fe098}"/>
+    <destination node="{def74f3f-b345-4bdf-8da1-cddbf43d7693}" port="{37c63492-fa0e-42cb-9a73-5f96ddf8cfea}"/>
+  </connection>
+  <connection type="table" uuid="{972425d7-4899-49ed-9576-37773fb34078}">
+    <source node="{f6cc0c1c-235f-4846-8cce-61c25bad56aa}" port="{fdf99bb0-761e-47bc-85f3-e81ad3f08525}"/>
+    <destination node="{df4436fd-3810-4c5c-b99f-a73cd0bb28a8}" port="{412a7621-88f9-4df5-bb57-86227b8e7c97}"/>
+  </connection>
+  <connection type="table" uuid="{97a3eddc-a722-4618-987d-8b31026b6458}">
+    <source node="{79e19f1a-c1d1-4e42-a19c-442a71f0ef11}" port="{41c7c1a0-160f-4fa0-8cc0-4e5e9a7e58a0}"/>
+    <destination node="{f6cc0c1c-235f-4846-8cce-61c25bad56aa}" port="{4ec72900-d96b-4059-8d73-23e38addb61a}"/>
+  </connection>
+  <connection type="table" uuid="{c51d8182-3dd3-46e4-8416-0caa2a869734}">
+    <source node="{f6cc0c1c-235f-4846-8cce-61c25bad56aa}" port="{fdf99bb0-761e-47bc-85f3-e81ad3f08525}"/>
+    <destination node="{2874edbd-b4a2-41e4-94aa-d8d2635f605f}" port="{c61c5b2f-cf91-489a-9ad5-fb5c0d37cceb}"/>
+  </connection>
+  <connection type="model" uuid="{d532cd47-1361-4284-be29-6a85d4a9e3c7}">
+    <source node="{864258cc-92ad-4ad5-a395-809289375544}" port="{1dae9e4b-8741-4537-865f-8354dd71fd4a}"/>
+    <destination node="{ed5fc9b6-58cb-402b-b38a-b6bcc612a2a8}" port="{e5354933-8b4a-469a-9535-b4c1665c8050}"/>
+  </connection>
+  <connection type="table" uuid="{d5b0893e-b8d3-4f40-b6b4-3c88fd96147e}">
+    <source node="{f6cc0c1c-235f-4846-8cce-61c25bad56aa}" port="{f265fdc1-9a30-4b92-a413-c729a7203e87}"/>
+    <destination node="{7e27faf8-2b03-448d-9dff-bb07d30e67c5}" port="{45515e7f-9dea-414d-bb07-1b2158bb1c5f}"/>
+    <route x="2000.0" y="2025.0"/>
+  </connection>
+  <connection type="table" uuid="{db384908-4005-4901-a58d-acb9ead7816b}">
+    <source node="{f6cc0c1c-235f-4846-8cce-61c25bad56aa}" port="{f265fdc1-9a30-4b92-a413-c729a7203e87}"/>
+    <destination node="{def74f3f-b345-4bdf-8da1-cddbf43d7693}" port="{0a55948d-c676-4ab9-9c44-79c231937fbc}"/>
+    <route x="1900.0" y="1900.0"/>
+  </connection>
+  <connection type="model" uuid="{dc0067b7-d234-48f1-afc5-ba12730acbb5}">
+    <source node="{ed5fc9b6-58cb-402b-b38a-b6bcc612a2a8}" port="{4da7bb72-21fe-4481-baa1-1645162f45a3}"/>
+    <destination node="{df4436fd-3810-4c5c-b99f-a73cd0bb28a8}" port="{79402afb-5288-4abe-bbbc-84d17150cee5}"/>
+  </connection>
+  <connection type="table" uuid="{e370edb5-288b-49a8-8598-d8ad8e849794}">
+    <source node="{79e19f1a-c1d1-4e42-a19c-442a71f0ef11}" port="{1afa3acd-a918-41b0-a694-85cf4000c58c}"/>
+    <destination node="{f6cc0c1c-235f-4846-8cce-61c25bad56aa}" port="{530e59f8-adec-451a-ae3f-742b782910d6}"/>
+  </connection>
+  <connection type="table" uuid="{f3bcd7e4-732d-4585-95de-0c2e01cc18ea}">
+    <source node="{f6cc0c1c-235f-4846-8cce-61c25bad56aa}" port="{b0dcb23a-815c-4bf0-9cc4-0dd8ff1461ab}"/>
+    <destination node="{ed5fc9b6-58cb-402b-b38a-b6bcc612a2a8}" port="{0e58d0f8-1529-4d3f-a80e-ac14e9e8ac8d}"/>
+  </connection>
+  <text color="Beige" height="75.0" uuid="{12b69dfc-d7e8-47a5-9021-f6f0d549ad7d}" width="250.0" x="1875.0" y="1725.0">Note how some digits are often confused with each other. Check eg. 2 vs 7  compared to 7 vs 2</text>
+  <text color="Beige" height="100.0" uuid="{8250e8d8-67f7-491c-9f15-1b8475c714c2}" width="275.0" x="1375.0" y="2025.0">As usual, testing should not be done on
+ the same dataset as training. Therefore use simple train-test split, or the cross-validation nodes</text>
+  <text color="Beige" height="75.0" uuid="{2a242eba-5d37-482f-b91d-f3d9dd4d7c16}" width="175.0" x="1375.0" y="1725.0">(intentionally poor hyper parameters for demo)</text>
+</flow>

@@ -1,0 +1,104 @@
+{
+    "error_codes": {
+        "success": {
+            "code": 0,
+            "description": "Success."
+        },
+        "error": {
+            "code": 1,
+            "description": "Error."
+        },
+        "invalid_arguments": {
+            "code": 2,
+            "description": "Invalid arguments."
+        },
+        "no_such_file": {
+            "code": 3,
+            "description": "No such file."
+        },
+        "no_such_directory": {
+            "code": 4,
+            "description": "No such directory."
+        },
+        "io_error": {
+            "code": 5,
+            "description": "IO error."
+        },
+        "workflow_error": {
+            "code": 6,
+            "description": "Workflow error."
+        },
+        "invalid_inifile": {
+            "code": 7,
+            "description": "Ini file is corrupt or invalid."
+        },
+        "invalid_nodes": {
+            "code": 8,
+            "description": "Invalid node(s) in workflow."
+        },
+        "empty_workflow": {
+            "code": 9,
+            "description": "Workflow is empty."
+        },
+        "corrupt_workflow": {
+            "code": 10,
+            "description": "Workflow is corrupt and cannot be loaded."
+        }
+    },
+    "license": {
+        "name": "GPLv3",
+        "classifier": "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+        "edition": "Open Source",
+        "identifier": "GPL-3.0",
+        "link": "https://www.gnu.org/licenses/gpl-3.0.txt",
+        "file": "LICENSE.txt",
+
+        "packages": [
+            {
+                "name": "Sympathy for Data Standard Library",
+                "description": "python package: sylib",
+                "link": "https://www.sympathyfordata.com",
+                "copyright": "2011-2020, Combine Control Systems AB"
+            },
+            {
+                "name": "Sympathy for Data Plaform",
+                "description": "python package: sympathy",
+                "link": "https://www.sympathyfordata.com",
+                "copyright": "2011-2020, Combine Control Systems AB"
+            }
+        ]
+    },
+
+    "third_party": {
+        "licenses": [
+            {
+                "name": "Creative Commons Attribution-Share Alike 3.0 license",
+                "link": "https://creativecommons.org/licenses/by-sa/3.0/legalcode.txt",
+                "file": "resources/licenses/CC-BY-SA-3.0.txt",
+                "identifier": "CC-BY-SA-3.0",
+                "packages": [
+                    {
+                        "name": "GNOME Project icons",
+                        "link": "https://gitlab.gnome.org/Archive/gnome-icon-theme-symbolic",
+                        "version": "2.30.0-3.12.0",
+                        "copyright": null
+                    }
+                ]
+            },
+            {
+                "name": "Creative Commons Attribution 4.0 International",
+                "link": "https://creativecommons.org/licenses/by/4.0/legalcode.txt",
+                "file": "resources/licenses/CC-BY-4.0.txt",
+                "identifier": "CC-BY-4.0",
+                "packages": [
+                    {
+                        "name": "Font Awesome (svg icons), with some modifications",
+                        "link": "https://fontawesome.com",
+                        "version": "5.10.1-5.12.1",
+                        "copyright": null
+                    }
+                ]
+            }
+        ]
+    }
+}

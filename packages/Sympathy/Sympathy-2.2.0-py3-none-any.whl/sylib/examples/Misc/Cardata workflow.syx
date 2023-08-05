@@ -1,0 +1,249 @@
+<?xml version='1.0' encoding='US-ASCII'?>
+<flow xmlns="http://www.sysess.org/sympathyfordata/workflow/1.0" cls="Flow" uuid="{2ddec58e-7f4b-48b2-9cb2-e3f4acce265a}">
+  <label>Car data</label>
+  <author>Unknown</author>
+  <version>1.0</version>
+  <ports/>
+  <node id="org.sysess.sympathy.data.table.selecttablerows" port_format="1.1" uuid="{338b0e5b-ede4-44cd-ba91-5ab803f14b8a}" x="2025.0" y="1950.0">
+    <label>Select rows in Table</label>
+    <version>1.1</version>
+    <description>Reduction of rows in Table according to specified filter.</description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "columns": {
+        "editor": {
+          "filter": true,
+          "selection": "multi",
+          "type": "listview"
+        },
+        "label": "Columns to filter",
+        "list": ["year", "firstseen", "id_web", "lastseen", "model", "name", "price"],
+        "order": 0,
+        "passthrough": false,
+        "type": "list",
+        "value": [0],
+        "value_names": ["year"]
+      },
+      "constraint": {
+        "editor": null,
+        "label": "Filter constraint",
+        "order": 2,
+        "type": "string",
+        "value": "2010"
+      },
+      "predicate": {
+        "editor": null,
+        "label": "Custom filter",
+        "order": 4,
+        "type": "string",
+        "value": "lambda x: x &lt; 2010"
+      },
+      "relation": {
+        "editor": {
+          "type": "combobox"
+        },
+        "label": "Relation",
+        "list": ["equal", "less than", "less than or equal", "greater than", "greater than or equal", "not equal"],
+        "order": 1,
+        "passthrough": false,
+        "type": "list",
+        "value": [1],
+        "value_names": ["less than"]
+      },
+      "type": "group",
+      "use_custom_predicate": {
+        "editor": null,
+        "label": "Use custom filter",
+        "order": 3,
+        "type": "boolean",
+        "value": false
+      }
+    }
+    </parameters>
+    <ports>
+      <input key="Input" scheme="hdf5" type="table" type_base="table" uuid="{76cf9bf4-7e32-4d0d-b537-c6bb2979d2be}">
+        <label>Input</label>
+      </input>
+      <output key="Output" scheme="hdf5" type="table" type_base="table" uuid="{a08bda1a-df13-4b35-9a69-39b5759526c1}">
+        <label>Output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.datasources.filedatasource" port_format="1.1" uuid="{3ee6c305-32da-45f2-bf2e-54b06359e0ec}" x="1775.0" y="1950.0">
+    <label>Datasource</label>
+    <version>1.1</version>
+    <description></description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "datasource_type": {
+        "editor": null,
+        "label": "Datasource type",
+        "list": ["File", "Database"],
+        "order": 8,
+        "passthrough": false,
+        "type": "list",
+        "value": [0],
+        "value_names": []
+      },
+      "db_connection_string": {
+        "editor": null,
+        "label": "Connection string",
+        "order": 7,
+        "type": "string",
+        "value": ""
+      },
+      "db_databasename": {
+        "editor": null,
+        "label": "Database name",
+        "order": 4,
+        "type": "string",
+        "value": ""
+      },
+      "db_driver": {
+        "editor": {
+          "type": "combobox"
+        },
+        "label": "Database driver",
+        "list": ["SQL Server"],
+        "order": 2,
+        "passthrough": false,
+        "type": "list",
+        "value": [0],
+        "value_names": []
+      },
+      "db_password": {
+        "editor": null,
+        "label": "Password",
+        "order": 6,
+        "type": "string",
+        "value": ""
+      },
+      "db_servername": {
+        "editor": null,
+        "label": "Server name",
+        "order": 3,
+        "type": "string",
+        "value": ""
+      },
+      "db_user": {
+        "editor": null,
+        "label": "User",
+        "order": 5,
+        "type": "string",
+        "value": ""
+      },
+      "filename": {
+        "editor": {
+          "filter": ["Any files (*)"],
+          "type": "filename"
+        },
+        "label": "Filename",
+        "order": 1,
+        "type": "string",
+        "value": "cardata.csv"
+      },
+      "type": "group",
+      "use_relative_path": {
+        "editor": null,
+        "label": "Use relative path",
+        "order": 0,
+        "type": "boolean",
+        "value": true
+      }
+    }
+    </parameters>
+    <ports>
+      <output key="port1" scheme="text" type="datasource" type_base="datasource" uuid="{a206a4c4-f8d1-4fb0-aa6c-4131dd8b6e90}">
+        <label>Datasource with path to file</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.visualize.figure" port_format="1.1" uuid="{d577df4c-3579-4ec4-8644-dfb6ef23243d}" x="2157.392857142857" y="1950.2261904761904">
+    <label>Figure</label>
+    <version>0.1</version>
+    <description>Create a Figure from some data.</description>
+    <author>Benedikt Ziegler &amp; Magnus Sand&#233;n</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "parameters": {
+        "description": "The full configuration for this figure.",
+        "editor": null,
+        "label": "",
+        "order": 0,
+        "type": "json",
+        "value": {"axes": [{"xaxis": {"position": ["bottom", "value"], "max": ["2010.0", "value"], "min": ["1960.0", "value"]}, "yaxis": {"position": ["left", "value"], "max": ["1000000.0", "value"], "min": ["0.0", "value"]}, "plots": [{"xdata": ["arg['year']", "py"], "ydata": ["arg['price']", "py"], "color": ["#0000ff", "value"], "label": ["price", "value"], "type": "scatter"}], "legend": {"show": ["True", "value"], "loc": ["upper right", "value"]}}]}
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="input" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{06cdf6ba-4fe7-4beb-ad6f-5b457cbea948}">
+        <label>Input</label>
+      </input>
+      <output key="figure" scheme="text" type="figure" type_base="figure" uuid="{20995d47-7de8-450d-ba94-1a2c9bdeb3bc}">
+        <label>Output figure</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.importtable" port_format="1.1" uuid="{d9d70c46-0b9a-4b70-aa68-07b1fbde816a}" x="1900.0" y="1950.0">
+    <label>Table</label>
+    <version>1.0</version>
+    <description>Data source as a table</description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "active_importer": {
+        "editor": null,
+        "label": "",
+        "order": 0,
+        "type": "string",
+        "value": "Auto"
+      },
+      "custom_importer_data": {
+        "Auto": {
+          "label": "",
+          "order": 0,
+          "type": "group"
+        },
+        "label": "",
+        "order": 1,
+        "type": "group"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="" scheme="text" type="datasource" type_base="datasource" uuid="{2dc8614c-3c45-4229-8266-75ecf3af7e60}">
+        <label>Datasource</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{912d6f2d-5c30-4785-bd53-d4b3be8789b5}">
+        <label>Imported Table</label>
+      </output>
+    </ports>
+  </node>
+  <connection type="table" uuid="{79322c36-60e3-4434-98cb-0b4473905d95}">
+    <source node="{338b0e5b-ede4-44cd-ba91-5ab803f14b8a}" port="{a08bda1a-df13-4b35-9a69-39b5759526c1}"/>
+    <destination node="{d577df4c-3579-4ec4-8644-dfb6ef23243d}" port="{06cdf6ba-4fe7-4beb-ad6f-5b457cbea948}"/>
+  </connection>
+  <connection type="datasource" uuid="{87c8317c-9a15-48b2-ba5b-9bd5f5540b9a}">
+    <source node="{3ee6c305-32da-45f2-bf2e-54b06359e0ec}" port="{a206a4c4-f8d1-4fb0-aa6c-4131dd8b6e90}"/>
+    <destination node="{d9d70c46-0b9a-4b70-aa68-07b1fbde816a}" port="{2dc8614c-3c45-4229-8266-75ecf3af7e60}"/>
+  </connection>
+  <connection type="table" uuid="{9210c717-7963-407b-ac0a-bac922a50762}">
+    <source node="{d9d70c46-0b9a-4b70-aa68-07b1fbde816a}" port="{912d6f2d-5c30-4785-bd53-d4b3be8789b5}"/>
+    <destination node="{338b0e5b-ede4-44cd-ba91-5ab803f14b8a}" port="{76cf9bf4-7e32-4d0d-b537-c6bb2979d2be}"/>
+  </connection>
+  <text color="Beige" height="168.0" uuid="{984ec21d-96b0-4989-a57f-d40a7592b508}" width="477.0" x="1750.0" y="1754.0">This workflow takes data from a number of used car ads found in 2009 and outputs a graph over price vs the car's model year.
+
+The input is read from a csv-file pointed to by the node "Datasource" and imported by the "Table" node.
+
+In the input data there are some weird entries so the workflow also removes all cars with model year in the future (i.e. &gt;= 2010). This is done in the node "Select rows in Table".
+
+The node "Figure from Table" creates the graph and writes it to a file.</text>
+</flow>

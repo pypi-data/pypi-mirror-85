@@ -1,0 +1,309 @@
+<?xml version='1.0' encoding='US-ASCII'?>
+<flow xmlns="http://www.sysess.org/sympathyfordata/workflow/1.0" cls="Flow" uuid="{f47ed6ef-b037-4d2a-b782-1679f4c3e09e}">
+  <label></label>
+  <ports/>
+  <node id="org.sysess.sympathy.machinelearning.example_datasets" port_format="1.1" uuid="{11a07cd3-7b51-49b7-8e19-0a5128c686b4}" x="1675.0" y="2000.0">
+    <label>Example datasets</label>
+    <version>0.1</version>
+    <description>Exposes the example datasets from sklearn</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "classnames": {
+        "editor": null,
+        "label": "Class names",
+        "order": 1,
+        "type": "boolean",
+        "value": true
+      },
+      "dataset": {
+        "editor": {
+          "options": ["Digits", "Boston", "Diabetes", "linnerud", "Iris"],
+          "type": "combobox"
+        },
+        "label": "Dataset",
+        "order": 0,
+        "type": "string",
+        "value": "Iris"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="X" scheme="hdf5" type="table" type_base="table" uuid="{29dc4695-f191-4d26-b197-10e704b10709}">
+        <label>X</label>
+      </output>
+      <output key="Y" scheme="hdf5" type="table" type_base="table" uuid="{5a85fc99-a1ba-47e5-8fe9-9cee16eec36e}">
+        <label>Y</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.machinelearning.example_datasets" port_format="1.1" uuid="{6a5581b1-d05e-4001-a118-adeacda07701}" x="2125.0" y="2000.0">
+    <label>Example datasets</label>
+    <version>0.1</version>
+    <description>Exposes the example datasets from sklearn</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "classnames": {
+        "editor": null,
+        "label": "Class names",
+        "order": 1,
+        "type": "boolean",
+        "value": true
+      },
+      "dataset": {
+        "editor": {
+          "options": ["Digits", "Boston", "Diabetes", "linnerud", "Iris"],
+          "type": "combobox"
+        },
+        "label": "Dataset",
+        "order": 0,
+        "type": "string",
+        "value": "Iris"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="X" scheme="hdf5" type="table" type_base="table" uuid="{e690ac49-cbe4-475a-8590-bc2788c9a3cc}">
+        <label>X</label>
+      </output>
+      <output key="Y" scheme="hdf5" type="table" type_base="table" uuid="{3be5abf9-47ef-422d-8577-64bf62939d2e}">
+        <label>Y</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.calculatorgeneric" port_format="1.1" uuid="{766e52c5-ad74-46f1-b45c-b00e6d571cbb}" x="1825.0" y="2100.0">
+    <label>Calculator</label>
+    <version>3.0</version>
+    <description>Performs user-defined python calculations</description>
+    <author>Greger Cronquist, Magnus Sand&#233;n, Sara Gustafzelius &amp; Benedikt Ziegler</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "calc_attrs_dict": {
+        "editor": null,
+        "label": "",
+        "order": 1,
+        "type": "string",
+        "value": "[]"
+      },
+      "calc_list": {
+        "editor": null,
+        "label": "List of calculations",
+        "list": ["weights = (arg['Y'] == 'virginica')*9 + 1 #ENABLED:1"],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [],
+        "value_names": []
+      },
+      "copy_input": {
+        "editor": null,
+        "label": "Copy input",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "fail_strategy": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Action on calculation failure",
+        "list": ["Exception", "Skip calculation"],
+        "mode": "selected",
+        "order": 3,
+        "type": "list",
+        "value": [0],
+        "value_names": ["Exception"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port0" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{8468b170-c303-48dd-8c22-82003b4d87ac}">
+        <label>Generic Input</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{8afeb385-b332-4681-b902-c1b86152169f}">
+        <label>Table with results from the calculations.</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.machinelearning.fit" port_format="1.1" uuid="{a6f93c24-6adb-43c7-b699-8fff95a1fe55}" x="2275.0" y="2000.0">
+    <label>Fit</label>
+    <version>0.1</version>
+    <description>Trains a model. Use "Create Input Port &gt; Y" for supervised training</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="in-model" scheme="hdf5" type="model" type_base="model" uuid="{8a5309b9-3926-4c6c-9b4c-5561da9cf8f4}">
+        <label>Input model</label>
+      </input>
+      <input key="X" scheme="hdf5" type="table" type_base="table" uuid="{eb21f51e-f164-4718-bf21-468aae85664d}">
+        <label>X</label>
+      </input>
+      <input key="Y0" scheme="hdf5" type="table" type_base="table" uuid="{0322521b-3dda-4ce2-812c-a0224d99f29a}">
+        <label>Y</label>
+      </input>
+      <output key="out-model" scheme="hdf5" type="model" type_base="model" uuid="{c955d5bc-4f93-436d-afbe-ece4d6bc6d74}">
+        <label>Output model</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.machinelearning.decision_tree_classifier" port_format="1.1" uuid="{a88c108e-f1fc-46fb-9835-af82ed683cfc}" x="1675.0" y="1900.0">
+    <label>Decision Tree Classifier</label>
+    <version>0.1</version>
+    <description>Decision Trees (DTs) are a non-parametric supervised learning methodused for classification and regression. The goal is to create a modelthat predicts the value of a target variable by learning simpledecision rules inferred from the data features.</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "criterion": {
+        "editor": null,
+        "label": "criterion",
+        "order": 6,
+        "type": "string",
+        "value": "gini"
+      },
+      "max_depth": {
+        "editor": null,
+        "label": "max_depth",
+        "order": 9,
+        "type": "string",
+        "value": "1"
+      },
+      "max_features": {
+        "editor": null,
+        "label": "max_features",
+        "order": 8,
+        "type": "string",
+        "value": "None"
+      },
+      "max_leaf_nodes": {
+        "editor": null,
+        "label": "max_leaf_nodes",
+        "order": 2,
+        "type": "string",
+        "value": "None"
+      },
+      "min_impurity_split": {
+        "editor": null,
+        "label": "min_impurity_split",
+        "order": 7,
+        "type": "string",
+        "value": "1e-07"
+      },
+      "min_samples_leaf": {
+        "editor": null,
+        "label": "min_samples_leaf",
+        "order": 3,
+        "type": "string",
+        "value": "1"
+      },
+      "min_samples_split": {
+        "editor": null,
+        "label": "min_samples_split",
+        "order": 4,
+        "type": "string",
+        "value": "2"
+      },
+      "presort": {
+        "editor": null,
+        "label": "presort",
+        "order": 0,
+        "type": "string",
+        "value": "False"
+      },
+      "random_state": {
+        "editor": null,
+        "label": "random_state",
+        "order": 5,
+        "type": "string",
+        "value": "None"
+      },
+      "splitter": {
+        "editor": null,
+        "label": "splitter",
+        "order": 1,
+        "type": "string",
+        "value": "best"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="model" scheme="hdf5" type="model" type_base="model" uuid="{513c4fa9-aa97-4286-8460-5fed74eadc2b}">
+        <label>Model</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.machinelearning.fit" port_format="1.1" uuid="{fa497bd6-1e37-47ec-8ae4-eccff229ff5e}" x="1975.0" y="2000.0">
+    <label>Fit</label>
+    <version>0.1</version>
+    <description>Trains a model. Use "Create Input Port &gt; Y" for supervised training</description>
+    <author>Mathias Broxvall</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="in-model" scheme="hdf5" type="model" type_base="model" uuid="{7697ced7-81e5-4c08-a1de-9ab3adfeb168}">
+        <label>Input model</label>
+      </input>
+      <input key="X" scheme="hdf5" type="table" type_base="table" uuid="{ee5c3441-0b4a-40ef-aa53-82030d1417c8}">
+        <label>X</label>
+      </input>
+      <input key="Y0" scheme="hdf5" type="table" type_base="table" uuid="{8baa596e-927b-4582-a5b5-57becf5ac6fe}">
+        <label>Y</label>
+      </input>
+      <input key="sample_weights" scheme="hdf5" type="table" type_base="table" uuid="{6a09168d-6eaa-4380-b669-f68d2408002e}">
+        <label>sample_weights</label>
+      </input>
+      <output key="out-model" scheme="hdf5" type="model" type_base="model" uuid="{5ce1f0b8-2136-41c9-924e-01881d9f4a18}">
+        <label>Output model</label>
+      </output>
+    </ports>
+  </node>
+  <connection type="model" uuid="{880d53d4-c418-4ee9-8e93-2bb0e3e0dcf2}">
+    <source node="{a88c108e-f1fc-46fb-9835-af82ed683cfc}" port="{513c4fa9-aa97-4286-8460-5fed74eadc2b}"/>
+    <destination node="{a6f93c24-6adb-43c7-b699-8fff95a1fe55}" port="{8a5309b9-3926-4c6c-9b4c-5561da9cf8f4}"/>
+    <route x="2125.0" y="1975.0"/>
+  </connection>
+  <connection type="table" uuid="{8d89c816-e2df-475c-bdf0-ca7c437f6492}">
+    <source node="{6a5581b1-d05e-4001-a118-adeacda07701}" port="{e690ac49-cbe4-475a-8590-bc2788c9a3cc}"/>
+    <destination node="{a6f93c24-6adb-43c7-b699-8fff95a1fe55}" port="{eb21f51e-f164-4718-bf21-468aae85664d}"/>
+  </connection>
+  <connection type="table" uuid="{8e182c0e-e7bd-467f-9b5c-f05e130a9bea}">
+    <source node="{11a07cd3-7b51-49b7-8e19-0a5128c686b4}" port="{5a85fc99-a1ba-47e5-8fe9-9cee16eec36e}"/>
+    <destination node="{766e52c5-ad74-46f1-b45c-b00e6d571cbb}" port="{8468b170-c303-48dd-8c22-82003b4d87ac}"/>
+  </connection>
+  <connection type="table" uuid="{916dce9d-eaa3-402d-a314-5f9d8e8a168a}">
+    <source node="{766e52c5-ad74-46f1-b45c-b00e6d571cbb}" port="{8afeb385-b332-4681-b902-c1b86152169f}"/>
+    <destination node="{fa497bd6-1e37-47ec-8ae4-eccff229ff5e}" port="{6a09168d-6eaa-4380-b669-f68d2408002e}"/>
+  </connection>
+  <connection type="table" uuid="{afed5cb0-7436-4317-b7c5-8a355b7c1b33}">
+    <source node="{11a07cd3-7b51-49b7-8e19-0a5128c686b4}" port="{29dc4695-f191-4d26-b197-10e704b10709}"/>
+    <destination node="{fa497bd6-1e37-47ec-8ae4-eccff229ff5e}" port="{ee5c3441-0b4a-40ef-aa53-82030d1417c8}"/>
+  </connection>
+  <connection type="table" uuid="{b7bed340-107d-4911-8640-544b376ec5d7}">
+    <source node="{11a07cd3-7b51-49b7-8e19-0a5128c686b4}" port="{5a85fc99-a1ba-47e5-8fe9-9cee16eec36e}"/>
+    <destination node="{fa497bd6-1e37-47ec-8ae4-eccff229ff5e}" port="{8baa596e-927b-4582-a5b5-57becf5ac6fe}"/>
+  </connection>
+  <connection type="model" uuid="{c0c2e0b7-d698-423e-a3e8-49941c64f429}">
+    <source node="{a88c108e-f1fc-46fb-9835-af82ed683cfc}" port="{513c4fa9-aa97-4286-8460-5fed74eadc2b}"/>
+    <destination node="{fa497bd6-1e37-47ec-8ae4-eccff229ff5e}" port="{7697ced7-81e5-4c08-a1de-9ab3adfeb168}"/>
+  </connection>
+  <connection type="table" uuid="{c7726233-1de4-4398-99ff-356c03a417ca}">
+    <source node="{6a5581b1-d05e-4001-a118-adeacda07701}" port="{3be5abf9-47ef-422d-8577-64bf62939d2e}"/>
+    <destination node="{a6f93c24-6adb-43c7-b699-8fff95a1fe55}" port="{0322521b-3dda-4ce2-812c-a0224d99f29a}"/>
+  </connection>
+  <text color="Red" height="75.0" uuid="{75111a46-4b62-4f4f-bf57-ebbc54c6b6f4}" width="200.0" x="2125.0" y="1875.0">Tree without sample weights gives 'versicolor' instead of 'virginica', in addition to setosa</text>
+  <text color="Red" height="75.0" uuid="{85b6cbb0-f1e0-4e75-bb4a-bf460d061e42}" width="350.0" x="1675.0" y="1800.0">Example with limited depth in decision tree. Sample weights gives tree which outputs 'virginica' class in addition to 'setosa'</text>
+</flow>

@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='US-ASCII'?>
+<flow xmlns="http://www.sysess.org/sympathyfordata/workflow/1.0" cls="Flow" height="50.0" is_locked="True" tag="Analysis.Statistic" uuid="{2246a215-b4d6-4166-b818-0cb4401b46c9}" width="50.0" x="900.0" y="1800.0" id="org.sysess.sympathy.keyvaluecalculation">
+  <label>Descriptive statistics</label>
+  <description>Perform a single predefined descriptive statistics calculation for each column in the input table</description>
+  <author>Magnus Sand&#233;n &lt;magnus.sanden@combine.se&gt;</author>
+  <copyright>Copyright (c) 2018 Combine Control Systems AB</copyright>
+  <version></version>
+  <min_version></min_version>
+  <icon>calculator.svg</icon>
+  <aggregation type="json">{"selected_uuids": ["{33e1e8dd-da86-4652-9489-69da3576f343}"], "conf_view": "WizardBuilder", "override": true}</aggregation>
+  <libraries type="json">[]</libraries>
+  <pythonpaths type="json">[]</pythonpaths>
+  <parameters type="json">{}</parameters>
+  <ports>
+    <input index="0" key="Port" optional="False" parent="True" scheme="hdf5" type="table" uuid="{8620e106-4ea5-4413-976b-86c0426759fa}" x="1500.0" y="2025.0">
+      <label>Port</label>
+      <description>Port</description>
+    </input>
+    <output index="0" key="Port" optional="False" parent="True" scheme="hdf5" type="table" uuid="{776fce07-443e-4717-b958-9789c0bc9a7f}" x="2300.0" y="2025.0">
+      <label>Port</label>
+      <description>Port</description>
+    </output>
+  </ports>
+  <node id="org.sysess.sympathy.data.table.calculatorgeneric" uuid="{186ca06a-4934-4ab2-8cdd-db3a0d0333e4}" x="2050.0" y="2025.0">
+    <label>Calculator</label>
+    <description>Performs user-defined python calculations</description>
+    <author>Greger Cronquist &lt;greger.cronquist@combine.se&gt;, Magnus Sand&#233;n &lt;magnus.sanden@combine.se&gt;, Sara Gustafzelius &lt;sara.gustafzelius@combine.se&gt;, Benedikt Ziegler &lt;benedikt.ziegler@combine.se&gt;</author>
+    <copyright>(c) 2016 Combine Control Systems AB</copyright>
+    <version>3.0</version>
+    <parameters type="json">{"type": "group", "calc_list": {"description": "List of calculations.", "editor": null, "label": "List of calculations", "mode": "selected", "order": 0, "type": "list", "list": ["function = arg[1].get()['function']['value'] #ENABLED:0", "values = [{'Min': np.min,\n  'Max': np.max,\n  'Mean': np.mean,\n  'Median': np.median,\n  'Std': np.std}[res['function'][0]](c.data)\n for c in arg[0].cols()] #ENABLED:1", "column_names = [c for c in arg[0].column_names()] #ENABLED:1"], "value": [], "value_names": []}, "calc_attrs_dict": {"description": "Calculation attributes as json dict-list-string!", "editor": null, "label": "", "order": 1, "type": "string", "value": "[]"}, "copy_input": {"description": "If enabled the incoming data will be copied to the output before running the calculations. This requires that the results will all have the same length. An exception will be raised if the lengths of the outgoing results differ.", "editor": null, "label": "Copy input", "order": 2, "type": "boolean", "value": false}, "fail_strategy": {"description": "Decide how a failed calculation should be handled", "label": "Action on calculation failure", "mode": "selected", "order": 3, "type": "list", "list": ["Exception", "Skip calculation"], "value": [0], "value_names": ["Exception"], "editor": {"display": null, "edit": false, "filter": false, "include_empty": false, "type": "combobox", "options": []}}}</parameters>
+    <ports>
+      <input key="port0" scheme="hdf5" type="(table, json)" type_base="&lt;a&gt;" uuid="{95d7ae15-96a6-41f1-a026-e8993bb15806}">
+        <label>Generic Input</label>
+        <description>Generic Input</description>
+      </input>
+      <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{41334792-dd32-4963-b2f3-452b0de182d7}">
+        <label>Table with results from the calculations.</label>
+        <description>Table with results from the calculations.</description>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.create.configureparameters" uuid="{33e1e8dd-da86-4652-9489-69da3576f343}" x="1775.0" y="2150.0">
+    <label>Configure JSON Parameters</label>
+    <description></description>
+    <author>Erik der Hagopian &lt;erik.hagopian@combine.se&gt;</author>
+    <copyright>(C) 2018 Combine Control Systems AB</copyright>
+    <version>0.1</version>
+    <parameters type="json">{"type": "group", "function": {"description": "", "label": "Function:", "type": "string", "value": "Mean", "editor": {"display": null, "edit": false, "filter": false, "include_empty": false, "type": "combobox", "options": ["Min", "Max", "Mean", "Median", "Std"]}}}</parameters>
+    <ports>
+      <input key="json_parameters" scheme="hdf5" type="json" type_base="json" uuid="{e22fa992-316f-4d55-88ff-efa7fd44e707}">
+        <label>Json Parameters</label>
+        <description>Json Parameters</description>
+      </input>
+      <output key="json_parameters" scheme="hdf5" type="json" type_base="json" uuid="{779ec70f-cb1f-404f-a63f-df6df464202f}">
+        <label>Json Parameters</label>
+        <description>Json Parameters</description>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.tuple.tuple2" uuid="{589c408b-ff6a-405b-ab02-1534b84289a8}" x="1900.0" y="2025.0">
+    <label>Tuple</label>
+    <description></description>
+    <author>Erik der Hagopian &lt;erik.hagopian@combine.se&gt;</author>
+    <copyright>(C) 2017 Combine Control Systems AB</copyright>
+    <version>1.0</version>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="input" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{ad28c0b1-0668-4182-8820-753ee399deba}">
+        <label>Input</label>
+        <description>Input</description>
+      </input>
+      <input key="input" scheme="hdf5" type="json" type_base="&lt;b&gt;" uuid="{33937950-b1c7-4bc0-8668-e14d191effc7}">
+        <label>Input</label>
+        <description>Input</description>
+      </input>
+      <output key="output" scheme="hdf5" type="(table, json)" type_base="(&lt;a&gt;, &lt;b&gt;)" uuid="{6b05347e-35b6-497e-89a6-caceeb2dfe96}">
+        <label>Output</label>
+        <description>Output</description>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.transposetablenew" uuid="{6621359e-2526-4fc9-85ba-4878c7638559}" x="2175.0" y="2025.0">
+    <label>Transpose Table</label>
+    <description></description>
+    <author>Andreas Tagerud &lt;andreas.tagerud@combine.se&gt;</author>
+    <copyright>(c) 2016 Combine Control Systems AB</copyright>
+    <version>1.0</version>
+    <parameters type="json">{"type": "group", "use_col_names": {"description": "Set column names from the input table as the first column in the transposed table", "editor": null, "label": "Column names as first column", "order": 0, "type": "boolean", "value": false}, "reverse_col_names": {"description": "Use the selected column from input table as column names in the transposed table, and discarding the selected column from the transpose.", "editor": null, "label": "Use selected column as column names", "order": 1, "type": "boolean", "value": true}, "columns": {"description": "Column that contains the new column names", "label": "Column names column", "mode": "selected", "order": 2, "type": "list", "list": ["values", "column_names"], "value": [1], "value_names": ["column_names"], "editor": {"display": null, "edit": true, "filter": false, "include_empty": false, "type": "combobox", "options": []}}}</parameters>
+    <ports>
+      <input key="input" scheme="hdf5" type="table" type_base="table" uuid="{8ca34fb8-25d1-4b24-be70-d55e65e85f6c}">
+        <label>The Table to transpose</label>
+        <description>The Table to transpose</description>
+      </input>
+      <output key="output" scheme="hdf5" type="table" type_base="table" uuid="{7d5691f3-42f2-4156-a2f6-341e25be7f7a}">
+        <label>The transposed Table</label>
+        <description>The transposed Table</description>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.create.createparameters" uuid="{c033c9d0-7360-4d58-9a1d-cdfea5dfcac8}" x="1625.0" y="2150.0">
+    <label>Manually Create JSON Parameters</label>
+    <description></description>
+    <author>Erik der Hagopian &lt;erik.hagopian@combine.se&gt;</author>
+    <copyright>(C) 2018 Combine Control Systems AB</copyright>
+    <version>0.1</version>
+    <parameters type="json">{"type": "group", "code": {"description": "Python code that modifies the parameter structure.", "label": "Parameters:", "order": 0, "type": "string", "value": "parameters.set_string(\n    'function',\n    label='Function:',\n    description='The selected function will be automatically applied to all columns.',\n    value='Min',\n    editor=synode.editors.combo_editor(options=[\n        'Min',\n        'Max',\n        'Mean',\n        'Median',\n        'Std']))", "editor": {"language": "python", "type": "code"}}}</parameters>
+    <ports>
+      <output key="output" scheme="hdf5" type="json" type_base="json" uuid="{5b01b626-97b0-4b12-831d-c71ba46fe1e6}">
+        <label>Output</label>
+        <description>Output</description>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.selecttablecolumnstype" uuid="{ddcb4657-4afb-41e7-a37a-90c18316269e}" x="1625.0" y="2025.0">
+    <label>Select column by type in Table</label>
+    <description>Select column types from input to propagate to output.</description>
+    <author>Andreas T&#229;gerud &lt;andreas.tagerud@combine.se&gt;</author>
+    <copyright>(c) 2017 Combine Control Systems AB</copyright>
+    <version>1.0</version>
+    <parameters type="json">{"type": "group", "types": {"description": "Select types", "label": "Select types", "mode": "selected", "order": 0, "passthrough": false, "type": "list", "list": ["bool", "integer", "float", "complex", "text", "bytes", "datetime", "timedelta"], "value": [0, 3, 6, 2, 1, 7], "value_names": ["bool", "complex", "datetime", "float", "integer", "timedelta"], "editor": {"edit": false, "filter": true, "mode": true, "passthrough": true, "selection": "multi", "type": "listview"}}}</parameters>
+    <ports>
+      <input key="" scheme="hdf5" type="table" type_base="table" uuid="{a30be290-941b-48e7-820f-fee4eb06a4e7}">
+        <label>Input</label>
+        <description>Input</description>
+      </input>
+      <output key="" scheme="hdf5" type="table" type_base="table" uuid="{d672a87d-001e-4cbc-b698-80343cb9e6b2}">
+        <label>Output</label>
+        <description>Output</description>
+      </output>
+    </ports>
+  </node>
+  <connection type="table" uuid="{2e2cac08-0181-49aa-bf41-6f6f56e23748}">
+    <source node="{186ca06a-4934-4ab2-8cdd-db3a0d0333e4}" port="{41334792-dd32-4963-b2f3-452b0de182d7}"/>
+    <destination node="{6621359e-2526-4fc9-85ba-4878c7638559}" port="{8ca34fb8-25d1-4b24-be70-d55e65e85f6c}"/>
+  </connection>
+  <connection type="(table, json)" uuid="{40b22cd8-b627-4f2a-831c-74da07778a90}">
+    <source node="{589c408b-ff6a-405b-ab02-1534b84289a8}" port="{6b05347e-35b6-497e-89a6-caceeb2dfe96}"/>
+    <destination node="{186ca06a-4934-4ab2-8cdd-db3a0d0333e4}" port="{95d7ae15-96a6-41f1-a026-e8993bb15806}"/>
+  </connection>
+  <connection type="table" uuid="{7d4c1918-af70-4134-bbdb-a05ce027f3b1}">
+    <source node="{6621359e-2526-4fc9-85ba-4878c7638559}" port="{7d5691f3-42f2-4156-a2f6-341e25be7f7a}"/>
+    <destination node="{2246a215-b4d6-4166-b818-0cb4401b46c9}" port="{776fce07-443e-4717-b958-9789c0bc9a7f}"/>
+  </connection>
+  <connection type="json" uuid="{83784c5c-234e-4028-a022-47564f37aeb6}">
+    <source node="{c033c9d0-7360-4d58-9a1d-cdfea5dfcac8}" port="{5b01b626-97b0-4b12-831d-c71ba46fe1e6}"/>
+    <destination node="{33e1e8dd-da86-4652-9489-69da3576f343}" port="{e22fa992-316f-4d55-88ff-efa7fd44e707}"/>
+  </connection>
+  <connection type="table" uuid="{850c8167-bb6d-4a19-9e06-6dffa726d7df}">
+    <source node="{2246a215-b4d6-4166-b818-0cb4401b46c9}" port="{8620e106-4ea5-4413-976b-86c0426759fa}"/>
+    <destination node="{ddcb4657-4afb-41e7-a37a-90c18316269e}" port="{a30be290-941b-48e7-820f-fee4eb06a4e7}"/>
+  </connection>
+  <connection type="table" uuid="{b1120fea-e1e1-4aec-8d29-70c1e86e87d7}">
+    <source node="{ddcb4657-4afb-41e7-a37a-90c18316269e}" port="{d672a87d-001e-4cbc-b698-80343cb9e6b2}"/>
+    <destination node="{589c408b-ff6a-405b-ab02-1534b84289a8}" port="{ad28c0b1-0668-4182-8820-753ee399deba}"/>
+  </connection>
+  <connection type="json" uuid="{bb3af1a4-f0f8-490b-bed5-295d9c1b363e}">
+    <source node="{33e1e8dd-da86-4652-9489-69da3576f343}" port="{779ec70f-cb1f-404f-a63f-df6df464202f}"/>
+    <destination node="{589c408b-ff6a-405b-ab02-1534b84289a8}" port="{33937950-b1c7-4bc0-8668-e14d191effc7}"/>
+  </connection>
+</flow>

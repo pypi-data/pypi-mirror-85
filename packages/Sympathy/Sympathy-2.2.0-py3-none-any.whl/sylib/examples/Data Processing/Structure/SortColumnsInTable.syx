@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='US-ASCII'?>
+<flow xmlns="http://www.sysess.org/sympathyfordata/workflow/1.0" cls="Flow" height="50.0" uuid="{4ae9288a-6ef6-41a3-8d1a-6f0f19c973f4}" width="50.0" x="0.0" y="0.0" id="">
+  <label></label>
+  <description></description>
+  <author></author>
+  <copyright></copyright>
+  <version></version>
+  <min_version></min_version>
+  <icon/>
+  <aggregation type="json">null</aggregation>
+  <libraries type="json">[]</libraries>
+  <pythonpaths type="json">[]</pythonpaths>
+  <parameters type="json">{}</parameters>
+  <ports/>
+  <node id="org.sysess.sympathy.create.createtable" uuid="{b5806e0d-8a3f-4abd-bfb9-87809fd1c8a5}" x="1650.0" y="1900.0">
+    <label>Manually Create Table</label>
+    <description></description>
+    <author>Magnus Sand&#233;n &lt;magnus.sanden@combine.se&gt;</author>
+    <copyright>(c) 2016 Combine Control Systems AB</copyright>
+    <version>1.0</version>
+    <parameters type="json">{"type": "group", "json_table": {"description": "Configuration window", "editor": null, "label": "GUI", "order": 0, "type": "string", "value": "[[\"v\", \"U\", []], [\"d\", \"U\", []], [\"y\", \"U\", []], [\"a\", \"U\", []]]"}}</parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{da782b6c-c234-43ad-badb-daa29b670106}">
+        <label>Manually created table</label>
+        <description>Manually created table</description>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.sortcolumns" uuid="{cd5ea1df-1e1d-4bf0-a248-1dec6bb5abbc}" x="1850.0" y="1900.0">
+    <label>Sort columns in Table</label>
+    <description>Sort the columns in incoming table alphabeticaly.</description>
+    <author>Magnus Sand&#233;n &lt;magnus.sanden@combine.se&gt;</author>
+    <copyright>(c) 2015, 2017 Combine Control Systems AB</copyright>
+    <version>1.0</version>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="input" scheme="hdf5" type="table" type_base="table" uuid="{7f1c682f-79a5-416b-8e22-3847f190f174}">
+        <label>Table with columns in unsorted order</label>
+        <description>Table with columns in unsorted order</description>
+      </input>
+      <output key="output" scheme="hdf5" type="table" type_base="table" uuid="{72dad00c-2b21-4ad0-8b8c-bc206dd68b65}">
+        <label>Table with columns in sorted order</label>
+        <description>Table with columns in sorted order</description>
+      </output>
+    </ports>
+  </node>
+  <connection type="table" uuid="{ec136c4a-cad6-4a16-b64a-f1a4014605a2}">
+    <source node="{b5806e0d-8a3f-4abd-bfb9-87809fd1c8a5}" port="{da782b6c-c234-43ad-badb-daa29b670106}"/>
+    <destination node="{cd5ea1df-1e1d-4bf0-a248-1dec6bb5abbc}" port="{7f1c682f-79a5-416b-8e22-3847f190f174}"/>
+  </connection>
+  <text color="Beige" height="50.0" uuid="{be6ed549-bd32-4d04-b7b0-e7b9255ced2b}" width="250.0" x="1650.0" y="2000.0">
+- Node example: *org.sysess.sympathy.data.table.sortcolumns*</text>
+</flow>

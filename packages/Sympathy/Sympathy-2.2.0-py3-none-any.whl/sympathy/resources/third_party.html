@@ -1,0 +1,93 @@
+<h2>Included First Party Code</h2>
+<p>
+  This distribution contains software packages from Combine Control Systems AB.
+  These are available "as is" under the <a href="{{license.link}}">{{license.name}}</a> license.
+</p>
+<ul>
+  {%- for package in license.packages %}
+  <li>Package: {{package.name}}
+    <ul>
+      <li>License: {{license.name}}
+        <ul>
+          {%- if license.file %}
+          <li>File: <a href="{{license.file}}">{{license.file}}</a></li>
+          {%- elif license.link %}
+          <li>Link: <a href="{{license.link}}">{{license.link}}</a></li>
+          {%- endif %}
+        </ul>
+      </li>
+      <li>Link: <a href="{{package.link}}">{{package.link}}</a></li>
+      {%- if package.description is defined  %}
+      <li>Description: {{package.description}}</li>
+      {%- endif %}
+      <li>Copyright: {{package.copyright or 'See license text.'}}</li>
+    </ul>
+  </li>
+  {%- endfor %}
+</ul>
+
+
+{% if feature_licenses %}
+<h2>Included First Party Additional Code</h2>
+<p>
+  This distribution contains additional software packages from Combine Control Systems AB
+  These are available "as is" and subject to their individual license agreements.
+</p>
+
+<ul>
+  {%- for license in feature_licenses %}
+  {%- for package in license.packages %}
+  <li>Package: {{package.name}}
+    <ul>
+      <li>License: {{license.name}}
+        <ul>
+          {%- if license.file %}
+          <li>File: <a href="{{license.file}}">{{license.file}}</a></li>
+          {%- elif license.link %}
+          <li>Link: <a href="{{license.link}}">{{license.link}}</a></li>
+          {%- endif %}
+        </ul>
+      </li>
+      <li>Link: <a href="{{package.link}}">{{package.link}}</a></li>
+      {%- if package.description is defined  %}
+      <li>Description: {{package.description}}</li>
+      {%- endif %}
+      <li>Copyright: {{package.copyright or 'See license text.'}}</li>
+    </ul>
+  </li>
+  {%- endfor %}
+  {%- endfor %}
+</ul>
+{% endif %}
+
+<h2>Included Third Party Code</h2>
+<p>
+  This distribution contains software packages from third parties.
+  These are available "as is" and subject to their individual license agreements.
+</p>
+
+<ul>
+  {%- for license in third_party.licenses %}
+  {%- for package in license.packages %}
+  <li>Package: {{package.name}}
+    <ul>
+      <li>License: {{license.name}}
+        <ul>
+          {%- if license.file %}
+          <li>File: <a href="{{license.file}}">{{license.file}}</a></li>
+          {%- elif license.link %}
+          <li>Link: <a href="{{license.link}}">{{license.link}}</a></li>
+          {%- endif %}
+        </ul>
+      </li>
+      <li>Link: <a href="{{package.link}}">{{package.link}}</a></li>
+      {%- if package.description is defined  %}
+      <li>Description: {{package.description}}</li>
+      {%- endif %}
+      <li>Copyright: {{package.copyright or 'See license text.'}}</li>
+    </ul>
+  </li>
+  {%- endfor %}
+  {%- endfor %}
+  <li>Color scheme in Calculator Table(s) code editor based on <a href="http://ethanschoonover.com/solarized">Solarized color scheme</a> by Ethan Schoonover</li>
+</ul>

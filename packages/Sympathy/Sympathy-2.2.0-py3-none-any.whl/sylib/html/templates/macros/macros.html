@@ -1,0 +1,136 @@
+{% macro test(name, age) %}
+    <h3>{{ name }}</h3>
+    <span class="date">{{ age }}</span>
+{% endmacro %}
+
+{% macro header(title, image) %}
+<div id="header" class="row black-bg">
+  <div class="col-sm-5 logo">
+    <img src="{{ image }}"></div>
+  <div class="col-sm-7 title">
+    <h2 class="h2-white">{{ title }}</h2>
+  </div>
+</div>
+{% endmacro %}
+
+{% macro col_2_table(title, dict) %}
+<div class="col-2-table">
+  <div class="title">{{ title }}</div>
+  <div class="contents">
+  {% for name, value in dict.items() %}
+  <div class="row">
+    <div class="col-4 col"><span class="vertical-center label">{{ name }}</span></div>
+    <div class="col-4 col"><span class="vertical-center">{{ value }}</span></div>
+  </div>
+  {% endfor %}
+  </div>
+</div>
+{% endmacro %}
+
+{% macro section(title, html) %}
+<div class="section">
+  <div class="section-title"><h2>{{ title }}</h2></div>
+  <div class="section-content">{{ html }}</div>
+</div>
+{% endmacro %}
+
+{% macro bokeh_plots(divs) %}
+<div class="container">
+  <div class="row">
+    {% for name, div in divs.items() %}
+      <div class="col-sm">
+        <div class="bokeh-plot">
+        {{ div }}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endmacro %}
+
+{% macro image(context) %}
+<div>
+  <img src="{{ context.path }}" />
+</div>
+{% endmacro %}
+
+{% macro loop_image_datasources(images) %}
+<div class="row">
+    {% for img in images %}
+    <div class="col-md-3">
+        <img src="{{ img['path'] }}" class="responsive vl">
+        {% if img['text'] %}
+        <p>
+        <strong>Lorem ipsum</strong> dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet diam quis purus congue, in porttitor mauris bibendum.
+        </p>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% endmacro %}
+
+{% macro tabs(tab_names, sheets) %}
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+{% set names_uuids = tab_names | zip_with_uuid %}
+
+{% for tab_name, uuid in names_uuids %}
+
+{% if loop.index0 == 0 %}
+    {% set active = 'active' %}
+    {% set selected = 'true' %}
+{% else %}
+    {% set active = '' %}
+    {% set selected = 'false' %}
+{% endif %}
+  <li class="nav-item">
+    <a class="nav-link {{ active }}" id="{{ uuid }}-tab" data-toggle="tab" href="#{{ uuid }}" role="tab" aria-controls="{{ uuid }}" aria-selected="{{ selected }}">{{ tab_name }}</a>
+  </li>
+{% endfor %}
+</ul>
+<div class="tab-content" id="myTabContent">
+{% for tab_name, uuid in names_uuids %}
+{% if loop.index0 == 0 %}
+    {% set active = 'show active' %}
+{% else %}
+    {% set active = '' %}
+{% endif %}
+  <div class="tab-pane fade {{ active }}" id="{{ uuid }}" role="tabpanel" aria-labelledby="{{ uuid }}-tab">
+    {% set rowloop = loop %}
+    {% for data, fn in sheets %}
+    <div>{{ fn(data[rowloop.index0]) }}</div>
+    {% endfor %}
+  </div>
+{% endfor %}
+</div>
+{% endmacro %}
+
+
+{% macro datatable(data) %}
+{% set datatable_uuid = 'random' | tag_id %}
+<div>
+    <div style="overflow: hidden;" id="{{ datatable_uuid }}"></div>
+</div>
+<script type="text/javascript">
+
+var data = {{ data|tojson }};
+
+var container = document.getElementById({{ datatable_uuid|tojson }});
+var hot = new Handsontable(container, {
+  data: data,
+  width: 1200,
+  height: 400,
+  contextMenu: true,
+  rowHeaders: true,
+  colHeaders: true,
+  filters: true,
+  dropdownMenu: true,
+  manualRowMove: true,
+  manualColumnMove: true,
+  collapsibleColumns: true,
+  hiddenColumns: true,
+  manualRowResize: true,
+  manualColumnResize: true
+});
+
+</script>
+{% endmacro %}

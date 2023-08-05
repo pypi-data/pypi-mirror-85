@@ -1,0 +1,2518 @@
+<?xml version='1.0' encoding='US-ASCII'?>
+<flow xmlns="http://www.sysess.org/sympathyfordata/workflow/1.0" cls="Flow" uuid="{60072ebe-ebdf-4ad7-95ec-fd39a0c6c9ae}">
+  <label></label>
+  <ports/>
+  <flow cls="Flow" uuid="{0396adff-1103-4f8b-86f6-3c3ba6240d8b}" x="1572.0" y="1992.0">
+    <label>Configurable Venn diagram</label>
+    <aggregation type="json">
+    {
+      "conf_view": "TabBuilder",
+      "override": true,
+      "selected_uuids": [
+        "{ff22fe27-0f17-4693-889d-7986889f6c95}"
+      ]
+    }
+    </aggregation>
+    <ports>
+      <output index="0" key="Port" parent="True" scheme="text" type="figure" uuid="{bed71c89-6a74-4836-a6ad-da0d449189ce}" x="2075.0" y="2025.0">
+        <label>Port</label>
+      </output>
+    </ports>
+    <node id="org.sysess.sympathy.data.table.calculatorgeneric" port_format="1.1" uuid="{352246a2-7d6a-41a8-935c-5d1ff596925d}" x="1625.0" y="2050.0">
+      <label>Calculator</label>
+      <version>3.0</version>
+      <description>Create columns by evaluating python calculations.</description>
+      <author>Greger Cronquist, Magnus Sand&#233;n, Sara Gustafzelius &amp; Benedikt Ziegler</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "calc_attrs_dict": {
+          "editor": null,
+          "label": "",
+          "order": 1,
+          "type": "string",
+          "value": "[]"
+        },
+        "calc_list": {
+          "editor": null,
+          "label": "List of calculations",
+          "list": ["angle = np.linspace(-np.pi, np.pi, arg['N'][0]+1)[:-1] #ENABLED:1", "x = np.cos(res['angle']) #ENABLED:1", "y = np.sin(res['angle']) #ENABLED:1", "name = arg['name'] #ENABLED:1"],
+          "mode": "selected",
+          "order": 0,
+          "type": "list",
+          "value": [],
+          "value_names": []
+        },
+        "copy_input": {
+          "editor": null,
+          "label": "Copy input",
+          "order": 2,
+          "type": "boolean",
+          "value": false
+        },
+        "fail_strategy": {
+          "editor": {
+            "display": null,
+            "edit": false,
+            "filter": false,
+            "include_empty": false,
+            "options": [],
+            "type": "combobox"
+          },
+          "label": "Action on calculation failure",
+          "list": ["Exception", "Skip calculation"],
+          "mode": "selected",
+          "order": 3,
+          "type": "list",
+          "value": [0],
+          "value_names": ["Exception"]
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="port0" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{5eb1b149-dd68-4c95-ad78-ca400980d4c6}">
+          <label>Generic Input</label>
+        </input>
+        <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{daab991e-ccd7-428b-b01b-9d097a2b9a2a}">
+          <label>Table with results from the calculations.</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.visualize.colormap_lookup" port_format="1.1" uuid="{7379dc40-0bbe-484f-b5f4-c95a4a59bbfd}" x="1750.0" y="1950.0">
+      <label>Colormap lookup</label>
+      <version>0.1</version>
+      <description>Maps input values into colours based on a colourmap.</description>
+      <author></author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "colormap": {
+          "editor": {
+            "display": null,
+            "edit": false,
+            "filter": false,
+            "include_empty": false,
+            "options": ["auto", "viridis", "magma", "inferno", "plasma", "gray", "brown - blue/green (diverging)", "red - blue (diverging)", "spectral (diverging)", "accent (qualitative 8)", "pastel1 (qualitative 9)", "tab10  (qualitative 10)", "tab20  (qualitative 20)", "tab20b (qualitative 20)", "tab20c (qualitative 20)"],
+            "type": "combobox"
+          },
+          "label": "Colormap",
+          "order": 0,
+          "type": "string",
+          "value": "accent (qualitative 8)"
+        },
+        "suffix": {
+          "editor": null,
+          "label": "Suffix",
+          "order": 3,
+          "type": "string",
+          "value": ""
+        },
+        "type": "group",
+        "vmax": {
+          "editor": null,
+          "label": "vmax",
+          "order": 2,
+          "type": "float",
+          "value": 8.0
+        },
+        "vmin": {
+          "editor": null,
+          "label": "vmin",
+          "order": 1,
+          "type": "float",
+          "value": 0.0
+        }
+      }
+      </parameters>
+      <ports>
+        <input key="input" scheme="hdf5" type="table" type_base="table" uuid="{43ce72ff-89fb-47a9-aa68-4d89598939d2}">
+          <label>Input data</label>
+        </input>
+        <output key="output" scheme="hdf5" type="table" type_base="table" uuid="{7d738acf-1fd6-465d-acfd-2f44e6638837}">
+          <label>Output data</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.data.table.hjointable" port_format="1.1" uuid="{9947fbc5-90ec-4233-8d10-6ec0cbf081e3}" x="1850.0" y="2025.0">
+      <label>HJoin Table</label>
+      <version>1.1</version>
+      <description>Horizontal join of two Tables</description>
+      <author>Alexander Busck</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "mask": {
+          "editor": null,
+          "label": "Complement missing rows",
+          "order": 0,
+          "type": "boolean",
+          "value": true
+        },
+        "name": {
+          "editor": {
+            "display": null,
+            "edit": false,
+            "filter": false,
+            "include_empty": false,
+            "options": [],
+            "type": "combobox"
+          },
+          "label": "Input port name for joined table",
+          "list": ["Lower", "Upper"],
+          "mode": "selected",
+          "order": 2,
+          "type": "list",
+          "value": [0],
+          "value_names": ["Lower"]
+        },
+        "rename": {
+          "editor": null,
+          "label": "Rename duplicate columns",
+          "order": 1,
+          "type": "boolean",
+          "value": false
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="port1" scheme="hdf5" type="table" type_base="table" uuid="{82ccea7b-1ce6-448b-9286-7754b5a380c1}">
+          <label>Input Table</label>
+        </input>
+        <input key="port2" scheme="hdf5" type="table" type_base="table" uuid="{4b569fdf-0734-40e1-a91e-28577142afbe}">
+          <label>Input Table</label>
+        </input>
+        <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{aa7a8020-9a8b-4e05-830e-01c2829b7b01}">
+          <label>Table with horizontally joined data</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.visualize.figure" port_format="1.1" uuid="{ce91edf2-1800-4639-8314-596c7cc6e184}" x="1975.0" y="2025.0">
+      <label>Figure</label>
+      <version>0.1</version>
+      <description>Create a Figure from some data.</description>
+      <author>Benedikt Ziegler &amp; Magnus Sand&#233;n</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "parameters": {
+          "description": "The full configuration for this figure.",
+          "editor": null,
+          "label": "",
+          "order": 0,
+          "type": "json",
+          "value": {"axes": [{"xaxis": {"position": ["bottom", "value"]}, "aspect": ["1.", "value"], "yaxis": {"position": ["left", "value"]}, "plots": [{"xdata": ["arg['x']*0.3", "py"], "ydata": ["arg['y']*0.3", "py"], "width": ["1", "py"], "height": ["0.7", "py"], "angle": ["arg['angle']*180/np.pi", "py"], "label": ["arg['name']", "py"], "facecolor": ["arg['color']", "py"], "edgecolor": ["#000000", "value"], "alpha": ["0.3", "value"], "type": "ellipses"}], "title": ["Venn diagram of N variables", "value"], "legend": {"show": ["True", "value"]}}]}
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="input" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{fa795eb9-55da-4af8-907e-7f5de05e49aa}">
+          <label>Input</label>
+        </input>
+        <output key="figure" scheme="text" type="figure" type_base="figure" uuid="{2350f763-d519-459e-b7ea-0cead8999d93}">
+          <label>Output figure</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.data.table.calculatorgeneric" port_format="1.1" uuid="{e7457e95-8c45-4a0a-9251-9179f0138002}" x="1625.0" y="1950.0">
+      <label>Calculator</label>
+      <version>3.0</version>
+      <description>Create columns by evaluating python calculations.</description>
+      <author>Greger Cronquist, Magnus Sand&#233;n, Sara Gustafzelius &amp; Benedikt Ziegler</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "calc_attrs_dict": {
+          "editor": null,
+          "label": "",
+          "order": 1,
+          "type": "string",
+          "value": "[]"
+        },
+        "calc_list": {
+          "editor": null,
+          "label": "List of calculations",
+          "list": ["color = np.arange(arg['N'][0]) #ENABLED:1"],
+          "mode": "selected",
+          "order": 0,
+          "type": "list",
+          "value": [],
+          "value_names": []
+        },
+        "copy_input": {
+          "editor": null,
+          "label": "Copy input",
+          "order": 2,
+          "type": "boolean",
+          "value": false
+        },
+        "fail_strategy": {
+          "editor": {
+            "display": null,
+            "edit": false,
+            "filter": false,
+            "include_empty": false,
+            "options": [],
+            "type": "combobox"
+          },
+          "label": "Action on calculation failure",
+          "list": ["Exception", "Skip calculation"],
+          "mode": "selected",
+          "order": 3,
+          "type": "list",
+          "value": [0],
+          "value_names": ["Exception"]
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="port0" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{e4674400-f9d6-4dad-8d5c-11478f6f9820}">
+          <label>Generic Input</label>
+        </input>
+        <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{62740598-2313-4b6d-9aba-ffe47690d4db}">
+          <label>Table with results from the calculations.</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.create.createtable" port_format="1.1" uuid="{ff22fe27-0f17-4693-889d-7986889f6c95}" x="1500.0" y="2050.0">
+      <label>Manually Create Table</label>
+      <version>1.0</version>
+      <description>Create a Table from scratch in a configuration Gui.</description>
+      <author>Magnus Sand&#233;n</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "json_table": {
+          "editor": null,
+          "label": "GUI",
+          "order": 0,
+          "type": "string",
+          "value": "[[\"N\", \"i\", [3, 0, 0]], [\"name\", \"U\", [\"A\", \"B\", \"C\"]]]"
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{60266f86-2f1e-4683-874f-97ebe10571be}">
+          <label>Manually created table</label>
+        </output>
+      </ports>
+    </node>
+    <connection type="figure" uuid="{38d63db1-3ea9-4237-897c-e2666ce2159d}">
+      <source node="{ce91edf2-1800-4639-8314-596c7cc6e184}" port="{2350f763-d519-459e-b7ea-0cead8999d93}"/>
+      <destination node="{0396adff-1103-4f8b-86f6-3c3ba6240d8b}" port="{bed71c89-6a74-4836-a6ad-da0d449189ce}"/>
+    </connection>
+    <connection type="table" uuid="{47473a4b-2e35-4765-a498-4374d30aa950}">
+      <source node="{e7457e95-8c45-4a0a-9251-9179f0138002}" port="{62740598-2313-4b6d-9aba-ffe47690d4db}"/>
+      <destination node="{7379dc40-0bbe-484f-b5f4-c95a4a59bbfd}" port="{43ce72ff-89fb-47a9-aa68-4d89598939d2}"/>
+    </connection>
+    <connection type="table" uuid="{655c4e1c-f0e9-41ab-ab12-640c90d1f599}">
+      <source node="{ff22fe27-0f17-4693-889d-7986889f6c95}" port="{60266f86-2f1e-4683-874f-97ebe10571be}"/>
+      <destination node="{e7457e95-8c45-4a0a-9251-9179f0138002}" port="{e4674400-f9d6-4dad-8d5c-11478f6f9820}"/>
+    </connection>
+    <connection type="table" uuid="{7a14add3-09ce-4707-851b-224362ef7b09}">
+      <source node="{ff22fe27-0f17-4693-889d-7986889f6c95}" port="{60266f86-2f1e-4683-874f-97ebe10571be}"/>
+      <destination node="{352246a2-7d6a-41a8-935c-5d1ff596925d}" port="{5eb1b149-dd68-4c95-ad78-ca400980d4c6}"/>
+    </connection>
+    <connection type="table" uuid="{97eaafd5-410f-44e5-b50e-cc89d0936d4b}">
+      <source node="{352246a2-7d6a-41a8-935c-5d1ff596925d}" port="{daab991e-ccd7-428b-b01b-9d097a2b9a2a}"/>
+      <destination node="{9947fbc5-90ec-4233-8d10-6ec0cbf081e3}" port="{4b569fdf-0734-40e1-a91e-28577142afbe}"/>
+    </connection>
+    <connection type="table" uuid="{a55acbb8-d945-456d-93ff-4ded43b0a3d2}">
+      <source node="{9947fbc5-90ec-4233-8d10-6ec0cbf081e3}" port="{aa7a8020-9a8b-4e05-830e-01c2829b7b01}"/>
+      <destination node="{ce91edf2-1800-4639-8314-596c7cc6e184}" port="{fa795eb9-55da-4af8-907e-7f5de05e49aa}"/>
+    </connection>
+    <connection type="table" uuid="{c50f359c-5762-4cb8-bf37-9997f08dd27f}">
+      <source node="{7379dc40-0bbe-484f-b5f4-c95a4a59bbfd}" port="{7d738acf-1fd6-465d-acfd-2f44e6638837}"/>
+      <destination node="{9947fbc5-90ec-4233-8d10-6ec0cbf081e3}" port="{82ccea7b-1ce6-448b-9286-7754b5a380c1}"/>
+    </connection>
+  </flow>
+  <flow cls="Flow" uuid="{0a2eea70-4044-49b8-bee5-6a3279029dee}" x="1092.0" y="2076.0">
+    <label>Rectangles</label>
+    <ports>
+      <output index="0" key="Port" parent="True" scheme="text" type="figure" uuid="{922e0268-b9f6-4134-be5a-c2db4164925c}" x="1200.0" y="2100.0">
+        <label>Port</label>
+      </output>
+    </ports>
+    <node id="org.sysess.sympathy.random.randomtable" port_format="1.1" uuid="{1e8250e0-3808-4957-a184-0789da811267}" x="950.0" y="2100.0">
+      <label>Random Table</label>
+      <version>0.1</version>
+      <description>Generate a Table with random numbers between 0 and 1.</description>
+      <author>Erik der Hagopian</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "column_entries": {
+          "editor": {
+            "max": 1000000,
+            "min": 0,
+            "step": 1,
+            "type": "spinbox"
+          },
+          "label": "Columns:",
+          "order": 0,
+          "type": "integer",
+          "value": 2
+        },
+        "column_length": {
+          "editor": {
+            "max": 100000000,
+            "min": 0,
+            "step": 1,
+            "type": "spinbox"
+          },
+          "label": "Rows:",
+          "order": 1,
+          "type": "integer",
+          "value": 50
+        },
+        "mask_values": {
+          "editor": null,
+          "label": "Randomly mask values",
+          "order": 2,
+          "type": "boolean",
+          "value": false
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{1ab1b9b2-c157-4112-bd50-680fc40869e5}">
+          <label>Table with random numbers.</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.visualize.figure" port_format="1.1" uuid="{b4cb8b61-a012-412e-9e7c-e10aecfd6042}" x="1075.0" y="2100.0">
+      <label>Figure</label>
+      <version>0.1</version>
+      <description>Create a Figure from some data.</description>
+      <author>Benedikt Ziegler &amp; Magnus Sand&#233;n</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "parameters": {
+          "description": "The full configuration for this figure.",
+          "editor": null,
+          "label": "",
+          "order": 0,
+          "type": "json",
+          "value": {"axes": [{"xaxis": {"position": ["bottom", "value"]}, "yaxis": {"position": ["left", "value"]}, "plots": [{"xdata": ["arg['0']", "py"], "ydata": ["arg['1']", "py"], "zorder": ["2", "value"], "type": "scatter"}, {"text": ["True negatives", "value"], "textx": ["0.25", "value"], "texty": ["0.25", "value"], "horz_align": ["center", "value"], "boxbackground": {"color": ["#ffffff77", "value"]}, "type": "annotation"}, {"xdata": ["[0, 0.5]", "py"], "ydata": ["[0, 0.5]", "py"], "width": ["0.5", "py"], "height": ["0.5", "py"], "facecolor": ["#55ff00", "value"], "edgecolor": ["#000000", "value"], "alpha": ["0.2", "value"], "zorder": ["1", "value"], "type": "rectangles"}], "title": ["Marking areas with text and rectangles", "value"]}]}
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="input" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{319702eb-28a4-4269-81f6-2f8b06c277c3}">
+          <label>Input</label>
+        </input>
+        <output key="figure" scheme="text" type="figure" type_base="figure" uuid="{9a06ac11-5793-4c2a-949c-3bb1434d410e}">
+          <label>Output figure</label>
+        </output>
+      </ports>
+    </node>
+    <connection type="table" uuid="{43eb1d2c-ae89-447d-bb81-be9347e1c315}">
+      <source node="{1e8250e0-3808-4957-a184-0789da811267}" port="{1ab1b9b2-c157-4112-bd50-680fc40869e5}"/>
+      <destination node="{b4cb8b61-a012-412e-9e7c-e10aecfd6042}" port="{319702eb-28a4-4269-81f6-2f8b06c277c3}"/>
+    </connection>
+    <connection type="figure" uuid="{fd877ec1-ad34-40a1-b061-5de449efb26c}">
+      <source node="{b4cb8b61-a012-412e-9e7c-e10aecfd6042}" port="{9a06ac11-5793-4c2a-949c-3bb1434d410e}"/>
+      <destination node="{0a2eea70-4044-49b8-bee5-6a3279029dee}" port="{922e0268-b9f6-4134-be5a-c2db4164925c}"/>
+    </connection>
+  </flow>
+  <flow cls="Flow" uuid="{20440c84-4b1c-4409-904f-965392ca1bae}" x="1572.0" y="2100.0">
+    <label>Event plot
+(using lines)</label>
+    <ports>
+      <output index="0" key="Port" parent="True" scheme="text" type="figure" uuid="{efa63a49-5561-4fb7-93b7-41332fb4c211}" x="1708.0" y="2100.0">
+        <label>Port</label>
+      </output>
+    </ports>
+    <node id="org.sysess.sympathy.random.randomtable" port_format="1.1" uuid="{15e5bacc-7c54-4772-9bf2-85768a27489a}" x="1488.0" y="2100.0">
+      <label>Random Table</label>
+      <version>0.1</version>
+      <description>Generate a Table with random numbers between 0 and 1.</description>
+      <author>Erik der Hagopian</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "column_entries": {
+          "editor": {
+            "max": 1000000,
+            "min": 0,
+            "step": 1,
+            "type": "spinbox"
+          },
+          "label": "Columns:",
+          "order": 0,
+          "type": "integer",
+          "value": 5
+        },
+        "column_length": {
+          "editor": {
+            "max": 100000000,
+            "min": 0,
+            "step": 1,
+            "type": "spinbox"
+          },
+          "label": "Rows:",
+          "order": 1,
+          "type": "integer",
+          "value": 25
+        },
+        "mask_values": {
+          "editor": null,
+          "label": "Randomly mask values",
+          "order": 2,
+          "type": "boolean",
+          "value": false
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{06aff3ea-6e94-424d-9c22-c26cffa5f10b}">
+          <label>Table with random numbers.</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.visualize.figure" port_format="1.1" uuid="{83591937-7317-448a-87de-858a6f3b9829}" x="1600.0" y="2100.0">
+      <label>Figure</label>
+      <version>0.1</version>
+      <description>Create a Figure from some data.</description>
+      <author>Benedikt Ziegler &amp; Magnus Sand&#233;n</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "parameters": {
+          "description": "The full configuration for this figure.",
+          "editor": null,
+          "label": "",
+          "order": 0,
+          "type": "json",
+          "value": {"axes": [{"xaxis": {"position": ["bottom", "value"], "visible": ["False", "value"]}, "yaxis": {"position": ["left", "value"], "label": ["Time", "value"]}, "plots": [{"startx": ["0.1", "py"], "starty": ["arg['0']", "py"], "endx": ["0.9", "py"], "endy": ["arg['0']", "py"], "label": ["Event A", "value"], "color": ["#0087cb", "value"], "type": "lines"}, {"startx": ["1.1", "py"], "starty": ["arg['1']", "py"], "endx": ["1.9", "py"], "endy": ["arg['1']", "py"], "label": ["Event B", "value"], "color": ["#c28100", "value"], "type": "lines"}, {"startx": ["2.1", "py"], "starty": ["arg['2']", "py"], "endx": ["2.9", "py"], "endy": ["arg['2']", "py"], "label": ["Event C", "value"], "color": ["#00aa00", "value"], "type": "lines"}], "title": ["Event plot of 3 event types", "value"], "legend": {"show": ["True", "value"], "loc": ["upper right", "value"]}}]}
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="input" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{e76eb933-25e4-4f13-b168-e51a1410ca07}">
+          <label>Input</label>
+        </input>
+        <output key="figure" scheme="text" type="figure" type_base="figure" uuid="{4a58e281-76cd-4d89-8b70-eb532d8c7db8}">
+          <label>Output figure</label>
+        </output>
+      </ports>
+    </node>
+    <connection type="figure" uuid="{d8ebc960-e0e7-41aa-aff4-db2e4b3aaef9}">
+      <source node="{83591937-7317-448a-87de-858a6f3b9829}" port="{4a58e281-76cd-4d89-8b70-eb532d8c7db8}"/>
+      <destination node="{20440c84-4b1c-4409-904f-965392ca1bae}" port="{efa63a49-5561-4fb7-93b7-41332fb4c211}"/>
+    </connection>
+    <connection type="table" uuid="{ed9cb2ed-01fa-4ba3-a657-ed6a8f7b9d95}">
+      <source node="{15e5bacc-7c54-4772-9bf2-85768a27489a}" port="{06aff3ea-6e94-424d-9c22-c26cffa5f10b}"/>
+      <destination node="{83591937-7317-448a-87de-858a6f3b9829}" port="{e76eb933-25e4-4f13-b168-e51a1410ca07}"/>
+    </connection>
+  </flow>
+  <flow cls="Flow" uuid="{35585018-7465-48d3-aaf2-11c7cd852dcb}" x="1092.0" y="1896.0">
+    <label>Timeline plot</label>
+    <ports>
+      <output index="0" key="Port" parent="True" scheme="text" type="figure" uuid="{c3f51515-d925-490d-9ba8-7a3742930c43}" x="1750.0" y="1975.0">
+        <label>Port</label>
+      </output>
+    </ports>
+    <node id="org.sysess.sympathy.create.createtable" port_format="1.1" uuid="{33184f64-8be1-492c-9c0f-260a690d8d52}" x="1500.0" y="1975.0">
+      <label>Manually Create Table</label>
+      <version>1.0</version>
+      <description>Create a Table from scratch in a configuration Gui.</description>
+      <author>Magnus Sand&#233;n</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "json_table": {
+          "editor": null,
+          "label": "GUI",
+          "order": 0,
+          "type": "string",
+          "value": "[[\"X\", \"f\", [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0]], [\"inputs\", \"U\", [\"x\", \"\", \"\", \"x\", \"x\", \"\", \"\", \"\"]], [\"status\", \"U\", [\"stopped\", \"processing\", \"processing\", \"stopped\", \"processing\", \"processing\", \"shutdown\", \"shutdown\"]]]"
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{8d5b82be-b78c-4c23-afd3-75ba45a78943}">
+          <label>Manually created table</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.visualize.figure" port_format="1.1" uuid="{bc6224fe-90e9-4875-9c5a-bd26644563b9}" x="1625.0" y="1975.0">
+      <label>Figure</label>
+      <version>0.1</version>
+      <description>Create a Figure from some data.</description>
+      <author>Benedikt Ziegler &amp; Magnus Sand&#233;n</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "parameters": {
+          "description": "The full configuration for this figure.",
+          "editor": null,
+          "label": "",
+          "order": 0,
+          "type": "json",
+          "value": {"axes": [{"xaxis": {"position": ["bottom", "value"]}, "yaxis": {"position": ["left", "value"]}, "plots": [{"xdata": ["arg['X']", "py"], "values": ["arg['inputs']", "py"], "label": ["inputs", "value"], "text_visible": ["False", "value"], "filled": ["False", "value"], "hatch": ["/", "value"], "type": "timeline"}, {"xdata": ["arg['X']", "py"], "values": ["arg['status']", "py"], "y_start": ["1.0", "value"], "label": ["status", "value"], "type": "timeline"}]}]}
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="input" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{381d92ca-052a-4fa5-8d5e-9c4179c90716}">
+          <label>Input</label>
+        </input>
+        <output key="figure" scheme="text" type="figure" type_base="figure" uuid="{95409ca6-7540-4f48-9bf2-5a98580cc9a6}">
+          <label>Output figure</label>
+        </output>
+      </ports>
+    </node>
+    <connection type="table" uuid="{5b8fa203-51d9-4dd8-bfff-18b2d88b15f6}">
+      <source node="{33184f64-8be1-492c-9c0f-260a690d8d52}" port="{8d5b82be-b78c-4c23-afd3-75ba45a78943}"/>
+      <destination node="{bc6224fe-90e9-4875-9c5a-bd26644563b9}" port="{381d92ca-052a-4fa5-8d5e-9c4179c90716}"/>
+    </connection>
+    <connection type="figure" uuid="{9f977e31-8f3c-4680-a0ca-78b1dc5385e2}">
+      <source node="{bc6224fe-90e9-4875-9c5a-bd26644563b9}" port="{95409ca6-7540-4f48-9bf2-5a98580cc9a6}"/>
+      <destination node="{35585018-7465-48d3-aaf2-11c7cd852dcb}" port="{c3f51515-d925-490d-9ba8-7a3742930c43}"/>
+    </connection>
+  </flow>
+  <flow cls="Flow" uuid="{40d929e2-1a50-4770-b297-7747b466d8f2}" x="1332.0" y="2004.0">
+    <label>Boxplot + scatterplot</label>
+    <ports>
+      <output index="0" key="Port" parent="True" scheme="text" type="figure" uuid="{6b81b5f0-13c2-4558-a7bc-6a022305d024}" x="1650.0" y="2150.0">
+        <label>Port</label>
+      </output>
+    </ports>
+    <node id="org.sysess.sympathy.machinelearning.example_datasets" port_format="1.1" uuid="{53bfbf15-028c-4194-955b-8598eaa3b4ae}" x="1425.0" y="2150.0">
+      <label>Example datasets</label>
+      <version>0.1</version>
+      <description>Exposes the example datasets from sklearn</description>
+      <author>Mathias Broxvall</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "classnames": {
+          "editor": null,
+          "label": "Class names",
+          "order": 1,
+          "type": "boolean",
+          "value": false
+        },
+        "color": {
+          "editor": null,
+          "label": "color",
+          "order": 2,
+          "type": "boolean",
+          "value": false
+        },
+        "dataset": {
+          "editor": null,
+          "label": "Dataset",
+          "order": 0,
+          "type": "string",
+          "value": "wine"
+        },
+        "min_pictures": {
+          "editor": null,
+          "label": "min_pictures",
+          "order": 3,
+          "type": "integer",
+          "value": 10
+        },
+        "resize": {
+          "editor": null,
+          "label": "resize",
+          "order": 4,
+          "type": "float",
+          "value": 0.5
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <output key="X" scheme="hdf5" type="table" type_base="table" uuid="{29bdf021-1e76-4066-b401-24283980a4d9}">
+          <label>X</label>
+        </output>
+        <output key="Y" scheme="hdf5" type="table" type_base="table" uuid="{8b428553-d438-4a4e-8a81-8de8e33a66cf}">
+          <label>Y</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.visualize.figure" port_format="1.1" uuid="{eeb9889a-0c88-490f-9ded-3be6f3f6acbb}" x="1550.0" y="2150.0">
+      <label>Figure</label>
+      <version>0.1</version>
+      <description>Create a Figure from some data.</description>
+      <author>Benedikt Ziegler &amp; Magnus Sand&#233;n</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "parameters": {
+          "description": "The full configuration for this figure.",
+          "editor": null,
+          "label": "",
+          "order": 0,
+          "type": "json",
+          "value": {"axes": [{"title": ["Wine alcohol vs total phenols", "value"], "xaxis": {"position": ["bottom", "value"], "label": ["Total Phenols", "value"]}, "yaxis": {"position": ["left", "value"], "label": ["Alcohol", "value"]}, "plots": [{"xdata": ["arg['total_phenols']", "py"], "ydata": ["arg['alcohol']", "py"], "color": ["arg['ash']", "py"], "cmap": ["viridis", "value"], "alpha": ["0.7", "value"], "colorbar": {"show": ["True", "value"], "label": ["Ash", "value"]}, "type": "scatter"}, {"ydata": ["arg['alcohol']", "py"], "positions": ["np.min(arg['total_phenols'])-0.5", "py"], "notch": ["True", "value"], "type": "box"}, {"ydata": ["arg['total_phenols']", "py"], "positions": ["np.min(arg['alcohol'])-0.5", "py"], "notch": ["True", "value"], "orientation": ["Horizontal", "value"], "type": "box"}]}]}
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="input" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{c522db5f-2406-40d6-8356-2f8c3737cad9}">
+          <label>Input</label>
+        </input>
+        <output key="figure" scheme="text" type="figure" type_base="figure" uuid="{2f7c2f71-e028-4663-8c0d-93f3d7660700}">
+          <label>Output figure</label>
+        </output>
+      </ports>
+    </node>
+    <connection type="table" uuid="{4d22056b-832c-40f5-aff0-abf57179eb2b}">
+      <source node="{53bfbf15-028c-4194-955b-8598eaa3b4ae}" port="{29bdf021-1e76-4066-b401-24283980a4d9}"/>
+      <destination node="{eeb9889a-0c88-490f-9ded-3be6f3f6acbb}" port="{c522db5f-2406-40d6-8356-2f8c3737cad9}"/>
+    </connection>
+    <connection type="figure" uuid="{b8a0288a-e5a5-44b4-9f2e-e856971a05c8}">
+      <source node="{eeb9889a-0c88-490f-9ded-3be6f3f6acbb}" port="{2f7c2f71-e028-4663-8c0d-93f3d7660700}"/>
+      <destination node="{40d929e2-1a50-4770-b297-7747b466d8f2}" port="{6b81b5f0-13c2-4558-a7bc-6a022305d024}"/>
+    </connection>
+  </flow>
+  <flow cls="Flow" uuid="{5bbafc2f-1059-4364-b542-17637646ea7c}" x="1332.0" y="1824.0">
+    <label>Simple boxplots</label>
+    <ports>
+      <output index="0" key="Port" parent="True" scheme="text" type="figure" uuid="{d8258de2-1cb4-497d-b8ab-4cb5b9e36da4}" x="1650.0" y="2300.0">
+        <label>Port</label>
+      </output>
+    </ports>
+    <node id="org.sysess.sympathy.machinelearning.example_datasets" port_format="1.1" uuid="{377c7173-3795-4eaf-b144-c7fb9374b4ce}" x="1350.0" y="2300.0">
+      <label>Example datasets</label>
+      <version>0.1</version>
+      <description>Exposes the example datasets from sklearn</description>
+      <author>Mathias Broxvall</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "classnames": {
+          "editor": null,
+          "label": "Class names",
+          "order": 1,
+          "type": "boolean",
+          "value": false
+        },
+        "color": {
+          "editor": null,
+          "label": "color",
+          "order": 2,
+          "type": "boolean",
+          "value": false
+        },
+        "dataset": {
+          "editor": null,
+          "label": "Dataset",
+          "order": 0,
+          "type": "string",
+          "value": "Iris"
+        },
+        "min_pictures": {
+          "editor": null,
+          "label": "min_pictures",
+          "order": 3,
+          "type": "integer",
+          "value": 10
+        },
+        "resize": {
+          "editor": null,
+          "label": "resize",
+          "order": 4,
+          "type": "float",
+          "value": 0.5
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <output key="X" scheme="hdf5" type="table" type_base="table" uuid="{cf22037f-f10c-47ca-897a-09d5dc504212}">
+          <label>X</label>
+        </output>
+        <output key="Y" scheme="hdf5" type="table" type_base="table" uuid="{c54e770f-f530-42ed-b2e3-5ee0e99a0e73}">
+          <label>Y</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.visualize.figure" port_format="1.1" uuid="{ebee812c-6e6a-46b4-8c1e-f6ef32c7dec8}" x="1500.0" y="2300.0">
+      <label>Figure</label>
+      <version>0.1</version>
+      <description>Create a Figure from some data.</description>
+      <author>Benedikt Ziegler &amp; Magnus Sand&#233;n</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "parameters": {
+          "description": "The full configuration for this figure.",
+          "editor": null,
+          "label": "",
+          "order": 0,
+          "type": "json",
+          "value": {"axes": [{"title": ["Iris dataset", "value"], "xaxis": {"position": ["bottom", "value"]}, "yaxis": {"position": ["left", "value"]}, "plots": [{"ydata": ["[arg[col_name] for col_name in arg.column_names()]", "py"], "bin_labels": ["arg.column_names()", "py"], "linewidth": ["2.0", "value"], "notch": ["True", "value"], "type": "box"}]}]}
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="input" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{b224b69a-3587-4dc6-b7d2-935521f7e0e9}">
+          <label>Input</label>
+        </input>
+        <output key="figure" scheme="text" type="figure" type_base="figure" uuid="{f2b90a2b-147e-4f08-8ed6-898af66a3140}">
+          <label>Output figure</label>
+        </output>
+      </ports>
+    </node>
+    <connection type="table" uuid="{2619da54-5869-438e-8c45-94ec002ea068}">
+      <source node="{377c7173-3795-4eaf-b144-c7fb9374b4ce}" port="{cf22037f-f10c-47ca-897a-09d5dc504212}"/>
+      <destination node="{ebee812c-6e6a-46b4-8c1e-f6ef32c7dec8}" port="{b224b69a-3587-4dc6-b7d2-935521f7e0e9}"/>
+    </connection>
+    <connection type="figure" uuid="{934e82ea-5e76-456f-8cce-e22616b5b8bf}">
+      <source node="{ebee812c-6e6a-46b4-8c1e-f6ef32c7dec8}" port="{f2b90a2b-147e-4f08-8ed6-898af66a3140}"/>
+      <destination node="{5bbafc2f-1059-4364-b542-17637646ea7c}" port="{d8258de2-1cb4-497d-b8ab-4cb5b9e36da4}"/>
+    </connection>
+  </flow>
+  <flow cls="Flow" uuid="{6363d407-cecb-4bd0-81f4-76fe6ac554cb}" x="1332.0" y="2100.0">
+    <label>PCA loading plots</label>
+    <aggregation type="json">
+    {
+      "conf_view": "TabBuilder",
+      "override": true,
+      "selected_uuids": [
+        "{89a1427c-f324-4411-9f7f-0ca8d409d391}"
+      ]
+    }
+    </aggregation>
+    <ports>
+      <output index="0" key="Port" parent="True" scheme="text" type="figure" uuid="{f6563575-a771-4730-b82a-b3ad7d0a47f8}" x="1250.0" y="2400.0">
+        <label>Port</label>
+      </output>
+    </ports>
+    <node id="org.sysess.sympathy.machinelearning.pca" port_format="1.1" uuid="{0f771d01-b26e-42ca-a36c-d7c749a88d4e}" x="400.0" y="2350.0">
+      <label>Principal Component Analysis (PCA)</label>
+      <version>0.1</version>
+      <description>Linear dimensionality reduction using Singular Value Decomposition of the data to project it to a lower dimensional space.</description>
+      <author>Mathias Broxvall</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "iterated_power": {
+          "editor": null,
+          "label": "iterated_power",
+          "order": 3,
+          "type": "string",
+          "value": "auto"
+        },
+        "n_components": {
+          "editor": null,
+          "label": "n_components",
+          "order": 0,
+          "type": "string",
+          "value": "2"
+        },
+        "svd_solver": {
+          "editor": null,
+          "label": "svd_solver",
+          "order": 1,
+          "type": "string",
+          "value": "auto"
+        },
+        "tol": {
+          "editor": null,
+          "label": "tol",
+          "order": 2,
+          "type": "string",
+          "value": "0.0"
+        },
+        "type": "group",
+        "whiten": {
+          "editor": null,
+          "label": "whiten",
+          "order": 4,
+          "type": "string",
+          "value": "False"
+        }
+      }
+      </parameters>
+      <ports>
+        <output key="model" scheme="hdf5" type="model" type_base="model" uuid="{79efd4f8-602d-48c2-abe8-bcf3bd96dd63}">
+          <label>Model</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.list.getitemlist" port_format="1.1" uuid="{60993cee-87b4-4c0d-af8b-04c9c6730a36}" x="925.0" y="2400.0">
+      <label>Get Item List</label>
+      <version>1.0</version>
+      <description></description>
+      <author>Erik der Hagopian</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "fail_strategy": {
+          "editor": {
+            "display": null,
+            "edit": false,
+            "filter": false,
+            "include_empty": false,
+            "options": [],
+            "type": "combobox"
+          },
+          "label": "Action on index out of bounds",
+          "list": ["Error", "Create Empty Item"],
+          "mode": "selected",
+          "order": 1,
+          "type": "list",
+          "value": [0],
+          "value_names": ["Error"]
+        },
+        "index": {
+          "editor": {
+            "display": null,
+            "edit": true,
+            "filter": false,
+            "include_empty": false,
+            "options": [],
+            "type": "combobox"
+          },
+          "label": "Index",
+          "list": ["0"],
+          "mode": "selected",
+          "order": 0,
+          "type": "list",
+          "value": [0],
+          "value_names": ["0"]
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="list" scheme="hdf5" type="[table]" type_base="[&lt;a&gt;]" uuid="{7ffb5e5b-033f-42a5-98b6-affa142ef874}">
+          <label>Input List</label>
+        </input>
+        <output key="item" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{2dba28a2-6ed7-424d-a693-dce2018fe6f5}">
+          <label>Output selected Item from List</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.machinelearning.example_datasets" port_format="1.1" uuid="{89a1427c-f324-4411-9f7f-0ca8d409d391}" x="400.0" y="2450.0">
+      <label>Example datasets</label>
+      <version>0.1</version>
+      <description>Exposes the example datasets from sklearn</description>
+      <author>Mathias Broxvall</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "classnames": {
+          "editor": null,
+          "label": "Class names",
+          "order": 1,
+          "type": "boolean",
+          "value": false
+        },
+        "color": {
+          "editor": null,
+          "label": "color",
+          "order": 2,
+          "type": "boolean",
+          "value": false
+        },
+        "dataset": {
+          "editor": null,
+          "label": "Dataset",
+          "order": 0,
+          "type": "string",
+          "value": "Diabetes"
+        },
+        "min_pictures": {
+          "editor": null,
+          "label": "min_pictures",
+          "order": 3,
+          "type": "integer",
+          "value": 10
+        },
+        "resize": {
+          "editor": null,
+          "label": "resize",
+          "order": 4,
+          "type": "float",
+          "value": 0.5
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <output key="X" scheme="hdf5" type="table" type_base="table" uuid="{6cb5175b-0a9a-43e4-a6d6-090840068919}">
+          <label>X</label>
+        </output>
+        <output key="Y" scheme="hdf5" type="table" type_base="table" uuid="{8d0b3a85-2dbe-42f5-9e11-aed1347530e3}">
+          <label>Y</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.data.table.transposetablenew" port_format="1.1" uuid="{8b4f1782-6a81-4dfa-8898-80cce78d6b23}" x="1050.0" y="2400.0">
+      <label>Transpose Table</label>
+      <version>1.0</version>
+      <description></description>
+      <author>Andreas Tagerud</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "columns": {
+          "editor": {
+            "display": null,
+            "edit": true,
+            "filter": false,
+            "include_empty": false,
+            "options": [],
+            "type": "combobox"
+          },
+          "label": "Column names column",
+          "list": ["age", "sex", "bmi", "bp", "s1", "s2", "s3", "s4", "s5", "s6"],
+          "mode": "selected",
+          "order": 2,
+          "type": "list",
+          "value": [],
+          "value_names": []
+        },
+        "reverse_col_names": {
+          "editor": null,
+          "label": "Use selected column as column names",
+          "order": 1,
+          "type": "boolean",
+          "value": false
+        },
+        "type": "group",
+        "use_col_names": {
+          "editor": null,
+          "label": "Column names as first column",
+          "order": 0,
+          "type": "boolean",
+          "value": true
+        }
+      }
+      </parameters>
+      <ports>
+        <input key="input" scheme="hdf5" type="table" type_base="table" uuid="{957bbcc9-fdbd-469e-91e2-982cd8a3b047}">
+          <label>The Table to transpose</label>
+        </input>
+        <output key="output" scheme="hdf5" type="table" type_base="table" uuid="{ca4a892d-dd69-4d9b-a7c6-4d67e304f5d0}">
+          <label>The transposed Table</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.visualize.figure" port_format="1.1" uuid="{938d6058-d858-48e1-a56a-b7755c656f21}" x="1150.0" y="2400.0">
+      <label>Figure</label>
+      <version>0.1</version>
+      <description>Create a Figure from some data.</description>
+      <author>Benedikt Ziegler &amp; Magnus Sand&#233;n</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "parameters": {
+          "description": "The full configuration for this figure.",
+          "editor": null,
+          "label": "",
+          "order": 0,
+          "type": "json",
+          "value": {"axes": [{"title": ["'Loading plot for dataset:' +arg.get_name()", "py"], "frameon": ["True", "value"], "xaxis": {"position": ["bottom", "value"], "min": ["-1.0", "value"], "spinex": ["center", "value"]}, "yaxis": {"position": ["left", "value"], "min": ["-1.0", "value"], "max": ["1.0", "value"], "spiney": ["center", "value"]}, "plots": [{"xdata": ["arg['0']", "py"], "ydata": ["arg['1']", "py"], "label": ["PCA loadings", "value"], "zorder": ["2", "value"], "type": "scatter"}, {"weights": ["[1]", "py"], "colors": ["'#aaaaaa11'", "py"], "edgecolor": ["#00000033", "value"], "type": "pie"}, {"text": ["arg['Column names']", "py"], "textx": ["arg['0']+0.05", "py"], "texty": ["arg['1']", "py"], "vert_align": ["center", "value"], "horz_align": ["left", "value"], "boxbackground": {"color": ["#ffffffcc", "value"], "border": ["#00000011", "value"]}, "type": "annotation"}], "legend": {"show": ["True", "value"]}, "grid": {"show": ["True", "value"], "color": ["#eeeeee", "value"]}}]}
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="input" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{d6995392-4112-4754-9a9d-2806ec6dc5f8}">
+          <label>Input</label>
+        </input>
+        <output key="figure" scheme="text" type="figure" type_base="figure" uuid="{e5b18abb-eb71-4bb3-99db-7de8d6916412}">
+          <label>Output figure</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.machinelearning.extract_attributes" port_format="1.1" uuid="{95525f21-9f13-4b39-98de-461e0c359b25}" x="625.0" y="2375.0">
+      <label>Extract Attributes</label>
+      <version>0.1</version>
+      <description>Extract attributes from a fitted model, requires model dependent name for the attribute</description>
+      <author>Mathias Broxvall</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "attribute": {
+          "editor": null,
+          "label": "attribute",
+          "order": 0,
+          "type": "string",
+          "value": "components_"
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="in-model" scheme="hdf5" type="model" type_base="model" uuid="{0a17f331-aa59-403b-bfb3-83b08a7881f6}">
+          <label>Input model</label>
+        </input>
+        <output key="out" scheme="hdf5" type="[table]" type_base="[table]" uuid="{b1ea6a37-003a-4560-a4b5-63e744afe9b7}">
+          <label>Attributes</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.data.table.settablesnametable" port_format="1.1" uuid="{99691a5c-fa84-4218-9469-479386e22407}" x="800.0" y="2400.0">
+      <label>Set Tables Name with Table</label>
+      <version>1.0</version>
+      <description>Set the name of a list of Tables</description>
+      <author>Erik der Hagopian</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "names": {
+          "editor": {
+            "edit": true,
+            "filter": true,
+            "selection": "single",
+            "type": "listview"
+          },
+          "label": "Select name column",
+          "list": ["Table names"],
+          "mode": "selected",
+          "order": 0,
+          "type": "list",
+          "value": [0],
+          "value_names": ["Table names"]
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="input" scheme="hdf5" type="[table]" type_base="[table]" uuid="{f9791c12-5cd2-4c0b-ac95-689f6e53c837}">
+          <label>Input Tables</label>
+        </input>
+        <input key="names" scheme="hdf5" type="table" type_base="table" uuid="{d570d14d-60b0-47ca-a8aa-8463a3facaae}">
+          <label>A Table containing a column with names</label>
+        </input>
+        <output key="output" scheme="hdf5" type="[table]" type_base="[table]" uuid="{da65937e-0a20-46d7-88a6-9c016a58fb16}">
+          <label>The list of Tables with the name attribute changed according to node configuration. All Tables will get the same name.</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.data.table.gettablesnamestable" port_format="1.1" uuid="{b39a8529-8e81-48c6-a62e-985c2b6da1be}" x="525.0" y="2500.0">
+      <label>Get Table Name</label>
+      <version>1.0</version>
+      <description>Get name of a Table</description>
+      <author>Andreas T&#229;gerud</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">{"type": "group"}</parameters>
+      <ports>
+        <input key="port1" scheme="hdf5" type="table" type_base="table" uuid="{9d79829a-f732-4676-befe-76b8471a1e60}">
+          <label>Input Table</label>
+        </input>
+        <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{882588a0-9524-457d-a434-cebb7f3375aa}">
+          <label>Table name</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.machinelearning.fit" port_format="1.1" uuid="{cf8db7e0-04a2-4012-bbf4-c45803ea884d}" x="525.0" y="2375.0">
+      <label>Fit</label>
+      <version>0.1</version>
+      <description>Trains a model. Use "Create Input Port &gt; Y" for supervised training</description>
+      <author>Mathias Broxvall</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">{"type": "group"}</parameters>
+      <ports>
+        <input key="in-model" scheme="hdf5" type="model" type_base="model" uuid="{de285b1e-7a58-4a91-8fb2-674b7ef50176}">
+          <label>Input model</label>
+        </input>
+        <input key="X" scheme="hdf5" type="table" type_base="table" uuid="{3cb0409b-b87f-4a91-9c56-466ca78f7f7f}">
+          <label>X</label>
+        </input>
+        <output key="out-model" scheme="hdf5" type="model" type_base="model" uuid="{e984cc0a-7f98-4749-a1f2-466bcbfc8128}">
+          <label>Output model</label>
+        </output>
+      </ports>
+    </node>
+    <connection type="[table]" uuid="{08f95a56-e576-4241-8c7c-67851b31f2a4}">
+      <source node="{95525f21-9f13-4b39-98de-461e0c359b25}" port="{b1ea6a37-003a-4560-a4b5-63e744afe9b7}"/>
+      <destination node="{99691a5c-fa84-4218-9469-479386e22407}" port="{f9791c12-5cd2-4c0b-ac95-689f6e53c837}"/>
+    </connection>
+    <connection type="[table]" uuid="{2dd458ac-bde2-422c-b202-de3f1c61a2d6}">
+      <source node="{99691a5c-fa84-4218-9469-479386e22407}" port="{da65937e-0a20-46d7-88a6-9c016a58fb16}"/>
+      <destination node="{60993cee-87b4-4c0d-af8b-04c9c6730a36}" port="{7ffb5e5b-033f-42a5-98b6-affa142ef874}"/>
+    </connection>
+    <connection type="table" uuid="{3d8dcccc-2515-47b4-b559-faf91011df3e}">
+      <source node="{60993cee-87b4-4c0d-af8b-04c9c6730a36}" port="{2dba28a2-6ed7-424d-a693-dce2018fe6f5}"/>
+      <destination node="{8b4f1782-6a81-4dfa-8898-80cce78d6b23}" port="{957bbcc9-fdbd-469e-91e2-982cd8a3b047}"/>
+    </connection>
+    <connection type="table" uuid="{4eeb2f65-0faa-4f5c-b453-710943ec4717}">
+      <source node="{89a1427c-f324-4411-9f7f-0ca8d409d391}" port="{6cb5175b-0a9a-43e4-a6d6-090840068919}"/>
+      <destination node="{cf8db7e0-04a2-4012-bbf4-c45803ea884d}" port="{3cb0409b-b87f-4a91-9c56-466ca78f7f7f}"/>
+    </connection>
+    <connection type="model" uuid="{60daf086-97bb-45f4-b743-de250ff004a4}">
+      <source node="{0f771d01-b26e-42ca-a36c-d7c749a88d4e}" port="{79efd4f8-602d-48c2-abe8-bcf3bd96dd63}"/>
+      <destination node="{cf8db7e0-04a2-4012-bbf4-c45803ea884d}" port="{de285b1e-7a58-4a91-8fb2-674b7ef50176}"/>
+    </connection>
+    <connection type="table" uuid="{6de977be-7304-496e-beac-9f9851f0d5fb}">
+      <source node="{89a1427c-f324-4411-9f7f-0ca8d409d391}" port="{6cb5175b-0a9a-43e4-a6d6-090840068919}"/>
+      <destination node="{b39a8529-8e81-48c6-a62e-985c2b6da1be}" port="{9d79829a-f732-4676-befe-76b8471a1e60}"/>
+    </connection>
+    <connection type="table" uuid="{807c29af-d296-4d3d-9062-5692f82aff2a}">
+      <source node="{b39a8529-8e81-48c6-a62e-985c2b6da1be}" port="{882588a0-9524-457d-a434-cebb7f3375aa}"/>
+      <destination node="{99691a5c-fa84-4218-9469-479386e22407}" port="{d570d14d-60b0-47ca-a8aa-8463a3facaae}"/>
+      <route x="725.0" y="2525.0"/>
+    </connection>
+    <connection type="figure" uuid="{8275e799-2552-4630-9c5b-27ee0372adec}">
+      <source node="{938d6058-d858-48e1-a56a-b7755c656f21}" port="{e5b18abb-eb71-4bb3-99db-7de8d6916412}"/>
+      <destination node="{6363d407-cecb-4bd0-81f4-76fe6ac554cb}" port="{f6563575-a771-4730-b82a-b3ad7d0a47f8}"/>
+    </connection>
+    <connection type="table" uuid="{9092a203-153b-45be-9854-daf7f39debc3}">
+      <source node="{8b4f1782-6a81-4dfa-8898-80cce78d6b23}" port="{ca4a892d-dd69-4d9b-a7c6-4d67e304f5d0}"/>
+      <destination node="{938d6058-d858-48e1-a56a-b7755c656f21}" port="{d6995392-4112-4754-9a9d-2806ec6dc5f8}"/>
+    </connection>
+    <connection type="model" uuid="{e50ddc45-b512-4520-bcac-2d32bb54c365}">
+      <source node="{cf8db7e0-04a2-4012-bbf4-c45803ea884d}" port="{e984cc0a-7f98-4749-a1f2-466bcbfc8128}"/>
+      <destination node="{95525f21-9f13-4b39-98de-461e0c359b25}" port="{0a17f331-aa59-403b-bfb3-83b08a7881f6}"/>
+    </connection>
+    <text color="Beige" height="168.0" uuid="{5d47f519-b090-4e57-9003-b377cf93b5e4}" width="624.0" x="375.0" y="2125.0">#PCA loading plot
+
+Do a PCA analysis, plot the generated components (loadings).
+
+We copy the table name from dataset to the loadings table to generate the plot title. A piechart with one 100% slice gives the classical circle as a background. 
+
+Note the Z-order on the scatter plot and the "show frame" on the piechart. </text>
+  </flow>
+  <flow cls="Flow" uuid="{76fc9a28-fb79-4008-9336-cebc8e6fe74f}" x="1092.0" y="1704.0">
+    <label>Annotating when
+two graphs intersect</label>
+    <ports>
+      <output index="0" key="Port" parent="True" scheme="text" type="figure" uuid="{8bca6fa3-43df-44d2-807d-319cfedcbdae}" x="1596.0" y="2040.0">
+        <label>Port</label>
+      </output>
+    </ports>
+    <node id="org.sysess.sympathy.visualize.figure" port_format="1.1" uuid="{07e68728-01c6-4322-a0cf-d7358516548e}" x="1200.0" y="2100.0">
+      <label>Draw the intersections</label>
+      <version>0.1</version>
+      <description>Create a Figure from some data.</description>
+      <author>Benedikt Ziegler &amp; Magnus Sand&#233;n</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "parameters": {
+          "description": "The full configuration for this figure.",
+          "editor": null,
+          "label": "",
+          "order": 0,
+          "type": "json",
+          "value": {"axes": [{"xaxis": {"position": ["bottom", "value"], "spinex": ["center", "value"]}, "yaxis": {"position": ["left", "value"], "spiney": ["center", "value"]}, "plots": [{"text": ["Intersection", "value"], "textx": ["arg['intersect_x']-0.5", "py"], "texty": ["arg['intersect_y']+0.5", "py"], "horz_align": ["center", "value"], "arrow": {"annotate_x": ["arg['intersect_x']", "py"], "annotate_y": ["arg['intersect_y']", "py"]}, "boxbackground": {"color": ["#ffffff77", "value"], "border": ["#000000", "value"], "style": ["rounded", "value"]}, "type": "annotation"}], "title": ["Finding the intersection of functions", "value"], "legend": {"show": ["True", "value"]}}]}
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="input" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{c3e49d4c-c49c-4794-84d7-0bd56fc77c92}">
+          <label>Input</label>
+        </input>
+        <output key="figure" scheme="text" type="figure" type_base="figure" uuid="{97c91412-e1b4-4b9d-8e55-aa624b503d4d}">
+          <label>Output figure</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.list.itemtolist" port_format="1.1" uuid="{1736a9be-da83-4c3f-b6b2-b8f8ee2d7469}" x="1332.0" y="2040.0">
+      <label>Item to List</label>
+      <version>1.0</version>
+      <description></description>
+      <author>Erik der Hagopian</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "n": {
+          "editor": null,
+          "label": "Repeat number of times",
+          "order": 0,
+          "type": "integer",
+          "value": 1
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="item" scheme="text" type="figure" type_base="&lt;a&gt;" uuid="{2f645961-ffe6-4e97-9541-e37ff1bfb2be}">
+          <label>Input Item</label>
+        </input>
+        <input key="item" scheme="text" type="figure" type_base="&lt;a&gt;" uuid="{c7eeca4d-c2c4-4cff-87f7-07adbe9f287d}">
+          <label>Input Item</label>
+        </input>
+        <output key="list" scheme="hdf5" type="[figure]" type_base="[&lt;a&gt;]" uuid="{9a2959b0-4042-4bef-92f7-c7aabea8a084}">
+          <label>Item as List</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.data.table.calculatorgeneric" port_format="1.1" uuid="{1d621a0f-1f6e-4c15-ae83-0db958c4487f}" x="1872.0" y="2136.0">
+      <label>Find intersections</label>
+      <version>3.0</version>
+      <description>Create columns by evaluating python calculations.</description>
+      <author>Greger Cronquist, Magnus Sand&#233;n, Sara Gustafzelius &amp; Benedikt Ziegler</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "calc_attrs_dict": {
+          "editor": null,
+          "label": "",
+          "order": 1,
+          "type": "string",
+          "value": "[]"
+        },
+        "calc_list": {
+          "editor": null,
+          "label": "List of calculations",
+          "list": ["near = np.abs(arg['X_cube'] - arg['X_square']) &lt; 1e-2 #ENABLED:0", "intersection = ca.find_seq(res['near'])[:,0] #ENABLED:1"],
+          "mode": "selected",
+          "order": 0,
+          "type": "list",
+          "value": [],
+          "value_names": []
+        },
+        "copy_input": {
+          "editor": null,
+          "label": "Copy input",
+          "order": 2,
+          "type": "boolean",
+          "value": false
+        },
+        "fail_strategy": {
+          "editor": {
+            "display": null,
+            "edit": false,
+            "filter": false,
+            "include_empty": false,
+            "options": [],
+            "type": "combobox"
+          },
+          "label": "Action on calculation failure",
+          "list": ["Exception", "Skip calculation"],
+          "mode": "selected",
+          "order": 3,
+          "type": "list",
+          "value": [0],
+          "value_names": ["Exception"]
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="port0" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{0eee7941-ef11-4756-8f32-3f1d1a4877b5}">
+          <label>Generic Input</label>
+        </input>
+        <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{c2cf4c1e-22d5-4e84-951d-87d9234baf9a}">
+          <label>Table with results from the calculations.</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.data.table.calculatorgeneric" port_format="1.1" uuid="{29b27e19-5b7d-46cf-9cd1-52c9ca88821e}" x="1788.0" y="2052.0">
+      <label>Data</label>
+      <version>3.0</version>
+      <description>Create columns by evaluating python calculations.</description>
+      <author>Greger Cronquist, Magnus Sand&#233;n, Sara Gustafzelius &amp; Benedikt Ziegler</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "calc_attrs_dict": {
+          "editor": null,
+          "label": "",
+          "order": 1,
+          "type": "string",
+          "value": "[]"
+        },
+        "calc_list": {
+          "editor": null,
+          "label": "List of calculations",
+          "list": ["x = np.linspace(-1.5, 1.5, 500) #ENABLED:1", "X_square = np.power(res['x'], 2) #ENABLED:1", "X_cube = np.power(res['x'], 3) #ENABLED:1"],
+          "mode": "selected",
+          "order": 0,
+          "type": "list",
+          "value": [],
+          "value_names": []
+        },
+        "copy_input": {
+          "editor": null,
+          "label": "Copy input",
+          "order": 2,
+          "type": "boolean",
+          "value": false
+        },
+        "fail_strategy": {
+          "editor": {
+            "display": null,
+            "edit": false,
+            "filter": false,
+            "include_empty": false,
+            "options": [],
+            "type": "combobox"
+          },
+          "label": "Action on calculation failure",
+          "list": ["Exception", "Skip calculation"],
+          "mode": "selected",
+          "order": 3,
+          "type": "list",
+          "value": [0],
+          "value_names": ["Exception"]
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{aa853d9d-6dd5-481a-a0f9-d08fdeffd295}">
+          <label>Table with results from the calculations.</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.visualize.figurecompressorgui" port_format="1.1" uuid="{3b6fd945-ebdc-45b2-9d2b-860073882c41}" x="1464.0" y="2040.0">
+      <label>Figure Compressor</label>
+      <version>0.3</version>
+      <description>Compress a list of Figures to a single Figure</description>
+      <author>Benedikt Ziegler</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "auto_recolor": {
+          "editor": null,
+          "label": "Auto recolor",
+          "order": 4,
+          "type": "boolean",
+          "value": false
+        },
+        "auto_rescale": {
+          "editor": null,
+          "label": "Auto rescale axes",
+          "order": 5,
+          "type": "boolean",
+          "value": true
+        },
+        "join_colorbars": {
+          "editor": null,
+          "label": "Make first colorbar global",
+          "order": 3,
+          "type": "boolean",
+          "value": false
+        },
+        "join_legends": {
+          "editor": null,
+          "label": "Join legends",
+          "order": 1,
+          "type": "boolean",
+          "value": true
+        },
+        "legend_location": {
+          "editor": {
+            "display": null,
+            "edit": false,
+            "filter": false,
+            "include_empty": false,
+            "options": [],
+            "type": "combobox"
+          },
+          "label": "Legend position:",
+          "list": ["best", "center", "center left", "center right", "lower center", "lower left", "lower right", "right", "upper center", "upper left", "upper right"],
+          "mode": "selected",
+          "order": 2,
+          "type": "list",
+          "value": [0],
+          "value_names": ["best"]
+        },
+        "parent_figure": {
+          "editor": {
+            "display": null,
+            "edit": false,
+            "filter": false,
+            "include_empty": false,
+            "options": [],
+            "type": "combobox"
+          },
+          "label": "Parent figure:",
+          "list": [],
+          "mode": "selected",
+          "order": 0,
+          "type": "list",
+          "value": [],
+          "value_names": []
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="input" scheme="hdf5" type="[figure]" type_base="[figure]" uuid="{53fe046b-f06e-4d34-b0b5-d21174bf56d5}">
+          <label>List of Figures</label>
+        </input>
+        <output key="figure" scheme="text" type="figure" type_base="figure" uuid="{b6484af3-2380-439b-8d00-fe10627b72bd}">
+          <label>A Figure with the configured axes, lines, labels, etc</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.visualize.figure" port_format="1.1" uuid="{721aa8ca-ee05-4c95-a63f-260d08d8047a}" x="2075.0" y="2050.0">
+      <label>Figure</label>
+      <version>0.1</version>
+      <description>Create a Figure from some data.</description>
+      <author>Benedikt Ziegler &amp; Magnus Sand&#233;n</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "parameters": {
+          "description": "The full configuration for this figure.",
+          "editor": null,
+          "label": "",
+          "order": 0,
+          "type": "json",
+          "value": {"axes": [{"title": ["Finding the intersection of functions", "value"], "xaxis": {"position": ["bottom", "value"], "spinex": ["center", "value"]}, "yaxis": {"position": ["left", "value"], "spiney": ["center", "value"]}, "plots": [{"xdata": ["arg[0]['x']", "py"], "ydata": ["arg[0]['X_square']", "py"], "label": ["X_square", "value"], "type": "line"}, {"xdata": ["arg[0]['x']", "py"], "ydata": ["arg[0]['X_cube']", "py"], "label": ["X_cube", "value"], "type": "line"}, {"text": ["Intersection", "value"], "textx": ["arg[0]['x'][arg[1]['intersection']]-0.5", "py"], "texty": ["arg[0]['X_cube'][arg[1]['intersection']]+0.5", "py"], "horz_align": ["center", "value"], "boxbackground": {"color": ["#ffffff77", "value"], "border": ["#000000", "value"], "style": ["rounded", "value"]}, "arrow": {"annotate_x": ["arg[0]['x'][arg[1]['intersection']]", "py"], "annotate_y": ["arg[0]['X_cube'][arg[1]['intersection']]", "py"]}, "type": "annotation"}], "legend": {"show": ["True", "value"]}}]}
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="input" scheme="hdf5" type="(table, table)" type_base="&lt;a&gt;" uuid="{8eb7ff68-6536-4491-bedb-97caab4d445a}">
+          <label>Input</label>
+        </input>
+        <output key="figure" scheme="text" type="figure" type_base="figure" uuid="{bf0c8a60-5ede-43cb-b671-fefe2e3334b0}">
+          <label>Output figure</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.data.table.calculatorgeneric" port_format="1.1" uuid="{75420911-13cc-4456-a00b-497533859c09}" x="1050.0" y="2100.0">
+      <label>Find intersections</label>
+      <version>3.0</version>
+      <description>Create columns by evaluating python calculations.</description>
+      <author>Greger Cronquist, Magnus Sand&#233;n, Sara Gustafzelius &amp; Benedikt Ziegler</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "calc_attrs_dict": {
+          "editor": null,
+          "label": "",
+          "order": 1,
+          "type": "string",
+          "value": "[]"
+        },
+        "calc_list": {
+          "editor": null,
+          "label": "List of calculations",
+          "list": ["near = np.abs(arg['X_cube'] - arg['X_square']) &lt; 1e-2 #ENABLED:0", "intersection = ca.find_seq(res['near'])[:,0] #ENABLED:1", "intersect_x = arg['x'][res['intersection']] #ENABLED:1", "intersect_y = arg['X_cube'][res['intersection']] #ENABLED:1"],
+          "mode": "selected",
+          "order": 0,
+          "type": "list",
+          "value": [],
+          "value_names": []
+        },
+        "copy_input": {
+          "editor": null,
+          "label": "Copy input",
+          "order": 2,
+          "type": "boolean",
+          "value": false
+        },
+        "fail_strategy": {
+          "editor": {
+            "display": null,
+            "edit": false,
+            "filter": false,
+            "include_empty": false,
+            "options": [],
+            "type": "combobox"
+          },
+          "label": "Action on calculation failure",
+          "list": ["Exception", "Skip calculation"],
+          "mode": "selected",
+          "order": 3,
+          "type": "list",
+          "value": [0],
+          "value_names": ["Exception"]
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="port0" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{1cd09c69-d59e-4913-9901-a8da3341623b}">
+          <label>Generic Input</label>
+        </input>
+        <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{3d13c15a-b12c-415f-8ffc-07b6161a4589}">
+          <label>Table with results from the calculations.</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.tuple.tuple2" port_format="1.1" uuid="{87ba0d23-bf93-4fdf-98ec-bf85fbf6251d}" x="1944.0" y="2052.0">
+      <label>Tuple</label>
+      <version>1.0</version>
+      <description></description>
+      <author>Erik der Hagopian</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">{"type": "group"}</parameters>
+      <ports>
+        <input key="input" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{15193ce0-99d0-4798-9ee9-ef68792bdb0b}">
+          <label>Input</label>
+        </input>
+        <input key="input" scheme="hdf5" type="table" type_base="&lt;b&gt;" uuid="{805698c5-21f4-4766-9d69-725dd71ba8cd}">
+          <label>Input</label>
+        </input>
+        <output key="output" scheme="hdf5" type="(table, table)" type_base="(&lt;a&gt;, &lt;b&gt;)" uuid="{27549c75-09a6-4a38-97b6-620fefc6de44}">
+          <label>Output</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.data.table.calculatorgeneric" port_format="1.1" uuid="{9131215e-003b-4a76-815a-55ecfd880ee9}" x="960.0" y="2028.0">
+      <label>Data</label>
+      <version>3.0</version>
+      <description>Create columns by evaluating python calculations.</description>
+      <author>Greger Cronquist, Magnus Sand&#233;n, Sara Gustafzelius &amp; Benedikt Ziegler</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "calc_attrs_dict": {
+          "editor": null,
+          "label": "",
+          "order": 1,
+          "type": "string",
+          "value": "[]"
+        },
+        "calc_list": {
+          "editor": null,
+          "label": "List of calculations",
+          "list": ["x = np.linspace(-1.5, 1.5, 500) #ENABLED:1", "X_square = np.power(res['x'], 2) #ENABLED:1", "X_cube = np.power(res['x'], 3) #ENABLED:1"],
+          "mode": "selected",
+          "order": 0,
+          "type": "list",
+          "value": [],
+          "value_names": []
+        },
+        "copy_input": {
+          "editor": null,
+          "label": "Copy input",
+          "order": 2,
+          "type": "boolean",
+          "value": false
+        },
+        "fail_strategy": {
+          "editor": {
+            "display": null,
+            "edit": false,
+            "filter": false,
+            "include_empty": false,
+            "options": [],
+            "type": "combobox"
+          },
+          "label": "Action on calculation failure",
+          "list": ["Exception", "Skip calculation"],
+          "mode": "selected",
+          "order": 3,
+          "type": "list",
+          "value": [0],
+          "value_names": ["Exception"]
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{607bbdfd-c06a-438a-9eb3-6fc71b0ee02b}">
+          <label>Table with results from the calculations.</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.visualize.figure" port_format="1.1" uuid="{f18b5236-931e-4860-be55-eeb0a2d7897c}" x="1200.0" y="2025.0">
+      <label>Draw the functions</label>
+      <version>0.1</version>
+      <description>Create a Figure from some data.</description>
+      <author>Benedikt Ziegler &amp; Magnus Sand&#233;n</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "parameters": {
+          "description": "The full configuration for this figure.",
+          "editor": null,
+          "label": "",
+          "order": 0,
+          "type": "json",
+          "value": {"axes": [{"title": ["Finding the intersection of functions", "value"], "xaxis": {"position": ["bottom", "value"], "spinex": ["center", "value"]}, "yaxis": {"position": ["left", "value"], "spiney": ["center", "value"]}, "plots": [{"xdata": ["arg['x']", "py"], "ydata": ["arg['X_square']", "py"], "label": ["X_square", "value"], "type": "line"}, {"xdata": ["arg['x']", "py"], "ydata": ["arg['X_cube']", "py"], "label": ["X_cube", "value"], "type": "line"}], "legend": {"show": ["True", "value"]}}]}
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="input" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{31aa471b-e8fe-4aa7-832c-2b1af86edf28}">
+          <label>Input</label>
+        </input>
+        <output key="figure" scheme="text" type="figure" type_base="figure" uuid="{3c415a15-415c-44b6-a47d-2e7379be5457}">
+          <label>Output figure</label>
+        </output>
+      </ports>
+    </node>
+    <connection type="figure" uuid="{2a349080-7531-4f48-a587-1e56f72aee49}">
+      <source node="{07e68728-01c6-4322-a0cf-d7358516548e}" port="{97c91412-e1b4-4b9d-8e55-aa624b503d4d}"/>
+      <destination node="{1736a9be-da83-4c3f-b6b2-b8f8ee2d7469}" port="{c7eeca4d-c2c4-4cff-87f7-07adbe9f287d}"/>
+    </connection>
+    <connection type="figure" uuid="{32eba9d4-87fb-4f1b-bc3c-d03856473b98}">
+      <source node="{3b6fd945-ebdc-45b2-9d2b-860073882c41}" port="{b6484af3-2380-439b-8d00-fe10627b72bd}"/>
+      <destination node="{76fc9a28-fb79-4008-9336-cebc8e6fe74f}" port="{8bca6fa3-43df-44d2-807d-319cfedcbdae}"/>
+    </connection>
+    <connection type="table" uuid="{39e1040e-cf14-4971-aa40-088cb7356af3}">
+      <source node="{9131215e-003b-4a76-815a-55ecfd880ee9}" port="{607bbdfd-c06a-438a-9eb3-6fc71b0ee02b}"/>
+      <destination node="{75420911-13cc-4456-a00b-497533859c09}" port="{1cd09c69-d59e-4913-9901-a8da3341623b}"/>
+    </connection>
+    <connection type="(table, table)" uuid="{4878eb62-701c-4a5e-adca-43b7d92dde24}">
+      <source node="{87ba0d23-bf93-4fdf-98ec-bf85fbf6251d}" port="{27549c75-09a6-4a38-97b6-620fefc6de44}"/>
+      <destination node="{721aa8ca-ee05-4c95-a63f-260d08d8047a}" port="{8eb7ff68-6536-4491-bedb-97caab4d445a}"/>
+    </connection>
+    <connection type="table" uuid="{4d17ecf8-063a-4784-889c-0d8d776a112e}">
+      <source node="{29b27e19-5b7d-46cf-9cd1-52c9ca88821e}" port="{aa853d9d-6dd5-481a-a0f9-d08fdeffd295}"/>
+      <destination node="{87ba0d23-bf93-4fdf-98ec-bf85fbf6251d}" port="{15193ce0-99d0-4798-9ee9-ef68792bdb0b}"/>
+    </connection>
+    <connection type="table" uuid="{765f8c2a-dee6-47ef-af55-d54c9e3b2fc4}">
+      <source node="{29b27e19-5b7d-46cf-9cd1-52c9ca88821e}" port="{aa853d9d-6dd5-481a-a0f9-d08fdeffd295}"/>
+      <destination node="{1d621a0f-1f6e-4c15-ae83-0db958c4487f}" port="{0eee7941-ef11-4756-8f32-3f1d1a4877b5}"/>
+    </connection>
+    <connection type="table" uuid="{834122f2-2d8c-4717-9835-c11946f96cb9}">
+      <source node="{9131215e-003b-4a76-815a-55ecfd880ee9}" port="{607bbdfd-c06a-438a-9eb3-6fc71b0ee02b}"/>
+      <destination node="{f18b5236-931e-4860-be55-eeb0a2d7897c}" port="{31aa471b-e8fe-4aa7-832c-2b1af86edf28}"/>
+    </connection>
+    <connection type="[figure]" uuid="{843f39c7-f295-4ebf-ab87-3ac5d865e0d9}">
+      <source node="{1736a9be-da83-4c3f-b6b2-b8f8ee2d7469}" port="{9a2959b0-4042-4bef-92f7-c7aabea8a084}"/>
+      <destination node="{3b6fd945-ebdc-45b2-9d2b-860073882c41}" port="{53fe046b-f06e-4d34-b0b5-d21174bf56d5}"/>
+    </connection>
+    <connection type="table" uuid="{93aaf5ac-26dc-46d4-90e6-728f946fd5ba}">
+      <source node="{1d621a0f-1f6e-4c15-ae83-0db958c4487f}" port="{c2cf4c1e-22d5-4e84-951d-87d9234baf9a}"/>
+      <destination node="{87ba0d23-bf93-4fdf-98ec-bf85fbf6251d}" port="{805698c5-21f4-4766-9d69-725dd71ba8cd}"/>
+    </connection>
+    <connection type="table" uuid="{a21e576f-4967-4183-b213-9e16bd7e1525}">
+      <source node="{75420911-13cc-4456-a00b-497533859c09}" port="{3d13c15a-b12c-415f-8ffc-07b6161a4589}"/>
+      <destination node="{07e68728-01c6-4322-a0cf-d7358516548e}" port="{c3e49d4c-c49c-4794-84d7-0bd56fc77c92}"/>
+    </connection>
+    <connection type="figure" uuid="{e79a865c-3823-4c4a-8914-a3e0b309c2d7}">
+      <source node="{f18b5236-931e-4860-be55-eeb0a2d7897c}" port="{3c415a15-415c-44b6-a47d-2e7379be5457}"/>
+      <destination node="{1736a9be-da83-4c3f-b6b2-b8f8ee2d7469}" port="{2f645961-ffe6-4e97-9541-e37ff1bfb2be}"/>
+    </connection>
+    <text color="Beige" height="132.0" uuid="{6b0c8e6c-bef9-44cc-a5f3-425f164a427d}" width="612.0" x="864.0" y="1884.0"># Drawing intersections 
+Using TWO figures and compressing them into one figure.</text>
+    <text color="Beige" height="144.0" uuid="{af8a0c8e-97c6-4e94-81d0-aa8380682815}" width="612.0" x="1728.0" y="1872.0"># Using generic inputs 
+
+This example uses that the figure node can take generic inputs, here a tuple with two tables. The first table is the data for two functions to draw and the section is the result of calculating their intersections. This second table is used to draw the annotation (arrows) onto the graphs. The end result is the same as the version to the left.</text>
+  </flow>
+  <flow cls="Flow" uuid="{92d9af6c-fdd4-465b-a701-4fe95577a7fc}" x="1332.0" y="1908.0">
+    <label>Histogram + scatterplot</label>
+    <ports>
+      <output index="0" key="Port" parent="True" scheme="text" type="figure" uuid="{914a75da-4aea-40ea-a781-10099d51dd86}" x="1852.0" y="2352.0">
+        <label>Port</label>
+      </output>
+    </ports>
+    <node id="org.sysess.sympathy.dataanalysis.histogramcalc" port_format="1.1" uuid="{0d1f9b5a-ee05-4eb7-a41e-7867609c3099}" x="1536.0" y="2400.0">
+      <label>Histogram calculation</label>
+      <version>0.1</version>
+      <description>Calculate the histogram of a given signal.</description>
+      <author>Magnus Sand&#233;n</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "auto_range": {
+          "editor": null,
+          "label": "Auto range",
+          "order": 3,
+          "type": "boolean",
+          "value": true
+        },
+        "bins": {
+          "editor": null,
+          "label": "Bins:",
+          "order": 2,
+          "type": "integer",
+          "value": 10
+        },
+        "data_column": {
+          "editor": {
+            "display": null,
+            "edit": true,
+            "filter": false,
+            "include_empty": false,
+            "options": [],
+            "type": "combobox"
+          },
+          "label": "Data column:",
+          "list": ["alcohol", "malic_acid", "ash", "alcalinity_of_ash", "magnesium", "total_phenols", "flavanoids", "nonflavanoid_phenols", "proanthocyanins", "color_intensity", "hue", "od280/od315_of_diluted_wines", "proline"],
+          "mode": "selected",
+          "order": 0,
+          "type": "list",
+          "value": [5],
+          "value_names": ["total_phenols"]
+        },
+        "normed": {
+          "editor": null,
+          "label": "Density",
+          "order": 6,
+          "type": "boolean",
+          "value": false
+        },
+        "type": "group",
+        "weights_column": {
+          "editor": {
+            "display": null,
+            "edit": true,
+            "filter": false,
+            "include_empty": true,
+            "options": [],
+            "type": "combobox"
+          },
+          "label": "Weights column:",
+          "list": ["alcohol", "malic_acid", "ash", "alcalinity_of_ash", "magnesium", "total_phenols", "flavanoids", "nonflavanoid_phenols", "proanthocyanins", "color_intensity", "hue", "od280/od315_of_diluted_wines", "proline"],
+          "mode": "selected",
+          "order": 1,
+          "type": "list",
+          "value": [],
+          "value_names": []
+        },
+        "x_max": {
+          "editor": null,
+          "label": "X max:",
+          "order": 5,
+          "type": "float",
+          "value": 1.0
+        },
+        "x_min": {
+          "editor": null,
+          "label": "X min:",
+          "order": 4,
+          "type": "float",
+          "value": 0.0
+        }
+      }
+      </parameters>
+      <ports>
+        <input key="in" scheme="hdf5" type="table" type_base="table" uuid="{4f0621ab-1590-49d5-b3b0-1c7c0a155257}">
+          <label>Input data</label>
+        </input>
+        <output key="out" scheme="hdf5" type="table" type_base="table" uuid="{0ddc2cad-f22e-4838-a8c7-68637499bb42}">
+          <label>Histogram data</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.visualize.figure" port_format="1.1" uuid="{8eafc9ad-9bc9-4598-9a8c-0af1c0346194}" x="1750.0" y="2350.0">
+      <label>Figure</label>
+      <version>0.1</version>
+      <description>Create a Figure from some data.</description>
+      <author>Benedikt Ziegler &amp; Magnus Sand&#233;n</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "parameters": {
+          "description": "The full configuration for this figure.",
+          "editor": null,
+          "label": "",
+          "order": 0,
+          "type": "json",
+          "value": {"axes": [{"xaxis": {"position": ["bottom", "value"], "label": ["Total Phenols", "value"]}, "yaxis": {"position": ["left", "value"], "label": ["Alcohol", "value"]}, "plots": [{"xdata": ["arg[0]['total_phenols']", "py"], "ydata": ["arg[0]['alcohol']", "py"], "label": ["Wine phenol/alcohol", "value"], "marker": ["square", "value"], "alpha": ["0.7", "value"], "zorder": ["2", "value"], "type": "scatter"}], "title": ["Wine phenols", "value"], "legend": {"show": ["True", "value"]}}, {"xaxis": {"position": ["bottom", "value"]}, "yaxis": {"position": ["right", "value"], "label": ["# Samples", "value"]}, "plots": [{"bin_min_edges": ["arg[1]['Bin min edges']", "py"], "bin_max_edges": ["arg[1]['Bin max edges']", "py"], "ydata": ["arg[1]['Bin values']", "py"], "alpha": ["0.3", "value"], "type": "hist"}]}]}
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="input" scheme="hdf5" type="(table, table)" type_base="&lt;a&gt;" uuid="{10a150a4-2021-442b-b3a1-62ea72593d96}">
+          <label>Input</label>
+        </input>
+        <output key="figure" scheme="text" type="figure" type_base="figure" uuid="{e131e7d1-579d-4811-bae2-3a14237a47ff}">
+          <label>Output figure</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.machinelearning.example_datasets" port_format="1.1" uuid="{9f8aed9e-caf1-4f6b-8acc-f0bae49e5644}" x="1404.0" y="2352.0">
+      <label>Example datasets</label>
+      <version>0.1</version>
+      <description>Exposes the example datasets from sklearn</description>
+      <author>Mathias Broxvall</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "classnames": {
+          "editor": null,
+          "label": "Class names",
+          "order": 1,
+          "type": "boolean",
+          "value": false
+        },
+        "color": {
+          "editor": null,
+          "label": "color",
+          "order": 2,
+          "type": "boolean",
+          "value": false
+        },
+        "dataset": {
+          "editor": null,
+          "label": "Dataset",
+          "order": 0,
+          "type": "string",
+          "value": "wine"
+        },
+        "min_pictures": {
+          "editor": null,
+          "label": "min_pictures",
+          "order": 3,
+          "type": "integer",
+          "value": 10
+        },
+        "resize": {
+          "editor": null,
+          "label": "resize",
+          "order": 4,
+          "type": "float",
+          "value": 0.5
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <output key="X" scheme="hdf5" type="table" type_base="table" uuid="{ce0f9727-556c-4c7a-8bc2-fccde3c88140}">
+          <label>X</label>
+        </output>
+        <output key="Y" scheme="hdf5" type="table" type_base="table" uuid="{8618ab69-9bf8-4149-8868-550e8cc7e4d2}">
+          <label>Y</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.tuple.tuple2" port_format="1.1" uuid="{a11ae1ae-c238-4845-b3d9-139bdc8a1a7c}" x="1632.0" y="2352.0">
+      <label>Tuple</label>
+      <version>1.0</version>
+      <description></description>
+      <author>Erik der Hagopian</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">{"type": "group"}</parameters>
+      <ports>
+        <input key="input" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{f301b536-6960-4a94-a8a0-c4085c4bf906}">
+          <label>Input</label>
+        </input>
+        <input key="input" scheme="hdf5" type="table" type_base="&lt;b&gt;" uuid="{00b64442-2ae2-4522-98ec-0ce3f5622ec9}">
+          <label>Input</label>
+        </input>
+        <output key="output" scheme="hdf5" type="(table, table)" type_base="(&lt;a&gt;, &lt;b&gt;)" uuid="{fbd8377c-4323-40c0-82f5-c63587e56925}">
+          <label>Output</label>
+        </output>
+      </ports>
+    </node>
+    <connection type="(table, table)" uuid="{4bdf21d8-3b35-4757-9ef3-134e73cccec9}">
+      <source node="{a11ae1ae-c238-4845-b3d9-139bdc8a1a7c}" port="{fbd8377c-4323-40c0-82f5-c63587e56925}"/>
+      <destination node="{8eafc9ad-9bc9-4598-9a8c-0af1c0346194}" port="{10a150a4-2021-442b-b3a1-62ea72593d96}"/>
+    </connection>
+    <connection type="figure" uuid="{93ceeaf3-87b7-4fec-b7a0-538a648dd430}">
+      <source node="{8eafc9ad-9bc9-4598-9a8c-0af1c0346194}" port="{e131e7d1-579d-4811-bae2-3a14237a47ff}"/>
+      <destination node="{92d9af6c-fdd4-465b-a701-4fe95577a7fc}" port="{914a75da-4aea-40ea-a781-10099d51dd86}"/>
+    </connection>
+    <connection type="table" uuid="{a9444f12-74c0-4c1c-91c3-2657adf5c78b}">
+      <source node="{0d1f9b5a-ee05-4eb7-a41e-7867609c3099}" port="{0ddc2cad-f22e-4838-a8c7-68637499bb42}"/>
+      <destination node="{a11ae1ae-c238-4845-b3d9-139bdc8a1a7c}" port="{00b64442-2ae2-4522-98ec-0ce3f5622ec9}"/>
+    </connection>
+    <connection type="table" uuid="{bfd7d459-c339-4730-92f3-a592bfcd09a1}">
+      <source node="{9f8aed9e-caf1-4f6b-8acc-f0bae49e5644}" port="{ce0f9727-556c-4c7a-8bc2-fccde3c88140}"/>
+      <destination node="{a11ae1ae-c238-4845-b3d9-139bdc8a1a7c}" port="{f301b536-6960-4a94-a8a0-c4085c4bf906}"/>
+    </connection>
+    <connection type="table" uuid="{f3e69813-cca2-4f48-99e2-3b5ad70684e5}">
+      <source node="{9f8aed9e-caf1-4f6b-8acc-f0bae49e5644}" port="{ce0f9727-556c-4c7a-8bc2-fccde3c88140}"/>
+      <destination node="{0d1f9b5a-ee05-4eb7-a41e-7867609c3099}" port="{4f0621ab-1590-49d5-b3b0-1c7c0a155257}"/>
+    </connection>
+  </flow>
+  <flow cls="Flow" uuid="{a80b3377-5b36-42fc-8ad1-628de5f5f017}" x="1092.0" y="1800.0">
+    <label>Barplot with error bars</label>
+    <ports>
+      <output index="0" key="Port" parent="True" scheme="text" type="figure" uuid="{fc2928b6-b7d2-48b3-8c3e-d8b52936851c}" x="1750.0" y="1975.0">
+        <label>Port</label>
+      </output>
+    </ports>
+    <node id="org.sysess.sympathy.create.createtable" port_format="1.1" uuid="{2e64df4a-6f87-4233-b531-9239b6077b21}" x="1525.0" y="1975.0">
+      <label>Manually Create Table</label>
+      <version>1.0</version>
+      <description>Create a Table from scratch in a configuration Gui.</description>
+      <author>Magnus Sand&#233;n</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "json_table": {
+          "editor": null,
+          "label": "GUI",
+          "order": 0,
+          "type": "string",
+          "value": "[[\"name\", \"U\", [\"apples\", \"oranges\", \"pears\"]], [\"count\", \"f\", [10.0, 20.0, 22.0]], [\"col\", \"U\", [\"red\", \"green\", \"yellow\"]], [\"err\", \"f\", [3.0, 5.0, 2.0]]]"
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{5e86026c-c149-49cf-b502-a2f76c8aaa5f}">
+          <label>Manually created table</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.visualize.figure" port_format="1.1" uuid="{b567fbe0-01fb-40b7-95bf-7197a6f0e960}" x="1650.0" y="1975.0">
+      <label>Barplot</label>
+      <version>0.1</version>
+      <description>Create a Figure from some data.</description>
+      <author>Benedikt Ziegler &amp; Magnus Sand&#233;n</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "parameters": {
+          "description": "The full configuration for this figure.",
+          "editor": null,
+          "label": "",
+          "order": 0,
+          "type": "json",
+          "value": {"axes": [{"xaxis": {"position": ["bottom", "value"]}, "frameon": ["False", "value"], "yaxis": {"position": ["left", "value"]}, "plots": [{"ydata": ["arg['count']", "py"], "bin_labels": ["arg['name']", "py"], "yerr": ["arg['err']", "py"], "bar_labels": ["arg['name']", "py"], "bar_labels_valign": ["bottom", "value"], "edgecolor": ["#000000", "value"], "linewidth": ["3.0", "value"], "linestyle": ["solid", "value"], "bar_labels_font": {"color": ["white", "value"], "size": ["20.0", "value"]}, "type": "bar"}], "title": ["Approximate sales with confidence bars", "value"]}]}
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="input" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{eadd56ed-ddd7-4776-9c62-b8184a8d50f7}">
+          <label>Input</label>
+        </input>
+        <output key="figure" scheme="text" type="figure" type_base="figure" uuid="{8dace668-f4b4-4e58-aea0-a51b821d767c}">
+          <label>Output figure</label>
+        </output>
+      </ports>
+    </node>
+    <connection type="table" uuid="{4b9eedb7-89d4-4f72-b2dc-eff8bb648fdc}">
+      <source node="{2e64df4a-6f87-4233-b531-9239b6077b21}" port="{5e86026c-c149-49cf-b502-a2f76c8aaa5f}"/>
+      <destination node="{b567fbe0-01fb-40b7-95bf-7197a6f0e960}" port="{eadd56ed-ddd7-4776-9c62-b8184a8d50f7}"/>
+    </connection>
+    <connection type="figure" uuid="{a32242e2-a6b6-442c-9a51-34f5275727a0}">
+      <source node="{b567fbe0-01fb-40b7-95bf-7197a6f0e960}" port="{8dace668-f4b4-4e58-aea0-a51b821d767c}"/>
+      <destination node="{a80b3377-5b36-42fc-8ad1-628de5f5f017}" port="{fc2928b6-b7d2-48b3-8c3e-d8b52936851c}"/>
+    </connection>
+  </flow>
+  <flow cls="Flow" uuid="{b760f731-bc39-4766-8346-1e24ad09f34e}" x="1092.0" y="1980.0">
+    <label>Simple pie-chart</label>
+    <ports>
+      <output index="0" key="Port" parent="True" scheme="text" type="figure" uuid="{8b463a54-0e0d-4b11-800c-86519e7fa287}" x="1696.0" y="1824.0">
+        <label>Port</label>
+      </output>
+    </ports>
+    <node id="org.sysess.sympathy.create.createtable" port_format="1.1" uuid="{381dc25a-8481-4ca0-97e9-54485c0b40ea}" x="1452.0" y="1824.0">
+      <label>Manually Create Table</label>
+      <version>1.0</version>
+      <description>Create a Table from scratch in a configuration Gui.</description>
+      <author>Magnus Sand&#233;n</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "json_table": {
+          "editor": null,
+          "label": "GUI",
+          "order": 0,
+          "type": "string",
+          "value": "[[\"name\", \"U\", [\"apples\", \"oranges\", \"gizmos\"]], [\"count\", \"U\", [\"10\", \"20\", \"12\"]], [\"color\", \"U\", [\"red\", \"green\", \"#ffbb00\"]], [\"explode\", \"f\", [0.2, 0.0, 0.0]]]"
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{171fb670-b7e5-4a62-832a-a474482f72eb}">
+          <label>Manually created table</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.visualize.figure" port_format="1.1" uuid="{4b337962-e7a4-4c0c-95e0-3db7f814d3fe}" x="1575.0" y="1825.0">
+      <label>Figure</label>
+      <version>0.1</version>
+      <description>Create a Figure from some data.</description>
+      <author>Benedikt Ziegler &amp; Magnus Sand&#233;n</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "parameters": {
+          "description": "The full configuration for this figure.",
+          "editor": null,
+          "label": "",
+          "order": 0,
+          "type": "json",
+          "value": {"axes": [{"xaxis": {"position": ["bottom", "value"]}, "aspect": ["equal", "value"], "yaxis": {"position": ["left", "value"]}, "plots": [{"weights": ["arg['count']", "py"], "labels": ["arg['name']", "py"], "colors": ["arg['color']", "py"], "explode": ["arg['explode']", "py"], "autopct": ["Auto", "value"], "edgecolor": ["#000000", "value"], "linewidth": ["2.0", "value"], "fontsize": ["14.0", "value"], "type": "pie"}], "title": ["A simple pie-chart", "value"]}]}
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="input" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{4f0ee289-bb71-4a83-803b-3c9dfade4e9a}">
+          <label>Input</label>
+        </input>
+        <output key="figure" scheme="text" type="figure" type_base="figure" uuid="{a96cf82e-7d32-4e39-9d00-1d2d5dca9d0b}">
+          <label>Output figure</label>
+        </output>
+      </ports>
+    </node>
+    <connection type="figure" uuid="{a519a030-db3f-4137-9a8e-4b5d653a6d91}">
+      <source node="{4b337962-e7a4-4c0c-95e0-3db7f814d3fe}" port="{a96cf82e-7d32-4e39-9d00-1d2d5dca9d0b}"/>
+      <destination node="{b760f731-bc39-4766-8346-1e24ad09f34e}" port="{8b463a54-0e0d-4b11-800c-86519e7fa287}"/>
+    </connection>
+    <connection type="table" uuid="{aa96510a-651a-496c-9e24-6848e3d32424}">
+      <source node="{381dc25a-8481-4ca0-97e9-54485c0b40ea}" port="{171fb670-b7e5-4a62-832a-a474482f72eb}"/>
+      <destination node="{4b337962-e7a4-4c0c-95e0-3db7f814d3fe}" port="{4f0ee289-bb71-4a83-803b-3c9dfade4e9a}"/>
+    </connection>
+  </flow>
+  <flow cls="Flow" uuid="{f31d504a-1dd9-41e0-88cc-9af704dd9371}" x="1332.0" y="2184.0">
+    <label>Custom color</label>
+    <ports>
+      <output index="0" key="Port" parent="True" scheme="text" type="figure" uuid="{a191beb1-70c5-482f-bcdb-9340b57f15f4}" x="1564.0" y="2256.0">
+        <label>Port</label>
+      </output>
+    </ports>
+    <node id="org.sysess.sympathy.data.table.selecttablecolumns" port_format="1.1" uuid="{4c8992eb-5a6a-494d-857c-9df4e3afd643}" x="1080.0" y="2292.0">
+      <label>Select columns in Table</label>
+      <version>1.0</version>
+      <description>Select columns from input to propagate to output.</description>
+      <author>Alexander Busck &amp; Erik der Hagopian</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "columns": {
+          "editor": {
+            "edit": true,
+            "filter": true,
+            "mode": true,
+            "selection": "multi",
+            "type": "listview"
+          },
+          "label": "Select columns",
+          "list": ["alcohol", "malic_acid", "ash", "alcalinity_of_ash", "magnesium", "total_phenols", "flavanoids", "nonflavanoid_phenols", "proanthocyanins", "color_intensity", "hue", "od280/od315_of_diluted_wines", "proline"],
+          "mode": "selected",
+          "order": 0,
+          "type": "list",
+          "value": [10, 9],
+          "value_names": ["hue", "color_intensity"]
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="" scheme="hdf5" type="table" type_base="table" uuid="{ee4c27e7-67c7-4665-8c76-9fb719e52212}">
+          <label>Input</label>
+        </input>
+        <output key="" scheme="hdf5" type="table" type_base="table" uuid="{2666f973-a7fc-48de-80b4-a143d8559ecb}">
+          <label>Output</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.visualize.figure" port_format="1.1" uuid="{708b4ddd-ebf2-446c-828f-3d05896c3f62}" x="1450.0" y="2250.0">
+      <label>Figure</label>
+      <version>0.1</version>
+      <description>Create a Figure from some data.</description>
+      <author>Benedikt Ziegler &amp; Magnus Sand&#233;n</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "parameters": {
+          "description": "The full configuration for this figure.",
+          "editor": null,
+          "label": "",
+          "order": 0,
+          "type": "json",
+          "value": {"axes": [{"xaxis": {"position": ["bottom", "value"], "label": ["Magnesium", "value"]}, "yaxis": {"position": ["left", "value"], "label": ["Proline", "value"]}, "plots": [{"xdata": ["arg['magnesium']", "py"], "ydata": ["arg['proline']", "py"], "color": ["arg['color']", "py"], "alpha": ["0.65", "value"], "type": "scatter"}], "title": ["Custom color calculation from wine hue and intensity variables", "value"]}]}
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="input" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{e8f6fb78-b825-450d-904e-5dec2f847292}">
+          <label>Input</label>
+        </input>
+        <output key="figure" scheme="text" type="figure" type_base="figure" uuid="{89073ef1-88de-43a1-8bde-166ab959cf9a}">
+          <label>Output figure</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.data.table.calculatorgeneric" port_format="1.1" uuid="{76865397-ff44-4702-914d-8d5be1a9cced}" x="1212.0" y="2280.0">
+      <label>Calculate
+color</label>
+      <version>3.0</version>
+      <description>Create columns by evaluating python calculations.</description>
+      <author>Greger Cronquist, Magnus Sand&#233;n, Sara Gustafzelius &amp; Benedikt Ziegler</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "calc_attrs_dict": {
+          "editor": null,
+          "label": "",
+          "order": 1,
+          "type": "string",
+          "value": "[]"
+        },
+        "calc_list": {
+          "editor": null,
+          "label": "List of calculations",
+          "list": ["red = np.maximum(0, (np.sin(arg['hue'])*255 - arg['color_intensity']).astype(int)) #ENABLED:1", "green = np.maximum(0, (np.cos(arg['hue']*2)*255 - 10*arg['color_intensity']).astype(int)) #ENABLED:1", "blue = np.maximum(0, (np.cos(arg['hue']*2)*255 - 10*arg['color_intensity']).astype(int)) #ENABLED:1", "color = ['#{:02X}{:02X}{:02X}'.format(red, green, blue) for red,green,blue in zip(res['red'],res['green'],res['blue'])] #ENABLED:1"],
+          "mode": "selected",
+          "order": 0,
+          "type": "list",
+          "value": [],
+          "value_names": []
+        },
+        "copy_input": {
+          "editor": null,
+          "label": "Copy input",
+          "order": 2,
+          "type": "boolean",
+          "value": false
+        },
+        "fail_strategy": {
+          "editor": {
+            "display": null,
+            "edit": false,
+            "filter": false,
+            "include_empty": false,
+            "options": [],
+            "type": "combobox"
+          },
+          "label": "Action on calculation failure",
+          "list": ["Exception", "Skip calculation"],
+          "mode": "selected",
+          "order": 3,
+          "type": "list",
+          "value": [0],
+          "value_names": ["Exception"]
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="port0" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{82c5d02f-12cf-41a3-b099-ab8e26e82cb8}">
+          <label>Generic Input</label>
+        </input>
+        <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{ad269a1d-1701-4723-9034-bb60cee3a918}">
+          <label>Table with results from the calculations.</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.machinelearning.example_datasets" port_format="1.1" uuid="{d5a5e771-fc08-4ab2-af41-ec3502a6a3e6}" x="912.0" y="2304.0">
+      <label>Example datasets</label>
+      <version>0.1</version>
+      <description>Exposes the example datasets from sklearn</description>
+      <author>Mathias Broxvall</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "classnames": {
+          "editor": null,
+          "label": "Class names",
+          "order": 1,
+          "type": "boolean",
+          "value": false
+        },
+        "color": {
+          "editor": null,
+          "label": "color",
+          "order": 2,
+          "type": "boolean",
+          "value": false
+        },
+        "dataset": {
+          "editor": null,
+          "label": "Dataset",
+          "order": 0,
+          "type": "string",
+          "value": "wine"
+        },
+        "min_pictures": {
+          "editor": null,
+          "label": "min_pictures",
+          "order": 3,
+          "type": "integer",
+          "value": 10
+        },
+        "resize": {
+          "editor": null,
+          "label": "resize",
+          "order": 4,
+          "type": "float",
+          "value": 0.5
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <output key="X" scheme="hdf5" type="table" type_base="table" uuid="{0313a3f5-698a-4ac7-a310-43ebbdf7a5ec}">
+          <label>X</label>
+        </output>
+        <output key="Y" scheme="hdf5" type="table" type_base="table" uuid="{0458c685-5818-4105-bc31-169331c8a557}">
+          <label>Y</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.data.table.hjointable" port_format="1.1" uuid="{f7a97865-4a3e-45de-8253-0f812b85a443}" x="1332.0" y="2256.0">
+      <label>HJoin Table</label>
+      <version>1.1</version>
+      <description>Horizontal join of two Tables</description>
+      <author>Alexander Busck</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "mask": {
+          "editor": null,
+          "label": "Complement missing rows",
+          "order": 0,
+          "type": "boolean",
+          "value": true
+        },
+        "name": {
+          "editor": {
+            "display": null,
+            "edit": false,
+            "filter": false,
+            "include_empty": false,
+            "options": [],
+            "type": "combobox"
+          },
+          "label": "Input port name for joined table",
+          "list": ["Lower", "Upper"],
+          "mode": "selected",
+          "order": 2,
+          "type": "list",
+          "value": [0],
+          "value_names": ["Lower"]
+        },
+        "rename": {
+          "editor": null,
+          "label": "Rename duplicate columns",
+          "order": 1,
+          "type": "boolean",
+          "value": false
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="port1" scheme="hdf5" type="table" type_base="table" uuid="{1393ae00-4566-4977-a9bc-253e96af35d8}">
+          <label>Input Table</label>
+        </input>
+        <input key="port2" scheme="hdf5" type="table" type_base="table" uuid="{1b88fd92-98ff-4eea-b966-f5159e873107}">
+          <label>Input Table</label>
+        </input>
+        <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{cda38bda-624b-47e6-88de-dd3647d89dd5}">
+          <label>Table with horizontally joined data</label>
+        </output>
+      </ports>
+    </node>
+    <connection type="table" uuid="{12e9924f-911a-4a94-96a5-4a553fb3c34b}">
+      <source node="{76865397-ff44-4702-914d-8d5be1a9cced}" port="{ad269a1d-1701-4723-9034-bb60cee3a918}"/>
+      <destination node="{f7a97865-4a3e-45de-8253-0f812b85a443}" port="{1b88fd92-98ff-4eea-b966-f5159e873107}"/>
+    </connection>
+    <connection type="figure" uuid="{5b65ef07-ca17-4f2c-bb03-2e360b8f5c94}">
+      <source node="{708b4ddd-ebf2-446c-828f-3d05896c3f62}" port="{89073ef1-88de-43a1-8bde-166ab959cf9a}"/>
+      <destination node="{f31d504a-1dd9-41e0-88cc-9af704dd9371}" port="{a191beb1-70c5-482f-bcdb-9340b57f15f4}"/>
+    </connection>
+    <connection type="table" uuid="{5fc7a3f3-96da-45bc-83a3-34754b225b1b}">
+      <source node="{d5a5e771-fc08-4ab2-af41-ec3502a6a3e6}" port="{0313a3f5-698a-4ac7-a310-43ebbdf7a5ec}"/>
+      <destination node="{f7a97865-4a3e-45de-8253-0f812b85a443}" port="{1393ae00-4566-4977-a9bc-253e96af35d8}"/>
+      <route x="972.0" y="2280.0"/>
+    </connection>
+    <connection type="table" uuid="{6a3072d8-67c3-4787-ab35-8e4fe6923e7c}">
+      <source node="{f7a97865-4a3e-45de-8253-0f812b85a443}" port="{cda38bda-624b-47e6-88de-dd3647d89dd5}"/>
+      <destination node="{708b4ddd-ebf2-446c-828f-3d05896c3f62}" port="{e8f6fb78-b825-450d-904e-5dec2f847292}"/>
+    </connection>
+    <connection type="table" uuid="{81b8438b-cea7-4166-847f-2053e429ac1c}">
+      <source node="{4c8992eb-5a6a-494d-857c-9df4e3afd643}" port="{2666f973-a7fc-48de-80b4-a143d8559ecb}"/>
+      <destination node="{76865397-ff44-4702-914d-8d5be1a9cced}" port="{82c5d02f-12cf-41a3-b099-ab8e26e82cb8}"/>
+    </connection>
+    <connection type="table" uuid="{d9f9242a-9798-4db1-a222-29f5701a26a6}">
+      <source node="{d5a5e771-fc08-4ab2-af41-ec3502a6a3e6}" port="{0313a3f5-698a-4ac7-a310-43ebbdf7a5ec}"/>
+      <destination node="{4c8992eb-5a6a-494d-857c-9df4e3afd643}" port="{ee4c27e7-67c7-4665-8c76-9fb719e52212}"/>
+    </connection>
+    <text color="Beige" height="120.0" uuid="{2ad62156-a3a0-4139-8bcb-6188463c9c29}" width="588.0" x="840.0" y="2124.0"># Custom colors
+Demonstrates how to use custom color values for plotting. The values can come from the "Colormap lookup" node, from imported data or from a calculator expression. </text>
+  </flow>
+  <node id="org.sysess.sympathy.list.extendlist" port_format="1.1" uuid="{299edba1-d1a5-4841-9bc8-6c6693f08754}" x="1800.0" y="1728.0">
+    <label>Extend List</label>
+    <version>1.0</version>
+    <description>Extend a list</description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="input" scheme="hdf5" type="[figure]" type_base="[&lt;a&gt;]" uuid="{3d2c0d9c-f24e-4848-9b93-c65056f4ac27}">
+        <label>List that will be added</label>
+      </input>
+      <input key="input" scheme="hdf5" type="[figure]" type_base="[&lt;a&gt;]" uuid="{8ceb055e-d52b-4888-beaf-4cbb58c9a1df}">
+        <label>List that will be added</label>
+      </input>
+      <input key="input" scheme="hdf5" type="[figure]" type_base="[&lt;a&gt;]" uuid="{5b6e0752-4402-4c48-92c1-e2991cde582a}">
+        <label>List that will be added</label>
+      </input>
+      <output key="output" scheme="hdf5" type="[figure]" type_base="[&lt;a&gt;]" uuid="{5f0eda8f-6fff-42b0-97cb-52c9bc8c153c}">
+        <label>The extended List</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.list.itemtolist" port_format="1.1" uuid="{4ad5ed74-7fc1-4dc3-b11d-8feb7e2990b0}" x="1392.0" y="1728.0">
+    <label>Item to List</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "n": {
+        "editor": null,
+        "label": "Repeat number of times",
+        "order": 0,
+        "type": "integer",
+        "value": 1
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="item" scheme="text" type="figure" type_base="&lt;a&gt;" uuid="{674e2ef5-0ca0-4e8b-90fb-67a8da1d22a9}">
+        <label>Input Item</label>
+      </input>
+      <input key="item" scheme="text" type="figure" type_base="&lt;a&gt;" uuid="{098a9c66-038a-43dd-a1e2-b0d81fc5b4c2}">
+        <label>Input Item</label>
+      </input>
+      <input key="item" scheme="text" type="figure" type_base="&lt;a&gt;" uuid="{6cbcc1a4-26eb-4e5b-9ae1-27df491674d2}">
+        <label>Input Item</label>
+      </input>
+      <input key="item" scheme="text" type="figure" type_base="&lt;a&gt;" uuid="{d378ce7b-227e-4708-b21d-d717749c680e}">
+        <label>Input Item</label>
+      </input>
+      <input key="item" scheme="text" type="figure" type_base="&lt;a&gt;" uuid="{62e1a45d-25e6-4d30-aa75-8147f83c69cb}">
+        <label>Input Item</label>
+      </input>
+      <output key="list" scheme="hdf5" type="[figure]" type_base="[&lt;a&gt;]" uuid="{332e3693-2459-4605-bc46-c1b84fa96dbc}">
+        <label>Item as List</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.list.itemtolist" port_format="1.1" uuid="{4dc453cf-4446-4eb7-9f10-ea8a0f2cc87a}" x="1572.0" y="1788.0">
+    <label>Item to List</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "n": {
+        "editor": null,
+        "label": "Repeat number of times",
+        "order": 0,
+        "type": "integer",
+        "value": 1
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="item" scheme="text" type="figure" type_base="&lt;a&gt;" uuid="{1b0fb1c3-3ffe-4ac6-b2e8-580faf3728d4}">
+        <label>Input Item</label>
+      </input>
+      <input key="item" scheme="text" type="figure" type_base="&lt;a&gt;" uuid="{40bfda20-566c-4ed7-a64d-79c52f844e90}">
+        <label>Input Item</label>
+      </input>
+      <input key="item" scheme="text" type="figure" type_base="&lt;a&gt;" uuid="{c7dac182-78b6-4943-b8ae-2d722838cae1}">
+        <label>Input Item</label>
+      </input>
+      <input key="item" scheme="text" type="figure" type_base="&lt;a&gt;" uuid="{c6f82b04-4214-4348-9a3b-2011061c64e8}">
+        <label>Input Item</label>
+      </input>
+      <input key="item" scheme="text" type="figure" type_base="&lt;a&gt;" uuid="{347a6476-33fd-4794-a0d8-d357482f88c2}">
+        <label>Input Item</label>
+      </input>
+      <output key="list" scheme="hdf5" type="[figure]" type_base="[&lt;a&gt;]" uuid="{e873f2b6-6da2-422b-9c3a-058fd139520f}">
+        <label>Item as List</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.list.itemtolist" port_format="1.1" uuid="{e763d5fb-fc95-4005-93af-a2f5c43d3cd7}" x="1692.0" y="1884.0">
+    <label>Item to List</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "n": {
+        "editor": null,
+        "label": "Repeat number of times",
+        "order": 0,
+        "type": "integer",
+        "value": 1
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="item" scheme="text" type="figure" type_base="&lt;a&gt;" uuid="{7a7812c3-1cc4-4361-bd72-2c4af4bf2bad}">
+        <label>Input Item</label>
+      </input>
+      <input key="item" scheme="text" type="figure" type_base="&lt;a&gt;" uuid="{59e113bc-d09d-46ce-a861-ee2440d5bbd3}">
+        <label>Input Item</label>
+      </input>
+      <output key="list" scheme="hdf5" type="[figure]" type_base="[&lt;a&gt;]" uuid="{027e4a6d-3bb3-4ae8-a9d4-40b3bfbc2af3}">
+        <label>Item as List</label>
+      </output>
+    </ports>
+  </node>
+  <connection type="[figure]" uuid="{0b319154-86bc-49bf-832e-5fbb2f71ef59}">
+    <source node="{4ad5ed74-7fc1-4dc3-b11d-8feb7e2990b0}" port="{332e3693-2459-4605-bc46-c1b84fa96dbc}"/>
+    <destination node="{299edba1-d1a5-4841-9bc8-6c6693f08754}" port="{3d2c0d9c-f24e-4848-9b93-c65056f4ac27}"/>
+  </connection>
+  <connection type="figure" uuid="{19ca349a-7a4d-4dc1-8e08-c30550576c1f}">
+    <source node="{f31d504a-1dd9-41e0-88cc-9af704dd9371}" port="{a191beb1-70c5-482f-bcdb-9340b57f15f4}"/>
+    <destination node="{4dc453cf-4446-4eb7-9f10-ea8a0f2cc87a}" port="{347a6476-33fd-4794-a0d8-d357482f88c2}"/>
+  </connection>
+  <connection type="figure" uuid="{27450e42-5b53-4ffb-87f9-ba4be3ef8e20}">
+    <source node="{b760f731-bc39-4766-8346-1e24ad09f34e}" port="{8b463a54-0e0d-4b11-800c-86519e7fa287}"/>
+    <destination node="{4ad5ed74-7fc1-4dc3-b11d-8feb7e2990b0}" port="{d378ce7b-227e-4708-b21d-d717749c680e}"/>
+  </connection>
+  <connection type="figure" uuid="{3024a9c3-f09a-4e24-a31c-3bd66da223fa}">
+    <source node="{0a2eea70-4044-49b8-bee5-6a3279029dee}" port="{922e0268-b9f6-4134-be5a-c2db4164925c}"/>
+    <destination node="{4ad5ed74-7fc1-4dc3-b11d-8feb7e2990b0}" port="{62e1a45d-25e6-4d30-aa75-8147f83c69cb}"/>
+  </connection>
+  <connection type="figure" uuid="{4193b95d-c62f-4ff0-8540-d7123bf348da}">
+    <source node="{40d929e2-1a50-4770-b297-7747b466d8f2}" port="{6b81b5f0-13c2-4558-a7bc-6a022305d024}"/>
+    <destination node="{4dc453cf-4446-4eb7-9f10-ea8a0f2cc87a}" port="{c7dac182-78b6-4943-b8ae-2d722838cae1}"/>
+  </connection>
+  <connection type="figure" uuid="{49c9bc71-1d01-4382-96d6-ce8af8539b0b}">
+    <source node="{0396adff-1103-4f8b-86f6-3c3ba6240d8b}" port="{bed71c89-6a74-4836-a6ad-da0d449189ce}"/>
+    <destination node="{e763d5fb-fc95-4005-93af-a2f5c43d3cd7}" port="{7a7812c3-1cc4-4361-bd72-2c4af4bf2bad}"/>
+  </connection>
+  <connection type="figure" uuid="{4f282fc6-cb51-4602-979b-aba9de1fce2a}">
+    <source node="{a80b3377-5b36-42fc-8ad1-628de5f5f017}" port="{fc2928b6-b7d2-48b3-8c3e-d8b52936851c}"/>
+    <destination node="{4ad5ed74-7fc1-4dc3-b11d-8feb7e2990b0}" port="{098a9c66-038a-43dd-a1e2-b0d81fc5b4c2}"/>
+  </connection>
+  <connection type="figure" uuid="{7f236cc5-7cad-4e90-9c36-c406d5cba5eb}">
+    <source node="{6363d407-cecb-4bd0-81f4-76fe6ac554cb}" port="{f6563575-a771-4730-b82a-b3ad7d0a47f8}"/>
+    <destination node="{4dc453cf-4446-4eb7-9f10-ea8a0f2cc87a}" port="{c6f82b04-4214-4348-9a3b-2011061c64e8}"/>
+  </connection>
+  <connection type="figure" uuid="{9aee9cc1-a1c1-40df-beae-bc5d50164ebf}">
+    <source node="{35585018-7465-48d3-aaf2-11c7cd852dcb}" port="{c3f51515-d925-490d-9ba8-7a3742930c43}"/>
+    <destination node="{4ad5ed74-7fc1-4dc3-b11d-8feb7e2990b0}" port="{6cbcc1a4-26eb-4e5b-9ae1-27df491674d2}"/>
+  </connection>
+  <connection type="[figure]" uuid="{af040d59-e60b-4f92-a236-0bd6f759b25e}">
+    <source node="{4dc453cf-4446-4eb7-9f10-ea8a0f2cc87a}" port="{e873f2b6-6da2-422b-9c3a-058fd139520f}"/>
+    <destination node="{299edba1-d1a5-4841-9bc8-6c6693f08754}" port="{8ceb055e-d52b-4888-beaf-4cbb58c9a1df}"/>
+  </connection>
+  <connection type="[figure]" uuid="{b992b6d7-ce5a-4ea7-9b32-e566a3d91018}">
+    <source node="{e763d5fb-fc95-4005-93af-a2f5c43d3cd7}" port="{027e4a6d-3bb3-4ae8-a9d4-40b3bfbc2af3}"/>
+    <destination node="{299edba1-d1a5-4841-9bc8-6c6693f08754}" port="{5b6e0752-4402-4c48-92c1-e2991cde582a}"/>
+  </connection>
+  <connection type="figure" uuid="{c503ba8b-d453-4066-9013-953aecd4d821}">
+    <source node="{92d9af6c-fdd4-465b-a701-4fe95577a7fc}" port="{914a75da-4aea-40ea-a781-10099d51dd86}"/>
+    <destination node="{4dc453cf-4446-4eb7-9f10-ea8a0f2cc87a}" port="{40bfda20-566c-4ed7-a64d-79c52f844e90}"/>
+  </connection>
+  <connection type="figure" uuid="{c8eb2480-1902-4fe3-81d8-16def67b5288}">
+    <source node="{76fc9a28-fb79-4008-9336-cebc8e6fe74f}" port="{8bca6fa3-43df-44d2-807d-319cfedcbdae}"/>
+    <destination node="{4ad5ed74-7fc1-4dc3-b11d-8feb7e2990b0}" port="{674e2ef5-0ca0-4e8b-90fb-67a8da1d22a9}"/>
+  </connection>
+  <connection type="figure" uuid="{d7fb447b-9e0a-4995-92a0-efbd772dad56}">
+    <source node="{5bbafc2f-1059-4364-b542-17637646ea7c}" port="{d8258de2-1cb4-497d-b8ab-4cb5b9e36da4}"/>
+    <destination node="{4dc453cf-4446-4eb7-9f10-ea8a0f2cc87a}" port="{1b0fb1c3-3ffe-4ac6-b2e8-580faf3728d4}"/>
+  </connection>
+  <connection type="figure" uuid="{f07e6d18-4d3b-4b46-b2d6-e6734667207b}">
+    <source node="{20440c84-4b1c-4409-904f-965392ca1bae}" port="{efa63a49-5561-4fb7-93b7-41332fb4c211}"/>
+    <destination node="{e763d5fb-fc95-4005-93af-a2f5c43d3cd7}" port="{59e113bc-d09d-46ce-a861-ee2440d5bbd3}"/>
+  </connection>
+  <text color="Beige" height="144.0" uuid="{b12bb441-45ed-49de-bc6b-2f529b75c43e}" width="468.0" x="1080.0" y="1512.0"># Figure gallery
+
+This flow demonstrates a few different types of Figure plots that can be made with Sympathy. To see how they are made look into the corresponding sub-flows.</text>
+</flow>

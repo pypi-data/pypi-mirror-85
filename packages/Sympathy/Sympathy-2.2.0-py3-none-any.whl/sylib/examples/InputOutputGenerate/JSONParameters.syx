@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='US-ASCII'?>
+<flow xmlns="http://www.sysess.org/sympathyfordata/workflow/1.0" cls="Flow" height="50.0" uuid="{afab98c4-fec7-4cd3-8f9c-710c6d25cc07}" width="50.0" x="0.0" y="0.0" id="">
+  <label></label>
+  <description></description>
+  <author></author>
+  <copyright></copyright>
+  <version></version>
+  <min_version></min_version>
+  <icon/>
+  <aggregation type="json">null</aggregation>
+  <libraries type="json">[]</libraries>
+  <pythonpaths type="json">[]</pythonpaths>
+  <parameters type="json">{}</parameters>
+  <ports/>
+  <flow cls="Flow" height="50.0" uuid="{52ae78ce-069c-4a67-9c5e-77c6a2dd5f4b}" width="50.0" x="1850.0" y="1925.0" id="">
+    <label>Remove rows with NaNs</label>
+    <description></description>
+    <author></author>
+    <copyright></copyright>
+    <version></version>
+    <min_version></min_version>
+    <icon/>
+    <aggregation type="json">{"selected_uuids": ["{1dff5bbf-0cff-4891-b4af-0b4158f0ea60}"], "conf_view": "TabBuilder", "override": true}</aggregation>
+    <libraries type="json">[]</libraries>
+    <pythonpaths type="json">[]</pythonpaths>
+    <parameters type="json">{}</parameters>
+    <ports>
+      <input index="0" key="Port" optional="False" parent="True" scheme="hdf5" type="table" uuid="{2954a0ed-bbc4-42ac-89d5-9ed552e64f57}" x="1550.0" y="1800.0">
+        <label>Port</label>
+        <description>Port</description>
+      </input>
+      <output index="0" key="Port" optional="False" parent="True" scheme="hdf5" type="table" uuid="{7316a569-1524-4a1a-92c2-f25ab5dd11c0}" x="2175.0" y="1800.0">
+        <label>Port</label>
+        <description>Port</description>
+      </output>
+    </ports>
+    <node id="org.sysess.sympathy.create.configureparameters" uuid="{1dff5bbf-0cff-4891-b4af-0b4158f0ea60}" x="1850.0" y="1875.0">
+      <label>Configure JSON Parameters</label>
+      <description></description>
+      <author>Erik der Hagopian &lt;erik.hagopian@combine.se&gt;</author>
+      <copyright>(C) 2018 Combine Control Systems AB</copyright>
+      <version>0.1</version>
+      <parameters type="json">{"type": "group", "columns": {"description": "In the selected rows any NaN values will lead to those rows being removed.", "label": "Columns where NaN values should be removed:", "mode": "selected", "type": "list", "list": ["0", "1", "2", "3"], "value": [0], "value_names": ["0"], "editor": {"edit": true, "filter": true, "mode": true, "selection": "multi", "type": "listview"}}}</parameters>
+      <ports>
+        <input key="json_parameters" scheme="hdf5" type="json" type_base="json" uuid="{c7ddd3d4-c060-47f9-a2be-8af67b12632d}">
+          <label>Json Parameters</label>
+          <description>Json Parameters</description>
+        </input>
+        <output key="json_parameters" scheme="hdf5" type="json" type_base="json" uuid="{872ac05c-42b4-43d6-a7dc-12305ed61284}">
+          <label>Json Parameters</label>
+          <description>Json Parameters</description>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.create.createparameters" port_format="1.1" uuid="{810918c9-4276-4d8c-959f-5526606af6cd}" x="1700.0" y="1875.0">
+      <label>Manually Create JSON Parameters</label>
+      <description></description>
+      <author>Erik der Hagopian &lt;erik.hagopian@combine.se&gt;</author>
+      <copyright>(C) 2018 Combine Control Systems AB</copyright>
+      <version>0.1</version>
+      <parameters type="json">{"type": "group", "code": {"description": "Python code that modifies the parameter structure.", "label": "Parameters:", "order": 0, "type": "string", "value": "parameters.set_list('columns',  # Same name as the corresponding parameter in Select Rows in Table.\n                    label='Columns where NaN values should be removed:',\n                    description=(\n                        'In the selected rows any NaN values will lead to those rows being removed.'),\n                    value_names=[],\n                    plist=arg.column_names(),\n                    editor=synode.editors.multilist_editor(edit=True))", "editor": {"language": "python", "type": "code"}}}</parameters>
+      <ports>
+        <input key="arg" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{ed33a0b6-38c0-457c-beb5-0b278aa331c6}">
+          <label>Input</label>
+          <description>Input</description>
+        </input>
+        <output key="output" scheme="hdf5" type="json" type_base="json" uuid="{cdf3bb78-3fff-47ed-ae85-d4c55480d23c}">
+          <label>Output</label>
+          <description>Output</description>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.data.table.selecttablerows" port_format="1.1" uuid="{a3be273b-b91d-4e6b-abb1-2dc2d60e9796}" x="2025.0" y="1800.0">
+      <label>Select rows in Table</label>
+      <description>Reduction of rows in Table according to specified filter.</description>
+      <author>Alexander Busck &lt;alexander.busck@combine.se&gt;</author>
+      <copyright>(C) 2014 Combine Control Systems AB</copyright>
+      <version>1.1</version>
+      <parameters type="json">{"type": "group", "columns": {"description": "Select columns for comparison relation", "label": "Columns to filter", "mode": "selected", "order": 0, "type": "list", "list": ["0", "1", "2", "3"], "value": [], "value_names": [], "editor": {"edit": true, "filter": true, "mode": true, "selection": "multi", "type": "listview"}}, "exist": {"description": "Constraint must be satisfied in: Any selected column or All selected columns.", "label": "Constraint must be satisfied in", "order": 1, "type": "string", "value": "all", "editor": {"display": null, "edit": false, "filter": false, "include_empty": false, "type": "combobox", "options": ["all", "any"]}}, "relation": {"description": "Select comparison operator for relation", "label": "Relation", "mode": "selected", "order": 2, "type": "list", "list": ["equal", "less than", "less than or equal", "greater than", "greater than or equal", "not equal"], "value": [5], "value_names": ["not equal"], "editor": {"display": null, "edit": false, "filter": false, "include_empty": false, "type": "combobox", "options": []}}, "constraint": {"description": "Specify constraint value for comparison relation", "editor": null, "label": "Filter constraint", "order": 3, "type": "string", "value": "NaN"}, "use_custom_predicate": {"description": "Select to use custom filter", "editor": null, "label": "Use custom filter", "order": 4, "type": "boolean", "value": false}, "predicate": {"description": "Write a custom filter as a Python lambda function", "editor": null, "label": "Custom filter", "order": 5, "type": "string", "value": "lambda x: x == x"}, "limit": {"description": "Rows to display", "label": "Preview rows", "order": 6, "type": "integer", "value": 100, "editor": {"max": 10000, "min": 0, "step": 1, "type": "spinbox"}}}</parameters>
+      <ports>
+        <input key="Input" scheme="hdf5" type="table" type_base="table" uuid="{ea9b5356-538c-4684-aaa7-6499a4e3c21c}">
+          <label>Input</label>
+          <description>Input</description>
+        </input>
+        <input key="__sy_conf__" scheme="hdf5" type="json" type_base="json" uuid="{bc5cae7a-0ad4-4dba-a88c-66b15dfd8d0a}">
+          <label>Configuration port</label>
+          <description>Configuration port</description>
+        </input>
+        <output key="Output" scheme="hdf5" type="table" type_base="table" uuid="{44381c7a-408c-4f0f-a28f-2c953dc9c58c}">
+          <label>Output</label>
+          <description>Output</description>
+        </output>
+      </ports>
+    </node>
+    <connection type="table" uuid="{345683ae-45dc-4b9d-bac5-995ba7958c5e}">
+      <source node="{a3be273b-b91d-4e6b-abb1-2dc2d60e9796}" port="{44381c7a-408c-4f0f-a28f-2c953dc9c58c}"/>
+      <destination node="{52ae78ce-069c-4a67-9c5e-77c6a2dd5f4b}" port="{7316a569-1524-4a1a-92c2-f25ab5dd11c0}"/>
+    </connection>
+    <connection type="json" uuid="{d84a1d97-3ed9-45bc-ac36-5aaf50b0eee3}">
+      <source node="{1dff5bbf-0cff-4891-b4af-0b4158f0ea60}" port="{872ac05c-42b4-43d6-a7dc-12305ed61284}"/>
+      <destination node="{a3be273b-b91d-4e6b-abb1-2dc2d60e9796}" port="{bc5cae7a-0ad4-4dba-a88c-66b15dfd8d0a}"/>
+    </connection>
+    <connection type="table" uuid="{db38b5d2-9d85-4e79-ba43-378131dde01f}">
+      <source node="{52ae78ce-069c-4a67-9c5e-77c6a2dd5f4b}" port="{2954a0ed-bbc4-42ac-89d5-9ed552e64f57}"/>
+      <destination node="{810918c9-4276-4d8c-959f-5526606af6cd}" port="{ed33a0b6-38c0-457c-beb5-0b278aa331c6}"/>
+    </connection>
+    <connection type="table" uuid="{e3ea5740-10f5-4ded-87ba-f1c5d092cfaf}">
+      <source node="{52ae78ce-069c-4a67-9c5e-77c6a2dd5f4b}" port="{2954a0ed-bbc4-42ac-89d5-9ed552e64f57}"/>
+      <destination node="{a3be273b-b91d-4e6b-abb1-2dc2d60e9796}" port="{ea9b5356-538c-4684-aaa7-6499a4e3c21c}"/>
+    </connection>
+    <connection type="json" uuid="{eac8797e-f9fe-4f84-a52d-02307a98ea7a}">
+      <source node="{810918c9-4276-4d8c-959f-5526606af6cd}" port="{cdf3bb78-3fff-47ed-ae85-d4c55480d23c}"/>
+      <destination node="{1dff5bbf-0cff-4891-b4af-0b4158f0ea60}" port="{c7ddd3d4-c060-47f9-a2be-8af67b12632d}"/>
+    </connection>
+  </flow>
+  <node id="org.sysess.sympathy.create.createtable" uuid="{2be1faf5-8243-42ad-b026-97e38c1d40e7}" x="1650.0" y="1925.0">
+    <label>Manually Create Table</label>
+    <description></description>
+    <author>Magnus Sand&#233;n &lt;magnus.sanden@combine.se&gt;</author>
+    <copyright>(c) 2016 Combine Control Systems AB</copyright>
+    <version>1.0</version>
+    <parameters type="json">{"type": "group", "json_table": {"description": "Configuration window", "editor": null, "label": "GUI", "order": 0, "type": "string", "value": "[[\"0\", \"f\", [NaN, 8.0, 6.0, NaN, 3.0, 9.0, NaN, 1.0, NaN]], [\"1\", \"f\", [0.0, NaN, 1.0, NaN, 1.0, NaN, NaN, 5.0, 3.0]], [\"2\", \"f\", [5.0, 4.0, NaN, 7.0, 3.0, 0.0, 6.0, 2.0, NaN]], [\"3\", \"f\", [9.0, NaN, 5.0, NaN, NaN, NaN, 1.0, 0.0, 7.0]]]"}}</parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{e0cc5bca-6fc4-49dc-9558-416566251d56}">
+        <label>Manually created table</label>
+        <description>Manually created table</description>
+      </output>
+    </ports>
+  </node>
+  <connection type="table" uuid="{a7130a79-6ed4-4f87-9f51-3cb54fbc4f7d}">
+    <source node="{2be1faf5-8243-42ad-b026-97e38c1d40e7}" port="{e0cc5bca-6fc4-49dc-9558-416566251d56}"/>
+    <destination node="{52ae78ce-069c-4a67-9c5e-77c6a2dd5f4b}" port="{2954a0ed-bbc4-42ac-89d5-9ed552e64f57}"/>
+  </connection>
+  <text color="Beige" height="300.0" uuid="{1ab87a1e-9365-47f5-b657-3db958d1c32f}" width="650.0" x="1450.0" y="1600.0">This flow demonstrates how to use Manually Create JSON Parameters and Configure JSON Parameters to expose a simplified configuration gui as configuration gui for a subflow.
+
+Configuring the subflow *Remove rows with NaNs* creates a configuration which is then passed into a *Select Rows in Table* node. The end result is that *Select Rows in Table* can be selectively configured from outside of the subflow without exposing the full configuration gui for that node.
+
+This is useful for example when you create a library subflow and want the configuration gui to be very streamlined, but don't want to write your own nodes just to get the configuration guis that you want.
+
+- Node example: *org.sysess.sympathy.create.createparameters*
+- Node example: *org.sysess.sympathy.create.configureparameters*</text>
+</flow>

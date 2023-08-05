@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='US-ASCII'?>
+<flow xmlns="http://www.sysess.org/sympathyfordata/workflow/1.0" cls="Flow" uuid="{4ae9288a-6ef6-41a3-8d1a-6f0f19c973f4}">
+  <label></label>
+  <ports/>
+  <node id="org.sysess.sympathy.data.table.holdvaluetable" port_format="1.1" uuid="{dde3ef42-8ff5-4ae1-bdf3-a77e01b60d2d}" x="1550.0" y="1925.0">
+    <label>Hold value Table</label>
+    <version>1.0</version>
+    <description>Replace occurences of nan in cells by the last non-nan value from the same column.</description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="" scheme="hdf5" type="table" type_base="table" uuid="{852924f5-aa2f-4b24-937a-97256633e928}">
+        <label>Input Table</label>
+      </input>
+      <output key="" scheme="hdf5" type="table" type_base="table" uuid="{f72e8392-c670-49b1-82e0-b47953b390ba}">
+        <label>Output Table with NaN replaced</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.create.createtable" port_format="1.1" uuid="{e1cebd30-e581-446c-8dd4-586a76aff7ac}" x="1400.0" y="1925.0">
+    <label>Manually Create Table</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Magnus Sand&#233;n</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "json_table": {
+        "editor": null,
+        "label": "GUI",
+        "order": 0,
+        "type": "string",
+        "value": "[[\"float\", \"f\", [0.0, NaN, NaN, 1.0]]]"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{0f1b4016-24b4-4bfb-968f-caca71464571}">
+        <label>Manually created table</label>
+      </output>
+    </ports>
+  </node>
+  <connection type="table" uuid="{88c7f39f-6844-4fa7-8791-81e63478bdf6}">
+    <source node="{e1cebd30-e581-446c-8dd4-586a76aff7ac}" port="{0f1b4016-24b4-4bfb-968f-caca71464571}"/>
+    <destination node="{dde3ef42-8ff5-4ae1-bdf3-a77e01b60d2d}" port="{852924f5-aa2f-4b24-937a-97256633e928}"/>
+  </connection>
+  <text color="Beige" height="50.0" uuid="{eb683592-95bf-4a25-b914-18690465b826}" width="350.0" x="1400.0" y="2025.0">
+- Node example: *org.sysess.sympathy.data.table.holdvaluetable*</text>
+</flow>

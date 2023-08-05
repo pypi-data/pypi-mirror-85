@@ -1,0 +1,1752 @@
+<?xml version='1.0' encoding='US-ASCII'?>
+<flow xmlns="http://www.sysess.org/sympathyfordata/workflow/1.0" cls="Flow" uuid="{25ffd584-aadd-4491-b7c0-07262654721c}">
+  <label></label>
+  <environment type="json">{"NO_TEST": ""}</environment>
+  <ports/>
+  <node id="org.sysess.sympathy.html.report" port_format="1.1" uuid="{090d7b92-69aa-4170-b1bf-bb4d59b8acf2}" x="2700.0" y="2250.0">
+    <label>Html report (Stand alone)</label>
+    <version>0.1</version>
+    <description>Create and render a Jinja2 template. Use "{{arg name}}" for access to the data.</description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "custom_base": {
+        "editor": null,
+        "label": "Use custom base",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "relative_tempfile": {
+        "editor": null,
+        "label": "Relative tempfile",
+        "order": 3,
+        "type": "boolean",
+        "value": false
+      },
+      "standalone": {
+        "editor": null,
+        "label": "Standalone HTML",
+        "order": 1,
+        "type": "boolean",
+        "value": true
+      },
+      "template": {
+        "editor": {
+          "language": "jinja",
+          "type": "code"
+        },
+        "label": "Template:",
+        "order": 0,
+        "type": "string",
+        "value": ""
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="in_ds" scheme="text" type="datasource" type_base="datasource" uuid="{32fdbc7a-b4e2-4c86-876f-f8aa1afc6739}">
+        <label>Datasource input</label>
+      </input>
+      <input key="in" scheme="hdf5" type="(json, table)" type_base="&lt;a&gt;" uuid="{b8a62e27-d563-4c2f-be39-c3cd04b22f05}">
+        <label>Input</label>
+      </input>
+      <output key="out" scheme="hdf5" type="html" type_base="html" uuid="{a161f77e-d2e9-478d-9c67-91b692bc3b4f}">
+        <label>HTML output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.json.importjson" port_format="1.1" uuid="{0c93e2c0-a232-4a8c-aed1-4700385efb34}" x="1600.0" y="1925.0">
+    <label>JSON</label>
+    <version>0.1</version>
+    <description></description>
+    <author>Samuel Genheden</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "active_importer": {
+        "editor": null,
+        "label": "Importer",
+        "order": 0,
+        "type": "string",
+        "value": "Auto"
+      },
+      "custom_importer_data": {
+        "Auto": {
+          "label": "",
+          "order": 0,
+          "type": "group"
+        },
+        "label": "",
+        "order": 1,
+        "type": "group"
+      },
+      "fail_strategy": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Action on import failure",
+        "list": ["Exception", "Create Empty Entry"],
+        "mode": "selected",
+        "order": 2,
+        "type": "list",
+        "value": [0],
+        "value_names": ["Exception"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="" scheme="text" type="datasource" type_base="datasource" uuid="{71f51c56-11cd-42a9-a2c2-266e899052d6}">
+        <label>Datasource</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="json" type_base="json" uuid="{267f49b9-84c2-4f11-99eb-951fb6fe8709}">
+        <label>Imported Json</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.datasources.filedatasource" port_format="1.1" uuid="{13e916ba-2218-4036-9bfb-82470ed31881}" x="1475.0" y="1825.0">
+    <label>GeoJSON data1</label>
+    <version>1.1</version>
+    <description></description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "datasource_type": {
+        "editor": null,
+        "label": "Datasource type",
+        "list": ["File", "Database", "Url"],
+        "mode": "selected",
+        "order": 11,
+        "type": "list",
+        "value": [0],
+        "value_names": ["File"]
+      },
+      "db_connection_string": {
+        "editor": null,
+        "label": "Connection string",
+        "order": 8,
+        "type": "string",
+        "value": ""
+      },
+      "db_databasename": {
+        "editor": null,
+        "label": "Database name",
+        "order": 5,
+        "type": "string",
+        "value": ""
+      },
+      "db_driver": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Database driver",
+        "list": ["SQL Server"],
+        "mode": "selected",
+        "order": 3,
+        "type": "list",
+        "value": [0],
+        "value_names": ["SQL Server"]
+      },
+      "db_method": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": ["ODBC", "SQLAlchemy"],
+          "type": "combobox"
+        },
+        "label": "Database connection method",
+        "order": 2,
+        "type": "string",
+        "value": "ODBC"
+      },
+      "db_password": {
+        "editor": null,
+        "label": "Password",
+        "order": 7,
+        "type": "string",
+        "value": ""
+      },
+      "db_servername": {
+        "editor": null,
+        "label": "Server name",
+        "order": 4,
+        "type": "string",
+        "value": ""
+      },
+      "db_sqlalchemy_engine_url": {
+        "editor": null,
+        "label": "SQLAlchemy engine URL",
+        "order": 1,
+        "type": "string",
+        "value": "mssql+pyodbc:///"
+      },
+      "db_user": {
+        "editor": null,
+        "label": "User",
+        "order": 6,
+        "type": "string",
+        "value": ""
+      },
+      "filename": {
+        "editor": {
+          "filter": ["Any files (*)"],
+          "states": null,
+          "type": "filename"
+        },
+        "label": "Filename",
+        "order": 0,
+        "type": "string",
+        "value": "0-2.geojson"
+      },
+      "type": "group",
+      "url_env": {
+        "description": "Environment for URL. Used as headers in case of HTTP URL. Input as a Python expression that evaluates to.",
+        "editor": {
+          "headers": ["Name", "Value"],
+          "type": "table",
+          "types": ["text", "text"],
+          "unique": ["Name"]
+        },
+        "label": "Url environment",
+        "order": 10,
+        "type": "json",
+        "value": []
+      },
+      "url_str": {
+        "editor": null,
+        "label": "URL string",
+        "order": 9,
+        "type": "string",
+        "value": ""
+      }
+    }
+    </parameters>
+    <ports>
+      <output key="port1" scheme="text" type="datasource" type_base="datasource" uuid="{c233ed46-3cd1-4152-861f-9b3c1f347432}">
+        <label>Datasource with path to file</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.calculatorgeneric" port_format="1.1" uuid="{1804639f-59d3-46e0-8acc-ed3fbb3d5efc}" x="1950.0" y="2375.0">
+    <label>Create meta data table</label>
+    <version>3.0</version>
+    <description>Create columns by evaluating python calculations.</description>
+    <author>Greger Cronquist, Magnus Sand&#233;n, Sara Gustafzelius &amp; Benedikt Ziegler</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "calc_attrs_dict": {
+        "editor": null,
+        "label": "",
+        "order": 1,
+        "type": "string",
+        "value": "[]"
+      },
+      "calc_list": {
+        "editor": null,
+        "label": "List of calculations",
+        "list": ["count = len(arg['price']) #ENABLED:1", "max_price = max(arg['price']) #ENABLED:1", "min_price = min(arg['price']) #ENABLED:1", "date = datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S') #ENABLED:1", "name = 'Project cardata' #ENABLED:1"],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [],
+        "value_names": []
+      },
+      "copy_input": {
+        "editor": null,
+        "label": "Copy input",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "fail_strategy": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Action on calculation failure",
+        "list": ["Exception", "Skip calculation"],
+        "mode": "selected",
+        "order": 3,
+        "type": "list",
+        "value": [0],
+        "value_names": ["Exception"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port0" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{62a53e4d-2840-434d-bf01-e11fd9fddc38}">
+        <label>Generic Input</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{af43963e-fb87-4aea-b9d0-02d0f693da9c}">
+        <label>Table with results from the calculations.</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.builtin.empty" port_format="1.1" uuid="{1994d22a-90b0-4410-b9e4-649505172738}" x="1475.0" y="1725.0">
+    <label>Empty</label>
+    <version>1.1</version>
+    <description>Generate empty data of inferred or specified type</description>
+    <author>Erik der Hagopian &lt;erik.hagopian@combine.se&gt;, Benedikt Ziegler &lt;benedikt.ziegler@combine.se&gt;</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "datatype": {
+        "editor": null,
+        "label": "Datatype",
+        "order": 0,
+        "type": "string",
+        "value": "&lt;a&gt;"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="" scheme="hdf5" type="{json}" type_base="&lt;a&gt;" uuid="{3db97b6e-eb3f-4d82-b587-ae69ca93f9d8}">
+        <label>Output port containing empty data (must be connected or specified)</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.dict.insert" port_format="1.1" uuid="{2b2b7ce7-501a-48c6-981a-7f27420f32b0}" x="1725.0" y="1800.0">
+    <label>Insert Dict</label>
+    <version></version>
+    <description>Insert item in dict</description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "key": {
+        "editor": null,
+        "label": "Key",
+        "order": 0,
+        "type": "string",
+        "value": "geojson"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="dict" scheme="hdf5" type="{json}" type_base="{&lt;a&gt;}" uuid="{2f27e987-e55d-48ab-99af-820fd6cd88bc}">
+        <label>Dict</label>
+      </input>
+      <input key="item" scheme="hdf5" type="json" type_base="&lt;a&gt;" uuid="{76ab7184-fae7-410f-96c1-9ec13c2db0f1}">
+        <label>Item</label>
+      </input>
+      <output key="dict" scheme="hdf5" type="{json}" type_base="{&lt;a&gt;}" uuid="{d0b5faf0-22f2-4ff0-8f2d-75591a2279ff}">
+        <label>Dict</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.datasources.filedatasource" port_format="1.1" uuid="{3069910a-4739-493b-9dd2-638d8dc0c88f}" x="1475.0" y="1925.0">
+    <label>GeoJSON data2</label>
+    <version>1.1</version>
+    <description></description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "datasource_type": {
+        "editor": null,
+        "label": "Datasource type",
+        "list": ["File", "Database", "Url"],
+        "mode": "selected",
+        "order": 11,
+        "type": "list",
+        "value": [0],
+        "value_names": ["File"]
+      },
+      "db_connection_string": {
+        "editor": null,
+        "label": "Connection string",
+        "order": 8,
+        "type": "string",
+        "value": ""
+      },
+      "db_databasename": {
+        "editor": null,
+        "label": "Database name",
+        "order": 5,
+        "type": "string",
+        "value": ""
+      },
+      "db_driver": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Database driver",
+        "list": ["SQL Server"],
+        "mode": "selected",
+        "order": 3,
+        "type": "list",
+        "value": [0],
+        "value_names": ["SQL Server"]
+      },
+      "db_method": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": ["ODBC", "SQLAlchemy"],
+          "type": "combobox"
+        },
+        "label": "Database connection method",
+        "order": 2,
+        "type": "string",
+        "value": "ODBC"
+      },
+      "db_password": {
+        "editor": null,
+        "label": "Password",
+        "order": 7,
+        "type": "string",
+        "value": ""
+      },
+      "db_servername": {
+        "editor": null,
+        "label": "Server name",
+        "order": 4,
+        "type": "string",
+        "value": ""
+      },
+      "db_sqlalchemy_engine_url": {
+        "editor": null,
+        "label": "SQLAlchemy engine URL",
+        "order": 1,
+        "type": "string",
+        "value": "mssql+pyodbc:///"
+      },
+      "db_user": {
+        "editor": null,
+        "label": "User",
+        "order": 6,
+        "type": "string",
+        "value": ""
+      },
+      "filename": {
+        "editor": {
+          "filter": ["Any files (*)"],
+          "states": null,
+          "type": "filename"
+        },
+        "label": "Filename",
+        "order": 0,
+        "type": "string",
+        "value": "2.1-4.geojson"
+      },
+      "type": "group",
+      "url_env": {
+        "description": "Environment for URL. Used as headers in case of HTTP URL. Input as a Python expression that evaluates to.",
+        "editor": {
+          "headers": ["Name", "Value"],
+          "type": "table",
+          "types": ["text", "text"],
+          "unique": ["Name"]
+        },
+        "label": "Url environment",
+        "order": 10,
+        "type": "json",
+        "value": []
+      },
+      "url_str": {
+        "editor": null,
+        "label": "URL string",
+        "order": 9,
+        "type": "string",
+        "value": ""
+      }
+    }
+    </parameters>
+    <ports>
+      <output key="port1" scheme="text" type="datasource" type_base="datasource" uuid="{c7b201b3-9f77-4348-bb68-0f76af63372d}">
+        <label>Datasource with path to file</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.datasources.filedatasource" port_format="1.1" uuid="{38364415-2e22-4cff-af6c-7078190a2c95}" x="2550.0" y="2400.0">
+    <label>Template file</label>
+    <version>1.1</version>
+    <description></description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "datasource_type": {
+        "editor": null,
+        "label": "Datasource type",
+        "list": ["File", "Database", "Url"],
+        "mode": "selected",
+        "order": 11,
+        "type": "list",
+        "value": [0],
+        "value_names": ["File"]
+      },
+      "db_connection_string": {
+        "editor": null,
+        "label": "Connection string",
+        "order": 8,
+        "type": "string",
+        "value": ""
+      },
+      "db_databasename": {
+        "editor": null,
+        "label": "Database name",
+        "order": 5,
+        "type": "string",
+        "value": ""
+      },
+      "db_driver": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Database driver",
+        "list": ["SQL Server"],
+        "mode": "selected",
+        "order": 3,
+        "type": "list",
+        "value": [0],
+        "value_names": ["SQL Server"]
+      },
+      "db_method": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": ["ODBC", "SQLAlchemy"],
+          "type": "combobox"
+        },
+        "label": "Database connection method",
+        "order": 2,
+        "type": "string",
+        "value": "ODBC"
+      },
+      "db_password": {
+        "editor": null,
+        "label": "Password",
+        "order": 7,
+        "type": "string",
+        "value": ""
+      },
+      "db_servername": {
+        "editor": null,
+        "label": "Server name",
+        "order": 4,
+        "type": "string",
+        "value": ""
+      },
+      "db_sqlalchemy_engine_url": {
+        "editor": null,
+        "label": "SQLAlchemy engine URL",
+        "order": 1,
+        "type": "string",
+        "value": "mssql+pyodbc:///"
+      },
+      "db_user": {
+        "editor": null,
+        "label": "User",
+        "order": 6,
+        "type": "string",
+        "value": ""
+      },
+      "filename": {
+        "editor": {
+          "filter": ["Any files (*)"],
+          "states": null,
+          "type": "filename"
+        },
+        "label": "Filename",
+        "order": 0,
+        "type": "string",
+        "value": "template.html"
+      },
+      "type": "group",
+      "url_env": {
+        "description": "Environment for URL. Used as headers in case of HTTP URL. Input as a Python expression that evaluates to.",
+        "editor": {
+          "headers": ["Name", "Value"],
+          "type": "table",
+          "types": ["text", "text"],
+          "unique": ["Name"]
+        },
+        "label": "Url environment",
+        "order": 10,
+        "type": "json",
+        "value": []
+      },
+      "url_str": {
+        "editor": null,
+        "label": "URL string",
+        "order": 9,
+        "type": "string",
+        "value": ""
+      }
+    }
+    </parameters>
+    <ports>
+      <output key="port1" scheme="text" type="datasource" type_base="datasource" uuid="{c3754d45-baa6-45f8-b7b0-cf8d3e1a2f09}">
+        <label>Datasource with path to file</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.tuple.tuple2" port_format="1.1" uuid="{477180be-d7cc-4317-bfbe-2f5247185862}" x="2550.0" y="2250.0">
+    <label>Tuple</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="input" scheme="hdf5" type="json" type_base="&lt;a&gt;" uuid="{fa4d42f8-fd95-4d62-8f55-a05c4529eda3}">
+        <label>Input</label>
+      </input>
+      <input key="input" scheme="hdf5" type="table" type_base="&lt;b&gt;" uuid="{cb929950-028d-4916-b271-9ac25c94b049}">
+        <label>Input</label>
+      </input>
+      <output key="output" scheme="hdf5" type="(json, table)" type_base="(&lt;a&gt;, &lt;b&gt;)" uuid="{04684761-2779-45bb-9e2d-a48caaa23513}">
+        <label>Output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.html.dicttogeojson" port_format="1.1" uuid="{4e496a94-5655-41ba-b7a4-62b9c28eb3d4}" x="2000.0" y="1850.0">
+    <label>GeoJSON</label>
+    <version>1.0</version>
+    <description>Import a dict of GeoJSON data and show on a map.</description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="dict" scheme="hdf5" type="{json}" type_base="{json}" uuid="{a19b55ba-1ad2-4065-ad4b-71d0db8d07fa}">
+        <label>Dict of JSON</label>
+      </input>
+      <output key="geojson" scheme="hdf5" type="geojson" type_base="geojson" uuid="{7cbb7fe9-dce9-43d2-a9c5-7b8c54d2f280}">
+        <label>GeoJSON</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.html.report" port_format="1.1" uuid="{4fbbef07-fbdb-44be-88e3-1e61273ecd24}" x="2700.0" y="2450.0">
+    <label>Html report</label>
+    <version>0.1</version>
+    <description>Create and render a Jinja2 template. Use "{{arg name}}" for access to the data.</description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "custom_base": {
+        "editor": null,
+        "label": "Use custom base",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "relative_tempfile": {
+        "editor": null,
+        "label": "Relative tempfile",
+        "order": 3,
+        "type": "boolean",
+        "value": false
+      },
+      "standalone": {
+        "editor": null,
+        "label": "Standalone HTML",
+        "order": 1,
+        "type": "boolean",
+        "value": true
+      },
+      "template": {
+        "editor": {
+          "language": "jinja",
+          "type": "code"
+        },
+        "label": "Template:",
+        "order": 0,
+        "type": "string",
+        "value": ""
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="in_ds" scheme="text" type="datasource" type_base="datasource" uuid="{9277221e-3035-45a6-87ca-3d4e433df468}">
+        <label>Datasource input</label>
+      </input>
+      <input key="in" scheme="hdf5" type="(json, table)" type_base="&lt;a&gt;" uuid="{c96f6314-aabe-411e-8d86-68954c7225d8}">
+        <label>Input</label>
+      </input>
+      <output key="out" scheme="hdf5" type="html" type_base="html" uuid="{e70dda74-2ee0-46f8-a05c-de887f9c370d}">
+        <label>HTML output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.html.htmltotext" port_format="1.1" uuid="{545cd29c-d4f3-4921-98cf-da25ea1a6640}" x="2850.0" y="2550.0">
+    <label>HTML to text</label>
+    <version>1.0</version>
+    <description>Convert HTML to text.</description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="in" scheme="hdf5" type="html" type_base="html" uuid="{aaf87343-19e6-4e64-9ac6-5e1a21b8df72}">
+        <label>HTML input</label>
+      </input>
+      <output key="out" scheme="hdf5" type="text" type_base="text" uuid="{a1539646-fb42-4f6e-a8a9-36f819089681}">
+        <label>Text output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.html.htmltotext" port_format="1.1" uuid="{5474915c-97ba-40b9-8a74-57a275a4cf9b}" x="2850.0" y="2350.0">
+    <label>HTML to text</label>
+    <version>1.0</version>
+    <description>Convert HTML to text.</description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="in" scheme="hdf5" type="html" type_base="html" uuid="{ec446734-2166-4248-8739-29f5177e5aaa}">
+        <label>HTML input</label>
+      </input>
+      <output key="out" scheme="hdf5" type="text" type_base="text" uuid="{a9d836d9-9372-4c38-a4e5-5269b91d63ac}">
+        <label>Text output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.fx" port_format="1.1" uuid="{5b08d008-3bf2-4d32-9c9f-7cdadd49cd7f}" x="2250.0" y="2250.0">
+    <label>F(x)</label>
+    <version>1.0</version>
+    <description>Apply arbitrary python function(s) to data.</description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "copy_input": {
+        "editor": null,
+        "label": "Copy input",
+        "order": 0,
+        "type": "boolean",
+        "value": true
+      },
+      "selected_functions": {
+        "editor": {
+          "edit": false,
+          "filter": true,
+          "mode": true,
+          "selection": "multi",
+          "type": "listview"
+        },
+        "label": "Select functions",
+        "list": ["GeneratePlots"],
+        "mode": "selected",
+        "order": 1,
+        "type": "list",
+        "value": [0],
+        "value_names": ["GeneratePlots"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port1" scheme="text" type="datasource" type_base="datasource" uuid="{e2ad1f1a-27ab-4905-910d-5a70200ede17}">
+        <label>Path to Python file with scripted functions.</label>
+      </input>
+      <input key="port2" scheme="hdf5" type="(json, table)" type_base="&lt;a&gt;" uuid="{96f52436-c1c1-436f-8744-f3c5aaaf3747}">
+        <label>Item with data to apply functions on</label>
+      </input>
+      <output key="port3" scheme="hdf5" type="(json, table)" type_base="&lt;a&gt;" uuid="{9edbc2eb-a8f3-4fc7-afbb-732dc6d30317}">
+        <label>Item with the results from the applied functions</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.selecttablerows" port_format="1.1" uuid="{62c35458-755f-4591-9942-2881d404254b}" x="1675.0" y="2375.0">
+    <label>year &lt; 2011</label>
+    <version>1.1</version>
+    <description>Reduction of rows in Table according to specified filter.</description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "columns": {
+        "editor": {
+          "edit": true,
+          "filter": true,
+          "mode": true,
+          "selection": "multi",
+          "type": "listview"
+        },
+        "label": "Columns to filter",
+        "list": ["id_web", "name", "model", "year", "price", "firstseen", "lastseen"],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [3],
+        "value_names": ["year"]
+      },
+      "constraint": {
+        "editor": null,
+        "label": "Filter constraint",
+        "order": 3,
+        "type": "string",
+        "value": "2011"
+      },
+      "exist": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": ["all", "any"],
+          "type": "combobox"
+        },
+        "label": "Constraint must be satisfied in",
+        "order": 1,
+        "type": "string",
+        "value": "all"
+      },
+      "limit": {
+        "editor": {
+          "max": 10000,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "Preview rows",
+        "order": 6,
+        "type": "integer",
+        "value": 100
+      },
+      "predicate": {
+        "editor": null,
+        "label": "Custom filter",
+        "order": 5,
+        "type": "string",
+        "value": "lambda x: x &lt; 2011"
+      },
+      "relation": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Relation",
+        "list": ["equal", "less than", "less than or equal", "greater than", "greater than or equal", "not equal"],
+        "mode": "selected",
+        "order": 2,
+        "type": "list",
+        "value": [1],
+        "value_names": ["less than"]
+      },
+      "type": "group",
+      "use_custom_predicate": {
+        "editor": null,
+        "label": "Use custom filter",
+        "order": 4,
+        "type": "boolean",
+        "value": false
+      }
+    }
+    </parameters>
+    <ports>
+      <input key="Input" scheme="hdf5" type="table" type_base="table" uuid="{d194116d-d9f6-4587-b03e-608a7704076a}">
+        <label>Input</label>
+      </input>
+      <output key="Output" scheme="hdf5" type="table" type_base="table" uuid="{b19f1697-1371-4f65-a21e-bf3671b82255}">
+        <label>Output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.html.report" port_format="1.1" uuid="{65559f2c-f0db-4d60-ad9d-27f2087eb113}" x="2700.0" y="2350.0">
+    <label>Html report</label>
+    <version>0.1</version>
+    <description>Create and render a Jinja2 template. Use "{{arg name}}" for access to the data.</description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "custom_base": {
+        "editor": null,
+        "label": "Use custom base",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "relative_tempfile": {
+        "editor": null,
+        "label": "Relative tempfile",
+        "order": 3,
+        "type": "boolean",
+        "value": false
+      },
+      "standalone": {
+        "editor": null,
+        "label": "Standalone HTML",
+        "order": 1,
+        "type": "boolean",
+        "value": true
+      },
+      "template": {
+        "editor": {
+          "language": "jinja",
+          "type": "code"
+        },
+        "label": "Template:",
+        "order": 0,
+        "type": "string",
+        "value": ""
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="in_ds" scheme="text" type="datasource" type_base="datasource" uuid="{a31225f2-6266-47c5-b1f8-3de7dc0d6c64}">
+        <label>Datasource input</label>
+      </input>
+      <input key="in" scheme="hdf5" type="(json, table)" type_base="&lt;a&gt;" uuid="{e4be580b-0fd5-4584-8390-0781a8114ec8}">
+        <label>Input</label>
+      </input>
+      <output key="out" scheme="hdf5" type="html" type_base="html" uuid="{e78d0811-bc59-4c9f-ac11-dc1b71e89569}">
+        <label>HTML output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.importtable" port_format="1.1" uuid="{6756dc12-1a5f-4e5c-a89d-853777269964}" x="1575.0" y="2375.0">
+    <label>Table</label>
+    <version>1.0</version>
+    <description>Data source as a table</description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "active_importer": {
+        "editor": null,
+        "label": "Importer",
+        "order": 0,
+        "type": "string",
+        "value": "Auto"
+      },
+      "custom_importer_data": {
+        "Auto": {
+          "label": "",
+          "order": 0,
+          "type": "group"
+        },
+        "label": "",
+        "order": 1,
+        "type": "group"
+      },
+      "fail_strategy": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Action on import failure",
+        "list": ["Exception", "Create Empty Entry"],
+        "mode": "selected",
+        "order": 2,
+        "type": "list",
+        "value": [0],
+        "value_names": ["Exception"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="" scheme="text" type="datasource" type_base="datasource" uuid="{1bf1f2f2-7e56-4b13-846a-71e3191d205a}">
+        <label>Datasource</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="table" type_base="table" uuid="{0eb5a514-2c62-43c3-ab11-71e07522ce62}">
+        <label>Imported Table</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.datasources.filedatasource" port_format="1.1" uuid="{75a407db-e365-4f47-af12-907761c49b0d}" x="1800.0" y="2150.0">
+    <label>Bokeh script</label>
+    <version>1.1</version>
+    <description></description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "datasource_type": {
+        "editor": null,
+        "label": "Datasource type",
+        "list": ["File", "Database"],
+        "mode": "selected",
+        "order": 9,
+        "type": "list",
+        "value": [0],
+        "value_names": ["File"]
+      },
+      "db_connection_string": {
+        "editor": null,
+        "label": "Connection string",
+        "order": 8,
+        "type": "string",
+        "value": ""
+      },
+      "db_databasename": {
+        "editor": null,
+        "label": "Database name",
+        "order": 5,
+        "type": "string",
+        "value": ""
+      },
+      "db_driver": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Database driver",
+        "list": ["SQL Server"],
+        "mode": "selected",
+        "order": 3,
+        "type": "list",
+        "value": [0],
+        "value_names": ["SQL Server"]
+      },
+      "db_method": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": ["ODBC", "SQLAlchemy"],
+          "type": "combobox"
+        },
+        "label": "Database connection method",
+        "order": 2,
+        "type": "string",
+        "value": "ODBC"
+      },
+      "db_password": {
+        "editor": null,
+        "label": "Password",
+        "order": 7,
+        "type": "string",
+        "value": ""
+      },
+      "db_servername": {
+        "editor": null,
+        "label": "Server name",
+        "order": 4,
+        "type": "string",
+        "value": ""
+      },
+      "db_sqlalchemy_engine_url": {
+        "editor": null,
+        "label": "SQLAlchemy engine URL",
+        "order": 1,
+        "type": "string",
+        "value": "mssql+pyodbc:///"
+      },
+      "db_user": {
+        "editor": null,
+        "label": "User",
+        "order": 6,
+        "type": "string",
+        "value": ""
+      },
+      "filename": {
+        "editor": {
+          "filter": ["Any files (*)"],
+          "states": null,
+          "type": "filename"
+        },
+        "label": "Filename",
+        "order": 0,
+        "type": "string",
+        "value": "bokeh.py"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port1" scheme="text" type="datasource" type_base="datasource" uuid="{6038c1bb-4503-405e-9054-b5b0e77942e2}">
+        <label>Datasource with path to file</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.tuple.tuple2" port_format="1.1" uuid="{80bc4225-cc6c-420f-a137-f3585ab1f1ba}" x="1950.0" y="2250.0">
+    <label>Tuple</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="input" scheme="hdf5" type="json" type_base="&lt;a&gt;" uuid="{9d7d2926-c42d-4ac9-a2c9-9ee6145115b4}">
+        <label>Input</label>
+      </input>
+      <input key="input" scheme="hdf5" type="table" type_base="&lt;b&gt;" uuid="{2dd41f43-77f2-4c4f-a8fc-6d93b7e964be}">
+        <label>Input</label>
+      </input>
+      <output key="output" scheme="hdf5" type="(json, table)" type_base="(&lt;a&gt;, &lt;b&gt;)" uuid="{66a12a13-849b-4822-ba2b-76ff2e35b2ac}">
+        <label>Output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.tuple.untuple2" port_format="1.1" uuid="{84735b43-3da1-4c9d-b3a7-0222b34d5686}" x="2400.0" y="2250.0">
+    <label>Untuple</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="input" scheme="hdf5" type="(json, table)" type_base="(&lt;a&gt;, &lt;b&gt;)" uuid="{335cfd28-ede7-49ee-9cd9-d011123e1ff7}">
+        <label>Input</label>
+      </input>
+      <output key="output" scheme="hdf5" type="json" type_base="&lt;a&gt;" uuid="{dba8be4b-361b-4148-955f-fd8cca09bf32}">
+        <label>Output</label>
+      </output>
+      <output key="output" scheme="hdf5" type="table" type_base="&lt;b&gt;" uuid="{7a8d8730-95c0-418b-a95f-23464d9beadc}">
+        <label>Output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.create.createjson" port_format="1.1" uuid="{8b62a27c-07c7-4f0c-9523-4fbce7f2d89e}" x="2250.0" y="2600.0">
+    <label>Manually Create JSON</label>
+    <version>0.1</version>
+    <description></description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "code": {
+        "editor": {
+          "language": "python",
+          "type": "code"
+        },
+        "label": "",
+        "order": 0,
+        "type": "string",
+        "value": "{\n    \"bokeh_version\": \"1.4.0\",\n    \"div\": {\n        \"p\": \"\\n&lt;div class=\\\"bk-root\\\" id=\\\"d8310c54-5ab6-41c2-ab79-9b33be26b4e6\\\" data-root-id=\\\"1037\\\"&gt;&lt;/div&gt;\",\n        \"price-per-year\": \"\\n&lt;div class=\\\"bk-root\\\" id=\\\"d177a64c-1cca-4755-b41f-447b69db627e\\\" data-root-id=\\\"1001\\\"&gt;&lt;/div&gt;\"\n    },\n    \"script\": \"\\n&lt;script type=\\\"text/javascript\\\"&gt;\\n    (function() {\\n          var fn = function() {\\n            Bokeh.safely(function() {\\n              (function(root) {\\n                function embed_document(root) {\\n                  \\n                var docs_json = '{\\\"c0b7b888-a5d6-4969-9a49-442a63c81511\\\":{\\\"roots\\\":{\\\"references\\\":[{\\\"attributes\\\":{\\\"formatter\\\":{\\\"id\\\":\\\"1090\\\",\\\"type\\\":\\\"BasicTickFormatter\\\"},\\\"ticker\\\":{\\\"id\\\":\\\"1011\\\",\\\"type\\\":\\\"BasicTicker\\\"}},\\\"id\\\":\\\"1010\\\",\\\"type\\\":\\\"LinearAxis\\\"},{\\\"attributes\\\":{},\\\"id\\\":\\\"1024\\\",\\\"type\\\":\\\"SaveTool\\\"},{\\\"attributes\\\":{},\\\"id\\\":\\\"1060\\\",\\\"type\\\":\\\"SaveTool\\\"},{\\\"attributes\\\":{},\\\"id\\\":\\\"1061\\\",\\\"type\\\":\\\"ResetTool\\\"},{\\\"attributes\\\":{},\\\"id\\\":\\\"1062\\\",\\\"type\\\":\\\"HelpTool\\\"},{\\\"attributes\\\":{\\\"fill_color\\\":{\\\"field\\\":\\\"manufacturers\\\",\\\"transform\\\":{\\\"id\\\":\\\"1070\\\",\\\"type\\\":\\\"CategoricalColorMapper\\\"}},\\\"line_color\\\":{\\\"value\\\":\\\"white\\\"},\\\"top\\\":{\\\"field\\\":\\\"counts\\\"},\\\"width\\\":{\\\"value\\\":0.9},\\\"x\\\":{\\\"field\\\":\\\"manufacturers\\\"}},\\\"id\\\":\\\"1072\\\",\\\"type\\\":\\\"VBar\\\"},{\\\"attributes\\\":{\\\"overlay\\\":{\\\"id\\\":\\\"1096\\\",\\\"type\\\":\\\"BoxAnnotation\\\"}},\\\"id\\\":\\\"1022\\\",\\\"type\\\":\\\"BoxZoomTool\\\"},{\\\"attributes\\\":{\\\"active_drag\\\":\\\"auto\\\",\\\"active_inspect\\\":\\\"auto\\\",\\\"active_multi\\\":null,\\\"active_scroll\\\":\\\"auto\\\",\\\"active_tap\\\":\\\"auto\\\",\\\"tools\\\":[{\\\"id\\\":\\\"1057\\\",\\\"type\\\":\\\"PanTool\\\"},{\\\"id\\\":\\\"1058\\\",\\\"type\\\":\\\"WheelZoomTool\\\"},{\\\"id\\\":\\\"1059\\\",\\\"type\\\":\\\"BoxZoomTool\\\"},{\\\"id\\\":\\\"1060\\\",\\\"type\\\":\\\"SaveTool\\\"},{\\\"id\\\":\\\"1061\\\",\\\"type\\\":\\\"ResetTool\\\"},{\\\"id\\\":\\\"1062\\\",\\\"type\\\":\\\"HelpTool\\\"}]},\\\"id\\\":\\\"1063\\\",\\\"type\\\":\\\"Toolbar\\\"},{\\\"attributes\\\":{},\\\"id\\\":\\\"1023\\\",\\\"type\\\":\\\"ResetTool\\\"},{\\\"attributes\\\":{},\\\"id\\\":\\\"1077\\\",\\\"type\\\":\\\"CategoricalTickFormatter\\\"},{\\\"attributes\\\":{\\\"source\\\":{\\\"id\\\":\\\"1036\\\",\\\"type\\\":\\\"ColumnDataSource\\\"}},\\\"id\\\":\\\"1075\\\",\\\"type\\\":\\\"CDSView\\\"},{\\\"attributes\\\":{},\\\"id\\\":\\\"1016\\\",\\\"type\\\":\\\"BasicTicker\\\"},{\\\"attributes\\\":{\\\"items\\\":[{\\\"id\\\":\\\"1083\\\",\\\"type\\\":\\\"LegendItem\\\"},{\\\"id\\\":\\\"1084\\\",\\\"type\\\":\\\"LegendItem\\\"},{\\\"id\\\":\\\"1085\\\",\\\"type\\\":\\\"LegendItem\\\"},{\\\"id\\\":\\\"1086\\\",\\\"type\\\":\\\"LegendItem\\\"},{\\\"id\\\":\\\"1087\\\",\\\"type\\\":\\\"LegendItem\\\"}],\\\"location\\\":\\\"top_center\\\",\\\"orientation\\\":\\\"horizontal\\\"},\\\"id\\\":\\\"1082\\\",\\\"type\\\":\\\"Legend\\\"},{\\\"attributes\\\":{\\\"active_drag\\\":\\\"auto\\\",\\\"active_inspect\\\":\\\"auto\\\",\\\"active_multi\\\":null,\\\"active_scroll\\\":\\\"auto\\\",\\\"active_tap\\\":\\\"auto\\\",\\\"tools\\\":[{\\\"id\\\":\\\"1020\\\",\\\"type\\\":\\\"PanTool\\\"},{\\\"id\\\":\\\"1021\\\",\\\"type\\\":\\\"WheelZoomTool\\\"},{\\\"id\\\":\\\"1022\\\",\\\"type\\\":\\\"BoxZoomTool\\\"},{\\\"id\\\":\\\"1023\\\",\\\"type\\\":\\\"ResetTool\\\"},{\\\"id\\\":\\\"1024\\\",\\\"type\\\":\\\"SaveTool\\\"}]},\\\"id\\\":\\\"1025\\\",\\\"type\\\":\\\"Toolbar\\\"},{\\\"attributes\\\":{},\\\"id\\\":\\\"1079\\\",\\\"type\\\":\\\"BasicTickFormatter\\\"},{\\\"attributes\\\":{},\\\"id\\\":\\\"1057\\\",\\\"type\\\":\\\"PanTool\\\"},{\\\"attributes\\\":{\\\"source\\\":{\\\"id\\\":\\\"1031\\\",\\\"type\\\":\\\"ColumnDataSource\\\"}},\\\"id\\\":\\\"1035\\\",\\\"type\\\":\\\"CDSView\\\"},{\\\"attributes\\\":{\\\"callback\\\":null,\\\"factors\\\":[\\\"Citro\\\\\\\\u00ebn\\\",\\\"Renault\\\",\\\"Toyota\\\",\\\"VW\\\",\\\"Volvo\\\"]},\\\"id\\\":\\\"1040\\\",\\\"type\\\":\\\"FactorRange\\\"},{\\\"attributes\\\":{\\\"ticker\\\":{\\\"id\\\":\\\"1011\\\",\\\"type\\\":\\\"BasicTicker\\\"}},\\\"id\\\":\\\"1014\\\",\\\"type\\\":\\\"Grid\\\"},{\\\"attributes\\\":{\\\"index\\\":0,\\\"label\\\":{\\\"value\\\":\\\"Citro\\\\\\\\u00ebn\\\"},\\\"renderers\\\":[{\\\"id\\\":\\\"1074\\\",\\\"type\\\":\\\"GlyphRenderer\\\"}]},\\\"id\\\":\\\"1083\\\",\\\"type\\\":\\\"LegendItem\\\"},{\\\"attributes\\\":{\\\"index\\\":1,\\\"label\\\":{\\\"value\\\":\\\"Renault\\\"},\\\"renderers\\\":[{\\\"id\\\":\\\"1074\\\",\\\"type\\\":\\\"GlyphRenderer\\\"}]},\\\"id\\\":\\\"1084\\\",\\\"type\\\":\\\"LegendItem\\\"},{\\\"attributes\\\":{\\\"callback\\\":null,\\\"end\\\":39,\\\"start\\\":0},\\\"id\\\":\\\"1042\\\",\\\"type\\\":\\\"DataRange1d\\\"},{\\\"attributes\\\":{},\\\"id\\\":\\\"1046\\\",\\\"type\\\":\\\"LinearScale\\\"},{\\\"attributes\\\":{\\\"index\\\":2,\\\"label\\\":{\\\"value\\\":\\\"Toyota\\\"},\\\"renderers\\\":[{\\\"id\\\":\\\"1074\\\",\\\"type\\\":\\\"GlyphRenderer\\\"}]},\\\"id\\\":\\\"1085\\\",\\\"type\\\":\\\"LegendItem\\\"},{\\\"attributes\\\":{\\\"callback\\\":null,\\\"data\\\":{\\\"x\\\":[1998,1998,2001,2008,1987,1992,1992,1994,1990,1990,1995,1992,1997,1987,1990,1995,1990,1960,1999,2004,1994,1995,1997,1989,1995,1992,2007,1994,1986,1995,1988,1992,1994,1988,1986,1990,1989,1990,1988,2007,2007,1988,1989,1985,1986,2009,2007,1989,1996,2006,1992,1994,1991,1992,1994,1994,1997,1984,1993,1997,1989,1981,1996,1992,1993,1990,1993,1986,1990,1987,1995,1987,1998,1988,1996,1994,1991,1999,2008,1995],\\\"y\\\":[400,3000,800,600,5800,7900,8000,6500,7500,6700,9000,9800,5000,3000,8600,7500,8500,3795,1500,1500,6500,4500,5000,7000,9900,1500,1700,5200,4000,8000,3000,8000,9800,8000,3000,4500,4600,2500,2800,500,800,5900,8800,2500,5500,3099,6500,7800,5000,2800,8800,5000,4000,5000,9999,7500,8500,5000,7000,5000,8500,3350,9700,8500,300,2500,9500,4700,5000,4000,9500,3000,7000,9500,6000,3000,8000,500,900,7500]},\\\"selected\\\":{\\\"id\\\":\\\"1094\\\",\\\"type\\\":\\\"Selection\\\"},\\\"selection_policy\\\":{\\\"id\\\":\\\"1095\\\",\\\"type\\\":\\\"UnionRenderers\\\"}},\\\"id\\\":\\\"1031\\\",\\\"type\\\":\\\"ColumnDataSource\\\"},{\\\"attributes\\\":{\\\"dimension\\\":1,\\\"ticker\\\":{\\\"id\\\":\\\"1053\\\",\\\"type\\\":\\\"BasicTicker\\\"}},\\\"id\\\":\\\"1056\\\",\\\"type\\\":\\\"Grid\\\"},{\\\"attributes\\\":{\\\"overlay\\\":{\\\"id\\\":\\\"1081\\\",\\\"type\\\":\\\"BoxAnnotation\\\"}},\\\"id\\\":\\\"1059\\\",\\\"type\\\":\\\"BoxZoomTool\\\"},{\\\"attributes\\\":{\\\"index\\\":3,\\\"label\\\":{\\\"value\\\":\\\"VW\\\"},\\\"renderers\\\":[{\\\"id\\\":\\\"1074\\\",\\\"type\\\":\\\"GlyphRenderer\\\"}]},\\\"id\\\":\\\"1086\\\",\\\"type\\\":\\\"LegendItem\\\"},{\\\"attributes\\\":{},\\\"id\\\":\\\"1058\\\",\\\"type\\\":\\\"WheelZoomTool\\\"},{\\\"attributes\\\":{},\\\"id\\\":\\\"1044\\\",\\\"type\\\":\\\"CategoricalScale\\\"},{\\\"attributes\\\":{\\\"index\\\":4,\\\"label\\\":{\\\"value\\\":\\\"Volvo\\\"},\\\"renderers\\\":[{\\\"id\\\":\\\"1074\\\",\\\"type\\\":\\\"GlyphRenderer\\\"}]},\\\"id\\\":\\\"1087\\\",\\\"type\\\":\\\"LegendItem\\\"},{\\\"attributes\\\":{},\\\"id\\\":\\\"1021\\\",\\\"type\\\":\\\"WheelZoomTool\\\"},{\\\"attributes\\\":{\\\"dimension\\\":1,\\\"ticker\\\":{\\\"id\\\":\\\"1016\\\",\\\"type\\\":\\\"BasicTicker\\\"}},\\\"id\\\":\\\"1019\\\",\\\"type\\\":\\\"Grid\\\"},{\\\"attributes\\\":{\\\"text\\\":\\\"Manufacturer Counts\\\"},\\\"id\\\":\\\"1038\\\",\\\"type\\\":\\\"Title\\\"},{\\\"attributes\\\":{\\\"formatter\\\":{\\\"id\\\":\\\"1092\\\",\\\"type\\\":\\\"BasicTickFormatter\\\"},\\\"ticker\\\":{\\\"id\\\":\\\"1016\\\",\\\"type\\\":\\\"BasicTicker\\\"}},\\\"id\\\":\\\"1015\\\",\\\"type\\\":\\\"LinearAxis\\\"},{\\\"attributes\\\":{\\\"below\\\":[{\\\"id\\\":\\\"1010\\\",\\\"type\\\":\\\"LinearAxis\\\"}],\\\"center\\\":[{\\\"id\\\":\\\"1014\\\",\\\"type\\\":\\\"Grid\\\"},{\\\"id\\\":\\\"1019\\\",\\\"type\\\":\\\"Grid\\\"}],\\\"left\\\":[{\\\"id\\\":\\\"1015\\\",\\\"type\\\":\\\"LinearAxis\\\"}],\\\"plot_height\\\":300,\\\"plot_width\\\":300,\\\"renderers\\\":[{\\\"id\\\":\\\"1034\\\",\\\"type\\\":\\\"GlyphRenderer\\\"}],\\\"title\\\":{\\\"id\\\":\\\"1089\\\",\\\"type\\\":\\\"Title\\\"},\\\"toolbar\\\":{\\\"id\\\":\\\"1025\\\",\\\"type\\\":\\\"Toolbar\\\"},\\\"x_range\\\":{\\\"id\\\":\\\"1002\\\",\\\"type\\\":\\\"DataRange1d\\\"},\\\"x_scale\\\":{\\\"id\\\":\\\"1006\\\",\\\"type\\\":\\\"LinearScale\\\"},\\\"y_range\\\":{\\\"id\\\":\\\"1004\\\",\\\"type\\\":\\\"DataRange1d\\\"},\\\"y_scale\\\":{\\\"id\\\":\\\"1008\\\",\\\"type\\\":\\\"LinearScale\\\"}},\\\"id\\\":\\\"1001\\\",\\\"subtype\\\":\\\"Figure\\\",\\\"type\\\":\\\"Plot\\\"},{\\\"attributes\\\":{\\\"fill_alpha\\\":{\\\"value\\\":0.5},\\\"fill_color\\\":{\\\"value\\\":\\\"red\\\"},\\\"line_alpha\\\":{\\\"value\\\":0.5},\\\"line_color\\\":{\\\"value\\\":\\\"red\\\"},\\\"size\\\":{\\\"units\\\":\\\"screen\\\",\\\"value\\\":12},\\\"x\\\":{\\\"field\\\":\\\"x\\\"},\\\"y\\\":{\\\"field\\\":\\\"y\\\"}},\\\"id\\\":\\\"1032\\\",\\\"type\\\":\\\"Scatter\\\"},{\\\"attributes\\\":{\\\"text\\\":\\\"\\\"},\\\"id\\\":\\\"1089\\\",\\\"type\\\":\\\"Title\\\"},{\\\"attributes\\\":{\\\"below\\\":[{\\\"id\\\":\\\"1048\\\",\\\"type\\\":\\\"CategoricalAxis\\\"}],\\\"center\\\":[{\\\"id\\\":\\\"1051\\\",\\\"type\\\":\\\"Grid\\\"},{\\\"id\\\":\\\"1056\\\",\\\"type\\\":\\\"Grid\\\"},{\\\"id\\\":\\\"1082\\\",\\\"type\\\":\\\"Legend\\\"}],\\\"left\\\":[{\\\"id\\\":\\\"1052\\\",\\\"type\\\":\\\"LinearAxis\\\"}],\\\"renderers\\\":[{\\\"id\\\":\\\"1074\\\",\\\"type\\\":\\\"GlyphRenderer\\\"}],\\\"title\\\":{\\\"id\\\":\\\"1038\\\",\\\"type\\\":\\\"Title\\\"},\\\"toolbar\\\":{\\\"id\\\":\\\"1063\\\",\\\"type\\\":\\\"Toolbar\\\"},\\\"toolbar_location\\\":null,\\\"x_range\\\":{\\\"id\\\":\\\"1040\\\",\\\"type\\\":\\\"FactorRange\\\"},\\\"x_scale\\\":{\\\"id\\\":\\\"1044\\\",\\\"type\\\":\\\"CategoricalScale\\\"},\\\"y_range\\\":{\\\"id\\\":\\\"1042\\\",\\\"type\\\":\\\"DataRange1d\\\"},\\\"y_scale\\\":{\\\"id\\\":\\\"1046\\\",\\\"type\\\":\\\"LinearScale\\\"}},\\\"id\\\":\\\"1037\\\",\\\"subtype\\\":\\\"Figure\\\",\\\"type\\\":\\\"Plot\\\"},{\\\"attributes\\\":{},\\\"id\\\":\\\"1006\\\",\\\"type\\\":\\\"LinearScale\\\"},{\\\"attributes\\\":{\\\"callback\\\":null},\\\"id\\\":\\\"1002\\\",\\\"type\\\":\\\"DataRange1d\\\"},{\\\"attributes\\\":{\\\"formatter\\\":{\\\"id\\\":\\\"1077\\\",\\\"type\\\":\\\"CategoricalTickFormatter\\\"},\\\"ticker\\\":{\\\"id\\\":\\\"1049\\\",\\\"type\\\":\\\"CategoricalTicker\\\"}},\\\"id\\\":\\\"1048\\\",\\\"type\\\":\\\"CategoricalAxis\\\"},{\\\"attributes\\\":{},\\\"id\\\":\\\"1094\\\",\\\"type\\\":\\\"Selection\\\"},{\\\"attributes\\\":{},\\\"id\\\":\\\"1011\\\",\\\"type\\\":\\\"BasicTicker\\\"},{\\\"attributes\\\":{},\\\"id\\\":\\\"1095\\\",\\\"type\\\":\\\"UnionRenderers\\\"},{\\\"attributes\\\":{\\\"formatter\\\":{\\\"id\\\":\\\"1079\\\",\\\"type\\\":\\\"BasicTickFormatter\\\"},\\\"ticker\\\":{\\\"id\\\":\\\"1053\\\",\\\"type\\\":\\\"BasicTicker\\\"}},\\\"id\\\":\\\"1052\\\",\\\"type\\\":\\\"LinearAxis\\\"},{\\\"attributes\\\":{\\\"grid_line_color\\\":null,\\\"ticker\\\":{\\\"id\\\":\\\"1049\\\",\\\"type\\\":\\\"CategoricalTicker\\\"}},\\\"id\\\":\\\"1051\\\",\\\"type\\\":\\\"Grid\\\"},{\\\"attributes\\\":{},\\\"id\\\":\\\"1090\\\",\\\"type\\\":\\\"BasicTickFormatter\\\"},{\\\"attributes\\\":{},\\\"id\\\":\\\"1049\\\",\\\"type\\\":\\\"CategoricalTicker\\\"},{\\\"attributes\\\":{},\\\"id\\\":\\\"1008\\\",\\\"type\\\":\\\"LinearScale\\\"},{\\\"attributes\\\":{},\\\"id\\\":\\\"1020\\\",\\\"type\\\":\\\"PanTool\\\"},{\\\"attributes\\\":{},\\\"id\\\":\\\"1053\\\",\\\"type\\\":\\\"BasicTicker\\\"},{\\\"attributes\\\":{\\\"bottom_units\\\":\\\"screen\\\",\\\"fill_alpha\\\":{\\\"value\\\":0.5},\\\"fill_color\\\":{\\\"value\\\":\\\"lightgrey\\\"},\\\"left_units\\\":\\\"screen\\\",\\\"level\\\":\\\"overlay\\\",\\\"line_alpha\\\":{\\\"value\\\":1.0},\\\"line_color\\\":{\\\"value\\\":\\\"black\\\"},\\\"line_dash\\\":[4,4],\\\"line_width\\\":{\\\"value\\\":2},\\\"render_mode\\\":\\\"css\\\",\\\"right_units\\\":\\\"screen\\\",\\\"top_units\\\":\\\"screen\\\"},\\\"id\\\":\\\"1096\\\",\\\"type\\\":\\\"BoxAnnotation\\\"},{\\\"attributes\\\":{\\\"factors\\\":[\\\"Citro\\\\\\\\u00ebn\\\",\\\"Renault\\\",\\\"Toyota\\\",\\\"VW\\\",\\\"Volvo\\\"],\\\"palette\\\":[\\\"#3288bd\\\",\\\"#99d594\\\",\\\"#e6f598\\\",\\\"#fee08b\\\",\\\"#fc8d59\\\",\\\"#d53e4f\\\"]},\\\"id\\\":\\\"1070\\\",\\\"type\\\":\\\"CategoricalColorMapper\\\"},{\\\"attributes\\\":{\\\"data_source\\\":{\\\"id\\\":\\\"1036\\\",\\\"type\\\":\\\"ColumnDataSource\\\"},\\\"glyph\\\":{\\\"id\\\":\\\"1072\\\",\\\"type\\\":\\\"VBar\\\"},\\\"hover_glyph\\\":null,\\\"muted_glyph\\\":null,\\\"nonselection_glyph\\\":{\\\"id\\\":\\\"1073\\\",\\\"type\\\":\\\"VBar\\\"},\\\"selection_glyph\\\":null,\\\"view\\\":{\\\"id\\\":\\\"1075\\\",\\\"type\\\":\\\"CDSView\\\"}},\\\"id\\\":\\\"1074\\\",\\\"type\\\":\\\"GlyphRenderer\\\"},{\\\"attributes\\\":{\\\"fill_alpha\\\":{\\\"value\\\":0.1},\\\"fill_color\\\":{\\\"value\\\":\\\"#1f77b4\\\"},\\\"line_alpha\\\":{\\\"value\\\":0.1},\\\"line_color\\\":{\\\"value\\\":\\\"#1f77b4\\\"},\\\"size\\\":{\\\"units\\\":\\\"screen\\\",\\\"value\\\":12},\\\"x\\\":{\\\"field\\\":\\\"x\\\"},\\\"y\\\":{\\\"field\\\":\\\"y\\\"}},\\\"id\\\":\\\"1033\\\",\\\"type\\\":\\\"Scatter\\\"},{\\\"attributes\\\":{\\\"fill_alpha\\\":{\\\"value\\\":0.1},\\\"fill_color\\\":{\\\"value\\\":\\\"#1f77b4\\\"},\\\"line_alpha\\\":{\\\"value\\\":0.1},\\\"line_color\\\":{\\\"value\\\":\\\"#1f77b4\\\"},\\\"top\\\":{\\\"field\\\":\\\"counts\\\"},\\\"width\\\":{\\\"value\\\":0.9},\\\"x\\\":{\\\"field\\\":\\\"manufacturers\\\"}},\\\"id\\\":\\\"1073\\\",\\\"type\\\":\\\"VBar\\\"},{\\\"attributes\\\":{},\\\"id\\\":\\\"1111\\\",\\\"type\\\":\\\"Selection\\\"},{\\\"attributes\\\":{\\\"bottom_units\\\":\\\"screen\\\",\\\"fill_alpha\\\":{\\\"value\\\":0.5},\\\"fill_color\\\":{\\\"value\\\":\\\"lightgrey\\\"},\\\"left_units\\\":\\\"screen\\\",\\\"level\\\":\\\"overlay\\\",\\\"line_alpha\\\":{\\\"value\\\":1.0},\\\"line_color\\\":{\\\"value\\\":\\\"black\\\"},\\\"line_dash\\\":[4,4],\\\"line_width\\\":{\\\"value\\\":2},\\\"render_mode\\\":\\\"css\\\",\\\"right_units\\\":\\\"screen\\\",\\\"top_units\\\":\\\"screen\\\"},\\\"id\\\":\\\"1081\\\",\\\"type\\\":\\\"BoxAnnotation\\\"},{\\\"attributes\\\":{\\\"data_source\\\":{\\\"id\\\":\\\"1031\\\",\\\"type\\\":\\\"ColumnDataSource\\\"},\\\"glyph\\\":{\\\"id\\\":\\\"1032\\\",\\\"type\\\":\\\"Scatter\\\"},\\\"hover_glyph\\\":null,\\\"muted_glyph\\\":null,\\\"nonselection_glyph\\\":{\\\"id\\\":\\\"1033\\\",\\\"type\\\":\\\"Scatter\\\"},\\\"selection_glyph\\\":null,\\\"view\\\":{\\\"id\\\":\\\"1035\\\",\\\"type\\\":\\\"CDSView\\\"}},\\\"id\\\":\\\"1034\\\",\\\"type\\\":\\\"GlyphRenderer\\\"},{\\\"attributes\\\":{\\\"callback\\\":null},\\\"id\\\":\\\"1004\\\",\\\"type\\\":\\\"DataRange1d\\\"},{\\\"attributes\\\":{},\\\"id\\\":\\\"1112\\\",\\\"type\\\":\\\"UnionRenderers\\\"},{\\\"attributes\\\":{},\\\"id\\\":\\\"1092\\\",\\\"type\\\":\\\"BasicTickFormatter\\\"},{\\\"attributes\\\":{\\\"callback\\\":null,\\\"data\\\":{\\\"counts\\\":[2,5,22,39,12],\\\"manufacturers\\\":[\\\"Citro\\\\\\\\u00ebn\\\",\\\"Renault\\\",\\\"Toyota\\\",\\\"VW\\\",\\\"Volvo\\\"]},\\\"selected\\\":{\\\"id\\\":\\\"1111\\\",\\\"type\\\":\\\"Selection\\\"},\\\"selection_policy\\\":{\\\"id\\\":\\\"1112\\\",\\\"type\\\":\\\"UnionRenderers\\\"}},\\\"id\\\":\\\"1036\\\",\\\"type\\\":\\\"ColumnDataSource\\\"}],\\\"root_ids\\\":[\\\"1001\\\",\\\"1037\\\"]},\\\"title\\\":\\\"Bokeh Application\\\",\\\"version\\\":\\\"1.4.0\\\"}}';\\n                var render_items = [{\\\"docid\\\":\\\"c0b7b888-a5d6-4969-9a49-442a63c81511\\\",\\\"roots\\\":{\\\"1001\\\":\\\"d177a64c-1cca-4755-b41f-447b69db627e\\\",\\\"1037\\\":\\\"d8310c54-5ab6-41c2-ab79-9b33be26b4e6\\\"}}];\\n                root.Bokeh.embed.embed_items(docs_json, render_items);\\n              \\n                }\\n                if (root.Bokeh !== undefined) {\\n                  embed_document(root);\\n                } else {\\n                  var attempts = 0;\\n                  var timer = setInterval(function(root) {\\n                    if (root.Bokeh !== undefined) {\\n                      clearInterval(timer);\\n                      embed_document(root);\\n                    } else {\\n                      attempts++;\\n                      if (attempts &gt; 100) {\\n                        clearInterval(timer);\\n                        console.log(\\\"Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing\\\");\\n                      }\\n                    }\\n                  }, 10, root)\\n                }\\n              })(window);\\n            });\\n          };\\n          if (document.readyState != \\\"loading\\\") fn();\\n          else document.addEventListener(\\\"DOMContentLoaded\\\", fn);\\n        })();\\n&lt;/script&gt;\"\n}"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="output" scheme="hdf5" type="json" type_base="json" uuid="{89448dac-b590-4297-91ae-85d2462615fc}">
+        <label>Output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.tuple.tuple2" port_format="1.1" uuid="{926f2ef6-a9b2-48c2-9eb6-e1a08df14c49}" x="2550.0" y="2550.0">
+    <label>Tuple</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="input" scheme="hdf5" type="json" type_base="&lt;a&gt;" uuid="{627d4884-bb17-464d-bad8-fdc6ad40b139}">
+        <label>Input</label>
+      </input>
+      <input key="input" scheme="hdf5" type="table" type_base="&lt;b&gt;" uuid="{0a734a2b-84cc-4029-a2fd-9b11833c1c38}">
+        <label>Input</label>
+      </input>
+      <output key="output" scheme="hdf5" type="(json, table)" type_base="(&lt;a&gt;, &lt;b&gt;)" uuid="{7c70533d-9833-41f6-a788-282ec7b29843}">
+        <label>Output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.html.htmltotext" port_format="1.1" uuid="{b4866869-047b-4437-98cb-1f64cc9dde59}" x="2850.0" y="2250.0">
+    <label>HTML to text</label>
+    <version>1.0</version>
+    <description>Convert HTML to text.</description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="in" scheme="hdf5" type="html" type_base="html" uuid="{b2542b91-d8b8-47c2-88e7-f22657713204}">
+        <label>HTML input</label>
+      </input>
+      <output key="out" scheme="hdf5" type="text" type_base="text" uuid="{d22b3e4e-6e0d-42bd-b674-f14e58a61466}">
+        <label>Text output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.dict.insert" port_format="1.1" uuid="{c2ffa333-e7ab-4b89-a487-3822093a6faa}" x="1875.0" y="1850.0">
+    <label>Insert Dict</label>
+    <version></version>
+    <description>Insert item in dict</description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "key": {
+        "editor": null,
+        "label": "Key",
+        "order": 0,
+        "type": "string",
+        "value": "geojson2"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="dict" scheme="hdf5" type="{json}" type_base="{&lt;a&gt;}" uuid="{bed86ef4-4395-4960-9376-326daf076c2c}">
+        <label>Dict</label>
+      </input>
+      <input key="item" scheme="hdf5" type="json" type_base="&lt;a&gt;" uuid="{32ff0c02-028e-49b7-9ea3-bedbd4dc602f}">
+        <label>Item</label>
+      </input>
+      <output key="dict" scheme="hdf5" type="{json}" type_base="{&lt;a&gt;}" uuid="{fa3f12c4-dcc7-4f00-ad4e-d4fff8ebcc48}">
+        <label>Dict</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.datasources.filedatasource" port_format="1.1" uuid="{c67af63f-cb15-46f1-9b20-040cf4844dac}" x="1475.0" y="2375.0">
+    <label>Cardata</label>
+    <version>1.1</version>
+    <description></description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "datasource_type": {
+        "editor": null,
+        "label": "Datasource type",
+        "list": ["File", "Database"],
+        "mode": "selected",
+        "order": 9,
+        "type": "list",
+        "value": [0],
+        "value_names": ["File"]
+      },
+      "db_connection_string": {
+        "editor": null,
+        "label": "Connection string",
+        "order": 8,
+        "type": "string",
+        "value": ""
+      },
+      "db_databasename": {
+        "editor": null,
+        "label": "Database name",
+        "order": 5,
+        "type": "string",
+        "value": ""
+      },
+      "db_driver": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Database driver",
+        "list": ["SQL Server"],
+        "mode": "selected",
+        "order": 3,
+        "type": "list",
+        "value": [0],
+        "value_names": ["SQL Server"]
+      },
+      "db_method": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": ["ODBC", "SQLAlchemy"],
+          "type": "combobox"
+        },
+        "label": "Database connection method",
+        "order": 2,
+        "type": "string",
+        "value": "ODBC"
+      },
+      "db_password": {
+        "editor": null,
+        "label": "Password",
+        "order": 7,
+        "type": "string",
+        "value": ""
+      },
+      "db_servername": {
+        "editor": null,
+        "label": "Server name",
+        "order": 4,
+        "type": "string",
+        "value": ""
+      },
+      "db_sqlalchemy_engine_url": {
+        "editor": null,
+        "label": "SQLAlchemy engine URL",
+        "order": 1,
+        "type": "string",
+        "value": "mssql+pyodbc:///"
+      },
+      "db_user": {
+        "editor": null,
+        "label": "User",
+        "order": 6,
+        "type": "string",
+        "value": ""
+      },
+      "filename": {
+        "editor": {
+          "filter": ["Any files (*)"],
+          "states": null,
+          "type": "filename"
+        },
+        "label": "Filename",
+        "order": 0,
+        "type": "string",
+        "value": "cardata.csv"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port1" scheme="text" type="datasource" type_base="datasource" uuid="{ec3a9342-2757-42ff-9d00-fbcb090e30d0}">
+        <label>Datasource with path to file</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.create.createjson" port_format="1.1" uuid="{ca0fd621-8c41-42ec-93b3-86ef6d1234b7}" x="1800.0" y="2250.0">
+    <label>Manually Create JSON</label>
+    <version>0.1</version>
+    <description></description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "code": {
+        "editor": {
+          "language": "python",
+          "type": "code"
+        },
+        "label": "",
+        "order": 0,
+        "type": "string",
+        "value": "{}  # Empty dictionary."
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="output" scheme="hdf5" type="json" type_base="json" uuid="{84da15e1-ef74-4431-8c51-010ee663df23}">
+        <label>Output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.html.report" port_format="1.1" uuid="{ca19b4a2-8491-44a2-9233-bb15fd7a9ad3}" x="2700.0" y="2550.0">
+    <label>Html report (Stand alone)</label>
+    <version>0.1</version>
+    <description>Create and render a Jinja2 template. Use "{{arg name}}" for access to the data.</description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "custom_base": {
+        "editor": null,
+        "label": "Use custom base",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "relative_tempfile": {
+        "editor": null,
+        "label": "Relative tempfile",
+        "order": 3,
+        "type": "boolean",
+        "value": false
+      },
+      "standalone": {
+        "editor": null,
+        "label": "Standalone HTML",
+        "order": 1,
+        "type": "boolean",
+        "value": true
+      },
+      "template": {
+        "editor": {
+          "language": "jinja",
+          "type": "code"
+        },
+        "label": "Template:",
+        "order": 0,
+        "type": "string",
+        "value": ""
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="in_ds" scheme="text" type="datasource" type_base="datasource" uuid="{cbf08ea5-1ee2-40e5-b9c0-8f63a7fc1792}">
+        <label>Datasource input</label>
+      </input>
+      <input key="in" scheme="hdf5" type="(json, table)" type_base="&lt;a&gt;" uuid="{0c397f96-b465-4b69-88d6-00fd423bc79a}">
+        <label>Input</label>
+      </input>
+      <output key="out" scheme="hdf5" type="html" type_base="html" uuid="{a7b754eb-6945-4823-bb57-7f842130988d}">
+        <label>HTML output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.selecttablerows" port_format="1.1" uuid="{f3fbb33d-9611-4f27-9364-c929561cafd2}" x="1800.0" y="2375.0">
+    <label>price &lt; 10000</label>
+    <version>1.1</version>
+    <description>Reduction of rows in Table according to specified filter.</description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "columns": {
+        "editor": {
+          "edit": true,
+          "filter": true,
+          "mode": true,
+          "selection": "multi",
+          "type": "listview"
+        },
+        "label": "Columns to filter",
+        "list": ["id_web", "name", "model", "year", "price", "firstseen", "lastseen"],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [4],
+        "value_names": ["price"]
+      },
+      "constraint": {
+        "editor": null,
+        "label": "Filter constraint",
+        "order": 3,
+        "type": "string",
+        "value": "10000"
+      },
+      "exist": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": ["all", "any"],
+          "type": "combobox"
+        },
+        "label": "Constraint must be satisfied in",
+        "order": 1,
+        "type": "string",
+        "value": "all"
+      },
+      "limit": {
+        "editor": {
+          "max": 10000,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "Preview rows",
+        "order": 6,
+        "type": "integer",
+        "value": 100
+      },
+      "predicate": {
+        "editor": null,
+        "label": "Custom filter",
+        "order": 5,
+        "type": "string",
+        "value": "lambda x: x &lt; 10000"
+      },
+      "relation": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Relation",
+        "list": ["equal", "less than", "less than or equal", "greater than", "greater than or equal", "not equal"],
+        "mode": "selected",
+        "order": 2,
+        "type": "list",
+        "value": [1],
+        "value_names": ["less than"]
+      },
+      "type": "group",
+      "use_custom_predicate": {
+        "editor": null,
+        "label": "Use custom filter",
+        "order": 4,
+        "type": "boolean",
+        "value": false
+      }
+    }
+    </parameters>
+    <ports>
+      <input key="Input" scheme="hdf5" type="table" type_base="table" uuid="{fb7d9c83-6fb7-4bc3-9bec-531daffcdd8d}">
+        <label>Input</label>
+      </input>
+      <output key="Output" scheme="hdf5" type="table" type_base="table" uuid="{da3f2b2e-8452-422a-b948-767036193d87}">
+        <label>Output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.html.htmltotext" port_format="1.1" uuid="{f7440257-d4d8-4b59-ae41-2fb76cac6856}" x="2850.0" y="2450.0">
+    <label>HTML to text</label>
+    <version>1.0</version>
+    <description>Convert HTML to text.</description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="in" scheme="hdf5" type="html" type_base="html" uuid="{360d0b32-19e2-4cad-99fa-a1dcb583e580}">
+        <label>HTML input</label>
+      </input>
+      <output key="out" scheme="hdf5" type="text" type_base="text" uuid="{f9d593ee-db00-4b42-ac7d-9e4f11f76a83}">
+        <label>Text output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.json.importjson" port_format="1.1" uuid="{f86f0e8d-6d3e-4911-a95a-910d051d66ac}" x="1600.0" y="1825.0">
+    <label>JSON</label>
+    <version>0.1</version>
+    <description></description>
+    <author>Samuel Genheden</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "active_importer": {
+        "editor": null,
+        "label": "Importer",
+        "order": 0,
+        "type": "string",
+        "value": "Auto"
+      },
+      "custom_importer_data": {
+        "Auto": {
+          "label": "",
+          "order": 0,
+          "type": "group"
+        },
+        "label": "",
+        "order": 1,
+        "type": "group"
+      },
+      "fail_strategy": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Action on import failure",
+        "list": ["Exception", "Create Empty Entry"],
+        "mode": "selected",
+        "order": 2,
+        "type": "list",
+        "value": [0],
+        "value_names": ["Exception"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="" scheme="text" type="datasource" type_base="datasource" uuid="{0849c424-aa2b-4d8c-b84e-169715908389}">
+        <label>Datasource</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="json" type_base="json" uuid="{e7863674-627f-4752-b483-33fc7d18c05a}">
+        <label>Imported Json</label>
+      </output>
+    </ports>
+  </node>
+  <connection type="(json, table)" uuid="{10abab62-bb8f-4290-876c-abd266efb824}">
+    <source node="{80bc4225-cc6c-420f-a137-f3585ab1f1ba}" port="{66a12a13-849b-4822-ba2b-76ff2e35b2ac}"/>
+    <destination node="{5b08d008-3bf2-4d32-9c9f-7cdadd49cd7f}" port="{96f52436-c1c1-436f-8744-f3c5aaaf3747}"/>
+  </connection>
+  <connection type="datasource" uuid="{23a03e3d-ab2c-4207-ac05-755276a4940f}">
+    <source node="{38364415-2e22-4cff-af6c-7078190a2c95}" port="{c3754d45-baa6-45f8-b7b0-cf8d3e1a2f09}"/>
+    <destination node="{4fbbef07-fbdb-44be-88e3-1e61273ecd24}" port="{9277221e-3035-45a6-87ca-3d4e433df468}"/>
+  </connection>
+  <connection type="table" uuid="{37c2650f-bb63-4f20-994e-8421cdee769f}">
+    <source node="{f3fbb33d-9611-4f27-9364-c929561cafd2}" port="{da3f2b2e-8452-422a-b948-767036193d87}"/>
+    <destination node="{1804639f-59d3-46e0-8acc-ed3fbb3d5efc}" port="{62a53e4d-2840-434d-bf01-e11fd9fddc38}"/>
+  </connection>
+  <connection type="json" uuid="{38f3fa9a-910b-42c2-8ec4-e5fea649253a}">
+    <source node="{ca0fd621-8c41-42ec-93b3-86ef6d1234b7}" port="{84da15e1-ef74-4431-8c51-010ee663df23}"/>
+    <destination node="{80bc4225-cc6c-420f-a137-f3585ab1f1ba}" port="{9d7d2926-c42d-4ac9-a2c9-9ee6145115b4}"/>
+  </connection>
+  <connection type="datasource" uuid="{39d528a0-00c0-4c83-a5b1-1d94c8dfe49a}">
+    <source node="{38364415-2e22-4cff-af6c-7078190a2c95}" port="{c3754d45-baa6-45f8-b7b0-cf8d3e1a2f09}"/>
+    <destination node="{65559f2c-f0db-4d60-ad9d-27f2087eb113}" port="{a31225f2-6266-47c5-b1f8-3de7dc0d6c64}"/>
+  </connection>
+  <connection type="(json, table)" uuid="{514e44b8-83c9-4813-b2b7-81432a275124}">
+    <source node="{477180be-d7cc-4317-bfbe-2f5247185862}" port="{04684761-2779-45bb-9e2d-a48caaa23513}"/>
+    <destination node="{65559f2c-f0db-4d60-ad9d-27f2087eb113}" port="{e4be580b-0fd5-4584-8390-0781a8114ec8}"/>
+  </connection>
+  <connection type="datasource" uuid="{51c7aca1-0d2c-47c9-9085-87ed7efcd6e3}">
+    <source node="{3069910a-4739-493b-9dd2-638d8dc0c88f}" port="{c7b201b3-9f77-4348-bb68-0f76af63372d}"/>
+    <destination node="{0c93e2c0-a232-4a8c-aed1-4700385efb34}" port="{71f51c56-11cd-42a9-a2c2-266e899052d6}"/>
+  </connection>
+  <connection type="datasource" uuid="{57e02f88-670d-4d6b-a8cd-a5028c381380}">
+    <source node="{38364415-2e22-4cff-af6c-7078190a2c95}" port="{c3754d45-baa6-45f8-b7b0-cf8d3e1a2f09}"/>
+    <destination node="{ca19b4a2-8491-44a2-9233-bb15fd7a9ad3}" port="{cbf08ea5-1ee2-40e5-b9c0-8f63a7fc1792}"/>
+  </connection>
+  <connection type="table" uuid="{59321b19-8833-4336-8fb9-d3c8f1cfed8e}">
+    <source node="{1804639f-59d3-46e0-8acc-ed3fbb3d5efc}" port="{af43963e-fb87-4aea-b9d0-02d0f693da9c}"/>
+    <destination node="{477180be-d7cc-4317-bfbe-2f5247185862}" port="{cb929950-028d-4916-b271-9ac25c94b049}"/>
+  </connection>
+  <connection type="{json}" uuid="{698a815b-353f-4383-bce6-84a46bc8efd3}">
+    <source node="{1994d22a-90b0-4410-b9e4-649505172738}" port="{3db97b6e-eb3f-4d82-b587-ae69ca93f9d8}"/>
+    <destination node="{2b2b7ce7-501a-48c6-981a-7f27420f32b0}" port="{2f27e987-e55d-48ab-99af-820fd6cd88bc}"/>
+  </connection>
+  <connection type="html" uuid="{6af373e4-91a0-406e-88af-93bc6ce410b9}">
+    <source node="{090d7b92-69aa-4170-b1bf-bb4d59b8acf2}" port="{a161f77e-d2e9-478d-9c67-91b692bc3b4f}"/>
+    <destination node="{b4866869-047b-4437-98cb-1f64cc9dde59}" port="{b2542b91-d8b8-47c2-88e7-f22657713204}"/>
+  </connection>
+  <connection type="datasource" uuid="{6c7b5250-596c-42bc-842c-edd07cff8b10}">
+    <source node="{13e916ba-2218-4036-9bfb-82470ed31881}" port="{c233ed46-3cd1-4152-861f-9b3c1f347432}"/>
+    <destination node="{f86f0e8d-6d3e-4911-a95a-910d051d66ac}" port="{0849c424-aa2b-4d8c-b84e-169715908389}"/>
+  </connection>
+  <connection type="(json, table)" uuid="{6eb3a5b0-f545-458a-acda-d36ede7801f9}">
+    <source node="{926f2ef6-a9b2-48c2-9eb6-e1a08df14c49}" port="{7c70533d-9833-41f6-a788-282ec7b29843}"/>
+    <destination node="{ca19b4a2-8491-44a2-9233-bb15fd7a9ad3}" port="{0c397f96-b465-4b69-88d6-00fd423bc79a}"/>
+  </connection>
+  <connection type="json" uuid="{6fde7901-6e7d-4f6f-92a0-b552daa39e88}">
+    <source node="{8b62a27c-07c7-4f0c-9523-4fbce7f2d89e}" port="{89448dac-b590-4297-91ae-85d2462615fc}"/>
+    <destination node="{926f2ef6-a9b2-48c2-9eb6-e1a08df14c49}" port="{627d4884-bb17-464d-bad8-fdc6ad40b139}"/>
+  </connection>
+  <connection type="html" uuid="{70bacd4a-7965-42ab-bfaa-555396b10fc1}">
+    <source node="{4fbbef07-fbdb-44be-88e3-1e61273ecd24}" port="{e70dda74-2ee0-46f8-a05c-de887f9c370d}"/>
+    <destination node="{f7440257-d4d8-4b59-ae41-2fb76cac6856}" port="{360d0b32-19e2-4cad-99fa-a1dcb583e580}"/>
+  </connection>
+  <connection type="datasource" uuid="{779da03e-f82b-41c3-b228-e3f62aab1748}">
+    <source node="{75a407db-e365-4f47-af12-907761c49b0d}" port="{6038c1bb-4503-405e-9054-b5b0e77942e2}"/>
+    <destination node="{5b08d008-3bf2-4d32-9c9f-7cdadd49cd7f}" port="{e2ad1f1a-27ab-4905-910d-5a70200ede17}"/>
+  </connection>
+  <connection type="html" uuid="{78646d49-89ba-4494-84a5-b9268ba8c500}">
+    <source node="{65559f2c-f0db-4d60-ad9d-27f2087eb113}" port="{e78d0811-bc59-4c9f-ac11-dc1b71e89569}"/>
+    <destination node="{5474915c-97ba-40b9-8a74-57a275a4cf9b}" port="{ec446734-2166-4248-8739-29f5177e5aaa}"/>
+  </connection>
+  <connection type="(json, table)" uuid="{7cc72148-1bad-46e0-b025-70200e7c1dda}">
+    <source node="{477180be-d7cc-4317-bfbe-2f5247185862}" port="{04684761-2779-45bb-9e2d-a48caaa23513}"/>
+    <destination node="{090d7b92-69aa-4170-b1bf-bb4d59b8acf2}" port="{b8a62e27-d563-4c2f-be39-c3cd04b22f05}"/>
+  </connection>
+  <connection type="(json, table)" uuid="{7d834935-820a-40cd-b912-a9a20aeb4ed3}">
+    <source node="{926f2ef6-a9b2-48c2-9eb6-e1a08df14c49}" port="{7c70533d-9833-41f6-a788-282ec7b29843}"/>
+    <destination node="{4fbbef07-fbdb-44be-88e3-1e61273ecd24}" port="{c96f6314-aabe-411e-8d86-68954c7225d8}"/>
+  </connection>
+  <connection type="datasource" uuid="{8051b25e-18d5-49b8-8826-f326f0d1ceea}">
+    <source node="{38364415-2e22-4cff-af6c-7078190a2c95}" port="{c3754d45-baa6-45f8-b7b0-cf8d3e1a2f09}"/>
+    <destination node="{090d7b92-69aa-4170-b1bf-bb4d59b8acf2}" port="{32fdbc7a-b4e2-4c86-876f-f8aa1afc6739}"/>
+  </connection>
+  <connection type="{json}" uuid="{830b8ac6-05b1-47c7-8dc0-48d32c2dadee}">
+    <source node="{c2ffa333-e7ab-4b89-a487-3822093a6faa}" port="{fa3f12c4-dcc7-4f00-ad4e-d4fff8ebcc48}"/>
+    <destination node="{4e496a94-5655-41ba-b7a4-62b9c28eb3d4}" port="{a19b55ba-1ad2-4065-ad4b-71d0db8d07fa}"/>
+  </connection>
+  <connection type="table" uuid="{9639bdf1-dba3-47e0-a2be-337dcbc6c260}">
+    <source node="{f3fbb33d-9611-4f27-9364-c929561cafd2}" port="{da3f2b2e-8452-422a-b948-767036193d87}"/>
+    <destination node="{80bc4225-cc6c-420f-a137-f3585ab1f1ba}" port="{2dd41f43-77f2-4c4f-a8fc-6d93b7e964be}"/>
+  </connection>
+  <connection type="table" uuid="{980d6300-17cb-428a-9ccf-fecca1e61273}">
+    <source node="{62c35458-755f-4591-9942-2881d404254b}" port="{b19f1697-1371-4f65-a21e-bf3671b82255}"/>
+    <destination node="{f3fbb33d-9611-4f27-9364-c929561cafd2}" port="{fb7d9c83-6fb7-4bc3-9bec-531daffcdd8d}"/>
+  </connection>
+  <connection type="table" uuid="{a3d7b835-4c9a-4cfb-a5b1-141323eaf033}">
+    <source node="{1804639f-59d3-46e0-8acc-ed3fbb3d5efc}" port="{af43963e-fb87-4aea-b9d0-02d0f693da9c}"/>
+    <destination node="{926f2ef6-a9b2-48c2-9eb6-e1a08df14c49}" port="{0a734a2b-84cc-4029-a2fd-9b11833c1c38}"/>
+    <route x="2025.0" y="2750.0"/>
+    <route x="2450.0" y="2750.0"/>
+  </connection>
+  <connection type="json" uuid="{a649bb26-a406-41e0-8450-5f9087099919}">
+    <source node="{0c93e2c0-a232-4a8c-aed1-4700385efb34}" port="{267f49b9-84c2-4f11-99eb-951fb6fe8709}"/>
+    <destination node="{c2ffa333-e7ab-4b89-a487-3822093a6faa}" port="{32ff0c02-028e-49b7-9ea3-bedbd4dc602f}"/>
+  </connection>
+  <connection type="(json, table)" uuid="{bb31a996-54a9-481a-a14e-e5aae86e19fa}">
+    <source node="{5b08d008-3bf2-4d32-9c9f-7cdadd49cd7f}" port="{9edbc2eb-a8f3-4fc7-afbb-732dc6d30317}"/>
+    <destination node="{84735b43-3da1-4c9d-b3a7-0222b34d5686}" port="{335cfd28-ede7-49ee-9cd9-d011123e1ff7}"/>
+  </connection>
+  <connection type="json" uuid="{bf98aec8-49da-4c68-ba41-525174c7f714}">
+    <source node="{84735b43-3da1-4c9d-b3a7-0222b34d5686}" port="{dba8be4b-361b-4148-955f-fd8cca09bf32}"/>
+    <destination node="{477180be-d7cc-4317-bfbe-2f5247185862}" port="{fa4d42f8-fd95-4d62-8f55-a05c4529eda3}"/>
+  </connection>
+  <connection type="table" uuid="{c69c48e3-dc52-45f9-9a0f-d1b584c88064}">
+    <source node="{6756dc12-1a5f-4e5c-a89d-853777269964}" port="{0eb5a514-2c62-43c3-ab11-71e07522ce62}"/>
+    <destination node="{62c35458-755f-4591-9942-2881d404254b}" port="{d194116d-d9f6-4587-b03e-608a7704076a}"/>
+  </connection>
+  <connection type="json" uuid="{ea41dd5b-792c-42d0-80d8-3d285ad71135}">
+    <source node="{f86f0e8d-6d3e-4911-a95a-910d051d66ac}" port="{e7863674-627f-4752-b483-33fc7d18c05a}"/>
+    <destination node="{2b2b7ce7-501a-48c6-981a-7f27420f32b0}" port="{76ab7184-fae7-410f-96c1-9ec13c2db0f1}"/>
+  </connection>
+  <connection type="datasource" uuid="{ecda9abc-b0d2-43e5-b0b6-978e219f7ec6}">
+    <source node="{c67af63f-cb15-46f1-9b20-040cf4844dac}" port="{ec3a9342-2757-42ff-9d00-fbcb090e30d0}"/>
+    <destination node="{6756dc12-1a5f-4e5c-a89d-853777269964}" port="{1bf1f2f2-7e56-4b13-846a-71e3191d205a}"/>
+  </connection>
+  <connection type="html" uuid="{ecfe0fe7-75a2-482d-9a39-6af0097facde}">
+    <source node="{ca19b4a2-8491-44a2-9233-bb15fd7a9ad3}" port="{a7b754eb-6945-4823-bb57-7f842130988d}"/>
+    <destination node="{545cd29c-d4f3-4921-98cf-da25ea1a6640}" port="{aaf87343-19e6-4e64-9ac6-5e1a21b8df72}"/>
+  </connection>
+  <connection type="{json}" uuid="{f7a70311-0d39-4f15-bd73-e63f7e5a2c5a}">
+    <source node="{2b2b7ce7-501a-48c6-981a-7f27420f32b0}" port="{d0b5faf0-22f2-4ff0-8f2d-75591a2279ff}"/>
+    <destination node="{c2ffa333-e7ab-4b89-a487-3822093a6faa}" port="{bed86ef4-4395-4960-9376-326daf076c2c}"/>
+  </connection>
+  <text color="Red" height="275.0" uuid="{21eb4a0d-687a-4115-9d3c-626f385323e7}" width="175.0" x="1250.0" y="1725.0">GeoJSON example.</text>
+  <text color="Beige" height="75.0" uuid="{67db3496-d571-41f5-97f5-10c9a63c19c0}" width="350.0" x="1250.0" y="2850.0">- Node example: *org.sysess.sympathy.html.report*
+- Node example: *org.sysess.sympathy.html.htmltotext*
+- Node example: *org.sysess.sympathy.html.dicttogeojson*</text>
+  <text color="Red" height="325.0" uuid="{ad23eed8-c5b9-4a73-91d5-70e2f1cb98c6}" width="175.0" x="1250.0" y="2150.0">HTML report with Bokeh plots example.</text>
+  <text color="Beige" height="325.0" uuid="{ea440ac6-2fad-47b9-92f3-cfa7f52665e5}" width="250.0" x="2150.0" y="2025.0">Dynamic example, requires bokeh:
+==
+
+To install using pip:
+python -m pip install bokeh
+
+Otherwise, expect error in F(x).
+
+You can however look at the *Static example* below to see what the output would look like.</text>
+  <text color="Beige" height="300.0" uuid="{54fd15b6-1bfb-409e-85a4-7dada5862493}" width="250.0" x="2150.0" y="2400.0">Static example:
+==
+
+Output copied from the first  port of the Untuple node above and entered as manual JSON.
+
+Note that the output is static and data selection will not affect the output.
+
+</text>
+</flow>

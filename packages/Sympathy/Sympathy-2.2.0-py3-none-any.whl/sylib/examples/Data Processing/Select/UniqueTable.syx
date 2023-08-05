@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='US-ASCII'?>
+<flow xmlns="http://www.sysess.org/sympathyfordata/workflow/1.0" cls="Flow" uuid="{4ae9288a-6ef6-41a3-8d1a-6f0f19c973f4}">
+  <label></label>
+  <ports/>
+  <node id="org.sysess.sympathy.create.createtable" port_format="1.1" uuid="{345e275e-e866-4502-8bcb-b296f8321dac}" x="1700.0" y="1950.0">
+    <label>Manually Create Table</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Magnus Sand&#233;n</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "json_table": {
+        "editor": null,
+        "label": "GUI",
+        "order": 0,
+        "type": "string",
+        "value": "[[\"float0\", \"f\", [0.0, NaN, NaN, 1.0]], [\"float1\", \"f\", [0.0, 1.0, 0.0, 1.0]], [\"float2\", \"f\", [1.5, 2.0, 3.1, 4.0]]]"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{e475c751-1262-4190-827e-6c88fc75eec3}">
+        <label>Manually created table</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.uniquetable" port_format="1.1" uuid="{8734101b-8ee3-42ef-ab67-2eece6d7833f}" x="1850.0" y="1950.0">
+    <label>Unique Table</label>
+    <version>1.0</version>
+    <description>Filter out rows in Tables for which a selected column has repeated
+    values.
+    </description>
+    <author>Greger Cronquist</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "column": {
+        "editor": {
+          "edit": true,
+          "filter": true,
+          "mode": true,
+          "selection": "multi",
+          "type": "listview"
+        },
+        "label": "Columns to filter by",
+        "list": [],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [],
+        "value_names": ["float0"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="Input" scheme="hdf5" type="table" type_base="table" uuid="{cd33a672-86d3-4c07-9c4b-23db175ade88}">
+        <label>Input</label>
+      </input>
+      <output key="Output" scheme="hdf5" type="table" type_base="table" uuid="{3e6c91ec-ea1a-42d7-bafd-481267cd9b8d}">
+        <label>Output</label>
+      </output>
+    </ports>
+  </node>
+  <connection type="table" uuid="{ebaeb089-cde5-4ed2-8608-6479bbbdeacb}">
+    <source node="{345e275e-e866-4502-8bcb-b296f8321dac}" port="{e475c751-1262-4190-827e-6c88fc75eec3}"/>
+    <destination node="{8734101b-8ee3-42ef-ab67-2eece6d7833f}" port="{cd33a672-86d3-4c07-9c4b-23db175ade88}"/>
+  </connection>
+  <text color="Beige" height="50.0" uuid="{923846a9-cea3-41fe-ac1c-79b02ff3f0be}" width="350.0" x="1700.0" y="2050.0">
+- Node example: *org.sysess.sympathy.data.table.uniquetable*</text>
+</flow>

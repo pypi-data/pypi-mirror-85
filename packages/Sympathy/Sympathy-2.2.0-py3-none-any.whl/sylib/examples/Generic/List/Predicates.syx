@@ -1,0 +1,1346 @@
+<?xml version='1.0' encoding='US-ASCII'?>
+<flow xmlns="http://www.sysess.org/sympathyfordata/workflow/1.0" cls="Flow" uuid="{4ae9288a-6ef6-41a3-8d1a-6f0f19c973f4}">
+  <label></label>
+  <ports/>
+  <flow cls="Lambda" uuid="{9b14f163-a092-4922-812d-35659fe80415}" x="1250.0" y="2625.0">
+    <label>Elemtwise Either With Data Predicate
+Predicate &gt; 0.5</label>
+    <ports>
+      <input index="0" key="Port" parent="False" scheme="hdf5" type="(table, table, table)" uuid="{85de732e-145f-474f-9b2a-4c1d2333f549}" x="1650.0" y="1925.0">
+        <label>Port</label>
+      </input>
+      <output index="0" key="Port" parent="False" scheme="hdf5" type="table" uuid="{88f30fd2-738d-4dfa-8697-7f204afa5bad}" x="2450.0" y="2000.0">
+        <label>Port</label>
+      </output>
+    </ports>
+    <basic_ports>
+      <output key="Function" scheme="hdf5" type="(table, table, table) -&gt; table" type_base="&lt;a&gt;" uuid="{57e0b623-753c-4458-831f-595f554d2333}">
+        <label>Lambda function</label>
+      </output>
+    </basic_ports>
+    <node id="org.sysess.sympathy.tuple.untuple2" port_format="1.1" uuid="{782f0b77-c67f-4732-88d4-5b0abe321e5b}" x="1853.0" y="1924.0">
+      <label>Untuple</label>
+      <version>1.0</version>
+      <description></description>
+      <author>Erik der Hagopian</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">{"type": "group"}</parameters>
+      <ports>
+        <input key="input" scheme="hdf5" type="(table, table, table)" type_base="(&lt;a&gt;, &lt;b&gt;, &lt;c&gt;)" uuid="{7057152f-64a3-461e-8ff6-113f6a8fa4cc}">
+          <label>Input</label>
+        </input>
+        <output key="output" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{032fc68b-b88d-4629-9e92-394099137563}">
+          <label>Output</label>
+        </output>
+        <output key="output" scheme="hdf5" type="table" type_base="&lt;b&gt;" uuid="{c696ef91-8486-4fba-9d16-74a8d6f6a865}">
+          <label>Output</label>
+        </output>
+        <output key="output" scheme="hdf5" type="table" type_base="&lt;c&gt;" uuid="{1991d187-cec5-46d0-801a-6955743b353e}">
+          <label>Output</label>
+        </output>
+      </ports>
+    </node>
+    <node id="org.sysess.sympathy.list.eitherwithdatapredicate" port_format="1.1" uuid="{79b20f63-4ae9-4ded-be80-a3f9f4d84d8f}" x="2264.0" y="1989.0">
+      <label>Either with Data Predicate
+Compare first element in</label>
+      <version>1.0</version>
+      <description>Uses a condition to propagate either one of the two inputs.</description>
+      <author>Erik der Hagopian</author>
+      <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+      <parameters type="json">
+      {
+        "predicate": {
+          "editor": {
+            "language": "python",
+            "type": "code"
+          },
+          "label": "Either predicate function",
+          "order": 0,
+          "type": "string",
+          "value": "lambda table: table.get_column_to_array('0')[0] &lt; 0.5\n"
+        },
+        "type": "group"
+      }
+      </parameters>
+      <ports>
+        <input key="true" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{758d1c21-a24b-4fd0-b36e-00989dfccaed}">
+          <label>First, returned if predicate held true</label>
+        </input>
+        <input key="false" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{24f5d5a6-712f-4a67-bea2-eace5b4f0dfb}">
+          <label>Second, returned if predicate did not hold true</label>
+        </input>
+        <input key="data" scheme="hdf5" type="table" type_base="&lt;b&gt;" uuid="{481d61ae-6537-4437-a180-40cf9b955b4b}">
+          <label>Data for the predicate comparison</label>
+        </input>
+        <output key="output" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{c1f05bd9-4d19-4294-836b-a8fb6634e34b}">
+          <label>Output, First if the predicate holds true otherwise Second</label>
+        </output>
+      </ports>
+    </node>
+    <connection type="table" uuid="{07a2f6ce-dce1-418d-9be3-2e48da9f70f3}">
+      <source node="{782f0b77-c67f-4732-88d4-5b0abe321e5b}" port="{1991d187-cec5-46d0-801a-6955743b353e}"/>
+      <destination node="{79b20f63-4ae9-4ded-be80-a3f9f4d84d8f}" port="{481d61ae-6537-4437-a180-40cf9b955b4b}"/>
+    </connection>
+    <connection type="table" uuid="{2ce903bf-5a83-4f27-844c-527675dab3d3}">
+      <source node="{79b20f63-4ae9-4ded-be80-a3f9f4d84d8f}" port="{c1f05bd9-4d19-4294-836b-a8fb6634e34b}"/>
+      <destination node="{9b14f163-a092-4922-812d-35659fe80415}" port="{88f30fd2-738d-4dfa-8697-7f204afa5bad}"/>
+    </connection>
+    <connection type="table" uuid="{dd594025-8815-49f1-8993-fc6522cd0e7b}">
+      <source node="{782f0b77-c67f-4732-88d4-5b0abe321e5b}" port="{c696ef91-8486-4fba-9d16-74a8d6f6a865}"/>
+      <destination node="{79b20f63-4ae9-4ded-be80-a3f9f4d84d8f}" port="{24f5d5a6-712f-4a67-bea2-eace5b4f0dfb}"/>
+    </connection>
+    <connection type="(table, table, table)" uuid="{dfd6bc4c-13ae-4ae7-bc8f-5c32620d61c0}">
+      <source node="{9b14f163-a092-4922-812d-35659fe80415}" port="{85de732e-145f-474f-9b2a-4c1d2333f549}"/>
+      <destination node="{782f0b77-c67f-4732-88d4-5b0abe321e5b}" port="{7057152f-64a3-461e-8ff6-113f6a8fa4cc}"/>
+    </connection>
+    <connection type="table" uuid="{edeb41a1-68e9-4b57-b39c-7841490a5e36}">
+      <source node="{782f0b77-c67f-4732-88d4-5b0abe321e5b}" port="{032fc68b-b88d-4629-9e92-394099137563}"/>
+      <destination node="{79b20f63-4ae9-4ded-be80-a3f9f4d84d8f}" port="{758d1c21-a24b-4fd0-b36e-00989dfccaed}"/>
+    </connection>
+  </flow>
+  <node id="org.sysess.sympathy.random.randomtable" port_format="1.1" uuid="{08886b9a-9159-4c24-94e5-1258c8ef3cf5}" x="950.0" y="2875.0">
+    <label>Random Table
+Predicate</label>
+    <version>0.1</version>
+    <description>Generate a Table with random numbers between 0 and 1.</description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "column_entries": {
+        "editor": {
+          "max": 1000000,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "Column entries",
+        "order": 0,
+        "type": "integer",
+        "value": 1
+      },
+      "column_length": {
+        "editor": {
+          "max": 100000000,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "Column length",
+        "order": 1,
+        "type": "integer",
+        "value": 5
+      },
+      "mask_values": {
+        "editor": null,
+        "label": "Randomly mask values",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{9aaca5b6-3be8-403d-b4f3-b9705870dbb6}">
+        <label>Table with random numbers. The specifications of the Table are declared in the configuration.</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.random.randomtable" port_format="1.1" uuid="{0fa8be91-bbb0-4d57-8193-c17de7d990c7}" x="950.0" y="1850.0">
+    <label>Random Table</label>
+    <version>0.1</version>
+    <description>Generate a Table with random numbers between 0 and 1.</description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "column_entries": {
+        "editor": {
+          "max": 1000000,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "Column entries",
+        "order": 0,
+        "type": "integer",
+        "value": 2
+      },
+      "column_length": {
+        "editor": {
+          "max": 100000000,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "Column length",
+        "order": 1,
+        "type": "integer",
+        "value": 10
+      },
+      "mask_values": {
+        "editor": null,
+        "label": "Randomly mask values",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{26bf9f94-3169-4769-b208-3127b6e9adc5}">
+        <label>Table with random numbers. The specifications of the Table are declared in the configuration.</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.settablename" port_format="1.1" uuid="{1ae3152c-fca7-46c1-ae74-65e04d974c93}" x="1050.0" y="1850.0">
+    <label>Set Table Name</label>
+    <version>1.0</version>
+    <description>Set the name of a Table</description>
+    <author>Greger Cronquist</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "name": {
+        "editor": null,
+        "label": "Name",
+        "order": 0,
+        "type": "string",
+        "value": "1"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="" scheme="hdf5" type="table" type_base="table" uuid="{1ab22b69-40da-437a-92ea-337f977acd2d}">
+        <label>Input Table</label>
+      </input>
+      <output key="" scheme="hdf5" type="table" type_base="table" uuid="{229fa332-d04a-4dfa-864a-1db788ad3705}">
+        <label>Table with the name attribute changed according to node configuration</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.random.randomtables" port_format="1.1" uuid="{26ca8899-9239-44ce-b879-6e6d5eb95497}" x="950.0" y="2450.0">
+    <label>Random Tables</label>
+    <version>0.1</version>
+    <description>Generate a list of Tables with randomnumbers between 0 and 1.</description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "column_entries": {
+        "editor": {
+          "max": 1000000,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "Columns:",
+        "order": 0,
+        "type": "integer",
+        "value": 2
+      },
+      "column_length": {
+        "editor": {
+          "max": 100000000,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "Rows:",
+        "order": 1,
+        "type": "integer",
+        "value": 20
+      },
+      "length": {
+        "editor": {
+          "max": 10000,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "List length",
+        "order": 3,
+        "type": "integer",
+        "value": 4
+      },
+      "mask_values": {
+        "editor": null,
+        "label": "Randomly mask values",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="[table]" type_base="[table]" uuid="{7bdb82f2-98cf-4aa5-b228-98a650eca775}">
+        <label>Tables with random numbers.</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.builtin.map" port_format="1.1" uuid="{278cbf99-978b-4aee-b29e-7224a0d33a54}" x="1525.0" y="2750.0">
+    <label>Map</label>
+    <version>1.0</version>
+    <description>Map Lambda function over each element in argument list</description>
+    <author>Erik der Hagopian &lt;erik.hagopian@combine.se&gt;</author>
+    <copyright>(C) 2015-2016 Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "fail_strategy": {
+        "editor": {
+          "display": null,
+          "edit": false,
+          "filter": false,
+          "include_empty": false,
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Action on exception",
+        "list": ["Error", "Create Empty Item", "Skip Item"],
+        "mode": "selected",
+        "order": 0,
+        "type": "list",
+        "value": [0],
+        "value_names": ["Error"]
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="Function" scheme="hdf5" type="(table, table, table) -&gt; table" type_base="&lt;a&gt; -&gt; &lt;b&gt;" uuid="{7dafaff9-190f-4929-ab02-c2703b1791c4}">
+        <label>Lambda Function to Map</label>
+      </input>
+      <input key="List" scheme="hdf5" type="[(table, table, table)]" type_base="[&lt;a&gt;]" uuid="{3d48d64c-7290-4b34-8887-0100a57f5f85}">
+        <label>Argument List</label>
+      </input>
+      <output key="List" scheme="hdf5" type="[table]" type_base="[&lt;b&gt;]" uuid="{34fbae0b-a3d0-45aa-b573-d5f2fc5d2422}">
+        <label>Output List</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.tuple.ziptuple2" port_format="1.1" uuid="{3e9e18e2-0cf9-483d-b580-86c2e1078e14}" x="1250.0" y="2750.0">
+    <label>Zip Tuple</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="input" scheme="hdf5" type="[table]" type_base="[&lt;a&gt;]" uuid="{e8c7d3ed-5c42-450b-8064-b57c1d506204}">
+        <label>Input</label>
+      </input>
+      <input key="input" scheme="hdf5" type="[table]" type_base="[&lt;b&gt;]" uuid="{071f568c-9f34-4371-a21f-f2f66d6d0483}">
+        <label>Input</label>
+      </input>
+      <input key="input" scheme="hdf5" type="[table]" type_base="[&lt;c&gt;]" uuid="{9bc21346-8c1b-4f2e-b78b-68fc210f7ae9}">
+        <label>Input</label>
+      </input>
+      <output key="output" scheme="hdf5" type="[(table, table, table)]" type_base="[(&lt;a&gt;, &lt;b&gt;, &lt;c&gt;)]" uuid="{a5caabf6-a345-402a-8285-356b000b6d7c}">
+        <label>Output</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.generate.signaltables" port_format="1.1" uuid="{428a348e-16f0-41dd-b358-4a913db12b34}" x="950.0" y="2750.0">
+    <label>Generate Signal Tables
+Sinus</label>
+    <version>0.1</version>
+    <description>Generate a list of Tables with signals like sine, cosine, etc., with or without random noise.</description>
+    <author>Benedikt Ziegler</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "signal_params": {
+        "add_noise": {
+          "editor": null,
+          "label": "Add random noise",
+          "order": 6,
+          "type": "boolean",
+          "value": false
+        },
+        "amplitude": {
+          "editor": null,
+          "label": "Amplitude",
+          "order": 1,
+          "type": "float",
+          "value": 1.0
+        },
+        "frequency": {
+          "editor": null,
+          "label": "Frequency",
+          "order": 2,
+          "type": "float",
+          "value": 0.01
+        },
+        "index_column": {
+          "editor": null,
+          "label": "First column as index",
+          "order": 8,
+          "type": "boolean",
+          "value": true
+        },
+        "label": "Signal",
+        "noise_amplitude": {
+          "editor": {
+            "decimals": 2,
+            "step": 0.05,
+            "type": "spinbox"
+          },
+          "label": "Amplitude of noise",
+          "order": 7,
+          "type": "float",
+          "value": 0.01
+        },
+        "order": 1,
+        "period": {
+          "editor": null,
+          "label": "Period",
+          "order": 3,
+          "type": "float",
+          "value": 100.0
+        },
+        "phase_offset": {
+          "editor": null,
+          "label": "Phase offset",
+          "order": 5,
+          "type": "float",
+          "value": 0.0
+        },
+        "signal_type": {
+          "editor": {
+            "options": [],
+            "type": "combobox"
+          },
+          "label": "Signal type",
+          "list": ["cosines", "sinus", "tangent"],
+          "order": 0,
+          "passthrough": false,
+          "type": "list",
+          "value": [0],
+          "value_names": ["cosines"]
+        },
+        "type": "page",
+        "use_period": {
+          "editor": null,
+          "label": "Period or Frequency",
+          "order": 4,
+          "type": "boolean",
+          "value": true
+        }
+      },
+      "table_params": {
+        "column_entries": {
+          "editor": {
+            "max": 1000000,
+            "min": 0,
+            "step": 1,
+            "type": "spinbox"
+          },
+          "label": "Column entries",
+          "order": 0,
+          "type": "integer",
+          "value": 2
+        },
+        "column_length": {
+          "editor": {
+            "max": 100000000,
+            "min": 0,
+            "step": 1,
+            "type": "spinbox"
+          },
+          "label": "Column length",
+          "order": 1,
+          "type": "integer",
+          "value": 10
+        },
+        "label": "Table",
+        "length": {
+          "editor": {
+            "max": 10000,
+            "min": 0,
+            "step": 1,
+            "type": "spinbox"
+          },
+          "label": "Table list length",
+          "order": 2,
+          "type": "integer",
+          "value": 5
+        },
+        "order": 0,
+        "type": "page"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="[table]" type_base="[table]" uuid="{25d7d6fe-866a-46c7-b24c-bc07e330079e}">
+        <label>Signal Tables</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.settablesname" port_format="1.1" uuid="{4c7e3fcb-f87b-4d74-8ddb-d6924b7a3ecb}" x="1075.0" y="2350.0">
+    <label>Set Tables Name</label>
+    <version>1.0</version>
+    <description>Set the name of a Table</description>
+    <author>Greger Cronquist</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "name": {
+        "editor": null,
+        "label": "Name",
+        "order": 0,
+        "type": "string",
+        "value": "B"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="" scheme="hdf5" type="[table]" type_base="[table]" uuid="{a162483d-7091-4582-a5f9-2de84a90d20b}">
+        <label>Input Table</label>
+      </input>
+      <output key="" scheme="hdf5" type="[table]" type_base="[table]" uuid="{e37f1b46-301e-49a7-be5e-47b4f3eb947a}">
+        <label>Table with the name attribute changed according to node configuration</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.list.itemtolist" port_format="1.1" uuid="{517f7473-1556-4e0f-900c-e6d4822dd9a9}" x="1250.0" y="1950.0">
+    <label>Item to List</label>
+    <version>1.0</version>
+    <description></description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="item" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{dc6f5e1d-c0ad-4e09-9176-7a3834a6ab67}">
+        <label>Input Item</label>
+      </input>
+      <input key="item" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{e73bb65e-390c-457d-93b8-7ee01991c1d0}">
+        <label>Input Item</label>
+      </input>
+      <input key="item" scheme="hdf5" type="table" type_base="&lt;a&gt;" uuid="{bed415a9-7684-4018-a64e-c26661a92365}">
+        <label>Input Item</label>
+      </input>
+      <output key="list" scheme="hdf5" type="[table]" type_base="[&lt;a&gt;]" uuid="{00d74d40-2441-42c1-8947-739273a2b0a9}">
+        <label>Item as List</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.list.filterlistpredicate" port_format="1.1" uuid="{51b76554-72f0-48e7-a113-525feec95fe8}" x="1525.0" y="1950.0">
+    <label>Filter List Predicate
+Select table with name 2 only</label>
+    <version>1.0</version>
+    <description>Filter a list using configured item based predicate.</description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "predicate": {
+        "editor": {
+          "language": "python",
+          "type": "code"
+        },
+        "label": "Predicate filter function",
+        "order": 0,
+        "type": "string",
+        "value": "lambda table: table.name == '2'"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="list" scheme="hdf5" type="[table]" type_base="[&lt;a&gt;]" uuid="{bac85cc3-ff03-446d-8d11-419a7950ef99}">
+        <label>List</label>
+      </input>
+      <output key="index" scheme="hdf5" type="table" type_base="table" uuid="{ba098036-36f0-40a5-8f67-edc777b69154}">
+        <label>Index</label>
+      </output>
+      <output key="list" scheme="hdf5" type="[table]" type_base="[&lt;a&gt;]" uuid="{61f41882-f1bc-4079-b6a7-de0e876297ac}">
+        <label>List</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.list.partitionlistpredicate" port_format="1.1" uuid="{5236db7c-2aa7-449d-8864-659f73a22899}" x="1525.0" y="2075.0">
+    <label>Partition List Predicate
+Select table with name 2 and put it on the top port, and the rest on the lower</label>
+    <version>1.0</version>
+    <description>Partition a list using a configured item-based predicate.</description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "predicate": {
+        "editor": {
+          "language": "python",
+          "type": "code"
+        },
+        "label": "Predicate partition function",
+        "order": 0,
+        "type": "string",
+        "value": "lambda table: table.name == '2'"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="list" scheme="hdf5" type="[table]" type_base="[&lt;a&gt;]" uuid="{94e77503-8f7a-4c58-9b70-3e043013c083}">
+        <label>List</label>
+      </input>
+      <output key="list_true" scheme="hdf5" type="[table]" type_base="[&lt;a&gt;]" uuid="{48ce0c39-c720-40e8-8962-73d092d53bb4}">
+        <label>List of items where predicate returned true</label>
+      </output>
+      <output key="list_false" scheme="hdf5" type="[table]" type_base="[&lt;a&gt;]" uuid="{abc0c97c-fed0-47b9-b76b-483c0a8e1957}">
+        <label>List of items where predicate returned false</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.random.randomtables" port_format="1.1" uuid="{6a8ad954-5ff8-4c8a-8861-6ccccc4151f9}" x="950.0" y="2250.0">
+    <label>Random Tables</label>
+    <version>0.1</version>
+    <description>Generate a list of Tables with randomnumbers between 0 and 1.</description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "column_entries": {
+        "editor": {
+          "max": 1000000,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "Columns:",
+        "order": 0,
+        "type": "integer",
+        "value": 2
+      },
+      "column_length": {
+        "editor": {
+          "max": 100000000,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "Rows:",
+        "order": 1,
+        "type": "integer",
+        "value": 10
+      },
+      "length": {
+        "editor": {
+          "max": 10000,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "List length",
+        "order": 3,
+        "type": "integer",
+        "value": 2
+      },
+      "mask_values": {
+        "editor": null,
+        "label": "Randomly mask values",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="[table]" type_base="[table]" uuid="{1eb67798-f5da-413c-b407-10763248cc78}">
+        <label>Tables with random numbers.</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.list.grouplist" port_format="1.1" uuid="{765b13ec-3f26-40dc-82cf-3bb73e587c89}" x="1525.0" y="2425.0">
+    <label>Group List</label>
+    <version>1.0</version>
+    <description>Group a list using a configured item-based key function.</description>
+    <author>Magnus Sand&#233;n</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "predicate": {
+        "editor": {
+          "language": "python",
+          "type": "code"
+        },
+        "label": "Predicate partition function",
+        "order": 0,
+        "type": "string",
+        "value": "lambda item: item.number_of_rows()"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="list" scheme="hdf5" type="[table]" type_base="[&lt;a&gt;]" uuid="{e68a2117-948a-4068-bd82-53b6950d0cf5}">
+        <label>List of items</label>
+      </input>
+      <output key="lists" scheme="hdf5" type="[[table]]" type_base="[[&lt;a&gt;]]" uuid="{f463eac4-34f8-4ba9-9f72-9543b4d09f79}">
+        <label>Grouped items</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.settablename" port_format="1.1" uuid="{795d345d-7654-42cb-b1c4-7e9b832197ac}" x="1050.0" y="1950.0">
+    <label>Set Table Name</label>
+    <version>1.0</version>
+    <description>Set the name of a Table</description>
+    <author>Greger Cronquist</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "name": {
+        "editor": null,
+        "label": "Name",
+        "order": 0,
+        "type": "string",
+        "value": "2"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="" scheme="hdf5" type="table" type_base="table" uuid="{f3776c44-280e-4e81-966d-654c21651453}">
+        <label>Input Table</label>
+      </input>
+      <output key="" scheme="hdf5" type="table" type_base="table" uuid="{78930563-bb50-4bb1-895c-e5bb54b26b07}">
+        <label>Table with the name attribute changed according to node configuration</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.generate.signaltables" port_format="1.1" uuid="{7c83afed-ec29-45e6-b611-edb0985e6f51}" x="950.0" y="2625.0">
+    <label>Generate Signal Tables
+Sinus</label>
+    <version>0.1</version>
+    <description>Generate a list of Tables with signals like sine, cosine, etc., with or without random noise.</description>
+    <author>Benedikt Ziegler</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "signal_params": {
+        "add_noise": {
+          "editor": null,
+          "label": "Add random noise",
+          "order": 6,
+          "type": "boolean",
+          "value": false
+        },
+        "amplitude": {
+          "editor": null,
+          "label": "Amplitude",
+          "order": 1,
+          "type": "float",
+          "value": 1.0
+        },
+        "frequency": {
+          "editor": null,
+          "label": "Frequency",
+          "order": 2,
+          "type": "float",
+          "value": 0.01
+        },
+        "index_column": {
+          "editor": null,
+          "label": "First column as index",
+          "order": 8,
+          "type": "boolean",
+          "value": true
+        },
+        "label": "Signal",
+        "noise_amplitude": {
+          "editor": {
+            "decimals": 2,
+            "step": 0.05,
+            "type": "spinbox"
+          },
+          "label": "Amplitude of noise",
+          "order": 7,
+          "type": "float",
+          "value": 0.01
+        },
+        "order": 1,
+        "period": {
+          "editor": null,
+          "label": "Period",
+          "order": 3,
+          "type": "float",
+          "value": 100.0
+        },
+        "phase_offset": {
+          "editor": null,
+          "label": "Phase offset",
+          "order": 5,
+          "type": "float",
+          "value": 0.0
+        },
+        "signal_type": {
+          "editor": {
+            "options": [],
+            "type": "combobox"
+          },
+          "label": "Signal type",
+          "list": ["cosines", "sinus", "tangent"],
+          "order": 0,
+          "passthrough": false,
+          "type": "list",
+          "value": [1],
+          "value_names": ["sinus"]
+        },
+        "type": "page",
+        "use_period": {
+          "editor": null,
+          "label": "Period or Frequency",
+          "order": 4,
+          "type": "boolean",
+          "value": true
+        }
+      },
+      "table_params": {
+        "column_entries": {
+          "editor": {
+            "max": 1000000,
+            "min": 0,
+            "step": 1,
+            "type": "spinbox"
+          },
+          "label": "Column entries",
+          "order": 0,
+          "type": "integer",
+          "value": 2
+        },
+        "column_length": {
+          "editor": {
+            "max": 100000000,
+            "min": 0,
+            "step": 1,
+            "type": "spinbox"
+          },
+          "label": "Column length",
+          "order": 1,
+          "type": "integer",
+          "value": 10
+        },
+        "label": "Table",
+        "length": {
+          "editor": {
+            "max": 10000,
+            "min": 0,
+            "step": 1,
+            "type": "spinbox"
+          },
+          "label": "Table list length",
+          "order": 2,
+          "type": "integer",
+          "value": 5
+        },
+        "order": 0,
+        "type": "page"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="[table]" type_base="[table]" uuid="{980346b1-3653-447e-becd-18e949d6ab6c}">
+        <label>Signal Tables</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.settablesname" port_format="1.1" uuid="{8f6d7f0a-778f-4c52-96d4-c01d40d1669c}" x="1075.0" y="2450.0">
+    <label>Set Tables Name</label>
+    <version>1.0</version>
+    <description>Set the name of a Table</description>
+    <author>Greger Cronquist</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "name": {
+        "editor": null,
+        "label": "Name",
+        "order": 0,
+        "type": "string",
+        "value": "C"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="" scheme="hdf5" type="[table]" type_base="[table]" uuid="{92704a51-2135-4e7f-934d-5dd4220c5070}">
+        <label>Input Table</label>
+      </input>
+      <output key="" scheme="hdf5" type="[table]" type_base="[table]" uuid="{652fb8f5-0d6a-43fa-b37f-503120f630ea}">
+        <label>Table with the name attribute changed according to node configuration</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.random.randomtable" port_format="1.1" uuid="{a53338c3-7f61-4c57-b452-12cebe917e22}" x="950.0" y="1950.0">
+    <label>Random Table</label>
+    <version>0.1</version>
+    <description>Generate a Table with random numbers between 0 and 1.</description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "column_entries": {
+        "editor": {
+          "max": 1000000,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "Column entries",
+        "order": 0,
+        "type": "integer",
+        "value": 2
+      },
+      "column_length": {
+        "editor": {
+          "max": 100000000,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "Column length",
+        "order": 1,
+        "type": "integer",
+        "value": 15
+      },
+      "mask_values": {
+        "editor": null,
+        "label": "Randomly mask values",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{d7e5fe5e-d5a2-4ca6-8874-3fbe89a67b92}">
+        <label>Table with random numbers. The specifications of the Table are declared in the configuration.</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.create.createtable" port_format="1.1" uuid="{a5c505c4-db39-4a5f-be2b-9c66cd5543be}" x="1250.0" y="1825.0">
+    <label>Manually Create Table
+Index to filter with, selecting last element</label>
+    <version>1.0</version>
+    <description>Create a Table from scratch in a configuration Gui.</description>
+    <author>Magnus Sand&#233;n</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "json_table": {
+        "editor": null,
+        "label": "",
+        "order": 0,
+        "type": "string",
+        "value": "[[\"filter\", \"b\", [false, false, true]]]"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{135832a3-7822-48d9-b8d5-e492ed677803}">
+        <label>Manually created table</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.random.randomtables" port_format="1.1" uuid="{ba825605-c062-4128-9a8a-2ab735d8f6ed}" x="950.0" y="2350.0">
+    <label>Random Tables</label>
+    <version>0.1</version>
+    <description>Generate a list of Tables with randomnumbers between 0 and 1.</description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "column_entries": {
+        "editor": {
+          "max": 1000000,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "Columns:",
+        "order": 0,
+        "type": "integer",
+        "value": 2
+      },
+      "column_length": {
+        "editor": {
+          "max": 100000000,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "Rows:",
+        "order": 1,
+        "type": "integer",
+        "value": 15
+      },
+      "length": {
+        "editor": {
+          "max": 10000,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "List length",
+        "order": 3,
+        "type": "integer",
+        "value": 3
+      },
+      "mask_values": {
+        "editor": null,
+        "label": "Randomly mask values",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="[table]" type_base="[table]" uuid="{bf3bde96-8f61-48bc-9f07-17106981f157}">
+        <label>Tables with random numbers.</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.list.filterlisttable" port_format="1.1" uuid="{bc72ccfb-19df-4ee2-add5-6d5babe2f0ab}" x="1525.0" y="1825.0">
+    <label>Filter List with Table input</label>
+    <version>1.0</version>
+    <description>Filter a list using an incoming table.</description>
+    <author>Magnus Sanden</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="filter" scheme="hdf5" type="table" type_base="table" uuid="{dcafead5-9616-4245-a8be-c79ab62fea1c}">
+        <label>Filter</label>
+      </input>
+      <input key="in" scheme="hdf5" type="[table]" type_base="[&lt;a&gt;]" uuid="{0526749b-5bff-482e-a29a-6a6edee16432}">
+        <label>List of items</label>
+      </input>
+      <output key="out" scheme="hdf5" type="[table]" type_base="[&lt;a&gt;]" uuid="{20ec8d41-365c-4111-ba97-d5e0d1dc16d1}">
+        <label>Filtered list of items</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.settablesname" port_format="1.1" uuid="{d2449280-4007-46c2-b15e-5048a2134e3d}" x="1075.0" y="2250.0">
+    <label>Set Tables Name</label>
+    <version>1.0</version>
+    <description>Set the name of a Table</description>
+    <author>Greger Cronquist</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "name": {
+        "editor": null,
+        "label": "Name",
+        "order": 0,
+        "type": "string",
+        "value": "A"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="" scheme="hdf5" type="[table]" type_base="[table]" uuid="{c15b260d-9550-44e4-974d-503c8e0658e2}">
+        <label>Input Table</label>
+      </input>
+      <output key="" scheme="hdf5" type="[table]" type_base="[table]" uuid="{481465bb-21b0-43d1-b754-2c0b932fe818}">
+        <label>Table with the name attribute changed according to node configuration</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.random.randomtable" port_format="1.1" uuid="{d6c4950f-77f4-4810-824c-37f83ee4d33f}" x="950.0" y="2050.0">
+    <label>Random Table</label>
+    <version>0.1</version>
+    <description>Generate a Table with random numbers between 0 and 1.</description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "column_entries": {
+        "editor": {
+          "max": 1000000,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "Column entries",
+        "order": 0,
+        "type": "integer",
+        "value": 2
+      },
+      "column_length": {
+        "editor": {
+          "max": 100000000,
+          "min": 0,
+          "step": 1,
+          "type": "spinbox"
+        },
+        "label": "Column length",
+        "order": 1,
+        "type": "integer",
+        "value": 20
+      },
+      "mask_values": {
+        "editor": null,
+        "label": "Randomly mask values",
+        "order": 2,
+        "type": "boolean",
+        "value": false
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <output key="port0" scheme="hdf5" type="table" type_base="table" uuid="{0006c36c-51cf-4e89-b0b8-26177d0076f6}">
+        <label>Table with random numbers. The specifications of the Table are declared in the configuration.</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.vsplittablenode" port_format="1.1" uuid="{e3d8d714-1eb3-4e3c-84c6-89f1c9a8ed8c}" x="1075.0" y="2875.0">
+    <label>VSplit Table</label>
+    <version>1.0</version>
+    <description>Split Table row wise (vertically), grouping unique values of an index column.</description>
+    <author>Alexander Busck</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "input_index": {
+        "editor": {
+          "options": [],
+          "type": "combobox"
+        },
+        "label": "Input index",
+        "order": 3,
+        "type": "string",
+        "value": ""
+      },
+      "no_index": {
+        "editor": null,
+        "label": "One table for each row.",
+        "order": 2,
+        "type": "boolean",
+        "value": true
+      },
+      "remove_fill": {
+        "editor": null,
+        "label": "Remove complement columns",
+        "order": 1,
+        "type": "boolean",
+        "value": false
+      },
+      "require_index": {
+        "editor": null,
+        "label": "Require input index",
+        "order": 0,
+        "type": "boolean",
+        "value": true
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="port1" scheme="hdf5" type="table" type_base="table" uuid="{e23b35c0-93e5-4bae-90d2-6d9eb8023a99}">
+        <label>Input Table</label>
+      </input>
+      <output key="port1" scheme="hdf5" type="[table]" type_base="[table]" uuid="{6535f428-acbc-4301-887d-3a52d56ac3d6}">
+        <label>Split Tables</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.data.table.settablename" port_format="1.1" uuid="{eb05e496-7d00-45ea-9a65-76737ef837c2}" x="1050.0" y="2050.0">
+    <label>Set Table Name</label>
+    <version>1.0</version>
+    <description>Set the name of a Table</description>
+    <author>Greger Cronquist</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "name": {
+        "editor": null,
+        "label": "Name",
+        "order": 0,
+        "type": "string",
+        "value": "3"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="" scheme="hdf5" type="table" type_base="table" uuid="{6e09ca20-85c9-4955-9ccc-ff3b44a85c87}">
+        <label>Input Table</label>
+      </input>
+      <output key="" scheme="hdf5" type="table" type_base="table" uuid="{67369292-e1d8-432e-8fb4-fa00283a885c}">
+        <label>Table with the name attribute changed according to node configuration</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.list.extendlist" port_format="1.1" uuid="{f355131a-760f-4eae-9874-ffda59556086}" x="1250.0" y="2350.0">
+    <label>Extend List</label>
+    <version>1.0</version>
+    <description>Extend a list</description>
+    <author>Erik der Hagopian</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">{"type": "group"}</parameters>
+    <ports>
+      <input key="input" scheme="hdf5" type="[table]" type_base="[&lt;a&gt;]" uuid="{acf29f1c-42db-49ac-9b80-5f555bcdb773}">
+        <label>List that will be added</label>
+      </input>
+      <input key="input" scheme="hdf5" type="[table]" type_base="[&lt;a&gt;]" uuid="{fee060cb-5e19-4ed6-b7e2-99782a6ccdba}">
+        <label>List that will be added</label>
+      </input>
+      <input key="input" scheme="hdf5" type="[table]" type_base="[&lt;a&gt;]" uuid="{b3ba69c8-1994-433e-b2e8-3d06fbac92d5}">
+        <label>List that will be added</label>
+      </input>
+      <output key="output" scheme="hdf5" type="[table]" type_base="[&lt;a&gt;]" uuid="{8f322c45-4613-4928-93eb-8a650de21421}">
+        <label>The extended List</label>
+      </output>
+    </ports>
+  </node>
+  <node id="org.sysess.sympathy.list.grouplist" port_format="1.1" uuid="{f8d246e3-87cf-4386-ae2c-19777c538eeb}" x="1525.0" y="2275.0">
+    <label>Group List</label>
+    <version>1.0</version>
+    <description>Group a list using a configured item-based key function.</description>
+    <author>Magnus Sand&#233;n</author>
+    <copyright>Copyright (c) 2011-2019, Combine Control Systems AB</copyright>
+    <parameters type="json">
+    {
+      "predicate": {
+        "editor": {
+          "language": "python",
+          "type": "code"
+        },
+        "label": "Predicate partition function",
+        "order": 0,
+        "type": "string",
+        "value": "lambda item: item.name"
+      },
+      "type": "group"
+    }
+    </parameters>
+    <ports>
+      <input key="list" scheme="hdf5" type="[table]" type_base="[&lt;a&gt;]" uuid="{7739529b-f37f-48a7-bbb4-60ab88f63fbc}">
+        <label>List of items</label>
+      </input>
+      <output key="lists" scheme="hdf5" type="[[table]]" type_base="[[&lt;a&gt;]]" uuid="{0cfcb123-2d38-475a-89fb-3d5d5118b2c4}">
+        <label>Grouped items</label>
+      </output>
+    </ports>
+  </node>
+  <connection type="[table]" uuid="{0870b567-9360-45fc-ba9f-a1be9c72733b}">
+    <source node="{517f7473-1556-4e0f-900c-e6d4822dd9a9}" port="{00d74d40-2441-42c1-8947-739273a2b0a9}"/>
+    <destination node="{bc72ccfb-19df-4ee2-add5-6d5babe2f0ab}" port="{0526749b-5bff-482e-a29a-6a6edee16432}"/>
+  </connection>
+  <connection type="table" uuid="{115b0c59-3e6d-43e5-9a13-59815edcd4f0}">
+    <source node="{d6c4950f-77f4-4810-824c-37f83ee4d33f}" port="{0006c36c-51cf-4e89-b0b8-26177d0076f6}"/>
+    <destination node="{eb05e496-7d00-45ea-9a65-76737ef837c2}" port="{6e09ca20-85c9-4955-9ccc-ff3b44a85c87}"/>
+  </connection>
+  <connection type="[table]" uuid="{160b85a9-05ed-45b4-8532-f540dc3e1513}">
+    <source node="{26ca8899-9239-44ce-b879-6e6d5eb95497}" port="{7bdb82f2-98cf-4aa5-b228-98a650eca775}"/>
+    <destination node="{8f6d7f0a-778f-4c52-96d4-c01d40d1669c}" port="{92704a51-2135-4e7f-934d-5dd4220c5070}"/>
+  </connection>
+  <connection type="table" uuid="{1773a383-b9e8-42cc-b8f8-ab50ba160bfd}">
+    <source node="{eb05e496-7d00-45ea-9a65-76737ef837c2}" port="{67369292-e1d8-432e-8fb4-fa00283a885c}"/>
+    <destination node="{517f7473-1556-4e0f-900c-e6d4822dd9a9}" port="{bed415a9-7684-4018-a64e-c26661a92365}"/>
+  </connection>
+  <connection type="table" uuid="{232e12f1-d927-4f51-b7fc-293fcd2196d4}">
+    <source node="{08886b9a-9159-4c24-94e5-1258c8ef3cf5}" port="{9aaca5b6-3be8-403d-b4f3-b9705870dbb6}"/>
+    <destination node="{e3d8d714-1eb3-4e3c-84c6-89f1c9a8ed8c}" port="{e23b35c0-93e5-4bae-90d2-6d9eb8023a99}"/>
+  </connection>
+  <connection type="[table]" uuid="{270af5a8-1b7d-41bb-a414-cc6e8d7a1773}">
+    <source node="{517f7473-1556-4e0f-900c-e6d4822dd9a9}" port="{00d74d40-2441-42c1-8947-739273a2b0a9}"/>
+    <destination node="{51b76554-72f0-48e7-a113-525feec95fe8}" port="{bac85cc3-ff03-446d-8d11-419a7950ef99}"/>
+  </connection>
+  <connection type="table" uuid="{2c710d0a-2612-4c8c-8d0b-9c2e649474ba}">
+    <source node="{a53338c3-7f61-4c57-b452-12cebe917e22}" port="{d7e5fe5e-d5a2-4ca6-8874-3fbe89a67b92}"/>
+    <destination node="{795d345d-7654-42cb-b1c4-7e9b832197ac}" port="{f3776c44-280e-4e81-966d-654c21651453}"/>
+  </connection>
+  <connection type="[(table, table, table)]" uuid="{32f5ab2f-d09d-41e8-9aef-99167d12a32a}">
+    <source node="{3e9e18e2-0cf9-483d-b580-86c2e1078e14}" port="{a5caabf6-a345-402a-8285-356b000b6d7c}"/>
+    <destination node="{278cbf99-978b-4aee-b29e-7224a0d33a54}" port="{3d48d64c-7290-4b34-8887-0100a57f5f85}"/>
+  </connection>
+  <connection type="table" uuid="{38be604d-5d00-4e52-80db-9cc94856f90f}">
+    <source node="{a5c505c4-db39-4a5f-be2b-9c66cd5543be}" port="{135832a3-7822-48d9-b8d5-e492ed677803}"/>
+    <destination node="{bc72ccfb-19df-4ee2-add5-6d5babe2f0ab}" port="{dcafead5-9616-4245-a8be-c79ab62fea1c}"/>
+  </connection>
+  <connection type="(table, table, table) -&gt; table" uuid="{4225dd28-80f7-4403-b3c7-1f02ecae60d6}">
+    <source node="{9b14f163-a092-4922-812d-35659fe80415}" port="{57e0b623-753c-4458-831f-595f554d2333}"/>
+    <destination node="{278cbf99-978b-4aee-b29e-7224a0d33a54}" port="{7dafaff9-190f-4929-ab02-c2703b1791c4}"/>
+  </connection>
+  <connection type="[table]" uuid="{480419d2-dd08-4ed9-a4b8-b025a326b2b5}">
+    <source node="{7c83afed-ec29-45e6-b611-edb0985e6f51}" port="{980346b1-3653-447e-becd-18e949d6ab6c}"/>
+    <destination node="{3e9e18e2-0cf9-483d-b580-86c2e1078e14}" port="{e8c7d3ed-5c42-450b-8064-b57c1d506204}"/>
+  </connection>
+  <connection type="[table]" uuid="{535720e5-3893-4597-bc6b-3011e330c6be}">
+    <source node="{f355131a-760f-4eae-9874-ffda59556086}" port="{8f322c45-4613-4928-93eb-8a650de21421}"/>
+    <destination node="{765b13ec-3f26-40dc-82cf-3bb73e587c89}" port="{e68a2117-948a-4068-bd82-53b6950d0cf5}"/>
+  </connection>
+  <connection type="[table]" uuid="{5b849482-9cff-4c09-826e-83eb21ac2ed8}">
+    <source node="{d2449280-4007-46c2-b15e-5048a2134e3d}" port="{481465bb-21b0-43d1-b754-2c0b932fe818}"/>
+    <destination node="{f355131a-760f-4eae-9874-ffda59556086}" port="{acf29f1c-42db-49ac-9b80-5f555bcdb773}"/>
+  </connection>
+  <connection type="[table]" uuid="{7481f5dc-0cb5-4837-87a7-d30df57d4955}">
+    <source node="{4c7e3fcb-f87b-4d74-8ddb-d6924b7a3ecb}" port="{e37f1b46-301e-49a7-be5e-47b4f3eb947a}"/>
+    <destination node="{f355131a-760f-4eae-9874-ffda59556086}" port="{fee060cb-5e19-4ed6-b7e2-99782a6ccdba}"/>
+  </connection>
+  <connection type="[table]" uuid="{ac72a70f-8fb6-4405-8008-048007390b43}">
+    <source node="{517f7473-1556-4e0f-900c-e6d4822dd9a9}" port="{00d74d40-2441-42c1-8947-739273a2b0a9}"/>
+    <destination node="{5236db7c-2aa7-449d-8864-659f73a22899}" port="{94e77503-8f7a-4c58-9b70-3e043013c083}"/>
+  </connection>
+  <connection type="[table]" uuid="{b03e50a7-84df-4e4f-bc00-ff856451289d}">
+    <source node="{6a8ad954-5ff8-4c8a-8861-6ccccc4151f9}" port="{1eb67798-f5da-413c-b407-10763248cc78}"/>
+    <destination node="{d2449280-4007-46c2-b15e-5048a2134e3d}" port="{c15b260d-9550-44e4-974d-503c8e0658e2}"/>
+  </connection>
+  <connection type="[table]" uuid="{b36bfa99-1e09-426f-9c03-3d2934ae6525}">
+    <source node="{e3d8d714-1eb3-4e3c-84c6-89f1c9a8ed8c}" port="{6535f428-acbc-4301-887d-3a52d56ac3d6}"/>
+    <destination node="{3e9e18e2-0cf9-483d-b580-86c2e1078e14}" port="{9bc21346-8c1b-4f2e-b78b-68fc210f7ae9}"/>
+  </connection>
+  <connection type="table" uuid="{d3c14dbf-6fa5-4de9-8917-58360d0fb863}">
+    <source node="{795d345d-7654-42cb-b1c4-7e9b832197ac}" port="{78930563-bb50-4bb1-895c-e5bb54b26b07}"/>
+    <destination node="{517f7473-1556-4e0f-900c-e6d4822dd9a9}" port="{e73bb65e-390c-457d-93b8-7ee01991c1d0}"/>
+  </connection>
+  <connection type="table" uuid="{de099e06-ec61-42ea-8073-5f4c0db76642}">
+    <source node="{0fa8be91-bbb0-4d57-8193-c17de7d990c7}" port="{26bf9f94-3169-4769-b208-3127b6e9adc5}"/>
+    <destination node="{1ae3152c-fca7-46c1-ae74-65e04d974c93}" port="{1ab22b69-40da-437a-92ea-337f977acd2d}"/>
+  </connection>
+  <connection type="table" uuid="{de183065-3448-4e7b-9bda-a82ee1c97acf}">
+    <source node="{1ae3152c-fca7-46c1-ae74-65e04d974c93}" port="{229fa332-d04a-4dfa-864a-1db788ad3705}"/>
+    <destination node="{517f7473-1556-4e0f-900c-e6d4822dd9a9}" port="{dc6f5e1d-c0ad-4e09-9176-7a3834a6ab67}"/>
+  </connection>
+  <connection type="[table]" uuid="{e089a87d-7f5d-4c05-90c0-2ab0e8c3060c}">
+    <source node="{8f6d7f0a-778f-4c52-96d4-c01d40d1669c}" port="{652fb8f5-0d6a-43fa-b37f-503120f630ea}"/>
+    <destination node="{f355131a-760f-4eae-9874-ffda59556086}" port="{b3ba69c8-1994-433e-b2e8-3d06fbac92d5}"/>
+  </connection>
+  <connection type="[table]" uuid="{ea34bcc1-2562-402c-920e-e9cefafe8341}">
+    <source node="{ba825605-c062-4128-9a8a-2ab735d8f6ed}" port="{bf3bde96-8f61-48bc-9f07-17106981f157}"/>
+    <destination node="{4c7e3fcb-f87b-4d74-8ddb-d6924b7a3ecb}" port="{a162483d-7091-4582-a5f9-2de84a90d20b}"/>
+  </connection>
+  <connection type="[table]" uuid="{fcd2c0c3-8527-4bc1-a68b-489f2695b7db}">
+    <source node="{f355131a-760f-4eae-9874-ffda59556086}" port="{8f322c45-4613-4928-93eb-8a650de21421}"/>
+    <destination node="{f8d246e3-87cf-4386-ae2c-19777c538eeb}" port="{7739529b-f37f-48a7-bbb4-60ab88f63fbc}"/>
+  </connection>
+  <connection type="[table]" uuid="{feb4add2-fd86-4584-8509-e72fc6524bfa}">
+    <source node="{428a348e-16f0-41dd-b358-4a913db12b34}" port="{25d7d6fe-866a-46c7-b24c-bc07e330079e}"/>
+    <destination node="{3e9e18e2-0cf9-483d-b580-86c2e1078e14}" port="{071f568c-9f34-4371-a21f-f2f66d6d0483}"/>
+  </connection>
+  <text color="Beige" height="275.0" uuid="{783741e1-9b1a-42b3-abf0-9ca717b022fc}" width="200.0" x="675.0" y="2650.0">Advanced example:
+Select tables using the predicate x &gt; 0.5, where x is the value in the Random Table corresponding to the same index in the Signal Tables.
+
+The result is a merged list of the signal tables, with the same length as the initial tables (5 in this case)</text>
+  <text color="Beige" height="125.0" uuid="{794d00a9-7db4-4536-9da1-abdf4197242e}" width="350.0" x="925.0" y="2975.0">
+- Node example: *org.sysess.sympathy.list.eitherwithdatapredicate*
+- Node example: *org.sysess.sympathy.list.filterlistpredicate*
+- Node example: *org.sysess.sympathy.list.filterlisttable*
+- Node example: *org.sysess.sympathy.list.partitionlistpredicate*
+- Node example: *org.sysess.sympathy.list.grouplist*</text>
+  <text color="Beige" height="125.0" uuid="{e060d0d0-f6d1-465e-9f77-fd3159907282}" width="200.0" x="675.0" y="2250.0">Group list exampel. Takes a list of tables and groups them by name or number of rows.</text>
+</flow>
