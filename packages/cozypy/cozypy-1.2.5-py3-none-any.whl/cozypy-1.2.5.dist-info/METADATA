@@ -1,0 +1,48 @@
+Metadata-Version: 2.1
+Name: cozypy
+Version: 1.2.5
+Summary: Cozytouch python client
+Home-page: https://github.com/biker91620/cozypy/tree/master
+Author: biker91620
+License: GPL-3
+Keywords: rest,cozypy,atlantic,thermor,sauter,io,smart-things,iot
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Topic :: Home Automation
+Description-Content-Type: text/markdown
+Requires-Dist: requests (>=2)
+
+# cozypy
+
+Cozytouch python implementation
+
+This API allows you to control Atlantic, Thermor and Sauter equipment via the Cozytouch bridge
+
+Used to obtain information from the following sensors:
+  - Gateway
+  - Radiators
+  - Water heaters and other counters
+
+### Example
+
+     from cozytouchpy import CozytouchClient
+
+     username="my-username"
+     password="my-password"
+
+     client = CozytouchClient(username, password)
+     setup = await client.async_get_setup() 
+     for place in setup.places:  
+         print(place.id)
+
+
+
+
