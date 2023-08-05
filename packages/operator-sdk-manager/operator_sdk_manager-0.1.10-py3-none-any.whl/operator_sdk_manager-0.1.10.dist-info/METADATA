@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: operator-sdk-manager
+Version: 0.1.10
+Summary: A script for managing Operator SDK binaries and installations
+Home-page: https://git.jharmison.com/jharmison/operator-sdk-manager
+Author: James Harmison
+Author-email: jharmison@gmail.com
+License: BSD-2-Clause
+Keywords: kubernetes operator operator-sdk
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Requires-Dist: click
+Requires-Dist: lastversion
+Requires-Dist: python-gnupg
+
+# Operator SDK Manager
+
+A simple python app to keep your Operator SDK and dependant components updated.
+
+After installing run `operator-sdk-manager --help` or `operator-sdk-manager update --help` for more detail on command line arguments.
+
+
