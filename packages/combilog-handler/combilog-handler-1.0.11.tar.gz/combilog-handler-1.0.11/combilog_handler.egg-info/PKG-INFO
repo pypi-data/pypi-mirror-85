@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: combilog-handler
+Version: 1.0.11
+Summary: Interfaces with inbuilt python logger to send logs to combilog aggregator.
+Home-page: https://github.com/lewjc/combilog-pythonhandler
+Author: Lewis Cummins
+Author-email: lewisjcummins@hotmail.co.uk
+License: UNKNOWN
+Description: # CombiLog-PythonHandler
+        
+        Python package containing custom log handler to integrate with CombiLog
+        
+        ## Installation
+        
+        ```
+        $ pip install combilog-handler
+        ```
+        
+        ## Usage Guide
+        
+        Example usage
+        
+        ```
+        import logging
+        import combilog_handler
+        
+        # Points to the Websocket Server Url hosted in the Combilog Aggregator.
+        url = "ws://AGG_DOMAIN:AGG_SOCKET_PORT"
+        
+        # Secret of the service registered in the Combilog Dashboard
+        secret = "MY-SPECIAL-SECRET"
+        
+        logger = logging.Logger("NamedService")
+        handler = combilog_handler.loghandler.CombilogHandler(aggregator_url=url, service_secret=secret)
+        formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
+        
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
