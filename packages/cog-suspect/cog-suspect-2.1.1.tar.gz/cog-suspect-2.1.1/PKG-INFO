@@ -1,0 +1,210 @@
+Metadata-Version: 1.1
+Name: cog-suspect
+Version: 2.1.1
+Summary: Special Structure Detection for Pyomo
+Home-page: https://github.com/cog-imperial/suspect
+Author: Francesco Ceccon
+Author-email: francesco@ceccon.me
+License: Apache 2.0
+Description: Special Structure Detection for Pyomo
+        =====================================
+        
+        |DOI|_ |travis|_ |codecov|_
+        
+        .. |DOI| image:: https://zenodo.org/badge/127118649.svg
+        .. _DOI: https://zenodo.org/badge/latestdoi/127118649
+        .. |travis| image:: https://travis-ci.org/cog-imperial/suspect.svg?branch=master
+        .. _travis: https://travis-ci.org/cog-imperial/suspect
+        .. |codecov| image:: https://codecov.io/gh/cog-imperial/suspect/branch/master/graph/badge.svg
+        .. _codecov: https://codecov.io/gh/cog-imperial/suspect
+        
+        
+        This library implements methods to:
+        
+        * Detect convex and concave expressions
+        * Detect increasing and decreasing expressions
+        * Detect linear, quadratic and polynomial expressions
+        * Tighten expression bounds
+        
+        Please reference this software as
+        
+        .. code-block:: latex
+        
+            @Article{Suspect2019,
+            author={Ceccon, Francesco and Siirola, John D. and Misener, Ruth},
+            title={{SUSPECT}: {MINLP} special structure detector for Pyomo},
+            journal={Optimization Letters},
+            year={2019},
+            month={Feb},
+            issn="1862-4480",
+            doi="10.1007/s11590-019-01396-y",
+            url="https://doi.org/10.1007/s11590-019-01396-y"
+            }
+        
+        
+        
+        Documentation
+        -------------
+        
+        Documentation is available at https://cog-imperial.github.io/suspect/
+        
+        
+        Installation
+        ------------
+        
+        SUSPECT requires Python 3.5 or later. We recommend installing SUSPECT in
+        a virtual environment
+        
+        To create the virtual environment run::
+        
+            $ python3 -m venv myenv
+            $ source myenv/bin/activate
+        
+        Then you are ready to clone and install SUSPECT::
+        
+            $ git clone https://github.com/cog-imperial/suspect.git
+            $ cd suspect
+            $ pip install -r requirements.txt
+            $ pip install .
+        
+        
+        Command Line Usage
+        ------------------
+        
+        The package contains an utility to display structure information about
+        a single problem.
+        
+        You can run the utility as::
+        
+            model_summary.py -p /path/to/problem.osil
+        
+        or, if you want to check variables bounds include the solution::
+        
+            model_summary.py -p /path/to/problem.osil -s /path/to/problem.sol
+        
+        The repository also includes a `Dockerfile` to simplify running the utility in
+        batch mode in a cloud environment. Refer to the `batch` folder for more information.
+        
+        
+        Library Usage
+        -------------
+        
+        .. code-block:: python
+        
+            from suspect import detect_special_structure, create_connected_model
+            import pyomo.environ as aml
+        
+        
+            model = aml.ConcreteModel()
+            model.x = aml.Var()
+            model.y = aml.Var()
+        
+            model.obj = aml.Objective(expr=(model.y - model.x)**3)
+            model.c1 = aml.Constraint(expr=model.y - model.x >= 0)
+        
+            connected, _ = create_connected_model(model)
+            info = detect_special_structure(connected)
+        
+            # try info.variables, info.objectives, and info.constraints
+            print(info.objectives['obj'])
+        
+        
+        License
+        -------
+        
+        Copyright 2020 Francesco Ceccon
+        
+        Licensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at::
+        
+            http://www.apache.org/licenses/LICENSE-2.0
+        
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+        
+        Acknowledgements
+        ----------------
+        
+        This work was funded by an Engineering & Physical Sciences Research Council Research Fellowship to RM [Grant Number EP/P016871/1].
+        
+        
+        Changelog
+        =========
+        
+        2.1.1 (2020-11-13)
+        ------------------
+        
+        * Try to compute special structure even if bounds are missing
+        
+        2.1.0 (2020-09-16)
+        ------------------
+        
+        * Add support for `log10`
+        * Improve handling of quadratic expressions in nonlinear problems
+        * Fix FBBT bug when handling some types of expressions
+        
+        2.0.2 (2020-09-01)
+        ------------------
+        
+        * Fix convexity on division
+        * Handle Pyomo `MonomialTermExpression`
+        
+        2.0.1 (2020-07-01)
+        ------------------
+        
+        * Minor bug fixes
+        
+        2.0.0 (2020-04-28)
+        ------------------
+        
+        * Use Pyomo expressions to represent the DAG
+        * Replace DAG with connected_model
+        
+        1.6.0 (2019-11-15)
+        ------------------
+        
+        * Add floating point math mode
+        * Minor performance fixes
+        
+        1.1.0 (2019-01-31)
+        ------------------
+        
+        * Add Quadratic expression type
+        * Add Interval special case for x*x
+        * Fix Interval sin
+        * Add Interval comparison with numbers
+        
+        1.0.7 (2018-08-30)
+        ------------------
+        
+        * Add Interval abs
+        * Add Interval power
+        
+        
+        1.0.6 (2018-07-05)
+        ------------------
+        
+        * Change ExpressionType and UnaryFunctionType to IntEnum
+        
+        
+        1.0.5 (2018-07-05)
+        ------------------
+        
+        * Documentation improvements
+        
+        
+        1.0.4 (2018-07-04)
+        ------------------
+        
+        * First public release. Yay!
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Scientific/Engineering :: Mathematics
