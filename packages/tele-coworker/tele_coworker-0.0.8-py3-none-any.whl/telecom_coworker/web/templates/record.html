@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+{% block body %}
+    <section class="section" id="app">
+        <div class="container">
+            <form method="post">
+                <div class="field has-addons">
+                    <p class="control">
+                        <span class="select">
+                            <select name="query_type">
+                                {% for qt_value, qt_show in [("wid", "工作单元ID"), ("worker_ip", "工作单元IP"), ("tid", "任务ID"), ("task_type", "任务类型")] %}
+                                    <option value="{{ qt_value }}"
+                                            {% if query_type == qt_value %}selected="selected"{% endif %}>{{ qt_show }}</option>
+                                {% endfor %}
+                            </select>
+                        </span>
+                    </p>
+                    <p class="control">
+                        <input type="text" class="input" placeholder="查询值" name="q" {% if q is not none %}
+                               value="{{ q }}" {% endif %}>
+                    </p>
+                    <p class="control">
+                        <input type="submit" class="button" value="查询">
+                    </p>
+                </div>
+            </form>
+        </div>
+        <div class="container mt-3">
+            <p class="title">调试日志</p>
+            <table class="table">
+                <thead>
+                <th>事件类型</th>
+                <th>时间</th>
+                <th>工作单元ID</th>
+                <th>工作单元IP</th>
+                <th>任务ID</th>
+                <th>任务类型</th>
+                <th>备注</th>
+                </thead>
+                <tbody>
+                {% for r in records %}
+                    <tr>
+                        <td>{{ r.record_type }}</td>
+                        <td>{{ r.created_at | dt_sh }}</td>
+                        <td>{{ r.wid }}</td>
+                        <td>{{ r.worker_ip }}</td>
+                        <td>{{ r.tid }}</td>
+                        <td>{{ r.task_type }}</td>
+                        {% if r.comment is not none %}
+                            <td @click='showComment("{{ r.comment | urlencode }}")'><i
+                                    class="fas fa-arrow-circle-right has-text-danger"></i></td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <!-- <div class="modal is-active"> -->
+            <div class="modal" :class="{'is-active': commentIsShow}">
+                <div class="modal-background" @click="closeCommentModal"></div>
+                <div class="modal-card">
+                    <header class="modal-card-head">
+                        <p class="modal-card-title">异常信息</p>
+                        <button class="delete" aria-label="close" @click="closeCommentModal"></button>
+                    </header>
+                    <section class="modal-card-body">
+                        <p>${comment}</p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            delimiters: ['${', '}'],
+            data: {
+                commentIsShow: false,
+                comment: ""
+            },
+            methods: {
+                showComment: function (comment) {
+                    this.commentIsShow = true
+                    this.comment = decodeURIComponent(comment)
+                },
+                closeCommentModal: function () {
+                    this.commentIsShow = false
+                    this.comment = ""
+                }
+            }
+        })
+    </script>
+{% endblock %}
