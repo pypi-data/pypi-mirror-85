@@ -1,0 +1,17 @@
+name: elephant
+
+channels:
+  - conda-forge  # required for MPI
+
+dependencies:
+  - python>=3.6
+  - pip
+  - mpi4py
+  - numpy
+  - scipy
+  - tqdm
+  - pandas
+  - scikit-learn
+  - statsmodels
+  - pip:
+     - -r file:requirements.txt
