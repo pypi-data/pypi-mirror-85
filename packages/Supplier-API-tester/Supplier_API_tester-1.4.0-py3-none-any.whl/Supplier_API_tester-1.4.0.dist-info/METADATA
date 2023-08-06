@@ -1,0 +1,71 @@
+Metadata-Version: 2.1
+Name: Supplier-API-tester
+Version: 1.4.0
+Summary: Console tool for validating the Supplier API implementation
+Home-page: UNKNOWN
+Author: Tiqets Team
+Author-email: connections@tiqets.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: requests (==2.22.0)
+Requires-Dist: dacite (==1.0.2)
+Requires-Dist: terminaltables (==3.1.0)
+Requires-Dist: clickclick (==1.2.2)
+
+# Supplier API Testing Tool
+
+## Requirements
+
+Python 3.7+
+
+## Installation
+
+```sh
+pip install supplier-api-tester
+```
+
+## Usage
+
+```
+supplier_tester --help
+Usage: supplier_tester [OPTIONS]
+
+  Test you Supplier API implementation
+
+Options:
+  -u, --url TEXT         [required]
+  -k, --api-key TEXT     [required]
+  -p, --product-id TEXT  Product ID to call tests on. Required with -a and -t flags
+  -t, --timeslots        Use timeslots
+  -a, --availability     Run availability tests
+  -r, --reservation      Run reservation tests
+  -b, --booking          Run booking tests
+  -c, --catalog          Run product catalog tests
+  -nc, --no-colors       Not using colors on output
+  --help                 Show this message and exit
+```
+
+Running all tests:
+
+```sh
+    supplier_tester -u 'http://localhost:8000' -k 'secret' -p 'A500-FX'  # For products without timeslots
+    supplier_tester -u 'http://localhost:8000' -k 'secret' -p 'A400-FX' -t  # For products with timeslots
+```
+
+**Remember to choose valid product id. It has to refer timeslotted product when you use `-t` flag.**
+
+Running only availability tests:
+
+```sh
+    supplier_tester -u 'http://localhost:8000' -k 'secret' -p 'A500-FX' -a  # For products without timeslots
+    supplier_tester -u 'http://localhost:8000' -k 'secret' -p 'A400-FX' -a -t  # For products with timeslots
+```
+
+
