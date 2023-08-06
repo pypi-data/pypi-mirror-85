@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: fserver
+Version: 0.1.2
+Summary: File Sharing Server implemented with flask and gevent
+Home-page: https://github.com/Carrotor116/fserver
+Author: Nonu
+Author-email: carrotor116@gmail.com
+License: MIT
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: Flask (>=1.1.2)
+Requires-Dist: gevent (>=20.6.2)
+
+# fserver
+
+File Sharing Server implemented with flask and gevent
+
+
+### install 
+
+```shell
+$ pip install fserver -U
+```
+
+
+### usage 
+
+```text
+usage: fserver [-h] [-d] [-u] [-o] [-i IP] [-p PORT] [-r PATH]
+               [-a PATH [PATH ...]] [-b PATH [PATH ...]] [-s STRING]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -d, --debug           run with debug mode
+  -u, --upload          run with upload file function
+  -o, --override        override mode for upload file
+  -i IP, --ip IP        ip address for listening, default 0.0.0.0
+  -p PORT, --port PORT  port for listening, default 2000
+  -r PATH, --root PATH  root path for server, default current path
+  -a PATH [PATH ...], --allow PATH [PATH ...]
+                        run with allow_list. Only [PATH ...] will be accessed
+  -b PATH [PATH ...], --block PATH [PATH ...]
+                        run with block_list. [PATH ...] will not be accessed
+  -s STRING, --string STRING
+                        share string only
+  -v, --version         print version info
+```
+
+
+### license
+[MIT](LICENSE)
+
