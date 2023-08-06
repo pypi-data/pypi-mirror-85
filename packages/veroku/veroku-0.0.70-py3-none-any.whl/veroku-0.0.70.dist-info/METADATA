@@ -1,0 +1,73 @@
+Metadata-Version: 2.1
+Name: veroku
+Version: 0.0.70
+Summary: An open source library for building and performing inference with probabilistic graphical models.
+Home-page: https://github.com/ejlouw/veroku
+Author: EJ Louw
+Author-email: ejlouw00@gmail.com
+License: BSD 3-Clause License
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: Sphinx (==3.2.1)
+Requires-Dist: autodoc (==0.5.0)
+Requires-Dist: matplotlib (==3.0.3)
+Requires-Dist: seaborn (==0.11.0)
+Requires-Dist: graphviz (==0.10.1)
+Requires-Dist: Pillow (==7.1.0)
+Requires-Dist: importnb (==0.6.2)
+Requires-Dist: ipython (==7.5.0)
+Requires-Dist: pandas (==1.1.3)
+Requires-Dist: tqdm (==4.48.1)
+Requires-Dist: ipympl (==0.5.8)
+Requires-Dist: numpy (==1.19.2)
+Requires-Dist: networkx (==1.11)
+Requires-Dist: numdifftools (==0.9.20)
+Requires-Dist: scipy (==1.5.2)
+Requires-Dist: mockito (==1.2.2)
+
+<div align="center">
+  <img src="logo.png">
+</div>
+
+### Disclaimer
+This project is still in the very early stages of development. Use this library at your own risk. The github repo is also still private,
+but will be made public soon.
+
+### Overview
+<div style="text-align: justify">
+Veroku is an open source library for building and performing inference with probabilistic graphical models (PGMs). PGMs
+provide a framework for performing efficient probabilistic inference with very high dimensional distributions. A typical
+example of a well-known type of PGM is the Kalman filter that can be used to obtain probabilistic estimates of a hidden
+state of a process or system, given noisy measurements. PGMs can in principle be used for any problem that involves
+uncertainty and is therefore applicable to many problems.</div> 
+
+Veroku currently supports the following distributions:
+* Multivariate Gaussian
+* Multivariate Gaussian mixture
+* Multivariate categorical
+
+<div style="text-align: justify">
+These distributions can be used as factors to represent a factorised distribution. These factors can be used, together
+with the `cluster_graph` module to automatically create valid cluster graphs. Inference can be performed in these graphs
+using message passing algorithms. Currently only the LBU (Loopy Belief Update) message-passing algorithm is supported.
+</div>
+
+<br/><br/>
+
+### Future Features
+To be added soon:
+* Example notebooks
+* Non-linear Gaussian distribution
+* Plate models (for efficiently specifying PGMs as modular/hierarchical templates)
+
+On the roadmap:
+* Dirichlet distribution
+* Wishart distribution
+* Normal-Wishart distribution
+
+
+
