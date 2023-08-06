@@ -1,0 +1,195 @@
+T000:
+  url: https://stats.oecd.org/index.aspx?queryid=79863
+  name: "Passenger transport: Inland passenger transport"
+  fetch:
+    type: SDMX
+    source: OECD
+    resource_id: ITF_PASSENGER_TRANSPORT
+    key: .T-PASS-TOT-INLD+T-PASS-RL-TOT+T-PASS-RD-TOT+T-PASS-RD-CAR+T-PASS-RD-BUS
+    validate: false
+  active: true
+
+T001:
+  name: Coastal Transport
+  fetch:
+    type: SDMX
+    source: OECD
+    resource_id: ITF_GOODS_TRANSPORT
+    key: .T-SEA-CAB
+    validate: false
+  active: true
+
+T002:
+  name: Container Transport
+  fetch:
+    type: SDMX
+    source: OECD
+    resource_id: ITF_GOODS_TRANSPORT
+    key: .T-CONT-RL-TEU+T-CONT-RL-TON+T-CONT-SEA-TEU+T-CONT-SEA-TON
+    validate: false
+  active: true
+
+T003:
+  name: Inland Freight Transport
+  fetch:
+    type: SDMX
+    source: OECD
+    resource_id: ITF_GOODS_TRANSPORT
+    key: .T-GOODS-TOT-INLD+T-GOODS-RL-TOT+T-GOODS-RD-TOT+T-GOODS-RD-REW+T-GOODS-RD-OWN+T-GOODS-IW-TOT+T-GOODS-PP-TOT
+    validate: false
+  active: true
+
+T004:
+  url: https://w3.unece.org/PXWeb2015/pxweb/en/STAT/STAT__40-TRTRANS__03-TRRoadFleet/08_en_TRRoadNewVehF_r.px/?rxid=674effaa-3926-4d2e-9d6d-abfd7dd196b8
+  name: New Road Vehicle Registrations by Vehicle Category and Fuel Type
+  active: true
+
+T005:
+  name: Passenger Road Vehicle Fleet and rate per thousand inhabitants by Vehicle Category
+  fetch:
+    type: OpenKAPSARC
+    dataset_id: passenger-road-vehicle-fleet-and-rate-per-thousand-inhabitants-by-vehicle-catego
+  url: https://datasource.kapsarc.org/explore/dataset/passenger-road-vehicle-fleet-and-rate-per-thousand-inhabitants-by-vehicle-catego
+
+T006:
+  name: Passenger Transport
+  fetch:
+    type: OpenKAPSARC
+    dataset_id: passenger-transport
+  url: https://datasource.kapsarc.org/explore/dataset/passenger-transport/
+
+T007:
+  name: New Passenger Car Registrations by Fuel type
+  fetch:
+    type: OpenKAPSARC
+    dataset_id: new-passenger-car-registrations-by-fuel-type
+  url: https://datasource.kapsarc.org/explore/dataset/new-passenger-car-registrations-by-fuel-type/
+
+T008:
+  name: New Road Vehicle Registrations by Vehicle Category and Fuel type
+  fetch:
+    type: OpenKAPSARC
+    dataset_id: new-road-vehicle-registrations-by-vehicle-category-and-fuel-type
+  url: https://datasource.kapsarc.org/explore/dataset/new-road-vehicle-registrations-by-vehicle-category-and-fuel-type/
+
+T009:
+  name: Road Vehicle Fleet by Vehicle Category and Fuel Type
+  fetch:
+    type: OpenKAPSARC
+    dataset_id: road-vehicle-fleet-by-vehicle-category-and-fuel-type
+  url: https://datasource.kapsarc.org/explore/dataset/road-vehicle-fleet-by-vehicle-category-and-fuel-type/
+
+T010:
+  name: Volume of passenger transport relative to GDP
+  fetch:
+    type: OpenKAPSARC
+    dataset_id: volume-of-passenger-transport-relative-to-gdp
+  url: https://datasource.kapsarc.org/explore/dataset/volume-of-passenger-transport-relative-to-gdp/
+
+T011:
+  name: Modal split of freight transport
+  fetch:
+    type: OpenKAPSARC
+    dataset_id: modal-split-of-freight-transport
+  url: https://datasource.kapsarc.org/explore/dataset/modal-split-of-freight-transport/
+
+T012:
+  name: Modal split of passenger transport
+  fetch:
+    type: OpenKAPSARC
+    dataset_id: modal-split-of-freight-transport
+  url: https://datasource.kapsarc.org/explore/dataset/modal-split-of-freight-transport/
+
+T013:
+  name: Rail transport of passengers
+  fetch:
+    type: OpenKAPSARC
+    dataset_id: rail-transport-of-passengers
+  url: https://datasource.kapsarc.org/explore/dataset/rail-transport-of-passengers/
+
+T014:
+  name: Supply, transformation and consumption of electricity
+  fetch:
+    type: OpenKAPSARC
+    dataset_id: supply-transformation-and-consumption-of-electricity-annual-data
+  url: https://datasource.kapsarc.org/explore/dataset/supply-transformation-and-consumption-of-electricity-annual-data/
+
+T015:
+  name: Supply, transformation and consumption of gas
+  fetch:
+    type: OpenKAPSARC
+    dataset_id: supply-transformation-and-consumption-of-gas-annual-data
+  url: https://datasource.kapsarc.org/explore/dataset/supply-transformation-and-consumption-of-gas-annual-data/
+
+T016:
+  name: Supply, transformation and consumption of oil
+  fetch:
+    type: OpenKAPSARC
+    dataset_id: supply-transformation-and-consumption-of-oil-annual-data
+  url: https://datasource.kapsarc.org/explore/dataset/supply-transformation-and-consumption-of-oil-annual-data/
+
+T017:
+  name: N/A
+  fetch:
+    type: OpenKAPSARC
+    dataset_id: simplified-energy-balances-annual-data
+  url: https://datasource.kapsarc.org/explore/dataset/simplified-energy-balances-annual-data/
+
+T018:
+  name: Transport infrastructure investment and maintenance spending
+  fetch:
+    type: OpenKAPSARC
+    dataset_id: transport-infrastructure-investment-and-maintenance-spending
+  url: https://datasource.kapsarc.org/explore/dataset/transport-infrastructure-investment-and-maintenance-spending/
+
+T019:
+  name: Electricity consumption by industry, transport activities and households/services
+  fetch:
+    type: OpenKAPSARC
+    dataset_id: electricity-consumption-by-industry-transport-activities-and-householdsservices-
+  url: https://datasource.kapsarc.org/explore/dataset/electricity-consumption-by-industry-transport-activities-and-householdsservices-/
+
+T020:
+  name: Final energy consumption by product
+  fetch:
+    type: OpenKAPSARC
+    dataset_id: final-energy-consumption-by-product
+  url: https://datasource.kapsarc.org/explore/dataset/final-energy-consumption-by-product/
+
+T021:
+  name: Goods transport by rail
+  fetch:
+    type: OpenKAPSARC
+    dataset_id: goods-transport-by-rail
+  url: https://datasource.kapsarc.org/explore/dataset/goods-transport-by-rail/
+
+T022:
+  name: New Goods Road Vehicles Registered by Vehicle Category and Permissible Maximum Gross weight group
+  fetch:
+    type: OpenKAPSARC
+    dataset_id: new-goods-road-vehicles-registered-by-vehicle-category-and-permissible-maximum-g
+  url: https://datasource.kapsarc.org/explore/dataset/new-goods-road-vehicles-registered-by-vehicle-category-and-permissible-maximum-g/
+
+T023:
+  name: Goods Road Vehicle Fleet by Vehicle Category and Permissible Maximum Gross weight group
+  fetch:
+    type: OpenKAPSARC
+    dataset_id: goods-road-vehicle-fleet-by-vehicle-category-and-permissible-maximum-gross-weigh
+  url: https://datasource.kapsarc.org/explore/dataset/goods-road-vehicle-fleet-by-vehicle-category-and-permissible-maximum-gross-weigh/
+
+T024:
+  name: Supply, transformation and consumption of renewable energies
+  fetch:
+    type: OpenKAPSARC
+    dataset_id: supply-transformation-and-consumption-of-renewable-energies-annual-data
+  url: https://datasource.kapsarc.org/explore/dataset/supply-transformation-and-consumption-of-renewable-energies-annual-data/
+
+T025:
+  url: https://edgar.jrc.ec.europa.eu/overview.php?v=50_GHG
+  name: EDGAR v5.0 Global Greenhouse Gas Emissions
+  description: |
+    7.1 Direct CO2 emissions from global (and regional) transport scenarios.
+    7.2 Transport demand/activity trajectories for passenger and freight.
+    7.3 Mode shares of passenger and freight transport
+    7.4 Energy intensity of freight and passenger transport
+    7.5 Fuel shares (freight and passenger transport)
