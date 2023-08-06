@@ -1,0 +1,119 @@
+
+<hr>
+<h1>Topsis Package by Gagandeep Singh 101803390</h1>
+<hr>
+<br>
+<h3>What is Topsis ?</h3>
+<br>
+<p>It is a method of compensatory aggregation that compares a set of alternatives by identifying weights for each criterion, normalising scores for each criterion and calculating the geometric distance between each alternative and the ideal alternative, which is the best score in each criterion. An assumption of TOPSIS is that the criteria are monotonically increasing or decreasing. Normalisation is usually required as the parameters or criteria are often of incongruous dimensions in multi-criteria problems. Compensatory methods such as TOPSIS allow trade-offs between criteria, where a poor result in one criterion can be negated by a good result in another criterion. This provides a more realistic form of modelling than non-compensatory methods, which include or exclude alternative solutions based on hard cut-offs.</p>
+<br>
+<hr>
+<h2>How to use my package</h2><br>
+<p>First of all you will have to import it by following command...
+<br><br><b>pip install TOPSIS_GAGANDEEP_SINGH_101803390</b><br><br>
+then import the package as follows : <br><br>
+<b>import TOPSIS_GAGANDEEP_SINGH_101803390 as topsis</b><br>
+<p>now we have to call save_topsis() function from this package to get results</p>
+<b>topsis.save_topsis("book1.csv","0.1,0.4,0.3,0.2","+,+,-,+","output.csv")</b><br><br>
+<br><hr>
+<h2>Parameter of the save_topsis() function<h2><br>
+<h4>This package gives the function save_topsis(input,weights,target,output) which takes four parameters:</h4>
+   
+<ol> 
+    <li> input : is the location of input file as example "./book1.csv"</li>
+    <li> weight : this takes the input value of every parameter weights as example     "0.1,0.2,0.3,0.4" </li>
+    <li> target : this takes the +ve and -ve as input to take whether to maximize or minimize a parameter as example "+,+,-,+"</li>
+    <li> output : is the location of the csv file where u want to save it as example "output.csv"</li>
+</ol>  
+<br>
+<b>Input and output files must be csv</b><br>
+<b>The length of weights and target and data columns in input file must be same</b><br><br>
+<hr>
+<h2>Sample input</h2>
+<p>Input file data...</p>
+<table>
+  <tr>
+    <th>Model</th>
+    <th>corr</th>
+    <th>Rseq</th>
+    <th>RMSE</th>
+    <th>Accuracy</th>
+  </tr>
+  <tr>
+    <th>M1</th>
+    <td>6</td>
+    <td>7</td>
+    <td>8</td>
+    <td>6</td>
+  </tr>
+  <tr>
+    <th>M2</th>
+    <td>8</th>
+    <td>7</td>
+    <td>8</td>
+    <td>7</td>
+  </tr>
+  <tr>
+    <th>M3</th>
+    <td>7</td>
+    <td>9</td>
+    <td>9</td>
+    <td>8</td>
+  </tr>
+  <tr>
+    <th>M4</th>
+    <td>9</td>
+    <td>6</td>
+    <td>8</td>
+    <td>9</td>
+  </tr>
+</table>
+<br>
+output file data...<br><br>
+<table>
+  <tr>
+    <th>Model</th>
+    <th>corr</th>
+    <th>Rseq</th>
+    <th>RMSE</th>
+    <th>Accuracy</th>
+    <th>Topsis Score</th>
+    <th>Rank</th>
+  </tr>
+  <tr>
+    <th>M1</th>
+    <td>6</td>
+    <td>7</td>
+    <td>8</td>
+    <td>6</td>
+    <td>0.27</td>
+    <td>4</td>
+  </tr>
+  <tr>
+    <th>M2</th>
+    <td>8</th>
+    <td>7</td>
+    <td>8</td>
+    <td>7</td>
+    <td>0.4</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <th>M3</th>
+    <td>7</td>
+    <td>9</td>
+    <td>9</td>
+    <td>8</td>
+    <td>0.6</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <th>M4</th>
+    <td>9</td>
+    <td>6</td>
+    <td>8</td>
+    <td>9</td>
+    <td>0.67</td>
+    <td>1</td>
+  </tr>
+</table>
