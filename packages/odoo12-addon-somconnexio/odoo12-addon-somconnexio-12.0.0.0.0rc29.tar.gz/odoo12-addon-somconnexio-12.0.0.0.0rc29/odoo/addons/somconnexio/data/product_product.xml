@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <data>
+    <record id="100Min1GB" model="product.product">
+      <field name="name">100 Min</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('1GB')])]"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_100_1024</field>
+    </record>
+    <record id="100Min2GB" model="product.product">
+      <field name="name">100 Min</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('2GB')])]"/>
+      <field name="product_tmpl_id" ref="100Min1GB_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_100_2048</field>
+    </record>
+    <record id="100Min3GB" model="product.product">
+      <field name="name">100 Min</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('3GB')])]"/>
+      <field name="product_tmpl_id" ref="100Min1GB_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_100_3072</field>
+    </record>
+    <record id="100MinSenseDades" model="product.product">
+      <field name="name">100 Min</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('SenseDades')])]"/>
+      <field name="product_tmpl_id" ref="100Min1GB_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_100_0</field>
+    </record>
+    <record id="100Min5GB" model="product.product">
+      <field name="name">100 Min</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('5GB')])]"/>
+      <field name="product_tmpl_id" ref="100Min1GB_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_100_5120</field>
+    </record>
+    <record id="100Min10GB" model="product.product">
+      <field name="name">100 Min</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('10GB')])]"/>
+      <field name="product_tmpl_id" ref="100Min1GB_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_100_10240</field>
+    </record>
+    <record id="100Min200MB" model="product.product">
+      <field name="name">100 Min</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('200MB')])]"/>
+      <field name="product_tmpl_id" ref="100Min1GB_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_100_200</field>
+    </record>
+    <record id="100Min500MB" model="product.product">
+      <field name="name">100 Min</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('500MB')])]"/>
+      <field name="product_tmpl_id" ref="100Min1GB_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_100_500</field>
+    </record>
+    <record id="200Min1GB" model="product.product">
+      <field name="name">200 Min</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('1GB')])]"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_200_1024</field>
+    </record>
+    <record id="200Min2GB" model="product.product">
+      <field name="name">200 Min</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('2GB')])]"/>
+      <field name="product_tmpl_id" ref="200Min1GB_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_200_2048</field>
+    </record>
+    <record id="200Min3GB" model="product.product">
+      <field name="name">200 Min</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('3GB')])]"/>
+      <field name="product_tmpl_id" ref="200Min1GB_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_200_3072</field>
+    </record>
+    <record id="200MinSenseDades" model="product.product">
+      <field name="name">200 Min</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('SenseDades')])]"/>
+      <field name="product_tmpl_id" ref="200Min1GB_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_200_0</field>
+    </record>
+    <record id="200Min5GB" model="product.product">
+      <field name="name">200 Min</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('5GB')])]"/>
+      <field name="product_tmpl_id" ref="200Min1GB_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_200_5120</field>
+    </record>
+    <record id="200Min10GB" model="product.product">
+      <field name="name">200 Min</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('10GB')])]"/>
+      <field name="product_tmpl_id" ref="200Min1GB_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_200_10240</field>
+    </record>
+    <record id="200Min200MB" model="product.product">
+      <field name="name">200 Min</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('200MB')])]"/>
+      <field name="product_tmpl_id" ref="200Min1GB_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_200_200</field>
+    </record>
+    <record id="200Min500MB" model="product.product">
+      <field name="name">200 Min</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('500MB')])]"/>
+      <field name="product_tmpl_id" ref="200Min1GB_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_200_500</field>
+    </record>
+    <record id="SenseMinuts1GB" model="product.product">
+      <field name="name">Sense Minuts</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('1GB')])]"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_0_1024</field>
+    </record>
+    <record id="SenseMinuts2GB" model="product.product">
+      <field name="name">Sense Minuts</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('2GB')])]"/>
+      <field name="product_tmpl_id" ref="SenseMinuts1GB_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_0_2048</field>
+    </record>
+    <record id="SenseMinuts3GB" model="product.product">
+      <field name="name">Sense Minuts</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('3GB')])]"/>
+      <field name="product_tmpl_id" ref="SenseMinuts1GB_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_0_3072</field>
+    </record>
+    <record id="SenseMinutsSenseDades" model="product.product">
+      <field name="name">Sense Minuts</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('SenseDades')])]"/>
+      <field name="product_tmpl_id" ref="SenseMinuts1GB_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_0_0</field>
+    </record>
+    <record id="SenseMinuts5GB" model="product.product">
+      <field name="name">Sense Minuts</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('5GB')])]"/>
+      <field name="product_tmpl_id" ref="SenseMinuts1GB_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_0_5120</field>
+    </record>
+    <record id="SenseMinuts10GB" model="product.product">
+      <field name="name">Sense Minuts</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('10GB')])]"/>
+      <field name="product_tmpl_id" ref="SenseMinuts1GB_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_0_10240</field>
+    </record>
+    <record id="SenseMinuts200MB" model="product.product">
+      <field name="name">Sense Minuts</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('200MB')])]"/>
+      <field name="product_tmpl_id" ref="SenseMinuts1GB_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_0_200</field>
+    </record>
+    <record id="SenseMinuts500MB" model="product.product">
+      <field name="name">Sense Minuts</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('500MB')])]"/>
+      <field name="product_tmpl_id" ref="SenseMinuts1GB_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_0_500</field>
+    </record>
+    <record id="TrucadesIllimitadesSenseDades" model="product.product">
+      <field name="name">Trucades Il·limitades</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('SenseDades')])]"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_UNL_0</field>
+    </record>
+    <record id="TrucadesIllimitades1GB" model="product.product">
+      <field name="name">Trucades Il·limitades</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('1GB')])]"/>
+      <field name="product_tmpl_id" ref="TrucadesIllimitadesSenseDades_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_UNL_1024</field>
+    </record>
+    <record id="TrucadesIllimitades2GB" model="product.product">
+      <field name="name">Trucades Il·limitades</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('2GB')])]"/>
+      <field name="product_tmpl_id" ref="TrucadesIllimitadesSenseDades_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_UNL_2048</field>
+    </record>
+    <record id="TrucadesIllimitades3GB" model="product.product">
+      <field name="name">Trucades Il·limitades</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('3GB')])]"/>
+      <field name="product_tmpl_id" ref="TrucadesIllimitadesSenseDades_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_UNL_3072</field>
+    </record>
+    <record id="TrucadesIllimitades5GB" model="product.product">
+      <field name="name">Trucades Il·limitades</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('5GB')])]"/>
+      <field name="product_tmpl_id" ref="TrucadesIllimitadesSenseDades_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_UNL_5120</field>
+    </record>
+    <record id="TrucadesIllimitades10GB" model="product.product">
+      <field name="name">Trucades Il·limitades</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('10GB')])]"/>
+      <field name="product_tmpl_id" ref="TrucadesIllimitadesSenseDades_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_UNL_10240</field>
+    </record>
+    <record id="TrucadesIllimitades200Mb" model="product.product">
+      <field name="name">Trucades Il·limitades</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('200MB')])]"/>
+      <field name="product_tmpl_id" ref="TrucadesIllimitadesSenseDades_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_UNL_200</field>
+    </record>
+    <record id="TrucadesIllimitades500Mb" model="product.product">
+      <field name="name">Trucades Il·limitades</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('500MB')])]"/>
+      <field name="product_tmpl_id" ref="TrucadesIllimitadesSenseDades_product_template"/>
+      <field name="default_code">SE_SC_REC_MOBILE_T_UNL_500</field>
+    </record>
+    <record id="ADSL20MB100MinFixMobile" model="product.product">
+      <field name="name">ADSL 20Mb</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('100MinFixIMobile')])]"/>
+      <field name="default_code">SE_SC_REC_BA_ADSL_100</field>
+    </record>
+    <record id="ADSL20MB1000MinFix" model="product.product">
+      <field name="name">ADSL 20Mb</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('1000MinFix')])]"/>
+      <field name="product_tmpl_id" ref="ADSL20MB100MinFixMobile_product_template"/>
+      <field name="default_code">SE_SC_REC_BA_ADSL_1000</field>
+    </record>
+    <record id="ADSL20MBSenseFix" model="product.product">
+      <field name="name">ADSL 20Mb</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('SenseFix')])]"/>
+      <field name="product_tmpl_id" ref="ADSL20MB100MinFixMobile_product_template"/>
+      <field name="default_code">SE_SC_REC_BA_ADSL_SF</field>
+    </record>
+    <record id="AltaParellExistent" model="product.product">
+      <field name="name">Alta Parell Existent</field>
+      <field name="default_code">CH_SC_OSO_PAR_EXISTENT</field>
+    </record>
+    <record id="DadesAddicionals100MB" model="product.product">
+      <field name="name">Dades Addicionals</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('100MB')])]"/>
+      <field name="default_code">CH_SC_OSO_100MB_ADDICIONAL</field>
+    </record>
+    <record id="DadesAddicionals1GB" model="product.product">
+      <field name="name">Dades Addicionals</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('1GB')])]"/>
+      <field name="product_tmpl_id" ref="DadesAddicionals100MB_product_template"/>
+      <field name="default_code">CH_SC_OSO_1GB_ADDICIONAL</field>
+    </record>
+    <record id="DadesAddicionals500MB" model="product.product">
+      <field name="name">Dades Addicionals</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('500MB')])]"/>
+      <field name="product_tmpl_id" ref="DadesAddicionals100MB_product_template"/>
+      <field name="default_code">CH_SC_OSO_500MB_ADDICIONAL</field>
+    </record>
+    <record id="EnviamentSIM" model="product.product">
+      <field name="name">Enviament SIM</field>
+      <field name="default_code">CH_SC_OSO_SIM</field>
+    </record>
+    <record id="EnviamentRouter" model="product.product">
+      <field name="name">Enviament Router</field>
+      <field name="default_code">CH_SC_OSO_SEND_ROUTER</field>
+    </record>
+    <record id="Fibra100Mb" model="product.product">
+      <field name="name">Fibra</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('100Mb')])]"/>
+      <field name="default_code">SE_SC_REC_BA_F_100</field>
+    </record>
+    <record id="Fibra600Mb" model="product.product">
+      <field name="name">Fibra</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('600Mb')])]"/>
+      <field name="product_tmpl_id" ref="Fibra100Mb_product_template" />
+      <field name="default_code">SE_SC_REC_BA_F_600</field>
+    </record>
+    <record id="Fibra1Gb" model="product.product">
+      <field name="name">Fibra</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('1Gb')])]"/>
+      <field name="product_tmpl_id" ref="Fibra100Mb_product_template" />
+      <field name="default_code">SE_SC_REC_BA_F_1024</field>
+    </record>
+    <record id="IPv4Fixa" model="product.product">
+      <field name="name">IPv4 Fixa</field>
+      <field name="default_code">SE_SC_REC_BA_IP_fix</field>
+    </record>
+    <record id="Internacional100Min" model="product.product">
+      <field name="name">Internacional</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('100Min')])]"/>
+      <field name="default_code">SE_SC_REC_INT_PACK_T_100</field>
+    </record>
+    <record id="Internacional200Min" model="product.product">
+      <field name="name">Internacional</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('200Min')])]"/>
+      <field name="product_tmpl_id" ref="Internacional100Min_product_template"/>
+      <field name="default_code">SE_SC_REC_INT_PACK_T_200</field>
+    </record>
+    <record id="Internacional300Min" model="product.product">
+      <field name="name">Internacional</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('300Min')])]"/>
+      <field name="product_tmpl_id" ref="Internacional100Min_product_template"/>
+      <field name="default_code">SE_SC_REC_INT_PACK_T_300</field>
+    </record>
+    <record id="RecollidaRouter" model="product.product">
+      <field name="name">Recollida Router</field>
+      <field name="default_code">CH_SC_OSO_RETURN_ROUTER</field>
+    </record>
+    <record id="SMSMassius500SMS" model="product.product">
+      <field name="name">SMS Massius</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('500SMS')])]"/>
+      <field name="default_code">CH_SC_OSO_SMS_500</field>
+    </record>
+    <record id="SMSMassius1000SMS" model="product.product">
+      <field name="name">SMS Massius</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('1000SMS')])]"/>
+      <field name="product_tmpl_id" ref="SMSMassius500SMS_product_template"/>
+      <field name="default_code">CH_SC_OSO_SMS_1000</field>
+    </record>
+    <record id="SMSMassius2000SMS" model="product.product">
+      <field name="name">SMS Massius</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('2000SMS')])]"/>
+      <field name="product_tmpl_id" ref="SMSMassius500SMS_product_template"/>
+      <field name="default_code">CH_SC_OSO_SMS_2000</field>
+    </record>
+    <record id="SMSMassius3000SMS" model="product.product">
+      <field name="name">SMS Massius</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('3000SMS')])]"/>
+      <field name="product_tmpl_id" ref="SMSMassius500SMS_product_template"/>
+      <field name="default_code">CH_SC_OSO_SMS_3000</field>
+    </record>
+    <record id="SMSMassius5000SMS" model="product.product">
+      <field name="name">SMS Massius</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('5000SMS')])]"/>
+      <field name="product_tmpl_id" ref="SMSMassius500SMS_product_template"/>
+      <field name="default_code">CH_SC_OSO_SMS_5000</field>
+    </record>
+    <record id="SMSMassius10000SMS" model="product.product">
+      <field name="name">SMS Massius</field>
+      <field name="attribute_value_ids" eval="[(6, 0, [ref('10000SMS')])]"/>
+      <field name="product_tmpl_id" ref="SMSMassius500SMS_product_template"/>
+      <field name="default_code">CH_SC_OSO_SMS_10000</field>
+    </record>
+  </data>
+</odoo>
