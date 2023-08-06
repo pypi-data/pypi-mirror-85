@@ -1,0 +1,13 @@
+include README.md
+include LICENSE
+
+# Include config (.ini)
+recursive-include axon *.ini
+
+# Include certs (.crt, .key, .pem)
+recursive-include axon certs *
+
+# Exclude unnecessary files
+recursive-exclude axon .DS_Store
+recursive-exclude axon certs .DS_Store
+recursive-exclude axon __pycache__ *.pyc
