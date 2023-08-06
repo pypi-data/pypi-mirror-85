@@ -1,0 +1,83 @@
+name: requests_ms_auth
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+env:
+  TWINE_TOKEN: ${{secrets.TWINE_TOKEN}}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python-version: [3.7, 3.8]
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: List environment info
+      run: |
+        python -c "import sys; print(sys.version)"
+        make info
+    - name: Prepare environment
+      run: |
+        make prep
+    - name: Ensure code quality
+      run: |
+        make code-quality
+    - name: Test code
+      run: |
+        make setup test
+      env:
+        INTEGRATION_TENANT: ${{ secrets.INTEGRATION_TENANT }}
+        INTEGRATION_CLIENT_ID: ${{ secrets.INTEGRATION_CLIENT_ID }}
+        INTEGRATION_CLIENT_SECRET: ${{ secrets.INTEGRATION_CLIENT_SECRET }}
+        INTEGRATION_RESOURCE: ${{ secrets.INTEGRATION_RESOURCE }}
+        INTEGRATION_AUTHORITY_HOST_URL: ${{ secrets.INTEGRATION_AUTHORITY_HOST_URL }}
+        INTEGRATION_LIVE_VERIFICATION_URL: ${{ secrets.INTEGRATION_LIVE_VERIFICATION_URL }}
+        INTEGRATION_LIVE_VERIFICATION_ELEMENT: ${{ secrets.INTEGRATION_LIVE_VERIFICATION_ELEMENT }}
+  upload:
+    needs: [test]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name: List environment info
+      run: |
+        python -c "import sys; print(sys.version)"
+        make info
+    - name: Prepare environment
+      run: |
+        make prep
+    - name: Ensure code quality
+      run: |
+        make code-quality
+    - name: Build code
+      run: |
+        make build
+    - name: Package for PyPi
+      run: |
+        make pack
+    - name: Push version to PyPi
+      run: |
+        make push
