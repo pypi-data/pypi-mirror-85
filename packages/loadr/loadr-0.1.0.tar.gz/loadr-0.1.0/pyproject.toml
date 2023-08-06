@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "loadr"
+version = "0.1.0"
+description = "Taxonic MQ loader"
+authors = ["Pascal Prins <pascal.prins@foobar-it.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+click = "^7.1.2"
+Jinja2 = "^2.11.2"
+toml = "^0.10.2"
+requests = "^2.25.0"
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.scripts]
+loadr = "loadr.cli:main"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
