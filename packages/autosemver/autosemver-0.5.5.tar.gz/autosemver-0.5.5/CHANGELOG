@@ -1,0 +1,176 @@
+* 0.5.5 "fabiencelier <fabien.celier@polytechnique.edu>"
+    MINOR 1db85298: [setup] Add long_description for Pypi description
+
+* 0.5.4 "David Caro <david@dcaro.es>"
+    MINOR 833ceb72: Merge pull request #50 from drjova/pin-dulwich
+    MINOR ac1d5214: setup: pin dulwich
+
+* 0.5.3 "David Caro <david@dcaro.es>"
+    MINOR 3bc0adb7: Merge pull request #48 from david-caro/python_extra_support
+    MINOR 55e0efd3: global: add support for python 3.4 and 3.6
+
+* 0.5.2 "David Caro <david@dcaro.es>"
+    MINOR ef46bc33: Merge branch 'generate_gh_tags'
+    MINOR 52df0c47: cli.tag: use github-compatible tag names
+    MINOR 5c767d27: tests: adapt to new tag format
+
+* 0.5.1 "David Caro <david@dcaro.es>"
+    MINOR d469a97b: Merge pull request #44 from david-caro/fix_no_newline
+    MINOR 8f4662f0: git.is_apy_break: return a boolean
+    MINOR dd0f46b9: git.is_api_break: fix non-newline semver header
+    MINOR 438fb638: git.is_feature: return a boolean
+    MINOR 901adc20: git: fix feature regexp detection
+    MINOR 3d75af66: tests: add complete tests for feature check
+    MINOR c68f6a99: tests: add test for api_break change check
+
+* 0.5.0 "David Caro <david@dcaro.es>"
+    FEATURE 9764a0d3: Merge pull request #42 from
+    david-caro/refactor_fit_to_col
+    FEATURE 1cb2cb35: Refactor fit_to_column
+    FIXED ISSUES: https://github.com/david-caro/python-autosemver/issues/41
+    FEATURE ae8ae2f3: travis: run only on master and prs
+
+* 0.4.0 "David Caro <david@dcaro.es>"
+    FEATURE 53792d77: Merge pull request #39 from david-caro/add_tag_command
+    MINOR d90d8ac2: cli: add tag command to tag versions
+    FIXED ISSUES: https://github.com/david-caro/python-autosemver/issues/35
+
+* 0.3.1 "David Caro <david@dcaro.es>"
+    MINOR 8be2df6b: Merge pull request #40 from david-caro/fix_tests
+    MINOR 7c87f38e: tests: fix tag tests
+
+* 0.3.0 "David Caro <david@dcaro.es>"
+    FEATURE 0c88064a: Merge pull request #38 from david-caro/extra_tag_formats
+    MINOR cbf7b785: global: add support for extra tags
+    FIXED ISSUES: https://github.com/david-caro/python-autosemver/issues/37
+
+* 0.2.4 "David Caro <david@dcaro.es>"
+    MINOR e4a8f22c: Merge pull request #36 from
+    david-caro/use_google_style_docs
+    MINOR ab5f4fdc: docs: start using google docstrings
+
+* 0.2.3 "David Caro <david@dcaro.es>"
+    MINOR fb3b7598: Merge pull request #33 from
+    david-caro/add_date_unordered_check
+    MINOR e682bff7: tests: add date-unordered check
+
+* 0.2.2 "David Caro <david@dcaro.es>"
+    MINOR b25d5323: Merge pull request #32 from
+    david-caro/docs_mention_setuptools
+    MINOR 2c98b9c7: docs: fix typo in usage example
+    FIXED ISSUES: https://github.com/david-caro/python-autosemver/issues/30
+    MINOR 624da445: docs: mention setuptools instead of distutils
+
+* 0.2.1 "David Caro <david@dcaro.es>"
+    MINOR f5afd4d5: Merge pull request #29 from
+    david-caro/fix_pkg_resources_call
+    MINOR 8b76fcb8: packaging: fix version check on installed packages
+
+* 0.2.0 "David Caro <david@dcaro.es>"
+    FEATURE 202e1d2d: Merge pull request #26 from
+    david-caro/add_release_notes_to_the_packaging
+    MINOR ceb76feb: Added release notes to the packaging
+    FIXED ISSUES: https://github.com/david-caro/python-autosemver/issues/25
+
+* 0.1.13 "David Caro <david@dcaro.es>"
+    MINOR 39f72de4: Merge pull request #23 from
+    david-caro/test_package_version_pattern
+    MINOR b7ab39fa: tests: added test for the version module pattern
+
+* 0.1.12 "David Caro <david@dcaro.es>"
+    MINOR 14d813ef: Merge pull request #22 from david-caro/rewrite_docs
+    MINOR 7dd3c5e1: docs: add some usage docs
+
+* 0.1.11 "David Caro <david@dcaro.es>"
+    MINOR b993aa95: Merge pull request #21 from david-caro/nicer_releasenotes
+    MINOR 3179aa8e: releasenotes: group by major version
+
+* 0.1.10 "David Caro <david@dcaro.es>"
+    MINOR 5692c311: Merge pull request #20 from david-caro/first_tests
+    MINOR d7c01937: tests: add basic functional tests
+
+* 0.1.9 "David Caro <david@dcaro.es>"
+    MINOR d24c9c86: Merge pull request #19 from david-caro/fix_column_fit
+    MINOR a9f06214: git: fixed issue when fitting the message to 80
+
+* 0.1.8 "David Caro <david@dcaro.es>"
+    MINOR 517bd7dd: Merge pull request #18 from lowks/patch-1
+    MINOR 64a27a71: Update setup.py
+
+* 0.1.7 "David Caro <david@dcaro.es>"
+    MINOR b8d00d8c: Merge pull request #16 from david-caro/fix_byte_issues
+    MINOR 4f0c89f2: py3: fix byte-string casting issues
+
+* 0.1.6 "David Caro <david@dcaro.es>"
+    MINOR d305fb96: Merge pull request #15 from bittirousku/unicode_fix
+    MINOR e311791a: git: support unicode in commit messages
+
+* 0.1.5 "David Caro <david@dcaro.es>"
+    MINOR a1f14083: Merge pull request #12 from
+    david-caro/try_pkg_resources_too
+    MINOR 6c3e4f15: version: try also pkg_resources on version checking
+
+* 0.1.4 "David Caro <david@dcaro.es>"
+    MINOR 2dfce6cd: Merge pull request #14 from david-caro/fix_travis
+    MINOR da00a1a2: global: more lose non-existinent commits
+
+* 0.1.3 "David Caro <david@dcaro.es>"
+    MINOR 71dd0b7d: Merge pull request #13 from david-caro/fix_travis
+    MINOR 6031f7cb: global: fix travis runs
+
+* 0.1.2 "David Caro <david@dcaro.es>"
+    MINOR 8e5338d0: Merge pull request #11 from david-caro/more_unicode_fixes
+    MINOR 8c818940: global: more unicode fixes
+
+* 0.1.1 "David Caro <david@dcaro.es>"
+    MINOR 391195c0: Merge pull request #10 from david-caro/unicode_fixes
+    MINOR a4e167ca: changelog: Some unicode fixes and improvements
+
+* 0.1.0 "David Caro <david@dcaro.es>"
+    FEATURE b8fb0422: Merge pull request #9 from david-caro/rpm_changelog
+    MINOR 68b97ba1: changelog: Added rpm format support
+
+* 0.0.12 "David Caro <david@dcaro.es>"
+    MINOR 814c03ce: Merge pull request #8 from david-caro/use_stdout
+    MINOR 24ebfdbd: cli: print to stdout instead of stderr
+
+* 0.0.11 "David Caro <david@dcaro.es>"
+    MINOR db4f5136: Merge pull request #7 from david-caro/fix_py3
+    MINOR 5833537e: py3: Fixed version and changelog generation
+
+* 0.0.10 "David Caro <david@dcaro.es>"
+    MINOR e1c8490f: Merge pull request #6 from david-caro/only_py27
+    MINOR 1e9e8200: packaging: release only the 2.7 version
+
+* 0.0.9 "David Caro <david@dcaro.es>"
+    MINOR 6995e5fa: Merge pull request #5 from david-caro/fix_bugtracker_url
+    MINOR 1978f919: core: fix bugtracker_url usage
+
+* 0.0.8 "David Caro <david@dcaro.es>"
+    MINOR de86fd4a: Merge pull request #4 from david-caro/use_distutils
+    MINOR e356889d: docs: add a minimal usage docs
+    MINOR c9ff08eb: core: Add distutils entry point
+
+* 0.0.7 "David Caro <david@dcaro.es>"
+    MINOR 2f811c76: Merge pull request #3 from david-caro/py3_fix
+    MINOR 9ebc7aef: py3: fix wrong string to byte regexp match
+
+* 0.0.6 "David Caro <david@dcaro.es>"
+    MINOR 2e8cf03c: Merge pull request #2 from david-caro/fix_bugtracker_url
+    MINOR f0333d46: changelog: fixed issue when passing bugtracker url
+
+* 0.0.5 "David Caro <david@dcaro.es>"
+    MINOR e09390b0: Merge pull request #1 from david-caro/fix_py3
+    MINOR b8dc51ef: py3: fixed issue with tags on python3
+
+* 0.0.4 "David Caro <david@dcaro.es>"
+    MINOR d6ff904b: docs: Fixed license
+
+* 0.0.3 "David Caro <david@dcaro.es>"
+    MINOR 7a963b23: packaging: fix docs generation
+
+* 0.0.2 "David Caro <david@dcaro.es>"
+    MINOR dd2a36db: Added basic functionality
+
+* 0.0.1 "David Caro <david@dcaro.es>"
+    MINOR 635f1693: Initial commit
