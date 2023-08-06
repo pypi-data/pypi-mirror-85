@@ -1,0 +1,5 @@
+{% for error in errors %}
+    {% with command=error %}
+        {% include 'command.madx.j2' %};
+    {% endwith %}
+{% endfor %}
