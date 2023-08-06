@@ -1,0 +1,196 @@
+Metadata-Version: 2.1
+Name: djangocms-redirect
+Version: 0.6.0
+Summary: A django CMS enabled application to handle redirects
+Home-page: https://github.com/nephila/djangocms-redirect
+Author: Iacopo Spalletti
+Author-email: i.spalletti@nephila.it
+License: BSD
+Project-URL: Documentation, https://djangocms-redirect.readthedocs.io/
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 2.2
+Classifier: Framework :: Django :: 3.0
+Classifier: Framework :: Django :: 3.1
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
+Requires-Dist: django-cms (>=3.7)
+Provides-Extra: docs
+Requires-Dist: django (<3.1) ; extra == 'docs'
+
+=============================
+djangocms-redirect
+=============================
+
+|Gitter| |PyPiVersion| |PyVersion| |GAStatus| |TestCoverage| |CodeClimate| |License|
+
+
+A django CMS enabled application to handle redirects
+
+This is heavily borrowed from ``django.contrib.redirects`` with three major changes:
+
+* Selection of django CMS pages
+* Selection of redirect status code
+* Middleware can processed in the request or response phase
+
+****************************
+Why using process_request?
+****************************
+
+Doing database queries in the middleware ``process_request`` is heavily discouraged as it's a
+performance hit, especially when doing redirects which are just a tiny part of the
+processed requests.
+Except that sometimes it's just what you need (for example to "hide" content without deleting
+/ unpublishing it)
+By caching both existing and non existing redirects for a given URL the performance hit is
+minimized for the use cases that requires ``process_request``.
+
+****************************
+Documentation
+****************************
+
+The full documentation is at https://djangocms-redirect.readthedocs.io.
+
+****************************
+Installation
+****************************
+
+See https://djangocms-redirect.readthedocs.io/en/latest/installation.html
+
+****************************
+Features
+****************************
+
+* Set old and new path, by selection existing django CMS pages or writing down the complete address
+* Select the redirect status code (301, 302)
+* Support for status code 410
+
+****************************
+Credits
+****************************
+
+Tools used in rendering this package:
+
+*  Cookiecutter_
+*  `cookiecutter-djangopackage-helper`_
+
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`cookiecutter-djangopackage-helper`: https://github.com/nephila/cookiecutter-djangopackage-helper
+
+
+.. |Gitter| image:: https://img.shields.io/badge/GITTER-join%20chat-brightgreen.svg?style=flat-square
+    :target: https://gitter.im/nephila/applications
+    :alt: Join the Gitter chat
+
+.. |PyPiVersion| image:: https://img.shields.io/pypi/v/djangocms-redirect.svg?style=flat-square
+    :target: https://pypi.python.org/pypi/djangocms-redirect
+    :alt: Latest PyPI version
+
+.. |PyVersion| image:: https://img.shields.io/pypi/pyversions/djangocms-redirect.svg?style=flat-square
+    :target: https://pypi.python.org/pypi/djangocms-redirect
+    :alt: Python versions
+
+.. |GAStatus| image:: https://github.com/nephila/djangocms-redirect/workflows/Tox%20tests/badge.svg
+    :target: https://github.com/nephila/djangocms-redirect
+    :alt: Latest CI build status
+
+.. |TestCoverage| image:: https://img.shields.io/coveralls/nephila/djangocms-redirect/master.svg?style=flat-square
+    :target: https://coveralls.io/r/nephila/djangocms-redirect?branch=master
+    :alt: Test coverage
+
+.. |License| image:: https://img.shields.io/github/license/nephila/djangocms-redirect.svg?style=flat-square
+   :target: https://pypi.python.org/pypi/djangocms-redirect/
+    :alt: License
+
+.. |CodeClimate| image:: https://codeclimate.com/github/nephila/djangocms-redirect/badges/gpa.svg?style=flat-square
+   :target: https://codeclimate.com/github/nephila/djangocms-redirect
+   :alt: Code Climate
+
+.. :changelog:
+
+*******
+History
+*******
+
+.. towncrier release notes start
+
+0.6.0 (2020-11-15)
+==================
+
+Features
+--------
+
+- Drop Python 2, Django < 2.2 - Update toolchain (#39)
+- Fix Handling of trailing slashes in redirects (#31)
+
+
+Unreleased
+==================
+
+* Nothing yet
+
+0.5.0 (2019-12-27)
+==================
+
+* Add compatibility with Django 2.2
+* Drop compatibility with Django < 1.11
+* Drop compatibility with django CMS < 3.6
+* Move to django-app-helper
+* Add support to match unquoted strings as redirect old path
+
+0.4.0 (2019-08-22)
+==================
+
+* Add subpath matching
+
+0.3.1 (2019-07-13)
+==================
+
+* Ignore querystring when matching redirect objects
+
+0.3.0 (2019-03-11)
+==================
+
+* Added compatibility to Django 2.0, 2.1
+
+0.2.3 (unreleased)
+==================
+
+* Add support to match unquoted strings as redirect old path
+
+0.2.2 (2019-06-02)
+==================
+
+* Ignore querystring when matching redirect objects
+
+0.2.1 (2019-04-22)
+==================
+
+* Fixed compatibility issue with Django 1.8
+
+0.2.0 (2018-11-03)
+==================
+
+* Updated for Django 1.11
+* Added configurable cache timeout
+* Added configuration option to check redirect on 404 only
+
+0.1.1 (2017-11-19)
+==================
+
+* Added missing migration.
+* Fixed compatibility issue with Django 1.8
+
+0.1.0 (2016-02-01)
+==================
+
+* First release on PyPI.
+
+
