@@ -1,0 +1,110 @@
+session: !Device:kamzik3.devices.deviceSession.DeviceSession
+  config:
+    attributes:
+      ? !!python/tuple
+      - Log directory
+      - Value
+      : ./examples/server_log
+      ? !!python/tuple
+      - Resource directory
+      - Value
+      : ./examples/resources
+    logged_attributes:
+      X: Position
+      Y: Position
+      Z: Position
+      Chameleon: Random value
+    server: !Device:kamzik3.devices.deviceServer.DeviceServer
+      host: 127.0.0.1
+      port: 60002
+    publisher: !Device:kamzik3.devices.devicePublisher.DevicePublisher
+      host: 127.0.0.1
+      port: 50002
+  device_id: Dummy server
+measurement_groups:
+- !Device:kamzik3.devices.general.measurementGroup.MeasurementGroup
+  group_id: Sample motors
+  measurement_group:
+  - - X
+    - Position
+  - - Y
+    - Position
+  - - Z
+    - Position
+devices:
+  Detector: !Device:kamzik3.devices.dummy.dummyDetector.DummyDetector
+    device_id: Detector
+  Scanner: !Device:kamzik3.devices.dummy.dummyScanner.DummyScanner
+    device_id: Scanner
+  Motor1: &id001 !Device:kamzik3.devices.dummy.dummyMotor.DummyMotor
+    device_id: Motor1
+  Motor1_axis_0: !Device:kamzik3.devices.dummy.dummyMotor.DummyMotorChannel
+    channel: 0
+    config:
+      attributes:
+        ? !!python/tuple
+        - Position
+        - Tolerance
+        : - 0nm
+          - 0nm
+    device: *id001
+    device_id: X
+  Motor1_axis_1: !Device:kamzik3.devices.dummy.dummyMotor.DummyMotorChannel
+    channel: 1
+    config:
+      attributes:
+        ? !!python/tuple
+        - Position
+        - Tolerance
+        : - 100nm
+          - 100nm
+    device: *id001
+    device_id: Y
+  Motor1_axis_2: !Device:kamzik3.devices.dummy.dummyMotor.DummyMotorChannel
+    channel: 2
+    config:
+      attributes:
+        ? !!python/tuple
+        - Position
+        - Tolerance
+        : - 100nm
+          - 100nm
+        ? !!python/tuple
+        - Position
+        - Factor
+        : -3
+    device: *id001
+    device_id: Z
+  Chameleon: !Device:kamzik3.devices.dummy.dummyFeatureTestDevice.DummyFeatureTestDevice
+    config:
+      attributes:
+        ? !!python/tuple
+        - Test group
+        - Chameleon unit
+        - Value
+        : rpm
+    device_id: Chameleon
+  MacroServer: !Device:kamzik3.macro.macroServer.MacroServer
+    device_id: MacroServer
+  SaveAttributeFile: !Device:kamzik3.devices.deviceFileSync.DeviceFileSync
+    device_id: SaveAttributeFile
+    filepath: ./examples/saved_attributes.att
+  FlyScanner: !Device:kamzik3.devices.general.generalFlyScanner.GeneralFlyScanner
+    device_id: FlyScanner
+  VirtualDirectory: !Device:kamzik3.devices.deviceVirtualDirectory.DeviceVirtualDirectory
+    device_id: VirtualDirectory
+    drives:
+      Attribute logs:
+        path: ./examples/server_log/Attributes/
+      Scan logs:
+        path: ./examples/server_log/Scan_logs/
+    host: 127.0.0.1
+    port: 50003
+seesion_devices_list_tool: &id002 !Widget:kamzik3.gui.deviceListWidget.DeviceListWidgetSession
+  columns: 1
+session_window: !Widget:kamzik3.gui.sessionWindow.SessionWindow
+  config:
+    tools:
+    - - Devices
+      - *id002
+      - :/icons/icons/data-transfer.png
