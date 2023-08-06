@@ -1,0 +1,1 @@
+Image Processing Library with my own functions made for academic projects.
