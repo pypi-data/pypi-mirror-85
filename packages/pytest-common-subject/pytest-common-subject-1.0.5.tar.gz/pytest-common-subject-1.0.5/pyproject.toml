@@ -1,0 +1,48 @@
+[tool.poetry]
+name = 'pytest-common-subject'
+version = "1.0.5"
+description = 'pytest framework for testing different aspects of a common method'
+license = 'MIT'
+
+authors = [
+    'Zach "theY4Kman" Kanzler <they4kman@gmail.com>'
+]
+
+readme = 'README.md'
+packages = [
+    { include = "pytest_common_subject" },
+    { include = "pytest.ini", format = "sdist" },
+    { include = "tox.ini", format = "sdist" },
+    { include = "tests", format = "sdist" },
+    { include = "LICENSE", format = "sdist" },
+    { include = "CHANGELOG.md", format = "sdist" },
+]
+
+repository = 'https://github.com/theY4Kman/pytest-common-subject'
+homepage = 'https://github.com/theY4Kman/pytest-common-subject'
+
+keywords = ['pytest']
+
+
+[tool.poetry.dependencies]
+# Typing annotations are used
+# XXX: for whatever reason, poetry doesn't like `>=3.6` — the additional pin allows locking to work
+python = '^3.6, >= 3.6'
+
+pytest = '>=3.6, <7'
+pytest-lambda = '>=0.1.0'
+pytest-fixture-order = '^0.1.2'
+lazy-object-proxy = '^1.3.1'
+
+
+[tool.poetry.dev-dependencies]
+tox = "^3.12"
+
+
+[tool.poetry.plugins."pytest11"]
+common_subject = "pytest_common_subject.plugin"
+
+
+[build-system]
+requires = ['poetry>=0.12']
+build-backend = 'poetry.masonry.api'
