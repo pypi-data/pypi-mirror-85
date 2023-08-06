@@ -1,0 +1,102 @@
+Metadata-Version: 2.1
+Name: swmm-api
+Version: 0.1a21
+Summary: US-EPA-SWMM python interface
+Home-page: https://gitlab.com/markuspichler/swmm_api
+Author: Markus Pichler
+Author-email: markus.pichler@tugraz.at
+License: MIT
+Keywords: swmm environment civil engineering api
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Hydrology
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Natural Language :: English
+Requires-Python: >= 3.5
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: swmmtoolbox
+Requires-Dist: tqdm
+
+© [Institute of Urban Water Management and Landscape Water Engineering](https://www.sww.tugraz.at), [Graz University of Technology](https://www.tugraz.at/home/) and [Markus Pichler](mailto:markus.pichler@tugraz.at)
+
+# This is an API for reading, manipulating and running SWMM-Projects
+
+[![PyPI](https://img.shields.io/pypi/v/swmm-api.svg)](https://pypi.python.org/pypi/swmm-api)
+[![pipeline status](https://gitlab.com/markuspichler/swmm_api/badges/master/pipeline.svg)](https://gitlab.com/markuspichler/swmm_api/-/commits/master)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![docs](https://img.shields.io/static/v1.svg?label=sphinx&message=documentation&color=blue)](https://markuspichler.gitlab.io/swmm_api)
+
+[![PyPI - Downloads](https://img.shields.io/pypi/dd/swmm-api)](https://pypi.python.org/pypi/swmm-api)
+[![PyPI - Downloads](https://img.shields.io/pypi/dw/swmm-api)](https://pypi.python.org/pypi/swmm-api)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/swmm-api)](https://pypi.python.org/pypi/swmm-api)
+
+
+With this package you can read INP-files, manipulate them and write new ones.
+You can run swmm within the python api.
+And you can read the OUT-file as a pandas DataFrame for further analysis.
+
+This package is based on the command line SWMM syntax. ([see Appendix D in the SWMM User Manual 5.1](https://www.epa.gov/water-research/storm-water-management-model-swmm-version-51-users-manual))
+
+## Install the package:
+```bash
+pip install swmm-api
+```
+
+## Read the INP-File
+```python
+from swmm_api.input_file.inp_sections.labels import TIMESERIES
+from swmm_api import read_inp_file
+from swmm_api.input_file.inp_helpers import InpSection
+inp = read_inp_file('inputfile.inp', convert_sections=[TIMESERIES])   # type: swmm_api.input_file.inp_helpers.InpData
+
+# convert_sections limits the convertions during the reading of the file to the following section
+# remove "convert_sections" to convert all sections 
+# converting sections helps manipulating the inp file
+# unconverted sections will be loaded as the raw string
+
+sec_timeseries = inp[TIMESERIES]  # type: InpSection
+ts = inp[TIMESERIES]['regenseries'].frame  # type: pandas.Series
+```
+see [examples/inp_file_reader.ipynb](https://gitlab.com/markuspichler/swmm_api/-/blob/master/examples/inp_file_reader.ipynb)
+
+## Write the manipulated INP-File
+```python
+from swmm_api import write_inp_file
+write_inp_file(inp, 'new_inputfile.inp')
+```
+
+
+## Run SWMM
+```python
+from swmm_api import swmm5_run
+swmm5_run('new_inputfile.inp')
+```
+
+## Read the OUT-File
+```python
+from swmm_api import read_out_file
+out = read_out_file('new_inputfile.out')   # type: swmm_api.output_file.out.SwmmOutHandler
+df = out.to_frame()  # type: pandas.DataFrame
+```
+see [examples/out_file_reader.ipynb](https://gitlab.com/markuspichler/swmm_api/-/blob/master/examples/out_file_reader.ipynb)
+
+
+## Read the RPT-File
+```python
+from swmm_api import read_rpt_file
+rpt = read_rpt_file('new_inputfile.rpt')  # type: swmm_api.report_file.report.Report
+node_flooding_summary = rpt.node_flooding_summary  # type: pandas.DataFrame
+```
+see [examples/rpt_file_reader.ipynb](https://gitlab.com/markuspichler/swmm_api/-/blob/master/examples/rpt_file_reader.ipynb)
+
+MORE INFORMATIONS COMMING SOON
+
+
