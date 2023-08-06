@@ -1,0 +1,59 @@
+[tool.poetry]
+name = "lassi"
+version = "0.1.6"
+description = "லஸ்ஸி"
+authors = ["Julien Malard <julien.malard@mail.mcgill.ca>"]  # ம. ஆ. ஜூலீஎன்
+homepage = "https://xn--5lcma2a9d.xn--xkc2dl3a5ee0h/"
+repository = "https://github.com/lassi-samaaj/lassi"
+documentation = "https://lassi.readthedocs.org"
+
+keywords = ["lassi"]
+
+classifiers = [
+    "Topic :: Software Development :: Localization",
+    "Topic :: Software Development :: Compilers"
+]
+packages = [
+    { include = 'லஸ்ஸி', from = 'மூலம்' },
+    { include = 'lassi_console', from = 'மூலம்' }
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+click = "^7.1.1"
+ennikkai = "^1.2.1"
+regex = "^2020"
+toml = "^0.10.2"
+lassi-ilakkanankal = "^1.0.12"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.1.2"
+pytest-cov = "^2.10.1"
+coverage = {extras = ["toml"], version = "^5.3"}
+pytest-subtests = "^0.3.2"
+
+[tool.poetry.scripts]
+lassi = 'lassi_console.console:run'
+
+[tool.lassi]
+dist = "dist"
+lang = "த"  # langue - chiffres, langue - contenu
+
+[tool.lassi.intl]
+lang = ["fr", "kaq", "ਪੰ", "हिं", "es"]
+fichier_trads = "மொ"
+mono = false
+
+[tool.pytest.ini_options]
+addopts = "--cov=\"லஸ்ஸி\" சோதனைகள்/சோதனை.py"
+
+[tool.coverage.paths]
+source = ["லஸ்ஸி"]
+
+[tool.coverage.run]
+branch = true
+source = ["லஸ்ஸி"]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.masonry.api"
