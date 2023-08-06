@@ -1,0 +1,48 @@
+Metadata-Version: 2.1
+Name: topsis-abhimat-101983058
+Version: 1.0.3
+Summary: A Python package implementing TOPSIS technique.
+Home-page: https://github.com/abhi0444/topsis
+Author: Abhimat Gupta
+Author-email: abhimatg0004@gmail.com
+License: MIT
+Keywords: Ranking,Topsis
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+Requires-Dist: scipy
+Requires-Dist: numpy
+Requires-Dist: pandas
+
+# TOPSIS-Python
+
+Submitted By: **Abhimat Gupta 101983058**
+
+***
+pypi: <https://pypi.org/project/topsis-abhimat-101983058>
+<br>
+git: <https://github.com/abhi0444/topsis-abhimat-101983058.git>
+***
+
+<br>
+
+## How to use this package:
+
+This package can be run as in the following example:
+
+
+### In Python notebook :
+```
+>>> import pandas as pd
+>>> from topsis_py.topsis import topsis
+>>> df = pd.read_csv('data.csv').values
+>>> d = dataset[:,1:]
+>>> w = [1,1,1,1]
+>>> im = ["+" , "+" , "-" , "+" ]
+>>> df = topsis(d,w,im)
+```
+
+
+
+
