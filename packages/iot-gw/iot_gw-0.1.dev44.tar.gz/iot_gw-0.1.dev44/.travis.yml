@@ -1,0 +1,27 @@
+language: python
+cache: pip
+python:
+- '3.8'
+install:
+- pip install -r requirements.txt
+before_script:
+- echo $gpg_password | gpg --passphrase-fd 0 tests/data/gw_private.pem.gpg
+script:
+- python -m unittest discover ./tests -p "*_test.py"
+- python setup.py bdist_wheel
+deploy:
+- provider: pypi
+  user: __token__
+  on:
+    tags: true
+  password:
+    secure: pyMe56677taQib5+GZl68CFLtR8+doWUYhMzYKxh3yhmEU7OEwTRdAqXOrhjhY4JgBcYEfRLs+7qD1Yni69omZoDBj6FZfqo19fzmJZavZCyPAZ+hbNErA+/NmU35cbvfcQFfV8NYVmn8TO4mXi/8+HmkfvqcL0C5ybEpA95rQu5C1/HpemCZ72qP1sSkHEdc88kT8wDs5qVhMdDvQ06uXbEoqQIhUKbnn09WiDFfbZ7vmSfUr/DUV2lKvNpuO+VVW7j3pE+qekGH5TxRj1HLIw6UXfk36vQMW0CXBCUAdrwE7cVvvLy/uJ/XhCgfIeQBfMmXJvUMPjS45fQtrdiL+70eA2W7v0ae8ZBiitVSFVKeciDAen5+IulQZo9D9hQzd92URssdkAsXa2GTE+6ki66u14gbdjeTvB1+1J7X9RFCcipAASFLzhnVQP+2vwdaOd2vdHeX6OtVYLIEZ3Fk11jaIB/wEEDupZdKjlqHoCLMsiiC6bzmI7M9Di9PI9pRl+HHjEwthgNPOe0RPKapASgDBIklQ+giBQUN/jdPuXdEL+5i6h72N1AQkrJ9dZ+65psAje8Y9nSh+I6rKNJG6DyoAVR0/eOBFgtzOTvD3ZEypa7tX3LBwGGsgVwg9Kj4UboTBzp2zzBHw2SVXDWA/rahRRQxNjalESNldksgpg=
+- provider: pypi
+  user: __token__
+  on:
+    branch: develop
+  password:
+    secure: pyMe56677taQib5+GZl68CFLtR8+doWUYhMzYKxh3yhmEU7OEwTRdAqXOrhjhY4JgBcYEfRLs+7qD1Yni69omZoDBj6FZfqo19fzmJZavZCyPAZ+hbNErA+/NmU35cbvfcQFfV8NYVmn8TO4mXi/8+HmkfvqcL0C5ybEpA95rQu5C1/HpemCZ72qP1sSkHEdc88kT8wDs5qVhMdDvQ06uXbEoqQIhUKbnn09WiDFfbZ7vmSfUr/DUV2lKvNpuO+VVW7j3pE+qekGH5TxRj1HLIw6UXfk36vQMW0CXBCUAdrwE7cVvvLy/uJ/XhCgfIeQBfMmXJvUMPjS45fQtrdiL+70eA2W7v0ae8ZBiitVSFVKeciDAen5+IulQZo9D9hQzd92URssdkAsXa2GTE+6ki66u14gbdjeTvB1+1J7X9RFCcipAASFLzhnVQP+2vwdaOd2vdHeX6OtVYLIEZ3Fk11jaIB/wEEDupZdKjlqHoCLMsiiC6bzmI7M9Di9PI9pRl+HHjEwthgNPOe0RPKapASgDBIklQ+giBQUN/jdPuXdEL+5i6h72N1AQkrJ9dZ+65psAje8Y9nSh+I6rKNJG6DyoAVR0/eOBFgtzOTvD3ZEypa7tX3LBwGGsgVwg9Kj4UboTBzp2zzBHw2SVXDWA/rahRRQxNjalESNldksgpg=
+env:
+  global:
+    secure: l/HN1YOxhBsklKrhoJo3uTe/sZH51dndSLCihyaxaveo6BNsqF34R005Z5roAtx/hU4rz0zCRs4sJ+A4Vh2HpWWxcn59Jsd4FjbKwRWg5Wns1xBjtNlAqPBlzD+9KbWgBYE/4VtM3A+S0Q9MDBpQc9ew8qC5PCNZF9MCS5bM8DdGkCylOwt57nYHAuRuJHEMXzM9gHdhroIPf6EgjwaRpR/23FsmPWJzCHtMSugSlgBdxDmcAH29EnnaDHGSw0MSOTxVb0Tl8NW13A9FCGpT82l8uC3kVU2zv+h+rMgH7hhuRXBO5AjJ8UXJy51VKBNZ/oQ08GHcc1uLYRSDVRCv33ZjevSl+BLG8rs8VzoPTBQq84qbwFVovJQf4Ii/UjXFXubW/zwijouzyrTHYTPOiLcxdNYdit89Hx1/yhIf7abwtcalJpLb5e2sUg0StnzwP8vfu0scGBY8KIZXa46Zz68oxwil+wrcgpmVMJESY1OmkhsUEGhdVOhh0pZmhltLcXC4zj3l9jR5yU5iklbNHO9H7FY9OmT8oYc16kYzbZ8kw7kCKzwBM6gHfFNCAfOK1N8x6pM6JvJMRPM7oNpOFAFHw8HEyonWpeihLJjt71sKEQHVm35fLWjLmUozbCCH6xzyQjmFzSfaOcPVMmc/DFL+m68sTZhqxqyBN9/MBnk=
