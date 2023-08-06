@@ -1,0 +1,11 @@
+python:
+  version: 3.8
+  install:
+    - method: pip
+      path: .
+      extra_requirements:
+        - doc
+  system_packages: true
+
+mkdocs:
+  configuration: mkdocs.yml
