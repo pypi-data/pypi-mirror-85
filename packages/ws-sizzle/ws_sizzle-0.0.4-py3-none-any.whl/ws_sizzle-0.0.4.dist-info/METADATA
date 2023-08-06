@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: ws-sizzle
+Version: 0.0.4
+Summary: Lightweight library for streamlining JSON RPC client and server creating. Supports WebSockets and HTTP transport
+Home-page: https://github.com/corvis/ws-sizzle
+Author: Dmitry Berezovsky
+License: MIT
+Keywords: json,json-rpc,rpc,jsonrpc,jsonrpc-websockets,bidirectional-jsonrpc
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Internet
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: json-rpc (>=1.13.0)
+Requires-Dist: typing (>=3.6)
+Provides-Extra: aiohttp
+Requires-Dist: aiohttp ; extra == 'aiohttp'
+Provides-Extra: requests-client
+Requires-Dist: requests ; extra == 'requests-client'
+Provides-Extra: tornado
+Requires-Dist: tornado ; extra == 'tornado'
+Provides-Extra: websockets
+Requires-Dist: websockets ; extra == 'websockets'
+
+
+ws-sizzle
+=========
+
+Lightweight library for streamlining JSON RPC client and server creating. Supports WebSockets and HTTP transport
+
+
