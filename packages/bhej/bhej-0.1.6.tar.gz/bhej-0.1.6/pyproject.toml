@@ -1,0 +1,48 @@
+[tool.poetry]
+name = "bhej"
+version = "0.1.6"
+description = "Share files like a dev."
+license = "MIT"
+authors = ["ivraj <iseerha@gmail.com>", "dhruv <dhruv4@gmail.com>"]
+readme = "README.md"
+homepage = "https://bhej.dev"
+repository = "https://github.com/bhejdev/bhej-cli"
+documentation = "https://github.com/bhejdev/bhej-cli"
+keywords = ["filesharing", "developer tools"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.6",
+    "Topic :: Communications :: File Sharing",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[tool.poetry.scripts]
+bhej = 'bhej.main:app'
+deploy_staging = 'bhej.scripts:deploy_staging'
+deploy_prod = 'bhej.scripts:deploy_prod'
+
+[tool.poetry.dependencies]
+python = "^3.6"
+typer = {extras = ["all"], version = "^0.3.2"}
+requests = "^2.24.0"
+requests-toolbelt = "^0.9.1"
+tqdm = "^4.51.0"
+python-magic-bin = { version = "0.4.14", markers = "sys_platform == 'win32' or sys_platform == 'darwin'" }
+python-magic = { version = "^0.4.3", markers = "sys_platform == 'linux'" }
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+black = {version = "^20.8b1", allow-prereleases = true}
+pytest-socket = "^0.3.5"
+pytest-cov = "^2.10.1"
+pytest-watch = "^4.2.0"
+flake8 = "^3.8.4"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
