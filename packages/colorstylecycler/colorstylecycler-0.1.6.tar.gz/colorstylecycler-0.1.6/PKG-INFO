@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: colorstylecycler
+Version: 0.1.6
+Summary: Colors and style cycler
+Home-page: https://github.com/Advestis/color-style-cycler
+Author: Philippe COTTE
+Author-email: pcotte@advestis.com
+License: UNKNOWN
+Description: # Color and Style Cycler
+        
+        Colors and style cycler
+        
+        Can cycle through combination of colors and line or marker styles. Colors will be computed from a color gradient,
+        depending on the number of lines to plot, which is given as an argument at object creation, and the number of
+        styles. By default, styles are supposed to be linestyles. This can be changed to marker with the 'style' argument.
+        
+        
+        ## Installation
+        
+        `pip install colorstylecycler`
+        
+        ## Usage
+        
+        ```python
+        
+            
+        # noinspection PyUnresolvedReferences
+        from matplotlib import pyplot as plt
+        from colorstylecycler import Cycler
+        number_of_curves = 15
+        cy = Cycler(ncurves=number_of_curves)
+        plt.rc('axes', prop_cycle=cy.cycler)
+        ```
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 5 - Production/Stable
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
