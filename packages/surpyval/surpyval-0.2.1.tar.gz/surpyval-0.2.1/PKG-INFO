@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: surpyval
+Version: 0.2.1
+Summary: A survival analysis python package
+Home-page: https://github.com/derrynknife/SurPyval
+Author: Derryn Knife
+Author-email: derryn@reliafy.com
+License: UNKNOWN
+Description: # SurPyval
+        Survival Statistics Package
+        
+        Have decided to create a new package that contains the survival statistics elements of the RePyability repo. That repo will remain but will focus on developing tools specific to reliability engineering.
+        
+        The surpyval package provides methods to create models of survival type scenarios.
+        
+        These modes are broken into:
+        - [NonParametric](guides/NonParametric.ipynb), and
+        - [Parametric](guides/Parametric.ipynb).
+        
+        The question is why is this package needed when we already have scipy?
+        
+        Two reasons, firstly, scipy doesn't deal with 'censoring' very well (so far as I know). And secondy, perhaps the larger driving reason, is that I wanted to see if I could make a python package.
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
