@@ -1,0 +1,44 @@
+# Fabrication run config for abb_rcf_runner
+# YAML format, https://yaml.org/spec/1.2
+
+log_dir: C:\rcf_robotcontrol\04_logs
+robot_client:
+    controller: virtual
+    docker:
+        timeout_ping: 2
+        sleep_after_up: 2
+    wobjs:
+        pick: wobj0
+        place: wobj0
+
+    tools:
+        pick_place:
+            name: t_A057_ClayTool02 # name of tool
+            io_pin_needles: doUnitC1Out1 # name of DO
+            extend_signal: 1 # state (0 or 1)
+            retract_signal: 0 # state (0 or 1)
+            needles_pause: 0.5 # Seconds to wait before and after extending or
+                               # retracting needles
+
+    robot_movement:
+        global_speed_accel:
+            speed_override: 100 # %
+            speed_max_tcp: 500 # mm/s
+            accel: 100 # mm/s^2
+            accel_ramp: 100 # %, optional, default 100, the rate at which acceleration
+                        # increases or decreases as a percentage of the normal values
+        speed:
+            # velocities defined as mm/s
+            pick: 200
+            travel: 600
+            place: 120
+
+        zone:
+            # Either rapid variable name or mm
+            pick: Z10
+            place: Z10
+            travel: Z100
+
+        joint_positions:
+            start: [ -127.0, 54.0, 9.0, -2.0, 30.0, 7.0 ] # 6 joint values in degrees
+            end: [ -127.0, 54.0, 9.0 , 2.0 , 30.0, 7.0 ] # 6 joint values in degrees
