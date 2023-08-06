@@ -1,0 +1,52 @@
+[tool.poetry]
+name = "cvdast"
+version = "1.44.20"
+description = "To regenerate pytest fixtures and test methods dynamically from OpenAPI spec and Cloudvector APIShark events"
+authors = ["Bala Kumaran <balak@cloudvector.com>"]
+# New attributes
+license = "MIT"
+readme = "README.md"
+#homepage = "https://github.com/ArecaBay"
+#repository = "https://github.com/ArecaBay"
+keywords = ["cv-dast", "cloudvector", "apishark"]
+classifiers = [
+    "Environment :: Console",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Quality Assurance",
+]
+include = [
+    "LICENSE",
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+requests = "2.22.0"
+jinja2 = "*"
+cvapianalyser = "1.43.6"
+openapispecdiff = "1.43.7"
+dictor = "0.1.7"
+pytest = "5.4.3"
+pytest-cases = "1.16.0"
+pytest-rerunfailures = "9.0"
+pytest-lazy-fixture = "0.6.3"
+PyYAML = "5.3.1"
+tqdm  = "4.46.1"
+curlify = "2.2.1"
+autopep8 = "1.5.4"
+validators = "0.18.0"
+pytest-json = "0.4.0"
+pytest-html = "*"
+pytest-timeout = "1.4.2"
+pytest-testrail = "2.9.0"
+nested-lookup = "0.2.21"
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.scripts]
+cvdast = 'cvdast.CloudvectorDAST:main'
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
