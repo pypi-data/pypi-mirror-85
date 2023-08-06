@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "mboot2"
+version = "0.3.4"
+description = "Python tool and library for interacting with NXP MCUBoot devices."
+authors = ["Martin Olejar, <martin.olejar@gmail.com>", "Conor Patrick, <conor@solokeys.com>"]
+repository = "https://github.com/conorpp/pyMBoot"
+classifiers=[
+    'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'License :: OSI Approved :: BSD License',
+    'Operating System :: Microsoft :: Windows',
+    'Operating System :: POSIX :: Linux',
+    'Environment :: Console',
+    'Topic :: Scientific/Engineering',
+    'Topic :: Software Development :: Embedded Systems',
+    'Topic :: Utilities',
+]
+license = "BSD-3-Clause"
+
+[tool.poetry.dependencies]
+python='>=3.6'
+click="=7.0"
+pyserial="=3.4"
+easy_enum="=0.3.0"
+bincopy="=17.9.0"
+fido2="=0.8.1"
+
+[tool.poetry.scripts]
+mboot = "mboot2.__main__:main"
