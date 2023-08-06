@@ -1,0 +1,56 @@
+{
+    "$schema": "http://json-schema.org/2019-09/schema#",
+    "title": "bdist-recipe.json schema file",
+    "description": "Rules for wtools binary distributions",
+    "type": "object",
+    "required": [ "bundles", "global" ],
+    "properties": {
+        "global": {
+            "type": "object",
+            "required": [ "pattern" ],
+            "properties": {
+                "pattern": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                },
+                "isflat": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "isrepo": {
+                    "type": "boolean",
+                    "default": false
+                }
+            }
+        },
+        "bundles": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/bundle" }
+        }
+    },
+    "definitions": {
+        "bundle": {
+            "type": "object",
+            "required": [ "name", "filter" ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "filter": {
+                    "type": "object",
+                    "required": [ "excludes", "includes" ],
+                    "properties": {
+                        "excludes": {
+                            "type": "array",
+                            "items": { "type": "string" }
+                        },
+                        "includes": {
+                            "type": "array",
+                            "items": { "type": "string" }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

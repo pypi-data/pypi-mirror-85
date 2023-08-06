@@ -1,0 +1,71 @@
+{
+    "$schema": "http://json-schema.org/2019-09/schema#",
+    "title": "pkg-recipe.json schema file",
+    "description": "Rules for wtools package (rpm/deb) definitions",
+    "type": "object",
+    "required": [ "global", "packages" ],
+    "properties": {
+        "global": {
+            "description": "Generic definition that apply to all packages",
+            "type": "object"
+        },
+        "packages": {
+            "description": "A list of package definitions",
+            "type": "array",
+            "items": { "$ref": "#/definitions/package" }
+        }
+    },
+    "definitions": {
+        "package": {
+            "type": "object",
+            "required": [ "name" ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "pattern": "^[a-z]+[a-z0-9]*(-{1}[a-z0-9]+)*$",
+                    "description": "Package name"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Used as package description"
+                },
+                "requires": {
+                    "type": "array",
+                    "description": "Package dependencies using RPM format",
+                    "items": { "type": "string" }
+                },
+                "ignores": {
+                    "type": "array",
+                    "description": "Items to ignore; i.e. will not be included",
+                    "items": { "type": "string" }
+                },
+                "excludes": {
+                    "type": "array",
+                    "description": "GLOB pattern of files to be excluded, anything not matching will be included",
+                    "items": { "type": "string" }
+                },
+                "includes": {
+                    "type": "array",
+                    "description": "GLOB pattern of files to be included, anything not matching will NOT be included",
+                    "items": { "type": "string" }
+                },
+                "translations": {
+                    "type": "array",
+                    "description": "File renaming specifications (src -> dst)",
+                    "items": { "$ref": "#/definitions/translation" }
+                },
+                "config": {
+                    "type": "string",
+                    "enum": ["config", "noreplace"]
+                }
+            }
+        },
+        "translation": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "description": "File and directory renaming pattern (src -> dst)",
+            "items": { "type": "string" }
+        }
+    }
+}

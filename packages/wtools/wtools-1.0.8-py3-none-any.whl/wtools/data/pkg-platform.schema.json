@@ -1,0 +1,61 @@
+{
+    "$schema": "http://json-schema.org/2019-09/schema#",
+    "title": "pkg-platform.json schema file",
+    "description": "Rules for wtools package platform information",
+    "type": "object",
+    "required": [ "platforms" ],
+    "properties": {
+        "platforms": {
+            "description": "Collection of platform META used when packaging",
+            "type": "array",
+            "items": { "$ref": "#/definitions/platform" }
+        }
+    },
+    "definitions": {
+        "platform": {
+            "type": "object",
+            "required": [ "id", "versions", "aliases", "packages" ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Platform identifier (ID); e.g. ubuntu"
+                },
+                "versions": {
+                    "type": "array",
+                    "description": "Supported distribution versions; e.g. 16.04, 16.10",
+                    "items": { "type": "string" }
+                },
+                "aliases": {
+                    "type": "array",
+                    "minItems": 1,
+                    "description": "Alternative platform identifiers",
+                    "items": { "type": "string" }
+                },
+                "packages": {
+                    "type": "array",
+                    "description": "Package information need when cross compiling",
+                    "items": { "$ref": "#/definitions/package" }
+                }
+            }
+        },
+        "package": {
+            "type": "object",
+            "required": [ "name", "aliases" ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "actual package name"
+                },
+                "aliases": {
+                    "type": "array",
+                    "description": "allowed name alternatives used when packaging",
+                    "items": { "type": "string" }
+                },
+                "version": {
+                    "type": "string",
+                    "description": "package version, may be absent"
+                }
+            }
+        }
+    }
+}
