@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "fastapi_template"
+version = "1.2.1"
+description = "Feature-rich robust FastAPI template"
+authors = ["Pavel Kirilin <win10@list.ru>"]
+packages = [
+    { include = "fastapi_template" },
+]
+repository = "https://github.com/s3rius/FastAPI-template"
+homepage = "https://github.com/s3rius/FastAPI-template"
+readme = "README.md"
+keywords = [
+    "FastAPI",
+    "Cookiecutter",
+    "Template"
+]
+
+
+[tool.poetry.dependencies]
+python = "^3.8"
+cookiecutter = "^1.7.2"
+pre-commit = "^2.8.2"
+termcolor = "^1.1.0"
+pygit2 = "^1.4.0"
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.scripts]
+fastapi_template = "fastapi_template.main:main"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
