@@ -1,0 +1,18 @@
+scipy>=1.2.1
+pandas>=1.0.0
+joblib>=0.11.1
+sortedcontainers>=2.1.0
+
+[:platform_system != "Windows"]
+roaringbitmap==0.7
+
+[docs]
+sphinx
+sphinx-gallery
+sphinx_rtd_theme
+numpydoc
+matplotlib
+
+[tests]
+pytest
+pytest-cov
