@@ -1,0 +1,2 @@
+class ApiFileError(Exception):
+    pass
