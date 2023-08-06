@@ -1,0 +1,104 @@
+Metadata-Version: 2.1
+Name: hover
+Version: 0.1.0a0
+Summary: Hovercraft-like machine learning
+Home-page: https://github.com/phurwicz/hover
+Author: Pavel
+Author-email: pepsimixt@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: bokeh (>=2.2.3)
+Requires-Dist: matplotlib (>=3.1.2)
+Requires-Dist: seaborn (>=0.11.0)
+Requires-Dist: pandas (>=1.1.4)
+Requires-Dist: numpy (>=1.14)
+Requires-Dist: scipy (>=1.3.2)
+Requires-Dist: numba (>=0.46.0)
+Requires-Dist: sklearn (>=0.21.0)
+Requires-Dist: umap-learn (>=0.3.10)
+Requires-Dist: ivis (>=1.7)
+Requires-Dist: snorkel (>=0.9.3)
+Requires-Dist: torch (>=1.4.0)
+Requires-Dist: tqdm (>=4.0)
+Requires-Dist: wrappy (>=0.4.0)
+
+# Hover
+
+`Hover` is a machine learning helper library that enables smooth human supervision. In other words, it's an interface where you hover over and label your data.. differently. Think driving a hovercraft compared with being on foot.
+
+Hover caters to a variety of programming backgrounds: the "vanilla" use case should be friendly to a Python/Pandas beginner, and there are optional but powerful functionalities to pick up. 
+
+## The vanilla use case
+
+
+
+## Docs
+
+For documentation, please check out the mkdocs site.
+
+## Dependencies
+
+`./requirements.txt` is for developers.
+
+Please refer to `hover/requirements.txt` for pip-installable dependencies.
+
+Note that dev dependencies and package dependencies are placed separately.
+
+## What is Hover?
+
+Hover is conjectured for efficient machine teaching. It understands that efficiency can have different metrics given different context, and accommodates your needs to:
+
+* coldstart a supervised model, with any amount of annotation (could be 0) available at first
+* locate, investigate, and fix 'bad cases' of your model
+* minimize costs (developer time) given desired gains (model performance)
+* maximize gains (model performance) given budgeted costs (developer time)
+
+The name comes from "patch a bunch of things together -- it works!" but it is also a reference to the World of Warcraft character [Hover](https://wowwiki.fandom.com/wiki/Hover), a powerful amalgamation of vastly different pieces, alluding to an almost-alive intelligence built of not-so-alive components.
+
+Here's a list of what currently gets patched together:
+
+* distant supervision `LabelingFunction`s based on [Snorkel](https://www.snorkel.org) but with additional attributes and functionality
+* active learning, or just plain annotation, based on [Prodigy](https://prodi.gy) but with much more flexible model architecture and format
+* prior knowledge integration compatible with any pre-trained embedding / language model
+* interactive visualization based on [Bokeh](https://bokeh.org) specialized in data exploration, labeling function engineering, and neural net interpretation
+
+## Core Modules
+
+* `hover.annotation` - for creating labeled data and accepting/rejecting `LabelingFunction`s.
+* `hover.evaluation` - for assessing `LabelingFunction`s and samples for annotation.
+* `hover.generation` - for creating `LabelingFunction`s and more.
+* `hover.representation` - for representing collections of texts, vector transformations, and more.
+* `hover.proposal` - for selecting `LabelingFunction`s and samples for annotation.
+
+## High-level Usage
+
+* `hover.workflow` contains the lowest-level objects that most users _have_ to interact with.
+    - `hover.workflow.Dataset` helps you manage your train/dev/test sets of data.
+        - if your goal is to produce supervised data to feed to your own model, this is what you will eventually export.
+    - `hover.workflow.LabelingFunctionPopulation` maintains a healthy collection of both generated and user-defined labeling functions.
+        - if your goal to to produce empirical rules or a `LabelModel` of Snorkel, this is what you will eventually export.
+    - `hover.workflow.Automated` puts `Dataset` and `LabelingFunctionPopulation` together, iterating and cross-checking back and forth.
+        - it has a built-in model architecture, both for active learning and for establishing a baseline of model performance.
+        - whether you care more about data or rules, this helps you greedily provide the most relevant supervision.
+
+## Advanced Usage
+* However, `Automated` should really be a template with replaceable parts -- that is, it incorporates the core modules by default, but allows users to extend any of the modules as long as the interfaces are compatible.
+    - [dev] make an abstract base class as a parent class of `Automated`, thinking carefully about customization.
+        - for example, `Automated` currently uses Prodigy for annotation, but one could use `hover.annotation.PromptCollector`, especially if Prodigy is not available. These two annotators behave quite differently, so the base class needs to find the greatest common factor.
+
+
+
+## Project layout
+
+    mkdocs.yml    # The configuration file.
+    docs/
+        index.md  # The documentation homepage.
+        ...       # Other markdown pages, images and other files.
+
+
