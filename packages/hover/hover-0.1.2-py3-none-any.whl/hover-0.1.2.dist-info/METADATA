@@ -1,0 +1,62 @@
+Metadata-Version: 2.1
+Name: hover
+Version: 0.1.2
+Summary: Hovercraft-like machine learning
+Home-page: https://github.com/phurwicz/hover
+Author: Pavel
+Author-email: pepsimixt@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: bokeh (>=2.2.3)
+Requires-Dist: matplotlib (>=3.1.2)
+Requires-Dist: seaborn (>=0.11.0)
+Requires-Dist: pandas (>=1.1.4)
+Requires-Dist: numpy (>=1.14)
+Requires-Dist: scipy (>=1.3.2)
+Requires-Dist: numba (>=0.46.0)
+Requires-Dist: scikit-learn (>=0.21.0)
+Requires-Dist: umap-learn (>=0.3.10)
+Requires-Dist: ivis[cpu] (>=1.7)
+Requires-Dist: snorkel (>=0.9.6)
+Requires-Dist: torch (>=1.4.0)
+Requires-Dist: tqdm (>=4.0)
+Requires-Dist: wasabi (>=0.4.0)
+Requires-Dist: wrappy (>=0.2.6)
+Requires-Dist: rich (>=9.2.0)
+
+# Hover
+
+`Hover` is a machine learning helper library that enables smooth human supervision. In other words, it's an interface where you hover over and label your data.. differently. Think driving a hovercraft compared with being on foot.
+
+Hover caters to a variety of programming backgrounds: the "vanilla" use case should be friendly to a Python/Pandas beginner, and there are optional but powerful functionalities to pick up.
+
+## Try it with Binder!
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/phurwicz/hover-bokeh-binder/HEAD?filepath=%2Fproxy%2F5006%2Fbokeh-app)
+
+
+## Docs
+
+For documentation, please check out the mkdocs site.
+
+
+## Installation
+
+To get the latest release version, simply use pip:
+
+```bash
+pip install hover
+```
+
+## Dependencies
+
+- `./requirements.txt` is for developers.
+- Please refer to `hover/requirements.txt` for pip-installable dependencies.
+
+
