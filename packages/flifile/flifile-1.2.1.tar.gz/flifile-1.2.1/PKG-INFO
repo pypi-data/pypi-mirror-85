@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: flifile
+Version: 1.2.1
+Summary: A reader for lambert instruments .fli files
+Home-page: https://github.com/rharkes/flifile
+Author: Rolf Harkes
+Author-email: rolf@harkes.nu
+License: UNKNOWN
+Description: # flifile
+        Python code for opening a lambert instruments .fli file
+        
+        ## Requirements
+        * Numpy
+        
+        ## Examples
+        Open a local .fli file
+        ```
+        >>> from flifile import FliFile
+        >>> myflifile = FliFile('sample_file.fli')
+        >>> data = myflifile.getdata()
+        >>> data.shape
+        (348, 256, 12)
+        >>> data.mean()
+        26342.449652777777
+        ```
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
