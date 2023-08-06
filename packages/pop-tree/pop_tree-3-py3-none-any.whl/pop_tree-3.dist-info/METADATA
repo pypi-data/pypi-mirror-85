@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: pop-tree
+Version: 3
+Summary: Visualize POP hub/sub structures
+Home-page: UNKNOWN
+Author: Tyler Johnson
+Author-email: tjohnson@saltstack.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Development Status :: 5 - Production/Stable
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
+Requires-Dist: pop
+Requires-Dist: rend
+
+********
+POP-TREE
+********
+**POP hub and sub visualization tool**
+
+INSTALLATION
+============
+::
+    pip install pop-tree
+
+INSTALLATION FOR DEVELOPMENT
+============================
+
+Clone the `pop-tree` repo and install with pip::
+
+    git clone https://gitlab.com/Akm0d/pop-tree.git
+    pip install -e pop-tree
+
+EXECUTION
+=========
+
+After installation the `pop-tree` command should now be available.
+
+Example using a vertically merged project:
+.. code-block:: bash
+
+    pop-tree exec --add-sub idem
+
+
+Example of printing hub.OPT for config defaults:
+.. code-block:: bash
+
+    pop-tree opt --add-sub tiamat
+
+
