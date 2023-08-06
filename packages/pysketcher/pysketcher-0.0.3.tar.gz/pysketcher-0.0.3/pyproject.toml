@@ -1,0 +1,111 @@
+[build-system]
+requires = ["poetry>=1.0.5"]
+build-backend = "poetry.masonry.api"
+
+[tool.poetry]
+name = "pysketcher"
+version = "0.0.3"
+description = "Geometric Sketching Utility for Python"
+license = "mit"
+authors = [
+    "Richard Vodden <richard@vodden.com>",
+    "Hans Petter Langtangen"
+]
+readme = "README.rst"
+packages = [{ include = "pysketcher" }]
+repository = "https://github.com/rvodden/pysketcher"
+homepage = "https://github.com/rvodden/pysketcher"
+keywords = ['sketch','graphics','scientific','engineering','geometry']
+
+[tool.poetry.extras]
+docs = ["sphinx"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+numpy = "^1.18.2"
+matplotlib = "^3.2.1"
+scipy = "^1.4.1"
+
+[tool.poetry.dev-dependencies]
+hypothesis = "^5.41.2"
+pytest = "^6.1.1"
+pylint = "^2.6.0"
+tox = "^3.20.1"
+flake8 = "^3.7.9"
+coverage = "^5.3"
+mypy = "^0.790"
+pydocstyle = "^5.0.2"
+black = "^20.8b1"
+'zest.releaser' = { version = "^6.22.1", extras = ['recommended'] }
+wheel = "^0.35.1"
+sphinx = "^3.2.1"
+sphinx_rtd_theme = "^0.5.0"
+recommonmark = "^0.6.0"
+pre-commit = "^2.7.1"
+
+[tool.poetry.scripts]
+beam1 = "examples.beam1:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "pysketcher"]
+python_files = "test_*.py"
+python_functions = "test_*"
+junit_duration_report = "call"
+junit_suite_name = "pysketcher"
+junit_family = "xunit1"
+addopts = "--doctest-modules"
+
+[tool.coverage.run]
+source = ["pysketcher/"]
+
+[tool.tox]
+legacy_tox_ini = '''
+[tox]
+isolated_build = true
+envlist = py38
+
+[testenv]
+whitelist_externals = poetry
+commands =
+    poetry install -v
+    poetry run pytest
+'''
+
+[tool.isort]
+line_length = 88
+multi_line_output = 3
+include_trailing_comma = true
+known_third_party = "celery,django,environ,pyquery,pytz,redis,requests,rest_framework"
+
+[mypy]
+# follow and type check all modules, including third-party ones
+follow_imports = "normal"
+# precede all errors with “note” messages explaining the context of the error
+show_error_context = true
+# This is the last resort solution, we should fine-tune it with
+# specific sections [mypy-<library_name>] for libraries that
+# have missing stubs or issues with imports
+# https://mypy.readthedocs.io/en/latest/running_mypy.html#missing-imports
+ignore_missing_imports = true
+# Check all defs, even untyped ones (with less precise semantics)
+check_untyped_defs = true
+# All functions/methods should have complete signatures
+# (this basically disallows gradual typing for all module-level definitions)
+disallow_incomplete_defs = true
+# all writes to cache should be discarded
+# (it's different from incremental mode)
+cache_dir = "/dev/null"
+# report an error whenever the code uses an unnecessary cast
+# that can safely be removed.
+warn_redundant_casts = true
+# warn about unused [mypy-<pattern>] config file sections.
+warn_unused_configs = true
+# find gaps and omissions in type stubs, including third-party ones
+warn_incomplete_stub = true
+# helps to find any `# type: ignore` annotations that we no longer need
+warn_unused_ignores = true
+# All arguments that allow None should be annotated as Optional[T]
+strict_optional = true
+# stop treating arguments with a None default value as having
+# an implicit Optional[T] type
+no_implicit_optional = true
