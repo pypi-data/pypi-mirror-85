@@ -1,0 +1,33 @@
+[aiida.calculations]
+castep.castep = aiida_castep.calculations.castep:CastepCalculation
+castep.ts = aiida_castep.calculations.castep:CastepTSCalculation
+
+[aiida.cmdline.data]
+castep-helper = aiida_castep.cmdline.helper_cmd:helper_cmd
+castep-pseudos = aiida_castep.cmdline.otfg_cmd:pseudos_cmd
+
+[aiida.data]
+castep.otfgdata = aiida_castep.data.otfg:OTFGData
+castep.uspdata = aiida_castep.data.usp:UspData
+
+[aiida.groups]
+castep.otfg = aiida_castep.data.otfg:OTFGGroup
+
+[aiida.parsers]
+castep.castep = aiida_castep.parsers.castep:CastepParser
+
+[aiida.tests]
+castep.calculation = aiida_castep.tests.dbtests.dbtestcalculation
+
+[aiida.tools.calculations]
+castep.castep = aiida_castep.calculations.tools:CastepCalcTools
+
+[aiida.workflows]
+castep.altrelax = aiida_castep.workflows.relax:CastepAlterRelaxWorkChain
+castep.bands = aiida_castep.workflows.bands:CastepBandsWorkChain
+castep.base = aiida_castep.workflows.base:CastepBaseWorkChain
+castep.relax = aiida_castep.workflows.relax:CastepRelaxWorkChain
+
+[console_scripts]
+castep.mock = aiida_castep.utils.mock:main
+
