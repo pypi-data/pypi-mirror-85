@@ -1,0 +1,110 @@
+Metadata-Version: 2.1
+Name: IMMP
+Version: 0.9.1
+Summary: A modular processing platform for instant messages.
+Home-page: https://immp.t.allofti.me
+Author: Terrance
+Author-email: immp@terrance.allofti.me
+License: BSD 3-Clause License
+Platform: Any
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Communications :: Chat
+Classifier: Topic :: Software Development :: Libraries
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
+Requires-Dist: aiohttp (>=3.0.0)
+Provides-Extra: console
+Requires-Dist: aioconsole (>=0.1.14) ; extra == 'console'
+Requires-Dist: ptpython (>=2.0.1) ; extra == 'console'
+Provides-Extra: db
+Requires-Dist: peewee (>=3.0.0) ; extra == 'db'
+Requires-Dist: tortoise-orm (<0.16.0,>=0.15.0) ; (python_version == "3.6") and extra == 'db'
+Requires-Dist: tortoise-orm (>=0.15.0) ; (python_version >= "3.7") and extra == 'db'
+Provides-Extra: discord
+Requires-Dist: discord.py (>=1.0.0) ; extra == 'discord'
+Provides-Extra: hangouts
+Requires-Dist: hangups (>=0.4.11) ; extra == 'hangouts'
+Provides-Extra: runner
+Requires-Dist: anyconfig (>=0.9.5) ; extra == 'runner'
+Requires-Dist: ruamel.yaml (>=0.15.75) ; extra == 'runner'
+Provides-Extra: sync
+Requires-Dist: emoji (>=0.5.0) ; extra == 'sync'
+Requires-Dist: jinja2 (>=2.6) ; extra == 'sync'
+Provides-Extra: telegram
+Requires-Dist: telethon (>=1.9.0) ; extra == 'telegram'
+Provides-Extra: uv
+Requires-Dist: uvloop (>=0.12.0) ; extra == 'uv'
+Provides-Extra: web
+Requires-Dist: aiohttp-jinja2 (>=1.0.0) ; extra == 'web'
+
+IMMP
+====
+
+A modular processing platform for instant messages.
+
+Requirements
+------------
+
+This project uses the latest and greatest Python features (that is, native asyncio syntax and
+asynchronous generators), and therefore requires at least **Python 3.6**.
+
+Additional modules are required for most plugs and hooks -- consult the docs for each module you
+want to use to check its own requirements, or use the included requirements list to install all
+possible dependencies for built-in modules.
+
+Terminology
+-----------
+
+Network
+    An external service that provides message-based communication.
+Message
+    A unit of data, which can include text, images, attachments, authorship, and so on.
+User
+    An individual or service which can author messages on a network.
+Plug
+    A handler for all communication with an external network, transforming the network’s content
+    to message objects and back again.
+Channel
+    A single room in an external network – a source of messages, and often a container of users.
+Group
+    A collection of plugs and channels.
+Hook
+    A worker that processes a stream of incoming messages, in whichever way it sees fit.
+
+Basic usage
+-----------
+
+Prepare a config file in a format of your choosing, e.g. in YAML:
+
+.. code:: yaml
+
+    plugs:
+      demo:
+        path: demo.DemoPlug
+        config:
+          api-key: xyzzy
+
+    channels:
+      foo:
+        plug: demo
+        source: 12345
+      bar:
+        plug: demo
+        source: 98765
+
+    hooks:
+      test:
+        path: test.TestHook
+        config:
+          channels: [foo, bar]
+          args: [123, 456]
+
+All labels under the top-level names are effectively free text, and are used to reference from
+other sections.
+
+Then start the built-in runner::
+
+    $ immp config.yaml
+
+

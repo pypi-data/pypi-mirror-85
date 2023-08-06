@@ -1,0 +1,130 @@
+{% extends ctx.module + "/base.j2" %}
+{% set title = "Channel: " + channel.source %}
+{% if title_ %}
+  {% set subtitle = title_ %}
+{% endif %}
+{% set nav = [("Plug: " + channel.plug.name, ctx.url_for("plug", name=channel.plug.name))] %}
+
+{% block body -%}
+<div class="container">
+  <nav class="level">
+    <div class="level-left">
+      <div class="level-item">
+        <span>
+          {%- if private %}
+          <i class="fas fa-fw fa-user"></i> Private
+          {%- else %}
+          <i class="fas fa-fw fa-users"></i> Group
+          {%- endif %}
+        </span>
+      </div>
+      {%- if link %}
+      <div class="level-item">
+        <span><i class="fas fa-fw fa-link"></i> <a href="{{ link }}">{{ link }}</a></span>
+      </div>
+      {%- endif %}
+    </div>
+  </nav>
+  <h3 class="title">Migrate</h3>
+  <p>Transfer hook data from this channel to a replacement.  <strong>Caution:</strong> this action is irreversible.</p>
+  <form action="{{ ctx.url_for("channel_migration", plug=channel.plug.name, source=channel.source) }}" method="post">
+    <div class="field has-addons">
+      <div class="control">
+        <div class="select">
+          <select name="name" required>
+            <option disabled selected>Channels</option>
+            {% for option in host.channels %}
+            <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="control">
+       <button type="submit" class="button is-warning">
+         <i class="fas fa-fw fa-random"></i> Migrate
+       </button>
+      </div>
+    </div>
+  </form>
+  <form action="{{ ctx.url_for("channel_migration", plug=channel.plug.name, source=channel.source) }}" method="post">
+    <div class="field has-addons">
+      <div class="control">
+        <div class="select">
+          <select name="plug" required>
+            <option disabled selected>Plugs</option>
+            {% for option in host.plugs %}
+            <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="control">
+        <input name="source" type="text" class="input" placeholder="Channel source" required>
+      </div>
+      <div class="control">
+       <button type="submit" class="button is-warning">
+         <i class="fas fa-fw fa-random"></i> Migrate
+       </button>
+      </div>
+    </div>
+  </form>
+  {%- if members %}
+  <h3 class="title">Members ({{ members|length }})</h3>
+  <table class="table is-hoverable">
+    <tbody>
+      {%- for member in members %}
+      <tr>
+        <td>
+          {%- if member.avatar %}
+          <figure class="image is-48x48">
+            <img src="{{ member.avatar }}">
+          </figure>
+          {%- endif %}
+        </td>
+        <td>
+          {%- if member.link -%}<a href="{{ member.link }}">{%- endif %}
+          {{- member.id }}
+          {%- if member.link %}</a>{% endif %}
+          {%- if member.plug.name != channel.plug.name %}
+          <br>
+          <small><i class="fas fa-plug"></i> <a href="{{ ctx.url_for("plug", name=member.plug.name) }}">{{ member.plug.name }}</a></small>
+          {%- endif %}
+        </td>
+        <td>
+          {{ member.real_name or member.username or "" }}
+          {%- if member.real_name and member.username -%}
+          <br><small>{{ member.username }}</small>
+          {%- endif %}
+        </td>
+        {%- if not channel.plug.virtual %}
+        <td>
+          <form method="post" action="{{ ctx.url_for("channel_kick", plug=channel.plug.name, source=channel.source, user=member.id) }}">
+            <button type="submit" class="button is-small is-danger"><i class="fas fa-fw fa-user-slash"></i> Kick</button>
+          </form>
+        </td>
+        {%- endif %}
+      </tr>
+      {%- endfor %}
+    </tbody>
+    {%- if not channel.plug.virtual %}
+    <tfoot>
+      <form method="post" action="{{ ctx.url_for("channel_invite", plug=channel.plug.name, source=channel.source) }}">
+        <tr>
+          <td colspan="3">
+            <input name="user" type="text" class="input" placeholder="User ID"{% if add_user %} value="{{ add_user }}" autofocus{% endif %} required>
+          </td>
+          <td>
+           <div class="buttons">
+             <button type="submit" class="button is-success">
+               <i class="fas fa-fw fa-user-plus"></i> Invite
+             </button>
+           </div>
+          </td>
+        </tr>
+      </form>
+    </tfoot>
+    {%- endif %}
+  </table>
+  {%- endif %}
+</div>
+{%- endblock %}
