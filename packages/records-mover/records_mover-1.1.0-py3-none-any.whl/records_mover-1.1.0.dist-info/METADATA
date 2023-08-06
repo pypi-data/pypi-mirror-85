@@ -1,0 +1,312 @@
+Metadata-Version: 2.1
+Name: records-mover
+Version: 1.1.0
+Summary: Library and CLI to move relational data from one place to another - DBs/CSV/gsheets/dataframes/...
+Home-page: UNKNOWN
+Author: Vince Broz
+Author-email: opensource@bluelabs.com
+License: Apache Software License
+Download-URL: https://github.com/bluelabsio/records-mover/tarball/1.1.0
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Database :: Front-Ends
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
+Requires-Dist: timeout-decorator
+Requires-Dist: PyYAML (<5.4,>=3.10)
+Requires-Dist: db-facts (<5,>=4)
+Requires-Dist: chardet
+Requires-Dist: tenacity (>=6<7)
+Requires-Dist: config-resolver (<6,>=5.0.1)
+Requires-Dist: typing-inspect
+Requires-Dist: typing-extensions
+Provides-Extra: airflow
+Requires-Dist: apache-airflow (<2,>=1.10) ; extra == 'airflow'
+Provides-Extra: aws
+Requires-Dist: awscli (<2,>=1) ; extra == 'aws'
+Requires-Dist: boto (<3,>=2) ; extra == 'aws'
+Requires-Dist: boto3 ; extra == 'aws'
+Requires-Dist: s3-concat (<0.2,>=0.1.7) ; extra == 'aws'
+Requires-Dist: rsa (<=4.5.0,>=3.1.4) ; extra == 'aws'
+Requires-Dist: smart-open (<2.1,>=2) ; extra == 'aws'
+Provides-Extra: bigquery
+Requires-Dist: pybigquery ; extra == 'bigquery'
+Requires-Dist: google-cloud-storage ; extra == 'bigquery'
+Requires-Dist: rsa (<=4.5.0,>=3.1.4) ; extra == 'bigquery'
+Requires-Dist: smart-open (<2.1,>=2) ; extra == 'bigquery'
+Requires-Dist: sqlalchemy (>=1.3.18) ; extra == 'bigquery'
+Provides-Extra: cli
+Requires-Dist: odictliteral ; extra == 'cli'
+Requires-Dist: jsonschema ; extra == 'cli'
+Requires-Dist: docstring-parser ; extra == 'cli'
+Provides-Extra: db
+Requires-Dist: sqlalchemy (>=1.3.18) ; extra == 'db'
+Provides-Extra: docs
+Requires-Dist: sphinx (>=3) ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme ; extra == 'docs'
+Requires-Dist: recommonmark ; extra == 'docs'
+Requires-Dist: sqlalchemy (>=1.3.18) ; extra == 'docs'
+Requires-Dist: apache-airflow (<2,>=1.10) ; extra == 'docs'
+Requires-Dist: awscli (<2,>=1) ; extra == 'docs'
+Requires-Dist: boto (<3,>=2) ; extra == 'docs'
+Requires-Dist: boto3 ; extra == 'docs'
+Requires-Dist: s3-concat (<0.2,>=0.1.7) ; extra == 'docs'
+Requires-Dist: rsa (<=4.5.0,>=3.1.4) ; extra == 'docs'
+Requires-Dist: smart-open (<2.1,>=2) ; extra == 'docs'
+Provides-Extra: gcs
+Requires-Dist: google-cloud-storage ; extra == 'gcs'
+Requires-Dist: rsa (<=4.5.0,>=3.1.4) ; extra == 'gcs'
+Requires-Dist: smart-open (<2.1,>=2) ; extra == 'gcs'
+Provides-Extra: gsheets
+Requires-Dist: google ; extra == 'gsheets'
+Requires-Dist: google-auth-httplib2 ; extra == 'gsheets'
+Requires-Dist: oauth2client (<2.1.0,>=2.0.2) ; extra == 'gsheets'
+Requires-Dist: PyOpenSSL ; extra == 'gsheets'
+Requires-Dist: google-api-python-client (<1.9.0,>=1.8.0) ; extra == 'gsheets'
+Requires-Dist: grpcio (<2.0dev,>=1.29.0) ; extra == 'gsheets'
+Provides-Extra: itest
+Requires-Dist: jsonschema ; extra == 'itest'
+Requires-Dist: nose ; extra == 'itest'
+Requires-Dist: google-api-python-client (<1.9.0,>=1.8.0) ; extra == 'itest'
+Requires-Dist: grpcio (<2.0dev,>=1.29.0) ; extra == 'itest'
+Provides-Extra: literally_every_single_database_binary
+Requires-Dist: sqlalchemy-vertica-python (<0.6,>=0.5.5) ; extra == 'literally_every_single_database_binary'
+Requires-Dist: sqlalchemy (>=1.3.18) ; extra == 'literally_every_single_database_binary'
+Requires-Dist: psycopg2-binary ; extra == 'literally_every_single_database_binary'
+Requires-Dist: sqlalchemy-redshift (>=0.7.7) ; extra == 'literally_every_single_database_binary'
+Requires-Dist: awscli (<2,>=1) ; extra == 'literally_every_single_database_binary'
+Requires-Dist: boto (<3,>=2) ; extra == 'literally_every_single_database_binary'
+Requires-Dist: boto3 ; extra == 'literally_every_single_database_binary'
+Requires-Dist: s3-concat (<0.2,>=0.1.7) ; extra == 'literally_every_single_database_binary'
+Requires-Dist: rsa (<=4.5.0,>=3.1.4) ; extra == 'literally_every_single_database_binary'
+Requires-Dist: smart-open (<2.1,>=2) ; extra == 'literally_every_single_database_binary'
+Requires-Dist: pybigquery ; extra == 'literally_every_single_database_binary'
+Requires-Dist: google-cloud-storage ; extra == 'literally_every_single_database_binary'
+Requires-Dist: pymysql ; extra == 'literally_every_single_database_binary'
+Provides-Extra: mysql
+Requires-Dist: pymysql ; extra == 'mysql'
+Requires-Dist: sqlalchemy (>=1.3.18) ; extra == 'mysql'
+Provides-Extra: pandas
+Requires-Dist: pandas (<2) ; extra == 'pandas'
+Provides-Extra: parquet
+Requires-Dist: pyarrow ; extra == 'parquet'
+Provides-Extra: postgres-binary
+Requires-Dist: psycopg2-binary ; extra == 'postgres-binary'
+Requires-Dist: sqlalchemy (>=1.3.18) ; extra == 'postgres-binary'
+Provides-Extra: postgres-source
+Requires-Dist: psycopg2 ; extra == 'postgres-source'
+Requires-Dist: sqlalchemy (>=1.3.18) ; extra == 'postgres-source'
+Provides-Extra: redshift-binary
+Requires-Dist: psycopg2-binary ; extra == 'redshift-binary'
+Requires-Dist: sqlalchemy-redshift (>=0.7.7) ; extra == 'redshift-binary'
+Requires-Dist: awscli (<2,>=1) ; extra == 'redshift-binary'
+Requires-Dist: boto (<3,>=2) ; extra == 'redshift-binary'
+Requires-Dist: boto3 ; extra == 'redshift-binary'
+Requires-Dist: s3-concat (<0.2,>=0.1.7) ; extra == 'redshift-binary'
+Requires-Dist: rsa (<=4.5.0,>=3.1.4) ; extra == 'redshift-binary'
+Requires-Dist: smart-open (<2.1,>=2) ; extra == 'redshift-binary'
+Requires-Dist: sqlalchemy (>=1.3.18) ; extra == 'redshift-binary'
+Provides-Extra: redshift-source
+Requires-Dist: psycopg2 ; extra == 'redshift-source'
+Requires-Dist: sqlalchemy-redshift (>=0.7.7) ; extra == 'redshift-source'
+Requires-Dist: awscli (<2,>=1) ; extra == 'redshift-source'
+Requires-Dist: boto (<3,>=2) ; extra == 'redshift-source'
+Requires-Dist: boto3 ; extra == 'redshift-source'
+Requires-Dist: s3-concat (<0.2,>=0.1.7) ; extra == 'redshift-source'
+Requires-Dist: rsa (<=4.5.0,>=3.1.4) ; extra == 'redshift-source'
+Requires-Dist: smart-open (<2.1,>=2) ; extra == 'redshift-source'
+Requires-Dist: sqlalchemy (>=1.3.18) ; extra == 'redshift-source'
+Provides-Extra: typecheck
+Requires-Dist: mypy (==0.770) ; extra == 'typecheck'
+Requires-Dist: lxml ; extra == 'typecheck'
+Requires-Dist: sqlalchemy-stubs (>=0.3) ; extra == 'typecheck'
+Provides-Extra: unittest
+Requires-Dist: coverage ; extra == 'unittest'
+Requires-Dist: mock ; extra == 'unittest'
+Requires-Dist: nose ; extra == 'unittest'
+Requires-Dist: odictliteral ; extra == 'unittest'
+Requires-Dist: jsonschema ; extra == 'unittest'
+Requires-Dist: docstring-parser ; extra == 'unittest'
+Requires-Dist: apache-airflow (<2,>=1.10) ; extra == 'unittest'
+Requires-Dist: google ; extra == 'unittest'
+Requires-Dist: google-auth-httplib2 ; extra == 'unittest'
+Requires-Dist: oauth2client (<2.1.0,>=2.0.2) ; extra == 'unittest'
+Requires-Dist: PyOpenSSL ; extra == 'unittest'
+Requires-Dist: google-api-python-client (<1.9.0,>=1.8.0) ; extra == 'unittest'
+Requires-Dist: grpcio (<2.0dev,>=1.29.0) ; extra == 'unittest'
+Requires-Dist: sqlalchemy-vertica-python (<0.6,>=0.5.5) ; extra == 'unittest'
+Requires-Dist: sqlalchemy (>=1.3.18) ; extra == 'unittest'
+Requires-Dist: psycopg2-binary ; extra == 'unittest'
+Requires-Dist: sqlalchemy-redshift (>=0.7.7) ; extra == 'unittest'
+Requires-Dist: awscli (<2,>=1) ; extra == 'unittest'
+Requires-Dist: boto (<3,>=2) ; extra == 'unittest'
+Requires-Dist: boto3 ; extra == 'unittest'
+Requires-Dist: s3-concat (<0.2,>=0.1.7) ; extra == 'unittest'
+Requires-Dist: rsa (<=4.5.0,>=3.1.4) ; extra == 'unittest'
+Requires-Dist: smart-open (<2.1,>=2) ; extra == 'unittest'
+Requires-Dist: pybigquery ; extra == 'unittest'
+Requires-Dist: google-cloud-storage ; extra == 'unittest'
+Requires-Dist: pymysql ; extra == 'unittest'
+Requires-Dist: pandas (<2) ; extra == 'unittest'
+Provides-Extra: vertica
+Requires-Dist: sqlalchemy-vertica-python (<0.6,>=0.5.5) ; extra == 'vertica'
+Requires-Dist: sqlalchemy (>=1.3.18) ; extra == 'vertica'
+
+<img
+ src="https://raw.githubusercontent.com/bluelabsio/records-mover/master/docs/records-mover-horizontal.png"
+ alt="Records Mover">
+
+[![Documentation Status](https://readthedocs.org/projects/records-mover/badge/?version=latest)](https://records-mover.readthedocs.io/en/latest/?badge=latest)
+
+Records mover is a command-line tool and Python library you can
+use to move relational data from one place to another.
+
+Relational data here means anything roughly "rectangular" - with
+columns and rows.  For example, it supports reading and writing from:
+
+* Databases, including using native high-speed methods of
+  import/export of bulk data.  Redshift, Vertica and PostgreSQL are
+  well-supported, with some support for BigQuery and MySQL.
+* CSV files
+* Parquet files (initial support)
+* Google Sheets
+* Pandas DataFrames
+* Records directories - a structured directory of CSV/Parquet/etc
+  files containing some JSON metadata about their format and origins.
+  Records directories are especially helpful for the ever-ambiguous
+  CSV format, where they solve the problem of 'hey, this may be a
+  CSV - but what's the schema?  What's the format of the CSV itself?
+  How is it escaped?'
+
+Records mover can be exended expand to handle additional databases
+and data file types.  Databases are supported by building on top of
+their [SQLAlchemy](https://www.sqlalchemy.org/) drivers.  Records
+mover is able to auto-negotiate the most efficient way of moving data
+from one to the other.
+
+## CLI use example
+
+Installing:
+
+```sh
+pip3 install 'records_mover[cli,postgres-binary,redshift-binary]'
+```
+
+Loading a CSV into a database:
+
+```sh
+mvrec file2table foo.csv redshiftdb1 myschema1 mytable1
+```
+
+Copying a table from a PostgreSQL to a Redshift database:
+
+```sh
+mvrec --help
+mvrec table2table postgresdb1 myschema1 mytable1 redshiftdb2 myschema2 mytable2
+```
+
+Note records mover will automatically build an appropriate `CREATE
+TABLE` statement on the target end if the table doesn't already exist.
+
+Note that the connection details for the database names here must be
+configured using
+[db-facts](https://github.com/bluelabsio/db-facts/blob/master/CONFIGURATION.md).
+
+For more installation notes, see [INSTALL.md](./docs/INSTALL.md).  To
+understand the security model here, see [SECURITY.md](./docs/SECURITY.md).
+
+## CLI use demo (table creation and loading)
+
+<img src="https://i.imgur.com/PvmMhft.gif">
+
+## Python library use example
+
+First, install records_mover.  We'll also use Pandas, so we'll install
+that, too, as well as a driver for Postgres.
+
+```sh
+pip3 install records_mover[pandas,postgres-source]
+```
+
+Now we can run this code:
+
+```python
+#!/usr/bin/env python3
+
+# Pull in the records-mover library - be sure to run the pip install above first!
+from records_mover import sources, targets, move
+from pandas import DataFrame
+import sqlalchemy
+import os
+
+sqlalchemy_url = f"postgresql+psycopg2://username:{os.environ['DB_PASSWORD']}@hostname/database_name"
+db_engine = sqlalchemy.create_engine(sqlalchemy_url)
+
+df = DataFrame.from_dict([{'a': 1}])  # or make your own!
+
+source = sources.dataframe(df=df)
+target = targets.table(schema_name='myschema',
+                       table_name='mytable',
+                       db_engine=db_engine)
+results = move(source, target)
+```
+
+When moving data, the sources supported can be found
+[here](https://records-mover.readthedocs.io/en/latest/records_mover.records.sources.html),
+and the targets supported can be found
+[here](https://records-mover.readthedocs.io/en/latest/records_mover.records.targets.html).
+
+## Advanced Python library use example
+
+Here's another example, using some additional features:
+
+* Loading from an existing dataframe.
+* Secrets management using
+  [db-facts](https://github.com/bluelabsio/db-facts), which is a way
+  to configure credentials in YAML files or even fetch them
+  dynamically from your secrets store.
+* Logging configuration to show the internal processing steps (helpful
+  in optimizing performance or debugging issues)
+
+you can use this:
+
+```python
+#!/usr/bin/env python3
+
+# Pull in the records-mover library - be sure to run the pip install above first!
+from records_mover import Session
+from pandas import DataFrame
+
+session = Session()
+session.set_stream_logging()
+records = session.records
+
+db_engine = session.get_default_db_engine()
+
+df = DataFrame.from_dict([{'a': 1}])  # or make your own!
+
+source = records.sources.dataframe(df=df)
+target = records.targets.table(schema_name='myschema',
+                               table_name='mytable',
+                               db_engine=db_engine)
+results = records.move(source, target)
+```
+
+## Python library API documentation
+
+You can can find more API documentation
+[here](https://records-mover.readthedocs.io/en/latest/index.html).
+In particular, note:
+
+* [Session() constructor](https://records-mover.readthedocs.io/en/latest/records_mover.html#records_mover.Session.__init__)
+* [sources factory methods](https://records-mover.readthedocs.io/en/latest/records_mover.records.sources.html)
+* [targets factory methods](https://records-mover.readthedocs.io/en/latest/records_mover.records.targets.html)
+* [move() method](https://records-mover.readthedocs.io/en/latest/records_mover.records.html#records_mover.records.move)
+* [BaseRecordsFormat](https://records-mover.readthedocs.io/en/latest/records_mover.records.html#records_mover.records.base_records_format.BaseRecordsFormat)
+
+
