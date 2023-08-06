@@ -1,0 +1,1 @@
+from redesociais.utils.geradores import gerar_url
