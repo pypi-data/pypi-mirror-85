@@ -1,0 +1,56 @@
+Metadata-Version: 2.1
+Name: instainfo
+Version: 0.0.3
+Summary: Get Profile information of a instagram user
+Home-page: http://github.com/haydencordeiro
+Author: Hayden Cordeiro
+Author-email: cordeirohayden@gmail.com
+License: UNKNOWN
+Description: # InstaInfo!
+        
+        ## Project Description
+        
+        It provides an efficient and usefull way of fetching information of a particular isntagram username withouth the hassle of providing credentials.
+        
+        ## Functions
+        
+        - Get Profile Picture URL
+        - Check If the Profile is private
+        - Check If the Profile is a Business Account
+        - Check if the Profile is newly Created
+        - Get the number of followers of a profile
+        - Get the number of people that follow a particular profile
+        
+        ## Example
+        
+        > Import the module
+        
+        import InstaInfo
+        
+        > Create an instance of the class
+        >
+        > user = UserProfile('alanwalkermusic')
+        > Prints the users profile picture URL
+        >
+        > print(user.GetProfilePicURL())
+        > Prints the number of follower the Profile has
+        >
+        > print(user.FollowersCount())
+        
+        > Prints the number of people that follow the profile
+        >
+        > print(user.FollowedByCount())
+        
+        > prints True if the profile is private
+        
+        print(user.IsPrivate())
+        
+        > prints True if the profile is business account
+        
+        print(user.IsBusinessAccount())
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
