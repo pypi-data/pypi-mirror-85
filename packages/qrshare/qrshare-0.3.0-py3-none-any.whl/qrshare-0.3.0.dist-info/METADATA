@@ -1,0 +1,69 @@
+Metadata-Version: 2.1
+Name: qrshare
+Version: 0.3.0
+Summary: flask waitress file share program
+Home-page: https://github.com/mHaisham/qrshare
+Author: Schicksal
+Author-email: mhaisham79@gmail.com
+License: MIT license
+Project-URL: Source code, https://github.com/mHaisham/qrshare
+Keywords: qr share localhost
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: click (==7.1.2)
+Requires-Dist: Flask (==1.1.2)
+Requires-Dist: qrcode (==6.1)
+Requires-Dist: waitress (==1.4.4)
+
+# QR share
+
+[![PyPI version](https://badge.fury.io/py/qrshare.svg)](https://badge.fury.io/py/qrshare)
+
+Serve a file on local network and give the url in qrcode form on console
+
+## Install
+
+```bash
+pip install qrshare
+```
+
+## Usage
+
+### Send to
+
+Press `Windows` + `r` and enter `shell:sendto`
+
+> C:\Users\<user>\AppData\Roaming\Microsoft\Windows\SendTo
+
+Create shortcut with command `qrshare` in folder
+
+now option qrshare should appear when you right click to a file
+
+### Commandline
+
+```bash
+qrshare --help
+```
+
+```bash
+Usage: __main__.py [OPTIONS] PATH
+
+Options:
+  --port INTEGER  waitress server port
+  --help          Show this message and exit.
+```
+
+### Code Example
+
+```python
+from qrshare import App
+
+app = App(paths)
+app.serve(True)
+```
+
+
