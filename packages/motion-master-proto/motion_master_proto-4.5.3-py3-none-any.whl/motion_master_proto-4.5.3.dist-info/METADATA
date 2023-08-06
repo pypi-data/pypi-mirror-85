@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: motion-master-proto
+Version: 4.5.3
+Summary: Protobuf API for the Synapticon Motion Master
+Home-page: https://github.com/synapticon/motion-master-proto
+Author: Synapticon GmbH
+Author-email: support@synapticon.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: 3 - Alpha
+Classifier: Topic :: Software Development :: Libraries
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: protobuf
+
+# Motion Master Protobuf API
+
+This package contains generated Python code for the Synapticon Motion Master
+Protobuf API.
+
+Motion Master v3.x is supported. This package does not support previous versions.
+
+## Installation
+
+Using virtualenv or Python3's venv is recommended.
+
+To install from PyPi, run
+
+    $ pip install motion-master-proto
+
+## Documentation
+
+The only class of interest is the `MotionMasterMessage`.
+
+    from motion_master_proto.motion_master_pb2 import MotionMasterMessage
+
+    # Create a new message
+    message = MotionMasterMessage()
+    # Set the message type to 'get_system_version'
+    message.request.get_system_version.SetInParent()
+
+The `message` object can now be sent to the Motion Master on the DEALER socket.
+
+For a full description of all messages, see the associated
+`motion-master.proto` file.
+
+## See also
+
+Install the `motion-master-bindings` for easy access to the Synapticon Motion
+Master.
+
+
