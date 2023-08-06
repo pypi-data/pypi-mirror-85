@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: fakeish
+Version: 0.1.0
+Summary: Faker but fast and dumb instead of slow and smart
+Home-page: https://pypi.org/project/fakeish
+Author: bengetch
+Author-email: bengetch@gmail.com
+License: MIT
+Platform: UNKNOWN
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: pyyaml
+
+# fakeish
+[faker](https://github.com/joke2k/faker) but fast and dumb instead of slow and smart
+
+### Usage
+
+```python
+from fakeish import Fakeish
+
+f = Fakeish()
+rand_ssn = f.ssn()
+```
+
