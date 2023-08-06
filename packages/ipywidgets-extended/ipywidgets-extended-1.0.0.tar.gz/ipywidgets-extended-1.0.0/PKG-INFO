@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: ipywidgets-extended
+Version: 1.0.0
+Summary: Extensions to the Jupyter Widgets in the `ipywidgets` pacakge.
+Home-page: https://github.com/CasperWA/ipywidgets-extended
+Author: Casper Welzel Andersen
+Author-email: casper+github@welzel.nu
+License: BSD
+Description: # Jupyter Widgets - Extended
+        
+        This package contains widget extensions to the standard [`ipywidgets`](https://github.com/jupyter-widgets/ipywidgets) package.
+        The intent is to not produce completely new widgets, but rather _extend_ the widgets already in [`ipywidgets`](https://github.com/jupyter-widgets/ipywidgets) with more possibilities and options.
+        
+        ## Current extended widgets
+        
+        ### Dropdown
+        
+        The dropdown widget has been extended to include the possibility of disabling options.
+        
+        This can be done _via_ the `disabled_options` traitlet, which must be a list of option labels.
+        If an option label is included in the `disabled_options` list traitlet, it will be "grayed out", i.e., disabled (but still visible) in the dropdown widget.
+        
+        **Author**: Casper Welzel Andersen ([email](casper+github@welzel.nu), [website](https://casper.welzel.nu)).  
+        **License**: [BSD-3-Clause](LICENSE) and copyright (c) 2020 Casper Welzel Andersen & parts by Jupyter Development Team.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Framework :: Jupyter
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development :: Widget Sets
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Provides-Extra: dev
