@@ -1,0 +1,9 @@
+#!/usr/bin/env python
+
+from autoprocess import auto_symmetry as command_step
+from autoprocess.utils import options
+
+if __name__ == "__main__":
+    parser = options.symmetry_parser()
+    args = parser.parse_args()
+    command_step.run(args)
