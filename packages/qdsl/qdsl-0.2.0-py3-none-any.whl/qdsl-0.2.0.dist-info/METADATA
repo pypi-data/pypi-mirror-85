@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: qdsl
+Version: 0.2.0
+Summary: qdsl takes the tedium out of nested dicts and lists.
+Home-page: https://github.com/csams/qdsl
+Author: Christopher Sams
+Author-email: cwsams@gmail.com
+License: Apache 2.0
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
+Requires-Dist: pandas
+Requires-Dist: pyyaml
+Requires-Dist: requests
+Requires-Dist: IPython
+Provides-Extra: develop
+Requires-Dist: pytest ; extra == 'develop'
+Requires-Dist: setuptools ; extra == 'develop'
+Requires-Dist: Sphinx ; extra == 'develop'
+Requires-Dist: coverage ; extra == 'develop'
+Requires-Dist: flake8 ; extra == 'develop'
+Requires-Dist: sphinx-rtd-theme ; extra == 'develop'
+Requires-Dist: wheel ; extra == 'develop'
+Requires-Dist: twine ; extra == 'develop'
+Requires-Dist: pytest-cov ; extra == 'develop'
+
+Overview
+========
+Make digging around in nests of python dicts and lists less tedious.
+
+Optimizations
+=============
+* Intern node names so the strings aren't duplicated. This saves a huge amount of memory, especially for things like openshift resources.
+* Desugar/compile queries into regular python functions, special casing where possible.
+* Generate regular python functions from Boolean ASTs passed to queries. The "compilation" takes microseconds.
+* Query the entire flattened tree at once in "find" since it's equivalent to querying individual nodes and accumulating.
+* Simplify the where API so we don't need a separate WhereBoolean hierarchy.
+* Use tuples instead of lists for values and children. Tuples are slightly smaller.
+* Branch "value" defaults to an empty tuple. Since it's a default keyword value, all instances share the same one.
+* Use slots.
+
+
