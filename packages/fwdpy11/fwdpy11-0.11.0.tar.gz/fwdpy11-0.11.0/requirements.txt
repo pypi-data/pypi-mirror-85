@@ -1,0 +1,26 @@
+# As of 0.2.0, pybind11 
+# must not be installed via pip
+pybind11==2.4.3
+numpy
+sparse
+scipy
+attrs>=0.19.2
+black
+
+#below are for building package,
+#dox, and running tests
+sphinx==3.1
+sphinx-issues
+pandas
+jupyter-sphinx
+matplotlib
+seaborn
+msprime
+tskit>=0.3.2
+setuptools_scm==1.11.1
+
+#below are for formatting, linting,
+#etc.
+flake8
+flake8-bugbear
+blacken-docs
