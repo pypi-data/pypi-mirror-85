@@ -1,0 +1,3 @@
+You can search for images on your screen and then click, hover or press them.
+Documentation here...
+https://github.com/Warfare03/auto_clicker/raw/master/Documentation-auto-clicker0.3.pdf
