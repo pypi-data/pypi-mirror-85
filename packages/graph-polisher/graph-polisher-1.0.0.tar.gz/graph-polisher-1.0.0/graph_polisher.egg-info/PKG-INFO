@@ -1,0 +1,162 @@
+Metadata-Version: 2.1
+Name: graph-polisher
+Version: 1.0.0
+Summary: graph-polisher is a library that helps you clean your plotly figures.. This library is inspired by the book Storytelling with Data by Cole Nussbaumer Knaflic (https://www.kobo.com/us/en/ebook/storytelling-with-data).
+Home-page: https://gitlab.com/rigogsilva/graph-polisher
+Author: Rodrigo da Silva
+Author-email: dasil021@umn.edu
+License: MIT
+Description: # graph-polisher
+        
+        [![PyPI version](https://badge.fury.io/py/graph-polisher.svg)](https://pypi.org/project/graph-polisher/)
+        [![build status](https://gitlab.com/rigogsilva/graph-polisher/badges/main/pipeline.svg)](https://gitlab.com/rigogsilva/graph-polisher/commits/main)
+        [![coverage report](https://gitlab.com/rigogsilva/graph-polisher/badges/main/coverage.svg)](https://gitlab.com/rigogsilva/graph-polisher/commits/main)
+        [![Code style: mypy](https://img.shields.io/badge/code%20style-mypy-white)](http://mypy-lang.org/)
+        [![PyPI - License](https://img.shields.io/pypi/l/graph-polisher)](https://pypi.org/project/graph-polisher/)
+        
+        [[_TOC_]]
+        
+        Graph polisher is a library that helps you clean your plotly figures. 
+        This library was inspired by the book "Storytelling with Data by Cole
+        Nussbaumer Knaflic (https://www.kobo.com/us/en/ebook/storytelling-with-data).
+        
+        ## Usage
+        
+        To start our graph polishing, we will create a basic bar graph:
+        
+        ```python
+        import pandas as pd
+        import plotly.express as px
+        
+        report_data = [
+            {'name': 'Time Sheets', 'exported': 394},
+            {'name': 'Schedules', 'exported': 171},
+            {'name': 'overtime', 'exported': 457},
+            {'name': 'Time-off', 'exported': 93},
+            {'name': 'Shift Requests', 'exported': 30},
+        ]
+        df = pd.DataFrame(report_data)
+        
+        fig = px.bar(df, title='Exported Reports', x='name', y='exported')
+        
+        fig.show()
+        ```
+        
+        ![Raw Bar Plot](resources/images/raw-bar.png)
+        
+        Next, we will remove all the unnecessary information from the graph. By removing
+        unnecessary things from the graph, we will then be able to focus on important
+        information that will help us drive the user to where we want them to focus on. 
+        
+        To remove all that default unnecessary information with graph-polisher
+        do the following:
+        
+        ### Remove grid lines and brackground
+        
+        Grid lines usually compete with the information being shown. If you really think
+        that you should include them, make them thin and grey so it doesn't call
+        attention.
+        
+        ```python
+        import graph_polisher
+        
+        graph_polisher.remove_grids(figure=fig)
+        graph_polisher.remove_background(figure=fig) 
+        
+        fig.show()
+        ```
+        
+        ![Bar No Grid Plot](resources/images/bar-nogrid.png)
+        
+        ### Send to background
+        
+        The dark colors (black text, bold text) of the graph also calls for attention.
+        We can easily make them less attention grabbing by sending them to
+        the background. Sending them to the background will set the text color to a more neutral
+        color like grey. 
+        
+        ```python
+        graph_polisher.send_to_background(fig)
+        
+        fig.show()
+        ```
+        
+        ![Send to backgroung](resources/images/send-to-background.png)
+        
+        Notice the difference between the default bar graph and our new version. 
+        
+        | Default Bar Plot                              | No Distractions Bar Plot                                         |
+        |-----------------------------------------------|:-----------------------------------------------------------------|
+        | ![Raw Bar Plot](resources/images/raw-bar.png) |  ![Send to backgroung](resources/images/send-to-background.png)  |
+        
+        Now you have a graph that you can easily add intentional attention grabbing
+        information so that your user is guided through the information you are trying
+        to present.
+        
+        ## Deploying pip library
+        
+        Build the pip library package to deploy to pip:
+        
+        ```shell script
+        python3 setup.py sdist bdist_wheel
+        ```
+        
+        Publish to pip. You can follow steps [here](https://docs.gitlab.com/ee/user/packages/pypi_repository/) 
+        
+        Note that you will need to install twine and register your pypi. Usually in the file
+        `~/.pypirc`
+        
+        ```shell script
+        python3 -m twine upload --repository pypi dist/*
+        ```
+        
+        ## Installation
+        
+        ```shell script
+        pip install graph-polisher
+        ```
+        
+        ## Testing
+        
+        To test this project run:
+        
+        ```shell script
+        pytest
+        ```
+        
+        ## Notebook Example (with unnotebook)
+        
+        Prerequisite: https://www.docker.com/
+        
+        You can use this to see how the library modifies the plots. We are using 
+        [unnotebook](http://www.unnotebook.com/) to plot the examples. 
+        
+        1. Build and push `notebook` image:
+        
+        ```bash
+        docker build . -t graph-polisher
+        ```
+        
+        2. Run notebook
+        
+        ```shell script
+        docker-compose up notebook
+        ```
+        
+        or 
+        
+        ```bash
+        docker run --rm -it \
+            -v /Users/rigo/Documents/Projects/notebooks/stock-predictions:/notebooks \
+            -p 8899:8899 unclutterer
+        ```
+        
+        3. Open http://localhost:8899/ and open the notebook you want to run.
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
