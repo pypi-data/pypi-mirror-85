@@ -1,0 +1,100 @@
+Metadata-Version: 2.1
+Name: polyswarm-client
+Version: 2.11.2
+Summary: Client library to simplify interacting with a polyswarmd instance
+Home-page: https://github.com/polyswarm/polyswarm-client
+Author: PolySwarm Developers
+Author-email: info@polyswarm.io
+License: MIT
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.6.5,<4
+Description-Content-Type: text/markdown
+Requires-Dist: aiohttp (~=3.6.2)
+Requires-Dist: aiodns (~=2.0.0)
+Requires-Dist: aioredis (~=1.3.1)
+Requires-Dist: aioresponses (==0.6.4)
+Requires-Dist: aiorwlock (~=0.6.0)
+Requires-Dist: cachetools (~=4.1.0)
+Requires-Dist: asynctest (==0.13.0)
+Requires-Dist: backoff (~=1.10.0)
+Requires-Dist: base58 (~=2.0.0)
+Requires-Dist: click (~=7.1.2)
+Requires-Dist: hexbytes (~=0.2.0)
+Requires-Dist: polyswarm-artifact (~=1.4.1)
+Requires-Dist: polyswarm-transaction (<1.0.0,>=0.2.0)
+Requires-Dist: pycryptodome (~=3.9.7)
+Requires-Dist: python-json-logger (~=0.1.9)
+Requires-Dist: web3 (~=5.6.0)
+Requires-Dist: websockets (~=8.1)
+Requires-Dist: yara-python (~=4.0.1)
+Requires-Dist: python-magic (~=0.4.15) ; platform_system == "Linux"
+Requires-Dist: python-magic-bin (~=0.4.14) ; platform_system == "Windows"
+
+# PolySwarm Client Library
+
+[![pipeline status](https://gitlab.polyswarm.io/externalci/polyswarm-client/badges/master/pipeline.svg)](https://gitlab.polyswarm.io/externalci/polyswarm-client/commits/master)
+[![coverage report](https://gitlab.polyswarm.io/externalci/polyswarm-client/badges/master/coverage.svg)](https://gitlab.polyswarm.io/externalci/polyswarm-client/commits/master)
+[![Read the Docs Build Status](https://readthedocs.org/projects/polyswarm-client/badge/?version=latest)](https://polyswarm-client.readthedocs.io/en/latest/)
+
+
+## Overview
+
+For the convenience of those who wish to join the PolySwarm marketplace, this is
+a client library to simplify interacting with a polyswarmd instance from your Python code.
+
+It includes:
+
+* abstract classes for ambassador, arbiter, and microengine implementations
+* exemplar ambassador, arbiter, and microengine implementations
+* helper classes
+
+For important changes releases, see the [Release History](https://github.com/polyswarm/polyswarm-client/blob/master/HISTORY.md).
+
+## Installation
+
+You need python3 >= 3.6.5 and pip >= 20.0.
+Then use pip to install polyswarm-client.
+
+```bash
+pip install polyswarm-client
+```
+
+## Documentation
+
+We have extensive documentation on how to use this package available in [our docs](https://docs.polyswarm.io).
+
+## For Developers
+
+### Running Tests
+
+Install all app dependencies:
+
+```bash
+pip install -rrequirements.txt
+```
+
+Install all test dependencies:
+
+```bash
+pip install -rrequirements-test.txt
+```
+
+Run all tests:
+
+```bash
+pytest
+```
+
+### Updating VCR cassettes
+
+- Run `polyswarmd-fast` by following the instructions in the project's `README.md` file.
+- Delete the cassette files.
+- Re-run all tests
+
+
