@@ -1,0 +1,20 @@
+{% import '_tree_table.html' as tree_table with context %}
+
+{{ charts.interval_totals(g.interval, (ledger.options['name_income'], ledger.options['name_expenses']), label=_('Net Profit')) }}
+{{ charts.interval_totals(g.interval, ledger.options['name_income'], label=_('Income')) }}
+{{ charts.interval_totals(g.interval, ledger.options['name_expenses'], label=_('Expenses')) }}
+
+{{ charts.hierarchy(ledger.options['name_income']) }}
+{{ charts.hierarchy(ledger.options['name_expenses']) }}
+
+<div class="row">
+  <div class="column">
+    {{ tree_table.tree(ledger.root_tree.get(ledger.options['name_income'])) }}
+  </div>
+  <div class="column">
+    {{ tree_table.tree(ledger.root_tree.get(ledger.options['name_expenses'])) }}
+  </div>
+  <div class="column">
+    {{ tree_table.tree(ledger.root_tree.net_profit(ledger.options, _('Net Profit'))) }}
+  </div>
+</div>
