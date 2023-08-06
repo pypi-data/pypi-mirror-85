@@ -1,0 +1,41 @@
+[project]
+name = "neurolang"
+version = "0.0.1"
+authors = [
+  "Demian Wassermann <demian.wassermann@inria.fr>",
+  "Valentin Iovene <valentin.iovene@inria.fr",
+  "Gaston Zanitti <gaston.zanitti@inria.fr",
+  "Nikita Zdainovich <nikita.zdainovich@inria.fr",
+]
+python = "^3.6"
+
+[dependencies]
+numpy = "*"
+scipy = "*"
+nibabel = "*"
+pandas = "^0.23.4"
+pysdd = "*"
+tatsu = "*"
+neurosynth = "^0.3.7"
+matplotlib = "*"
+typing_inspect = "*"
+rdflib = "*"
+
+[build-system]
+requires = [
+    "setuptools >= 35.0.2",
+    "setuptools_scm >= 2.0.0, <3"
+]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+"line-length" = 79
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = false
+force_grid_wrap = 0
+use_parentheses = true
+line_length = 79
+combine_as_imports = true
+
