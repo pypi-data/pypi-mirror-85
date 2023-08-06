@@ -1,0 +1,83 @@
+#!python
+
+import click
+import yaml
+import os.path
+from datetime import datetime
+from collections import namedtuple
+import dateparser
+from tabulate import tabulate
+
+from optionstracker.price import get_price
+from optionstracker.vesting import vested
+from optionstracker.value import value
+
+
+mirriad_price_url = (
+    'https://www.londonstockexchange.com/'
+    'stock/MIRI/mirriad-advertising-plc/company-page')
+
+Grant = namedtuple('Grant', 'quantity price date vesting')
+Vesting = namedtuple('Vesting', 'interval rate')
+Value = namedtuple('Value', 'vested unvested')
+
+
+def grant_from_dict(grant):
+    return Grant(
+            grant['quantity'], grant['price'], grant['grant-date'],
+            vesting_from_dict(grant['vesting']))
+
+
+def vesting_from_dict(vesting):
+    return Vesting(vesting['interval'], vesting['rate'])
+
+
+@click.command()
+@click.option(
+    '--filepath', default='~/.options-tracker.yaml',
+    help='default: ~/.options-tracker.yaml')
+@click.option(
+    '--market-price', type=float, help='override live market price (pence)')
+@click.option(
+    '--value-at-date', help='default: today, override the market price too')
+def track(filepath, market_price, value_at_date):
+    if market_price is None:
+        s_market_price, s_market_offer = get_price(mirriad_price_url)
+        market_price = float(s_market_price)
+    if value_at_date is None:
+        value_at_date = datetime.now()
+    else:
+        value_at_date = dateparser.parse(value_at_date)
+    click.echo(f'Market Price: {market_price}')
+    with open(os.path.expanduser(filepath)) as file:
+        config = yaml.safe_load(file)
+    grants_valued = []
+    vested_total = 0
+    unvested_total = 0
+    for option in config['options']:
+        grant = grant_from_dict(option)
+        vested_quantity, unvested_quantity = vested(
+                grant.quantity, value_at_date, grant.date, grant.vesting.rate,
+                grant.vesting.interval)
+        vested_value = value(vested_quantity, grant.price, market_price)
+        unvested_value = value(unvested_quantity, grant.price, market_price)
+        grants_valued.append((grant, Value(vested_value, unvested_value)))
+        vested_total += max(0, vested_value)
+        unvested_total += max(0, unvested_value)
+    grants_table = [[g.date, g.price, v.vested/100, v.unvested/100]
+                    for g, v in grants_valued]
+    grants_table.append([
+            'total value:',
+            '',
+            sum([max(0, v.vested)/100 for g, v in grants_valued]),
+            sum([max(0, v.unvested)/100 for g, v in grants_valued]),
+            ])
+    click.echo(tabulate(
+        grants_table,
+        headers=['grant date', 'price', 'vested £', 'unvested £'],
+        floatfmt=',.2f',
+        numalign='right'))
+
+
+if __name__ == '__main__':
+    track()
