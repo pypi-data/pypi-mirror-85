@@ -1,0 +1,83 @@
+Metadata-Version: 2.1
+Name: scanpy-scripts
+Version: 0.3.1
+Summary: Scripts for using scanpy from the command line
+Home-page: https://github.com/ebi-gene-expression-group/scanpy-scripts
+Author: nh3
+Author-email: nh3@users.noreply.github.com
+License: UNKNOWN
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: packaging
+Requires-Dist: anndata
+Requires-Dist: scipy
+Requires-Dist: matplotlib
+Requires-Dist: pandas
+Requires-Dist: h5py (<3.0.0)
+Requires-Dist: scanpy (>=1.6.0)
+Requires-Dist: louvain
+Requires-Dist: leidenalg
+Requires-Dist: loompy (<3.0.0,>=2.0.0)
+Requires-Dist: MulticoreTSNE
+Requires-Dist: Click
+Requires-Dist: umap-learn (<0.4.0)
+Requires-Dist: harmonypy (>=0.0.5)
+Requires-Dist: bbknn (>=1.3.12)
+Requires-Dist: mnnpy (>=0.1.9.5)
+
+# scanpy-scripts [![Anaconda-Server Badge](https://anaconda.org/bioconda/scanpy-scripts/badges/installer/conda.svg)](https://anaconda.org/bioconda/scanpy-scripts) 
+
+A command-line interface for functions of the Scanpy suite, to facilitate flexible constrution of workflows, for example in Galaxy, Nextflow, Snakemake etc.
+
+## Install
+
+```bash
+conda install scanpy-scripts
+# or
+pip3 install scanpy-scripts
+```
+
+## Test installation
+
+There is an example script included:
+
+```bash
+scanpy-scripts-tests.bats
+```
+
+This requires the [bats](https://github.com/sstephenson/bats) testing framework to run. The script downloads [a well-known test 10X dataset]('https://s3-us-west-2.amazonaws.com/10x.files/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz) and executes all of the commands described below.
+
+## Commands
+
+Available commands are described below. Each has usage instructions available via --help, consult function documentation in scanpy for further details.
+
+```
+Usage: scanpy-cli [OPTIONS] COMMAND [ARGS]...
+
+  Command line interface to [scanpy](https://github.com/theislab/scanpy)
+
+Options:
+  --debug              Print debug information
+  --verbosity INTEGER  Set scanpy verbosity
+  --version            Show the version and exit.
+  --help               Show this message and exit.
+
+Commands:
+  read       Read 10x data and save in specified format.
+  filter     Filter data based on specified conditions.
+  norm       Normalise data per cell.
+  hvg        Find highly variable genes.
+  scale      Scale data per gene.
+  regress    Regress-out observation variables.
+  pca        Dimensionality reduction by PCA.
+  neighbor   Compute a neighbourhood graph of observations.
+  embed      Embed cells into two-dimensional space.
+  cluster    Cluster cells into sub-populations.
+  diffexp    Find markers for each clusters.
+  paga       Trajectory inference by abstract graph analysis.
+  dpt        Calculate diffusion pseudotime relative to the root cells.
+  integrate  Integrate cells from different experimental batches.
+  plot       Visualise data.
+  ```
+
+
