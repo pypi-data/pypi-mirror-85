@@ -1,0 +1,60 @@
+0.3.3
+
+    [BUGFIXES]
+
+    * Fix exception handling to not use .message
+
+    [NEW FEATURES]
+
+    * Include the matrixprinter and terminalcolors into this package
+
+0.3.2
+
+    [BUGFIXES]
+
+    * Fix usage with subcommand parsers
+
+0.3.1
+
+    [BUBFIXES]
+
+    * Fix version number in __init__.py
+
+0.3.0
+
+    [NEW FEATURES]
+
+    * Subcommand parser
+
+0.2.0
+
+    [NEW FEATURES]
+
+    * Variable positional arguments.
+
+0.1.0
+
+    [NEW FEATURES]
+
+    * Initial version of lightparse, light to use argument parser.
+
+    * Positional arguments.
+
+    * Optional arguments (single input optional arguments).
+
+    * Flags (zero input optional arguments).
+
+    * Automatic help printing. Descriptions are provided with call to describe.
+
+    * Support for mappers for the arguments. file_exists mapper provided as an
+      example. int, long, float and such work as mappers as well.
+
+    * Behaviours that can be automatically detected or manually provided. Do
+      set mutable to False when providing manually.
+
+    * Behaviour: Automatically printing help when calling with empty arguments
+      if some positional arguments are required.
+
+    * Behaviour: Allow combining dash-letter flags and optional arguments when
+      all single dash options have single letter. Multiple optional arguments
+      are not allowed in the same combination due to ambiguity.
