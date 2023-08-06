@@ -1,0 +1,68 @@
+Metadata-Version: 2.1
+Name: Apppath
+Version: 0.5.3
+Summary: A package for easing return of multiple values
+Home-page: https://github.com/cnheider/apppath
+Author: Christian Heider Nielsen
+Author-email: christian.heider@alexandra.dk
+Maintainer: Christian Heider Nielsen
+Maintainer-email: christian.heider@alexandra.dk
+License: Apache License, Version 2.0
+Download-URL: https://github.com/cnheider/apppath/releases
+Keywords: app path paths data logs cache
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Natural Language :: English
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: six
+Provides-Extra: all
+Requires-Dist: pytest ; extra == 'all'
+Requires-Dist: sphinx ; extra == 'all'
+Requires-Dist: m2r ; extra == 'all'
+Requires-Dist: sphinxcontrib-programoutput ; extra == 'all'
+Requires-Dist: pip ; extra == 'all'
+Requires-Dist: wheel ; extra == 'all'
+Requires-Dist: twine ; extra == 'all'
+Requires-Dist: black ; extra == 'all'
+Requires-Dist: pytest-cov ; extra == 'all'
+Requires-Dist: coveralls ; extra == 'all'
+Provides-Extra: dev
+Requires-Dist: pip ; extra == 'dev'
+Requires-Dist: wheel ; extra == 'dev'
+Requires-Dist: twine ; extra == 'dev'
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+Requires-Dist: coveralls ; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: sphinx ; extra == 'docs'
+Requires-Dist: m2r ; extra == 'docs'
+Requires-Dist: sphinxcontrib-programoutput ; extra == 'docs'
+Provides-Extra: tests
+Requires-Dist: pytest ; extra == 'tests'
+
+![apppath](.github/images/apppath.svg)
+
+# AppPath
+
+![python](.github/images/python.svg)
+
+[![Build Status](https://travis-ci.com/aivclab/apppath.svg?branch=master)](https://travis-ci.com/aivclab/apppath) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black) [![Coverage Status](https://coveralls.io/repos/github/aivclab/apppath/badge.svg?branch=master)](https://coveralls.io/github/aivclab/apppath?branch=master) [![Total alerts](https://img.shields.io/lgtm/alerts/g/cnheider/apppath.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cnheider/apppath/alerts/) [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/cnheider/apppath.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cnheider/apppath/context:python)
+___
+> Clutter-free app data
+___
+
+A class and a set of functions for providing for system-consensual path for apps to store data, logs, cache...
+
+
