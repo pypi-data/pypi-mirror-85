@@ -1,0 +1,56 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <script type="text/javascript">
+    //<![CDATA[
+    GlobalConfig={
+      staticUrl : "{% static '' %}",
+      siteUrl : "{{ SITE_URL }}",
+      gtm_id : "{{ GTM_ID }}",
+      featureOptions : [{{ FEATURES|safe }}],
+      splitTestGroups : {},
+      userId : {{ user.id|default:"-1" }},
+      authenticated: {{ user.is_authenticated|lower }},
+      admin: {{ user.is_superuser|lower }},
+      staff: {{ user.is_staff|lower }},
+      debug: {{ DEBUG|default:"false" }}
+    };
+    //]]>
+    </script>
+   {%  if HJID  %}
+    <!-- Hotjar Tracking Code for https://staging.rippleenergy.com -->
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:{{ HJID }},hjsv:{{ HJSV }} };
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+    {% endif %}
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <link rel="alternate" hreflang="en_GB" href="{{ SITE_URL }}{{ request.path }}" />
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    {%  block open_graph %}
+    {% endblock %}
+    {%  block theme %}
+    {% endblock %}
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv-printshiv.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/3.4.0/es5-shim.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/3.4.0/es5-sham.js"></script>
+    <![endif]-->
+    <title>{{ title|default:"Ripple Framework" }}</title>
+    <meta name="description" content="{{ description|default:"Ripple Framework using Django, React, Bootstrap etc." }}">
+</head>
+<body>
+{% block main %}{% endblock %}
+</body>
+</html>
