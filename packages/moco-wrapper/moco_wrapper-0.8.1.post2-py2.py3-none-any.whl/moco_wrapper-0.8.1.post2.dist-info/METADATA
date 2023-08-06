@@ -1,0 +1,345 @@
+Metadata-Version: 2.1
+Name: moco-wrapper
+Version: 0.8.1.post2
+Summary: Wrapper package for using the moco api interface
+Home-page: https://github.com/sommalia/moco-wrapper
+Author: sommalia
+Author-email: sommalia@tuta.io
+License: GNU General Public License v3
+Keywords: moco_wrapper
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.5.0
+Requires-Dist: requests
+
+============
+moco-wrapper
+============
+
+.. image:: https://img.shields.io/pypi/v/moco_wrapper.svg
+        :target: https://pypi.python.org/pypi/moco_wrapper
+
+.. image:: https://img.shields.io/travis/sommalia/moco-wrapper.svg
+        :target: https://travis-ci.org/sommalia/moco-wrapper
+
+This is a client implementation of the moco api written in python3.
+
+Installation
+------------
+
+From pypi
+#########
+
+The moco-wrapper package is available via `pip <https://pypi.org/project/moco-wrapper/>`_.
+
+.. code-block:: shell
+
+    $ pip3 install moco-wrapper
+
+From Source
+###########
+
+If dont want to use pip you can clone this repository and install it from the source.
+
+.. code-block:: shell
+
+    $ git clone https://github.com/sommalia/moco-wrapper moco-wrapper
+    $ cd ./moco-wrapper
+    $ pip3 install -r requirements_dev.txt
+    $ make install
+
+
+Quickstart
+----------
+
+If you already have credentials or an api key you can instantiate your moco-wrapper object like so:
+
+.. code-block:: python
+
+    import moco_wrapper
+    moco = moco_wrapper.Moco(auth={
+        "api_key": "[MY API KEY]",
+        "domain": "example" # domain of the moco webapp is example.mocoapp.com
+    })
+
+With the moco wrapper object you can now interact with moco.
+
+.. code-block:: python
+
+    # load a list of users
+    users = moco.User.getlist().items
+
+    # load the second page of our list of users
+    # requests with lists are paginated
+    # default limit is 100 items per request
+    user = moco.User.getlist(page=2).items
+
+    # create a project
+    leader = moco.User.getlist().items[0]
+    customer = moco.Company.getlist(type="customer").getlist().items[0]
+    project = moco.Project.create(
+        name = "my new project",
+        currency = "EUR",
+        leader_id = leader.id,
+        customer_id = customer.id,
+        finish_date = date(2020, 1, 1)
+    )
+
+    # update a contact
+    moco.Contact.update(
+        contact_id = 55123,
+        lastname = "doe"
+    )
+
+    # add a task to a project
+    task = moco.Task.create(
+        project_id = project.id,
+        name = "My new task"
+    )
+
+    # create a new customer
+    new_customer = moco.Company.create(
+        name = "my new customer company",
+        company_type = moco_wrapper.models.company.CompanyType.CUSTOMER
+    )
+
+For an overview about all the things that can and cannot be done see
+`The Moco Instance <https://moco-wrapper.readthedocs.io/en/latest/code_overview/moco_instance.html>`_.
+
+Tests
+-----
+
+There are two types of tests in this repo. *unit*-tests with no side effects
+and *integration*-tests that require an actual moco instance (if you want to recreate the cached responses).
+
+Unit
+####
+
+These tests check whether all methods can be called correctly, use the
+right HTTP method, have the right headers and format everything correctly for the API.
+These tests have no side effects and can be run via pytest:
+
+.. code-block:: shell
+
+    $ python3 -m pytest tests/unit
+
+
+Integration
+###########
+
+The second group of tests are the *integration* tests.
+These tests use the betamax package, send actual requests to a moco instance and save the response locally (see tests/integration/cassettes/).
+These tests can also be run via pytest:
+
+.. code-block:: shell
+
+    $ python3 -m pytest tests/integration
+
+Recreating the tests results
+****************************
+
+If you want to recreate these tests make sure you have the following setup:
+
+* A working, clean moco instance (eg. example.mocoapp.com)
+* An api key
+* Time to spare
+
+After that you have to export the following variables
+
+.. code-block:: shell
+
+    $ export mocotest_apikey=[MY API KEY]
+    $ export mocotest_domain=example
+    $ export mocotest_delay=1 # enable delay between tests
+
+The *mocotest_delay* variable will make sure that the api, does not rate limit our test-run
+by waiting 5 seconds between the execution of each single test.
+
+**Caution:** Make sure you run the integration tests (if you recreate the results) on a clean moco instance,
+as some requests (delete. create and update requests) have side effects, that cannot be reversed easily.
+
+Now that everything is set up we delete the saved responses and re-run the tests.
+
+.. code-block:: shell
+
+    $ rm tests/integration/cassettes/*.json
+    $ python3 -m pytest tests/integration
+
+
+Documentation
+-------------
+
+The full documentation for the moco-wrapper is located at `<https://moco-wrapper.readthedocs.io/>`_.
+
+
+License
+-------
+
+This project is licensed under the GNU Public License - see the `LICENSE`_  file for details
+
+
+Credits
+-------
+
+This package was created with `Cookiecutter`_ and the `audreyr/cookiecutter-pypackage`_ project template.
+This package tries to imitate the way that the `praw-package`_, for wrapping around the reddit api, was structured
+
+.. _`Cookiecutter`: https://github.com/audreyr/cookiecutter
+.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+.. _`praw-package`: https://github.com/praw-dev/praw
+.. _`LICENSE`: https://github.com/sommalia/moco-wrapper/blob/master/LICENSE
+.. _`moco-api-readme`: https://github.com/hundertzehn/mocoapp-api-docs
+
+
+
+
+
+=======
+History
+=======
+
+0.8.1 (2020-11-17)
+------------------
+
+* Removed Project from Schedules (only used for Absences)
+* Cleanup tests
+* Added deal parameter to project create and update
+* Implemented invoice send_email endpoint
+* Implemented hourly rates endpoint
+
+
+0.8.0 (2020-06-28)
+------------------
+
+* New Readme
+* Add return types to documentation (for default configuration of moco instance only)
+* Implement Purchase model
+* Allow overwrite of http headers from model classes
+* Fix some typos in method names (offer item generator) and parameter (user holidays)
+
+
+0.7.2 (2020-06-05)
+------------------
+
+* Implement update_status endpoint of offer model
+
+0.7.1 (2020-05-30)
+------------------
+
+* Create new Releases with bumpversion
+* Implemented tags parameter in invoice creation
+
+0.7.0 (2020-05-27)
+------------------
+
+* Implemented Planning Entries
+* Add credit/debit number to Company
+* Add footer to Company
+* Add deal property to Project objector model
+
+0.6.3 (2020-04-29)
+------------------
+
+* Cleanup
+* Fixed example code in documentation
+* Fixed various typos
+* Implemented contact lookup by phone number and term
+
+0.6.2 (2020-03-24)
+------------------
+
+* Query strings conversion into lower case
+
+0.6.1 (2020-03-18)
+------------------
+
+* Implement support for days parameter in User holidays
+* Implement Purchase Categories
+
+0.6.0 (2020-03-07)
+------------------
+
+* Implemented Paging of Listing Models
+* Implemented the creation of fixed price projects
+* Implement Project Payment Schedules for fixed price projects
+* More Documentation and even more code cleanup
+
+0.5.0 (2020-02-29)
+------------------
+
+* Implement authentication via email and password (note that the class constructor also changed, if you do not want that continue to ues the previus version (0.4.1))
+* Create readthedocs documentation (see https://moco-wrapper.readthedocs.io)
+* Error Responses are now converted into actual Exceptions that are raised
+* Code Cleanup
+
+0.4.1 (2020-02-24)
+------------------
+
+* Implemented impersonation
+* Fixed makefile (make test does work now if you have the required packages installed)
+* Created documentation see (https://moco-wrapper.readthedocs.io/en/latest/)
+* Added named arguments requestor and objector to moco_instance constructor (Setting the requestor via moco.http is no longer possible, user moco.requestor)
+* Removed cli component
+
+
+0.4.0 (2020-02-19)
+------------------
+
+* Finished reworking all the integration tests
+* Prefixed Employment, Holiday and Presense with "User" for clarification
+* Moved duplicated methods id_generator and create_random date into base class
+* Implented additional requestor that only tries once to request the api endpoint (no retrying)
+* Main moco object moved to namespace moco_wrapper.moco
+* Changed author email
+
+
+0.3.0 (2020-02-17)
+------------------
+
+* Create github workflow to automaticly deploy to PyPI
+* Implement an objector to control how the json responses get converted back into python objects (some endpoints return data that contain reserved python keywords, this was implemented to circumvent that)
+* More Tests and more type hinting
+* Write the history of the last versions
+* Change the order of things in this history file
+* Implement offer creation
+
+0.2.3 (2020-02-09)
+------------------
+
+* Implement FileResponses for downloading pdf files from api
+* Implement invoice class api changes
+* More tests
+
+0.2.2 (2020-01-12)
+------------------
+
+* Start implementing type hinting
+* Switch to support python3 only
+* Remove company delete method, as it is not support by the api
+* More Tests
+
+0.2.1 (2020-01-10)
+------------------
+
+* More tests
+
+0.1.0 (2019-09-04)
+------------------
+
+* First release on PyPI.
+
+
+
+
+
+
+
+
+
