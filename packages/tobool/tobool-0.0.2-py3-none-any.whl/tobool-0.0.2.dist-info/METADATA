@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: tobool
+Version: 0.0.2
+Summary: convert any boolean-like value such as string, int, etc. to an actual bool
+Home-page: https://github.com/jamesabel/tobool
+Author: abel
+Author-email: j@abel.co
+License: MIT License
+Download-URL: https://github.com/jamesabel/tobool
+Keywords: boolean
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+
+
+# tobool
+
+Convert many different representations of a bool to an actual bool or a None
+
+# Usage
+
+```
+pip install tobool
+
+from tobool import to_bool
+
+# Examples:
+print(to_bool("True"))  # True
+print(to_bool("False"))  # False
+print(to_bool("Yes"))  # True
+print(to_bool("T"))  # True
+print(to_bool(1))  # True
+print(to_bool("None"))  # None
+
+```
+
+
