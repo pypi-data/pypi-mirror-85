@@ -1,0 +1,38 @@
+**********************
+Predict Models
+**********************
+
+.. _installing-docdir:
+
+Predicting Models
+-----------------
+Import the required modules for the regression::
+
+    from sklearn.ensemble import RandomForestRegressor
+    from sklearn.linear_model import LinearRegression
+    from sklearn.metrics import mean_squared_error
+    from sklearn.tree import DecisionTreeRegressor
+
+Load the training dataset used to train the models and test dataset to
+score the pre-trained models. Write algorithms of pre-trained models 
+fitted using the training datasets. Then use the test dataset to predict
+values using the pre-trained model.
+linear regression::
+
+    lin_reg = LinearRegression()
+    lin_reg.fit(x_train, y_train)
+    lin_reg_predictions = lin_reg.predict(x_test)
+
+
+Decision Tree Regression::
+
+    tree_reg = DecisionTreeRegressor()
+    tree_reg.fit(x_train, y_train)
+    tree_reg_predictions = tree_reg.predict(x_test)
+
+
+Random Forest Regression::
+
+    forest_reg = RandomForestRegressor()
+    forest_reg.fit(x_train, y_train)
+    forest_reg_predictions = forest_reg.predict(x_test)
