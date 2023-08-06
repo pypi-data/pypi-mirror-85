@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+
+"""
+<sphinx>
+load-average
+------------
+
+Checks if the load average is not below specified number
+
+Parameters:
+
+- max_load (unit: processor cores, example: 5.0, default: 1)
+- timing (default: 15. The load average time: 1, 5, 15)
+</sphinx>
+"""
+
+import os
+import sys
+import inspect
+
+path = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe()))) + '/../../'
+sys.path.insert(0, path)
+
+from infracheck.infracheck.checklib.loadavg import BaseLoadAverageCheck
+
+
+class LoadAverageAuto(BaseLoadAverageCheck):
+    def main(self, timing: str, max_load: float):
+        current_load_average = self.get_load_average(timing)
+
+        if current_load_average > max_load:
+            return False, "Load {:.2f} exceeds allowed max. load of {:.2f}. Current load: {:s}".format(
+                current_load_average, max_load, self.get_complete_avg()
+            )
+
+        return True, "Load at level of {:.2f} is ok, current load: {:s}".format(
+            current_load_average, self.get_complete_avg())
+
+
+if __name__ == '__main__':
+    app = LoadAverageAuto()
+    status, message = app.main(
+        timing=os.getenv('TIMING', '15'),
+        max_load=float(os.getenv('MAX_LOAD', 1))
+    )
+
+    print(message)
+    sys.exit(0 if status else 1)
+
