@@ -1,0 +1,87 @@
+Metadata-Version: 2.1
+Name: pelican-math-svg
+Version: 0.1.3
+Summary: Render math expressions to svg and embed them.
+Home-page: https://github.com/f-koehler/pelican-math-svg
+License: GPLv3
+Keywords: pelican,plugin
+Author: Fabian Köhler
+Author-email: fabian.koehler@protonmail.ch
+Requires-Python: >=3.6,<4.0
+Classifier: Development Status :: 1 - Planning
+Classifier: Environment :: Console
+Classifier: Framework :: Pelican
+Classifier: Framework :: Pelican :: Plugins
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: Other/Proprietary License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Provides-Extra: markdown
+Requires-Dist: markdown (>=3.2.2,<4.0.0); extra == "markdown"
+Requires-Dist: pelican (>=4.5,<5.0)
+Project-URL: Documentation, https://docs.getpelican.com
+Project-URL: Funding, https://donate.getpelican.com/
+Project-URL: Issue Tracker, https://github.com/f-koehler/pelican-math-svg/issues
+Project-URL: Repository, https://github.com/f-koehler/pelican-math-svg
+Description-Content-Type: text/markdown
+
+# math-svg: A Plugin for Pelican
+
+[![PyPI Version](https://img.shields.io/pypi/v/pelican-math-svg)](https://pypi.org/project/pelican-math-svg/) ![License](https://img.shields.io/pypi/l/pelican-math-svg?color=blue)
+
+Render math expressions to svg and embed them.
+
+## Installation
+
+This plugin can be installed via:
+
+```shell
+python -m pip install pelican-math-svg
+```
+
+This plugin depends `tex2svg` from the [`mathjax-node-cli`](https://github.com/mathjax/mathjax-node-cli) module that relies on the official [`MathJax-node`](https://github.com/mathjax/MathJax-node) module.
+This can be easily installed using `yarn`
+
+```shell
+yarn global add mathjax-node-cli
+```
+
+or `npm`
+
+```shell
+npm install -g mathjax-node-cli
+```
+
+
+## Roadmap
+
+* [x] Markdown support
+  * [x] inline
+  * [x] display
+* [ ] RST support
+  * [ ] inline
+  * [ ] display
+* [x] cache rendered SVG
+* [ ] plugin settings
+* [ ] unit tests
+* [x] type annotations
+
+## Contributing
+
+Contributions are welcome and much appreciated. Every little bit helps. You can contribute by improving the documentation, adding missing features, and fixing bugs. You can also help out by reviewing and commenting on [existing issues][].
+
+To start contributing to this plugin, review the [Contributing to Pelican][] documentation, beginning with the **Contributing Code** section.
+
+[existing issues]: https://github.com/f-koehler/pelican-math-svg/issues
+[Contributing to Pelican]: https://docs.getpelican.com/en/latest/contribute.html
+
+## License
+
+This project is licensed under the GPLv3 license.
+
