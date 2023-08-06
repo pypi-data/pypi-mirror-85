@@ -1,0 +1,105 @@
+Metadata-Version: 2.1
+Name: a2od
+Version: 0.0.5
+Summary: Convert Anki style flashcards to Emacs org-drill format
+Home-page: https://github.com/yfe404/anki2orgdrill
+Author: Yann Feunteun
+Author-email: yann.feunteun@protonmail.com
+License: UNKNOWN
+Description: 
+        # Table of Contents
+        
+        1.  [anki2orgdrill](#org16aa707)
+            1.  [What are flashcards ?](#orgacb78d5)
+            2.  [What is Anki ?](#org00ee51f)
+            3.  [What is org-drill ?](#org96d902c)
+            4.  [Features](#orgdaf61d2)
+            5.  [Installation](#org0061677)
+            6.  [Usage](#org6c59d99)
+                1.  [Example](#orge9cc94e)
+            7.  [References](#org28994ef)
+        
+        
+        <a id="org16aa707"></a>
+        
+        # anki2orgdrill
+        
+        
+        <a id="orgacb78d5"></a>
+        
+        ## What are flashcards ?
+        
+        From Wikipedia: 
+        
+        A flashcard or flash card is a card bearing information, as words or numbers, on either or both sides, used in classroom drills or in private study. One writes a question on a side and an answer overleaf. Flashcards can bear vocabulary, historical dates, formulae or any subject matter that can be learned via a question-and-answer format. Flashcards are widely used as a learning drill to aid memorization. They are often associated with spaced repetition, i.e. reviewed at expanding time intervals. 
+        
+        
+        <a id="org00ee51f"></a>
+        
+        ## What is Anki ?
+        
+        Anki is a spaced repetition flashcard program.
+        
+        
+        <a id="org96d902c"></a>
+        
+        ## What is org-drill ?
+        
+        Org-Drill is an extension for Org mode. Org-Drill uses a spaced repetition algorithm to conduct interactive "drill sessions", using org files as sources of facts to be memorised. 
+        
+        
+        <a id="orgdaf61d2"></a>
+        
+        ## Features
+        
+        Convert a single export file in plain text from Anki to a single 
+        file in org-drill format.
+        
+        **Currently, only two-sided cards are supported.**
+        
+        
+        <a id="org0061677"></a>
+        
+        ## Installation
+        
+            pip install a2od
+        
+        
+        <a id="org6c59d99"></a>
+        
+        ## Usage
+        
+            Usage: a2od convert [OPTIONS] SRC DST
+            
+              Convert Anki style flashcards to Emacs org-drill format.
+            
+              params:   src: Anki Cards in plain text export.   dst: Destination org
+              file.
+            
+            Options:
+              --help  Show this message and exit.
+        
+        
+        <a id="orge9cc94e"></a>
+        
+        ### Example
+        
+            a2od convert ~/Downloads/AllDecks.txt decks.org
+        
+        
+        <a id="org28994ef"></a>
+        
+        ## References
+        
+        -   <https://en.wikipedia.org/wiki/Flashcard>
+        -   <https://en.wikipedia.org/wiki/Anki_(software)>
+        -   <https://orgmode.org/worg/org-contrib/org-drill.html>
+        -   <https://orgmode.org/>
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
