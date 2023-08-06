@@ -1,0 +1,48 @@
+Metadata-Version: 2.1
+Name: rotate_matrix
+Version: 0.0.4
+Summary: Rotate any matrix of any type, either clockwise or anti-clockwise instantly.
+Home-page: https://github.com/Naninture/rotate_matrix.git
+Author: Udipta/Naninture
+Author-email: uddipta2255@gmail.com
+License: MIT
+Download-URL: https://github.com/Naninture/rotate_matrix/archive/0.0.4.tar.gz
+Description: # ROTATE MATRIX:
+        ## Install: 
+        
+        Install it using:
+        
+                     pip install rotate-matrix
+        
+        Rotate any matrix/multi-dimentional array of any type, either clockwise or anti-clockwise instantly. 
+        
+        Contains two functions:
+        
+        ### 1)  clockwise(): Takes l as parameter which is of type list, and pases the clockwised rotated version list l.
+                    import rotate_matrix
+                    l = [[1,2,4,3],[7,8,5,6],[8,6,5,4]]
+                    print(rotate_matrix.clockwise(l))
+                    
+         ### Output:
+                    [(3, 6, 4), (4, 5, 5), (2, 8, 6), (1, 7, 8)]
+        
+        ### 2) anti-clockwise(): Takes l as parameter which is of type list, and passes the anti-clockwise rotated version of list l.
+                     import rotate_matrix
+                    l = [[1,2,4,3],[7,8,5,6],[8,6,5,4]]
+                    print(rotate_matrix.anti_clockwise(l))
+        ### Output:
+                   [(8, 7, 1), (6, 8, 2), (5, 5, 4), (4, 6, 3)]
+        
+        
+        
+        
+        
+        
+Keywords: matrix,rotate matrix,rotate 2D array,rotate array
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Education
+Classifier: Operating System :: Microsoft :: Windows :: Windows 10
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
