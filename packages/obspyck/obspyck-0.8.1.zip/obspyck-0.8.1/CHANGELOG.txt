@@ -1,0 +1,101 @@
+master:
+ - ..
+
+0.8.1
+ - fix reading QuakeML after Python3 port (see #98)
+ - fix calling hyp2000 binary after Python3 port (see #99)
+
+0.8.0
+ - port to Python 3 and Qt 5 (see #96)
+
+0.7.2
+ - also fetch picks-only events from Jane (see #95)
+
+0.7.1
+ - minor fixes and changes (see #94)
+
+0.7.0
+ - try to be even more robust when reading lat/lon from Hyp2000 output
+ - switch all event fetching/pushing to Jane (see #93)
+
+0.6.2
+ - fix latitude/longitude sign for Southern/Western hemisphere when loading in
+   Hyp2000 output
+ - add example station combination for oklahoma 2011 Ml 5.7 earthquake
+
+0.6.1
+ - start up obspyck even if pluginpath is not a valid directory (see #91)
+ - fix spectrogram plot (correct the offset adjustment, see #92)
+
+0.6.0
+ - avoid error when special use case key `test_event_server_jane` is not
+   present (see #71)
+ - add possibility to specify complex, time-dependent station combinations
+   (see #73)
+ - avoid errors when encountering arrivals without a residual time (see #52)
+ - add experimental option for reviewing all picks in a given catalog (as
+   opposed to normal operation which only considers the first event in a loaded
+   catalog file, see #50)
+ - enable opting for physical unit conversion switch to go to displacement or
+   acceleration (so far always was converting to velocity; see #43)
+ - use obspy read_inventory() and Inventory/Response objects internally for
+   all metadata, regardless of source (see #77)
+ - reimplement AR picker (see #75)
+ - make reference time given on command line the zero-time on time axis always
+   (so far if an offset was given the zero time was equal to reference time
+   plus offset, see #78)
+ - save raw waveform data and station metadata in current obspyck instance's
+   temporary directory for easy reuse (see #79)
+ - taper settings (applied before any filtering) can now be controlled via
+   config file (see #80)
+ - speed up magnitude calculation by reusing unchanged station magnitudes when
+   updating the network magnitude while changing magnitude picks on one station
+   (see #88)
+
+0.5.1
+ - fix getting metadata via arclink (see #65)
+ - make it possible to set default filter corners via config file (see #66)
+ - enable parallel event upload/replacement/deletion on seishub and jane
+   (see #67)
+ - fix Qt application Window icon (see #68)
+
+0.5.0
+ - add support for magnitude estimation for data fetched from an FDSN server
+   (using full response)
+ - depending on obspy >=1.1.0 now
+ - add support for scrolling along time axis with mouse wheel + modifier
+   (by default "alt" key, see #45)
+ - fix station metadata output in hypo71 format (for location routines)
+   for longitude <0 (see #47)
+ - fix horizontal errors read after hyp2000 location (conversion from km to m
+   was missing, see #48)
+ - add possibility to use other phase names besides the default "P" and "S" in
+   picking. this is highly experimental, especially when using location
+   routines most internals are very likely still using hard coded "P" and "S"
+   values, but for picking and saving to QuakeML only this reportedly works
+   (see #36).
+ - also show picks in the GUI that lack location code in the corresponding
+   QuakeML file (but such picks will not be associated to any one of the
+   Stream's axes, so it will not be possible to modify or delete them via the
+   GUI, see #49 and #51)
+
+0.4.1
+ - fix minor bug that prevents 0.4.0 from running
+ - switch obspy dependency version from >=1.* to >1.0.3 (the import reroutes in
+   obspy 1.0.x break the monkey patching of event object classes in obspyck)
+
+0.4.0
+ - add support for fetching data from a seedlink server
+ - set meaningful creation info including obspyck+obspy version numbers on all
+   event objects
+ - fix a bug with beachball function naming in 0.3.0 (likely to lead to
+   RunTimeErrors)
+
+0.3.0
+ - switch obspy dependency version from 0.10.* to 1.*
+
+0.2.0
+ - packaging cleanup
+
+0.1.0
+ - initial release with proper package structure and versioning
