@@ -1,0 +1,362 @@
+Metadata-Version: 2.1
+Name: lazy-network-engineer-jaaacck
+Version: 0.1a0
+Summary: Lots of scripts and APIs bundled together in one easy to use CLI
+Home-page: https://github.com/jaaacck/lazy-network-engineer
+Author: Jack Houlden
+Author-email: xjackh@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.5.2
+Description-Content-Type: text/markdown
+
+# Lazy Network Engineer (LNE)
+
+Lazy Network Engineer (lne) is an amalgamation of tools and APIs put together in one easy to use script
+
+## Features
+
+### Subnet Calculator
+
+Basic subnet calculator
+
+#### Example
+
+```
+jack@jumpbox:~/python/lazy-network-engineer(master⚡) » python3 main.py -sc 10.7.90.24/27
+╒══════════════╤═════════════════╕
+│ Address      │ 10.7.90.24      │
+├──────────────┼─────────────────┤
+│ Mask         │ 255.255.255.224 │
+├──────────────┼─────────────────┤
+│ CIDR         │ 10.7.90.24/27   │
+├──────────────┼─────────────────┤
+│ Network      │ 10.7.90.0       │
+├──────────────┼─────────────────┤
+│ Broadcast    │ 10.7.90.31      │
+├──────────────┼─────────────────┤
+│ Wildcard     │ 0.0.0.31        │
+├──────────────┼─────────────────┤
+│ Usable hosts │ 30              │
+╘══════════════╧═════════════════╛
+
+```
+
+### IP WHOIS
+
+https://stat.ripe.net/docs/data_api
+
+#### Example
+
+Using RIPE database run a WHOIS against the IP provided
+
+```
+jack@jumpbox:~/python/lazy-network-engineer(master⚡) » python3 main.py --whois 213.146.141.1
++-----------------+----------------------------------------------+
+|   IP Address    |                213.146.141.1                 |
++=================+==============================================+
+| Prefix          | 213.146.141.0/24                             |
++-----------------+----------------------------------------------+
+| Base Prefix     | 213.146.128.0/19                             |
++-----------------+----------------------------------------------+
+| Network Name    | I-SENTRAL-HOSTING-1                          |
++-----------------+----------------------------------------------+
+| Description     | I-SENTRAL SECURITY LTD (ATL) Managed Hosting |
++-----------------+----------------------------------------------+
+| ASN             | 13009                                        |
++-----------------+----------------------------------------------+
+| ASN Description | Redcentric Plc                               |
++-----------------+----------------------------------------------+
+| Maintainer      | VDATA-MNT                                    |
++-----------------+----------------------------------------------+
+| Country Code    | GB                                           |
++-----------------+----------------------------------------------+
+
+```
+
+### IP Reputation
+
+Uses API from https://www.abuseipdb.com/
+
+Provides an "Abuse Score" - the closer to 100 the more confidence you can have that the abuses reported are correct. All abuses are use reported, mostly automatically by Fail2Ban.
+
+Also displays the last few reports on the IP requested
+
+The domain provided is not the PTR record but what the end user has reported it as.
+
+#### Example
+
+```
+jack@jumpbox:~/python/lazy-network-engineer(master⚡) » python3 main.py -r 45.146.164.166
++-------------------------+----------------------------------------------------+
+|       IP Address        |                   45.146.164.166                   |
++=========================+====================================================+
+| Domain                  | mastercommunications.ru                            |
++-------------------------+----------------------------------------------------+
+| ISP                     | Mastercom LLC                                      |
++-------------------------+----------------------------------------------------+
+| Country                 | RU                                                 |
++-------------------------+----------------------------------------------------+
+| Abuse Score             | 100                                                |
++-------------------------+----------------------------------------------------+
+| Total Reports (90 days) | 1606                                               |
++-------------------------+----------------------------------------------------+
+| Last Reported           | 2020-11-15T13:03:04+00:00                          |
++-------------------------+----------------------------------------------------+
+| Latest Reports          | Nov 15 13:03:01 scw-6657dc sshd[30568]:            |
+|                         | pam_unix(sshd:auth): authentication failure;       |
+|                         | logname= uid=0 euid=0 tty=ssh ruser=               |
+|                         | rhost=45.146.164.166                               |
+|                         | Nov 15 13:03:01 scw-6657dc sshd[30568]:            |
+|                         | pam_unix(sshd:auth): authentication failure;       |
+|                         | logname= uid=0 euid=0 tty=ssh ruser=               |
+|                         | rhost=45.146.164.166                               |
+|                         | Nov 15 13:03:03 scw-6657dc sshd[30568]: Failed     |
+|                         | password for invalid user admin from               |
+|                         | 45.146.164.166 port 8889 ssh2                      |
+|                         | ...                                                |
++-------------------------+----------------------------------------------------+
+
+```
+
+
+### BGP
+
+https://bgpview.docs.apiary.io/#reference/0/asn/view-asn-details?console=1
+
+#### ASN Lookup
+
+Runs an API call against BGPView for the AS provided. If more than 50 prefixes are advertised it will be truncated to save on space
+
+#### Example
+
+```
+jack@jumpbox:~/python/lazy-network-engineer(master⚡) » python3 main.py --asn 13009
++--------------------+---------------------------------------------------------+
+|        Name        |                        VData Ltd                        |
++====================+=========================================================+
+| ASN                | 13009                                                   |
++--------------------+---------------------------------------------------------+
+| Country            | GB                                                      |
++--------------------+---------------------------------------------------------+
+| Email Contact      | abuse@redcentricplc.com, peering@redcentricplc.com,     |
+|                    | support@redcentricplc.com,                              |
+|                    | darren.marshall@redcentricplc.com,                      |
+|                    | abuse@redcenticplc.com, sean.cavenay@redcentricplc.com  |
++--------------------+---------------------------------------------------------+
+| Abuse Contact      | abuse@redcentricplc.com, abuse@redcenticplc.com         |
++--------------------+---------------------------------------------------------+
+| Traffic Estimation | 5-10Gbps                                                |
++--------------------+---------------------------------------------------------+
+| IPv4 Prefixes      | 45.14.252.0/24, 46.235.168.0/21, 85.118.0.0/19,         |
+|                    | 91.209.34.0/24, 94.199.144.0/21, 151.147.184.0/24,      |
+|                    | 151.147.185.0/24, 151.147.186.0/24, 151.147.187.0/24,   |
+|                    | 178.250.96.0/21, 185.65.100.0/22, 185.81.160.0/22,      |
+|                    | 185.95.175.0/24, 188.95.128.0/21, 192.166.136.0/24,     |
+|                    | 193.164.114.0/24, 213.146.128.0/19, 216.245.64.0/18     |
++--------------------+---------------------------------------------------------+
+| IPv6 Prefixes      | 2a02:2998::/32, 2a03:a000::/32                          |
++--------------------+---------------------------------------------------------+
+```
+
+#### Peering Status
+
+
+
+### MAC Vendor Lookup
+
+Uses https://macvendors.com/api to get information on the MAC address vendor.
+
+#### REGEX
+
+It will match the MAC address against the below regex, which should match all common standards:
+
+```
+regex = ("^([0-9A-Fa-f]{2}[:-])" +
+        "{5}([0-9A-Fa-f]{2})|" +
+        "([0-9a-fA-F]{4}\\." +
+        "[0-9a-fA-F]{4}\\." +
+        "[0-9a-fA-F]{4})$")
+```
+#### Example
+
+```
+jack@jumpbox:~/python/lazy-network-engineer(master⚡) »python3 main.py --mac-lookup 18-31-BF-69-9D-46
+╒═══════════════════╤═══════════════════════╕
+│ MAC Address       │ Vendor                │
+├───────────────────┼───────────────────────┤
+│ 18-31-BF-69-9D-46 │ ASUSTek COMPUTER INC. │
+╘═══════════════════╧═══════════════════════╛
+
+```
+
+### Rate Limit Calculator
+
+Rate limit calculator based on Ciscos reccommendation - https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/qos_plcshp/configuration/15-mt/qos-plcshp-15-mt-book/qos-plcshp-oview.html
+
+#### Example
+
+```
+jack@jumpbox:~/python/lazy-network-engineer(master⚡) » python3 main.py -rl 1000000
++-----------------+---------+
+|    Function     |  Bits   |
++=================+=========+
+| Requested Speed | 1000000 |
++-----------------+---------+
+| Normal Burst    | 187500  |
++-----------------+---------+
+| Extended Burst  | 375000  |
++-----------------+---------+
+```
+
+### Bit Converter
+
+Take the given input and turn convert it into all the other data formats.
+
+5 decimal places for floating point numbers was chosen as it doesn't over complicate the output and also keeps some percision on the outputted variables. If you want more percision this can be supplied via a 2nd argument. This is detailed below
+
+This command should accept most inputs "100megabyte, 100Mb, 100mb, 100megabyte, 100bit, 100b, 100byte, 100B". If you're not using the full word make sure that you get your notation correct :)
+
+#### Example
+
+```
+jack@jumpbox:~/python/lazy-network-engineer(master⚡) » python3 main.py -c 100byte
+╒══════════╤═══════════╕
+│ Byte     │       100 │
+╞══════════╪═══════════╡
+│ Bit      │ 800.00000 │
+├──────────┼───────────┤
+│ Byte     │ 100.00000 │
+├──────────┼───────────┤
+│ Kilobit  │   0.78160 │
+├──────────┼───────────┤
+│ Kilobyte │   0.09760 │
+├──────────┼───────────┤
+│ Megabit  │   0.00076 │
+├──────────┼───────────┤
+│ Megabyte │   0.00010 │
+├──────────┼───────────┤
+│ Gigabit  │   0.00000 │
+├──────────┼───────────┤
+│ Gigabyte │   0.00000 │
+├──────────┼───────────┤
+│ Terabit  │   0.00000 │
+├──────────┼───────────┤
+│ Terabyte │   0.00000 │
+╘══════════╧═══════════╛
+
+```
+
+If you want to specify more decimal places than the standard 5, supply a 2nd value as an integer:
+
+```
+jack@jumpbox:~/python/lazy-network-engineer(master⚡) » python3 main.py -c 100byte 10
+╒══════════╤════════════════╕
+│ Byte     │            100 │
+╞══════════╪════════════════╡
+│ Bit      │ 800.0000000000 │
+├──────────┼────────────────┤
+│ Byte     │ 100.0000000000 │
+├──────────┼────────────────┤
+│ Kilobit  │   0.7816000000 │
+├──────────┼────────────────┤
+│ Kilobyte │   0.0976000000 │
+├──────────┼────────────────┤
+│ Megabit  │   0.0007629600 │
+├──────────┼────────────────┤
+│ Megabyte │   0.0000953674 │
+├──────────┼────────────────┤
+│ Gigabit  │   0.0000007451 │
+├──────────┼────────────────┤
+│ Gigabyte │   0.0000000931 │
+├──────────┼────────────────┤
+│ Terabit  │   0.0000000007 │
+├──────────┼────────────────┤
+│ Terabyte │   0.0000000001 │
+╘══════════╧════════════════╛
+
+```
+
+### SSL Checks
+
+Using the SSL Labs API to check SSL certs against the requested domain - https://www.ssllabs.com/projects/ssllabs-apis/index.html
+
+It will provide a rolling output as it scans each host against a domain and give you what stage it is on.
+
+Once the testing is completed it will provide you with the grades for each host and a link to the full report page
+
+#### Examples
+
+##### Progress 
+
+```
+jack@jumpbox:~/python/lazy-network-engineer(master⚡) » python3 main.py -ssl wintelguy.com
++----------+---------------+
+|   Host   | wintelguy.com |
++==========+===============+
+| Port     | 443           |
++----------+---------------+
+| Protocol | http          |
++----------+---------------+
+| Status   | IN_PROGRESS   |
++----------+---------------+
++------------+--------------+
+| IP Address | 3.222.63.253 |
++============+==============+
+| Status     | Ready        |
++------------+--------------+
+| Grade      | B            |
++------------+--------------+
+| Progress   | 100          |
++------------+--------------+
++--------------+------------------------+
+|  IP Address  |      34.234.60.54      |
++==============+========================+
+| Status       | In progress            |
++--------------+------------------------+
+| Current Step | TESTING_BLEICHENBACHER |
++--------------+------------------------+
+| Progress     | 90                     |
++--------------+------------------------+
+
+```
+
+##### Completion
+
+```
+jack@jumpbox:~/python/lazy-network-engineer(master⚡) » python3 main.py -ssl https://wintelguy.com
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++------------+-----------------------+
+|    Host    | https://wintelguy.com |
++============+=======================+
+| Port       | 443                   |
++------------+-----------------------+
+| Protocol   | http                  |
++------------+-----------------------+
+| IP Address | 3.222.63.253          |
++------------+-----------------------+
+| Grade      | B                     |
++------------+-----------------------+
+| Warnings   | 0                     |
++------------+-----------------------+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++------------+-----------------------+
+|    Host    | https://wintelguy.com |
++============+=======================+
+| Port       | 443                   |
++------------+-----------------------+
+| Protocol   | http                  |
++------------+-----------------------+
+| IP Address | 34.234.60.54          |
++------------+-----------------------+
+| Grade      | B                     |
++------------+-----------------------+
+| Warnings   | 0                     |
++------------+-----------------------+
+https://www.ssllabs.com/ssltest/analyze.html?d=https://wintelguy.com
+
+```
+
