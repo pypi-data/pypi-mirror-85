@@ -1,0 +1,64 @@
+Metadata-Version: 2.1
+Name: TOPSIS-Mitul-101803084
+Version: 0.0.2
+Summary: Package for Multiple-criteria decision-making using TOPSIS.Requires input file,weights and impacts. Returns dataframe with score and rank of every label.This package can help improve decision-making.
+Home-page: https://github.com/mitul01/topsis
+Author: Mitul Tandon
+Author-email: mitultandon56@gmail.com
+License: MIT
+Download-URL: https://github.com/mitul01/topsis/archive/v0.0.2.tar.gz
+Keywords: MCDA,TOPSIS,Data Science
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
+Requires-Dist: pandas
+Requires-Dist: numpy
+
+# Topsis
+
+
+## What is TOPSIS
+
+Technique for Order Preference by Similarity to Ideal Solution (TOPSIS) originated in the 1980s as a multi-criteria decision making method. TOPSIS chooses the alternative of shortest Euclidean distance from the ideal solution, and greatest distance from the negative-ideal solution.
+
+## Purpose
+
+Package for Multiple-criteria decision-making using TOPSIS. Requires input file,weights and impacts. Returns a data frame which has score and rank of every label. This package can help improve decision-making.
+
+### Use the package manager [pip](https://pip.pypa.io/en/stable/) to install Topsis-Mitul-101803084.
+
+```bash
+pip install Topsis-Mitul-101803084
+```
+
+## Usage
+
+```python
+from TOPSIS_Mitul_101803084 import Topsis_rank
+Topsis_rank("input.csv","1,1,1,2","+,+,+,-")
+# Outputs a dataframe with score and rank columns
+
+```
+```python
+from TOPSIS_Mitul_101803084 import Topsis_rank
+# if output file name is provided,output file is saved in your current directory
+Topsis_rank("input.csv","1,1,1,2","+,+,+,-","output.csv")
+# Dataframe named output.csv will be saved in your current directory.
+
+```
+## Things to take care
+
+1) Weights and Impacts provided as arguments should be separated by comma's and equal to number of numerical columns.
+2) Categorical columns are not supported yet. They should be dropped or feature engineered into numerical columns using techniques like One Hot encoding etc.
+3) First column should be label column.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
+
