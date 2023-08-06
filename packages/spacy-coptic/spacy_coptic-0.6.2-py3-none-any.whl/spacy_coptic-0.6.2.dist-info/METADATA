@@ -1,0 +1,74 @@
+Metadata-Version: 2.1
+Name: spacy-coptic
+Version: 0.6.2
+Summary: Coptic NLP wrapper for spaCy
+Home-page: https://github.com/KoichiYasuoka/spaCy-Coptic
+Author: Koichi Yasuoka
+Author-email: yasuoka@kanji.zinbun.kyoto-u.ac.jp
+License: MIT
+Project-URL: coptic-nlp, https://github.com/CopticScriptorium/coptic-nlp
+Project-URL: Source, https://github.com/KoichiYasuoka/spaCy-Coptic
+Project-URL: Tracker, https://github.com/KoichiYasuoka/spaCy-Coptic/issues
+Keywords: Coptic spaCy
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Topic :: Text Processing :: Linguistic
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: spacy (>=2.2.2)
+Requires-Dist: deplacy (>=1.8.1)
+
+[![Current PyPI packages](https://badge.fury.io/py/spacy-coptic.svg)](https://pypi.org/project/spacy-coptic/)
+
+# spaCy-Coptic
+
+[Coptic NLP](https://corpling.uis.georgetown.edu/coptic-nlp/) wrapper for [spaCy](https://spacy.io)
+
+## Basic Usage
+
+```py
+>>> import spacy_coptic
+>>> nlp=spacy_coptic.load()
+>>> doc=nlp("ⲙⲟⲟϣⲉ ϩⲱⲥ ϣⲏⲣⲉ ⲙ̄ⲡⲟⲩⲟⲉⲓⲛ")
+>>> for t in doc:
+...   print("\t".join([str(t.i+1),t.orth_,t.lemma_,t.pos_,t.tag_,"_",str(0 if t.head==t else t.head.i+1),t.dep_,"_","_" if t.whitespace_ else "SpaceAfter=No"]))
+...
+1	ⲙⲟⲟϣⲉ	ⲙⲟⲟϣⲉ	VERB	V	_	0	ROOT	_	_
+2	ϩⲱⲥ	ϩⲱⲥ	CCONJ	CONJ	_	3	mark	_	_
+3	ϣⲏⲣⲉ	ϣⲏⲣⲉ	NOUN	N	_	1	advcl	_	_
+4	ⲙ̄	ⲛ	ADP	PREP	_	6	case	_	SpaceAfter=No
+5	ⲡ	ⲡ	DET	ART	_	6	det	_	SpaceAfter=No
+6	ⲟⲩⲟⲉⲓⲛ	ⲟⲩⲟⲉⲓⲛ	NOUN	N	_	3	nmod	_	_
+>>> import deplacy
+>>> deplacy.render(doc,WordRight=True)
+ ROOT ╔═════════ VERB  ⲙⲟⲟϣⲉ
+ mark ║ ╔══════> CCONJ ϩⲱⲥ
+advcl ╚>╚═╔═════ NOUN  ϣⲏⲣⲉ
+ case     ║ ╔══> ADP   ⲙ̄
+  det     ║ ║ ╔> DET   ⲡ
+ nmod     ╚>╚═╚═ NOUN  ⲟⲩⲟⲉⲓⲛ
+```
+
+`spacy_coptic.load(api)` loads spaCy Language pipeline for Coptic NLP WebAPI. If you have already installed [coptic-nlp](https://github.com/CopticScriptorium/coptic-nlp) and you have `coptic_nlp.py` in the current directory, you can try the pipeline locally just as:
+
+```py
+>>> import spacy_coptic
+>>> from coptic_nlp import nlp_coptic
+>>> nlp=spacy_coptic.load(nlp_coptic)
+>>> doc=nlp("ⲙⲟⲟϣⲉ ϩⲱⲥ ϣⲏⲣⲉ ⲙ̄ⲡⲟⲩⲟⲉⲓⲛ")
+```
+
+## Installation
+
+```sh
+pip3 install spacy_coptic --user
+```
+
+## Installation for Google Colaboratory
+
+Try [notebook](https://colab.research.google.com/github/KoichiYasuoka/spaCy-Coptic/blob/master/spacy_coptic.ipynb).
+
+
+
