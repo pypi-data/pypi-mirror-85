@@ -1,0 +1,70 @@
+Metadata-Version: 2.1
+Name: stressrunner
+Version: 1.0.3
+Summary: A stressrunner similar as TextTestRunner for stress test, support for html report.
+Home-page: https://github.com/txu2k8/stress-runner
+Author: tao.xu
+Author-email: tao.xu2008@outlook.com
+License: MIT
+Keywords: stress,stressrunner,html,unittest
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.4.0
+Description-Content-Type: text/markdown
+Requires-Dist: bleach (==3.2.1)
+Requires-Dist: certifi (==2020.11.8)
+Requires-Dist: chardet (==3.0.4)
+Requires-Dist: colorama (==0.4.4)
+Requires-Dist: coloredlogs (==14.0)
+Requires-Dist: docutils (==0.16)
+Requires-Dist: humanfriendly (==8.2)
+Requires-Dist: idna (==2.10)
+Requires-Dist: keyring (==21.5.0)
+Requires-Dist: packaging (==20.4)
+Requires-Dist: pkginfo (==1.6.1)
+Requires-Dist: Pygments (==2.7.2)
+Requires-Dist: pyparsing (==2.4.7)
+Requires-Dist: pyreadline (==2.1)
+Requires-Dist: pywin32-ctypes (==0.2.0)
+Requires-Dist: readme-renderer (==28.0)
+Requires-Dist: requests (==2.25.0)
+Requires-Dist: requests-toolbelt (==0.9.1)
+Requires-Dist: rfc3986 (==1.4.0)
+Requires-Dist: six (==1.15.0)
+Requires-Dist: tqdm (==4.52.0)
+Requires-Dist: twine (==3.2.0)
+Requires-Dist: urllib3 (==1.26.2)
+Requires-Dist: webencodings (==0.5.1)
+
+# stress-runner
+A runner similar as TextTestRunner for stress test, support for html report.
+Based on unittest, support iterative exection, html report, send html report, etc.
+
+# Quick Start:
+A TestRunner for use with the Python unit testing framework. It
+generates a HTML report to show the result at a glance.
+The simplest way to use this is to invoke its main method. E.g.
+```python
+import unittest
+from stressrunner import StressRunner
+# define your tests
+
+if __name__ == '__main__':
+    StressRunner.main()
+```
+For more customization options, instantiates a StressRunner object.
+StressRunner is a counterpart to unittest's TextTestRunner. E.g.
+```python
+# output to a file
+from stressrunner import StressRunner
+
+runner = StressRunner(
+    report_path='./report/test.html',
+    test_title='My unit test',
+    desc='This demonstrates the report output by StressRunner.')
+```
+
+
