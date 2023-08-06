@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "metamore"
+version = "0.1.1"
+description = "Metamore is a command line tool that helps you manage your metadata."
+authors = ["voukau"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+piexif = "^1.1.3"
+click = "^7.1.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+mm = "metamore.main:cli"
