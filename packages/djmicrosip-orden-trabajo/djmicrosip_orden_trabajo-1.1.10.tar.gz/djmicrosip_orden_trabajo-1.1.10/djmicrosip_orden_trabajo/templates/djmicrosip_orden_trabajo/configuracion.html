@@ -1,0 +1,104 @@
+{% extends 'djmicrosip_orden_trabajo/base.html' %}
+{% block title %}
+CRM
+{% endblock %}
+<!-- CSS Code -->
+{% block style_css %}
+<style type="text/css">
+label{
+	width: 100%;
+}
+input{
+	width: 100%;
+}
+</style>
+{% endblock %}
+{% block modulestyle_css %}
+{% endblock %}
+<!-- JavaScript Code -->
+{% block js_code %}
+{% include 'autocomplete_light/static.html' %}
+<script src='{{STATIC_URL}}js/jquery.formset.js'></script>
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+  var OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "abe73585-28d8-4b4d-9fa7-ffcd40fd980f",
+    });
+
+	 OneSignal.getUserId(function(userId) {
+	   console.log("OneSignal User ID:", userId);
+	   /*$("#id_usuario_notificacion_set-0-id_onesignal").val(userId);*/
+		$.ajax({
+		url: '/pedidos/search_id/',
+		type: 'get',
+		data: {
+		'id': userId,
+		},
+		success: function (data) {
+			/*alert(data)*/
+			if(data=="Disponible"){
+
+			$( "input" ).last().val( userId);
+			}
+			}
+		});
+	   
+	 });
+  });
+</script>
+<script type="text/javascript">
+	$(function() {
+		$('.formset_row-{{ formset.prefix }}').formset({
+			addText: 'Agregar',
+			deleteText: 'Eliminar',
+			prefix: '{{ formset.prefix }}',
+
+		});
+	});
+	$(function () {
+	  $('[data-toggle="tooltip"]').tooltip()
+	});
+</script>
+{% endblock %}
+{% block selected_module %} Microsip {% endblock %}
+{% block breadcrumb %}
+{{ block.super }}
+<li><a>CONFIGURACION NOTIFICACIONES</a></li>
+{% endblock %}
+{% block content %}
+<div class="row">
+
+	<h1>{{vendedor}}</h1>
+		<form method="post" class="form" enctype='multipart/form-data'>
+			<div class="col-lg-12">
+				<div class="col-lg-4"><label>Id Onesignal</label></div>
+			</div>
+			<div class="col-lg-12">
+				  {% csrf_token %}    
+
+					{{ formset.management_form }}
+					{% for form in formset.forms %}
+					<div class="row formset_row-{{ formset.prefix }}">
+		     		{% for hid in form.hidden_fields %} {{hid}}{% endfor %} 
+		           	{{ form.errors }}
+		           	<div class="col-lg-4 col-xs-8">{{form.id_onesignal}}</div>
+					<div class="col-lg-1 col-xs-1"></div>
+					<div class="col-lg-2 col-xs-1">{% if form.instance.pk %}{{ form.DELETE }}{% endif %}</div>
+					<div class="col-lg-5 col-xs-4"></div>
+					<br>
+					</div>
+					{% endfor %}
+			</div>
+			<div class="col-md-12">
+				<br>
+				<br>
+				<button type="submit" class="btn btn-primary" id="guardar" />Guardar</button>
+			</div>
+
+		</form>
+		
+
+</div>
+{% endblock %}

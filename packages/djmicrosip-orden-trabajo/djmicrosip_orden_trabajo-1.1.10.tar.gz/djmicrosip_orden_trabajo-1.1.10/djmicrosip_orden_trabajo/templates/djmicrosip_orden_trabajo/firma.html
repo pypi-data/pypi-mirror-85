@@ -1,0 +1,79 @@
+{% extends "base_basic.html" %}
+{% block title %}{% endblock %}
+
+<!-- CSS Code -->
+{% block style_css %}
+<!-- <style type="text/css">
+         #container { display:block; }
+         @media only screen and (orientation:portrait){
+            #container {  
+                  -webkit-transform: rotate(90deg);
+                  -moz-transform: rotate(90deg);
+                  -o-transform: rotate(90deg);
+                  -ms-transform: rotate(90deg);
+                  transform: rotate(90deg);
+                 }
+ 
+         }
+         @media only screen and (orientation:landscape){
+            #container {  
+                  -webkit-transform: rotate(0deg);
+                  -moz-transform: rotate(0deg);
+                  -o-transform: rotate(0deg);
+                  -ms-transform: rotate(0deg);
+                  transform: rotate(0deg);
+                 }
+         }
+</style> -->
+{% endblock %}
+{% block modulestyle_css %}{% endblock %}
+<!-- JavaScript Code -->
+{% block js_code %}
+
+<script src='{{STATIC_URL}}djmicrosip_orden_trabajo/js/firma.js?v=1.0.19'></script>
+{% endblock %}
+{% block selected_module %} {% endblock %}
+{% block breadcrumb %}
+{{ block.super }}
+{% endblock %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<div id="container" >
+<form method="post" class="form" enctype='multipart/form-data'>
+  {% csrf_token %} 
+  <div class="row"> 
+  <div class="hidden-print col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left: 15px;">
+      <a style="font-size: 3rem;" href="/pedidos/" class="glyphicon glyphicon-home" aria-hidden="true"></a>
+      <button style="float: right; font-size: 3rem;" id="bt-clear" onclick="clearCanvas()" >Borrar</button>
+  </div>
+  </div>
+  <div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <canvas id="canvas" style="border: 1px solid #000; width: 100%; height: 250px;"></canvas>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+    <div class="gui">
+      <button style="font-size: 2.5rem" id="bt-save" onclick="sendToServer()">
+      {%if pedido.firma%}
+      Modificar Firma
+      {%else%}
+      Guardar Firma
+      {%endif%}
+      </button>
+    </div>
+    </div>
+    {{ form.errors }}
+    <div class="row text-center">
+    <img id="firma_image" src="{{MEDIA_URL}}{{pedido.firma}}" alt="No hay firma" style="width: 100%; height: 100px;">
+    <br>
+    <div class="hidden">
+    	{{ form}}
+    </div>
+    </div>
+  </div>
+  </div>
+</form>
+</div>
+{% endblock %}
