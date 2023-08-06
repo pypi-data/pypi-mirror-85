@@ -1,0 +1,22 @@
+<input type="hidden" class="iterable_name" name="source_tp_{{loop.index}}" value="excel">
+<label>Excel Path</label>
+<div class="fields">
+    <div class="field" style="width:95%">
+        <input type="text" class="iterable_name" name="source_excel_path_{{loop.index}}" placeholder="C://" value="{{connection.source.excel_path}}">
+    </div>
+    <div class="ui button iterable_id" style="width:10px;" id="source_excel_path_button_{{loop.index}}" onclick="file_button(this.id)">
+        <i class="file outline icon" style="padding-right:17px;"></i>
+    </div>
+</div>
+<div class="field">
+    <div class="two fields">
+        <div class="field">
+            <label>Sheet Name</label>
+            <input type="text" class="iterable_name" name="source_sheet_{{loop.index}}" placeholder="Sheet Name" value="{{connection.source.sheet}}">
+        </div>
+        <div class="field">
+            <label>Range</label>
+            <input type="text" class="iterable_name" name="source_rng_{{loop.index}}" placeholder="Range (A1 Notation)" value="{{connection.source.rng}}">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %} Stoffel {% endblock %}
+
+{% block body %} 
+<h1 class="ui header">Welcome to Stoffel!</h1>
+
+<h3 class="ui header">Introduction</h4>
+<p>
+    Stoffel is a tool that lets you capture spreadsheet cells as a picture and send it to a presentation. 
+    This tool was built to solve a pain financial modelers feel when they need to keep slide figures up-to-date with the most recent model ouptuts. 
+    Without Stoffel, this means tedious, time-consuming copying and pasting from the model to the presentation any time number change. 
+    With Stoffel, you can link the figures once and, with the click of a button, update the entire deck. 
+</p>
+
+<p>Stoffel currently only supports Microsoft Excel/Google Sheets as sources, and Microsoft Powerpoint/Google Slides as destinations, and will only work on Windows OS. </p>
+
+<h3 class="ui header">Usage</h4>
+<p>
+    Stoffel lets you create projects and add connections to those projects. 
+    When you click the "Run" button on a project page, it will run all the connections for that project. 
+    Helper icons next to inputs will allow you to select the file or you can type in the path or ID yourself. 
+</p>
+<p>Be sure to "Save" the project before you run it. </p>
+
+{% endblock %}
+

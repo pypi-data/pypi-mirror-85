@@ -1,0 +1,43 @@
+<input type="hidden" class="iterable_name" name="destination_tp_{{loop.index}}" value="slides">
+<div class="field">
+    <div class="fields">
+        <div class="field" style="width: 75%;">
+            <label>Presentation ID</label>
+            <input type="text" class="iterable_name" name="destination_presentation_id_{{loop.index}}" placeholder="Presentation ID" value="{{connection.destination.presentation_id}}">
+        </div>
+        <div class="field" style="width: 20%;">
+            <label>Page ID</label>
+            <input type="text" class="iterable_name" name="destination_page_id_{{loop.index}}" placeholder="Page ID" value="{{connection.destination.page_id}}">
+        </div>
+        <div class="ui button iterable_id" style="width:10px; margin-top:24px;" id="destination_presentation_id_button_{{loop.index}}" onclick="onApiLoad(this.id)">
+            <i class="google drive icon" style="margin-left:-8px;"></i>
+        </div>
+    </div>
+</div>
+<div class="field">
+    <div class="four fields">
+        <div class="field">
+            <label>Width</label>
+            <input type="number" class="iterable_name" step="0.01" name="destination_w_{{loop.index}}" placeholder="W" value="{{connection.destination.w}}">
+        </div>
+        <div class="field">
+            <label>Height</label>
+            <input type="number" class="iterable_name" step="0.01" name="destination_h_{{loop.index}}" placeholder="H" value="{{connection.destination.h}}">
+        </div>
+        <div class="field">
+            <label>X-Axis</label>
+            <input type="number" class="iterable_name" step="0.01" name="destination_x_{{loop.index}}" placeholder="X" value="{{connection.destination.x}}">
+        </div>
+        <div class="field">
+            <label>Y-Axis</label>
+            <input type="number" class="iterable_name" step="0.01" name="destination_y_{{loop.index}}" placeholder="Y" value="{{connection.destination.y}}">
+        </div>
+        <div class="field" style="margin-top:25px;">
+            <div class="ui checkbox">
+                <input type="checkbox" id="destination_resize_{{loop.index}}" class="iterable_id">
+                <input type="hidden" name="destination_resize_{{loop.index}}" value="{{connection.destination.resize}}" class="checkbox_helper iterable_name">
+                <label>Resize Image</label>
+            </div>
+        </div>
+    </div>
+</div>

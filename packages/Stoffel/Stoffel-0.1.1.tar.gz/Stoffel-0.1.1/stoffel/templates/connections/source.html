@@ -1,0 +1,37 @@
+<div class="column">
+    <h4 class="ui dividing header" style="color:blue;">
+        <div class="text iterable_id" style="display:inline-block;" id="source_title_{{loop.index}}">{{connection.source.tp | title}} ({{loop.index}})</div>
+        <div class="ui dropdown simple">
+            <i class="dropdown icon"></i>
+            <div class="menu">
+                <div class="item">Change Source
+                    <div class="menu">
+                        <div class='item iterable_id' id="source_excel_{{loop.index}}" onclick='update_source_destination(this.id)'>Excel</div>
+                        <div class='item iterable_id' id="source_sheets_{{loop.index}}" onclick='update_source_destination(this.id)'>Sheets</div>
+                    </div>
+                </div>
+                <div class='item iterable_id' id="source_openfile_{{loop.index}}" onclick='open_file(this.id)'>Open File</div>
+                <div class="divider"></div>
+                <div class="item">Copy
+                    <div class="menu">
+                        <div class="item iterable_id" id="copy_connection_{{loop.index}}" onclick="copy_connection(this.id)">Connection</div>
+                    </div>
+                </div>
+                <div class="item">Delete
+                    <div class="menu">
+                        <div class="item iterable_id" id="delete_connection_{{loop.index}}" onclick='delete_connection(this.id)'>Connection</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h4>
+    <div class="iterable_id" id="source_{{loop.index}}">
+        {% with connection=connection, loop=loop %}
+            {% if connection.source.tp == 'excel' %}
+                {% include 'connections/source/excel.html' %}
+            {% else %}
+                {% include 'connections/source/sheets.html' %}
+            {% endif %}
+        {% endwith %}
+    </div>
+</div>

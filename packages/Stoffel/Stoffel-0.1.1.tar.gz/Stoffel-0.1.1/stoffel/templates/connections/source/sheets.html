@@ -1,0 +1,22 @@
+<input type="hidden" class="iterable_name" name="source_tp_{{loop.index}}" value="sheets">
+<div class="fields">
+    <div class="field" style="width:95%;">
+        <label>Sheet ID</label>
+        <input type="text" class="iterable_name" name="source_sheet_id_{{loop.index}}" placeholder="Sheet ID" value="{{connection.source.sheet_id}}">
+    </div>
+    <div class="ui button iterable_id" style="width:10px; margin-top:24px;" id="source_sheet_id_button_{{loop.index}}" onclick="onApiLoad(this.id)">
+        <i class="google drive icon" style="margin-left:-8px;"></i>
+    </div>
+</div>
+<div class="field">
+    <div class="two fields">
+        <div class="field">
+            <label>Sheet Name</label>
+            <input type="text" class="iterable_name" name="source_sheet_{{loop.index}}" placeholder="Sheet Name" value="{{connection.source.sheet}}">
+        </div>
+        <div class="field">
+            <label>Range</label>
+            <input type="text" class="iterable_name" name="source_rng_{{loop.index}}" placeholder="Range (A1 Notation)" value="{{connection.source.rng}}">
+        </div>
+    </div>
+</div>

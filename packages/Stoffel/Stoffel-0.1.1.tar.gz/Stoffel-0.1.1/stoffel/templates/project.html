@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block title %} Stoffel {% endblock %}
+
+{% block head %}
+    <script src="{{ url_for('static', filename='connections.js')}}"></script>
+
+    <!--File Tree-->
+    <script src="{{ url_for('static', filename='jqueryFileTree.js')}}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='jqueryFileTree.css')}}"></link>
+
+{% endblock %}
+
+{% block body %} 
+<button class="ui primary button sticky" id="save">Save</button>
+<a class="positive ui button sticky" href="/run-project/{{project | urlencode}}">Run</a>
+<a class="red ui button sticky" href="/delete-project/{{project | urlencode}}">Delete</a>
+
+<h4 class="ui horizontal divider header">
+    Connections
+    <i class="plug icon"></i>
+
+</h4>
+
+<form class="ui form" id="connections" action="?" method="POST">
+    {% for ind, connection in data[project].items() %}
+        <div class="ui segment" class="iterable_id" id="connection_{{loop.index}}">
+            <div class="ui two column very relaxed grid">
+                {% with connection=connection, loop=loop %}
+                    {% include 'connections/source.html' %}
+                    {% include 'connections/destination.html' %}
+                {% endwith %}
+            </div>
+            <div class="ui vertical divider">
+                <i class="arrow alternate circle right outline icon large" style="vertical-align:middle; font-size:1.5em; margin: -10px 0 0 0"></i>
+            </div>
+        </div>
+    {% endfor %}
+</form>
+
+<div style="display:none;">
+    {% with connection={'source' : {'tp' : 'excel'},'destination' : {'tp' : 'powerpoint'}}, loop={'index' : 0} %}
+        <div class="ui segment" class="iterable_id" id="connection_0">
+            <div class="ui two column very relaxed grid">
+                {% with connection=connection, loop=loop %}
+                    {% include 'connections/source.html' %}
+                    {% include 'connections/destination.html' %}
+                {% endwith %}
+            </div>
+            <div class="ui vertical divider">
+                <i class="arrow alternate circle right outline icon large" style="vertical-align:middle; font-size:1.5em; margin: -10px 0 0 0"></i>
+            </div>
+        </div>
+    {% endwith %}
+</div>
+
+<div class="ui segment">
+    <button class="ui button" onclick="add_connection()">
+        Add Connection
+    </button>
+</div>
+
+<div id="file_modal" class="ui modal">
+    <h1 class="ui header">Select your file:</h1>
+    <div class="content">
+        <div class="file_container" id="file_tree" style="width:100%"></div>
+        <input type="hidden" id="file_tree_output"></input>
+    </div>
+</div>
+
+<div id="result"></div>
+
+<!--Google File Picker-->
+<script src="{{ url_for('static', filename='google.js')}}"></script>
+<script src="https://www.google.com/jsapi?key=AIzaSyDNRPFphQ7TxAqm7IgLp_C8wrFQCYCTjww"></script>
+<script src="https://apis.google.com/js/api.js"></script>
+
+<script>
+    checkbox_init(); 
+
+    //File Modal
+    $('#file_modal_button').click(function() {
+        $("#file_modal").modal('show')
+    });
+
+    //Click File button.
+    function file_button(file_id) {
+        console.log("clicked"); 
+        $("#file_modal").modal({
+            closable : true, 
+            onHidden : function() {
+                console.log($("#file_tree_output").val())
+                id = file_id.replace("button_", "")
+                console.log(id);
+                file = $("#file_tree_output").val().replace(/\//g, "\\")
+                
+                $("input[name='" + id + "']").val(file)
+            }
+        })
+        .modal('show'); 
+    }
+
+    //Save Button
+    $( "#save").click(function() {
+        $( "#connections").submit();
+    });
+
+    //Server File Structure
+    $(document).ready(function() {
+        $('#file_tree').fileTree({
+            root: '{{home}}',
+            script: 'file-tree',
+            expandSpeed: 300,
+            collapseSpeed: 300,
+            multiFolder: false
+        }, function(file) {
+            console.log(file); 
+            $("#file_tree_output").val(file)
+            $("#file_modal").modal("hide")
+        });
+    });
+
+
+
+</script>
+
+
+{% endblock %}
