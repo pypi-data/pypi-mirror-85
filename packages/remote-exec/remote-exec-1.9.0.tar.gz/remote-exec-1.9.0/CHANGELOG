@@ -1,0 +1,162 @@
+1.9.0
+-----
+* improve sync include/exclude API
+
+1.8.0
+-----
+* Introduce `.remoteignore.toml` file
+* Fix typo in `include_vcs_ignore_patterns` option name
+* Start using `shlex` to escape the shell command
+
+1.7.0
+-----
+* improve the internal port forwarding API
+
+1.6.1
+-----
+* add an API to set environment variables for the remote execution
+
+1.6.0
+-----
+* support source changes streaming with watchdog
+* add remote-explain CLI entry point
+* add --multi and --log flags to remote entry point
+* add --push and --pull flags to remote-ignore entyr point
+
+1.5.0
+-----
+* use TOML configs by default
+* new CLI option to select a host by label/index
+* new config option to provide custom port for SSH
+* .remoteenv usage fixes
+
+1.4.5
+-----
+* Select host by their label
+* Configure ssh connection options
+
+1.4.4
+-----
+* Add the host labeling in toml config files
+
+1.4.3
+-----
+* Fixed rsync bugs
+
+1.4.2
+-----
+* Add the possibility to start an ssh tunnel during the remote execution
+
+1.4.1
+-----
+* Fail ssh and rsync when password is requested by adding -o BatchMode=yes
+* add -K to rsync ssh command to make it homogenous with ssh
+* Support rsync's --include-from to make exclude overrides possible
+
+1.4.0
+-----
+* TOML config support
+* .gitignore files can be used as a source for sync ignore
+
+1.3.8
+-----
+* Unit tests
+* Releases with good versions
+
+1.3.7
+-----
+* Moving to pypi releases
+
+1.3.6
+-----
+* Fix reverse-sync breakage for remote-dirs without trailing /
+* Reverse-sync always, even when remote command fails
+
+1.3.5
+-----
+* Support for relative and absolute paths (including leading ~ and /) in remote directory
+* Support for global variables $RSHELL and $RSHELL_OPTS to configure remote shell invocation
+
+1.3.4
+-----
+* Support for choice of login shell and shell options for remote host in .remote file
+* Better initialization for mremote screen
+
+1.3.3
+-----
+* Fixing a bug in command execution for zsh based shells
+
+1.3.2
+-----
+* Fixing signal handling, cleanup of temp files
+* Fixing a bug in inferring verbose mode
+
+1.3.1
+-----
+* More comprehensive ignore rule specifications (push, pull, both) for .remoteignore files
+* Command-line argument improvements to remote, remote-push, remote-pull and remote-explain
+
+1.3.0
+-----
+* Adding command line flags for remote, remote-push
+* Dropping remote-push-dry since remote-push -n is an equivalent alternative.
+* Improving remote-explain output to include diff status
+
+1.2.7
+-----
+* remote-explain supports -c flag to test connection to the remote host
+
+1.2.6
+-----
+* Support for remote-explain, a tool to explain your remote setup
+
+1.2.5
+-----
+* Support for adding .remote related files to .gitignore
+
+1.2.4
+-----
+* More robust parameter parsing
+
+1.2.3
+-----
+* Support for initializing environment per remoted directory through .remoteenv file
+
+1.2.2
+-----
+* Fail fast when local directory is not setup for remote
+* Support kerberos auth (through ssh -K)
+
+1.2.1
+-----
+* New executables: remote-set, remote-host
+* mremote now uses screen
+
+1.2.0
+-----
+* Support for multiple-hosts
+* New executables: remote-add and mremote
+
+1.1.3
+-----
+* remote-pull: now pulls without syncing the trees
+* remote-quick: when you want to execute a command without syncing the trees
+
+1.1.2
+---
+* More fixes to md5 generation (verified to work on mac and linux)
+* Silent ssh connections for reduced verbosity
+
+1.1.1
+---
+* Robust in finding appropriate md5 utility
+
+1.1
+---
+* Added remote-pull
+* Moved remote-sync to remote-push
+
+1.0
+---
+* First drop
+
