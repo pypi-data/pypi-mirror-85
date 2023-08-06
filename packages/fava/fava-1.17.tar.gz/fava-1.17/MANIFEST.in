@@ -1,0 +1,9 @@
+# setuptools_scm ensure all required files are included,
+# we only need excludes here
+
+exclude .editorconfig .gitignore .travis.yml appveyor.yml
+
+graft src/fava/static
+exclude src/fava/translations/babel.conf
+
+global-exclude *.po *.py[co] *.orig __pycache__ .DS_Store
