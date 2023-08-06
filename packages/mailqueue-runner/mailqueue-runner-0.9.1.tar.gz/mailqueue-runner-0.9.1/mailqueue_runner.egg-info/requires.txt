@@ -1,0 +1,26 @@
+boltons
+docopt
+PuzzlePluginSystem>=0.6.0
+six
+
+[:python_version < "3.0"]
+portalocker<2.0
+
+[:python_version > "3.0"]
+portalocker
+
+[testing]
+ddt
+FakeFSHelpers
+pymta>=0.7.0
+PythonicTestcase>=1.4.1
+schwarzlog
+setuptools
+testfixtures
+
+[testing:python_version < "3.0"]
+freezegun<1.0
+mock
+
+[testing:python_version > "3.0"]
+freezegun
