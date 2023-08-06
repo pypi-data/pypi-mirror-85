@@ -1,0 +1,125 @@
+Metadata-Version: 2.1
+Name: chesslib
+Version: 1.0.329518997
+Summary: Python3 library for efficient chess draw-gen functions
+Home-page: https://github.com/Bonifatius94/ChessLib.Py
+Author: Marco Tröster
+Author-email: marco@troester-gmbh.de
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.0.0
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+
+
+![PyPi Release](https://github.com/Bonifatius94/ChessLib.Py/workflows/PyPi%20Release/badge.svg)
+![Docker CI](https://github.com/Bonifatius94/ChessLib.Py/workflows/Docker%20CI/badge.svg)
+
+# ChessLib Python Extension
+
+## About
+This project provides an efficient chess draw generation extension for Python3.
+The main purpose of this project is enabling further TensorFlow AI projects and learning 
+how to write an efficient Python3 extension (using good old C).
+
+## Usage
+Install the [official Python package](https://pypi.org/project/chesslib/) using pip:
+```sh
+pip install chesslib
+```
+
+Use the chesslib package like in the following example:
+```py
+import chesslib
+import numpy as np
+import random
+
+
+test():
+
+    # create a new chess board in start formation
+    board = chesslib.ChessBoard_StartFormation()
+
+    # generate all possible draws
+    draws = chesslib.GenerateDraws(board, chesslib.ChessColor_White, chesslib.ChessDraw_Null, True)
+
+    # apply one of the possible draws
+    draw_to_apply = draws[random.randint(0, len(draws) - 1)]
+    new_board = chesslib.ApplyDraw(board, draw_to_apply)
+
+    # write the draw's name
+    print(chesslib.VisualizeDraw(draw_to_apply))
+
+    # visualize the board before / after applying the draw
+    print(chesslib.VisualizeBoard(board))
+    print(chesslib.VisualizeBoard(new_board))
+
+    # revert the draw (just call ApplyDraw again with the new board)
+    rev_board = chesslib.ApplyDraw(new_board, draw_to_apply)
+
+    # get the board's 40-byte-hash and create a new board instance from the hash
+    board_hash = chesslib.Board_ToHash(board)
+    board_reloaded = chesslib.Board_FromHash(board_hash)
+
+    # see tests/ folder for more examples
+```
+
+## How to Develop
+The commands for dev-testing the chesslib are wrapped within a Docker environment.
+Therefore build the 'Dockerfile-dev' file which takes your source code and performs 
+all required CI steps (build + install + unit tests). Afterwards you may attach to the 
+Docker image with the bash console interactively and run commands, etc.
+
+```sh
+# make a dev build using the 'Dockerfile-dev' build environment
+# this runs all CI steps (build + install + unit tests)
+docker build . --file Dockerfile-dev -t "chesslib-dev"
+
+# attach to the build environment's interactive bash console (leave the session with 'exit')
+docker run "chesslib-dev" -it bash
+
+# mount a Python test script into the build environment and run it
+docker run -v $PWD:/scripts "chesslib-dev" python3 /scripts/test.py
+```
+
+Advantages of this approach are that it simplifies the dev machine setup a lot as you only 
+need Docker, git and a good text editor on your local machine. Moreover you don't mess up your
+dev machine when trying to build and install the chesslib package for debugging again and again.
+And most importantly you keep your local copy of the git repo clean as all temporary files are 
+created within the Docker container, so you basically don't need to worry about accidentially
+including build files into git commits, etc.
+
+For a quickstart, set up your dev machine as a VM (e.g. Ubuntu 20.04 hosted by VirtualBox). After 
+successfully creating the VM, use following commands to install all essential dev tools (git, 
+docker, good text editor).
+
+```sh
+# install docker (e.g. Ubuntu 20.04)
+sudo apt-get update && sudo apt-get install -y git docker.io
+sudo usermod -aG docker $USER && reboot
+
+# download the project's source code (if you haven't done before)
+git clone https://github.com/Bonifatius94/ChessLib.Py
+cd ChessLib.Py
+
+# install the 'Visual Studio Code' text editor (optional)
+sudo snap install code --classic
+```
+
+## Roadmap
+
+Following features are planned for the near future:
+- [ ] change Board_ToHash() / Board_FromHash() exchange format to Python type 'bytes' or 'bytearray' for better compatibility
+- [ ] improve code coverage of unit tests
+- [x] implement CI/CD GitHub pipelines for ~~DockerHub~~ and PyPi releases
+- [ ] fix all memory leaks of the lib (if there even are leaks)
+- [ ] think of performence testing / performance improvements (especially draw-gen)
+
+Following optional / fancy improvements are to be considered:
+- [x] add fancy status badges, beautify README
+- [ ] add API documentation compatible with common Python linters
+
+## Copyright
+You may use this project under the MIT licence's conditions.
+
+
