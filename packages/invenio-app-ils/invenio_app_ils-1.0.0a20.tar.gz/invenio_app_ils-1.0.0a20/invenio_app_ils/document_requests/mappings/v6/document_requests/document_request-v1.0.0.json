@@ -1,0 +1,110 @@
+{
+  "mappings": {
+    "document_request-v1.0.0": {
+      "date_detection": false,
+      "numeric_detection": false,
+      "properties": {
+        "$schema": {
+          "type": "keyword"
+        },
+        "_created": {
+          "type": "date"
+        },
+        "_updated": {
+          "type": "date"
+        },
+        "authors": {
+          "type": "text"
+        },
+        "document": {
+          "properties": {
+            "authors": {
+              "type": "text"
+            },
+            "pid": {
+              "type": "keyword"
+            },
+            "title": {
+              "type": "text"
+            }
+          },
+          "type": "object"
+        },
+        "document_pid": {
+          "type": "keyword"
+        },
+        "edition": {
+          "type": "keyword"
+        },
+        "isbn": {
+          "type": "keyword"
+        },
+        "issn": {
+          "type": "keyword"
+        },
+        "issue": {
+          "type": "keyword"
+        },
+        "journal_title": {
+          "type": "text"
+        },
+        "legacy_id": {
+          "type": "keyword"
+        },
+        "medium": {
+          "type": "keyword"
+        },
+        "note": {
+          "type": "text"
+        },
+        "page": {
+          "type": "keyword"
+        },
+        "patron_pid": {
+          "type": "keyword"
+        },
+        "payment_info": {
+          "type": "keyword"
+        },
+        "payment_method": {
+          "type": "keyword"
+        },
+        "physical_item_provider": {
+          "properties": {
+            "pid": {
+              "type": "keyword"
+            },
+            "pid_type": {
+              "type": "keyword"
+            }
+          },
+          "type": "object"
+        },
+        "pid": {
+          "type": "keyword"
+        },
+        "publication_year": {
+          "type": "keyword"
+        },
+        "reject_reason": {
+          "type": "keyword"
+        },
+        "request_type": {
+          "type": "keyword"
+        },
+        "standard_number": {
+          "type": "keyword"
+        },
+        "state": {
+          "type": "keyword"
+        },
+        "title": {
+          "type": "text"
+        },
+        "volume": {
+          "type": "text"
+        }
+      }
+    }
+  }
+}
