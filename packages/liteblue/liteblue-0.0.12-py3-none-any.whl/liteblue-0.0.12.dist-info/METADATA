@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: liteblue
+Version: 0.0.12
+Summary: UNKNOWN
+Home-page: https://github.com/blueshed/liteblue/
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: invoke
+Requires-Dist: alembic
+Requires-Dist: sqlalchemy
+Requires-Dist: pymysql
+Requires-Dist: aioredis
+Requires-Dist: tornado
+
+# Liteblue
+
+Another fine mess.
+
+To install:
+```
+python3.8 -m venv venv
+. venv/bin/activate
+pip install liteblue
+```
+
+To create a project called calc:
+```
+liteblue create calc
+```
+
+To run the project:
+```
+docker-compose up
+```
+
+or:
+```
+liteblue run calc
+```
+
+Now point your browser at: [http://localhost:8080](http://localhost:8080)
+
