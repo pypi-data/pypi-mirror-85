@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: sgkit
+Version: 0.1.0a1
+Summary: Statistical genetics toolkit
+Home-page: https://github.com/pystatgen/sgkit
+Author: sgkit Developers
+Author-email: project@pystatgen.org
+License: Apache
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Scientific/Engineering
+Requires-Python: >=3.7
+Description-Content-Type: text/x-rst
+Requires-Dist: numpy
+Requires-Dist: xarray
+Requires-Dist: dask[array]
+Requires-Dist: dask-ml
+Requires-Dist: scipy
+Requires-Dist: zarr
+Requires-Dist: numba
+Requires-Dist: typing-extensions
+Requires-Dist: fsspec
+Requires-Dist: setuptools (>=41.2)
+Provides-Extra: bgen
+Requires-Dist: rechunker ; extra == 'bgen'
+Requires-Dist: cbgen ; extra == 'bgen'
+Provides-Extra: plink
+Requires-Dist: partd ; extra == 'plink'
+Requires-Dist: bed-reader ; extra == 'plink'
+Provides-Extra: vcf
+Requires-Dist: cyvcf2 ; extra == 'vcf'
+Requires-Dist: yarl ; extra == 'vcf'
+
+
+**sgkit** is an open source project for analyzing and manipulating genetic
+variation data.
+
