@@ -1,0 +1,141 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+examples/.ipynb_checkpoints/1. Hyperparameter Optimization-checkpoint.ipynb
+examples/Adversarial Examples/1. SVM NIST Dataset (Adversarial Attack).ipynb
+examples/Adversarial Examples/2. SVM NIST Dataset (One Pixel Attack).ipynb
+examples/Adversarial Examples/.ipynb_checkpoints/1. SVM NIST Dataset (Adversarial Attack)-checkpoint.ipynb
+examples/Adversarial Examples/.ipynb_checkpoints/2. SVM NIST Dataset (One Pixel Attack)-checkpoint.ipynb
+examples/Clustering/Variance Minimization.ipynb
+examples/Clustering/.ipynb_checkpoints/Variance Minimization-checkpoint.ipynb
+examples/Clustering/plots/grAdapt_solution.pdf
+examples/Clustering/plots/grAdapt_solution_gpr.pdf
+examples/Clustering/plots/grAdapt_solution_nogradient.pdf
+examples/Clustering/plots/grAdapt_solution_nomodel.pdf
+examples/Clustering/plots/grAdapt_solution_nomodel_amsgrad.pdf
+examples/Clustering/plots/kmeans_solution.pdf
+examples/Clustering/plots/loss_variance_minimization.pdf
+examples/Clustering/plots/loss_variance_minimization_amsgrad.pdf
+examples/Differential Equations/1. Snowball Rolling.ipynb
+examples/Differential Equations/.ipynb_checkpoints/1. Snowball Rolling-checkpoint.ipynb
+examples/Differential Equations/plots/loss_iteration.pdf
+examples/Differential Equations/plots/mass_iteration.pdf
+examples/Differential Equations/plots/objective.pdf
+examples/Hyperparameter Optimization/1. k-Nearest Neighbors.ipynb
+examples/Hyperparameter Optimization/2. Support Vector Machine.ipynb
+examples/Hyperparameter Optimization/.ipynb_checkpoints/1. k-Nearest Neighbors-checkpoint.ipynb
+examples/Hyperparameter Optimization/.ipynb_checkpoints/2. Support Vector Machine-checkpoint.ipynb
+examples/Hyperparameter Optimization/plots/knn/training_k.pdf
+examples/Hyperparameter Optimization/plots/knn/training_k_acc.pdf
+examples/Hyperparameter Optimization/plots/knn/trainingloss.pdf
+examples/Hyperparameter Optimization/plots/svm/3dplot.pdf
+examples/Hyperparameter Optimization/plots/svm/training_c.pdf
+examples/Hyperparameter Optimization/plots/svm/training_gamma.pdf
+examples/Hyperparameter Optimization/plots/svm/training_kernel.pdf
+examples/Hyperparameter Optimization/plots/svm/trainingloss.pdf
+grAdapt/__init__.py
+grAdapt.egg-info/PKG-INFO
+grAdapt.egg-info/SOURCES.txt
+grAdapt.egg-info/dependency_links.txt
+grAdapt.egg-info/requires.txt
+grAdapt.egg-info/top_level.txt
+grAdapt/datasets/__init__.py
+grAdapt/datasets/testfunctions/__init__.py
+grAdapt/datasets/testfunctions/bivariate.py
+grAdapt/datasets/testfunctions/multivariate.py
+grAdapt/escape/CMAES.py
+grAdapt/escape/MatyasNormalDistribution.py
+grAdapt/escape/MaxStandardDeviation.py
+grAdapt/escape/NormalDistribution.py
+grAdapt/escape/NormalDistributionDecay.py
+grAdapt/escape/StandardNormalDistribution.py
+grAdapt/escape/UniformDistribution.py
+grAdapt/escape/__init__.py
+grAdapt/escape/base.py
+grAdapt/models/Sequential.py
+grAdapt/models/__init__.py
+grAdapt/optimizer/ADAMBisection.py
+grAdapt/optimizer/AMSGradBisection.py
+grAdapt/optimizer/AdaGradBisection.py
+grAdapt/optimizer/AdaMaxBisection.py
+grAdapt/optimizer/AdamBisection.py
+grAdapt/optimizer/GradientDescentBisection.py
+grAdapt/optimizer/MomentumBisection.py
+grAdapt/optimizer/RMSPropBisection.py
+grAdapt/optimizer/__init__.py
+grAdapt/optimizer/base.py
+grAdapt/sampling/__init__.py
+grAdapt/sampling/equidistributed/Density.py
+grAdapt/sampling/equidistributed/KDistance.py
+grAdapt/sampling/equidistributed/KDistanceMean.py
+grAdapt/sampling/equidistributed/MaximalMinDistance.py
+grAdapt/sampling/equidistributed/Mitchell.py
+grAdapt/sampling/equidistributed/Reassignment.py
+grAdapt/sampling/equidistributed/__init__.py
+grAdapt/sampling/equidistributed/base.py
+grAdapt/sampling/initializer/Uniform.py
+grAdapt/sampling/initializer/Vertices.py
+grAdapt/sampling/initializer/VerticesForce.py
+grAdapt/sampling/initializer/VerticesForceRandom.py
+grAdapt/sampling/initializer/__init__.py
+grAdapt/sampling/initializer/base.py
+grAdapt/space/__init__.py
+grAdapt/space/datatype/Categorical.py
+grAdapt/space/datatype/Float.py
+grAdapt/space/datatype/Integer.py
+grAdapt/space/datatype/Nominal.py
+grAdapt/space/datatype/Ordinal.py
+grAdapt/space/datatype/__init__.py
+grAdapt/space/datatype/base.py
+grAdapt/space/transformer/Transformer.py
+grAdapt/space/transformer/__init__.py
+grAdapt/surrogate/GPR.py
+grAdapt/surrogate/NoGradient.py
+grAdapt/surrogate/NoModel.py
+grAdapt/surrogate/RBFRegression.py
+grAdapt/surrogate/TaylorSeriesExpansion.py
+grAdapt/surrogate/__init__.py
+grAdapt/surrogate/base.py
+grAdapt/surrogate/kernels.py
+grAdapt/utils/__init__.py
+grAdapt/utils/misc.py
+grAdapt/utils/sampling.py
+grAdapt/utils/math/__init__.py
+grAdapt/utils/math/geometry.py
+grAdapt/utils/math/linalg.py
+grAdapt/utils/math/spatial.py
+tests/basic.py
+tests/changing_kernels.py
+tests/continuation_test.py
+tests/load_checkpoint.py
+tests/maximize.py
+tests/run_all.py
+tests/slidingWindow.py
+tests/test.py
+tests/training_continuation.py
+tests/utils.py
+tests/__pycache__/basic.cpython-38.pyc
+tests/__pycache__/changing_kernels.cpython-38.pyc
+tests/__pycache__/continuation_test.cpython-38.pyc
+tests/__pycache__/load_checkpoint.cpython-38.pyc
+tests/__pycache__/maximize.cpython-38.pyc
+tests/__pycache__/run_all.cpython-38.pyc
+tests/__pycache__/run_all2.cpython-38.pyc
+tests/__pycache__/slidingWindow.cpython-38.pyc
+tests/__pycache__/test.cpython-38.pyc
+tests/__pycache__/training_continuation.cpython-38.pyc
+tests/__pycache__/utils.cpython-38.pyc
+tests/checkpoints/checkpointXY20Sep18-021331.npy
+tests/checkpoints/checkpointXY20Sep18-023208.npy
+tests/checkpoints/checkpointXY20Sep18-023337.npy
+tests/checkpoints/checkpointXY20Sep18-023506.npy
+tests/checkpoints/checkpointXY20Sep18-031650.npy
+tests/checkpoints/checkpointXY20Sep27-042716.npy
+tests/unittests/models/sequential/equal_y_values.py
+tests/unittests/models/sequential/seed_reproducibility.py
+tests/unittests/models/sequential/training_continuation_equal_values.py
+tests/unittests/sampling/equidistributed/inside_bounds.py
+tests/unittests/sampling/equidistributed/sample_number.py
+tests/unittests/sampling/initializer/inside_bounds.py
+tests/unittests/sampling/initializer/sample_number.py
