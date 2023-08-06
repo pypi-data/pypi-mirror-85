@@ -1,0 +1,68 @@
+Metadata-Version: 2.1
+Name: dpytils
+Version: 0.0.5
+Summary: A package with all sorts of utilities for discord.py.
+Home-page: https://github.com/TymanWasTaken/dpytils
+Author: Tyman
+License: MIT License
+Project-URL: Issue Tracker, https://github.com/TymanWasTaken/dpytils/issues
+Project-URL: Documentation, https://github.com/TymanWasTaken/dpytils/wiki
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: setuptools (>=41.2.0)
+Requires-Dist: discord.py (>=1.3)
+
+# dpytils
+
+## What is this?
+
+It is a package with basic utilities for a discord bot main in discord.py.
+
+## How do I use it?
+
+To use it, simply import it, and initialize the `dpytils.utils()` class.
+
+```python
+from dpytils import utils
+utilities = utils()
+```
+
+## What utilities are there?
+
+Currently, only three. `randcolor()`, `permsfromvalue()`, and `GuildConverter`.
+
+### randcolor
+
+This function will return a random color (of type int) to be used for a discord embed, or anything else.
+
+### permsfromvalue
+
+This function will return another class, discordPermissions, which contains the following values.
+
+#### permsfromvalue.perms_raw
+
+The raw discord permissions object from [discord.py](https://github.com/Rapptz/discord.py).
+
+#### permsfromvalue.perms_true
+
+A list of permission names that are `True` from the given value
+
+#### permsfromvalue.perms_false
+
+A list of permission names that are `False` from the given value
+
+#### permsfromvalue.perms_nice
+
+A nicely formatted string with a list of permissions, and emoji to show true/false.
+
+### GuildConverter
+
+This will attempt to convert whatever you give it to a guild object. You must pass both a context object, and a value to search for to it. Example:
+
+```python
+search_term = "test ser"
+guild = await utils().GuildConverter(ctx, search_term)
+return guild # <discord.Guild id=647392781730285629 name='bot testing server'>
+```
+
+
