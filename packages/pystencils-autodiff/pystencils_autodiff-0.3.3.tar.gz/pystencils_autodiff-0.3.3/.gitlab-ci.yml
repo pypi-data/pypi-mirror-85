@@ -1,0 +1,111 @@
+## Minimal tests in windows environment
+#windows:
+  #stage: test
+  #except:
+    #variables:
+      #- $ENABLE_NIGHTLY_BUILDS
+  #tags:
+    #- win
+  #script:
+    #- source /cygdrive/c/Users/build/Miniconda3/Scripts/activate
+    #- source activate pystencils_dev
+    #- env
+    #- conda env list
+    #- python -c "import numpy"
+    #- python -m pip install -e .
+    #- python setup.py test
+  #artifacts:
+    #when: always
+    #paths:
+      #- test-report
+      #- htmlcov
+
+#ubuntu:
+  #stage: test
+  #except:
+    #variables:
+      #- $ENABLE_NIGHTLY_BUILDS
+  #image: i10git.cs.fau.de:5005/pycodegen/pycodegen/minimal_ubuntu
+  #script:
+    #- apt install -y ninja-build
+    #- python3 -m pip install -e .
+    #- python3 setup.py test
+  #tags:
+    #- docker
+    #- cuda
+  #artifacts:
+    #when: always
+    #paths:
+      #- test-report
+      #- htmlcov
+
+#conda:
+  #stage: test
+  #except:
+    #variables:
+      #- $ENABLE_NIGHTLY_BUILDS
+  #image: i10git.cs.fau.de:5005/pycodegen/pycodegen/minimal_conda
+  #script:
+    #- apt install -y ninja-build
+    #- conda install pip
+    #- pip install -e .
+    #- python setup.py test
+  #tags:
+    #- docker
+  #artifacts:
+    #when: always
+    #paths:
+      #- test-report
+      #- htmlcov
+
+full:
+  stage: test
+  except:
+    variables:
+      - $ENABLE_NIGHTLY_BUILDS
+  image: i10git.cs.fau.de:5005/pycodegen/pycodegen/full
+  script:
+    - apt install -y ninja-build
+    - python -m pip install -U cppimport pybind11
+    - python -m pip install --upgrade git+https://github.com/sympy/sympy.git
+    - python -m pip install --upgrade pip setuptools wheel
+    - python -m pip install --upgrade tensorflow==2.0
+    - python -m pip install -e .
+    - python -m pip install git+https://i10git.cs.fau.de/seitz/pystencils.git
+    - pytest
+    - python setup.py doctest
+  tags:
+    - docker
+    - cuda
+  artifacts:
+    when: always
+    paths:
+      - test-report
+      - htmlcov
+
+# -------------------- Linter & Documentation --------------------------------------------------------------------------
+
+
+flake8-lint:
+  stage: test
+  except:
+    variables:
+      - $ENABLE_NIGHTLY_BUILDS
+  image: i10git.cs.fau.de:5005/pycodegen/pycodegen/full
+  script:
+    - flake8 src
+  tags:
+    - docker
+
+
+build-documentation:
+  stage: test
+  image: i10git.cs.fau.de:5005/pycodegen/pycodegen/full
+  script:
+    - python -m pip install -e .
+    - python setup.py docs
+  tags:
+    - docker
+  artifacts:
+    paths:
+      - build/sphinx/html
