@@ -1,0 +1,216 @@
+Aiapy 0.3.0.dev16+g57a224e.d20201005 (2020-10-05)
+=================================================
+
+Features
+--------
+
+- Added a function (:func:`~aiapy.util.sdo_location`) to obtain the SDO location at a given time. (`#57 <https://github.com/sunpy/aiapy/pull/57>`__)
+- Added a function (:func:`~aiapy.calibrate.respike`) for reinserting hot pixels into level 1 images. (`#62 <https://github.com/sunpy/aiapy/pull/62>`__)
+- The pointing table can now be passsed in as a keyword argument to :func:`~aiapy.calibrate.update_pointing`.
+  Added a :func:`~aiapy.calibrate.util.get_pointing_table` to retrieve the 3-hour pointing table
+  from JSOC over a given time interval. (`#84 <https://github.com/sunpy/aiapy/pull/84>`__)
+
+
+Bug Fixes
+---------
+
+- Updated default calibration version number for degradation correction
+  Added tests for multiple calibration versions (`#74 <https://github.com/sunpy/aiapy/pull/74>`__)
+- The `CROTA2` keyword update in :func:`~aiapy.calibrate.update_pointing` now includes
+  the value of `SAT_ROT` from the FITS header. Previously, the keyword was only being
+  updated with `INSTROT`. (`#84 <https://github.com/sunpy/aiapy/pull/84>`__)
+
+
+Aiapy 0.3.0.dev12+g60ee010.d20200926 (2020-09-26)
+=================================================
+
+Features
+--------
+
+- Added a function (:func:`~aiapy.util.sdo_location`) to obtain the SDO location at a given time. (`#57 <https://github.com/sunpy/aiapy/pull/57>`__)
+- Added a function (:func:`~aiapy.calibrate.respike`) for reinserting hot pixels into level 1 images. (`#62 <https://github.com/sunpy/aiapy/pull/62>`__)
+
+
+Bug Fixes
+---------
+
+- Updated default calibration version number for degradation correction
+  Added tests for multiple calibration versions (`#74 <https://github.com/sunpy/aiapy/pull/74>`__)
+
+
+Aiapy 0.3.0.dev12+g60ee010.d20200926 (2020-09-26)
+=================================================
+
+Features
+--------
+
+- Added a function (:func:`~aiapy.util.sdo_location`) to obtain the SDO location at a given time. (`#57 <https://github.com/sunpy/aiapy/pull/57>`__)
+- Added a function (:func:`~aiapy.calibrate.respike`) for reinserting hot pixels into level 1 images. (`#62 <https://github.com/sunpy/aiapy/pull/62>`__)
+
+
+Bug Fixes
+---------
+
+- Updated default calibration version number for degradation correction
+  Added tests for multiple calibration versions (`#74 <https://github.com/sunpy/aiapy/pull/74>`__)
+
+
+Aiapy 0.2.dev0+gef98596.d20200717 (2020-07-17)
+==============================================
+
+Features
+--------
+
+- Added a function (:func:`~aiapy.util.sdo_location`) to obtain the SDO location at a given time. (`#57 <https://github.com/sunpy/aiapy/pull/57>`__)
+- Added a function (:func:`~aiapy.calibrate.respike`) for reinserting hot pixels into level 1 images. (`#62 <https://github.com/sunpy/aiapy/pull/62>`__)
+
+
+Bug Fixes
+---------
+
+- Updated default calibration version number for degradation correction
+  Added tests for multiple calibration versions (`#74 <https://github.com/sunpy/aiapy/pull/74>`__)
+
+
+Aiapy 0.1.dev169+g14541ea.d20200716 (2020-07-16)
+================================================
+
+Features
+--------
+
+- Added a function (:func:`~aiapy.util.sdo_location`) to obtain the SDO location at a given time. (`#57 <https://github.com/sunpy/aiapy/pull/57>`__)
+- Added a function (:func:`~aiapy.calibrate.respike`) for reinserting hot pixels into level 1 images. (`#62 <https://github.com/sunpy/aiapy/pull/62>`__)
+
+
+Bug Fixes
+---------
+
+- Updated default calibration version number for degradation correction
+  Added tests for multiple calibration versions (`#74 <https://github.com/sunpy/aiapy/pull/74>`__)
+
+
+Aiapy 0.1.dev169+g14541ea.d20200716 (2020-07-16)
+================================================
+
+Features
+--------
+
+- Added a function (:func:`~aiapy.util.sdo_location`) to obtain the SDO location at a given time. (`#57 <https://github.com/sunpy/aiapy/pull/57>`__)
+- Added a function (:func:`~aiapy.calibrate.respike`) for reinserting hot pixels into level 1 images. (`#62 <https://github.com/sunpy/aiapy/pull/62>`__)
+
+
+Bug Fixes
+---------
+
+- Updated default calibration version number for degradation correction
+  Added tests for multiple calibration versions (`#74 <https://github.com/sunpy/aiapy/pull/74>`__)
+
+
+Aiapy 0.1.dev169+g14541ea (2020-07-16)
+======================================
+
+Features
+--------
+
+- Added a function (:func:`~aiapy.util.sdo_location`) to obtain the SDO location at a given time. (`#57 <https://github.com/sunpy/aiapy/pull/57>`__)
+- Added a function (:func:`~aiapy.calibrate.respike`) for reinserting hot pixels into level 1 images. (`#62 <https://github.com/sunpy/aiapy/pull/62>`__)
+
+
+Bug Fixes
+---------
+
+- Updated default calibration version number for degradation correction
+  Added tests for multiple calibration versions (`#74 <https://github.com/sunpy/aiapy/pull/74>`__)
+
+
+Aiapy 0.1.dev207+g94eb450 (2020-07-11)
+======================================
+
+Features
+--------
+
+- Added a function (:func:`~aiapy.util.sdo_location`) to obtain the SDO location at a given time. (`#57 <https://github.com/sunpy/aiapy/pull/57>`__)
+- Added a function (:func:`~aiapy.calibrate.respike`) for reinserting hot pixels into level 1 images. (`#62 <https://github.com/sunpy/aiapy/pull/62>`__)
+
+
+Aiapy 0.1.dev207+g94eb450 (2020-07-11)
+======================================
+
+Features
+--------
+
+- Added a function (:func:`~aiapy.util.sdo_location`) to obtain the SDO location at a given time. (`#57 <https://github.com/sunpy/aiapy/pull/57>`__)
+- Added a function (:func:`~aiapy.calibrate.respike`) for reinserting hot pixels into level 1 images. (`#62 <https://github.com/sunpy/aiapy/pull/62>`__)
+
+
+Aiapy 0.1.dev207+g94eb450 (2020-07-11)
+======================================
+
+Features
+--------
+
+- Added a function (:func:`~aiapy.util.sdo_location`) to obtain the SDO location at a given time. (`#57 <https://github.com/sunpy/aiapy/pull/57>`__)
+- Added a function (:func:`~aiapy.calibrate.respike`) for reinserting hot pixels into level 1 images. (`#62 <https://github.com/sunpy/aiapy/pull/62>`__)
+
+
+Aiapy 0.1.dev147+g01c9ae7.d20200617 (2020-06-17)
+================================================
+
+Features
+--------
+
+- Added a function (:func:`~aiapy.util.sdo_location`) to obtain the SDO location at a given time. (`#57 <https://github.com/sunpy/aiapy/pull/57>`__)
+
+
+Aiapy 0.1.dev147+g01c9ae7.d20200617 (2020-06-17)
+================================================
+
+Features
+--------
+
+- Added a function (:func:`~aiapy.util.sdo_location`) to obtain the SDO location at a given time. (`#57 <https://github.com/sunpy/aiapy/pull/57>`__)
+
+
+Aiapy 0.1.dev147+g01c9ae7.d20200617 (2020-06-17)
+================================================
+
+Features
+--------
+
+- Added a function (:func:`~aiapy.util.sdo_location`) to obtain the SDO location at a given time. (`#57 <https://github.com/sunpy/aiapy/pull/57>`__)
+
+
+Aiapy 0.1.dev147+g01c9ae7.d20200617 (2020-06-17)
+================================================
+
+Features
+--------
+
+- Added a function (:func:`~aiapy.util.sdo_location`) to obtain the SDO location at a given time. (`#57 <https://github.com/sunpy/aiapy/pull/57>`__)
+
+
+Aiapy 0.1.dev147+g01c9ae7.d20200617 (2020-06-17)
+================================================
+
+Features
+--------
+
+- Added a function (:func:`~aiapy.util.sdo_location`) to obtain the SDO location at a given time. (`#57 <https://github.com/sunpy/aiapy/pull/57>`__)
+
+
+Aiapy 0.1.dev147+g01c9ae7.d20200617 (2020-06-17)
+================================================
+
+Features
+--------
+
+- Added a function (:func:`~aiapy.util.sdo_location`) to obtain the SDO location at a given time. (`#57 <https://github.com/sunpy/aiapy/pull/57>`__)
+
+
+Aiapy 0.1.dev147+g01c9ae7 (2020-06-15)
+======================================
+
+Features
+--------
+
+- Added a function (:func:`~aiapy.util.sdo_location`) to obtain the SDO location at a given time. (`#57 <https://github.com/sunpy/aiapy/pull/57>`__)
