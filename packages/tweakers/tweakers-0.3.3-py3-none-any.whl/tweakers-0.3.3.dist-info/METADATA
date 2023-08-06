@@ -1,0 +1,77 @@
+Metadata-Version: 2.1
+Name: tweakers
+Version: 0.3.3
+Summary: A Python wrapper for tweakers.net
+Home-page: https://github.com/timotk/tweakers
+License: MIT
+Author: Timo
+Requires-Python: >=3.6
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: dateparser (>=0.7.0,<0.8.0)
+Requires-Dist: requests-html (>=0.10.0,<0.11.0)
+Requires-Dist: tenacity (>=6.2.0,<7.0.0)
+Project-URL: Repository, https://github.com/timotk/tweakers
+Description-Content-Type: text/markdown
+
+# Tweakers
+![Build](https://github.com/timotk/tweakers/workflows/Build/badge.svg)
+[![codecov](https://codecov.io/gh/timotk/tweakers/branch/master/graph/badge.svg)](https://codecov.io/gh/timotk/tweakers)
+[![PyPI](https://img.shields.io/pypi/v/tweakers.svg)](https://pypi.org/project/tweakers)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/tweakers.svg)
+
+A Python wrapper for [tweakers.net](https://tweakers.net/)
+
+## Install
+```
+pip install tweakers
+```
+
+## Usage
+```
+import tweakers
+```
+
+### Gathering
+With the `tweakers.gathering` module you can access the forum.
+#### Active topics
+```
+for topic in tweakers.gathering.active_topics():
+    print(topic.title)
+```
+
+#### Search
+```
+for topic in tweakers.gathering.search('tweakers.net'):
+    print(topic.title)
+```
+
+### Topic
+#### Get comments for a specific topic
+```
+topic = Topic("https://gathering.tweakers.net/forum/list_messages/1551828")
+for comment in topic.comments(page=1):
+    print(comment.user.name, comment.text)
+```
+
+#### Generate new comments as they are added
+```
+for comment in topic.comment_stream():
+    print(comment.user.name, comment.text)
+```
+
+### Login
+```
+tweakers.login("YOUR_USERNAME", "YOUR_PASSWORD")
+```
+Now you can access pages that are unavailable for logged out users:
+```
+for topic in tweakers.gathering.bookmarks():
+    print(topic.name)
+```
+
