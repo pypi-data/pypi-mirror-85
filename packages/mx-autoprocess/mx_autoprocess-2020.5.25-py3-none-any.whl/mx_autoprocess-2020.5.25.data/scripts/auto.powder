@@ -1,0 +1,16 @@
+#!python
+
+from autoprocess.engine import powder
+from autoprocess.utils import log, options
+log.log_to_console()
+
+if __name__ == "__main__":
+    parser = options.powder_parser()
+
+    args = parser.parse_args()
+    if args.calib:
+        p = powder.FrameAnalyser(*args.files)
+        p.calibrate()
+    else:
+        p = powder.FrameAnalyser(*args.files)
+        p.integrate()
