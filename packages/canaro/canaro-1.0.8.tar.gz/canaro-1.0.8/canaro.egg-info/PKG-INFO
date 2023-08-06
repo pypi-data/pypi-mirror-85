@@ -1,0 +1,68 @@
+Metadata-Version: 2.1
+Name: canaro
+Version: 1.0.8
+Summary:  A Python library including support for Deep Learning models built using the Keras framework.
+Home-page: https://github.com/jasmcaus/canaro
+Author: Jason Dsouza
+Author-email: jasmcaus@gmail.com
+Maintainer: Jason Dsouza
+License: MIT
+Download-URL: https://pypi.org/project/canaro/
+Project-URL: Bug Tracker, https://github.com/jasmcaus/canaro/issues
+Project-URL: Documentation, https://github.com/jasmcaus/canaro/blob/master/DOCS.md
+Project-URL: Source Code, https://github.com/jasmcaus/canaro
+Description: A Computer Vision library in Python with powerful image processing operations, including support for Deep Learning models built using the Keras framework
+        
+        [![Downloads](https://pepy.tech/badge/canaro)](https://pepy.tech/project/canaro)
+        [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/jasmcaus/canaro/blob/master/LICENSE)
+        
+        ## Installation
+        To install the current release:
+        
+        ```shell
+        $ pip install canaro
+        ```
+        
+        Optionally, Canaro can also install [caer](https://github.com/jasmcaus/caer) if you install it with `pip install canaro[caer]`
+        
+        ### Installing from Source
+        First, clone the repo on your machine and then install with `pip`:
+        
+        ```shell
+        git clone https://github.com/jasmcaus/canaro.git
+        cd canaro
+        pip install -e .
+        ```
+        
+        You can run the following to verify things installed correctly:
+        
+        ```python
+        import canaro
+        
+        print(f'Canaro version {canaro.__version__}')
+        ```
+        
+        ## Resources
+        
+        - **Homepage:** <https://github.com/jasmcaus/canaro/>
+        - **Docs:** <https://github.com/jasmcaus/canaro/blob/master/DOCS.md>
+        - **Issue tracking:** <https://github.com/jasmcaus/canaro/issues>
+        
+        All Canaro wheels on PyPi are MIT-licensed
+Keywords: computer vision,deep learning,tensorflow,keras,convolutional neural networks,opencv,matplotlib
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
+Provides-Extra: caer
