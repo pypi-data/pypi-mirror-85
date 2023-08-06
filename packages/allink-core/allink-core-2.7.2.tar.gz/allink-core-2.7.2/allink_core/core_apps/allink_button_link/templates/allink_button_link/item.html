@@ -1,0 +1,18 @@
+{% load cms_tags sekizai_tags i18n thumbnail allink_image_tags allink_user_tags allink_link_tags %}
+
+{% comment %}
+
+    IMPORTANT NOTE: Some editors automatically add a NEW LINE at the end of the document. This causes undesired extra space after the <a> tag. So every time you adjust this file, make sure to open/save it in an editor that does NOT add a new line before committing.
+
+{% endcomment %}
+
+{% spaceless %}
+
+{# include the actual link #}
+{% include "partials/buttons/link.html" with link_url=instance.link_url_typed link_label=instance.label link_classes=instance|link_classes|add:" button-link-plugin__link" link_attributes=instance|link_attribute_string:request link_id=form_name %}
+
+{% if instance.form_modal_enabled %}
+    {% include "modals/modal-header-markup.html" with title=instance.label modal_type="form-modal" %}
+{% endif %}
+
+{% endspaceless %}
