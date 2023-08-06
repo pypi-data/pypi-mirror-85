@@ -1,0 +1,29 @@
+##################################################################################
+# Document Properties Section
+
+SET DOCUMENT Name = "PyBEL Test Isolated Nodes"
+SET DOCUMENT Description = "Tests the effect of using isolated nodes in IO"
+SET DOCUMENT Version = "0.1.0"
+SET DOCUMENT Copyright = "Copyright (c) Charles Tapley Hoyt. All Rights Reserved."
+SET DOCUMENT Authors = "Charles Tapley Hoyt"
+SET DOCUMENT Licenses = "WTF License"
+SET DOCUMENT ContactInfo = "cthoyt@gmail.com"
+
+##################################################################################
+# Definitions Section
+
+DEFINE NAMESPACE HGNC  AS URL "https://raw.githubusercontent.com/pharmacome/terminology/73688d6dc24e309fca59a1340dc9ee971e9f3baa/external/hgnc-names.belns"
+DEFINE NAMESPACE MESHD AS URL "https://raw.githubusercontent.com/pharmacome/terminology/73688d6dc24e309fca59a1340dc9ee971e9f3baa/external/mesh-names.belns"
+
+##################################################################################
+# Statements Section
+##################################################################################
+
+SET Citation = {"PubMed","That one article from last week","123455"}
+SET Evidence = "These are mostly made up"
+
+#: Test that there's an isolated node that makes it
+path(MESHD:Achlorhydria)
+
+#: Test an isolated node that gets some extra stuff induced
+complex(p(HGNC:ADGRB1), p(HGNC:ADGRB2))

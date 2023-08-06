@@ -1,0 +1,59 @@
+[console_scripts]
+pybel = pybel.cli:main
+
+[pybel.exporter]
+bel = pybel.canonicalize:to_bel_script
+bel.cx.json = pybel.io.cx:to_cx_file
+bel.cx.json.gz = pybel.io.cx:to_cx_gz
+bel.gpickle = pybel.io.gpickle:to_pickle
+bel.gpickle.gz = pybel.io.gpickle:to_pickle_gz
+bel.graphdati.json = pybel.io.graphdati:to_graphdati_file
+bel.graphdati.json.gz = pybel.io.graphdati:to_graphdati_gz
+bel.gz = pybel.canonicalize:to_bel_script_gz
+bel.jgif.json = pybel.io.jgif:to_jgif_file
+bel.jgif.json.gz = pybel.io.jgif:to_jgif_gz
+bel.jsonl = pybel.io.sbel:to_sbel_file
+bel.jsonl.gz = pybel.io.sbel:to_sbel_gz
+bel.nodelink.json = pybel.io.nodelink:to_nodelink_file
+bel.nodelink.json.gz = pybel.io.nodelink:to_nodelink_gz
+bel.pickle = pybel.io.gpickle:to_pickle
+bel.pickle.gz = pybel.io.gpickle:to_pickle_gz
+bel.pkl = pybel.io.gpickle:to_pickle
+bel.pkl.gz = pybel.io.gpickle:to_pickle_gz
+bel.unodelink.json = pybel.io.umbrella_nodelink:to_umbrella_nodelink_file
+bel.unodelink.json.gz = pybel.io.umbrella_nodelink:to_umbrella_nodelink_gz
+gsea = pybel.io.extras:to_gsea
+indra.json = pybel.io.indra:to_indra_statements_json_file
+tsv = pybel.io.triples.api:to_triples_file
+
+[pybel.importer]
+bel = pybel.io.lines:from_bel_script
+bel.cx.json = pybel.io.cx:from_cx_file
+bel.cx.json.gz = pybel.io.cx:from_cx_gz
+bel.gpickle = pybel.io.gpickle:from_pickle
+bel.gpickle.gz = pybel.io.gpickle:from_pickle_gz
+bel.graphdati.json = pybel.io.graphdati:from_graphdati_file
+bel.graphdati.json.gz = pybel.io.graphdati:from_graphdati_gz
+bel.gz = pybel.io.lines:from_bel_script_gz
+bel.jgif.json = pybel.io.jgif:from_jgif_file
+bel.jgif.json.gz = pybel.io.jgif:from_jgif_gz
+bel.jsonl = pybel.io.sbel:from_sbel_file
+bel.jsonl.gz = pybel.io.sbel:from_sbel_gz
+bel.nodelink.json = pybel.io.nodelink:from_nodelink_file
+bel.nodelink.json.gz = pybel.io.nodelink:from_nodelink_gz
+bel.pickle = pybel.io.gpickle:from_pickle
+bel.pickle.gz = pybel.io.gpickle:from_pickle_gz
+bel.pkl = pybel.io.gpickle:from_pickle
+bel.pkl.gz = pybel.io.gpickle:from_pickle_gz
+indra.json = pybel.io.indra:from_indra_statements_json_file
+
+[pykeen.triples.extension_importer]
+bel = pybel.io.pykeen:get_triples_from_bel
+bel.gpickle = pybel.io.pykeen:get_triples_from_bel_pickle
+bel.nodelink.json = pybel.io.pykeen:get_triples_from_bel_nodelink
+bel.pickle = pybel.io.pykeen:get_triples_from_bel_pickle
+bel.pkl = pybel.io.pykeen:get_triples_from_bel_pickle
+
+[pykeen.triples.prefix_importer]
+bel-commons = pybel.io.pykeen:get_triples_from_bel_commons
+
