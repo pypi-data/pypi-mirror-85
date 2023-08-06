@@ -1,0 +1,8 @@
+
+    [nornir.plugins.inventory]
+    DictInventory=nornir_salt:DictInventory
+
+    [nornir.plugins.runners]
+    QueueRunner=nornir_salt:QueueRunner
+    RetryRunner=nornir_salt:RetryRunner
+    
