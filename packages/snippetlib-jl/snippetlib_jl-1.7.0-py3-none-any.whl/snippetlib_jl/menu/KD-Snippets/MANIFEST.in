@@ -1,0 +1,23 @@
+include LICENSE
+include README.md
+include setupbase.py
+include jupyter-config/snippetlib_jl.json
+include package.json
+include ts*.json
+include snippetlib_jl/labextension/*.tgz
+
+
+recursive-include snippetlib_jl *
+
+# Javascript files
+graft src
+graft style
+prune **/node_modules
+prune lib
+
+# Patterns to exclude from any directory
+global-exclude *~
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude .git
+global-exclude .ipynb_checkpoints
