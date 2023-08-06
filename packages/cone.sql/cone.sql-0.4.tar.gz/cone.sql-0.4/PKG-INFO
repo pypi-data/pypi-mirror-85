@@ -1,0 +1,423 @@
+Metadata-Version: 2.1
+Name: cone.sql
+Version: 0.4
+Summary: SQLAlchemy integration for cone.app
+Home-page: https://github.com/bluedynamics/cone.sql
+Author: Robert Niederreiter
+Author-email: dev@bluedynamics.com
+License: Simplified BSD
+Description: .. image:: https://img.shields.io/pypi/v/cone.sql.svg
+            :target: https://pypi.python.org/pypi/cone.sql
+            :alt: Latest PyPI version
+        
+        .. image:: https://img.shields.io/pypi/dm/cone.sql.svg
+            :target: https://pypi.python.org/pypi/cone.sql
+            :alt: Number of PyPI downloads
+        
+        .. image:: https://travis-ci.org/bluedynamics/cone.sql.svg?branch=master
+            :target: https://travis-ci.org/bluedynamics/cone.sql
+        
+        .. image:: https://coveralls.io/repos/github/bluedynamics/cone.sql/badge.svg?branch=master
+            :target: https://coveralls.io/github/bluedynamics/cone.sql?branch=master
+        
+        This package provides SQLAlchemy integration in ``cone.app`` and basic
+        application nodes for publishing SQLAlchemy models.
+        
+        
+        Installation
+        ------------
+        
+        Include ``cone.sql`` to install dependencies in your application's
+        ``setup.py``.
+        
+        
+        Configure Database and WSGI
+        ---------------------------
+        
+        Adopt your application config ini file to define database location and hook
+        up the related elements to the WSGI pipeline.
+        
+        .. code-block:: ini
+        
+            [app:my_app]
+            use = egg:cone.app#main
+        
+            pyramid.includes =
+                pyramid_retry
+                pyramid_tm
+        
+            tm.commit_veto = pyramid_tm.default_commit_veto
+        
+            cone.plugins =
+                cone.sql
+        
+            sql.db.url = sqlite:///%(here)s/var/sqlite/my_db.db
+        
+            [filter:remote_addr]
+            # for use behind nginx
+            use = egg:cone.app#remote_addr
+        
+            [filter:session]
+            use = egg:cone.sql#session
+        
+            [pipeline:main]
+            pipeline =
+                remote_addr
+                session
+                my_app
+        
+        
+        Create Model and Nodes
+        ----------------------
+        
+        Define the SQLAlchemy model.
+        
+        .. code-block:: python
+        
+            from cone.sql import SQLBase
+            from cone.sql.model import GUID
+            from sqlalchemy import Column
+            from sqlalchemy import String
+        
+            class MyRecord(SQLBase):
+                __tablename__ = 'my_table'
+                uid_key = Column(GUID, primary_key=True)
+                field = Column(String)
+        
+        Define an application node which represents the SQL row and uses the SQLAlchemy
+        model. The class holds a reference to the related SQLAlchemy model.
+        
+        .. code-block:: python
+        
+            from cone.sql.model import SQLRowNode
+        
+            class MyNode(SQLRowNode):
+                record_class = MyRecord
+        
+        Define an application node which represents the table and acts as container for
+        the SQL row nodes. The class holds a reference to the related SQLAlchemy model
+        and the related SQLRowNode.
+        
+        .. code-block:: python
+        
+            from cone.sql.model import SQLTableNode
+        
+            class MyContainer(SQLTableNode):
+                record_class = MyRecord
+                child_factory = MyNode
+        
+        
+        Primary key handling
+        --------------------
+        
+        The node name maps to the primary key of the SQLAlchemy model (currenly no
+        multiple primary keys are supported). Node names are converted to the
+        primary key data type automatically. The conversion factories are defined at
+        ``SQLTableNode.data_type_converters`` which can be extended by more data types
+        if needed.
+        
+        .. code-block:: python
+        
+            >>> SQLTableNode.data_type_converters
+            {<class 'sqlalchemy.sql.sqltypes.String'>: <type 'unicode'>,
+            <class 'cone.sql.model.GUID'>: <class 'uuid.UUID'>,
+            <class 'sqlalchemy.sql.sqltypes.Integer'>: <type 'int'>}
+        
+        
+        Integrate to the Application Model
+        ----------------------------------
+        
+        In order to publish a SQL table node, the table node must be hooked up to the
+        application model. To hook up the at root level, register it as entry.
+        
+        .. code-block:: python
+        
+            import cone.app
+        
+            cone.app.register_entry('container', MyContainer)
+        
+        
+        Session setup handlers
+        ----------------------
+        
+        There exists a ``sql_session_setup`` decorator which can be used to perform
+        session setup tasks like registering SQLAlchemy event listeners.
+        
+        .. code-block:: python
+        
+            from cone.sql import sql_session_setup
+            from sqlalchemy import event
+        
+            def after_flush(session, flush_context):
+                """Do something after flush.
+                """
+        
+            @sql_session_setup
+            def bind_session_listener(session):
+                """SQL session setup callback.
+                """
+                event.listen(session, 'after_flush', after_flush)
+        
+        
+        Query the database
+        ------------------
+        
+        Querying the database is done via SQLAlchemy. If you are in a request/response
+        cycle, you should acquire the session from request via ``get_session`` and
+        perform arbitrary operations on it. By reading the session from request we ensure
+        the transaction manager to work properly if configured.
+        
+        .. code-block:: python
+        
+            from cone.sql import get_session
+        
+            session = get_session(request)
+            result = session.query(MyRecord).all()
+        
+        If you need a session outside a request/response cycle you can create one by using
+        the ``session_factory``.
+        
+        .. code-block:: python
+        
+            from cone.sql import session_factory
+        
+            session = session_factory()
+            result = session.query(MyRecord).all()
+            session.close()
+        
+        
+        Principal ACL's
+        ---------------
+        
+        SQL based Principal ACL's are implemented in ``cone.sql.acl``. The related
+        table gets created as soon as you import from this module.
+        
+        Using ``SQLPrincipalACL`` requires the model to implement ``node.interfaces.IUUID``.
+        
+        .. code-block:: python
+        
+            from cone.sql.acl import SQLPrincipalACL
+            from node.base import BaseNode
+            from node.interfaces import IUUID
+            from plumber import plumbing
+            from pyramid.security import Allow
+            from zope.interface import implementer
+            import uuid as uuid_module
+        
+            @implementer(IUUID)
+            @plumbing(SQLPrincipalACL)
+            class SQLPrincipalACLNode(BaseNode):
+                uuid = uuid_module.UUID('1a82fa87-08d6-4e48-8bc2-97ee5a52726d')
+        
+                @property
+                def __acl__(self):
+                    return [
+                        (Allow, 'role:editor', ['edit']),
+                        (Allow, 'role:manager', ['manage']),
+                    ]
+        
+        
+        User and Group Management
+        -------------------------
+        
+        ``cone.sql.ugm`` contains an implementation of the UGM contracts defined at
+        ``node.ext.ugm.interfaces``, using sql as backend storage:
+        
+        .. code-block::
+        
+                                   +------------+
+                                   |  Principal |
+                                   |(data: JSON)|
+                                   +------------+
+                                         ^
+                                         |
+                    +-----------------------------------------+
+                    |                                         |
+                    |                                         |
+                 +------+                                 +-------+
+                 | User |                                 | Group |
+                 +------+                                 +-------+
+                     1                                        1
+                     |                                        |
+                     |                                        |
+                     +-------------+            +-------------+
+                                   |            |
+                                   n            m
+                                   |            |
+                                +-----------------+
+                                | GroupAssignment |
+                                +-----------------+
+        
+        Currently SQLite and PostgreSQL are supported and tested, other DBs must
+        be evaluated concerning their JSON capabilities since users and groups
+        store additional payload data in a JSON field which brings the flexibility
+        to store arbitrary data as a dict in the JSON field.
+        
+        To activate SQL based UGM backend, it needs to be configured via the application
+        ini config file.:
+        
+        .. code-block:: ini
+        
+            ugm.backend = sql
+        
+            sql.user_attrs = id, mail, fullname, portrait
+            sql.group_attrs = description
+            sql.binary_attrs = portrait
+            sql.log_auth = True
+        
+        UGM users and groups are stored in the same database as defined at
+        ``sql.db.url`` in the config file.
+        
+        UGM dedicated config options:
+        
+        - ``sql.user_attrs`` is a comma separated list of strings defining the
+          available user attributes stored in the user JSON data field.
+        
+        - ``sql.group_attrs`` is a comma separated list of strings defining the
+          available group attributes stored in the group JSON data field.
+        
+        - ``sql.binary_attrs`` is a comma separated list of strings defining the
+          attributes which are considered binary and get stored base 64 encoded in the
+          JSON data field of users and groups.
+        
+        - ``sql.log_auth`` defaults to False. If set, the first login timestamp will
+          be stored during the first authentication and latest login timestamp will be
+          updated for each successful authentication.
+        
+        Users and groups can be managed with ``cone.ugm``. If activated,
+        ``sql.user_attrs`` and ``sql.group_attrs`` can be omitted, relevant information
+        gets extracted from the ``ugm.xml`` config file.
+        
+        .. code-block:: ini
+        
+            ugm.backend = sql
+            ugm.config = %(here)s/ugm.xml
+        
+            sql.log_auth = True
+        
+            cone.plugins =
+                cone.ugm
+                cone.sql
+        
+        
+        TODO
+        ----
+        
+        - Support multiple primary keys.
+        
+        
+        Contributors
+        ============
+        
+        - Robert Niederreiter (Author)
+        - Phil Auersperg
+        
+        
+        Changes
+        =======
+        
+        0.4 (2020-11-12)
+        ----------------
+        
+        - Fix typo in ``SqlUGMFactory.__init__``.
+          [rnix]
+        
+        
+        0.3 (2020-07-09)
+        ----------------
+        
+        - SQL database URL setting key in ini file changed from ``cone.sql.db.url``
+          to ``sql.db.url``.
+          [rnix]
+        
+        - Add SQL based UGM implementation.
+          [zworkb, rnix]
+        
+        - Patch ``maker`` on ``cone.sql.session_factory`` if present in
+          ``cone.sql.testing.SQLLayer`` to ensure working session factory when running
+          tests.
+          [rnix]
+        
+        
+        0.2 (2020-05-30)
+        ----------------
+        
+        - Introduce ``cone.sql.SQLSessionFactory``. Gets instanciated at application
+          startup as singleton at ``cone.sql.session_factory``.
+          [rnix]
+        
+        - SQL database URL setting key in ini file changed from ``cone.sql.dbinit.url``
+          to ``cone.sql.db.url``.
+          [rnix]
+        
+        - SQL database URL definition is only required once in the ``app`` section of
+          the ini file. ``sqlalchemy.url`` can be removed from session filter.
+          [rnix]
+        
+        - Add SQL based principal ACL support.
+          [rnix]
+        
+        - Python 3 compatibility.
+          [rnix]
+        
+        - Fix hex formatting in ``cone.sql.model.GUID.process_bind_param``.
+          [rnix]
+        
+        - Register SQL session to transaction manager with ``zope.sqlalchemy.register``.
+          [rnix]
+        
+        - Use ``pyramid_tm`` instead of ``repoze.tm2``. Disabled by default, must be
+          enabled explicitely via ``pyramid.includes``.
+          [rnix]
+        
+        - Use ``pyramid_retry`` instead of ``repoze.retry``. Disabled by default, must be
+          enabled explicitely via ``pyramid.includes``.
+          [rnix]
+        
+        - Upgrade to ``cone.app`` 1.0b1.
+          [rnix]
+        
+        
+        0.1 (2017-03-28)
+        ----------------
+        
+        - Initial work.
+          [rnix]
+        
+        
+        License
+        =======
+        
+        Copyright (c) 2017-2020, BlueDynamics Alliance, Austria
+        All rights reserved.
+        
+        Redistribution and use in source and binary forms, with or without
+        modification, are permitted provided that the following conditions are met:
+        
+        * Redistributions of source code must retain the above copyright notice, this
+          list of conditions and the following disclaimer.
+        * Redistributions in binary form must reproduce the above copyright notice, this
+          list of conditions and the following disclaimer in the documentation and/or
+          other materials provided with the distribution.
+        * Neither the name of the BlueDynamics Alliance nor the names of its
+          contributors may be used to endorse or promote products derived from this
+          software without specific prior written permission.
+        
+        THIS SOFTWARE IS PROVIDED BY BlueDynamics Alliance ``AS IS`` AND ANY
+        EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+        WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+        DISCLAIMED. IN NO EVENT SHALL BlueDynamics Alliance BE LIABLE FOR ANY
+        DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+        (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+        LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+        ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+        (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+        SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+        
+Keywords: node pyramid cone web
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Programming Language :: Python
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Provides-Extra: test
+Provides-Extra: ugm
