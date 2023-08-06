@@ -1,0 +1,100 @@
+Metadata-Version: 2.1
+Name: mp3-combine-and-split
+Version: 0.0.7
+Summary: Utility to Combine MP3 and then split based on a defined max play time. 
+Home-page: https://github.com/philroche/mp3_combine_and_split
+Author: Philip Roche
+Author-email: phil@philroche.net
+License: GNU General Public License v3
+Keywords: mp3_combine_and_split
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.5
+Requires-Dist: Click (>=7.0)
+Requires-Dist: pydub
+Requires-Dist: eyed3
+Requires-Dist: natsort
+Requires-Dist: python-slugify
+
+=====================
+MP3 Combine and Split
+=====================
+
+
+.. image:: https://img.shields.io/pypi/v/mp3_combine_and_split.svg
+        :target: https://pypi.python.org/pypi/mp3_combine_and_split
+
+.. image:: https://img.shields.io/travis/philroche/mp3_combine_and_split.svg
+        :target: https://travis-ci.com/philroche/mp3_combine_and_split
+
+.. image:: https://readthedocs.org/projects/mp3-combine-and-split/badge/?version=latest
+        :target: https://mp3-combine-and-split.readthedocs.io/en/latest/?badge=latest
+        :alt: Documentation Status
+
+
+Utility to Combine MP3 and then split based on a defined max play time.
+
+I use it to combine and split a directory of mp3 in to mp3 of length 44 mins 50 seconds so that will fit on one side
+of a 45 minute cassette tape.
+
+* Free software: GNU General Public License v3
+* Documentation: https://mp3-combine-and-split.readthedocs.io.
+
+
+Features
+--------
+
+* TODO
+
+Credits
+-------
+
+This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+
+
+=======
+History
+=======
+
+0.0.7 (2020-11-13)
+------------------
+
+* handle mp3 tag data not suitable as a filename eg. has slash in artist string
+
+0.0.6 (2020-11-13)
+------------------
+
+* use sort order index as track number can't be relied upon especially if multiple albums in the same directory
+
+0.0.5 (2020-11-13)
+------------------
+
+* Sort files using natsort if track numbers are not present in mp3s.
+
+0.0.4 (2020-11-13)
+------------------
+
+* Added support for mp3s without valid track data in mp3 metadata.
+
+0.0.2 (2020-11-13)
+------------------
+
+* Added missing eyed3 dependency.
+
+0.0.1 (2020-11-13)
+------------------
+
+* First release on PyPI.
+
+
