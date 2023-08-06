@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: latis-image-proccessing
+Version: 0.0.17
+Summary: LATIS image processing utilities for python
+Home-page: http://www.latis-eniso.org/
+Author: Mohamed Amine
+Author-email: hiddentn@outlook.com
+License: UNKNOWN
+Description: LATIS image processing utilities for python
+        
+        
+        ## installation
+        
+        #### Windows
+        ```
+        pip install latis-gdcm-win
+        pip install latis-image-proccessing
+        ```
+        #### Linux
+        ```
+        sudo apt-get install python3-gdcm
+        ( pip / pip3 ) install latis-image-proccessing
+        ```
+        
+        
+        
+        ### Compiling The Package
+        
+        ```bash
+        # Build the package 
+        python setup.py bdist_wheel
+        
+        # Deploy to pip  
+        python -m twine upload dist/*
+        ```
+        
+        
+        # Release History
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.0
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.0
+Description-Content-Type: text/markdown
