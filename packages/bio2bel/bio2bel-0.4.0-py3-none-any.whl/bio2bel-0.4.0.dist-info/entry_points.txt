@@ -1,0 +1,13 @@
+[bio2bel]
+pid.pathways = bio2bel.sources.pid
+
+[compath]
+pid.pathways = bio2bel.sources.pid
+
+[console_scripts]
+bio2bel = bio2bel.cli:main
+bio2bel_pid = bio2bel.sources.pid:main
+
+[pykeen.triples.prefix_importer]
+bio2bel = bio2bel.pykeen:ensure_triples
+
