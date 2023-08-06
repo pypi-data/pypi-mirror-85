@@ -1,0 +1,57 @@
+Metadata-Version: 2.1
+Name: pyesbulk
+Version: 2.1.0
+Summary: An opinionated Elasticsearch bulk indexer for Python.
+Home-page: https://github.com/distributed-system-analysis/py-es-bulk
+Author: Peter A. Portante
+Author-email: peter.a.portante@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# py-es-bulk
+A simple wrapper around elasticsearch-py client streaming_bulk() API with
+robust error handling.
+
+This library is designed to work across various versions of the
+elasticsearch Python module and of the Elasticsearch server, as well as
+Elasticsearch V1 with the elasticsearch1 Python module.
+
+These names are available for import:
+
+* put_template
+
+    Push a document template to the server using a specified
+    Elasticsearch object. This module will determine whether
+    a template document of the same name and version already
+    exists, and PUT the new template if not.
+
+* streaming_bulk
+
+    Push multiple source documents to Elasticsearch indices,
+    using proper error handling and retry logic.
+
+* parallel_bulk
+
+    Push multiple source documents to Elasticsearch indices
+    in parallel across multiple threads, using proper error
+    handling and retry logic.
+
+* TemplateException
+
+    This exception is raised by put_template when a
+    template document does not contain the required version
+    metadata ({"_meta": {"version": <integer>}}); or, when
+    multiple template documents are included in a single call
+    to put_template, if the versions of those documents are
+    not all identical.
+
+See also https://pypi.org/project/pyesbulk/.
+
+
