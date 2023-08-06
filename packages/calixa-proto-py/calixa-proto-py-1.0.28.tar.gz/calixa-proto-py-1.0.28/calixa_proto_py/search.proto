@@ -1,0 +1,177 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+import "account.proto";
+import "push_notification.proto";
+import "billing.proto";
+import "conversation.proto";
+import "collaboration_entity.proto";
+import "entity.proto";
+import "common.proto";
+
+option java_package = "io.calixa.domain.search";
+option java_multiple_files = true;
+option optimize_for = SPEED;
+
+package calixa.domain.search;
+
+// TODO(freds): consider reconciling this Enum with calixa.domain.common.EntityType. While
+// search might not always contain the same domain, they are very similar.
+enum SearchEntityType {
+    SEARCH_ENTITY_TYPE_UNSPECIFIED = 0;
+    ACCOUNT = 1;
+    ACCOUNT_USER = 2;
+    EVENT = 3;
+    PUSH_NOTIFICATION_LOG = 4;
+    INVOICE = 5;
+    PRODUCT = 6;
+    PLAN = 7;
+    SUBSCRIPTION = 8;
+    INVOICE_LINE_ITEM = 9;
+    SUBSCRIPTION_ITEM = 10;
+    CHARGE = 11;
+    SAVED_PAYMENT_METHOD = 12;
+    REFUND = 13;
+    NOTE_THREAD = 14;
+    NOTE_MESSAGE = 15;
+    CONVERSATION = 16;
+}
+
+message SearchParameters {
+    SearchEntityType entity = 1;
+    string filters = 2;
+    string facets = 3;
+    // repeated string facetFilters = 4;
+    string query = 5;
+    int64 from = 6;
+    int64 to = 7;
+
+    string sort_field = 8;
+    string sort_order = 9;
+}
+
+message SearchParametersNew {
+    calixa.domain.common.EntityType entity = 1;
+    string filters = 2;
+    string facets = 3;
+    // repeated string facetFilters = 4;
+    string query = 5;
+    int64 from = 6;
+    int64 to = 7;
+
+    string sort_field = 8;
+    string sort_order = 9;
+}
+
+message SavedSearch {
+    string saved_search_id = 1;
+    string organization_user_id = 2;
+    string organization_id = 3;
+
+    string name = 4;
+    SearchParameters parameters = 5;
+
+    google.protobuf.Timestamp created_at = 20;
+    google.protobuf.Timestamp updated_at = 21;
+}
+
+message SearchRequest {
+    string organization_id = 1;
+    int32 page = 2;
+    int32 hits_per_page = 3;
+    SearchParameters parameters = 4;
+}
+
+message SearchRequestNew {
+    string organization_id = 1;
+    int32 page = 2;
+    int32 hits_per_page = 3;
+    SearchParametersNew parameters = 4;
+}
+
+message SearchResponseFacet {
+    string facet_name = 1;
+    map<string, int64> values = 2;
+}
+
+message SearchResponseNew {
+    repeated calixa.domain.entity.EntityWithRelationships entities = 2;
+
+    repeated SearchResponseFacet facets = 100;
+    int64 total_hits = 101;
+    int64 page = 102;
+    int64 total_pages = 103;
+    int64 hits_per_page = 104;
+    int64 processing_time_ms = 105;
+    bool timed_out = 106;
+}
+
+service IndexService {
+    rpc DeleteEntities (DeleteEntitiesRequest) returns (DeleteEntitiesResponse) {
+    }
+    rpc IndexEntities (IndexEntitiesRequest) returns (IndexEntitiesResponse) {
+    }
+    rpc IndexEntitiesStream (stream calixa.domain.entity.EntityWithRelationships) returns (IndexEntitiesResponse) {
+    }
+    rpc InitializeIndex (InitializeIndexRequest) returns (InitializeIndexResponse) {
+    }
+}
+
+message IndexEntitiesRequest {
+
+    // This is only necessary for routing.
+    string organization_id = 1;
+
+    // This is the (primary) new Entity we use when indexing.
+    repeated calixa.domain.entity.EntityWithRelationships entity_with_relationships = 2;
+
+    // This is a specific index for surfacing logs in the WebUI. This will remain
+    // after the Graph migration is complete.
+    repeated calixa.domain.notification.PushNotificationLog push_notification_logs = 52;
+
+    // The following fields will be deprecated in a post-graph world
+
+//    repeated calixa.domain.account.Account accounts = 50; // DEPRECATED
+//    repeated calixa.domain.account.AccountUser accountUsers = 51; // DEPRECATED
+//
+//    repeated calixa.domain.billing.Invoice invoices = 53; // DEPRECATED
+//    repeated calixa.domain.billing.Product products = 54; // DEPRECATED
+//    repeated calixa.domain.billing.Plan plans = 55; // DEPRECATED
+//    repeated calixa.domain.billing.Subscription subscriptions = 56; // DEPRECATED
+//    repeated calixa.domain.billing.InvoiceLineItem invoice_line_items = 57; // DEPRECATED
+//    repeated calixa.domain.billing.SubscriptionItem subscription_items = 58; // DEPRECATED
+//    repeated calixa.domain.billing.Charge charges = 59; // DEPRECATED
+//    repeated calixa.domain.billing.SavedPaymentMethod saved_payment_methods = 60; // DEPRECATED
+//    repeated calixa.domain.billing.Refund refunds = 61; // DEPRECATED
+//    // leave space for more billing events.
+//
+//    repeated calixa.domain.event.Event events = 70; // DEPRECATED
+//
+//    repeated calixa.domain.collaboration.Thread note_threads = 71; // DEPRECATED
+//    repeated calixa.domain.collaboration.Message note_messages = 72; // DEPRECATED
+//
+//    repeated calixa.domain.conversation.LatestMessage latest_messages = 100; // DEPRECATED
+//    repeated calixa.domain.conversation.ConversationSummary conversation_summaries = 101; // DEPRECATED
+}
+
+message DeleteEntitiesRequest {
+  string organization_id = 1;
+  repeated calixa.domain.entity.Entity deleted = 2;
+}
+
+message IndexEntitiesResponse {
+    // This space intentionally left blank
+}
+message DeleteEntitiesResponse {
+    // This space intentionally left blank
+}
+
+message InitializeIndexRequest {
+    string organization_id = 1;
+    bool rebuild = 2;
+}
+
+message InitializeIndexResponse {
+    // This space intentionally left blank
+}

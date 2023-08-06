@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package calixa.domain.notification;
+
+import "google/protobuf/timestamp.proto";
+
+option java_package = "io.calixa.domain.notification";
+option java_multiple_files = true;
+option optimize_for = SPEED;
+
+// HTTP push notification
+message PushNotificationLog {
+
+    google.protobuf.Timestamp sent_at = 1;
+    int32 attempts = 2;
+    int64 latency_millis = 3;
+    string event_id = 4;
+
+    string request_uri = 100;
+    map<string, string> request_headers = 101;
+    string request_body = 102;
+
+    map<string, string> response_headers = 201;
+    int32 http_response_code = 202;
+    string response_body = 203;
+}
