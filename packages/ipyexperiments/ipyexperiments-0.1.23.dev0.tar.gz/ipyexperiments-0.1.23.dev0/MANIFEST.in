@@ -1,0 +1,15 @@
+include AUTHORS.md
+include CONTRIBUTING.md
+include CHANGES.md
+include LICENSE.txt
+include README.md
+
+# include recursively
+graft ipyexperiments
+graft docs
+
+# exclude recursively
+prune tests
+
+# exclude matching extensions
+global-exclude *.py[co]
