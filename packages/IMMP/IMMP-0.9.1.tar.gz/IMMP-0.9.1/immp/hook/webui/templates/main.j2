@@ -1,0 +1,117 @@
+{% extends ctx.module + "/base.j2" %}
+
+{%- macro plural(count, template, one="", many="s") -%}
+  {{- template.format(count, one if count == 1 else many) -}}
+{%- endmacro -%}
+
+{% set title = "Status" %}
+{% set subtitle = plural(host.plugs|length, "{} plug{}") + ", " +
+                  plural(host.resources|length, "{} resource{}") + ", " +
+                  plural(host.hooks|length, "{} hook{}") %}
+
+{% macro qualname(openable) -%}
+<small>{{ openable.__class__.__module__ }}.</small>{{ openable.__class__.__name__ }}
+{%- endmacro %}
+
+{% block body -%}
+<div class="container">
+  <div class="buttons">
+    <a class="button is-success" href="{{ ctx.url_for("add") }}"><i class="fas fa-fw fa-plus"></i> Add new plug/hook</a>
+  </div>
+  <div class="columns">
+    <div class="column">
+      <h3 class="title"><i class="fas fa-plug"></i> Plugs</h3>
+      {%- if host.plugs %}
+      <nav class="panel">
+      {%- for name, plug in host.plugs.items() %}
+        <a class="panel-block" href="{{ ctx.url_for("plug", name=name) }}">
+          {% set colour = open_colour(plug.state) %}
+          <span class="panel-icon{% if colour %} has-text-{{ colour }}{% endif %}" title="{{ plug.state.name|title }}">
+            <i class="fas fa-fw fa-{{ open_icon(plug.state) }}"></i>
+          </span>
+          <span><strong>{{ name }}</strong> {{ qualname(plug) }}</span>
+        </a>
+      {%- endfor %}
+      </nav>
+      {%- else %}
+      <p class="content">None loaded.</p>
+      {%- endif %}
+      <h3 class="title"><i class="fas fa-hashtag"></i> Channels</h3>
+      {%- if host.channels %}
+      <nav class="panel">
+      {%- for name, channel in host.channels.items() %}
+        <a class="panel-block" href="{{ ctx.url_for("channel", plug=channel.plug.name, source=channel.source) }}">
+          <span>
+            <strong>{{ name }}</strong>
+            <small>{{ channel.plug.name }} @ {{ channel.source }}</small>
+          </span>
+        </a>
+      {%- endfor %}
+      </nav>
+      {%- else %}
+      <p class="content">None defined.</p>
+      {%- endif %}
+      <h3 class="title"><i class="fas fa-layer-group"></i> Groups</h3>
+      {%- if host.groups %}
+      <nav class="panel">
+      {%- for group in host.groups.values() %}
+        <a class="panel-block" href="{{ ctx.url_for("group", name=group.name) }}">
+          <span>
+            <strong>{{ group.name }}</strong> {{ group_summary(group) }}
+          </span>
+        </a>
+      {%- endfor %}
+      </nav>
+      {%- else %}
+      <p class="content">None defined.</p>
+      {%- endif %}
+      <form action="{{ ctx.url_for("group_add") }}" method="post">
+        <div class="field has-addons">
+          <div class="control">
+            <input name="name" type="text" class="input" placeholder="Name" required>
+          </div>
+          <div class="control">
+           <button type="submit" class="button is-success">
+             <i class="fas fa-fw fa-plus"></i> Add
+           </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="column">
+      <h3 class="title"><i class="fas fa-boxes"></i> Resources</h3>
+      {%- if host.resources %}
+      <nav class="panel">
+      {%- for hook in host.resources.values() %}
+        <a class="panel-block" href="{{ hook_url_for(hook, none) }}">
+          {% set colour = open_colour(hook.state) %}
+          <span class="panel-icon{% if colour %} has-text-{{ colour }}{% endif %}" title="{{ hook.state.name|title }}">
+            <i class="fas fa-fw fa-{{ open_icon(hook.state) }}"></i>
+          </span>
+          <span><strong>{{ qualname(hook) }}</strong> {{ hook.name }}</span>
+        </a>
+      {%- endfor %}
+      </nav>
+      {%- else %}
+      <p class="content">None loaded.</p>
+      {%- endif %}
+      <h3 class="title"><i class="fas fa-paper-plane"></i> Hooks</h3>
+      {%- if host.hooks %}
+      <nav class="panel">
+      {%- for name, hook in host.plain_hooks.items() %}
+        <a class="panel-block" href="{{ hook_url_for(hook, none) }}">
+          {% set colour = open_colour(hook.state) %}
+          <span class="panel-icon{% if colour %} has-text-{{ colour }}{% endif %}" title="{{ hook.state.name|title }}">
+            <i class="fas fa-fw fa-{{ open_icon(hook.state) }}"></i>
+          </span>
+          <span><strong>{{ name }}</strong> {{ qualname(hook) }}</span>
+        </a>
+      {%- endfor %}
+      </nav>
+      {%- else %}
+      <p class="content">None loaded.</p>
+      {%- endif %}
+    </div>
+  </div>
+</div>
+{%- endblock %}
