@@ -1,0 +1,74 @@
+#!/usr/bin/python3
+
+"""
+<sphinx>
+disk-space
+----------
+
+Monitors disk space.
+
+**Parameters:**
+
+- min_req_space (in gigabytes)
+- dir (path)
+
+
+**Example JSON:**
+
+.. code:: json
+
+    {
+        "type": "disk-space",
+        "input": {
+            "dir": "/",
+            "min_req_space": "6"
+        }
+    }
+
+
+</sphinx>
+"""
+import os
+from sys import stderr
+
+
+if "DIR" not in os.environ or "MIN_REQ_SPACE" not in os.environ:
+    print("Missing one of parameters.\nUsage: ./disk-space.py, env. variables are: DIR MIN_REQ_SPACE[bkMGT]",
+          file=stderr)
+    exit(127)
+
+
+def check(mntpoint, req_space):
+    unit = "G"
+
+    if req_space[-1] in "bkMGT":
+        unit = req_space[-1]
+        req_space = float(req_space[:-1])
+    else:
+        req_space = float(req_space)
+
+    statvfs = os.statvfs(mntpoint)
+    if "MOCK_FREE_SPACE" in os.environ:         # check if we have mock data
+        free_space = float(os.environ["MOCK_FREE_SPACE"]) * 1024**3 # mock data is in GiB
+    else:
+        free_space = statvfs.f_frsize * statvfs.f_bavail # block size * avail blocks
+    if unit == "k":
+        free_space /= 1024.
+    elif unit == "M":
+        free_space /= 1024. ** 2
+    elif unit == "G":
+        free_space /= 1024. ** 3
+    elif unit == "T":
+        free_space /= 1024. ** 4
+
+    if free_space >= req_space:
+        print("There is {0:.1f}{1} disk space at {2}, nothing to worry about, defined minimum is {3}{1}".format(
+              free_space, unit, mntpoint, req_space))
+        return 0
+    else:
+        print("Failed asserting that {0:.1f}{1} is at least {2}{1} at {3}".format(free_space, unit, req_space,
+                                                                                  mntpoint))
+        return 1
+
+
+exit(check(os.environ["DIR"], os.environ["MIN_REQ_SPACE"]))
