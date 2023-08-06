@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: zkdumpreader
+Version: 0.0.4
+Summary: zkdumpreader reads lammps dump file to check if bound molecules are sepeareted
+Home-page: UNKNOWN
+Author: Zafer Kosar
+Author-email: zafer.kosar.physics@gmail.com
+License: MIT
+Keywords: lammps dump reader
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha 
+Classifier: Intended Audience :: Education
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Requires-Dist: numpy
+
+zkdumpreader reads lammps dump file to check if bound molecules are sepeareted and write how many molecules left bound in each timestep into a csv file.
+Also reports which molecules are apart from their binding sites at which timestep in how many units of sigma to a report.txt file
+zkdumpreader has only one method named dumpread.
+
