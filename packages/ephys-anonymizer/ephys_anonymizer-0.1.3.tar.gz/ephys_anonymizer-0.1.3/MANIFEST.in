@@ -1,0 +1,24 @@
+include *.xml
+include *.rst
+include LICENSE
+include ephys_anonymizer/__init__.py
+
+recursive-include examples *.py
+recursive-include examples *.txt
+
+recursive-include ephys_anonymizer *.avi
+recursive-include ephys_anonymizer *.mov
+recursive-include ephys_anonymizer *.mp4
+recursive-include ephys_anonymizer *.py
+recursive-include ephys_anonymizer *.tsv
+
+exclude .nojekyll
+exclude .github
+exclude Makefile
+exclude LICENSE
+exclude CONTRIBUTING.md
+recursive-exclude ephys_anonymizer *.DS_Store
+recursive-exclude ephys_anonymizer *.pyc
+
+recursive-exclude docs *
+exclude requirements.txt
