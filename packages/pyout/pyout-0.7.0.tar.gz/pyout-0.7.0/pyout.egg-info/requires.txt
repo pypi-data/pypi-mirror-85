@@ -1,0 +1,22 @@
+jsonschema>=3.0.0
+
+[:sys_platform != "win32"]
+blessings
+
+[core]
+jsonschema>=3.0.0
+
+[core:sys_platform != "win32"]
+blessings
+
+[full]
+jsonschema>=3.0.0
+pytest
+pytest-timeout
+
+[full:sys_platform != "win32"]
+blessings
+
+[tests]
+pytest
+pytest-timeout
