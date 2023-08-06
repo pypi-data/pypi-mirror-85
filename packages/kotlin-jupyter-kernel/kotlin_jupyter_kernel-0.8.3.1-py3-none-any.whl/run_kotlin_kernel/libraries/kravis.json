@@ -1,0 +1,16 @@
+{
+  "description": "Kotlin grammar for data visualization",
+  "properties": {
+    "v": "-SNAPSHOT"
+  },
+  "link": "https://github.com/holgerbrandl/kravis",
+  "dependencies": [
+    "com.github.holgerbrandl:kravis:$v"
+  ],
+  "imports": [
+    "kravis.*"
+  ],
+  "renderers": {
+    "kravis.GGPlot": "$it.show()"
+  }
+}
