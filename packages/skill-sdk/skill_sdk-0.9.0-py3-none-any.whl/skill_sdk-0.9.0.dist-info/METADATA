@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: skill-sdk
+Version: 0.9.0
+Summary: Magenta Voice Skill SDK for Python
+Home-page: https://github.com/telekom/voice-skill-sdk/
+Author: Deutsche Telekom Voicification Suite
+Author-email: vineet.hingorani@telekom.de
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Requires-Python: >=3.7
+Requires-Dist: arrow (==0.17.0)
+Requires-Dist: bottle (==0.12.19)
+Requires-Dist: CacheControl (==0.12.6)
+Requires-Dist: circuitbreaker (==1.3.1)
+Requires-Dist: coverage (==5.3)
+Requires-Dist: gevent (==20.9.0)
+Requires-Dist: gunicorn (==20.0.4)
+Requires-Dist: isodate (==0.6.0)
+Requires-Dist: prometheus-client (==0.8.0)
+Requires-Dist: opentracing (==2.3.0)
+Requires-Dist: python-dateutil (==2.8.1)
+Requires-Dist: pyyaml (==5.3.1)
+Requires-Dist: requests-mock (==1.8.0)
+Requires-Dist: requests (==2.25.0)
+Requires-Dist: timezonefinder (==4.5.0)
+Requires-Dist: apispec (==4.0.0)
+Requires-Dist: py-zipkin (==0.20.1)
+Requires-Dist: jaeger-client (==4.3.0)
+Provides-Extra: generator
+Requires-Dist: cookiecutter ; extra == 'generator'
+
+Skill SDK for Python is a full-stack micro-service builder for creating Magenta smart speaker skills.
+
+
