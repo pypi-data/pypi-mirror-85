@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: texting
+Version: 0.0.12
+Summary: misc for string
+Home-page: https://github.com/pydget/texting.git
+License: MIT
+Keywords: str,string,ansi,length,pad,tap,str_value,string_value
+Author: Hoyeung Wong
+Author-email: hoyeungw@outlook.com
+Requires-Python: >=3.8,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Project-URL: Repository, https://github.com/pydget/texting.git
+Description-Content-Type: text/markdown
+
+## texting
+##### misc for string
+
+### Functions
+- has_ansi
+- lange
+- pad: lpad, mpad, rpad
+- str_value
+
+### Usage
+```python
+from texting.has_ansi import has_ansi
+from texting.lange import lange
+words = [
+    'peace',
+    '\u001B[4mwar\u001B[0m',
+    '\u001b[38;2;255;255;85mtolstoy\u001b[0m',
+]
+
+for word in words:
+    print(f'[{word}] [has_ansi] ({has_ansi(word)}) [lange] ({lange(word)})')
+```
