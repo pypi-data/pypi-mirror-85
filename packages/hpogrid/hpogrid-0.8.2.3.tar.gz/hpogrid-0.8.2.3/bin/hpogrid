@@ -1,0 +1,102 @@
+#! /usr/bin/env python
+
+import argparse
+import json
+import sys, os
+
+try:
+    import hpogrid
+except:
+    raise ImportError('Cannot import hpogrid module. Try source setupenv.sh first.')
+
+kCommand_HPOConfig = 'hpo_config'
+kCommand_GridConfig = 'grid_config'
+kCommand_ModelConfig = 'model_config'
+kCommand_SearchSpace = 'search_space'
+kCommand_Project = 'project'
+kCommand_PandaStatus = 'tasks'
+kCommand_RunJob = 'run'
+kCommand_SubmitJob = 'submit'
+kCommand_SiteInfo = 'sites'
+kCommand_Report = 'report'
+kCommand_Generate = 'generate'
+kCommand_iDDSLog = 'idds_log'
+
+kCommandList = [kCommand_HPOConfig, kCommand_GridConfig, kCommand_ModelConfig,
+                kCommand_SearchSpace, kCommand_Project, kCommand_PandaStatus,
+                kCommand_SiteInfo, kCommand_RunJob, kCommand_SubmitJob,
+                kCommand_Report, kCommand_Generate, kCommand_iDDSLog]
+
+
+class HPOGridCLI(object):
+    def __init__(self):
+        parser = argparse.ArgumentParser(
+            description='Tool for Hyperparameter Optimization on the Grid',
+            usage='''hpogrid <command> [<args>]''')
+        parser.add_argument('command', help='Subcommand to run', choices=kCommandList)
+        # parse_args defaults to [1:] for args, but you need to
+        # exclude the rest of the args too, or validation will fail        
+        args = parser.parse_args(sys.argv[1:2])
+        if not hasattr(self, args.command):
+            print('Unrecognized command')
+            parser.print_help()
+            exit(1)
+        getattr(self, args.command)()
+
+    def hpo_config(self):
+        from hpogrid import HPOConfiguration
+        HPOConfiguration()
+
+    def grid_config(self):
+        from hpogrid import GridConfiguration
+        GridConfiguration()
+
+    def search_space(self):
+        from hpogrid import SearchSpaceConfiguration
+        SearchSpaceConfiguration()
+
+    def model_config(self):
+        from hpogrid import ModelConfiguration
+        ModelConfiguration()
+
+    def project(self):
+        from hpogrid import ProjectConfiguration
+        ProjectConfiguration()
+    
+    def tasks(self):
+        from hpogrid.components.panda_task_manager import PandaTaskManager
+        PandaTaskManager(True)
+
+    def submit(self):
+        from hpogrid import GridHandler
+        GridHandler()
+    
+    def run(self):
+        from hpogrid import JobBuilder
+        parser = JobBuilder.get_parser()
+        args = vars(parser.parse_args(sys.argv[2:]))
+        hpogrid.run(**args)
+
+    def sites(self):
+        from hpogrid import GridSiteInfo
+        GridSiteInfo()
+
+    def report(self):
+        from hpogrid.components.reporter import HPOTaskHandle
+        HPOTaskHandle()
+        
+    def generate(self):
+        from hpogrid import SteeringIDDS
+        SteeringIDDS()
+    
+    def idds_log(self):
+        parser = argparse.ArgumentParser(
+            description='Tool for fetching iDDS log files',
+            usage='''hpogrid idds_log <task_id>''')
+        parser.add_argument('task_id', help='Task ID for iDDS job', type=int)      
+        args = parser.parse_args(sys.argv[2:])
+        from hpogrid.idds_interface.idds_utils import check_log
+        check_log(args.task_id)
+
+if __name__ == '__main__':
+    HPOGridCLI()
