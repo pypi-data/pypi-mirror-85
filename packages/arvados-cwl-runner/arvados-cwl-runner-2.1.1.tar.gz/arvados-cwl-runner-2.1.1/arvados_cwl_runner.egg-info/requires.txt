@@ -1,0 +1,11 @@
+arvados-python-client==2.1.1
+ciso8601 >= 2.0.0
+cwltool==3.0.20200807132242
+schema-salad==7.0.20200612160654
+setuptools
+
+[:os.name=="posix" and python_version<"3"]
+subprocess32 >= 3.5.1
+
+[:python_version<"3"]
+pytz
