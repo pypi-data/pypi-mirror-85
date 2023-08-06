@@ -1,0 +1,1 @@
+from ktopsis.ktopsis import topsis_main
