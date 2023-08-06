@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: TOPSIS-Priyanshu-101803308
+Version: 0.0.2
+Summary: A Python package implementing TOPSIS technique.
+Home-page: UNKNOWN
+Author: Priyanshu Aggarwal
+Author-email: priyanshua098@gmail.com
+License: MIT
+Description: # TOPSIS-Python
+        
+        Submitted By: **Priyanshu Aggarwal 101803308**
+        
+        
+        ## How to use this package:
+        
+        This package can be run as in the following example:
+        
+        
+        ### In Python notebook :
+        ```
+        >>> import pandas as pd
+        >>> from topsis_py.topsis import topsis
+        >>> df = pd.read_csv('data.csv').values
+        >>> d = dataset[:,1:]
+        >>> w = [1,1,1,1]
+        >>> im = ["+" , "+" , "-" , "+" ]
+        >>> df = topsis(d,w,im)
+        ```
+        
+        
+        
+Keywords: Ranking,Topsis
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
