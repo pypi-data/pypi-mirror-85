@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: movemeter
+Version: 0.2.0
+Summary: A motion analysis tool
+Home-page: https://github.com/jkemppainen/movemeter
+Author: Joni Kemppainen
+Author-email: jjtkemppainen1@sheffield.ac.uk
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3) 
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.0
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: matplotlib
+Requires-Dist: tifffile
+Requires-Dist: Pillow
+Requires-Dist: ExifRead
+Requires-Dist: opencv-python
+Requires-Dist: tk-steroids (>=0.3.0)
+
+<h1>Movemeter</h1>
+A motion analysis tool that (at the moment) mainly just wraps the cv2.matchTemplate function from OpenCV.
+
+
+<h2>Installing</h2>
+
+The latest version from PyPi can be installed with the command
+
+```
+pip install movemeter
+```
+
+
+<h2>How to use</h2>
+
+To open the yet unfinished graphical user interface (GUI)
+
+```python
+import movemeter.tk_meter as tkmeter
+tkmeter.main()
+```
+
+
+
