@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: django-swap-user
+Version: 0.2.6
+Summary: (Beta) Simple and flexible way to swap default Django User
+Home-page: http://github.com/artinnok/django-swap-user
+License: MIT
+Keywords: django,swap,user,custom,user,auth,model,email,username,phone,mixins,authentication
+Author: Artem Innokentiev
+Author-email: artinnok@protonmail.com
+Maintainer: Artem Innokentiev
+Maintainer-email: artinnok@protonmail.com
+Requires-Python: >=3.6,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: django (>=2.2,<2.3)
+Project-URL: Repository, http://github.com/artinnok/django-swap-user
+Description-Content-Type: text/markdown
+
+# django-swap-user
+
+# архитектура
+приложение swap_user засплитовано на еще 2 приложения:
+  - email
+  - named_email
+  
+потому что, если оставить их в одном аппе - то они вдвоем создают миграции и таблицы.
+если их оставить, они будут считаться как 2 кастомные модели в пределах одного приложения, что вызывает
+недоумение и когнитивную нагрузку.
+
+при такой архитектуре (когда есть общий апп, который содержит внутренние аппы) - пользователь
+подключает только ту кастомную модель юзера, которая ему больше подходит.
