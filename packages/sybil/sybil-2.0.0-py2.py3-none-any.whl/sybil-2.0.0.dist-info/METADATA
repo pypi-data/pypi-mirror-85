@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: sybil
+Version: 2.0.0
+Summary: Automated testing for the examples in your documentation.
+Home-page: https://github.com/cjw296/sybil
+Author: Chris Withers
+Author-email: chris@withers.org
+License: MIT
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Provides-Extra: build
+Requires-Dist: sphinx ; extra == 'build'
+Requires-Dist: setuptools-git ; extra == 'build'
+Requires-Dist: twine ; extra == 'build'
+Requires-Dist: wheel ; extra == 'build'
+Provides-Extra: test
+Requires-Dist: pytest (>=3.5.0) ; extra == 'test'
+Requires-Dist: pytest-cov ; extra == 'test'
+
+Sybil
+=====
+
+|CircleCI|_ |Docs|_
+
+.. |CircleCI| image:: https://circleci.com/gh/cjw296/sybil/tree/master.svg?style=shield
+.. _CircleCI: https://circleci.com/gh/cjw296/sybil/tree/master
+
+.. |Docs| image:: https://readthedocs.org/projects/sybil/badge/?version=latest
+.. _Docs: http://sybil.readthedocs.org/en/latest/
+
+
+This library provides a way to test examples in your documentation by parsing
+them from the documentation source and evaluating the parsed examples as part of
+your normal test run. Integration is provided for the main Python test
+runners.
+
+
