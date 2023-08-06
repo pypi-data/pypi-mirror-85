@@ -1,0 +1,80 @@
+Metadata-Version: 2.1
+Name: cvdast
+Version: 1.44.21
+Summary: To regenerate pytest fixtures and test methods dynamically from OpenAPI spec and Cloudvector APIShark events
+License: MIT
+Keywords: cv-dast,cloudvector,apishark
+Author: Bala Kumaran
+Author-email: balak@cloudvector.com
+Requires-Python: >=3.7,<4.0
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Software Development :: Documentation
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Quality Assurance
+Requires-Dist: PyYAML (==5.3.1)
+Requires-Dist: autopep8 (==1.5.4)
+Requires-Dist: curlify (==2.2.1)
+Requires-Dist: cvapianalyser (==1.43.6)
+Requires-Dist: dictor (==0.1.7)
+Requires-Dist: jinja2
+Requires-Dist: nested-lookup (==0.2.21)
+Requires-Dist: openapispecdiff (==1.43.7)
+Requires-Dist: pytest (==5.4.3)
+Requires-Dist: pytest-cases (==1.16.0)
+Requires-Dist: pytest-html
+Requires-Dist: pytest-json (==0.4.0)
+Requires-Dist: pytest-lazy-fixture (==0.6.3)
+Requires-Dist: pytest-rerunfailures (==9.0)
+Requires-Dist: pytest-testrail (==2.9.0)
+Requires-Dist: pytest-timeout (==1.4.2)
+Requires-Dist: requests (==2.22.0)
+Requires-Dist: tqdm (==4.46.1)
+Requires-Dist: validators (==0.18.0)
+Description-Content-Type: text/markdown
+
+# cv-dast
+
+CV-DAST is a Python library for regenerating the pytest fixtures and test cases dynamically from Open API Spec and Cloudvector APIShark events 
+
+Visit https://www.cloudvector.com/api-shark-free-observability-security-monitoring-tool/#apishark
+
+## Installation
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+
+```bash
+pip install cv-dast
+```
+
+## Usage
+
+```python cv-dast 
+
+****************************************************************************************************
+CloudVector CommunityEdition - Coverage analysis plugin
+****************************************************************************************************
+
+Enter CommunityEdition(CE) host in format <host>:<port> : x.x.x.x:y
+Enter your CommunityEdition(CE) username : sandeep
+CommunityEdition(CE) password:
+Enter absolute path to Old API SPEC: ../input.json
+Enter absolute path to new API SPEC : ../input1.json 
+Do you want to process only diff? (Y/N) : 
+Enter absolute path to input parameteres json(press Enter for None):
+```
+
+instead of giving inputs every single time you can also alternatively create a file called my_cesetup.yaml in the path from where you are running the tool
+
+```yaml 
+ce_host:
+ce_username:
+```
+you can have multiple such my_cesetup.yaml for different CE setup or different recordings and run them from specific paths for its corresponding reports
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
