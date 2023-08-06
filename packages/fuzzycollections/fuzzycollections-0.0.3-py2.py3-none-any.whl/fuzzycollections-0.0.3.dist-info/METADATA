@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: fuzzycollections
+Version: 0.0.3
+Summary: fuzzy collections
+Home-page: https://github.com/Dobatymo/fuzzycollections
+Author: Dobatymo
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: ISC License (ISCL)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown; charset=UTF-8
+Requires-Dist: genutility (>=0.0.50)
+Provides-Extra: all
+Requires-Dist: jellyfish ; extra == 'all'
+Requires-Dist: polyleven ; extra == 'all'
+Provides-Extra: dev
+Requires-Dist: isort ; extra == 'dev'
+
+# fuzzycollections
+
+Find values in a collection which are similar according to some distance function.
+
+## Install
+
+- `pip install fuzzycollections[all]` to install with all dependencies. If installed without dependencies, the requirements will depend on which collection class is used.
+
+## Collections
+
+- `BkCollection`: Uses a BK-Tree to find similar matches quickly. Requires a real mathematical metric as distance function.
+- `LinearCollection`: Simply uses a linear search through all collection items to find close matches. Distance function can be anything.
+
+
