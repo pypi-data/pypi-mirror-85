@@ -1,0 +1,105 @@
+# TOPSIS-KUNAL-101803623
+
+TOPSIS-KUNAL-101803623 is a package that will provide feature to do multi-criteria decision making in choosing the best models among the data provided.
+
+  - It will provide with the TOPSIS Score.
+  - It will do Ranking of Models on the basis of the given data.
+
+# TOPSIS:
+
+Technique for Order Preference by Similarity to Ideal Solution (TOPSIS) originated in the 1980s as a multi-criteria decision making method. TOPSIS chooses the alternative of shortest Euclidean distance from the ideal solution, and greatest distance from the negative-ideal solution. 
+
+
+### Installation
+TOPSIS-KUNAL-101803623 requires [Python](https://www.python.org/) v2.7+ to run.
+
+Install the package using pip as follows :
+
+```sh
+$ pip install TOPSI-KUNAL-101803623
+```
+
+### HOW TO USE THIS PACKAGE
+
+TOPSIS-KUNAL-10803623 can be run as in the following examples:
+
+
+**IN PYTHON IDLE :**
+
+NOTE: 
+1. Pre-processing is to be done only in-case of non-numeric data in input file.
+2. Ensure that the number of weights and impacts is equal to the no of columns excluding the first one in the preprocesed data.
+
+```sh
+>>> import pandas as pd
+>>> from topsis import TopsisScore
+>>> dataset = pd.read_csv('data.csv') #data.csv the file containing the input data
+>>> dataset = prepocess(dataset) # Preprocessing as mentioned above of data
+>>> w = [1,1,1,2] 
+>>> im = ['+','+','-','+'] 
+>>> """checking the no of weights and imapcts should be equal to no of columns in dataset  
+>>>    excluding the first column in the preprocessed dataset """
+>>> noofparameterreq = len(dataset.columns)-1
+>>> if (len(weights) != noofparameterreq) or (len(impacts) != noofparameterreq) :
+>>>     print("The no of parameters required for weights and impacts is : " +                   
+        str(noofparameterreq))
+        raise Exception('Inavalid no of parameters in weights or impacts')
+>>> dataset = TopsisScore(dataset,w,im)
+>>> print(dataset) #returns pandas dataframe with rank and topsis score included 
+```
+
+### Sample Dataset
+The decision matrix (a) will be extracted from the csv file as the pandas dataframe which will contain each row representing a Model alternative, and each column representing a criterion like Accuracy, RSeq, Root Mean Squared Error, Correlation, and many more.
+
+| Model | Correlation | RSeq | RMSE | Accuracy
+| ------ | ------ | ----- | ----- | --------
+| M1 | 0.79 | 0.62 | 1.25 | 60.89 
+| M2 | 0.66 | 0.44 | 2.89 | 63.07
+| M3 | 0.56 | 0.31 | 1.57 | 62.87
+| M4 | 0.82 | 0.67 | 2.68 | 70.19
+| M5 | 0.75 | 0.56 | 1.3 | 80.39
+
+Weights (w) is not already normalised will be normalised later in the code.
+Information of impacts positive(+) or negative(-) impact criteria should be provided in (im).
+
+**No of weights and no of impacts should be equal to no. of columns in dataset excluding the first column** 
+
+### Sample Output
+
+The rankings are displayed in the form of a table, with the 1st rank offering us the best decision, and last rank offering the worst decision making, according to TOPSIS method.
+
+| Model | Correlation | RSeq | RMSE | Accuracy | Topsis Score | Rank
+| ------ | ------ | ----- | ----- | -------- | -------- | --------
+| M1 | 0.79 | 0.62 | 1.25 | 60.89 | 0.639133 | 2
+| M2 | 0.66 | 0.44 | 2.89 | 63.07 | 0.212592 | 5
+| M3 | 0.56 | 0.31 | 1.57 | 62.87 | 0.407846 | 4
+| M4 | 0.82 | 0.67 | 2.68 | 70.19 | 0.519153 | 3
+| M5 | 0.75 | 0.56 | 1.3 | 80.39 | 0.828267 | 1
+
+License
+----
+
+MIT License
+
+Copyright (c) 2020 Kunal Pradyuman
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+
