@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: wepy
+Version: 1.0.7
+Summary: Weighted Ensemble Framework
+Home-page: https://github.com/ADicksonLab/wepy
+Author: Samuel D. Lotz
+Author-email: samuel.lotz@salotz.info
+License: MIT
+Platform: UNKNOWN
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Requires-Dist: numpy
+Requires-Dist: h5py (<3)
+Requires-Dist: networkx (==2.3)
+Requires-Dist: pandas
+Requires-Dist: dill
+Requires-Dist: click
+Requires-Dist: scipy
+Requires-Dist: geomm
+Requires-Dist: matplotlib
+Requires-Dist: tabulate
+Requires-Dist: jinja2
+Requires-Dist: pint
+Requires-Dist: multiprocessing-logging
+Requires-Dist: eliot
+Provides-Extra: all
+Requires-Dist: numpy ; extra == 'all'
+Requires-Dist: h5py (<3) ; extra == 'all'
+Requires-Dist: networkx (==2.3) ; extra == 'all'
+Requires-Dist: pandas ; extra == 'all'
+Requires-Dist: dill ; extra == 'all'
+Requires-Dist: click ; extra == 'all'
+Requires-Dist: scipy ; extra == 'all'
+Requires-Dist: geomm ; extra == 'all'
+Requires-Dist: matplotlib ; extra == 'all'
+Requires-Dist: tabulate ; extra == 'all'
+Requires-Dist: jinja2 ; extra == 'all'
+Requires-Dist: pint ; extra == 'all'
+Requires-Dist: multiprocessing-logging ; extra == 'all'
+Requires-Dist: eliot ; extra == 'all'
+Requires-Dist: mdtraj ; extra == 'all'
+Requires-Dist: openmm-systems (==0.0.0) ; extra == 'all'
+Requires-Dist: dask[bag] ; extra == 'all'
+Requires-Dist: prometheus-client ; extra == 'all'
+Requires-Dist: pympler ; extra == 'all'
+Provides-Extra: distributed
+Requires-Dist: dask[bag] ; extra == 'distributed'
+Provides-Extra: md
+Requires-Dist: mdtraj ; extra == 'md'
+Requires-Dist: openmm-systems (==0.0.0) ; extra == 'md'
+Provides-Extra: prometheus
+Requires-Dist: prometheus-client ; extra == 'prometheus'
+Requires-Dist: pympler ; extra == 'prometheus'
+
+UNKNOWN
+
+
