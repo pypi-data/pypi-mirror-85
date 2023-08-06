@@ -1,0 +1,74 @@
+![PyPI](https://img.shields.io/pypi/v/meapy?style=flat-square)
+![PyPI - Status](https://img.shields.io/pypi/status/meapy?style=flat-square)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/meapy?style=flat-square)
+![PyPI - Wheel](https://img.shields.io/pypi/wheel/meapy?style=flat-square)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/meapy?style=flat-square)
+
+# MeaPy
+Python API Wrapper for Measurement Data
+
+## Vision
+MeaPy wants to be a easy-to-use and conformable API for working with measurement data in den Big Test Data environment.
+
+## Getting Started
+```
+pip install meapy
+```
+
+## Usage
+To create a meapy session, you need to connect to the MaDaM system.n
+```python
+from meapy import MeaPy, MeasurementList, LoadingConfig
+
+# "Basic " is the content if the HTTP Authorization-Header. In this example it is the Basic Authentication Header for user:password
+mp = MeaPy("http://madam-docker.int.kistler.com:8081/", "Basic dXNlcjpwYXNzd29yZA==")
+```
+
+### Search
+```python
+# direct search (by default limited to 100 results)
+result = mp.search("test")
+# result is a list of meapy.Measurement
+
+# search and iteration over the whole result set
+ml = MeasurementList(mp)
+count = 0
+for mea in ml.items('Station.Id="d4f1ad55-72d5-403c-81b8-73b2942b58f4"'):
+    count+=1
+print(count)
+```
+
+### Loading Signals
+The measurements that were returned from the search can be used to load the signals directly from the MaDaM system.
+
+```python
+result = mp.search("test", limit = 1)
+measurement = result[0]
+
+# load a measurement
+config = LoadingConfig()
+config.withSignals(['time'])
+signals = mp.load(measurement, config)
+# signals is a list of meapy.SignalData that contains the information for the requested channels
+```
+
+### Update Measurement Metadata
+```python
+result = mp.search("test", limit = 1)
+measurement = result[0]
+
+# update the metadata with some additional data
+data = {'someField': 'someValue'}
+mp.update(measurement, data)
+```
+
+### Upload a new Measurement
+```python
+# upload a pandas DataFrame to MaDaM with a given name.
+df = pd.DataFrame(np.random.randint(0, 100, size=(100, 4)), columns=list('ABCD'))
+
+# you can also add some additional metadata here
+data = {'someField': 'someValue'}
+mp.upload("random-data", df, data)
+# after successful upload, you can find the new measurement "random-data.csv"
+```

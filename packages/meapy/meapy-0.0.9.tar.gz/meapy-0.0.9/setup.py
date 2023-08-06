@@ -1,0 +1,37 @@
+from setuptools import setup
+
+setup(name='meapy',
+      version='0.0.9',
+      description='Python API Wrapper for Measurement Data',
+      long_description=open('README.md').read(),
+      long_description_content_type='text/markdown',
+      url='https://bitbucket.chemnitz.kistler.com/projects/MDM/repos/meapy',
+      author='Philipp Oehme',
+      author_email='philipp.oehme@kistler.com',
+      download_url="https://pypi.python.org/pypi/meapy",
+      packages=['meapy'],
+      python_requires='>=3.5',
+      install_requires=[
+          'requests',
+          'uuid'
+      ],
+      classifiers=[
+          'Development Status :: 3 - Alpha',
+          'Intended Audience :: Science/Research',
+          'Intended Audience :: Developers',
+          'Programming Language :: Python',
+          'Programming Language :: Python :: 3',
+          'Programming Language :: Python :: 3.5',
+          'Programming Language :: Python :: 3.6',
+          'Programming Language :: Python :: 3.7',
+          'Programming Language :: Python :: 3.8',
+          'Programming Language :: Python :: 3 :: Only',
+          'Operating System :: OS Independent',
+          'Operating System :: Microsoft :: Windows',
+          'Operating System :: POSIX',
+          'Operating System :: Unix',
+          'Operating System :: MacOS',
+          'Topic :: Software Development',
+          'Topic :: Scientific/Engineering',
+      ],
+      zip_safe=False)
