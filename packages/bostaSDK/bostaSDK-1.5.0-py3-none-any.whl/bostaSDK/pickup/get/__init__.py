@@ -1,0 +1,2 @@
+from .GetPickupDetailsRequest import GetPickupDetailsRequest
+from .GetPickupDetailsResponse import GetPickupDetailsResponse
