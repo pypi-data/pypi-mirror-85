@@ -1,0 +1,3 @@
+class DLPlusException(Exception):
+
+    pass
