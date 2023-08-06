@@ -1,0 +1,1 @@
+-l yosys.log -p tcl test_icestorm_0.tcl
