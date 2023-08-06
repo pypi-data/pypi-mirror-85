@@ -1,0 +1,7 @@
+import { __makeTemplateObject } from "tslib";
+import { css, keyframes } from '@emotion/core';
+var pulse = keyframes(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  0% {\n    transform: scale(0.1);\n    opacity: 1\n  }\n\n  40%, 100% {\n    transform: scale(0.8);\n    opacity: 0;\n  }\n"], ["\n  0% {\n    transform: scale(0.1);\n    opacity: 1\n  }\n\n  40%, 100% {\n    transform: scale(0.8);\n    opacity: 0;\n  }\n"])));
+var pulsingIndicatorStyles = function (p) { return css(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  height: 10px;\n  width: 10px;\n  border-radius: 50%;\n  background: ", ";\n  position: relative;\n\n  &:before {\n    content: '';\n    display: block;\n    position: absolute;\n    height: 100px;\n    width: 100px;\n    border-radius: 50%;\n    top: -45px;\n    left: -45px;\n    border: 4px solid ", ";\n    transform-origin: center;\n    animation: ", " 3s ease-out infinite;\n  }\n"], ["\n  height: 10px;\n  width: 10px;\n  border-radius: 50%;\n  background: ", ";\n  position: relative;\n\n  &:before {\n    content: '';\n    display: block;\n    position: absolute;\n    height: 100px;\n    width: 100px;\n    border-radius: 50%;\n    top: -45px;\n    left: -45px;\n    border: 4px solid ", ";\n    transform-origin: center;\n    animation: ", " 3s ease-out infinite;\n  }\n"])), p.theme.red300, p.theme.red300, pulse); };
+export default pulsingIndicatorStyles;
+var templateObject_1, templateObject_2;
+//# sourceMappingURL=pulsingIndicator.jsx.map

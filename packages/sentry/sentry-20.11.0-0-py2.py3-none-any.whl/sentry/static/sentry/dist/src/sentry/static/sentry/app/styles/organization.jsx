@@ -1,0 +1,9 @@
+import { __makeTemplateObject } from "tslib";
+// Shared styles for the new org level pages with global project/env/time selection
+import styled from '@emotion/styled';
+import space from 'app/styles/space';
+export var PageContent = styled('div')(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  display: flex;\n  flex-direction: column;\n  flex: 1;\n  padding: ", " ", " ", ";\n  margin-bottom: -20px; /* <footer> has margin-top: 20px; */\n\n  /* No footer at smallest breakpoint */\n  @media (max-width: ", ") {\n    margin-bottom: 0;\n  }\n"], ["\n  display: flex;\n  flex-direction: column;\n  flex: 1;\n  padding: ", " ", " ", ";\n  margin-bottom: -20px; /* <footer> has margin-top: 20px; */\n\n  /* No footer at smallest breakpoint */\n  @media (max-width: ", ") {\n    margin-bottom: 0;\n  }\n"])), space(2), space(4), space(3), function (p) { return p.theme.breakpoints[0]; });
+export var PageHeader = styled('div')(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: ", ";\n"], ["\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: ", ";\n"])), space(2));
+export var HeaderTitle = styled('h4')(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n  flex: 1;\n  font-size: ", ";\n  line-height: ", ";\n  font-weight: normal;\n  color: ", ";\n  margin: 0;\n"], ["\n  flex: 1;\n  font-size: ", ";\n  line-height: ", ";\n  font-weight: normal;\n  color: ", ";\n  margin: 0;\n"])), function (p) { return p.theme.headerFontSize; }, function (p) { return p.theme.headerFontSize; }, function (p) { return p.theme.textColor; });
+var templateObject_1, templateObject_2, templateObject_3;
+//# sourceMappingURL=organization.jsx.map

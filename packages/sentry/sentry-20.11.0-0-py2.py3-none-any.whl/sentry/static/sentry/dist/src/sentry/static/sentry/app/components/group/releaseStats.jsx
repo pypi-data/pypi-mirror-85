@@ -1,0 +1,50 @@
+import React from 'react';
+import GroupReleaseChart from 'app/components/group/releaseChart';
+import Placeholder from 'app/components/placeholder';
+import SeenInfo from 'app/components/group/seenInfo';
+import getDynamicText from 'app/utils/getDynamicText';
+import { t } from 'app/locale';
+import SidebarSection from './sidebarSection';
+var GroupReleaseStats = function (_a) {
+    var group = _a.group, organization = _a.organization, project = _a.project, environments = _a.environments, allEnvironments = _a.allEnvironments;
+    var environmentLabel = environments.length > 0
+        ? environments.map(function (env) { return env.displayName; }).join(', ')
+        : t('All Environments');
+    var shortEnvironmentLabel = environments.length > 1
+        ? t('selected environments')
+        : environments.length === 1
+            ? environments[0].displayName
+            : undefined;
+    var projectId = project.id;
+    var projectSlug = project.slug;
+    var orgSlug = organization.slug;
+    var hasRelease = new Set(project.features).has('releases');
+    return (<SidebarSection title={<span data-test-id="env-label">{environmentLabel}</span>}>
+      {!group || !allEnvironments ? (<Placeholder height="288px"/>) : (<React.Fragment>
+          <GroupReleaseChart group={allEnvironments} environment={environmentLabel} environmentStats={group.stats} release={group.currentRelease ? group.currentRelease.release : null} releaseStats={group.currentRelease ? group.currentRelease.stats : null} statsPeriod="24h" title={t('Last 24 Hours')} firstSeen={group.firstSeen} lastSeen={group.lastSeen}/>
+          <GroupReleaseChart group={allEnvironments} environment={environmentLabel} environmentStats={group.stats} release={group.currentRelease ? group.currentRelease.release : null} releaseStats={group.currentRelease ? group.currentRelease.stats : null} statsPeriod="30d" title={t('Last 30 Days')} className="bar-chart-small" firstSeen={group.firstSeen} lastSeen={group.lastSeen}/>
+
+          <SidebarSection secondary title={<React.Fragment>
+                <span>{t('Last seen')}</span>
+                {environments.length > 0 && <small>({environmentLabel})</small>}
+              </React.Fragment>}>
+            <SeenInfo orgSlug={orgSlug} projectId={projectId} projectSlug={projectSlug} date={getDynamicText({
+        value: group.lastSeen,
+        fixed: '2016-01-13T03:08:25Z',
+    })} dateGlobal={allEnvironments.lastSeen} hasRelease={hasRelease} environment={shortEnvironmentLabel} release={group.lastRelease || null} title={t('Last seen')}/>
+          </SidebarSection>
+
+          <SidebarSection secondary title={<React.Fragment>
+                <span>{t('First seen')}</span>
+                {environments.length > 0 && <small>({environmentLabel})</small>}
+              </React.Fragment>}>
+            <SeenInfo orgSlug={orgSlug} projectId={projectId} projectSlug={projectSlug} date={getDynamicText({
+        value: group.firstSeen,
+        fixed: '2015-08-13T03:08:25Z',
+    })} dateGlobal={allEnvironments.firstSeen} hasRelease={hasRelease} environment={shortEnvironmentLabel} release={group.firstRelease || null} title={t('First seen')}/>
+          </SidebarSection>
+        </React.Fragment>)}
+    </SidebarSection>);
+};
+export default React.memo(GroupReleaseStats);
+//# sourceMappingURL=releaseStats.jsx.map
