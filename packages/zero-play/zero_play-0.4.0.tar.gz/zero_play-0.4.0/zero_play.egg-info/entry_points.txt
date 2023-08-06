@@ -1,0 +1,20 @@
+[console_scripts]
+zero_perf = zero_play.zero_perf:main
+zero_play_rcc = zero_play.zero_play_rcc:main
+
+[gui_scripts]
+zero_play = zero_play.zero_play:main
+
+[zero_play.game_display]
+connect4 = zero_play.connect4.display:Connect4Display
+othello = zero_play.othello.display:OthelloDisplay
+tictactoe = zero_play.tictactoe.display:TicTacToeDisplay
+
+[zero_play.heuristic]
+connect4 = zero_play.connect4.neural_net:NeuralNet
+playout = zero_play.playout:Playout
+
+[zero_play.player]
+human = zero_play.human_player:HumanPlayer
+mcts = zero_play.mcts_player:MctsPlayer
+
