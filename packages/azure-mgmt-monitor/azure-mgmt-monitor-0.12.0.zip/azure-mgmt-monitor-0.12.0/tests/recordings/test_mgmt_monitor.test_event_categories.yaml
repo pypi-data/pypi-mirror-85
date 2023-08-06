@@ -1,0 +1,49 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python/3.6.9 (Linux-4.19.76-linuxkit-x86_64-with-Ubuntu-18.04-bionic) msrest/0.6.10
+        msrest_azure/0.6.2 azure-mgmt-monitor/0.12.0 Azure-SDK-For-Python
+      accept-language:
+      - en-US
+    method: GET
+    uri: https://management.azure.com/providers/microsoft.insights/eventcategories?api-version=2015-04-01
+  response:
+    body:
+      string: '{"value":[{"value":"Administrative","localizedValue":"Administrative"},{"value":"Security","localizedValue":"Security"},{"value":"ServiceHealth","localizedValue":"Service
+        Health"},{"value":"Alert","localizedValue":"Alert"},{"value":"Recommendation","localizedValue":"Recommendation"},{"value":"Policy","localizedValue":"Policy"},{"value":"Autoscale","localizedValue":"Autoscale"},{"value":"ResourceHealth","localizedValue":"Resource
+        Health"}]}'
+    headers:
+      cache-control:
+      - no-cache
+      content-length:
+      - '443'
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Tue, 17 Nov 2020 06:34:23 GMT
+      expires:
+      - '-1'
+      pragma:
+      - no-cache
+      server:
+      - Microsoft-IIS/10.0
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding,Accept-Encoding
+      x-content-type-options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1
