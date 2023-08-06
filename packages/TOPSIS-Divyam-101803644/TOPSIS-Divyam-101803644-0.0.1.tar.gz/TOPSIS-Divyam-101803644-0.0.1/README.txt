@@ -1,0 +1,1 @@
+This program takes input from a csv file and compare the models on topsis and then rank them according to their topsis score.
