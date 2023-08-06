@@ -1,0 +1,362 @@
+Metadata-Version: 2.1
+Name: csvapi
+Version: 1.0.5
+Summary: An instant JSON API for your CSV
+Home-page: https://github.com/opendatateam/csvapi
+Author: Opendata Team
+Author-email: opendatateam@data.gouv.fr
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Requires-Python: >=3.6.1
+Description-Content-Type: text/markdown
+Requires-Dist: click-default-group (==1.2.1)
+Requires-Dist: click (==7.0)
+Requires-Dist: agate (==1.6.1)
+Requires-Dist: agate-sql (==0.5.4)
+Requires-Dist: aiohttp (==3.5.4)
+Requires-Dist: validators (==0.13.0)
+Requires-Dist: agate-excel (==0.2.3)
+Requires-Dist: Quart (==0.9.1)
+Requires-Dist: quart-cors (==0.2.0)
+Requires-Dist: raven (==6.10.0)
+Requires-Dist: cchardet (==2.1.4)
+Requires-Dist: python-stdnum (==1.11)
+Provides-Extra: test
+Requires-Dist: aioresponses (==0.6.1) ; extra == 'test'
+Requires-Dist: pytest (==3.7.4) ; extra == 'test'
+Requires-Dist: pytest-asyncio (==0.8.0) ; extra == 'test'
+
+# csvapi
+
+"Instantly" publish an API for a CSV hosted anywhere on the internet. Also supports Excel files.
+
+This tool is used by [data.gouv.fr](https://www.data.gouv.fr) to show a preview of hosted CSV and XLS files.
+
+## Installation
+
+Requires Python 3.7+ and a Unix OS with the `file` command available.
+
+```shell
+python3 -m venv pyenv && . pyenv/bin/activate
+pip install csvapi
+```
+
+For development:
+
+```shell
+pip install -r requirements/develop.pip
+pip install -e .
+```
+
+## Quickstart
+
+```shell
+csvapi serve -h 0.0.0.0 -p 8000
+```
+
+## Command line options
+
+```shell
+$ csvapi serve --help
+Usage: csvapi serve [OPTIONS]
+
+Options:
+    --ssl-key TEXT             Path to SSL key
+    --ssl-cert TEXT            Path to SSL certificate
+    --cache / --no-cache       Do not parse CSV again if DB already exists
+    -w, --max-workers INTEGER  Max number of ThreadPoolExecutor workers
+    --reload                   Automatically reload if code change detected
+    --debug                    Enable debug mode - useful for development
+    -p, --port INTEGER         port for server, defaults to 8001
+    -h, --host TEXT            host for server, defaults to 127.0.0.1
+    --dbs DIRECTORY            Where to store sqlite DBs
+    --help                     Show this message and exit.
+```
+
+## Deploy
+
+With SSL, using [Hypercorn](https://pgjones.gitlab.io/hypercorn/):
+
+```shell
+hypercorn csvapi.webservice:app -b 0.0.0.0:443 --keyfile key.pem --ca-certs cert.pem
+```
+
+See [the documentation](https://pgjones.gitlab.io/hypercorn/usage.html) for more options.
+
+You can use the environment variable `CSVAPI_CONFIG_FILE` to point to a custom configuration file.
+
+## API usage
+
+### Conversion
+
+`/apify?url=http://somewhere.com/a/file.csv`
+
+This converts a CSV to an SQLite database (w/ `agate`) and returns the following response:
+
+```json
+{"ok": true, "endpoint": "http://localhost:8001/api/cde857960e8dc24c9cbcced673b496bb"}
+```
+
+### Parameters
+
+Some parameters can be used in the query string.
+
+#### `encoding`
+
+**default**: _automatic detection_
+
+You can force an encoding (e.g. `utf-8`) using this parameter, instead of relying on the automatic detection.
+
+
+### Data API
+
+This is the `endpoint` attribute of the previous response.
+
+`/api/<md5-url-hash>`
+
+This queries a previously converted API file and returns the first 100 rows like this:
+
+```json
+    {
+        "ok": true,
+        "rows": [[], []],
+        "columns": [],
+        "query_ms": 1
+    }
+```
+
+### Parameters
+
+Some parameters can be used in the query string.
+
+#### `_size`
+
+**default**: `100`
+
+This will limit the query to a certain number of rows. For instance to get only 250 rows:
+
+`/api/<md5-url-hash>?_size=250`
+
+#### `_sort` and `_sort_desc`
+
+Use those to sort by a column. `sort` will sort by ascending order, `sort_desc` by descending order.
+
+`/api/<md5-url-hash>?_sort=<column-name>`
+
+#### `_offset`
+
+Use this to add on offset. Combined with `_size` it allows pagination.
+
+`/api/<md5-url-hash>?_size=1&_offset=1`
+
+#### `_shape`
+
+**default**: `lists`
+
+The `_shape` argument is used to specify the format output of the json. It can take the value `objects` to get an array of objects instead of an array of arrays:
+
+`/api/<md5-url-hash>?_shape=objects`
+
+For instance, instead of returning:
+
+```json
+{
+    "ok": true,
+    "query_ms": 0.4799365997,
+    "rows": [
+        [1, "Justice", "0101", 57663310],
+        [2, "Justice", "0101", 2255129],
+        [3, "Justice", "0101", 36290]
+    ],
+    "columns": ["rowid", "Mission", "Programme", "Consommation de CP"]
+}
+```
+
+It will return:
+
+```json
+{
+    "ok": true,
+    "query_ms": 2.681016922,
+    "rows": [
+    {
+        "rowid": 1,
+        "Mission": "Justice",
+        "Programme": "0101",
+        "Consommation de CP": 57663310
+    },
+    {
+        "rowid": 2,
+        "Mission": "Justice",
+        "Programme": "0101",
+        "Consommation de CP": 2255129
+    },
+    {
+        "rowid": 3,
+        "Mission": "Justice",
+        "Programme": "0101",
+        "Consommation de CP": 36290
+    }],
+    "columns": ["rowid", "Mission", "Programme", "Consommation de CP"]
+}
+```
+
+#### `_rowid`
+
+**default**: `show`
+
+The `_rowid` argument is used to display or hide rowids in the returned data. Use `_rowid=hide` to hide.
+
+`/api/<md5-url-hash>?_shape=objects&_rowid=hide`
+
+```json
+{
+    "ok": true,
+    "query_ms": 2.681016922,
+    "rows": [
+    {
+        "Mission": "Justice",
+        "Programme": "0101",
+        "Consommation de CP": 57663310
+    },
+    {
+        "Mission": "Justice",
+        "Programme": "0101",
+        "Consommation de CP": 2255129
+    },
+    {
+        "Mission": "Justice",
+        "Programme": "0101",
+        "Consommation de CP": 36290
+    }],
+    "columns": ["Mission", "Programme", "Consommation de CP"]
+}
+```
+
+#### `_total`
+
+**default**: `show`
+
+The `_total` argument is used to display or hide the total number of rows (independent of pagination) in the returned data. Use `_total=hide` to hide.
+
+```json
+{
+    "ok": true,
+    "query_ms": 2.681016922,
+    "rows": [
+    {
+        "Mission": "Justice",
+        "Programme": "0101",
+        "Consommation de CP": 57663310
+    },
+    {
+        "Mission": "Justice",
+        "Programme": "0101",
+        "Consommation de CP": 2255129
+    },
+    {
+        "Mission": "Justice",
+        "Programme": "0101",
+        "Consommation de CP": 36290
+    }],
+    "columns": ["Mission", "Programme", "Consommation de CP"],
+    "total": 3
+}
+```
+
+#### Column based filters
+
+By adding `{column}__{comparator}={value}` to the query string, you can filter the results based on the following criterions:
+- `{column}` must be a valid column in your CSV
+- `{comparator}` is `exact` (SQL `= {value}`) or `contains` (SQL `LIKE %{value}%`)
+- `{value}` is the value you're filtering the column against
+
+You can add multiple filters, they will be joined with a `AND` at the SQL level.
+
+## Production deployment
+
+Some example [Ansible 2](https://www.ansible.com) roles are [available here](/ansible).
+
+## Credits
+
+Inspired by the excellent [Datasette](https://github.com/simonw/datasette).
+
+# Changelog
+
+## 1.0.5 (2020-11-17)
+
+- Parsing view now raises exception on http error response codes [#69](https://github.com/etalab/csvapi/pull/69)
+
+## 1.0.4 (2020-10-26)
+
+- Protect custom type testers against None values [#66](https://github.com/etalab/csvapi/pull/66)
+- Fix xlsx file support [#67](https://github.com/etalab/csvapi/pull/67)
+
+## 1.0.3 (2020-03-04)
+
+- Fix packaging problem
+
+## 1.0.2 (2020-03-04)
+
+- Fix XLS parsing [#60](https://github.com/etalab/csvapi/pull/60)
+
+## 1.0.1 (2020-01-03)
+
+- Fix aiohttp import [#52](https://github.com/etalab/csvapi/pull/52)
+
+## 1.0.0 (2020-01-03)
+
+- Add filters support [#50](https://github.com/etalab/csvapi/pull/50)
+- Replace requests by aiohttp for asynchronous http requests. Also replace every format() string to use only f"strings. [#46](https://github.com/etalab/csvapi/pull/46)
+
+## 0.1.0 (2019-09-06)
+
+- Upgrade to Quart-0.9.1 :warning: requires python-3.7 [#21](https://github.com/opendatateam/csvapi/pull/21)
+- Parse hours, SIREN and SIRET as text [#42](https://github.com/opendatateam/csvapi/pull/42)
+
+## 0.0.9 (2019-01-18)
+
+- Upgrade to Quart-0.6.6 and hypercorn-0.4.6 [#16](https://github.com/opendatateam/csvapi/pull/16)
+
+## 0.0.8 (2018-10-04)
+
+- Try to parse CSV w/o sniffing (excel dialect) after sniffing if it fails
+
+## 0.0.7 (2018-09-17)
+
+- `MAX_FILE_SIZE` config variable [#13](https://github.com/opendatateam/csvapi/pull/13)
+- Add filter by referrer feature (REFERRERS_FILTER) [#14](https://github.com/opendatateam/csvapi/pull/14)
+
+## 0.0.6 (2018-09-10)
+
+- Compute the total number of rows in a table [#12](https://github.com/opendatateam/csvapi/pull/12)
+
+## 0.0.5 (2018-09-10)
+
+- Make CSV sniff limit a config variable and raise the default value [#11](https://github.com/opendatateam/csvapi/pull/11)
+- Properly handle not found (404) errors
+
+## 0.0.4 (2018-09-04)
+
+- FORCE_SSL config variable
+
+## 0.0.3 (2018-08-31)
+
+- Sentry support via SENTRY_DSN config variable
+
+## 0.0.2 (2018-08-30)
+
+- CSVAPI_CONFIG_FILE env var support
+
+## 0.0.1 (2018-08-30)
+
+- Initial version
+
+
+
