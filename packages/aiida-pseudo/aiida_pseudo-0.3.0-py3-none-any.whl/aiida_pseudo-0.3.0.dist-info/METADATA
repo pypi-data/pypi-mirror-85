@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: aiida-pseudo
+Version: 0.3.0
+Summary: AiiDA plugin that simplifies working with pseudo potentials
+Home-page: https://github.com/aiidateam/aiida-pseudo
+Author: Sebastiaan P. Huber
+Author-email: mail@sphuber.net
+License: MIT License
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: AiiDA
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: aiida-core (~=1.4)
+Requires-Dist: click (~=7.0)
+Requires-Dist: click-completion (~=0.5)
+Requires-Dist: requests (~=2.20)
+Provides-Extra: pre-commit
+Requires-Dist: pre-commit (~=2.2) ; extra == 'pre-commit'
+Requires-Dist: pylint (~=2.6) ; extra == 'pre-commit'
+Provides-Extra: tests
+Requires-Dist: pgtest (~=1.3) ; extra == 'tests'
+Requires-Dist: pytest (~=5.4) ; extra == 'tests'
+
+# `aiida-pseudo`
+
+AiiDA plugin that simplifies working with pseudo potentials.
+
+[![PyPI version](https://badge.fury.io/py/aiida-pseudo.svg)](https://badge.fury.io/py/aiida-pseudo)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/aiida-pseudo.svg)](https://pypi.python.org/pypi/aiida-pseudo/)
+[![Build Status](https://github.com/aiidateam/aiida-pseudo/workflows/continuous-integration/badge.svg?event=push)](https://github.com/aiidateam/aiida-pseudo/actions)
+[![Docs status](https://readthedocs.org/projects/aiida-pseudo/badge)](http://aiida-pseudo.readthedocs.io/)
+
+
