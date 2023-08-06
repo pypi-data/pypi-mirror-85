@@ -1,0 +1,1 @@
+A simple module that will allow you to use cmd commands in python. cd is not currently working but will be updated in the next bug fix. the commands are, folderhandler.mkdir, folderhandler.rmdir, filehandler.startprogram, filehandler.delfile, filehandler.showfiles, batchfile.echo, batchfile.pause, batchfile.makeblankbatchfile
