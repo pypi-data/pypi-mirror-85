@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: yaqd-newport
+Version: 2020.11.1
+Summary: yaq daemons for Newport hardware
+Home-page: https://yaq.fyi
+License: UNKNOWN
+Author: yaq Developers
+Author-email: git@ksunden.space
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Scientific/Engineering
+Requires-Dist: yaqd-core>=2020.10.1
+Requires-Dist: pyserial
+Requires-Dist: black ; extra == "dev"
+Requires-Dist: pre-commit ; extra == "dev"
+Project-URL: Issues, https://gitlab.com/yaq/yaqd-newport/issues
+Project-URL: Source, https://gitlab.com/yaq/yaqd-newport
+Provides-Extra: dev
+
+# yaqd-newport
+
+[![PyPI version](https://badge.fury.io/py/yaqd-newport.svg)](https://badge.fury.io/py/yaqd-newport)
+[![Conda](https://img.shields.io/conda/vn/conda-forge/yaqd-newport)](https://anaconda.org/conda-forge/yaqd-newport)
+[![yaq](https://img.shields.io/badge/framework-yaq-orange)](https://yaq.fyi/)
+[![black](https://img.shields.io/badge/code--style-black-black)](https://black.readthedocs.io/)
+[![ver](https://img.shields.io/badge/calver-YYYY.0M.MICRO-blue)](https://calver.org/)
+[![log](https://img.shields.io/badge/change-log-informational)](https://gitlab.com/yaq/yaqd-newport/-/blob/master/CHANGELOG.md)
+
+yaq daemons for Newport Corporation hardware.
+
+This package contains two daemons:
+- [newport-connex-agp](https://yaq.fyi/daemons/newport-connex-agp/)
+- [newport-smc100](https://yaq.fyi/daemons/newport-smc100/)
+
