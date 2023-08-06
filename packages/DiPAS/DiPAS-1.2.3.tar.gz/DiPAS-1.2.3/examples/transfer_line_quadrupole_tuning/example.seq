@@ -1,0 +1,107 @@
+beam, particle=ion, charge=6, energy=28.5779291448, mass=11.1779291448;
+
+k1l_GTE1QD11 =  1e-6;  // [flow] variable
+k1l_GTE1QD12 = -1e-6;  // [flow] variable
+
+k1l_GTE2QT11 =  1e-6;  // [flow] variable
+k1l_GTE2QT12 = -1e-6;  // [flow] variable
+k1l_GTE2QT13 =  1e-6;  // [flow] variable
+
+k1l_GTH1QD11 =  1e-6;  // [flow] variable
+k1l_GTH1QD12 = -1e-6;  // [flow] variable
+
+k1l_GTH2QD11 =  1e-6;  // [flow] variable
+k1l_GTH2QD12 = -1e-6;  // [flow] variable
+k1l_GTH2QD21 = -1e-6;  // [flow] variable
+k1l_GTH2QD22 =  1e-6;  // [flow] variable
+
+k1l_GHADQD11 = -1e-6;  // [flow] variable
+k1l_GHADQD12 =  1e-6;  // [flow] variable
+k1l_GHADQD21 = -1e-6;  // [flow] variable
+k1l_GHADQD22 =  1e-6;  // [flow] variable
+
+k1l_GHADQD31 = -1e-6;  // [flow] variable
+k1l_GHADQD32 =  1e-6;  // [flow] variable
+k1l_GHADQD41 =  1e-6;  // [flow] variable
+k1l_GHADQD42 = -1e-6;  // [flow] variable
+
+k1l_GHADQT51 =  1e-6;  // [flow] variable
+k1l_GHADQT52 = -1e-6;  // [flow] variable
+
+k0nl_GTS1MU1 = 0.0;
+k0nl_GTE3MU1 = 0.0;
+k0nl_GHHTMU1 = 0.0;
+k0nl_GTH3MU1 = 0.0;
+k0nl_GTP1MU1 = 0.0;
+k0nl_GHADMU1 = -0.13076;
+k0nl_GHADMU2 = -0.13114;
+
+k0sl_GTE1KY1 = 0.0;
+k0nl_GTE2KX1 = 0.0;
+k0sl_GTH1KY1 = 0.0;
+k0nl_GTH1KX1 = 0.0;
+k0sl_GTH2KY1 = 0.0;
+k0nl_GTH2KX1 = 0.0;
+k0nl_GHADKX1 = 0.0;
+k0sl_GHADKY1 = 0.0;
+k0sl_GHADKY2 = 0.0;
+k0sl_GHADKY3 = 0.0;
+k0sl_GHADKY4 = 0.0;
+
+example: sequence, l = 164.5501309;
+gte1ky1: vkicker, kick:=k0sl_GTE1KY1, APERTYPE = ELLIPSE, APERTURE = {0.06,0.06}, at = 3.9057;
+gte1qd11: quadrupole, l=0.666, k1:=k1l_GTE1QD11/0.666, APERTYPE = ELLIPSE, APERTURE = {0.06, 0.06}, at = 5.0807;
+gte1dg1: MONITOR, APERTYPE = ELLIPSE, APERTURE = {0.06, 0.06}, at = 5.7507;
+gte1df1: MONITOR, APERTYPE = ELLIPSE, APERTURE = {0.06, 0.06}, at = 5.7507;
+gte1qd12: quadrupole, l=0.666, k1:=k1l_GTE1QD12/0.666, APERTYPE = CIRCLE, APERTURE = 0.060, at = 6.7307;
+gte2kx1: hkicker, kick:=k0nl_GTE2KX1, APERTYPE = CIRCLE, APERTURE = 0.06, at = 15.7708976;
+gte2qt11: quadrupole, l=1.0, k1=k1l_GTE2QT11, APERTYPE = ELLIPSE, APERTURE = {0.06,0.06}, at = 20.3535976;
+gte2qt12: quadrupole, l=1.0, k1=k1l_GTE2QT12, APERTYPE = ELLIPSE, APERTURE = {0.06,0.06}, at = 22.3539976;
+gte2qt13: quadrupole, l=1.0, k1=k1l_GTE2QT13, APERTYPE = ELLIPSE, APERTURE = {0.06,0.06}, at = 24.3598976;
+gte2dg4: MONITOR, at = 25.4207976;
+gte2df4: MONITOR, at = 25.6803976;
+gth1ky1: vkicker, kick:=k0sl_GTH1KY1, APERTYPE = ELLIPSE, APERTURE = {0.06, 0.06}, at = 31.925112;
+gth1kx1: hkicker, kick:=k0nl_GTH1KX1, APERTYPE = ELLIPSE, APERTURE = {0.06, 0.06}, at = 32.425112;
+gth1dg2g: MONITOR, at = 37.1591105;
+gth1dg4g: MONITOR, at = 46.4530109;
+gth1qd11: quadrupole, l=1.0, k1:=k1l_GTH1QD11, APERTYPE = ELLIPSE, APERTURE = {0.054,0.054}, at = 48.1640663;
+gth1qd12: quadrupole, l=1.0, k1:=k1l_GTH1QD12, APERTYPE = ELLIPSE, APERTURE = {0.054,0.054}, at = 50.1640663;
+gth2dg2: MONITOR, at = 60.4674301;
+gth2df3: MONITOR, at = 61.0604301;
+gth2qd11: quadrupole, l=1.0, k1:=k1l_GTH2QD11, APERTYPE = ELLIPSE, APERTURE = {0.054, 0.054}, at = 72.5194291;
+gth2qd12ent: MONITOR, at = 74.0194291;
+gth2qd12: quadrupole, l=1.0, k1:=k1l_GTH2QD12, APERTYPE = ELLIPSE, APERTURE = {0.054, 0.054}, at = 74.5194291;
+gth2ky1: vkicker, kick:=k0sl_GTH2KY1, APERTYPE = ELLIPSE, APERTURE = {0.06, 0.06}, at = 76.7984291;
+gth2kx1: hkicker, kick:=k0nl_GTH2KX1, APERTYPE = ELLIPSE, APERTURE = {0.06, 0.06}, at = 77.3984291;
+gth2dfa: MONITOR, at = 93.2554291;
+gth2qd21: quadrupole, l=1.0, k1:=k1l_GTH2QD21, APERTYPE = ELLIPSE, APERTURE = {0.054, 0.054}, at = 96.0963835;
+gth2qd22: quadrupole, l=1.0, k1:=k1l_GTH2QD22, APERTYPE = ELLIPSE, APERTURE = {0.054, 0.054}, at = 98.0969835;
+ghaddg1g: MONITOR, at = 105.5857873;
+ghaddf1: MONITOR, at = 105.5857873;
+ghadkx1: hkicker, kick:=k0nl_GHADKX1, APERTYPE = ELLIPSE, APERTURE = {0.06, 0.06}, at = 107.5017873;
+ghadky1: vkicker, kick:=k0sl_GHADKY1, APERTYPE = ELLIPSE, APERTURE = {0.06, 0.06}, at = 107.9017873;
+ghadqd11: quadrupole, l=1.0, k1:=k1l_GHADQD11, APERTYPE = ELLIPSE, APERTURE = {0.09, 0.09}, at = 114.8597873;
+ghadqd12: quadrupole, l=1.0, k1:=k1l_GHADQD12, APERTYPE = ELLIPSE, APERTURE = {0.09, 0.09}, at = 116.8597873;
+ghaddf2: MONITOR, at = 118.1827873;
+ghaddfa: MONITOR, at = 120.4597873;
+ghadqd21: quadrupole, l=1.0, k1:=k1l_GHADQD21, APERTYPE = ELLIPSE, APERTURE = {0.06, 0.06}, at = 121.8597873;
+ghadqd22: quadrupole, l=1.0, k1:=k1l_GHADQD22, APERTYPE = ELLIPSE, APERTURE = {0.06, 0.06}, at = 123.8597873;
+ghadmu1: SBEND, l=1.47262156, tilt=0.3795488805607519, angle=k0nl_GHADMU1, APERTYPE = ELLIPSE, APERTURE = {0.07,0.035}, at = 128.7611985;
+ghadky2: vkicker, kick:=k0sl_GHADKY2, APERTYPE = CIRCLE, APERTURE = 0.06, at = 131.8831109;
+ghadqd31: quadrupole, l=0.6, k1:=k1l_GHADQD31/0.6, APERTYPE = ELLIPSE, APERTURE = {0.06, 0.06}, at = 132.7975093;
+ghadqd32: quadrupole, l=0.6, k1:=k1l_GHADQD32/0.6, APERTYPE = ELLIPSE, APERTURE = {0.06, 0.06}, at = 134.1975093;
+ghadqd41: quadrupole, l=0.6, k1:=k1l_GHADQD41/0.6, APERTYPE = ELLIPSE, APERTURE = {0.06, 0.06}, at = 137.7975093;
+ghadqd42: quadrupole, l=0.6, k1:=k1l_GHADQD42/0.6, APERTYPE = ELLIPSE, APERTURE = {0.06, 0.06}, at = 139.1975093;
+ghaddf3: MONITOR, at = 140.7006109;
+ghadky3: vkicker, kick:=k0sl_GHADKY3, APERTYPE = CIRCLE, APERTURE = 0.06, at = 141.6606109;
+ghadmu2: SBEND, l=1.47262156, angle=k0nl_GHADMU2, tilt=-0.3795488805607519, APERTYPE = ELLIPSE, APERTURE = {0.07,0.035}, at = 143.2338201;
+ghadqt51: quadrupole, l=1.0, k1 := k1l_GHADQT51, APERTYPE = ELLIPSE, APERTURE = {0.06, 0.06}, at = 149.5501309;
+ghadky4: vkicker, kick:=k0sl_GHADKY4, APERTYPE = CIRCLE, APERTURE = 0.06, at = 150.5501309;
+ghadqt52: quadrupole, l=1.0, k1=k1l_GHADQT52, APERTYPE = ELLIPSE, APERTURE = {0.06, 0.06}, at = 151.5501309;
+ghaddf4: MONITOR, at = 153.7501309;
+ghaddg4g: MONITOR, at = 154.015;
+target: MONITOR, at = 153.7501309+2.1945;
+dump: MONITOR, at = 163.6654786;
+endsequence;
+
+use, sequence = example;
