@@ -1,0 +1,28 @@
+name: hyp3-sdk
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - pip
+  # For packaging, and testing
+  - setuptools
+  - setuptools_scm
+  - wheel
+  - pytest
+  - pytest-cov
+  # For running
+  - importlib_metadata
+  - python-dateutil
+  - requests
+  - urllib3
+  # For documentation
+  - mkdocs
+  - mkdocs-material
+  - mkdocs-material-extensions
+  - pip:
+    # For packaging and testing
+    - s3pypi
+    - safety
+    # For documentation
+    - mkdocstrings
+
