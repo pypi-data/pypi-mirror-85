@@ -1,0 +1,96 @@
+import datetime as dt
+from typing import List, Optional, Tuple
+from urllib.parse import urlparse
+
+from pydantic import BaseModel, Extra, validator
+from pydantic.types import ConstrainedInt, PositiveInt
+
+from ..typing import DictStrAny
+from ..validators import sanitize_dict
+from .enums import TransferNetwork
+
+MAX_PAGE_SIZE = 100
+
+
+class PageSize(ConstrainedInt):
+    gt = 0
+    le = MAX_PAGE_SIZE
+
+
+class QueryParams(BaseModel):
+    count: bool = False
+    page_size: PageSize = PageSize(MAX_PAGE_SIZE)
+    limit: Optional[PositiveInt] = None
+    user_id: Optional[str] = None
+    created_before: Optional[dt.datetime] = None
+    created_after: Optional[dt.datetime] = None
+
+    class Config:
+        extra = Extra.forbid  # raise ValidationError if there are extra fields
+
+    def dict(self, *args, **kwargs) -> DictStrAny:
+        kwargs.setdefault('exclude_none', True)
+        kwargs.setdefault('exclude_unset', True)
+        d = super().dict(*args, **kwargs)
+        if self.count:
+            d['count'] = 1
+        sanitize_dict(d)
+        return d
+
+
+class TransactionQuery(QueryParams):
+    status: Optional[str] = None
+
+
+class TransferQuery(TransactionQuery):
+    account_number: Optional[str] = None
+    idempotency_key: Optional[str] = None
+    tracking_key: Optional[str] = None
+    network: Optional[TransferNetwork] = None
+
+
+class DepositQuery(TransactionQuery):
+    tracking_key: Optional[str] = None
+    network: Optional[TransferNetwork] = None
+
+
+class BillPaymentQuery(TransactionQuery):
+    account_number: Optional[str] = None
+
+
+class ApiKeyQuery(QueryParams):
+    active: Optional[bool] = None
+
+
+class CardQuery(QueryParams):
+    number: Optional[str] = None
+    exp_month: Optional[int] = None
+    exp_year: Optional[int] = None
+    cvv: Optional[str] = None
+    cvv2: Optional[str] = None
+    icvv: Optional[str] = None
+    pinblock: Optional[str] = None
+
+    @validator('exp_month', 'exp_year', 'cvv2', 'cvv')
+    def query_by_exp_cvv_if_number_set(cls, v, values):
+        if not values['number']:
+            raise ValueError('Number must be set to query by exp or cvv')
+        return v
+
+
+class AuthorizationQuery(BaseModel):
+    actions: List[Tuple[str, str]]
+
+    @validator('actions', pre=True)
+    def validate_actions(cls, value):
+        urls = (urlparse(item) for item in value.split(','))
+
+        actions = []
+        for url in urls:
+            items = [url.scheme, url.netloc] + url.path.split('.')
+            if any(not item for item in items):
+                raise ValueError(
+                    'actions must match scheme://netloc/path.action pattern'
+                )
+            actions.append(tuple(url.geturl().split('.')))
+        return actions
