@@ -1,0 +1,141 @@
+Metadata-Version: 2.1
+Name: reproschema
+Version: 0.5.2
+Summary: Reproschema Python library
+Home-page: https://github.com/ReproNim/reproschema-py
+Author: Repronim developers
+Author-email: info@repronim.org
+Maintainer: Repronim developers
+Maintainer-email: info@repronim.org
+License: Apache License, 2.0
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Scientific/Engineering
+Provides: reproschema
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown; charset=UTF-8
+Requires-Dist: click
+Requires-Dist: etelemetry
+Requires-Dist: pyshacl
+Requires-Dist: PyLD
+Requires-Dist: requests
+Requires-Dist: requests-cache
+Provides-Extra: all
+Requires-Dist: packaging ; extra == 'all'
+Requires-Dist: sphinx (>=2.1.2) ; extra == 'all'
+Requires-Dist: sphinx-rtd-theme ; extra == 'all'
+Requires-Dist: sphinxcontrib-apidoc (~=0.3.0) ; extra == 'all'
+Requires-Dist: sphinxcontrib-napoleon ; extra == 'all'
+Requires-Dist: sphinxcontrib-versioning ; extra == 'all'
+Requires-Dist: pytest (>=4.4.0) ; extra == 'all'
+Requires-Dist: pytest-cov ; extra == 'all'
+Requires-Dist: pytest-env ; extra == 'all'
+Requires-Dist: pytest-xdist ; extra == 'all'
+Requires-Dist: pytest-rerunfailures ; extra == 'all'
+Requires-Dist: codecov ; extra == 'all'
+Requires-Dist: black ; extra == 'all'
+Requires-Dist: pre-commit ; extra == 'all'
+Provides-Extra: dev
+Requires-Dist: pytest (>=4.4.0) ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+Requires-Dist: pytest-env ; extra == 'dev'
+Requires-Dist: pytest-xdist ; extra == 'dev'
+Requires-Dist: pytest-rerunfailures ; extra == 'dev'
+Requires-Dist: codecov ; extra == 'dev'
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: pre-commit ; extra == 'dev'
+Provides-Extra: doc
+Requires-Dist: packaging ; extra == 'doc'
+Requires-Dist: sphinx (>=2.1.2) ; extra == 'doc'
+Requires-Dist: sphinx-rtd-theme ; extra == 'doc'
+Requires-Dist: sphinxcontrib-apidoc (~=0.3.0) ; extra == 'doc'
+Requires-Dist: sphinxcontrib-napoleon ; extra == 'doc'
+Requires-Dist: sphinxcontrib-versioning ; extra == 'doc'
+Provides-Extra: docs
+Requires-Dist: packaging ; extra == 'docs'
+Requires-Dist: sphinx (>=2.1.2) ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme ; extra == 'docs'
+Requires-Dist: sphinxcontrib-apidoc (~=0.3.0) ; extra == 'docs'
+Requires-Dist: sphinxcontrib-napoleon ; extra == 'docs'
+Requires-Dist: sphinxcontrib-versioning ; extra == 'docs'
+Provides-Extra: test
+Requires-Dist: pytest (>=4.4.0) ; extra == 'test'
+Requires-Dist: pytest-cov ; extra == 'test'
+Requires-Dist: pytest-env ; extra == 'test'
+Requires-Dist: pytest-xdist ; extra == 'test'
+Requires-Dist: pytest-rerunfailures ; extra == 'test'
+Requires-Dist: codecov ; extra == 'test'
+Provides-Extra: tests
+Requires-Dist: pytest (>=4.4.0) ; extra == 'tests'
+Requires-Dist: pytest-cov ; extra == 'tests'
+Requires-Dist: pytest-env ; extra == 'tests'
+Requires-Dist: pytest-xdist ; extra == 'tests'
+Requires-Dist: pytest-rerunfailures ; extra == 'tests'
+Requires-Dist: codecov ; extra == 'tests'
+
+![Python package](https://github.com/ReproNim/reproschema-py/workflows/Python%20package/badge.svg?branch=master)
+
+# Reproschema Python library and Command Line Interface (CLI)
+
+
+### Installation
+
+reproschema requires Python 3.7+.
+
+```
+pip install reproschema
+```
+
+## CLI usage
+
+This package installs `reproschema` a CLI.
+
+```
+$ reproschema
+Usage: reproschema [OPTIONS] COMMAND [ARGS]...
+
+  A client to support interactions with ReproSchema
+
+  To see help for a specific command, run
+
+  reproschema COMMAND --help     e.g. reproschema validate --help
+
+Options:
+  --version
+  -l, --log-level [DEBUG|INFO|WARNING|ERROR|CRITICAL]
+                                  Log level name  [default: INFO]
+  --help                          Show this message and exit.
+
+Commands:
+  convert
+  create
+  serve
+  validate
+```
+
+## Developer installation
+
+Install repo in developer mode:
+
+```
+git clone https://github.com/ReproNim/reproschema-py.git
+cd reproschema-py
+pip install -e .[dev]
+```
+
+It is also useful to install pre-commit, which takes care of styling when
+committing code. When pre-commit is used you may have to run git commit twice,
+since pre-commit may make additional changes to your code for styling and will
+not commit these changes by default:
+
+```
+pre-commit install
+```
+
+
