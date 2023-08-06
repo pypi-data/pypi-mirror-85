@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: lmc-runner
+Version: 0.0.3
+Summary: Run LMC assembly code!
+Home-page: https://github.com/dhruvnps/lmc-runner
+Author: dhruvnps
+License: UNKNOWN
+Description: # lmc-runner
+        Run LMC assembly code from the command line.
+        
+        ## Installation
+        Using **pip**:
+        ```console
+        $ pip install lmc-runner
+        ```
+        
+        ## Usage
+        ### Help
+        ```console
+        $ lmc-runner -h
+        
+        lmc-runner [-h] name
+        
+        positional arguments:
+          name        LMC assembly code file name
+        
+        optional arguments:
+          -h, --help  show this help message and exit
+        ```
+        ### Run LMC file
+        ```console
+        $ lmc-runner [name]
+        ```
+        Example with an LMC assembly code file named `example.txt`
+        ```console
+        $ lmc-runner example.txt
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
