@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+option go_package = "github.com/opencord/device-management-interface/v3/go/dmi";
+package dmi;
+
+// Common structures used across the different Device Management services
+
+enum Status {
+    UNDEFINED_STATUS = 0;
+    OK_STATUS = 1;
+    ERROR_STATUS = 2;
+}
+
+// Reason for the failure of request
+enum Reason {
+    UNDEFINED_REASON = 0;
+    UNKNOWN_DEVICE = 1;
+    INTERNAL_ERROR = 2;
+    WRONG_METRIC = 3;
+    WRONG_EVENT = 4;
+    LOGGING_ENDPOINT_ERROR = 5;
+    LOGGING_ENDPOINT_PROTOCOL_ERROR = 6;
+    KAFKA_ENDPOINT_ERROR = 7;
+    UNKNOWN_LOG_ENTITY = 8;
+}
+
+//Log Level
+enum LogLevel {
+    TRACE = 0;
+    DEBUG = 1;
+    INFO  = 2;
+    WARN  = 3;
+    ERROR = 4;
+}
