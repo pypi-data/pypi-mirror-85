@@ -1,0 +1,71 @@
+# TOPSIS-GARVIT-101803122
+
+TOPSIS-GARVIT-101803122 is a package that will provide feature to do multi-criteria decision making in choosing the best models among the data provided.
+
+  - It will provide with the TOPSIS Score.
+  - It will do Ranking of Models on the basis of the given data.
+
+# TOPSIS:
+
+Technique for Order Preference by Similarity to Ideal Solution (TOPSIS) originated in the 1980s as a multi-criteria decision making method. TOPSIS chooses the alternative of shortest Euclidean distance from the ideal solution, and greatest distance from the negative-ideal solution. 
+
+
+### Installation
+TOPSIS-GARVIT-101803122 requires [Python](https://www.python.org/) v2.7+ to run.
+
+Install the package using pip as follows :
+
+```sh
+$ pip install TOPSI-GARVIT-101803122
+```
+
+### HOW TO USE THIS PACKAGE
+
+TOPSIS-GARVIT-10803122 can be run as in the following examples:
+
+
+
+
+### Sample Dataset
+The decision matrix (a) will be extracted from the csv file as the pandas dataframe which will contain each row representing a Model alternative, and each column representing a criterion like Accuracy, RSeq, Root Mean Squared Error, Correlation, and many more.
+
+| Model | Correlation | RSeq | RMSE | Accuracy
+| ------ | ------ | ----- | ----- | --------
+| M1 | 0.79 | 0.62 | 1.25 | 60.89 
+| M2 | 0.66 | 0.44 | 2.89 | 63.07
+| M3 | 0.56 | 0.31 | 1.57 | 62.87
+| M4 | 0.82 | 0.67 | 2.68 | 70.19
+| M5 | 0.75 | 0.56 | 1.3 | 80.39
+
+Weights (w) is not already normalised will be normalised later in the code.
+Information of impacts positive(+) or negative(-) impact criteria should be provided in (im).
+
+
+
+License
+----
+
+MIT License
+
+Copyright (c) 2020 Garvit Garvit
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+
