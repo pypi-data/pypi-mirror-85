@@ -1,0 +1,122 @@
+- secret:
+    name: zuul-client-dockerhub
+    data:
+      username: zuulzuul
+      password: !encrypted/pkcs1-oaep
+        - KAo13fUM9WtpXMayx7ZZbONJMtJea4E7OuxLErWH4aYUwopQ49LzrTi0lV9x9BXuoYEfh
+          iWPLb34DBzQqFQQRnbqNN3PRyNF5eSFeBhi/5JknWA0Vv73aXJRDBB1I3jXXyHoaHOWU2
+          enzeWmsLXVD3j/HmLnPEBcNd+XcMjodtEZ+Q2QZ1oCsrgW4i3Zl/3PAvcbTJBxmPFWvkm
+          VuGXt/WjGWibnkfZexSjABMtGgoUQXhJ8stjxoe2DtGe9yZ86pAsANo51c2cxtCx+eZlz
+          yjhK6mpXbwn3axGjW5p8Ij7TA7TRoU8iz1S6937KQwfo78EKlJ5EmyVWP4QIjHUDxyGoc
+          oMGFSQLkmZNnRBGAgLUyu6Zo7l+6AYjmlbh5xX4fWrPrQawGXJb7+2k7/hI/GprXZ30D2
+          mW3bf5+CcEHCRp6jNf9mjK9bDyK/XxbLxEtJc+7txNyOeIarFCx5vXu3XSfF15YRtSXbx
+          GeloNicZZsJNjJT0U9TJmRpdsIrg8aumpHtZCy0PhHcOCwTOYNSsIxfN4XDMRbAa0OW09
+          /ZjKtC+ftXNtvtFxcsxKYD/VqFZGgc4ZtHJV1OE+2bOj436AUo3doYjrkwitX4IfZQNEs
+          PdwF2MW3w/xLLbl+jQqM6tp/1snbuRK/l1rP8XFCQUlb2sZE3oCAJJNAsQNPFY=
+
+- job:
+    name: zuul-client-zuul-functional
+    parent: tox
+    description: |
+      Test that Zuul and zuul-client work together.
+    required-projects:
+      - zuul/zuul
+      - zuul/zuul-client
+    vars:
+      zuul_work_dir: "{{ zuul.projects['opendev.org/zuul/zuul'].src_dir }}"
+      tox_envlist: zuul_client
+    nodeset: ubuntu-bionic
+
+- job:
+    name: zuul-client-build-image
+    parent: opendev-build-docker-image
+    description: Build a Docker image for the CLI.
+    allowed-projects: zuul/zuul-client
+    timeout: 2700
+    requires:
+      - python-builder-3.8-container-image
+      - python-base-3.8-container-image
+    provides:
+      - zuul-client-container-image
+    vars: &zuulclient_image_vars
+      docker_images:
+        - context: .
+          repository: zuul/zuul-client
+          tags:
+            &imagetag "{{ zuul.tag is defined | ternary([zuul.get('tag', '').split('.')[0], '.'.join(zuul.get('tag', '').split('.')[:2]), zuul.get('tag', '')], ['latest']) }}"
+
+- job:
+    name: zuul-client-upload-image
+    parent: opendev-upload-docker-image
+    description: Build the CLI Docker image and upload to Docker Hub.
+    timeout: 3600
+    requires:
+      - python-builder-3.8-container-image
+      - python-base-3.8-container-image
+    provides: zuul-client-container-image
+    vars: *zuulclient_image_vars
+    secrets:
+      - name: docker_credentials
+        secret: zuul-client-dockerhub
+        pass-to-parent: true
+
+- job:
+    name: zuul-client-promote-image
+    parent: opendev-promote-docker-image
+    description: Promote previously uploaded Docker image.
+    vars: *zuulclient_image_vars
+    secrets:
+      - name: docker_credentials
+        secret: zuul-client-dockerhub
+        pass-to-parent: true
+
+- project:
+    vars:
+      release_python: python3
+    check:
+      jobs:
+        - zuul-tox-docs
+        - zuul-client-build-image
+        - tox-linters:
+            vars:
+              tox_install_bindep: false
+        - tox-py36:
+            nodeset: ubuntu-bionic
+            timeout: 3600
+        - tox-py38:
+            nodeset: ubuntu-bionic
+            timeout: 3600
+        - zuul-client-zuul-functional
+        - build-python-release
+    gate:
+      jobs:
+        - zuul-tox-docs
+        - tox-linters:
+            vars:
+              tox_install_bindep: false
+        - tox-py36:
+            nodeset: ubuntu-bionic
+            timeout: 3600
+        - tox-py38:
+            nodeset: ubuntu-bionic
+            timeout: 3600
+        - zuul-client-zuul-functional
+        - build-python-release
+        - zuul-client-upload-image
+    promote:
+      jobs:
+        - opendev-promote-python
+        - zuul-promote-docs
+        - zuul-client-promote-image
+    release:
+      jobs:
+        - opendev-release-python
+        - zuul-publish-tox-docs
+        - upload-docker-image:
+            secrets:
+              name: docker_credentials
+              secret: zuul-client-dockerhub
+              pass-to-parent: true
+            vars:
+              <<: *zuulclient_image_vars
+              upload_docker_image_promote: false
