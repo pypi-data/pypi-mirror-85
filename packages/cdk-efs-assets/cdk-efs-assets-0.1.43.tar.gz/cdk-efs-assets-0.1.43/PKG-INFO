@@ -1,0 +1,77 @@
+Metadata-Version: 2.1
+Name: cdk-efs-assets
+Version: 0.1.43
+Summary: Amazon EFS assets from Github repositories or S3 buckets
+Home-page: https://github.com/pahud/cdk-efs-assets.git
+Author: Pahud Hsieh<pahudnet@gmail.com>
+License: Apache-2.0
+Project-URL: Source, https://github.com/pahud/cdk-efs-assets.git
+Description: # cdk-efs-assets
+        
+        CDK construct library to populate Amazon EFS assets from Github or S3.
+        
+        # `GithubSourceSync`
+        
+        The `GithubSourceSync` deploys your Amazon EFS assets from specified Github repository.
+        
+        ## Sample
+        
+        ```python
+        # Example automatically generated without compilation. See https://github.com/aws/jsii/issues/826
+        from cdk_efs_assets import GithubSourceSync
+        
+        app = App()
+        
+        env = {
+            "region": process.env.CDK_DEFAULT_REGION ?? AWS_DEFAULT_REGION,
+            "account": process.env.CDK_DEFAULT_ACCOUNT
+        }
+        
+        stack = Stack(app, "testing-stack", env=env)
+        
+        vpc = ec2.Vpc.from_lookup(stack, "Vpc", is_default=True)
+        
+        fs = efs.FileSystem(stack, "Filesystem",
+            vpc=vpc,
+            removal_policy=RemovalPolicy.DESTROY
+        )
+        
+        efs_access_point = fs.add_access_point("EfsAccessPoint",
+            path="/demo",
+            create_acl={
+                "owner_gid": "1001",
+                "owner_uid": "1001",
+                "permissions": "0755"
+            },
+            posix_user={
+                "uid": "1001",
+                "gid": "1001"
+            }
+        )
+        
+        # create the one-time sync from Github repository to Amaozn EFS
+        GithubSourceSync(stack, "GithubSourceSync",
+            repository="https://github.com/pahud/cdk-efs-assets.git",
+            efs_access_point=efs_access_point,
+            runs_after=[fs.mount_targets_available],
+            vpc=vpc
+        )
+        ```
+        
+        # `S3SourceSync`
+        
+        TBD
+        
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: JavaScript
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Typing :: Typed
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
