@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+                        <h2>Replace df with the dataframe variable you use</h2>
+                        <h3>Map only changed grouping values</h3>
+                        <p>df[{{col2}}]=df[{{col1}}].map({{final_part}}).fillna(df[{{col2}}])</p>
+                        <h3>Map all grouing values</h3>
+                        <p>df[{{col2}}]=df[{{col1}}].map({{final_all}}).fillna(-1)</p>
+
+
+
+{% endblock %}

@@ -1,0 +1,12 @@
+web:
+  build: .
+  command: gunicorn --worker-class=gevent --worker-connections=1000 --workers=3 --bind 0.0.0.0:8000 wsgi:app
+  ports:
+    - "8000:8000"
+  volumes:
+    - .:/app
+    - ~/.aws/:/root/.aws:ro
+  links:
+    - db
+db:
+  image: mongo:3.6.1
