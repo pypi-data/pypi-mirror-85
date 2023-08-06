@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: how-long
+Version: 0.1.2
+Summary: A simple decorator to measure a function excecution time.
+License: MIT
+Author: wilfredinni
+Author-email: carlos.w.montecinos@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: pendulum (>=2.0,<3.0)
+Description-Content-Type: text/x-rst
+
+how_long
+========
+
+Simple Decorator to measure a function execution time.
+
+Example
+_______
+
+.. code-block:: python
+
+    from how_long import timer
+
+
+    @timer
+    def some_function():
+        return [x for x in range(10_000_000)]
+
