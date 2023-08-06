@@ -1,0 +1,73 @@
+Metadata-Version: 2.1
+Name: linlearn
+Version: 0.1
+Summary: linlear is a python package for machine learning with linear methods, including robust methods
+Home-page: https://linlearn.readthedocs.io
+Keywords: python,machine-learning,classification,regression,linear-methods,robust-methods
+Author: Stéphane Gaïffas
+Author-email: stephane.gaiffas@gmail.com
+Requires-Python: >=3.6,<4.0
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: matplotlib (>=3.1,<4.0)
+Requires-Dist: numba (>=0.48,<0.49)
+Requires-Dist: numpy (>=1.17.4,<2.0.0)
+Requires-Dist: scikit-learn (>=0.22,<0.23)
+Requires-Dist: scipy (>=1.3.2,<2.0.0)
+Requires-Dist: tqdm (>=4.36,<5.0)
+Project-URL: Documentation, https://linlearn.readthedocs.io
+Project-URL: Repository, https://github.com/linlearn/linlearn
+Description-Content-Type: text/markdown
+
+
+[![Build Status](https://travis-ci.com/linlearn/linlearn.svg?branch=master)](https://travis-ci.com/linlearn/linlearn)
+[![Documentation Status](https://readthedocs.org/projects/linlearn/badge/?version=latest)](https://linlearn.readthedocs.io/en/latest/?badge=latest)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/linlearn)
+![PyPI - Wheel](https://img.shields.io/pypi/wheel/linlearn)
+[![GitHub stars](https://img.shields.io/github/stars/linlearn/linlearn)](https://github.com/linlearn/linlearn/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/linlearn/linlearn)](https://github.com/linlearn/linlearn/issues)
+[![GitHub license](https://img.shields.io/github/license/linlearn/linlearn)](https://github.com/linlearn/linlearn/blob/master/LICENSE)
+[![Coverage Status](https://coveralls.io/repos/github/linlearn/linlearn/badge.svg?branch=master)](https://coveralls.io/github/linlearn/linlearn?branch=master)
+
+![linlearn](img/linlearn.png)
+
+# linlearn: linear methods in Python
+
+LinLearn is scikit-learn compatible python package for machine learning with linear methods. 
+It includes in particular alternative "strategies" for robust training, including median-of-means for classification and regression.
+
+[Documentation](https://linlearn.readthedocs.io) | [Reproduce experiments](https://linlearn.readthedocs.io/en/latest/linlearn.html) |
+
+LinLearn simply stands for linear learning. It is a small scikit-learn compatible python package for **linear learning** 
+with Python. It provides :
+
+- Several strategies, including empirical risk minimization (which is the standard approach), 
+median-of-means for robust regression and classification
+- Several loss functions easily accessible from a single class (`BinaryClassifier` for classification and `Regressor` for regression)
+- Several penalization functions, including standard L1, ridge and elastic-net, but also total-variation, slope, weighted L1, among many others
+- All algorithms can use early stopping strategies during training
+- Supports dense and sparse format, and includes fast solvers for large sparse datasets (using state-of-the-art stochastic optimization algorithms) 
+- It is accelerated thanks to numba, leading to a very concise, small, but very fast library
+  
+## Installation
+
+The easiest way to install linlearn is using pip
+
+    pip install linlearn
+
+But you can also use the latest development from github directly with
+
+    pip install git+https://github.com/linlearn/linlearn.git
+
+## References
+
