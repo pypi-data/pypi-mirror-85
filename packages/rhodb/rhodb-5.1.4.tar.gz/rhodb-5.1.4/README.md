@@ -1,0 +1,42 @@
+# RhoDB
+
+Core Database-related classes that typical Rho AI
+Applications will need.  'Typical' meaning using flask,
+sqlalchemy/postgres, and redis.
+
+## Examples
+
+Example code include db initialization, helper functions,
+and base classes for models.
+
+## Testing
+
+To run the tests we need to install pyenv and tox.
+
+Follow the instructions for [pyenv](https://github.com/pyenv/pyenv#installation)
+and [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv#installation)
+to install pyenv.
+
+After pyenv is intalled, then install tox
+
+    $ pip install tox
+
+Then install the different python versions in pyenv
+
+    $ pyenv install 2.7.13 3.6.7
+
+Ensure testable databases are running. Remove `-d` if you want to run in
+foreground...
+
+* Redis
+  * `docker run --name rhodb-redis -d -p 6379:6379 redis:4`
+* MySQL == 5.7
+  * `docker run --name rhodb-mysql -d -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=yes mysql:5.7`
+* Postgres
+  *  `docker run --name rhodb-postgres -d -p 5432:5432 -e POSTGRES_DB=rhodb_test postgres:10`
+* Elasticsearch
+  * `docker run --name rhodb-elasticsearch -d -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:6.5.4`
+
+Now, run the tests:
+
+    $ tox
