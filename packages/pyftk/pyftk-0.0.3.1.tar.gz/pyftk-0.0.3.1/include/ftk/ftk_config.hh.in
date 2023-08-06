@@ -1,0 +1,44 @@
+#ifndef _FTK_CONFIG_HH
+#define _FTK_CONFIG_HH
+
+#define FTK_VERSION "${FTK_VERSION}"
+
+#cmakedefine FTK_HAVE_ADIOS2 1
+#cmakedefine FTK_HAVE_BOOST 1
+#cmakedefine FTK_HAVE_CGAL 1
+#cmakedefine FTK_HAVE_CUDA 1
+#cmakedefine FTK_HAVE_GMP 1
+#cmakedefine FTK_HAVE_HDF5 1
+#cmakedefine FTK_HAVE_KOKKOS 1
+#cmakedefine FTK_HAVE_LEVELDB 1
+#cmakedefine FTK_HAVE_MPI 1
+#cmakedefine FTK_HAVE_MPSOLVE 1
+#cmakedefine FTK_HAVE_NETCDF 1
+#cmakedefine FTK_HAVE_OPENMP 1
+#cmakedefine FTK_HAVE_PARAVIEW 1
+#cmakedefine FTK_HAVE_PNETCDF 1
+#cmakedefine FTK_HAVE_PNG 1
+#cmakedefine FTK_HAVE_PYBIND11 1
+#cmakedefine FTK_HAVE_ROCKSDB 1
+#cmakedefine FTK_HAVE_QT5 1
+#cmakedefine FTK_HAVE_QT 1
+#cmakedefine FTK_HAVE_TBB 1
+#cmakedefine FTK_HAVE_VTK 1
+
+#define FTK_FP_PRECISION ${FTK_FP_PRECISION}
+#define FTK_CP_MAX_NUM_VARS ${FTK_CP_MAX_NUM_VARS}
+
+#if FTK_HAVE_MPI
+#else
+  #define DIY_NO_MPI
+#endif
+
+#ifdef __CUDACC__
+// #define FTK_NUMERIC_FUNC __device__ __host__
+#else
+// #define FTK_NUMERIC_FUNC
+#define __device__ 
+#define __host__ 
+#endif
+
+#endif

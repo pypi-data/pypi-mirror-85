@@ -1,0 +1,32 @@
+
+
+// convert (n+1) points in n-dimensional space into 
+// a (n+1)*(n+1) matrix by adding an all-one column
+template <int N, typename T>
+inline void points2matrix(const T P[N+1][N], T M[N+1][N+1])
+{
+  for (int i = 0; i < N+1; i ++)
+    for (int j = 0; j < N+1; j ++)
+      if (j < N) M[i][j] = P[i][j];
+      else M[i][j] = T(1);
+}
+
+template <int N, typename T>
+inline void points2matrix(const int indices[N+1], 
+    const T X[N+1][N], T M[N+1][N+1])
+{
+  for (int i = 0; i < N+1; i ++)
+    for (int j = 0; j < N+1; j ++)
+      if (j < N) M[i][j] = X[indices[i]][j];
+      else M[i][j] = T(1);
+}
+
+// orientation of 3 points in 2D space
+// returns 1 if counter-clockwise otherwise -1
+template <typename T=long long>
+inline T orientation2(const T X[3][2])
+{
+  T A[3][3];
+  points2matrix(X, A);
+  return sign(det3(A));
+}

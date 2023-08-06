@@ -1,0 +1,12 @@
+#include "critical_point_tracer.cuh"
+
+void cpt_push_data_next_timestep(cpt_ctx_t* ctx, 
+    double *V, double *gradV, double *scalar)
+{
+  const auto arraySize = ctx->ext.n(); 
+
+  if (ctx->h_V[0] == NULL) {
+    cudaMalloc((void**)&ctx->
+
+  }
+}
