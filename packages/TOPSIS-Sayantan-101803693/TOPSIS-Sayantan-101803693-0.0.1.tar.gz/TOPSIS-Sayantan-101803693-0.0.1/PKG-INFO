@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: TOPSIS-Sayantan-101803693
+Version: 0.0.1
+Summary: Library to use topsis
+Home-page: https://github.com/sayantan24/TOPSIS-Sayantan-101803693
+Author: Sayantan Pradhan
+Author-email: pradhan.sayantan24@gmail.com
+License: UNKNOWN
+Description: # Project Description
+        
+         
+        
+        ### TOPSIS-PYTHON
+        
+        
+        Submitted By- Sayantan Pradhan(101803693)
+        
+        And of course Dillinger itself is open source with a [public repository][dill]
+         on GitHub.
+        
+        ### How to use
+        
+        
+        ```
+        >>> import pandas as pd
+        >>> from TOPSIS-Sayantan-101803693.Topsis import topsis
+        >>> dataset = pd.read_csv('data.csv').values
+        >>> d = dataset.drop[columns = dataset.columns[0]]
+        >>> w = [1,1,1,1]
+        >>> im = ["+" , "+" , "-" , "+" ]
+        >>> topsis(d,w,im)
+        ```
+        
+        
+        
+        ### Output
+        
+        The output will be a file generated in your working directory with topsis score and rank.
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
