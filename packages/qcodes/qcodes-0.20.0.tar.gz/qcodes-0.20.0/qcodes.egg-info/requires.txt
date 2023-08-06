@@ -1,0 +1,36 @@
+numpy>=1.10
+pyvisa<1.12,>=1.10.1
+h5py>=2.6
+websockets>=7.0
+jsonschema
+ruamel.yaml!=0.16.6
+wrapt
+pandas
+tabulate
+tqdm
+opencensus<0.8.0,>=0.7.10
+opencensus-ext-azure<2.0.0,>=1.0.4
+matplotlib>=2.2.3
+requirements-parser
+typing_extensions
+packaging>=20.0
+ipywidgets
+broadbean>=0.9.1
+
+[:python_version < "3.8"]
+importlib-metadata<3.0.0
+
+[MatPlot]
+matplotlib>=2.2.3
+
+[QtPlot]
+pyqtgraph>=0.11.0
+
+[Slack]
+slacker>=0.9.42
+
+[ZurichInstruments]
+zhinst-qcodes>=0.1.1
+
+[coverage tests]
+coverage>=4.0
