@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: flake8-todos
+Version: 0.1.4
+Summary: Check TODOs in the project
+Author: Gram <gram@orsinium.dev>
+License: BSD 3-Clause
+Keywords: flake8,flake8-plugin,linter,styleguide,code,quality
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Framework :: Flake8
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Quality Assurance
+Classifier: License :: OSI Approved :: BSD License
+Requires-Dist: flake8
+Requires-Dist: isort[pyproject]; extra == "dev"
+Requires-Dist: pycodestyle
+Requires-Dist: pytest; extra == "dev"
+Provides-Extra: dev
