@@ -1,0 +1,81 @@
+Metadata-Version: 2.1
+Name: graph-polisher
+Version: 0.0.4
+Summary: graph-polisher is a library that helps you clean your plotly figures.. This library is inspired by the book Storytelling with Data by Cole Nussbaumer Knaflic (https://www.kobo.com/us/en/ebook/storytelling-with-data).
+Home-page: https://gitlab.com/rigogsilva/grah-polisher
+Author: Rodrigo da Silva
+Author-email: dasil021@umn.edu
+License: MIT
+Description: # graph-polisher
+        
+        Graph polisher is a library that helps you clean your plotly figures. 
+        This library was inspired by the book "Storytelling with Data by Cole
+        Nussbaumer Knaflic (https://www.kobo.com/us/en/ebook/storytelling-with-data).
+        
+        ## Installation
+        
+        ```shell script
+        pip install graph-polisher
+        ```
+        
+        ## Testing
+        
+        To test this project run:
+        
+        ```shell script
+        pytest
+        ```
+        
+        ## Notebooks for examples
+        
+        You can use this to see how the library modifies the plots. We are using 
+        [unnotebook](http://www.unnotebook.com/) to plot the examples. 
+        
+        1. Build and push `notebook` image:
+        
+        ```bash
+        docker build . -t graph-polisher
+        ```
+        
+        2. Run notebook
+        
+        ```shell script
+        docker-compose up notebook
+        ```
+        
+        or 
+        
+        ```bash
+        docker run --rm -it \
+            -v /Users/rigo/Documents/Projects/notebooks/stock-predictions:/notebooks \
+            -p 8899:8899 unclutterer
+        ```
+        
+        
+        ## Usage
+        
+        ...
+        
+        ## Deploying pip library
+        
+        Build the pip library package to deploy to pip:
+        
+        ```shell script
+        python3 setup.py sdist bdist_wheel
+        ```
+        
+        Publish to pip. You can follow steps [here](https://docs.gitlab.com/ee/user/packages/pypi_repository/) 
+        
+        Note that you will need to install twine and register your pypi. Usually in the file
+        `~/.pypirc`
+        
+        ```shell script
+        python3 -m twine upload --repository pypi dist/*
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
