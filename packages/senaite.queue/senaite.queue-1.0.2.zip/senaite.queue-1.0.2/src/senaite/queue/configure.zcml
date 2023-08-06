@@ -1,0 +1,59 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="senaite.queue">
+
+  <five:registerPackage package="." initialize=".initialize"/>
+
+  <!-- Register Translations -->
+  <i18n:registerTranslations directory="locales" />
+
+  <!-- Needed for "BIKA: Manage Bika" permission -->
+  <include package="bika.lims" file="permissions.zcml" />
+
+  <!-- Queue's server utility -->
+  <utility provides=".interfaces.IServerQueueUtility"
+           factory=".server.utility.ServerQueueUtility" />
+
+  <!-- Queue's client utility -->
+  <utility provides=".interfaces.IClientQueueUtility"
+           factory=".client.utility.ClientQueueUtility" />
+
+  <!-- Package includes -->
+  <include package=".adapters"/>
+  <include package=".browser"/>
+  <include package=".client"/>
+  <include package=".monkeys"/>
+  <include package=".upgrade"/>
+  <include package=".server"/>
+
+  <!-- Default profile -->
+  <genericsetup:registerProfile
+      name="default"
+      title="SENAITE QUEUE"
+      directory="profiles/default"
+      description="Asynchronous tasks for SENAITE"
+      pre_handler="senaite.queue.setuphandlers.pre_install"
+      post_handler="senaite.queue.setuphandlers.post_install"
+      provides="Products.GenericSetup.interfaces.EXTENSION" />
+
+  <!-- Generic Setup Handler -->
+  <genericsetup:importStep
+      name="senaite.queue.setuphandler"
+      title="SENAITE.QUEUE Setup Handler"
+      description="Run various configuration actions"
+      handler="senaite.queue.setuphandlers.setup_handler"/>
+
+  <!-- Uninstall profile -->
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="SENAITE QUEUE (uninstall)"
+      directory="profiles/uninstall"
+      description="Asynchronous tasks for SENAITE"
+      post_handler="senaite.queue.setuphandlers.post_uninstall"
+      provides="Products.GenericSetup.interfaces.EXTENSION" />
+
+</configure>

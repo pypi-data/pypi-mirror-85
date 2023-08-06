@@ -1,0 +1,24 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="senaite.queue">
+
+  <!-- Static resource directory -->
+  <browser:resourceDirectory
+    name="senaite.queue.static"
+    directory="static"
+    layer="senaite.queue.interfaces.ISenaiteQueueLayer"/>
+
+  <!-- Package includes -->
+  <include package=".viewlets"/>
+  <include package=".views"/>
+
+  <!-- Queue Control panel -->
+  <browser:page
+    name="queue-controlpanel"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    class=".controlpanel.QueueControlPanelView"
+    permission="senaite.core.permissions.ManageBika"
+    layer="senaite.queue.interfaces.ISenaiteQueueLayer" />
+
+</configure>
