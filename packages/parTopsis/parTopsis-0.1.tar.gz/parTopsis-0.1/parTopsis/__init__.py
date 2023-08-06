@@ -1,0 +1,1 @@
+from parTopsis.parTopsis import topsis_main
