@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: sysstat-applet
+Version: 1.0.1
+Summary: Tray applet for system monitoring
+Home-page: https://github.com/jmechnich/sysstat-applet
+Author: Joerg Mechnich
+Author-email: joerg.mechnich@gmail.com
+License: UNKNOWN
+Description: sysstat-applet
+        ==============
+        
+        Sysstat system tray applet for X11, written in Python 3 and PyQt 5
+        
+        Functionality
+        =============
+        
+        - Shows three system tray icons displaying cpu, memory and disk stats
+        - Left single or double click toggles splash screen with extended info
+        - Middle click triggers external command
+        - Right click shows Options and Quit commands in a context menu
+        
+        Requirements
+        ============
+        
+        - appletlib (https://github.com/jmechnich/appletlib)
+        - Python 3
+        - PyQt 5
+        
+        Screenshots
+        ===========
+        
+        #### Default view
+        ![](https://raw.github.com/jmechnich/sysstat-applet/master/screens/screen-nosplash.png)
+        
+        #### CPU splash
+        ![](https://raw.github.com/jmechnich/sysstat-applet/master/screens/screen-splash-cpu.png)
+        
+        #### Memory splash
+        ![](https://raw.github.com/jmechnich/sysstat-applet/master/screens/screen-splash-mem.png)
+        
+        #### Disk splash
+        ![](https://raw.github.com/jmechnich/sysstat-applet/master/screens/screen-splash-disk.png)
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Environment :: X11 Applications :: Qt
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
