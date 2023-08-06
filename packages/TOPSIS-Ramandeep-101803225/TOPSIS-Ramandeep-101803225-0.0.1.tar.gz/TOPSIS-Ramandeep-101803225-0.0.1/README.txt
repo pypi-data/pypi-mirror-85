@@ -1,0 +1,1 @@
+This is a very simple code to find the TOPSIS score and Rank from a csv file where Model, Corr, Rseq, RMSE and Accuracy given.
