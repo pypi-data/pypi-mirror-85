@@ -1,0 +1,105 @@
+beam, particle=ion, charge=6, energy=28.5779291448, mass=11.1779291448;
+
+k1l_GTE1QD11 := 0.3774561583995819;       // [flow] variable
+k1l_GTE1QD12 := -0.35923901200294495;     // [flow] variable
+k0nl_GTS1MU1 := 0.0;
+k1l_GTE2QT11 := 1e-6;                     // [flow] variable
+k1l_GTE2QT12 := -0.06950470060110092;     // [flow] variable
+k1l_GTE2QT13 := 0.05078870803117752;      // [flow] variable
+k0nl_GTE3MU1 := 0.0;
+k1l_GTH1QD11 := 0.029803970828652382;     // [flow] variable
+k1l_GTH1QD12 := -1.678291846474167e-05;   // [flow] variable
+k0nl_GHHTMU1 := 0.0;
+k1l_GTH2QD11 := 0.009377311915159225;     // [flow] variable
+k1l_GTH2QD12 := -0.028745494782924652;    // [flow] variable
+k1l_GTH2QD21 := -0.031047895550727844;    // [flow] variable
+k1l_GTH2QD22 := 0.0012131987605243921;    // [flow] variable
+k0nl_GTH3MU1 := 0.0;
+k1l_GHADQD11 := -0.03407714515924454;     // [flow] variable
+k1l_GHADQD12 := 0.02995985746383667;      // [flow] variable
+k1l_GHADQD21 := -0.00039888740866445005;  // [flow] variable
+k1l_GHADQD22 := 0.07888582348823547;      // [flow] variable
+k0nl_GTP1MU1 := 0.0;
+k0nl_GHADMU1 := -0.13076;
+k1l_GHADQD31 := -0.0010618676897138357;   // [flow] variable
+k1l_GHADQD32 := 0.07264774292707443;      // [flow] variable
+k1l_GHADQD41 := 0.0004938949714414775;    // [flow] variable
+k1l_GHADQD42 := -0.15544144809246063;     // [flow] variable
+k0nl_GHADMU2 := -0.13114;
+k1l_GHADQT51 := 0.4181443452835083;       // [flow] variable
+k1l_GHADQT52 := -0.5036603808403015;      // [flow] variable
+
+k0sl_GTE1KY1 := 0.0;
+k0nl_GTE2KX1 := 0.0;
+k0sl_GTH1KY1 := 0.0;
+k0nl_GTH1KX1 := 0.0;
+k0sl_GTH2KY1 := 0.0;
+k0nl_GTH2KX1 := 0.0;
+k0nl_GHADKX1 := 0.0;
+k0sl_GHADKY1 := 0.0;
+k0sl_GHADKY2 := 0.0;
+k0sl_GHADKY3 := 0.0;
+k0sl_GHADKY4 := 0.0;
+
+sis18_hades: sequence, l = 164.5501309;
+gte1ky1: vkicker, kick:=k0sl_GTE1KY1, at = 3.9057;
+gte1qd11: quadrupole, l=0.666, k1:=k1l_GTE1QD11/0.666, at = 5.0807;
+gte1dg1: MONITOR, at = 5.7507;
+gte1df1: MONITOR, at = 5.7507;
+gte1qd12: quadrupole, l=0.666, k1:=k1l_GTE1QD12/0.666, at = 6.7307;
+gts1mu1:  multipole, knl={0.0}, at = 8.6437999;
+gte2kx1: hkicker, kick:=k0nl_GTE2KX1, at = 15.7708976;
+gte2qt11: quadrupole, l=1.0, k1=k1l_GTE2QT11, at = 20.3535976;
+gte2qt12: quadrupole, l=1.0, k1=k1l_GTE2QT12, at = 22.3539976;
+gte2qt13: quadrupole, l=1.0, k1=k1l_GTE2QT13, at = 24.3598976;
+gte2dg4: MONITOR, at = 25.4207976;
+gte2df4: MONITOR, at = 25.6803976;
+gte3mu1: multipole, knl={0.0}, at = 28.6437973;
+gth1ky1: vkicker, kick:=k0sl_GTH1KY1, at = 31.925112;
+gth1kx1: hkicker, kick:=k0nl_GTH1KX1, at = 32.425112;
+gth1dg2g: MONITOR, at = 37.1591105;
+gth1dg4g: MONITOR, at = 46.4530109;
+gth1qd11: quadrupole, l=1.0, k1:=k1l_GTH1QD11, at = 48.1640663;
+gth1qd12: quadrupole, l=1.0, k1:=k1l_GTH1QD12, at = 50.1640663;
+ghhtmu1: multipole, knl={0.0}, at = 52.4014301;
+gth2dg2: MONITOR, at = 60.4674301;
+gth2df3: MONITOR, at = 61.0604301;
+gth2qd11: quadrupole, l=1.0, k1:=k1l_GTH2QD11, at = 72.5194291;
+gth2qd12ent: MONITOR, at = 74.0194291;
+gth2qd12: quadrupole, l=1.0, k1:=k1l_GTH2QD12, at = 74.5194291;
+gth2ky1: vkicker, kick:=k0sl_GTH2KY1, at = 76.7984291;
+gth2kx1: hkicker, kick:=k0nl_GTH2KX1, at = 77.3984291;
+gth2dfa: MONITOR, at = 93.2554291;
+gth2qd21: quadrupole, l=1.0, k1:=k1l_GTH2QD21, at = 96.0963835;
+gth2qd22: quadrupole, l=1.0, k1:=k1l_GTH2QD22, at = 98.0969835;
+gth3mu1: multipole, knl={0.0},, at = 100.2795473;
+ghaddg1g: MONITOR, at = 105.5857873;
+ghaddf1: MONITOR, at = 105.5857873;
+ghadkx1: hkicker, kick:=k0nl_GHADKX1, at = 107.5017873;
+ghadky1: vkicker, kick:=k0sl_GHADKY1, at = 107.9017873;
+ghadqd11: quadrupole, l=1.0, k1:=k1l_GHADQD11, at = 114.8597873;
+ghadqd12: quadrupole, l=1.0, k1:=k1l_GHADQD12, at = 116.8597873;
+ghaddf2: MONITOR, at = 118.1827873;
+ghaddfa: MONITOR, at = 120.4597873;
+ghadqd21: quadrupole, l=1.0, k1:=k1l_GHADQD21, at = 121.8597873;
+ghadqd22: quadrupole, l=1.0, k1:=k1l_GHADQD22, at = 123.8597873;
+gtp1mu1: multipole, knl={0.0}, at = 125.7672306;
+ghadmu1: SBEND, l=1.47262156, tilt=0.3795488805607519, angle=k0nl_GHADMU1, at = 128.7611985;
+ghadky2: vkicker, kick:=k0sl_GHADKY2, at = 131.8831109;
+ghadqd31: quadrupole, l=0.6, k1:=k1l_GHADQD31/0.6, at = 132.7975093;
+ghadqd32: quadrupole, l=0.6, k1:=k1l_GHADQD32/0.6, at = 134.1975093;
+ghadqd41: quadrupole, l=0.6, k1:=k1l_GHADQD41/0.6, at = 137.7975093;
+ghadqd42: quadrupole, l=0.6, k1:=k1l_GHADQD42/0.6, at = 139.1975093;
+ghaddf3: MONITOR, at = 140.7006109;
+ghadky3: vkicker, kick:=k0sl_GHADKY3, at = 141.6606109;
+ghadmu2: SBEND, l=1.47262156, angle=k0nl_GHADMU2, tilt=-0.3795488805607519, at = 143.2338201;
+ghadqd51: quadrupole, l=1.0, k1 := k1l_GHADQT51, at = 149.5501309;
+ghadky4: vkicker, kick:=k0sl_GHADKY4, at = 150.5501309;
+ghadqd52: quadrupole, l=1.0, k1=k1l_GHADQT52, at = 151.5501309;
+ghaddf4: MONITOR, at = 153.7501309;
+ghaddg4g: MONITOR, at = 154.015;
+target: MONITOR, at = 153.7501309+2.1945;
+dump: MONITOR, at = 163.6654786;
+endsequence;
+
+use, sequence = sis18_hades;
