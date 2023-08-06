@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "docker-postal"
+version = "0.0.12"
+description = "A light Docker control tool designed around compose and swarm"
+license = "MIT"
+authors = ["Stephen"]
+readme = "README.md"
+repository = "https://github.com/leviat-tech/postal"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+packages = [{ include = "postal"}]
+
+[tool.poetry.scripts]
+postal = 'postal.cli:main'
+
+[tool.poetry.dependencies]
+python = "^3.6"
+appdirs = "^1.4.4"
+boto = "^2.49.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.1.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
