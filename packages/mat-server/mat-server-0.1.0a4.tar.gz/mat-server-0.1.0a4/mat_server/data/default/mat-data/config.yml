@@ -1,0 +1,17 @@
+server:
+  proxy_url: https://paji.marco79423.net  # 要代理的伺服器
+routes:
+  - listen_path: demo/hello   # 要攔截的路由  (https://paji.marco79423.net/demo/hello)
+    method: GET               # HTTP Method  (預設為 GET)
+    status_code: 200          # 回傳的 status code (預設為 200 OK)
+    query:                    # 設定 query string (http://target_server/hello?name=兩大類)
+      name: 大類
+    response:                 # 回傳值設定
+      data: 哈囉 廢物
+  - listen_path: demo/hello   # 要攔截的路由  (https://paji.marco79423.net/demo/hello)
+    method: GET               # HTTP Method  (預設為 GET)
+    status_code: 200          # 回傳的 status code (預設為 200 OK)
+    query:                    # 設定 query string (http://target_server/hello?name=兩大類)
+      name: 廢物
+    response:                 # 回傳值設定
+      file_path: ./data/hello
