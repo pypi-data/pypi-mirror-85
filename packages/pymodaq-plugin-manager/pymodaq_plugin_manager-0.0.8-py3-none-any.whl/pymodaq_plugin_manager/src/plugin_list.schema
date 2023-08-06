@@ -1,0 +1,114 @@
+{
+	"type": "object",
+	"required": [
+		"name",
+		"version",
+		"pymodaq-plugins"
+	],
+	"properties": {
+		"name": { "enum": ["pymodaq-pluginList"] },
+		"version": {
+			"type": "string",
+			"pattern": "^\\d+(\\.\\d+){,3}$"
+		},
+		"pymodaq-plugins": {
+			"type": "array",
+			"items": { "$ref": "#/definitions/plugin" }
+		}
+	},
+	"definitions": {
+		"plugin": {
+			"type": "object",
+			"required": [
+				"plugin-name",
+				"display-name",
+				"version",
+				"id",
+				"repository",
+				"description",
+				"instruments",
+				"authors",
+				"contributors",
+				"homepage"
+			],
+			"properties": {
+				"plugin-name": {
+					"type": "string",
+					"minLength": 1
+				},
+				"display-name": {
+					"type": "string",
+					"minLength": 1
+				},
+				"version": {
+					"type": "string",
+					"pattern": "^\\d+(\\.\\d+){,3}$"
+				},
+				"id": {
+					"type": "string",
+					"pattern": "^(?i)^[A-Z0-9]{64}$"
+				},
+				"repository": {
+					"format": "uri"
+				},
+				"description": {
+					"type": "string",
+					"minLength": 1
+				},
+				"instruments": {
+					"type": "object",
+					"properties": {
+						"Actuator": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						},
+						"Viewer0D": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						},
+						"Viewer1D": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						},
+						"Viewer2D": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						},
+						"ViewerND": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"authors": {
+					"type": "array",
+					"items": {
+    					"type": "string"
+					}
+				},
+				"contributors": {
+					"type": "array",
+					"items": {
+    					"type": "string"
+					}
+				},
+				"homepage": {
+					"oneOf": [
+						{"type": "string", "maxLength": 0},
+						{"format": "uri"}
+					]
+				}
+			}
+		}
+	}
+}
