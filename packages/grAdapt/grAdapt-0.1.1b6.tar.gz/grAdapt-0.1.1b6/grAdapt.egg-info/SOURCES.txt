@@ -1,0 +1,494 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+examples/.ipynb_checkpoints/1. Hyperparameter Optimization-checkpoint.ipynb
+examples/Adversarial Examples/1. SVM NIST Dataset (Adversarial Attack).ipynb
+examples/Adversarial Examples/2. SVM NIST Dataset (One Pixel Attack).ipynb
+examples/Adversarial Examples/3. SVM NIST Dataset (Adversarial Examples) Multiple Targets.ipynb
+examples/Adversarial Examples/.ipynb_checkpoints/1. SVM NIST Dataset (Adversarial Attack)-checkpoint.ipynb
+examples/Adversarial Examples/.ipynb_checkpoints/2. SVM NIST Dataset (One Pixel Attack)-checkpoint.ipynb
+examples/Adversarial Examples/.ipynb_checkpoints/3. SVM NIST Dataset (Adversarial Examples) Multiple Targets-checkpoint.ipynb
+examples/Adversarial Examples/data/n_evals_bfgs.npy
+examples/Adversarial Examples/data/no_misclassified_bfgs.npy
+examples/Adversarial Examples/data/no_misclassified_grAdapt.npy
+examples/Adversarial Examples/data/x_bfgs_perturbation.npy
+examples/Adversarial Examples/data/y_bfgs_loss.npy
+examples/Adversarial Examples/data/y_grAdapt_loss.npy
+examples/Adversarial Examples/plots/bfgs_0.pdf
+examples/Adversarial Examples/plots/bfgs_1.pdf
+examples/Adversarial Examples/plots/bfgs_10.pdf
+examples/Adversarial Examples/plots/bfgs_11.pdf
+examples/Adversarial Examples/plots/bfgs_12.pdf
+examples/Adversarial Examples/plots/bfgs_13.pdf
+examples/Adversarial Examples/plots/bfgs_14.pdf
+examples/Adversarial Examples/plots/bfgs_15.pdf
+examples/Adversarial Examples/plots/bfgs_16.pdf
+examples/Adversarial Examples/plots/bfgs_17.pdf
+examples/Adversarial Examples/plots/bfgs_18.pdf
+examples/Adversarial Examples/plots/bfgs_19.pdf
+examples/Adversarial Examples/plots/bfgs_2.pdf
+examples/Adversarial Examples/plots/bfgs_20.pdf
+examples/Adversarial Examples/plots/bfgs_21.pdf
+examples/Adversarial Examples/plots/bfgs_22.pdf
+examples/Adversarial Examples/plots/bfgs_23.pdf
+examples/Adversarial Examples/plots/bfgs_24.pdf
+examples/Adversarial Examples/plots/bfgs_25.pdf
+examples/Adversarial Examples/plots/bfgs_26.pdf
+examples/Adversarial Examples/plots/bfgs_27.pdf
+examples/Adversarial Examples/plots/bfgs_28.pdf
+examples/Adversarial Examples/plots/bfgs_29.pdf
+examples/Adversarial Examples/plots/bfgs_3.pdf
+examples/Adversarial Examples/plots/bfgs_30.pdf
+examples/Adversarial Examples/plots/bfgs_31.pdf
+examples/Adversarial Examples/plots/bfgs_32.pdf
+examples/Adversarial Examples/plots/bfgs_33.pdf
+examples/Adversarial Examples/plots/bfgs_34.pdf
+examples/Adversarial Examples/plots/bfgs_35.pdf
+examples/Adversarial Examples/plots/bfgs_36.pdf
+examples/Adversarial Examples/plots/bfgs_37.pdf
+examples/Adversarial Examples/plots/bfgs_38.pdf
+examples/Adversarial Examples/plots/bfgs_39.pdf
+examples/Adversarial Examples/plots/bfgs_4.pdf
+examples/Adversarial Examples/plots/bfgs_40.pdf
+examples/Adversarial Examples/plots/bfgs_41.pdf
+examples/Adversarial Examples/plots/bfgs_42.pdf
+examples/Adversarial Examples/plots/bfgs_43.pdf
+examples/Adversarial Examples/plots/bfgs_44.pdf
+examples/Adversarial Examples/plots/bfgs_45.pdf
+examples/Adversarial Examples/plots/bfgs_46.pdf
+examples/Adversarial Examples/plots/bfgs_47.pdf
+examples/Adversarial Examples/plots/bfgs_48.pdf
+examples/Adversarial Examples/plots/bfgs_49.pdf
+examples/Adversarial Examples/plots/bfgs_5.pdf
+examples/Adversarial Examples/plots/bfgs_50.pdf
+examples/Adversarial Examples/plots/bfgs_51.pdf
+examples/Adversarial Examples/plots/bfgs_52.pdf
+examples/Adversarial Examples/plots/bfgs_53.pdf
+examples/Adversarial Examples/plots/bfgs_54.pdf
+examples/Adversarial Examples/plots/bfgs_55.pdf
+examples/Adversarial Examples/plots/bfgs_56.pdf
+examples/Adversarial Examples/plots/bfgs_57.pdf
+examples/Adversarial Examples/plots/bfgs_58.pdf
+examples/Adversarial Examples/plots/bfgs_59.pdf
+examples/Adversarial Examples/plots/bfgs_6.pdf
+examples/Adversarial Examples/plots/bfgs_60.pdf
+examples/Adversarial Examples/plots/bfgs_61.pdf
+examples/Adversarial Examples/plots/bfgs_62.pdf
+examples/Adversarial Examples/plots/bfgs_63.pdf
+examples/Adversarial Examples/plots/bfgs_64.pdf
+examples/Adversarial Examples/plots/bfgs_65.pdf
+examples/Adversarial Examples/plots/bfgs_66.pdf
+examples/Adversarial Examples/plots/bfgs_67.pdf
+examples/Adversarial Examples/plots/bfgs_68.pdf
+examples/Adversarial Examples/plots/bfgs_69.pdf
+examples/Adversarial Examples/plots/bfgs_7.pdf
+examples/Adversarial Examples/plots/bfgs_70.pdf
+examples/Adversarial Examples/plots/bfgs_71.pdf
+examples/Adversarial Examples/plots/bfgs_72.pdf
+examples/Adversarial Examples/plots/bfgs_73.pdf
+examples/Adversarial Examples/plots/bfgs_74.pdf
+examples/Adversarial Examples/plots/bfgs_75.pdf
+examples/Adversarial Examples/plots/bfgs_76.pdf
+examples/Adversarial Examples/plots/bfgs_77.pdf
+examples/Adversarial Examples/plots/bfgs_78.pdf
+examples/Adversarial Examples/plots/bfgs_79.pdf
+examples/Adversarial Examples/plots/bfgs_8.pdf
+examples/Adversarial Examples/plots/bfgs_80.pdf
+examples/Adversarial Examples/plots/bfgs_81.pdf
+examples/Adversarial Examples/plots/bfgs_82.pdf
+examples/Adversarial Examples/plots/bfgs_83.pdf
+examples/Adversarial Examples/plots/bfgs_84.pdf
+examples/Adversarial Examples/plots/bfgs_85.pdf
+examples/Adversarial Examples/plots/bfgs_86.pdf
+examples/Adversarial Examples/plots/bfgs_87.pdf
+examples/Adversarial Examples/plots/bfgs_88.pdf
+examples/Adversarial Examples/plots/bfgs_89.pdf
+examples/Adversarial Examples/plots/bfgs_9.pdf
+examples/Adversarial Examples/plots/bfgs_90.pdf
+examples/Adversarial Examples/plots/bfgs_91.pdf
+examples/Adversarial Examples/plots/bfgs_92.pdf
+examples/Adversarial Examples/plots/bfgs_93.pdf
+examples/Adversarial Examples/plots/bfgs_94.pdf
+examples/Adversarial Examples/plots/bfgs_95.pdf
+examples/Adversarial Examples/plots/bfgs_96.pdf
+examples/Adversarial Examples/plots/bfgs_97.pdf
+examples/Adversarial Examples/plots/bfgs_98.pdf
+examples/Adversarial Examples/plots/bfgs_99.pdf
+examples/Adversarial Examples/plots/grAdapt_0.pdf
+examples/Adversarial Examples/plots/grAdapt_1.pdf
+examples/Adversarial Examples/plots/grAdapt_10.pdf
+examples/Adversarial Examples/plots/grAdapt_11.pdf
+examples/Adversarial Examples/plots/grAdapt_12.pdf
+examples/Adversarial Examples/plots/grAdapt_13.pdf
+examples/Adversarial Examples/plots/grAdapt_14.pdf
+examples/Adversarial Examples/plots/grAdapt_15.pdf
+examples/Adversarial Examples/plots/grAdapt_16.pdf
+examples/Adversarial Examples/plots/grAdapt_17.pdf
+examples/Adversarial Examples/plots/grAdapt_18.pdf
+examples/Adversarial Examples/plots/grAdapt_19.pdf
+examples/Adversarial Examples/plots/grAdapt_2.pdf
+examples/Adversarial Examples/plots/grAdapt_20.pdf
+examples/Adversarial Examples/plots/grAdapt_21.pdf
+examples/Adversarial Examples/plots/grAdapt_22.pdf
+examples/Adversarial Examples/plots/grAdapt_23.pdf
+examples/Adversarial Examples/plots/grAdapt_24.pdf
+examples/Adversarial Examples/plots/grAdapt_25.pdf
+examples/Adversarial Examples/plots/grAdapt_26.pdf
+examples/Adversarial Examples/plots/grAdapt_27.pdf
+examples/Adversarial Examples/plots/grAdapt_28.pdf
+examples/Adversarial Examples/plots/grAdapt_29.pdf
+examples/Adversarial Examples/plots/grAdapt_3.pdf
+examples/Adversarial Examples/plots/grAdapt_30.pdf
+examples/Adversarial Examples/plots/grAdapt_31.pdf
+examples/Adversarial Examples/plots/grAdapt_32.pdf
+examples/Adversarial Examples/plots/grAdapt_33.pdf
+examples/Adversarial Examples/plots/grAdapt_34.pdf
+examples/Adversarial Examples/plots/grAdapt_35.pdf
+examples/Adversarial Examples/plots/grAdapt_36.pdf
+examples/Adversarial Examples/plots/grAdapt_37.pdf
+examples/Adversarial Examples/plots/grAdapt_38.pdf
+examples/Adversarial Examples/plots/grAdapt_39.pdf
+examples/Adversarial Examples/plots/grAdapt_4.pdf
+examples/Adversarial Examples/plots/grAdapt_40.pdf
+examples/Adversarial Examples/plots/grAdapt_41.pdf
+examples/Adversarial Examples/plots/grAdapt_42.pdf
+examples/Adversarial Examples/plots/grAdapt_43.pdf
+examples/Adversarial Examples/plots/grAdapt_44.pdf
+examples/Adversarial Examples/plots/grAdapt_45.pdf
+examples/Adversarial Examples/plots/grAdapt_46.pdf
+examples/Adversarial Examples/plots/grAdapt_47.pdf
+examples/Adversarial Examples/plots/grAdapt_48.pdf
+examples/Adversarial Examples/plots/grAdapt_49.pdf
+examples/Adversarial Examples/plots/grAdapt_5.pdf
+examples/Adversarial Examples/plots/grAdapt_50.pdf
+examples/Adversarial Examples/plots/grAdapt_51.pdf
+examples/Adversarial Examples/plots/grAdapt_52.pdf
+examples/Adversarial Examples/plots/grAdapt_53.pdf
+examples/Adversarial Examples/plots/grAdapt_54.pdf
+examples/Adversarial Examples/plots/grAdapt_55.pdf
+examples/Adversarial Examples/plots/grAdapt_56.pdf
+examples/Adversarial Examples/plots/grAdapt_57.pdf
+examples/Adversarial Examples/plots/grAdapt_58.pdf
+examples/Adversarial Examples/plots/grAdapt_59.pdf
+examples/Adversarial Examples/plots/grAdapt_6.pdf
+examples/Adversarial Examples/plots/grAdapt_60.pdf
+examples/Adversarial Examples/plots/grAdapt_61.pdf
+examples/Adversarial Examples/plots/grAdapt_62.pdf
+examples/Adversarial Examples/plots/grAdapt_63.pdf
+examples/Adversarial Examples/plots/grAdapt_64.pdf
+examples/Adversarial Examples/plots/grAdapt_65.pdf
+examples/Adversarial Examples/plots/grAdapt_66.pdf
+examples/Adversarial Examples/plots/grAdapt_67.pdf
+examples/Adversarial Examples/plots/grAdapt_68.pdf
+examples/Adversarial Examples/plots/grAdapt_69.pdf
+examples/Adversarial Examples/plots/grAdapt_7.pdf
+examples/Adversarial Examples/plots/grAdapt_70.pdf
+examples/Adversarial Examples/plots/grAdapt_71.pdf
+examples/Adversarial Examples/plots/grAdapt_72.pdf
+examples/Adversarial Examples/plots/grAdapt_73.pdf
+examples/Adversarial Examples/plots/grAdapt_74.pdf
+examples/Adversarial Examples/plots/grAdapt_75.pdf
+examples/Adversarial Examples/plots/grAdapt_76.pdf
+examples/Adversarial Examples/plots/grAdapt_77.pdf
+examples/Adversarial Examples/plots/grAdapt_78.pdf
+examples/Adversarial Examples/plots/grAdapt_79.pdf
+examples/Adversarial Examples/plots/grAdapt_8.pdf
+examples/Adversarial Examples/plots/grAdapt_80.pdf
+examples/Adversarial Examples/plots/grAdapt_81.pdf
+examples/Adversarial Examples/plots/grAdapt_82.pdf
+examples/Adversarial Examples/plots/grAdapt_83.pdf
+examples/Adversarial Examples/plots/grAdapt_84.pdf
+examples/Adversarial Examples/plots/grAdapt_85.pdf
+examples/Adversarial Examples/plots/grAdapt_86.pdf
+examples/Adversarial Examples/plots/grAdapt_87.pdf
+examples/Adversarial Examples/plots/grAdapt_88.pdf
+examples/Adversarial Examples/plots/grAdapt_89.pdf
+examples/Adversarial Examples/plots/grAdapt_9.pdf
+examples/Adversarial Examples/plots/grAdapt_90.pdf
+examples/Adversarial Examples/plots/grAdapt_91.pdf
+examples/Adversarial Examples/plots/grAdapt_92.pdf
+examples/Adversarial Examples/plots/grAdapt_93.pdf
+examples/Adversarial Examples/plots/grAdapt_94.pdf
+examples/Adversarial Examples/plots/grAdapt_95.pdf
+examples/Adversarial Examples/plots/grAdapt_96.pdf
+examples/Adversarial Examples/plots/grAdapt_97.pdf
+examples/Adversarial Examples/plots/grAdapt_98.pdf
+examples/Adversarial Examples/plots/grAdapt_99.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_0.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_1.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_10.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_11.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_12.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_13.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_14.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_15.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_16.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_17.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_18.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_19.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_2.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_20.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_21.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_22.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_23.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_24.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_25.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_26.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_27.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_28.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_29.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_3.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_30.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_31.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_32.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_33.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_34.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_35.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_36.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_37.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_38.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_39.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_4.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_40.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_41.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_42.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_43.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_44.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_45.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_46.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_47.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_48.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_49.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_5.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_50.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_51.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_52.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_53.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_54.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_55.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_56.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_57.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_58.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_59.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_6.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_60.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_61.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_62.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_63.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_64.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_65.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_66.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_67.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_68.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_69.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_7.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_70.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_71.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_72.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_73.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_74.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_75.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_76.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_77.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_78.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_79.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_8.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_80.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_81.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_82.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_83.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_84.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_85.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_86.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_87.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_88.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_89.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_9.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_90.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_91.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_92.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_93.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_94.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_95.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_96.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_97.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_98.pdf
+examples/Adversarial Examples/plots/grAdapt_bfgs_99.pdf
+examples/Clustering/Variance Minimization.ipynb
+examples/Clustering/.ipynb_checkpoints/Variance Minimization-checkpoint.ipynb
+examples/Clustering/plots/grAdapt_solution.pdf
+examples/Clustering/plots/grAdapt_solution_gpr.pdf
+examples/Clustering/plots/grAdapt_solution_nogradient.pdf
+examples/Clustering/plots/grAdapt_solution_nomodel.pdf
+examples/Clustering/plots/grAdapt_solution_nomodel_amsgrad.pdf
+examples/Clustering/plots/kmeans_solution.pdf
+examples/Clustering/plots/loss_variance_minimization.pdf
+examples/Clustering/plots/loss_variance_minimization_amsgrad.pdf
+examples/Differential Equations/1. Snowball Rolling.ipynb
+examples/Differential Equations/.ipynb_checkpoints/1. Snowball Rolling-checkpoint.ipynb
+examples/Differential Equations/plots/loss_iteration.pdf
+examples/Differential Equations/plots/mass_iteration.pdf
+examples/Differential Equations/plots/objective.pdf
+examples/Hyperparameter Optimization/1. k-Nearest Neighbors.ipynb
+examples/Hyperparameter Optimization/2. Support Vector Machine.ipynb
+examples/Hyperparameter Optimization/.ipynb_checkpoints/1. k-Nearest Neighbors-checkpoint.ipynb
+examples/Hyperparameter Optimization/.ipynb_checkpoints/2. Support Vector Machine-checkpoint.ipynb
+examples/Hyperparameter Optimization/plots/knn/training_k.pdf
+examples/Hyperparameter Optimization/plots/knn/training_k_acc.pdf
+examples/Hyperparameter Optimization/plots/knn/training_objective.pdf
+examples/Hyperparameter Optimization/plots/knn/trainingloss.pdf
+examples/Hyperparameter Optimization/plots/svm/3dplot.pdf
+examples/Hyperparameter Optimization/plots/svm/training_c.pdf
+examples/Hyperparameter Optimization/plots/svm/training_gamma.pdf
+examples/Hyperparameter Optimization/plots/svm/training_kernel.pdf
+examples/Hyperparameter Optimization/plots/svm/trainingloss.pdf
+examples/Sample Notebooks/1. Test on Optimizers.ipynb
+examples/Sample Notebooks/.ipynb_checkpoints/1. Test on Optimizers-checkpoint.ipynb
+grAdapt/__init__.py
+grAdapt.egg-info/PKG-INFO
+grAdapt.egg-info/SOURCES.txt
+grAdapt.egg-info/dependency_links.txt
+grAdapt.egg-info/requires.txt
+grAdapt.egg-info/top_level.txt
+grAdapt/datasets/__init__.py
+grAdapt/datasets/testfunctions/__init__.py
+grAdapt/datasets/testfunctions/bivariate.py
+grAdapt/datasets/testfunctions/multivariate.py
+grAdapt/escape/CMAES.py
+grAdapt/escape/MatyasNormalDistribution.py
+grAdapt/escape/MaxStandardDeviation.py
+grAdapt/escape/NormalDistribution.py
+grAdapt/escape/NormalDistributionDecay.py
+grAdapt/escape/StandardNormalDistribution.py
+grAdapt/escape/UniformDistribution.py
+grAdapt/escape/__init__.py
+grAdapt/escape/base.py
+grAdapt/models/Sequential.py
+grAdapt/models/__init__.py
+grAdapt/optimizer/AMSGradBisection.py
+grAdapt/optimizer/AdaGradBisection.py
+grAdapt/optimizer/AdaMaxBisection.py
+grAdapt/optimizer/AdamBisection.py
+grAdapt/optimizer/GradientDescentBisection.py
+grAdapt/optimizer/MomentumBisection.py
+grAdapt/optimizer/RMSPropBisection.py
+grAdapt/optimizer/__init__.py
+grAdapt/optimizer/base.py
+grAdapt/sampling/__init__.py
+grAdapt/sampling/equidistributed/Density.py
+grAdapt/sampling/equidistributed/KDistance.py
+grAdapt/sampling/equidistributed/KDistanceMean.py
+grAdapt/sampling/equidistributed/MaximalMinDistance.py
+grAdapt/sampling/equidistributed/Mitchell.py
+grAdapt/sampling/equidistributed/Reassignment.py
+grAdapt/sampling/equidistributed/__init__.py
+grAdapt/sampling/equidistributed/base.py
+grAdapt/sampling/initializer/Uniform.py
+grAdapt/sampling/initializer/Vertices.py
+grAdapt/sampling/initializer/VerticesForce.py
+grAdapt/sampling/initializer/VerticesForceRandom.py
+grAdapt/sampling/initializer/__init__.py
+grAdapt/sampling/initializer/base.py
+grAdapt/space/__init__.py
+grAdapt/space/datatype/Categorical.py
+grAdapt/space/datatype/Float.py
+grAdapt/space/datatype/Integer.py
+grAdapt/space/datatype/Nominal.py
+grAdapt/space/datatype/Ordinal.py
+grAdapt/space/datatype/__init__.py
+grAdapt/space/datatype/base.py
+grAdapt/space/transformer/Transformer.py
+grAdapt/space/transformer/__init__.py
+grAdapt/surrogate/GPR.py
+grAdapt/surrogate/NoGradient.py
+grAdapt/surrogate/NoModel.py
+grAdapt/surrogate/RBFRegression.py
+grAdapt/surrogate/TaylorSeriesExpansion.py
+grAdapt/surrogate/__init__.py
+grAdapt/surrogate/base.py
+grAdapt/surrogate/kernels.py
+grAdapt/utils/__init__.py
+grAdapt/utils/misc.py
+grAdapt/utils/sampling.py
+grAdapt/utils/math/__init__.py
+grAdapt/utils/math/geometry.py
+grAdapt/utils/math/linalg.py
+grAdapt/utils/math/spatial.py
+tests/basic.py
+tests/changing_kernels.py
+tests/load_checkpoint.py
+tests/maximize.py
+tests/run_all.py
+tests/slidingWindow.py
+tests/training_continuation.py
+tests/utils.py
+tests/__pycache__/basic.cpython-36.pyc
+tests/__pycache__/basic.cpython-37.pyc
+tests/__pycache__/basic.cpython-38.pyc
+tests/__pycache__/changing_kernels.cpython-36.pyc
+tests/__pycache__/changing_kernels.cpython-37.pyc
+tests/__pycache__/changing_kernels.cpython-38.pyc
+tests/__pycache__/continuation_test.cpython-37.pyc
+tests/__pycache__/continuation_test.cpython-38.pyc
+tests/__pycache__/load_checkpoint.cpython-36.pyc
+tests/__pycache__/load_checkpoint.cpython-37.pyc
+tests/__pycache__/load_checkpoint.cpython-38.pyc
+tests/__pycache__/maximize.cpython-36.pyc
+tests/__pycache__/maximize.cpython-37.pyc
+tests/__pycache__/maximize.cpython-38.pyc
+tests/__pycache__/run_all.cpython-38.pyc
+tests/__pycache__/run_all2.cpython-38.pyc
+tests/__pycache__/slidingWindow.cpython-36.pyc
+tests/__pycache__/slidingWindow.cpython-37.pyc
+tests/__pycache__/slidingWindow.cpython-38.pyc
+tests/__pycache__/test.cpython-38.pyc
+tests/__pycache__/training_continuation.cpython-36.pyc
+tests/__pycache__/training_continuation.cpython-37.pyc
+tests/__pycache__/training_continuation.cpython-38.pyc
+tests/__pycache__/utils.cpython-36.pyc
+tests/__pycache__/utils.cpython-37.pyc
+tests/__pycache__/utils.cpython-38.pyc
+tests/checkpoints/checkpointXY20Nov13-001840.npy
+tests/checkpoints/checkpointXY20Nov13-002001.npy
+tests/checkpoints/checkpointXY20Nov13-002155.npy
+tests/checkpoints/checkpointXY20Nov13-002726.npy
+tests/checkpoints/checkpointXY20Nov13-002749.npy
+tests/checkpoints/checkpointXY20Nov13-003016.npy
+tests/checkpoints/checkpointXY20Nov13-003129.npy
+tests/checkpoints/checkpointXY20Nov13-003426.npy
+tests/checkpoints/checkpointXY20Nov13-014539.npy
+tests/checkpoints/checkpointXY20Nov13-014612.npy
+tests/checkpoints/checkpointXY20Nov13-014633.npy
+tests/checkpoints/checkpointXY20Nov13-014822.npy
+tests/checkpoints/checkpointXY20Nov13-015533.npy
+tests/checkpoints/checkpointXY20Nov13-015727.npy
+tests/checkpoints/checkpointXY20Nov13-015744.npy
+tests/checkpoints/checkpointXY20Nov13-020115.npy
+tests/checkpoints/checkpointXY20Nov13-020153.npy
+tests/checkpoints/checkpointXY20Nov13-020222.npy
+tests/checkpoints/checkpointXY20Nov13-021326.npy
+tests/checkpoints/checkpointXY20Nov13-021354.npy
+tests/checkpoints/checkpointXY20Nov13-021456.npy
+tests/checkpoints/checkpointXY20Nov13-021535.npy
+tests/checkpoints/checkpointXY20Nov13-021813.npy
+tests/checkpoints/checkpointXY20Nov13-021840.npy
+tests/checkpoints/checkpointXY20Nov13-022358.npy
+tests/checkpoints/checkpointXY20Nov13-025220.npy
+tests/checkpoints/checkpointXY20Nov13-025232.npy
+tests/checkpoints/checkpointXY20Nov13-030257.npy
+tests/checkpoints/checkpointXY20Nov18-104010.npy
+tests/checkpoints/checkpointXY20Nov18-110027.npy
+tests/checkpoints/checkpointXY20Sep18-021331.npy
+tests/checkpoints/checkpointXY20Sep18-023208.npy
+tests/checkpoints/checkpointXY20Sep18-023337.npy
+tests/checkpoints/checkpointXY20Sep18-023506.npy
+tests/checkpoints/checkpointXY20Sep18-031650.npy
+tests/checkpoints/checkpointXY20Sep27-042716.npy
+tests/unittests/models/sequential/equal_y_values.py
+tests/unittests/models/sequential/seed_reproducibility.py
+tests/unittests/models/sequential/training_continuation_equal_values.py
+tests/unittests/sampling/equidistributed/inside_bounds.py
+tests/unittests/sampling/equidistributed/sample_number.py
+tests/unittests/sampling/initializer/inside_bounds.py
+tests/unittests/sampling/initializer/sample_number.py
