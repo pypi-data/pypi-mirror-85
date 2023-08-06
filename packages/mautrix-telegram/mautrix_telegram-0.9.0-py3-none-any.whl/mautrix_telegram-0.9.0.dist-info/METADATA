@@ -1,0 +1,101 @@
+Metadata-Version: 2.1
+Name: mautrix-telegram
+Version: 0.9.0
+Summary: A Matrix-Telegram hybrid puppeting/relaybot bridge.
+Home-page: https://github.com/tulir/mautrix-telegram
+Author: Tulir Asokan
+Author-email: tulir@maunium.net
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: Topic :: Communications :: Chat
+Classifier: Framework :: AsyncIO
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: ~=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: SQLAlchemy (<2,>=1.2)
+Requires-Dist: aiohttp (<4,>=3)
+Requires-Dist: alembic (<2,>=1)
+Requires-Dist: commonmark (<0.10,>=0.8)
+Requires-Dist: mautrix (<0.9,>=0.8.3)
+Requires-Dist: python-magic (<0.5,>=0.4)
+Requires-Dist: ruamel.yaml (<0.17,>=0.15.35)
+Requires-Dist: telethon-session-sqlalchemy (<0.3,>=0.2.14)
+Requires-Dist: telethon (<1.18,>=1.17)
+Requires-Dist: yarl (<2,>=1)
+Provides-Extra: all
+Requires-Dist: aiodns ; extra == 'all'
+Requires-Dist: asyncpg (<0.22,>=0.20) ; extra == 'all'
+Requires-Dist: brotli ; extra == 'all'
+Requires-Dist: cchardet ; extra == 'all'
+Requires-Dist: cryptg (<0.3,>=0.1) ; extra == 'all'
+Requires-Dist: moviepy (<2,>=1) ; extra == 'all'
+Requires-Dist: pillow (<8,>=4) ; extra == 'all'
+Requires-Dist: prometheus-client (<0.9,>=0.6) ; extra == 'all'
+Requires-Dist: psycopg2-binary (<3,>=2) ; extra == 'all'
+Requires-Dist: pycryptodome (<4,>=3) ; extra == 'all'
+Requires-Dist: python-olm (<4,>=3) ; extra == 'all'
+Requires-Dist: qrcode (<7,>=6) ; extra == 'all'
+Requires-Dist: unpaddedbase64 (<2,>=1) ; extra == 'all'
+Provides-Extra: e2be
+Requires-Dist: asyncpg (<0.22,>=0.20) ; extra == 'e2be'
+Requires-Dist: pycryptodome (<4,>=3) ; extra == 'e2be'
+Requires-Dist: python-olm (<4,>=3) ; extra == 'e2be'
+Requires-Dist: unpaddedbase64 (<2,>=1) ; extra == 'e2be'
+Provides-Extra: hq_thumbnails
+Requires-Dist: moviepy (<2,>=1) ; extra == 'hq_thumbnails'
+Provides-Extra: metrics
+Requires-Dist: prometheus-client (<0.9,>=0.6) ; extra == 'metrics'
+Provides-Extra: postgres
+Requires-Dist: psycopg2-binary (<3,>=2) ; extra == 'postgres'
+Provides-Extra: qr_login
+Requires-Dist: pillow (<8,>=4) ; extra == 'qr_login'
+Requires-Dist: qrcode (<7,>=6) ; extra == 'qr_login'
+Provides-Extra: speedups
+Requires-Dist: aiodns ; extra == 'speedups'
+Requires-Dist: brotli ; extra == 'speedups'
+Requires-Dist: cchardet ; extra == 'speedups'
+Requires-Dist: cryptg (<0.3,>=0.1) ; extra == 'speedups'
+Provides-Extra: webp_convert
+Requires-Dist: pillow (<8,>=4) ; extra == 'webp_convert'
+
+# mautrix-telegram
+![Languages](https://img.shields.io/github/languages/top/tulir/mautrix-telegram.svg)
+[![License](https://img.shields.io/github/license/tulir/mautrix-telegram.svg)](LICENSE)
+[![Release](https://img.shields.io/github/release/tulir/mautrix-telegram/all.svg)](https://github.com/tulir/mautrix-telegram/releases)
+[![GitLab CI](https://mau.dev/tulir/mautrix-telegram/badges/master/pipeline.svg)](https://mau.dev/tulir/mautrix-telegram/container_registry)
+[![Maintainability](https://img.shields.io/codeclimate/maintainability/tulir/mautrix-telegram.svg)](https://codeclimate.com/github/tulir/mautrix-telegram)
+
+A Matrix-Telegram hybrid puppeting/relaybot bridge.
+
+## Sponsors
+* [Joel Lehtonen / Zouppen](https://github.com/zouppen)
+
+### Wiki
+All setup and usage instructions are located in the GitHub
+[wiki](https://github.com/tulir/mautrix-telegram/wiki). Some quick links:
+
+* [Bridge setup](https://github.com/tulir/mautrix-telegram/wiki/Bridge-setup)
+  (or [with Docker](https://github.com/tulir/mautrix-telegram/wiki/Bridge-setup-with-Docker))
+* Basic usage: [Authentication](https://github.com/tulir/mautrix-telegram/wiki/Authentication),
+  [Creating chats](https://github.com/tulir/mautrix-telegram/wiki/Creating-and-managing-chats),
+  [Relaybot setup](https://github.com/tulir/mautrix-telegram/wiki/Relay-bot)
+
+### Features & Roadmap
+[ROADMAP.md](https://github.com/tulir/mautrix-telegram/blob/master/ROADMAP.md)
+contains a general overview of what is supported by the bridge.
+
+## Discussion
+Matrix room: [`#telegram:maunium.net`](https://matrix.to/#/#telegram:maunium.net)
+
+Telegram chat: [`mautrix_telegram`](https://t.me/mautrix_telegram) (bridged to Matrix room)
+
+## Preview
+![Preview](preview.png)
+
+
