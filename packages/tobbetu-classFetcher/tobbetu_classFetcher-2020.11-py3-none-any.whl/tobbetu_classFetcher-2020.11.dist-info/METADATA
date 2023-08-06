@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: tobbetu-classFetcher
+Version: 2020.11
+Summary: A simple library to fetch class Zoom links from the TOBB ETU class portal.
+Home-page: https://github.com/ufukkaraca/tobbetu-classFetcher
+Author: Ufuk Karaca
+Author-email: ufukqarca@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: selenium
+
+# tobbetu-classFetcher
+A simple library to fetch class Zoom links from the TOBB ETU class portal.
+
+# How to use?
+To install simply use:
+`pip install tobbetu-classFetcher`
+
+At the beginning of your code add:
+`from tobbetu-classFetcher import classFetcher`
+
+Call the function using:
+`classFetcher(className, classID)`
+  - className is as the name implies, e.g. "ELE 263"
+  - classID includes your section to fit with the website formatting, e.g. "cELE2632" (ELE263, Section2)
+
+# Dependencies
+This library uses *Selenium* and *time*.
+
+
