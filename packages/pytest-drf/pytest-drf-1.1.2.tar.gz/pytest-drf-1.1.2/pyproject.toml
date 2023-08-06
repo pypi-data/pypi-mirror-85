@@ -1,0 +1,47 @@
+[tool.poetry]
+name = "pytest-drf"
+version = "1.1.2"
+description = "A Django REST framework plugin for pytest."
+authors = ["Zach \"theY4Kman\" Kanzler <they4kman@gmail.com>"]
+keywords = ["pytest", "django", "djangorestframework"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/theY4Kman/pytest-drf"
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Framework :: Django",
+  "Framework :: Pytest",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Testing",
+]
+packages = [
+  { include = "pytest_drf" },
+  { include = "tests", format = "sdist" },
+  { include = "pytest.ini", format = "sdist" },
+  { include = "LICENSE", format = "sdist" },
+  { include = "CHANGELOG.md", format = "sdist" },
+]
+
+[tool.poetry.dependencies]
+python = ">=3.6,<4.0"
+
+djangorestframework = ">3"
+inflection = "^0.3.1"
+pytest = ">=3.6"
+pytest-assert-utils = "^0"
+pytest-common-subject = "^1.0"
+pytest-lambda = "^1.2.3"
+typing_extensions = { version = "^3.7.4", python = "<3.8" }
+
+[tool.poetry.dev-dependencies]
+django = "^3"
+pytest-camel-collect = "^1.0.1"
+pytest-djangoapp = "^0.15.0"
+tox = "^3.20.1"
+
+[tool.poetry.plugins."pytest11"]
+drf = "pytest_drf.plugin"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
