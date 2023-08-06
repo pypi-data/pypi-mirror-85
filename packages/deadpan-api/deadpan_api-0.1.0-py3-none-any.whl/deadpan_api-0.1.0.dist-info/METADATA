@@ -1,0 +1,295 @@
+Metadata-Version: 2.1
+Name: deadpan-api
+Version: 0.1.0
+Summary: Tool for creating deadpan tools with the flask structure.
+Home-page: https://github.com/deadpan-1/deadpan_api
+Author: Stuart Bowe
+Author-email: stuart@deadpan.ai
+License: MIT
+Keywords: flask,API,deadpan,deadpan AI
+Platform: UNKNOWN
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+Requires-Dist: Pillow (>=5.4.1)
+Requires-Dist: requests (>=2.21.0)
+Requires-Dist: Flask-API (>=1.1)
+Requires-Dist: jsonpickle (>=1.1)
+Requires-Dist: psutil (>=5.5.0)
+Requires-Dist: pandas (>=0.23.4)
+Requires-Dist: xlrd (>=1.0.0)
+
+# Deadpan API
+
+This is a python library designed to aid in the creation of Flask API's capable of accepting data and returning some result.
+
+The library has functions to accept data stored in jsons, raw text, image files and spreadsheets, as well as a function to accept generic files.
+
+This library was designed for the construction of micro-services and as such assumes that each API will only have a single function. It is suggested that the user also utilise a Docker container to start their API. For more information about Docker please see the [Docker website](https://www.docker.com/).
+
+By default all of these tools will use port 5000 and the route `/model/predict`. 
+
+## Example usage
+
+The `deadpan_api` library has 5 sub libraries:
+
+- textAPI
+- imageAPI
+- spreadsheetAPI
+- jsonAPI
+- genericFileAPI
+
+Each of these sub-libraries contains a function `mount_function`. This function is designed to mount a user defined function to an API located on port 5000 at route `/model/predict` (which may be changed if desired, see `Advanced tools` in the README). When run this function will first check to see if the mounted function takes the correct arguments and if so will create an API which when it receives data will run the user defined function on the data and return the result. For this reason the function must return a dictionary however the arguments will change depending on the sub-library used. The arguments are shown below
+
+- `textApi`: text, variables (optional)
+- `imageApi`: img, variables (optional)
+- `spreadsheetAPI`: df, variables (optional)
+- `jsonAPI`: inputJson
+- `genericFileAPI`: filename, variables (optional)
+
+
+In each of these examples variables must be a dictionary however the critical argument will be the type of object being searched for by the sub-library. For example `df` in `spreadsheetAPI` will be a pandas dataframe.
+
+A simple example python script for processing text using these tools is shown below:
+
+```
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+from deadpan_api import textAPI as dA
+
+
+def countLetters(text, variables):
+
+    if 'letter' in variables.keys():
+
+        result = text.count(variables['letter'])
+
+        output = {'letter':variables['letter],
+                  'count':result}
+
+    else:
+        output = {'letter':'unset'}
+
+    return output
+
+dA.mount_function(countLetters, port=5000)
+
+```
+
+## Example post requests
+
+### Raw text processing tools
+
+This tool is designed to accept raw text as well as any options sent by the user. In order to send data to the tool you should use a POST request. This may be done using curl request as follows:
+
+``curl -X POST -H "Content-Type:application/json" -d '{"text":"This is an example piece of text about a subject."}' http://0.0.0.0:5000/model/predict``
+
+The request may also be provided with optional data specific to the API being used which may by added to the curl request as follows:
+
+``curl -X POST -H "Content-Type:application/json" -d '{"text":"This is an example piece of text about a subject.", "cleanStops"="English"}' http://0.0.0.0:5000/model/predict``
+
+The tool is also designed to accept text stored in a `.txt` file. Options may be set in the url as follows:
+
+``curl -F "doc=@./example.txt" -XPOST http://0.0.0.0:5000/model/predict?cleanStops=English``
+
+The `.txt` file may also be retreved from a server as follows:
+
+``curl -X POST -H "Content-Type:application/json" -d '{"contentUrl":"http://localhost:8000/example.txt"}' http://0.0.0.0:5000/model/predict``
+
+An example python script using the [requests](https://requests.readthedocs.io/en/master/) library to send data to a text API is shown below:
+
+```
+import json
+import requests
+
+data = {"text":"Here is some example text",
+        "cleanStops":"English"}
+
+result = requests.post(url='http://localhost:5000/model/predict', 
+                        headers={"Content-Type":"application/json"}, 
+                        data=json.dumps(data))
+
+print(result.text)
+```
+
+### JSON processing tools
+
+This tool is designed to accept data stored in a json. In order to send data to the tool you should use a POST request. This may be done using a curl request as follows:
+
+``curl -X POST -H "Content-Type:application/json" -d '{"parameter1":17, "parameter2":0.5, "parameter3":"stochastic"}' http://0.0.0.0:5000/model/predict``
+
+The tool is also designed to accept data stored in a `.json` file as follows:
+
+``curl -F "json=@./example.json" -XPOST http://0.0.0.0:5000/model/predict``
+
+a `.json` file may be retreved from a server as follows:
+
+``curl -X POST -H "Content-Type:application/json" -d '{"contentUrl":"http://localhost:8000/example.json"}' http://0.0.0.0:5000/model/predict``
+
+An example python script using the [requests](https://requests.readthedocs.io/en/master/) library is also shown below:
+
+```
+import json
+import requests
+
+data = {"parameter1":17, 
+        "parameter2":0.5, 
+        "parameter3":"stochastic"}
+
+result = requests.post(url='http://localhost:5000/model/predict', 
+                        headers={"Content-Type":"application/json"}, 
+                        data=json.dumps(data))
+
+print(result.text)
+```
+
+### Image processing tools
+
+This tool is designed to accept images as well as any options sent by the user. It is designed to accept images in the formats:
+
+- jpg
+- png
+- bmp
+- tif
+- ppm
+
+In order to send data to the tool you should use a POST request. This may be done using curl as follows:
+
+
+``curl -F "img=@./example.png" -XPOST http://0.0.0.0:5000/model/predict?removeColour=red``
+
+the image file may also be retreved from a server as follows:
+
+``curl -X POST -H "Content-Type:application/json" -d '{"contentUrl":"http://localhost:8000/example.jpg"}' http://0.0.0.0:5000/model/predict``
+
+An example python script using the [requests](https://requests.readthedocs.io/en/master/) library is also shown below:
+
+```
+import json
+import requests
+
+data = "contentUrl":"http://localhost:8000/example.jpg",
+        "removeColour":"red"}
+
+result = requests.post(url='http://localhost:5000/model/predict', 
+                        headers={"Content-Type":"application/json"}, 
+                        data=json.dumps(data))
+
+print(result.text)
+```
+
+
+### Spreadsheet processing tools
+
+This tool is designed to accept spreadsheets as well as any options sent by the user. It is designed to accept spreadsheets in the formats:
+
+- csv
+- xlsx
+
+In order to send data to the tool you should use a POST request. This may be done for a csv using curl as follows:
+
+``curl -F "csv=@./example.csv" -XPOST http://0.0.0.0:5000/model/predict?sortCol=text``
+
+if you are sending xlsx files please use the format
+
+``curl -F "xlsx=@./example.xlsx" -XPOST http://0.0.0.0:5000/model/predict?sortCol=text``
+
+the image file may also be retreved from a server as follows:
+
+``curl -X POST -H "Content-Type:application/json" -d '{"contentUrl":"http://localhost:8000/example.xlsx"}' http://0.0.0.0:5000/model/predict``
+
+An example python script using the [requests](https://requests.readthedocs.io/en/master/) library is also shown below:
+
+```
+import json
+import requests
+
+data = "contentUrl":"http://localhost:8000/example.xlsx",
+        "sortCol":"text"}
+
+result = requests.post(url='http://localhost:5000/model/predict', 
+                        headers={"Content-Type":"application/json"}, 
+                        data=json.dumps(data))
+
+print(result.text)
+```
+
+### File processing tools
+
+This tool is designed to accept any file as well as any options sent by the user. When creating APIs using this tool it is suggested that the user be very careful with checking the type and content of the file to avoid issues with malicious user input.
+
+In order to send data to the tool you should use a POST request. This may be done for a csv using curl as follows:
+
+``curl -F "csv=@./example.stl" -XPOST http://0.0.0.0:5000/model/predict?upscaleFactor=2``
+
+the image file may also be retreved from a server as follows:
+
+``curl -X POST -H "Content-Type:application/json" -d '{"contentUrl":"http://localhost:8000/example.stl"}' http://0.0.0.0:5000/model/predict``
+
+An example python script using the [requests](https://requests.readthedocs.io/en/master/) library is also shown below:
+
+```
+import json
+import requests
+
+data = "contentUrl":"http://localhost:8000/example.stl",
+        "upscaleFactor":2}
+
+result = requests.post(url='http://localhost:5000/model/predict', 
+                        headers={"Content-Type":"application/json"}, 
+                        data=json.dumps(data))
+
+print(result.text)
+```
+
+## Example supplementary files
+
+### Example dockerfile
+
+
+```
+FROM python:3.8
+
+#add in your requirements
+ADD requirements.txt /
+
+#install the required files for your tool
+RUN pip install requirements.txt
+
+#add the python script which calls the library
+ADD ./main.py /
+
+#run the python script
+CMD ["python", "main.py"]
+```
+
+### Example requests file
+
+```
+deadpan_api==0.0.1
+flashtext==2.7
+```
+
+### Example start bash script
+
+```
+#!/usr/bin/env bash
+#build and run a docker image for an example api built with deadpan_api
+
+#build the docker image
+docker build -t example_api:0.0.0 .
+
+#run the docker image in debug mode. Open port 5000 for accepting requests
+docker run -p 5000:5000 \
+-e "PYTHON_DEBUG=True" \
+ example_api:0.0.0
+```
+
+## Advanced tools
+
+All of these options are available for running the API's created using deadpan_api
+
+- *host* : default is '0.0.0.0'. Set the IP address to host the API on.
+- *port* : default 5000. Set the port to host the API on.
+- *path* : default '/model/predict'. Set the path for the API.
+
