@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: Py-PDM
+Version: 0.1
+Summary: A Python wrapper of the Phase Dispersion Minimization (PDM)
+Home-page: https://github.com/ckm3/Py-PDM
+Author: Kaiming Cui
+Author-email: ckm@nao.cas.cn
+License: GPL-3.0
+Description: 
+                            # Py-PDM
+        
+                            A Python wrapper of the Phase Dispersion Minimization (PDM), which is a [C code written by Stellingwerf](https://www.stellingwerf.com/rfs-bin/index.cgi?action=PageView&id=34).
+        
+                            Compared with other Python implementations, with the help of Cython, we can obtain a much faster PDM tool.
+        
+                            # Installation
+                            To install Py-PDM with pip:
+        
+                            ```
+                            pip install py-pdm
+                            ```
+        
+                            Alternatively you can install it manually:
+                            ```
+                            git clone https://github.com/ckm3/Py-PDM.git
+                            cd Py-PDM
+                            python setup.py install
+                            ```
+        
+                            # Usage
+                            ```python3
+                            from pdmpy import pdm
+        
+                            freq, theta = pdm(time, y_value, y_sigma, frequency_min, frequency_max, frequency_step, number_of_bins)
+                            ```
+                            Please refer to the example directory to see in details.
+                         
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering :: Astronomy
+Classifier: Topic :: Scientific/Engineering :: Physics
+Requires-Python: >=3
+Description-Content-Type: text/markdown
