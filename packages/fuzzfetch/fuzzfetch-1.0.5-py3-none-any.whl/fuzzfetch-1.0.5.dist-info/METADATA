@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: fuzzfetch
+Version: 1.0.5
+Summary: Downloader for firefox/jsshell builds.
+Home-page: https://github.com/MozillaSecurity/fuzzfetch
+Maintainer: Mozilla Fuzzing Team
+Maintainer-email: fuzzing@mozilla.com
+License: MPL 2.0
+Keywords: fuzz fuzzing security test testing
+Platform: any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Security
+Classifier: Topic :: Software Development :: Testing
+Requires-Python: >=3.5
+Requires-Dist: pytz
+Requires-Dist: requests
+Requires-Dist: pathlib2 ; python_version < "3.6"
+Provides-Extra: dev
+Requires-Dist: pre-commit ; extra == 'dev'
+Requires-Dist: tox ; extra == 'dev'
+
+UNKNOWN
+
+
