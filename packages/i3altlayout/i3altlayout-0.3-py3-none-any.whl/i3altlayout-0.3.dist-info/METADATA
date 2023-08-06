@@ -1,0 +1,130 @@
+Metadata-Version: 2.1
+Name: i3altlayout
+Version: 0.3
+Summary: i3wm efficient real estate
+Home-page: https://github.com/deadc0de6/i3altlayout
+Author: deadc0de6
+Author-email: deadc0de6@foo.bar
+License: GPLv3
+Download-URL: https://github.com/deadc0de6/i3altlayout/archive/v0.3.tar.gz
+Keywords: i3wm tiling
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Requires-Python: >=3.4
+Requires-Dist: enum-compat
+Requires-Dist: docopt
+Requires-Dist: i3ipc
+Provides-Extra: dev
+Requires-Dist: check-manifest ; extra == 'dev'
+Provides-Extra: test
+Requires-Dist: pycodestyle ; extra == 'test'
+Requires-Dist: pyflakes ; extra == 'test'
+
+|Tests Status| |PyPI version| |Python| |License: GPL v3|
+
+I3ALTLAYOUT
+===========
+
+``i3altlayout`` helps you handle more efficiently your screen real
+estate in `i3wm <https://i3wm.org/>`__ by auto-splitting windows on
+their longest side.
+
+If you open 4 windows, your workspace would look
+
+::
+
+                 like this                               instead of this
+
+    +-----------------------------------+        +---------------------------------+
+    | +--------------+ +--------------+ |        | +-----+ +-----+ +-----+ +-----+ |
+    | |              | |              | |        | |     | |     | |     | |     | |
+    | |              | |      2       | |        | |     | |     | |     | |     | |
+    | |              | |              | |        | |     | |     | |     | |     | |
+    | |      1       | +--------------+ |        | |  1  | |  2  | |  3  | |  4  | |
+    | |              | +--------------+ |        | |     | |     | |     | |     | |
+    | |              | |      ||      | |        | |     | |     | |     | |     | |
+    | |              | |   3  ||  4   | |        | |     | |     | |     | |     | |
+    | +--------------+ +--------------+ |        | +-----+ +-----+ +-----+ +-----+ |
+    +-----------------------------------+        +---------------------------------+
+
+--------------
+
+Installation
+============
+
+Install the script from `pypi <https://pypi.org/project/i3altlayout/>`__
+
+.. code:: bash
+
+    $ sudo pip3 install i3altlayout
+
+Offline installation
+--------------------
+
+from the online host, run the following
+
+.. code:: bash
+
+    $ mkdir -p /tmp/i3altlayout && pip3 download -d /tmp/i3altlayout i3altlayout
+
+Then compress the directory ``/tmp/i3altlayout`` and transfer it to the
+offline host.
+
+In the offline host, with the decompressed i3altlayout directory in
+``/tmp/i3altlayout``, run the following:
+
+.. code:: bash
+
+    $ sudo pip3 install --no-index --find-links=/tmp/i3altlayout i3altlayout
+
+Usage
+=====
+
+Start the script directly with `i3 <https://i3wm.org/>`__ by adding it
+to your config file (usually under ``~/.config/i3/config``):
+
+::
+
+    exec --no-startup-id "i3altlayout"
+
+Or test it by running it from the command line (``i3altlayout``) and
+open a few windows.
+
+Related projects
+================
+
+This project is similar to
+`i3-alternating-layout <https://github.com/olemartinorg/i3-alternating-layout>`__
+but uses the `i3ipc library <https://github.com/acrisci/i3ipc-python>`__
+instead of the unmaintained `i3-py
+library <https://github.com/ziberna/i3-py>`__.
+
+Contribution
+============
+
+If you are having trouble installing or using ``i3altlayout``, open an
+issue.
+
+If you want to contribute, feel free to do a PR (please follow PEP8).
+
+License
+=======
+
+This project is licensed under the terms of the GPLv3 license.
+
+.. |Tests Status| image:: https://github.com/deadc0de6/i3altlayout/workflows/tests/badge.svg
+   :target: https://github.com/deadc0de6/i3altlayout/actions
+.. |PyPI version| image:: https://badge.fury.io/py/i3altlayout.svg
+   :target: https://badge.fury.io/py/i3altlayout
+.. |Python| image:: https://img.shields.io/pypi/pyversions/i3altlayout.svg
+   :target: https://pypi.python.org/pypi/i3altlayout
+.. |License: GPL v3| image:: https://img.shields.io/badge/License-GPL%20v3-blue.svg
+   :target: http://www.gnu.org/licenses/gpl-3.0
+
+
