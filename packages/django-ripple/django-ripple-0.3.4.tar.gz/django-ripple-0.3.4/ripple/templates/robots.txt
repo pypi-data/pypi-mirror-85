@@ -1,0 +1,7 @@
+{% if ALLOW_ROBOTS %}
+User-agent: *
+Disallow:
+{% else %}
+User-agent: *
+Disallow: /
+{% endif %}
