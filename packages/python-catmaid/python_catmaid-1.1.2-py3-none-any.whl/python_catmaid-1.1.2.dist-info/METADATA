@@ -1,0 +1,85 @@
+Metadata-Version: 2.1
+Name: python-catmaid
+Version: 1.1.2
+Summary: Python interface to CATMAID servers
+Home-page: https://github.com/schlegelp/pymaid
+Author: Philipp Schlegel
+Author-email: pms70@cam.ac.uk
+License: GNU GPL V3
+Keywords: CATMAID interface neuron navis
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: navis (~=0.2)
+Requires-Dist: numpy (>=1.16.3)
+Requires-Dist: networkx (>=2.4)
+Requires-Dist: pandas (~=1.0)
+Requires-Dist: requests-futures (>=0.9.9)
+Requires-Dist: requests (>=2.21.0)
+Requires-Dist: setuptools (>=41.0.1)
+Requires-Dist: scipy (>=1.3.0)
+Requires-Dist: six (>=1.11.0)
+Requires-Dist: tqdm (>=4.50.0)
+Requires-Dist: psutil (>=5.4.3)
+Provides-Extra: extras
+Requires-Dist: fuzzywuzzy[speedup] (~=0.17.0) ; extra == 'extras'
+Requires-Dist: ujson (~=1.35) ; extra == 'extras'
+
+[![Documentation Status](https://readthedocs.org/projects/pymaid/badge/?version=latest)](http://pymaid.readthedocs.io/en/latest/?badge=latest) [![Build Status](https://travis-ci.org/schlegelp/pyMaid.svg?branch=master)](https://travis-ci.org/schlegelp/pyMaid) [![Coverage Status](https://coveralls.io/repos/github/schlegelp/pyMaid/badge.svg?branch=master)](https://coveralls.io/github/schlegelp/pyMaid?branch=master) [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/schlegelp/pyMaid/master?urlpath=tree)
+
+<img src="https://github.com/schlegelp/pyMaid/raw/master/docs/_static/favicon.png" height="30"> pymaid
+======================================================================================================
+Python-Catmaid - or pymaid - is a collection of [Python](http://www.python.org) 3 tools to interface with [CATMAID](https://github.com/catmaid/CATMAID "CATMAID Repo") servers.
+Tested with CATMAID release version 2020.02.15 - if you are working with older versions you may run into issues due to API changes.
+
+## Documentation
+Pymaid is on [ReadTheDocs](http://pymaid.readthedocs.io/ "pymaid ReadTheDocs").
+
+## Features
+* fetch data via CATMAID's API
+* tools to analyse user stats (e.g. time-invested, project history)
+* custom neuron classes built on top of [navis](https://navis.readthedocs.io)
+* clustering methods (e.g. by connectivity or synapse placement)
+
+## Getting started
+See the [documentation](http://pymaid.readthedocs.io/ "PyMaid ReadTheDocs") for detailed installation instructions, tutorials and examples. For the impatient:
+
+`pip install git+git://github.com/schlegelp/pymaid@master`
+
+Alternatively click on the *launch binder* badge above to try out pymaid hosted by [mybinder](https://mybinder.org)!
+
+![pymaid example](https://user-images.githubusercontent.com/7161148/41200671-4e4320ec-6ca1-11e8-90a2-2feda2d9372d.gif)
+
+## License:
+This code is under GNU GPL V3
+
+## References:
+Pymaid implements/provides an interfaces with algorithms described in:
+
+1. **Comparison of neurons based on morphology**: Neuron. 2016 doi: 10.1016/j.neuron.2016.06.012
+*NBLAST: Rapid, Sensitive Comparison of Neuronal Structure and Construction of Neuron Family Databases.*
+Costa M, Manton JD, Ostrovsky AD, Prohaska S, Jefferis GSXE.
+[link](https://www.cell.com/neuron/fulltext/S0896-6273(16)30265-3?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS0896627316302653%3Fshowall%3Dtrue)
+2. **Comparison of neurons based on connectivity**: Science. 2012 Jul 27;337(6093):437-44. doi: 10.1126/science.1221762.
+*The connectome of a decision-making neural network.*
+Jarrell TA, Wang Y, Bloniarz AE, Brittin CA, Xu M, Thomson JN, Albertson DG, Hall DH, Emmons SW.
+[link](http://science.sciencemag.org/content/337/6093/437.long)
+3. **Comparison of neurons based on synapse distribution**: eLife. doi: 10.7554/eLife.16799
+*Synaptic transmission parallels neuromodulation in a central food-intake circuit.*
+Schlegel P, Texada MJ, Miroschnikow A, Schoofs A, Hückesfeld S, Peters M, … Pankratz MJ.
+[link](https://elifesciences.org/content/5/e16799)
+4. **Synapse flow centrality and segregation index**: eLife. doi: 10.7554/eLife.12059
+*Quantitative neuroanatomy for connectomics in Drosophila.*
+Schneider-Mizell CM, Gerhard S, Longair M, Kazimiers T, Li, Feng L, Zwart M … Cardona A.
+[link](https://elifesciences.org/articles/12059)
+
+
