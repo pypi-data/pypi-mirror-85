@@ -1,0 +1,1 @@
+This package can be used to create Vector2 and Vector3 objects. You can call on the individual points with x, y, and z. To get a tuple of all the points, use tuple().
