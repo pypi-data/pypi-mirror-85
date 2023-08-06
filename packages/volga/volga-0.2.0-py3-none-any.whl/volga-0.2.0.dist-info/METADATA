@@ -1,0 +1,90 @@
+Metadata-Version: 2.1
+Name: volga
+Version: 0.2.0
+Summary: A python framework for deserialization
+Home-page: https://github.com/yefrig/volga
+License: MIT
+Keywords: python,serialize,deserialize
+Author: Yefri Gaitan
+Author-email: yefrigaitan@gmail.com
+Requires-Python: >=3.9,<4.0
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Typing :: Typed
+Project-URL: Repository, https://github.com/yefrig/volga
+Description-Content-Type: text/markdown
+
+# volga: flexible object deserialization
+
+[![Build Status]][build] [![Azure DevOps coverage]][Azure coverage url] [![license]][license-file] [![release]][releases] [![python-version]][pypi]
+[![Docs](https://img.shields.io/readthedocs/volga.svg)](https://volga.readthedocs.io)
+
+[Build Status]: https://dev.azure.com/yefrigaitan/volga/_apis/build/status/yefrig.volga?branchName=main
+[build]: https://dev.azure.com/yefrigaitan/volga/_build/latest?definitionId=9&branchName=main
+
+[Azure DevOps coverage]: https://img.shields.io/azure-devops/coverage/yefrigaitan/volga/9
+[Azure coverage url]: https://dev.azure.com/yefrigaitan/volga/_build/latest?definitionId=9&branchName=main
+
+[license]: https://img.shields.io/github/license/yefrig/volga
+[license-file]: https://github.com/yefrig/volga/blob/main/LICENSE
+
+[release]: https://img.shields.io/github/v/release/yefrig/volga?include_prereleases&sort=semver
+[releases]: https://github.com/yefrig/volga/releases
+
+[python-version]: https://img.shields.io/pypi/pyversions/volga
+[pypi]: https://pypi.org/project/volga/
+
+## What is it?
+**volga** provides fast, extensible, and expressive APIs
+to deserialize any python data structure from any supported data format
+(such as JSON and *eventually* YAML and more). Volga allows full customization of the deserialization 
+behavior of your data structures resulting in schema-tized, validated, type-checked 
+objects.
+
+```python3
+import volga
+
+# Define your model
+class User(volga.Schema):
+    name: volga.fields.Str
+    age: volga.fields.Int
+    verified: volga.fields.Bool
+  
+json_data = '{"name":"bob","age":20,"verified":true}'
+
+bob = volga.json.deserialize(json_data, User)
+
+assert isinstance(bob, User)
+
+print(bob) # prints object User(name='bob', age=20, verified=True)
+```
+
+## Main Features
+
+
+## Documentation
+
+Full documentation will soon be available on https://volga.readthedocs.io/en/latest/
+
+
+## Where to get it
+The source code is currently hosted on GitHub at:
+https://github.com/yefrig/volga
+
+Binary installers for the latest released version are available at the [Python
+package index](https://pypi.org/project/volga).
+
+```sh
+pip install volga
+```
+
+## Main Contributors
+
+- Yefri Gaitan [@yefrig](https://github.com/yefrig)
+
+- Ecenaz (Jen) Ozmen [@eozmen410](https://github.com/eozmen410)
+
