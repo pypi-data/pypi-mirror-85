@@ -1,0 +1,12 @@
+[avocado.plugins.cli]
+golang = avocado_golang:GolangCLI
+
+[avocado.plugins.resolver]
+golang = avocado_golang:GolangResolver
+
+[avocado.plugins.runnable.runner]
+golang = avocado_golang.runner:GolangRunner
+
+[console_scripts]
+avocado-runner-golang = avocado_golang.runner:main
+
