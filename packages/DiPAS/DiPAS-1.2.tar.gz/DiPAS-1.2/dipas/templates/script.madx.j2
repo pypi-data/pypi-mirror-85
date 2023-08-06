@@ -1,0 +1,17 @@
+{% with command=beam %}
+    {% include 'command.madx.j2' %};
+{% endwith %}
+
+{{ sequence }}
+
+{% with command=use %}
+    {% include 'command.madx.j2' %};
+{% endwith %}
+
+{% if errors %}
+{{ errors }}
+
+{% endif %}
+{% if track %}
+{{ track }}
+{% endif %}
