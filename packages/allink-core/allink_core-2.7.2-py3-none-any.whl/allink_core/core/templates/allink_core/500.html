@@ -1,0 +1,20 @@
+{% extends "default.html" %}
+{% load i18n %}
+
+{% block meta_tags %}
+    <title>{% trans "The requested page is not available" %}</title>
+{% endblock meta_tags %}
+
+{% block body_class %}tpl-error{% endblock %}
+
+{% block content %}
+    <div class="content-section container-enabled">
+        <div class="content-section__container">
+            <div class="text-container">
+                <h1>{% trans "The requested page is not available." %}</h1>
+                {% trans 'Continue to homepage' as link_label %}
+                {% include "partials/buttons/link.html" with link_url="/" link_label=link_label link_classes="btn btn-default" %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,114 @@
+{% load cms_tags staticfiles sekizai_tags i18n thumbnail %}
+
+{% block app_content_plugin_container %}
+    <div class="app-list app-content-plugin {{instance.get_model_name}}-plugin app-content-plugin-{{instance.id}} {{instance.css_classes}} {% block app_content_container_additional_classes %}{% endblock app_content_container_additional_classes %}" {% block app_content_container_additional_attributes %}{% endblock app_content_container_additional_attributes %}>
+
+        {% comment %}
+            Optional: Section before content
+        {% endcomment %}
+        {% block app_content_inner_container_before %}
+        {% endblock app_content_inner_container_before %}
+
+        {% comment %}
+            Main Content Container
+        {% endcomment %}
+        {% block app_content_inner_container %}
+
+            {% comment %}
+                Heading Container
+            {% endcomment %}
+            {% block app_content_heading_container %}
+
+                {% comment %}
+                    Optional: Category List
+                {% endcomment %}
+                {% block app_content_category_container %}
+                    {% if instance.category_navigation_enabled %}
+                        {# utility block #}
+                        {% block app_content_category_container_before %}{% endblock app_content_category_container_before %}
+                        <ul class="custom-nav-tabs app-content-categories">
+                            {% if instance.category_navigation_all %}
+                                <li class="custom-nav-tabs__item active">
+                                    <a class="custom-nav-tabs__link ajax-load-items" href="{{ by_category }}">
+                                        <span>
+                                            {% block app_content_category_all_text %}
+                                                {% trans 'All' %}
+                                            {% endblock app_content_category_all_text %}
+                                        </span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% for category in category_navigation %}
+                            <li class="custom-nav-tabs__item {% if not instance.category_navigation_all and forloop.first %}active {% endif %}">
+                                <a class="custom-nav-tabs__link ajax-load-items" href="{{ by_category }}&category={{ category.id }}">
+                                    <span>
+                                        {{category.name}}
+                                    </span>
+                                </a>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                        {# utility block #}
+                        {% block app_content_category_container_after %}{% endblock app_content_category_container_after %}
+                    {% endif %}
+                {% endblock app_content_category_container %}
+
+            {% endblock app_content_heading_container %}
+
+            {% comment %}
+                Optional: Section BEFORE the objects
+            {% endcomment %}
+            {% block app_content_objects_before %}
+            {% endblock app_content_objects_before %}
+
+            {% comment %}
+                Object Loop
+            {% endcomment %}
+            {% block app_content_objects_content_container %}
+
+                {% comment %}
+                    Required container for optional Softpage setting
+                {% endcomment %}
+                <div {% if instance.softpage_enabled %}data-trigger-softpage{% endif %}>
+
+                    {% comment %}
+                        Container for objects
+                    {% endcomment %}
+                    {% block app_content_objects_container %}
+                    {% endblock app_content_objects_container %}
+
+                </div>
+            {% endblock app_content_objects_content_container %}
+
+            {% comment %}
+                Optional: Section AFTER the objects
+            {% endcomment %}
+            {% block app_content_objects_after %}
+            {% endblock app_content_objects_after %}
+
+        {% endblock app_content_inner_container %}
+
+        {% comment %}
+            Optional: Section after content
+        {% endcomment %}
+        {% block app_content_inner_container_after %}
+        {% endblock app_content_inner_container_after %}
+
+        {% comment %}
+            Optional: 'Load More'
+        {% endcomment %}
+        {% block app_content_load_more_container %}
+            {% if instance.pagination_type == "load" or instance.pagination_type == "load_rest" %}
+                <div class="load-more-container" {% if not next_page_url %}style="display:none;"{% endif %}>
+                    {% if instance.load_more_button_text %}
+                        {% include "partials/buttons/link.html" with link_url=next_page_url link_label=instance.load_more_button_text link_classes="app-list__load-more-link btn-load-more ajax-load-items append" link_attributes="data-btn-ajax-loader" %}
+                    {% else %}
+                        {% trans "Load More" as link_label %}
+                        {% include "partials/buttons/link.html" with link_url=next_page_url link_label=link_label link_classes="app-list__load-more-link btn-load-more ajax-load-items append" link_attributes="data-btn-ajax-loader" %}
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endblock app_content_load_more_container %}
+
+    </div>
+{% endblock app_content_plugin_container %}

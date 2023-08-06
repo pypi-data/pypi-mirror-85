@@ -1,0 +1,49 @@
+
+
+{% load cms_tags allink_cms_tags sekizai_tags i18n allink_image_tags cache %}
+
+{% for object in object_list %}
+    <div class="people-plugin people-contact-details">
+
+        <div class="people-contact-details__col-container">
+            {% if object.preview_image %}
+                <div class="people-contact-details__col people-contact-details__col-1">
+                    <div class="image-container">
+                        {% render_image image=object.preview_image ratio="1-1" bg_enabled=False %}
+                    </div>
+                </div>
+            {% endif %}
+            <div class="people-contact-details__col people-contact-details__col-2">
+                {% if object.title %}
+                    <div class="heading-container">
+                        <h3 class="heading">
+                            {% render_model_ajax object "title" %}
+                        </h3>
+                        <p>
+                            {% if object.job_function %}
+                                {{ object.job_function }}<br>
+                            {% endif %}
+                        </p>
+
+                    </div>
+                {% endif %}
+                <div class="text-container">
+                    <p>
+                        {% if object.email %}
+                            {% trans "E-Mail" as link_label %}
+                            {% include "partials/buttons/link.html" with link_prefix="mailto:" link_url=object.email link_label=link_label link_classes="text" link_attributes='data-softpage-disabled' %}
+                            <br>
+                        {% endif %}
+
+                        {% if object.phone %}
+                            {% include "partials/buttons/link.html" with link_prefix="tel:" link_url=object.phone link_label=object.phone_formatted link_classes="text" link_attributes='data-softpage-disabled' %}
+                            <br>
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endfor %}

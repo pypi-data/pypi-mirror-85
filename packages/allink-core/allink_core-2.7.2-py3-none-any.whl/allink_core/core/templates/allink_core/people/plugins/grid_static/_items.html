@@ -1,0 +1,46 @@
+{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail allink_image_tags allink_link_tags %}
+
+{% for object in object_list %}
+
+    <div class="grid-item {% if appended %}appended{% endif %}">
+        <div class="manage-spacings">
+            {% if object.preview_image %}
+                <div class="image-container">
+                    {% if  instance.detail_link_enabled %}
+                        <a href="{% get_absolute_url object instance.apphook_page.application_namespace %}">
+                    {% endif %}
+                        {% render_image image=object.preview_image %}
+                    {% if  instance.detail_link_enabled %}
+                        </a>
+                    {% endif %}
+                </div>
+            {% endif %}
+            {% if object.title %}
+                <div class="heading-container">
+                    <h3 class="heading">
+                        {% render_model_ajax object "title" %}
+                    </h3>
+                </div>
+            {% endif %}
+            <div class="text-container">
+                <p>
+                    {% if object.units %}
+                        {{ object.units }}<br>
+                    {% endif %}
+
+                    {% if object.email %}
+                        {% trans "E-Mail" as link_label %}
+                        {% include "partials/buttons/link.html" with link_prefix="mailto:" link_url=object.email link_label=link_label link_classes="text" link_attributes='data-softpage-disabled' %}
+                        <br>
+                    {% endif %}
+
+                    {% if object.phone %}
+                        {% include "partials/buttons/link.html" with link_prefix="tel:" link_url=object.phone link_label=object.phone_formatted link_classes="text" link_attributes='data-softpage-disabled' %}
+                        <br>
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+
+{% endfor %}

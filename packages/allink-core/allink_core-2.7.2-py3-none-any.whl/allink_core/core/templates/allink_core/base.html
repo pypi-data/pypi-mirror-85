@@ -1,0 +1,44 @@
+{% extends "base_root.html" %}
+{% load i18n staticfiles cms_tags menu_tags %}
+
+
+{% block body_class %}tpl-base{% endblock %}
+
+{% block body_content %}
+
+    {% block header %}
+        {% include "includes/header/header.html" %}
+        {# overlay menu that gets in a modal #}
+        <nav id="overlay-menu" class="overlay-menu">
+            {% include "includes/header/header-overlay.html" %}
+            <div class="overlay-menu__content">
+                {% static_placeholder "overlay_menu" %}
+            </div>
+        </nav>
+
+        {# required to hold the space for fixed headers #}
+        <div class="site-header-buffer"></div>
+        {# required for smooth scroll #}
+        <div class="smooth-scroll-header-compact-mode-size"></div>
+
+    {% endblock header %}
+
+    {# start: content #}
+    <hr class="sr-only" id="page-content" />
+    {% block content_container %}
+        <main class="site-content">
+            {% block content %}{% endblock %}
+        </main>
+    {% endblock content_container %}
+    <hr class="sr-only" />
+    {# end: content #}
+
+    {% block footer %}
+        <footer class="site-footer inverted-colors">
+
+            {% static_placeholder "footer" %}
+
+        </footer>
+    {% endblock footer %}
+
+{% endblock body_content %}

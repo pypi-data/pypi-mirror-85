@@ -1,0 +1,12 @@
+{% extends "default.html" %}
+{% load i18n cms_tags %}
+
+{% block meta_tags %}
+    <title>{% trans "The requested page is not available" %}</title>
+{% endblock meta_tags %}
+
+{% block body_class %}tpl-error{% endblock %}
+
+{% block content %}
+    {% static_placeholder "404" %}
+{% endblock content %}
