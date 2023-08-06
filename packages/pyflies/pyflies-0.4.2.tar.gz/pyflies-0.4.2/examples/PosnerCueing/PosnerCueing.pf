@@ -1,0 +1,71 @@
+"""
+A neuropsychological test often used to assess attention.
+
+See also:
+http://en.wikipedia.org/wiki/Posner_cueing_task
+"""
+
+positions = [left, right]
+
+test Posner {
+
+    // 3 times more congruent trials than incongruent
+    | ord       | cue_pos        | target_pos                          | congruency  |
+    | --------- | -------------- | ----------------------------------- | ----------- |
+    | 1         | positions loop | left if cue_pos == right else right | incongruent |
+    | 1..3 loop | positions loop | cue_pos                             | congruent   |
+
+    cue_display = 1000..1500 choose
+    target_display = cue_display + 1000..1500 choose
+
+    exec -> //cross() for cue_display
+            rectangle(position left, size 20, color white, fillColor black)
+            rectangle(position right, size 20, color white, fillColor black)
+            at cue_display cue:rectangle(position cue_pos, size 18,
+                                         color white, fillColor black)
+                                         for target_display - cue_display
+            at target_display target:rectangle(position target_pos, size 20,
+                                               color white, fillColor white)
+            keyboard(valid positions, correct target_pos)
+            //mouse(target target)
+    
+     correct -> circle(fillColor green, color green, radius 100) for 300
+     error -> circle(fillColor red, color green, radius 100) for 300
+//    error -> sound(freq 1000) for 300
+
+}
+
+screen Practice {
+    Posner Cueing
+    -------------
+
+    You will be presented with the two empty boxes positioned left and right from
+    the center of the screen. You should concentrate on the center of the screen
+    and wait for the cue. The cue will be presented as a box highlight. After some
+    time a cross shaped object will be presented in some of the squares. React as
+    fast as you can by pressing space button when you detect a cross shaped
+    object.
+
+    Press SPACE for practice block.
+}
+
+screen Real {
+    Posner Cueing
+    -------------
+
+    Now a REAL testing will be performed.
+
+    Press SPACE to start the test.
+}
+
+flow {
+    show Practice
+    execute Posner(practice true, random true)
+
+    show Real
+    repeat 5 times Posner(random true)
+}
+
+target PsychoPy {
+//  soundBackend = 'backend_sounddevice.SoundDeviceSound'
+}

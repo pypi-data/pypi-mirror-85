@@ -1,0 +1,30 @@
+site_name: pyFlies
+
+site_description: A Domain-Specific Language (DSL) for experiments specification in psychology and neuroscience
+site_author: Igor Dejanović
+
+repo_url: https://github.com/pyflies/pyflies
+theme: readthedocs
+extra_css: [style.css, js/version-select.css, css/version-select.css]
+
+nav:
+- Home: index.md
+- Test definition: test.md
+- Types and expressions: types-expressions.md
+- Condition tables: condition-tables.md
+- Timing specification: timing.md
+- Components: components.md
+- Screens: screens.md
+- Flow: flow.md
+- Running generators: generators.md
+- Metrics: metrics.md
+- Target configuration: target.md
+- About:
+  - Release Notes: about/release_notes.md
+  - Contributing: about/contributing.md
+  - License: about/license.md
+
+markdown_extensions:
+- admonition:
+extra_javascript:
+- js/version-select.js

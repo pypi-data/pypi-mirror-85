@@ -1,0 +1,25 @@
+/*
+    textX grammar for components specification.
+    Components are defined for checking parameters validity
+    and providing default values.
+*/
+import common
+
+CompModel:
+    comp_types+=ComponentType
+;
+
+ComponentType:
+    abstract?='abstract' 'component' name=ID
+        ('extends' extends+=[ComponentType][','])?
+    (description=Description)?
+    '{'
+        param_types*=ParamType
+    '}'
+;
+
+ParamType:
+    'param' name=ID ':'
+        (types=Type | '[' types+=Type[','] ']') '=' default = Expression
+    (description=Description)?
+;

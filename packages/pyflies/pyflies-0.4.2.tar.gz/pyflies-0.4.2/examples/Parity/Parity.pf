@@ -1,0 +1,69 @@
+"""
+A parity judgment task to assess the SNARC effect.
+
+See e.g.:
+Gevers, W., Reynvoet, B., & Fias, W. (2003). The mental representation of
+ordinal sequences is spatially organized. Cognition, 87(3), B87-95.
+"""
+
+numbers = 1..9
+parities = [odd, even]
+
+test Parity {
+
+    | number       | parity   |
+    | ------------ | -------- |
+    | numbers loop | parities |
+
+
+    fix -> cross() for 1000..3000 choose
+    exec -> text(content number)
+            keyboard(valid parities, correct parity)
+
+    error -> circle(radius 100, fillColor red, color red) for 100
+    correct -> circle(radius 100, fillColor green, color green) for 100
+
+    // Sound playing in PsychoPy is messy in Linux at the moment
+    // correct -> sound(freq 500) for 300
+    // error -> sound(freq 1000) for 300
+ 
+}
+
+screen Intro {
+    Parity classification
+    ---------------------
+
+    This is a practice block.
+
+    You will be presented with a digit.
+    Press LEFT for odd and RIGHT for even digit.
+
+    Press ENTER key for the start.
+}
+
+screen Real {
+    Parity classification
+    ---------------------
+
+    Now a REAL testing will be performed.
+
+    You will be presented with a digit.
+    Press LEFT for odd and RIGHT for even digit.
+
+    Press ENTER key for the start.
+}
+
+flow {
+    show Intro
+    execute Parity(practice true, random true)
+
+    show Real
+    // repeat test 2 times, each repetion will be randomized
+    repeat 2 times Parity(random true)
+}
+
+target PsychoPy {
+       odd = 'left'
+       even = 'right'
+//  soundBackend = 'backend_sounddevice.SoundDeviceSound'
+}

@@ -1,0 +1,50 @@
+// Types
+Value:
+    String | CompoundTypeValue | BaseValue
+;
+
+BaseValue: value=Color | value=Point | value=STRICTFLOAT | value=INT | value=BOOL;
+
+String: value=STRING;
+
+CompoundTypeValue: Range | List;
+Range: lower=RangeIndex '..' upper=RangeIndex;
+RangeIndex: INT | VariableRef;
+List: '[' values*=Expression[','] ']';
+
+VariableRef: name=VariableName;
+VariableName: ID;
+
+Point: '(' x=INT ',' y=INT ')';
+Color: /#[0-9a-fA-F]{6}/;
+
+Type: 'int' | 'float' | 'string' | 'bool' | 'symbol' | 'list' | 'point' | 'color';
+
+
+// Expressions
+Expression[skipws]: IfExpression | LoopExpression | OrExpression;
+IfExpression: if_true=OrExpression 'if' cond=OrExpression 'else' if_false=OrExpression;
+OrExpression: op=AndExpression ('or' op=AndExpression)*;
+AndExpression: op=NotExpression ('and' op=NotExpression)*;
+NotExpression: (opn='not')? op=ComparisonExpression;
+ComparisonExpression: op=AdditiveExpression ( opn=ComparisonOperator op=AdditiveExpression)*;
+ComparisonOperator: '=='|'!='|'<='|'>='|'>'|'<';
+AdditiveExpression: op=MultiplicativeExpression (opn=AdditiveOperator op=MultiplicativeExpression)*;
+AdditiveOperator: '+'|'-';
+MultiplicativeExpression: op=UnaryExpression (opn=MultiplicativeOperator op=UnaryExpression)*;
+MultiplicativeOperator: '*'|'/';
+UnaryExpression: (opn=SignOperator)? op=PrimaryExpression;
+SignOperator: '-' | '+';
+PrimaryExpression: '(' Expression ')' | MessageExpression | Value | VariableRef;
+MessageExpression: receiver=MessageReceiver message=Message;
+Message: 'choose' | 'shuffle';
+MessageReceiver: CompoundTypeValue | VariableRef;
+LoopExpression: exp=OrExpression 'loop';
+
+
+// Special rule for comments
+Comment:
+    /\/\/.*$/|/\/\*(.|\n)*?\*\//  // Non-greedy match of block component content
+;
+
+Description: '"""'- /((?!""")(.|\n))*/ '"""'-;

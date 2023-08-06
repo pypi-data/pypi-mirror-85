@@ -1,0 +1,90 @@
+"""
+Model for testing purposes.
+"""
+
+directions = [left, right]
+congruencies = [incongruent, congruent]
+
+test TestModel {
+
+      | direction       | category          | response  |
+      |-----------------+-------------------+-----------|
+      | directions loop | congruencies loop | direction |
+
+      duration = 100 if direction == left else 200
+      fix -> cross() for 100 if practice else 500
+      exec -> at 50 circle(radius 100, position left if direction == right else right) for 1000..2000 choose
+              // This component has name for later referencing
+              at .100 mysound:sound(freq 100) for 400
+              at 300 image(file "images/{direction}-{category}.png") for duration
+
+              // By default component is relative to previous.
+              // This will be relative to `mysound`
+              // It should start at 50 + 100 + 400 + 100 = 650
+              at mysound:+100 rectangle(size 200 + 300 / 2, position left)
+
+              at .-100 rectangle(size 100, position left)
+      error -> sound(freq 300) for 500
+      correct -> sound(freq 700) for 300
+}
+
+screen intro {
+    Welcome
+    -------
+
+    In the following test you will be presented with a line of 5 arrow pointing
+    left or right. You should respond by the direction of the *middle arrow* as 
+	  fast as possible by pressing left or right arrow on the keyboard or touching/clicking
+    on appropriate button on the screen.
+
+    You will first do a practice run with 4 trials. After that a real run with
+    20 trial will be performed.
+
+    Press SPACE or touch/click the screen to continue
+}
+
+
+screen real {
+    Real block
+    ----------
+    
+    Now a real block of trials will be performed.
+
+    Press SPACE or touch/click the screen to continue
+}
+
+
+flow {
+
+  // Show introduction
+  show intro for 5000
+
+  // Perform practice test serie
+  execute TestModel(practice true)
+
+    
+  // Just to show that we can repeat not only a single test but also
+  // a block
+  repeat 3 times {
+    show real 
+
+    // Perform real test serie (collects data).
+    repeat 5 times TestModel(random true)
+  }
+
+  // Just to show that each block of statements can be randomized
+  repeat 2 times random {
+         show real
+         show intro
+         execute TestModel
+  }
+
+}
+
+target PsychoPy {
+  // Here we can map experiment symbols
+  // or provide additional configuration
+  left = 'left'
+  right = 'right'
+  some_config = 5
+}
