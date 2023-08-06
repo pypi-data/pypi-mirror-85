@@ -1,0 +1,135 @@
+# Changelog
+
+## v0.9.0
+
+- Support ERDDAP 2.10 search syntax (#155)
+
+## v0.8.0
+
+- Cache urlopen returns for faster access when the query does not change (#147)
+- Major refactor that removes the utilities module (#145, #148)
+- Build versioned docs with a drop-down menu to access previous versions (#146)
+- Improved URL builder by avoiding duplicated slashes (#151)
+- Normalize search terms to match ERDDAP server case (#152)
+
+## v0.7.2
+
+- Bugfix:
+
+- Fixed Wrong type passed to load temporary netCDF files (#138)
+- Fixed some f-strings bugs (#142)
+- Allow erddapy to be loaded offline (#143)
+
+## v0.7.1
+
+- Bugfix: while griddap is not support the current ncCF enforced prevented users
+          from building griddap URLs for xarray b/c griddap does not support it.
+          Now the netCDF responses are ncCF for tabledap and plain nc for griddap.
+
+## v0.7.0
+
+- Added a ncCF response
+- NetCDF file-like response can be in-memory or in-disk
+  depending on the libnetcdf library available.
+- Use canonical list of ERDDAP servers
+- Various packaging improvements towards pep517/518
+- Make `check_url_response` optional to avoid abusing servers
+- New documentation with more examples and tips for multiple requests
+
+Bugfix:
+
+- Return ability to pass keyword arguments to `requests.get`.
+- Fix `urlopen` `raise_for_status`
+- Fix `parse_time_string` import for various pandas versions
+
+## 0.6.0
+
+- Added the `distinct()` server-side function
+- Added type annotations and pre-commit checks as a GH-action
+- Fetch ERDDAP servers list from a awesome-erddap
+
+## 0.5.3
+
+- Bugfix: fixed issue with pandas >=1.0.0.
+
+## 0.5.2
+
+ - Dummy release to trigger auto-publish
+
+## 0.5.1
+
+- Bugfix: fixed `get_search_url()` protocol filter in #94.
+
+## 0.5.0
+
+- Do not check server URL when creating the object.
+  This allows servers that return 404 when the
+  endpoint does not have any requests.
+
+## 0.4.0
+
+- Allow for multiple `csv`s responses in `.to_pandas`.
+
+## 0.3.0
+
+- Cache `_check_url_response` and `get_var_by_attr` returns
+- Removed all python 2k code
+
+## 0.2.0
+
+- Add a `get_categorize_url` method
+- Test suite for url_builder
+
+## 0.1.11
+
+- Re-factor methods that output a temporary netCDF file.
+
+## 0.1.10
+
+- Add a `to_iris` method.
+
+## 0.1.9
+
+- `erddapy` is not Python 3.7 compatible!
+- Fixed a bug in the OPeNDAP URL endpoint.
+- Use the `csvp` response in the `to_pandas()` method
+  to merge the units in the column name.
+
+## 0.1.8
+
+- Fixed `setup.py` metadata.
+
+## 0.1.7
+
+- Fixed bug that preventing from generating download URLs with no data
+  constraints or variables.
+
+## 0.1.6
+
+- Simplify the `erddapy` object constructor.
+  Everything but the `server` and `protocol` should be passed as properties
+  after the object creation.
+
+## 0.1.5
+
+- Re-implemented caching in `get_var_by_attr()`.
+
+## 0.1.3
+
+- Avoid a caching bug in `get_var_by_attr()` by not caching at all.
+
+## 0.1.3
+
+- New API to make it easier to handle multiple requests from the same server.
+
+## 0.1.2
+
+- Added a workaround to access authenticated ERDDAP servers.
+
+## 0.1.1
+
+- Mostly boilerplate updates for a GitHub/PyPI release.
+
+## 0.1.0
+
+- First version!

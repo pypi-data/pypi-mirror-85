@@ -1,0 +1,11 @@
+[run]
+source = erddapy
+
+[report]
+omit =
+    */python?.?/*
+    */site-packages/nose/*
+    *test*
+
+exclude_lines =
+    if __name__ == '__main__':
