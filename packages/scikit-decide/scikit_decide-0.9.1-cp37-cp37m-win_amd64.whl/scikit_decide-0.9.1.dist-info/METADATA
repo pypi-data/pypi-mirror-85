@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: scikit-decide
+Version: 0.9.1
+Summary: Scikit-decide is an AI framework for Reinforcement Learning, Automated Planning and Scheduling.
+Home-page: https://github.com/airbus/scikit-decide
+Author: Airbus
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: gym (>=0.13.0)
+Requires-Dist: joblib (>=0.13.2)
+Requires-Dist: numpy (>=1.16.4)
+Requires-Dist: matplotlib (>=3.1.0)
+Requires-Dist: pathos (>=0.2.3)
+Requires-Dist: pynng (>=0.5.0)
+Requires-Dist: ray[debug,rllib] (>=1.0.0)
+Requires-Dist: simplejson (>=3.16.0)
+Requires-Dist: stable-baselines3[extra] (>=0.9.0)
+Requires-Dist: torch (==1.6.0) ; sys_platform == "darwin"
+Provides-Extra: all
+Requires-Dist: gym (>=0.13.0) ; extra == 'all'
+Requires-Dist: numpy (>=1.16.4) ; extra == 'all'
+Requires-Dist: matplotlib (>=3.1.0) ; extra == 'all'
+Requires-Dist: simplejson (>=3.16.0) ; extra == 'all'
+Requires-Dist: joblib (>=0.13.2) ; extra == 'all'
+Requires-Dist: ray[debug,rllib] (>=1.0.0) ; extra == 'all'
+Requires-Dist: stable-baselines3 (>=0.9.0) ; extra == 'all'
+Provides-Extra: domains
+Requires-Dist: gym (>=0.13.0) ; extra == 'domains'
+Requires-Dist: numpy (>=1.16.4) ; extra == 'domains'
+Requires-Dist: matplotlib (>=3.1.0) ; extra == 'domains'
+Requires-Dist: simplejson (>=3.16.0) ; extra == 'domains'
+Provides-Extra: solvers
+Requires-Dist: gym (>=0.13.0) ; extra == 'solvers'
+Requires-Dist: numpy (>=1.16.4) ; extra == 'solvers'
+Requires-Dist: joblib (>=0.13.2) ; extra == 'solvers'
+Requires-Dist: ray[debug,rllib] (>=1.0.0) ; extra == 'solvers'
+Requires-Dist: stable-baselines3 (>=0.9.0) ; extra == 'solvers'
+
+UNKNOWN
+
+
