@@ -1,0 +1,58 @@
+[tool.poetry]
+name = "ilexconf"
+version = "0.9.1"
+description = "Configuration library for Python 🔧 Load from multiple sources"
+authors = ["vduseev <vagiz@duseev.com>"]
+maintainers = ["vduseev <vagiz@duseev.com>"]
+license = "MIT"
+keywords = ["configuration", "settings", "json", "yaml", "ini"]
+readme = "README.md"
+homepage = "https://github.com/ilexconf/ilexconf"
+repository = "https://github.com/ilexconf/ilexconf"
+documentation = "https://ilexconf.com"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+cleo = {version = "^0.8.1", optional = true}
+"ruamel.yaml" = {version = "^0.16.12", optional = true}
+mapz = "^1.0.10"
+
+[tool.poetry.extras]
+console = ["cleo"]
+yaml = ["ruamel.yaml"]
+
+[tool.poetry.dev-dependencies]
+ipython = "^7.18.1"
+flake8 = "^3.8.4"
+black = "^20.8b1"
+pytest = "^6.1.0"
+mypy = "^0.782"
+debugpy = "^1.0.0-rc.2"
+pytest-cov = "^2.10.1"
+pytest-flake8 = "^1.0.6"
+pytest-black = "^0.3.11"
+flake8-blind-except = "^0.1.1"
+flake8-bugbear = "^20.1.4"
+flake8-builtins = "^1.5.3"
+flake8-comprehensions = "^3.2.3"
+flake8-docstrings = "^1.5.0"
+flake8-import-order = "^0.18.1"
+pydocstyle = "^5.1.1"
+pytest-mock = "^3.3.1"
+pytest-mypy = "^0.7.0"
+Sphinx = "^3.2.1"
+sphinx-material = "^0.0.32"
+sphinxcontrib-programoutput = "^0.16"
+radon = "^4.3.2"
+PyYAML = "^5.3.1"
+
+[tool.poetry.scripts]
+ilexconf = "ilexconf.console:main"
+
+[tool.black]
+exclude = 'test_index.py'
+line-length = 78
+
+[build-system]
+requires = ["poetry-core>=1.0.0a5"]
+build-backend = "poetry.core.masonry.api"
