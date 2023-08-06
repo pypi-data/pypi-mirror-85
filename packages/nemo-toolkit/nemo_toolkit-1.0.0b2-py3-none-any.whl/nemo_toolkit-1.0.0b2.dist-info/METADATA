@@ -1,0 +1,180 @@
+Metadata-Version: 2.1
+Name: nemo-toolkit
+Version: 1.0.0b2
+Summary: NeMo - a toolkit for Conversational AI
+Home-page: https://github.com/nvidia/nemo
+Author: NVIDIA
+Author-email: nemo-toolkit@nvidia.com
+Maintainer: NVIDIA
+Maintainer-email: nemo-toolkit@nvidia.com
+License: Apache2
+Download-URL: https://github.com/NVIDIA/NeMo/releases
+Keywords: deep learning,machine learning,gpu,NLP,NeMo,nvidia,pytorch,torch,tts,speech,language
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Information Technology
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Topic :: Scientific/Engineering :: Image Recognition
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Environment :: Console
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: numpy (>=1.18.2)
+Requires-Dist: onnx (>=1.7.0)
+Requires-Dist: pytorch-lightning (>=1.0.5)
+Requires-Dist: python-dateutil
+Requires-Dist: torch
+Requires-Dist: wget
+Requires-Dist: wrapt
+Requires-Dist: ruamel.yaml
+Requires-Dist: scikit-learn
+Requires-Dist: omegaconf (>=2.0.2)
+Requires-Dist: hydra-core (>=1.0.3)
+Requires-Dist: transformers (>=3.1.0)
+Provides-Extra: all
+Requires-Dist: black (==19.10b0) ; extra == 'all'
+Requires-Dist: isort[requirements] (<5) ; extra == 'all'
+Requires-Dist: parameterized ; extra == 'all'
+Requires-Dist: pytest ; extra == 'all'
+Requires-Dist: pytest-runner ; extra == 'all'
+Requires-Dist: ruamel.yaml ; extra == 'all'
+Requires-Dist: sphinx ; extra == 'all'
+Requires-Dist: sphinxcontrib-bibtex ; extra == 'all'
+Requires-Dist: wrapt ; extra == 'all'
+Requires-Dist: wget ; extra == 'all'
+Requires-Dist: wandb ; extra == 'all'
+Requires-Dist: braceexpand ; extra == 'all'
+Requires-Dist: editdistance ; extra == 'all'
+Requires-Dist: frozendict ; extra == 'all'
+Requires-Dist: inflect ; extra == 'all'
+Requires-Dist: kaldi-io ; extra == 'all'
+Requires-Dist: librosa ; extra == 'all'
+Requires-Dist: marshmallow ; extra == 'all'
+Requires-Dist: packaging ; extra == 'all'
+Requires-Dist: num2words ; extra == 'all'
+Requires-Dist: soundfile ; extra == 'all'
+Requires-Dist: sox ; extra == 'all'
+Requires-Dist: torch-stft ; extra == 'all'
+Requires-Dist: unidecode ; extra == 'all'
+Requires-Dist: webdataset ; extra == 'all'
+Requires-Dist: kaldi-python-io ; extra == 'all'
+Requires-Dist: scipy ; extra == 'all'
+Requires-Dist: pandas ; extra == 'all'
+Requires-Dist: g2p-en ; extra == 'all'
+Requires-Dist: pillow ; extra == 'all'
+Requires-Dist: torchvision ; extra == 'all'
+Requires-Dist: boto3 ; extra == 'all'
+Requires-Dist: h5py ; extra == 'all'
+Requires-Dist: matplotlib (>=3.3.2) ; extra == 'all'
+Requires-Dist: sentencepiece ; extra == 'all'
+Requires-Dist: torchtext ; extra == 'all'
+Requires-Dist: youtokentome ; extra == 'all'
+Requires-Dist: numpy ; extra == 'all'
+Requires-Dist: tqdm (>=4.41.0) ; extra == 'all'
+Requires-Dist: rapidfuzz ; extra == 'all'
+Requires-Dist: gdown ; extra == 'all'
+Requires-Dist: megatron-lm (==1.1.5) ; extra == 'all'
+Requires-Dist: matplotlib ; extra == 'all'
+Requires-Dist: pypinyin ; extra == 'all'
+Requires-Dist: attrdict ; extra == 'all'
+Requires-Dist: pystoi ; extra == 'all'
+Requires-Dist: pesq ; extra == 'all'
+Provides-Extra: asr
+Requires-Dist: braceexpand ; extra == 'asr'
+Requires-Dist: editdistance ; extra == 'asr'
+Requires-Dist: frozendict ; extra == 'asr'
+Requires-Dist: inflect ; extra == 'asr'
+Requires-Dist: kaldi-io ; extra == 'asr'
+Requires-Dist: librosa ; extra == 'asr'
+Requires-Dist: marshmallow ; extra == 'asr'
+Requires-Dist: packaging ; extra == 'asr'
+Requires-Dist: num2words ; extra == 'asr'
+Requires-Dist: ruamel.yaml ; extra == 'asr'
+Requires-Dist: soundfile ; extra == 'asr'
+Requires-Dist: sox ; extra == 'asr'
+Requires-Dist: torch-stft ; extra == 'asr'
+Requires-Dist: unidecode ; extra == 'asr'
+Requires-Dist: webdataset ; extra == 'asr'
+Requires-Dist: kaldi-python-io ; extra == 'asr'
+Requires-Dist: scipy ; extra == 'asr'
+Requires-Dist: pandas ; extra == 'asr'
+Requires-Dist: g2p-en ; extra == 'asr'
+Provides-Extra: cv
+Requires-Dist: pillow ; extra == 'cv'
+Requires-Dist: torchvision ; extra == 'cv'
+Provides-Extra: nlp
+Requires-Dist: boto3 ; extra == 'nlp'
+Requires-Dist: h5py ; extra == 'nlp'
+Requires-Dist: matplotlib (>=3.3.2) ; extra == 'nlp'
+Requires-Dist: sentencepiece ; extra == 'nlp'
+Requires-Dist: torchtext ; extra == 'nlp'
+Requires-Dist: unidecode ; extra == 'nlp'
+Requires-Dist: youtokentome ; extra == 'nlp'
+Requires-Dist: numpy ; extra == 'nlp'
+Requires-Dist: tqdm (>=4.41.0) ; extra == 'nlp'
+Requires-Dist: rapidfuzz ; extra == 'nlp'
+Requires-Dist: gdown ; extra == 'nlp'
+Requires-Dist: megatron-lm (==1.1.5) ; extra == 'nlp'
+Requires-Dist: inflect ; extra == 'nlp'
+Provides-Extra: test
+Requires-Dist: black (==19.10b0) ; extra == 'test'
+Requires-Dist: isort[requirements] (<5) ; extra == 'test'
+Requires-Dist: parameterized ; extra == 'test'
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: pytest-runner ; extra == 'test'
+Requires-Dist: ruamel.yaml ; extra == 'test'
+Requires-Dist: sphinx ; extra == 'test'
+Requires-Dist: sphinxcontrib-bibtex ; extra == 'test'
+Requires-Dist: wrapt ; extra == 'test'
+Requires-Dist: wget ; extra == 'test'
+Requires-Dist: wandb ; extra == 'test'
+Provides-Extra: tts
+Requires-Dist: matplotlib ; extra == 'tts'
+Requires-Dist: pypinyin ; extra == 'tts'
+Requires-Dist: attrdict ; extra == 'tts'
+Requires-Dist: pystoi ; extra == 'tts'
+Requires-Dist: pesq ; extra == 'tts'
+Requires-Dist: g2p-en ; extra == 'tts'
+Requires-Dist: braceexpand ; extra == 'tts'
+Requires-Dist: editdistance ; extra == 'tts'
+Requires-Dist: frozendict ; extra == 'tts'
+Requires-Dist: inflect ; extra == 'tts'
+Requires-Dist: kaldi-io ; extra == 'tts'
+Requires-Dist: librosa ; extra == 'tts'
+Requires-Dist: marshmallow ; extra == 'tts'
+Requires-Dist: packaging ; extra == 'tts'
+Requires-Dist: num2words ; extra == 'tts'
+Requires-Dist: ruamel.yaml ; extra == 'tts'
+Requires-Dist: soundfile ; extra == 'tts'
+Requires-Dist: sox ; extra == 'tts'
+Requires-Dist: torch-stft ; extra == 'tts'
+Requires-Dist: unidecode ; extra == 'tts'
+Requires-Dist: webdataset ; extra == 'tts'
+Requires-Dist: kaldi-python-io ; extra == 'tts'
+Requires-Dist: scipy ; extra == 'tts'
+Requires-Dist: pandas ; extra == 'tts'
+
+NeMo (**Ne**ural **Mo**dules) is a toolkit for creating AI applications built around **neural modules**, conceptual blocks of neural networks that take *typed* inputs and produce *typed* outputs.
+
+**NeMo Core** provides common APIs all modules and models have to implement.
+
+**NeMo Collections**
+
+* ASR - collection of modules and models for building speech recognition networks
+* TTS - collection of modules and models for building speech synthesis networks
+* NLP - collection of modules and models for building NLP networks
+
+
