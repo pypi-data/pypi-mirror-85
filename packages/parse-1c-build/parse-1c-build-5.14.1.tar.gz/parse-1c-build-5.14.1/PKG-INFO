@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: parse-1c-build
+Version: 5.14.1
+Summary: Parse and build utilities for 1C:Enterprise
+Home-page: https://github.com/Cujoko/parse-1c-build
+License: MIT
+Keywords: 1c,parse,build,v8reader,v8unpack,gcomp
+Author: Cujoko
+Author-email: cujoko@gmail.com
+Requires-Python: >=3.9,<4.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: Russian
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development
+Classifier: Topic :: Utilities
+Requires-Dist: cjk-commons (>=3.5,<4.0)
+Requires-Dist: commons-1c (>=3.3,<4.0)
+Requires-Dist: loguru (>=0.5,<0.6)
+Project-URL: Repository, https://github.com/Cujoko/parse-1c-build
+Description-Content-Type: text/markdown
+
+Утилита для разборки и сборки *epf*-, *erf*-, *ert*- и *md*-файлов
+===
+
+Что делает
+---
+
+При установке пакета в каталоге скриптов интерпретатора Python создаётся исполняемый файл *p1cb.exe*. Его можно 
+запустить с командой *parse* для разборки *epf*- и *erf*-файлов с помощью [V8Reader][1] или V8Unpack, *ert*- и 
+*md*-файлов с помощью [GComp][2], или с командой *build* для сборки *epf*- и *erf*-файлов с помощью V8Unpack, *ert*- и 
+*md*-файлов с помощью [GComp][2].
+
+Пути к сервисной информационной базе, *V8Reader.epf*, *V8Unpack.exe* и GComp указываются в файле настроек 
+*settings.yaml*, который сначала ищется в текущем каталоге, затем в каталоге данных приложения пользователя 
+(в Windows 10 каталог *C:\Users\\<Пользователь>\AppData\Roaming\util-1c\parse-1c-build\>*), а затем в общем каталоге 
+данных приложения (в Windows 10 каталог *C:\ProgramData\util-1c\parse-1c-build\>*). Если путь к платформе 
+1С:Предприятие 8 в файле настроек не указан, то он ищется автоматически.
+
+Требования
+---
+
+- Windows
+- Python 3.8 и выше. Каталоги интерпретатора и скриптов Python должны быть прописаны в переменной окружения Path
+- Платформа 1С:Предприятие 8.3
+- Сервисная информационная база (в которой будет запускаться *V8Reader.epf*)
+- [V8Reader][1]
+- V8Unpack
+- [GComp][2]
+
+[1]: https://github.com/xDrivenDevelopment/v8Reader
+[2]: http://1c.alterplast.ru/gcomp/
+
