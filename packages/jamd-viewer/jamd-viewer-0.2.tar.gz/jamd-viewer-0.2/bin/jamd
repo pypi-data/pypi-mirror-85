@@ -1,0 +1,16 @@
+#!/usr/bin/env python
+from argparse import ArgumentParser
+
+import jamd_viewer
+
+
+def parse_arguments():
+    arguments = ArgumentParser()
+    arguments.add_argument('path', help='Markdown file to be opened')
+
+    return arguments.parse_args()
+
+
+if __name__ == '__main__':
+    arguments = parse_arguments()
+    jamd_viewer.run(arguments.path)
