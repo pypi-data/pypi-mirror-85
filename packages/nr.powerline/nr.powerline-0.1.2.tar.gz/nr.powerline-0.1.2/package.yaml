@@ -1,0 +1,22 @@
+name: "nr.powerline"
+version: "0.1.2"
+author: "Niklas Rosenstein <rosensteinniklas@gmail.com>"
+license: "MIT"
+description: "Package description here."
+url: "https://git.niklasrosenstein.com/NiklasRosenstein/powerline"
+requirements:
+  - python ^3.5
+  - nr.ansiterm ~0.0.1
+  - nr.databind.core ~0.0.6
+  - nr.databind.json ~0.0.6
+  - nr.interface ~0.0.2
+  - nr.sumtype ~0.0.3
+  - nr.utils.process ~0.0.3
+entrypoints:
+  console_scripts:
+    - nr-powerline = nr.powerline:main
+  nr.powerline.plugins:
+    - cwd = nr.powerline.cwd:CwdPlugin
+    - git = nr.powerline.git:GitPlugin
+    - text = nr.powerline.text:TextPlugin
+    - venv = nr.powerline.venv:VenvPlugin
