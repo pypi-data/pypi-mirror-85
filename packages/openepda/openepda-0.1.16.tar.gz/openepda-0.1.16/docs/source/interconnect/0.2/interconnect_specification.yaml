@@ -1,0 +1,128 @@
+# openEPDA interconnect
+_openEPDA:
+  format: openEPDA-interconnect
+  version: "0.2"
+  link: "https://openEPDA.org"
+  license: CC BY-SA 4.0
+
+interconnects:
+  line:
+    doc: "Straight line interconnect"
+    parameters:
+      width:
+        doc: "Width of line"
+        type: float
+        unit: um
+      length:
+        doc: "Length of line"
+        type: float
+        unit: um
+    pins:
+      a0:
+        doc: optical
+        width: width
+        xya: [0, 0, 180]
+      b0:
+        doc: optical
+        width: width
+        xya: [length, 0, 0]
+  arc:
+    doc: "Curved interconnect (arc)"
+    parameters:
+      width:
+        doc: "Width of arc"
+        type: float
+        unit: um
+      angle:
+        doc: "Angle of waveguide arc"
+        type: float
+        unit: degree
+      offset:
+        doc: "Offset of waveguide arc"
+        type: float
+        unit: um
+      radius:
+        doc: "Radius of arc"
+        type: float
+        unit: um
+    pins:
+      a0:
+        doc: optical
+        width: 2
+        xya: [0, 0, 180]
+      b0:
+        doc: optical
+        width: 2
+        xya: [(radius+offset)*sin(angle), (radius+offset)*(1-cos(angle)), angle]
+  linear_taper:
+    doc: "Linear taper"
+    parameters:
+      width1:
+        doc: "Width at start of taper (w_1)"
+        type: float
+        unit: um
+      width2:
+        doc: "Width at end of taper (w_2)"
+        type: float
+        unit: um
+      length:
+        doc: "Length of the taper"
+        type: float
+        unit: um
+    pins:
+      a0:
+        doc: optical
+        width: width1
+        xya: [0, 0, 180]
+      b0:
+        doc: optical
+        width: width2
+        xya: [length, 0, 0]
+  parabolic_taper:
+    doc: "Parabolic taper"
+    parameters:
+      width1:
+        doc: "Width at start of taper (w_1)"
+        type: float
+        unit: um
+      width2:
+        doc: "Width at end of taper (w_2)"
+        type: float
+        unit: um
+      length:
+        doc: "Length of the taper"
+        type: float
+        unit: um
+    pins:
+      a0:
+        doc: optical
+        width: width1
+        xya: [0, 0, 180]
+      b0:
+        doc: optical
+        width: width2
+        xya: [length, 0, 0]
+  sine_bend:
+    doc: "Sine bend"
+    parameters:
+      width:
+        doc: "Width of bend"
+        type: float
+        unit: um
+      shift:
+        doc: "Lateral shift"
+        type: float
+        unit: um
+      distance:
+        doc: "Transverse distance"
+        type: float
+        unit: um
+    pins:
+      a0:
+        doc: optical
+        width: width
+        xya: [0, 0, 180]
+      b0:
+        doc: optical
+        width: width
+        xya: [distance, shift, 0]

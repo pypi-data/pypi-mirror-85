@@ -1,0 +1,130 @@
+openEPDA Changelog
+==================
+
+Version 0.1.16 (2020.11.17)
+---------------------------
+Documentation
+~~~~~~~~~~~~~
+- Add BB metal outline to the uDPK v0.4 draft (#59)
+- Update analytic expression specification: use `ln` for natural logarithm,
+  remove limitation of not using python keywords in the expressions (#44)
+
+`openepda` package
+~~~~~~~~~~~~~~~~~~
+- Add caching to the expression parser
+- Speed up black-box BB generation (#59)
+- Implement BB metal outline generation and validation (#59)
+- Fix json schemas: use `examples` instead of `example` (#60)
+- Replace python keywords when evaluating expressions (#44)
+
+Version 0.1.15 (2020.11.12)
+---------------------------
+Documentation
+~~~~~~~~~~~~~
+- Remove 'obsolete' label from updk v.0.2
+
+`openepda` package
+~~~~~~~~~~~~~~~~~~
+- Add caching for expression parser
+
+Version 0.1.14 (2020.11.10)
+---------------------------
+Documentation
+~~~~~~~~~~~~~
+- Raise updk version to 0.3
+
+`openepda` package
+~~~~~~~~~~~~~~~~~~
+- Fix bug with bool parameters when generating black boxes from a updk file
+
+Version 0.1.13 (2020.09.09)
+---------------------------
+- Add __version__ attribute to the package (#52)
+- Refactor documentation to enable drafts development (#53, #54)
+- Add draft for the next uPDK specification release (#55)
+- Change license to CC BY-SA (#57)
+- Add interconnect specification (#58)
+
+Version 0.1.12 (2020.05.16)
+---------------------------
+- Add 'parameters' to the required properties of the uPDK blocks
+
+Version 0.1.11 (2020.05.08)
+---------------------------
+- Change data validation for GDS black creation
+
+Version 0.1.10 (2020.05.04)
+---------------------------
+- Improve error messages
+- Fix bug with missing mapping layer calculation
+
+Version 0.1.9 (2020.05.04)
+--------------------------
+- Add uPDKBlackBox class
+- Add _BlackBox interface
+- Add some info to created black boxes to enable auto validation
+- Update nazca to v.0.5.11
+- Add GDS black box validation against uPDK (#50)
+
+Version 0.1.8 (2020.04.20)
+--------------------------
+- Allow pin width to be an expression in uPDK (#47)
+
+Version 0.1.7 (2020.04.20)
+--------------------------
+- Add required parameter attribute (unit) to the example (#46)
+- Add check for parameter value type in uPDK schema (!48)
+- Add generation of p-cells (#42)
+- Improve the pin info in the generated GDS (!47)
+- Add BB outline to the generated GDS (#41)
+- Fix incorrect error message when checking BB pins (!47)
+- Fix bug with digits being not allowed in the variable names (!47)
+- Fix error with non checking the required BB parameters (#39)
+- Add check of min/max attribute presence for numeric BB parameters (!45)
+- Add return value to the uPDK cell operation
+
+Version 0.1.6 (2020.04.14)
+--------------------------
+- Update project description for pypi
+- Add more details on license terms (#35)
+- Add Contribution section to the web-site (#36)
+- Improve information about authors and contributors.
+- Add links to the changelog and authors to the pypi description.
+- Add validation of the pin_in and pin_out names in the uPDK blocks.
+- Add ensure_num() method for quick evaluation of numerical values.
+- Add uPDK blocks data import and GDS creation (#37).
+- Add validators.updk submodule to the documentation.
+
+Version 0.1.5 (2020.04.01)
+--------------------------
+- Add _BaseParser for expression parsing and evaluation
+- Add parameter check to the uPDK BBs
+- Add expression checks to the uPDK BBs (#21)
+- Make schemas available on openepda.org/schemas (#16)
+- Add CDF documentation for v.0.3 (#28)
+- Add analytic expression grammar description to the documentation (#31)
+- Change documentation structure (#32)
+- Add information about licensing policy (#30)
+- Add API pages to the documentation (#33)
+- Remove pyyaml from the requirements (#24)
+- Add Changelog to the documentation (#34)
+- Create validate.openepda.org (#10)
+
+Version 0.1.4 (2020-03-13)
+--------------------------
+- Add required attribute `bbox` to the CDF (#19)
+- Use dict for ios and fiducials in CDF (#27)
+- Bump CDF version to 0.3.
+
+Version 0.1.3 (2020-02-03)
+--------------------------
+- Fix bug with schemas distribution (#25)
+
+Version 0.1.2 (2020-02-03)
+--------------------------
+- add uPDK validator (#8, #20)
+- drop Python 3.5 support (#17)
+
+Version 0.0.1   (2019-01-10)
+----------------------------
+- first public release.
