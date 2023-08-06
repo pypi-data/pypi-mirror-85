@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>midas.core.powergrid.model package &#8212; MIDAS  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="midas.core.sbdata package" href="midas.core.sbdata.html" />
+    <link rel="prev" title="midas.core.powergrid package" href="midas.core.powergrid.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="midas-core-powergrid-model-package">
+<h1>midas.core.powergrid.model package<a class="headerlink" href="#midas-core-powergrid-model-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-midas.core.powergrid.model.static">
+<span id="midas-core-powergrid-model-static-module"></span><h2>midas.core.powergrid.model.static module<a class="headerlink" href="#module-midas.core.powergrid.model.static" title="Permalink to this headline">¶</a></h2>
+<p>This module contains a wrapper for pandapower grids.</p>
+<dl class="py class">
+<dt id="midas.core.powergrid.model.static.PandapowerGrid">
+<em class="property">class </em><code class="sig-prename descclassname">midas.core.powergrid.model.static.</code><code class="sig-name descname">PandapowerGrid</code><a class="headerlink" href="#midas.core.powergrid.model.static.PandapowerGrid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A model for pandapower grids.</p>
+<dl class="py method">
+<dt id="midas.core.powergrid.model.static.PandapowerGrid._get_buses">
+<code class="sig-name descname">_get_buses</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#midas.core.powergrid.model.static.PandapowerGrid._get_buses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create entities for buses.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.core.powergrid.model.static.PandapowerGrid._get_lines">
+<code class="sig-name descname">_get_lines</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#midas.core.powergrid.model.static.PandapowerGrid._get_lines" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create entities for lines.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.core.powergrid.model.static.PandapowerGrid._get_loads">
+<code class="sig-name descname">_get_loads</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#midas.core.powergrid.model.static.PandapowerGrid._get_loads" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create entities for loads.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.core.powergrid.model.static.PandapowerGrid._get_sgens">
+<code class="sig-name descname">_get_sgens</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#midas.core.powergrid.model.static.PandapowerGrid._get_sgens" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create entities for sgens.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.core.powergrid.model.static.PandapowerGrid._get_slack">
+<code class="sig-name descname">_get_slack</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#midas.core.powergrid.model.static.PandapowerGrid._get_slack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an entity for the slack bus.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.core.powergrid.model.static.PandapowerGrid._get_switches">
+<code class="sig-name descname">_get_switches</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#midas.core.powergrid.model.static.PandapowerGrid._get_switches" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create entities for switches.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.core.powergrid.model.static.PandapowerGrid._get_trafos">
+<code class="sig-name descname">_get_trafos</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#midas.core.powergrid.model.static.PandapowerGrid._get_trafos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create entities for trafos.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.core.powergrid.model.static.PandapowerGrid._load_case">
+<code class="sig-name descname">_load_case</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">gridfile</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.core.powergrid.model.static.PandapowerGrid._load_case" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the pandapower grid specified by the <em>gridfile</em>.</p>
+<p><em>gridfile</em> can be either the name of a grid or a path to a json
+file containing the grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>gridfile</strong> (<em>str</em>) – Specifies the grid to load</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.core.powergrid.model.static.PandapowerGrid._load_entity_map">
+<code class="sig-name descname">_load_entity_map</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#midas.core.powergrid.model.static.PandapowerGrid._load_entity_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the entity map for the mosaik simulator.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.core.powergrid.model.static.PandapowerGrid._load_grid_ids">
+<code class="sig-name descname">_load_grid_ids</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#midas.core.powergrid.model.static.PandapowerGrid._load_grid_ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a dictionary containing the names of the components.</p>
+<p>Use generic names and map to actual names?</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.core.powergrid.model.static.PandapowerGrid.get_outputs">
+<code class="sig-name descname">get_outputs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#midas.core.powergrid.model.static.PandapowerGrid.get_outputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gather all outputs for other simulators.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.core.powergrid.model.static.PandapowerGrid.run_powerflow">
+<code class="sig-name descname">run_powerflow</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#midas.core.powergrid.model.static.PandapowerGrid.run_powerflow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the powerflow calculation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.core.powergrid.model.static.PandapowerGrid.set_inputs">
+<code class="sig-name descname">set_inputs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">etype</span></em>, <em class="sig-param"><span class="n">idx</span></em>, <em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.core.powergrid.model.static.PandapowerGrid.set_inputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set input from other simulators.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.core.powergrid.model.static.PandapowerGrid.setup">
+<code class="sig-name descname">setup</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">gridfile</span></em>, <em class="sig-param"><span class="n">grid_idx</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.core.powergrid.model.static.PandapowerGrid.setup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set up the grid model.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-midas.core.powergrid.model">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-midas.core.powergrid.model" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">MIDAS</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../next_steps.html">Next steps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">midas</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="midas.html">midas package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">midas</a><ul>
+  <li><a href="midas.html">midas package</a><ul>
+  <li><a href="midas.core.html">midas.core package</a><ul>
+  <li><a href="midas.core.powergrid.html">midas.core.powergrid package</a><ul>
+      <li>Previous: <a href="midas.core.powergrid.html" title="previous chapter">midas.core.powergrid package</a></li>
+      <li>Next: <a href="midas.core.sbdata.html" title="next chapter">midas.core.sbdata package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Stephan Balduin.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/api/midas.core.powergrid.model.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

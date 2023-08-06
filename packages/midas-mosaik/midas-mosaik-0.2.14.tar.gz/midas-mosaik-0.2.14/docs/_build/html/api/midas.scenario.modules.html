@@ -1,0 +1,323 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>midas.scenario.modules package &#8212; MIDAS  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="midas.tools package" href="midas.tools.html" />
+    <link rel="prev" title="midas.scenario package" href="midas.scenario.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="midas-scenario-modules-package">
+<h1>midas.scenario.modules package<a class="headerlink" href="#midas-scenario-modules-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-midas.scenario.modules.base">
+<span id="midas-scenario-modules-base-module"></span><h2>midas.scenario.modules.base module<a class="headerlink" href="#module-midas.scenario.modules.base" title="Permalink to this headline">¶</a></h2>
+<p>MIDAS scenario base module.</p>
+<p>In this module the base configuration for each scenario is done.</p>
+<dl class="py function">
+<dt id="midas.scenario.modules.base.configure">
+<code class="sig-prename descclassname">midas.scenario.modules.base.</code><code class="sig-name descname">configure</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scenario</span></em>, <em class="sig-param"><span class="n">params</span></em>, <em class="sig-param"><span class="n">cfg</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.modules.base.configure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the base configuration for midas scenarios.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scenario</strong> (<em>dict</em>) – The scenario <em>dict</em> where reference to everything created in
+this module will be stored. Since this is the first module
+to call, the <em>dict</em> can be empty (or should at least contain
+the key <em>scenario_name</em> with the name of the scenario).</p></li>
+<li><p><strong>params</strong> (<em>dict</em>) – A <em>dict</em> containing the content of the config files.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-midas.scenario.modules.database">
+<span id="midas-scenario-modules-database-module"></span><h2>midas.scenario.modules.database module<a class="headerlink" href="#module-midas.scenario.modules.database" title="Permalink to this headline">¶</a></h2>
+<p>MIDAS scenario upgrade module.</p>
+<p>This module adds a mosaikhdf database to the scenario.</p>
+<dl class="py function">
+<dt id="midas.scenario.modules.database._add_db">
+<code class="sig-prename descclassname">midas.scenario.modules.database.</code><code class="sig-name descname">_add_db</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scenario</span></em>, <em class="sig-param"><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.modules.database._add_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the database in the mosaik world.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="midas.scenario.modules.database.upgrade">
+<code class="sig-prename descclassname">midas.scenario.modules.database.</code><code class="sig-name descname">upgrade</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scenario</span></em>, <em class="sig-param"><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.modules.database.upgrade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a mosaikhdf database to the scenario.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-midas.scenario.modules.powergrid">
+<span id="midas-scenario-modules-powergrid-module"></span><h2>midas.scenario.modules.powergrid module<a class="headerlink" href="#module-midas.scenario.modules.powergrid" title="Permalink to this headline">¶</a></h2>
+<p>This module contains the MIDAS powergrid upgrade.</p>
+<dl class="py class">
+<dt id="midas.scenario.modules.powergrid.PowergridModule">
+<em class="property">class </em><code class="sig-prename descclassname">midas.scenario.modules.powergrid.</code><code class="sig-name descname">PowergridModule</code><a class="headerlink" href="#midas.scenario.modules.powergrid.PowergridModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="midas.scenario.html#midas.scenario.upgrade_module.UpgradeModule" title="midas.scenario.upgrade_module.UpgradeModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">midas.scenario.upgrade_module.UpgradeModule</span></code></a></p>
+<p>The MIDAS powergrid update module.</p>
+<dl class="py method">
+<dt id="midas.scenario.modules.powergrid.PowergridModule.check_module_params">
+<code class="sig-name descname">check_module_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.modules.powergrid.PowergridModule.check_module_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the module params for this upgrade.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.modules.powergrid.PowergridModule.check_sim_params">
+<code class="sig-name descname">check_sim_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">module_params</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.modules.powergrid.PowergridModule.check_sim_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check simulator params for a certain simulator.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.modules.powergrid.PowergridModule.connect">
+<code class="sig-name descname">connect</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.modules.powergrid.PowergridModule.connect" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.modules.powergrid.PowergridModule.connect_to_db">
+<code class="sig-name descname">connect_to_db</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.modules.powergrid.PowergridModule.connect_to_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add connections to the database.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.modules.powergrid.PowergridModule.start_models">
+<code class="sig-name descname">start_models</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.modules.powergrid.PowergridModule.start_models" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start all models for this simulator.</p>
+<p>Since we want the grids to be able to be interconnected with
+each other, each grid model should have its own simulator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sim_name</strong> (<em>str</em>) – The sim name, not to be confused with <em>sim_name</em> for
+mosaik’s <em>sim_config</em>. <strong>This</strong> sim_name is the simulator
+key in the configuration yaml file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-midas.scenario.modules.sbdata">
+<span id="midas-scenario-modules-sbdata-module"></span><h2>midas.scenario.modules.sbdata module<a class="headerlink" href="#module-midas.scenario.modules.sbdata" title="Permalink to this headline">¶</a></h2>
+<p>MIDAS upgrade module for simbench data simulator.</p>
+<dl class="py class">
+<dt id="midas.scenario.modules.sbdata.SimbenchDataModule">
+<em class="property">class </em><code class="sig-prename descclassname">midas.scenario.modules.sbdata.</code><code class="sig-name descname">SimbenchDataModule</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">'sbdata'</span></em>, <em class="sig-param"><span class="n">log</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.modules.sbdata.SimbenchDataModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="midas.scenario.html#midas.scenario.upgrade_module.UpgradeModule" title="midas.scenario.upgrade_module.UpgradeModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">midas.scenario.upgrade_module.UpgradeModule</span></code></a></p>
+<p>Upgrade module for simbench data.</p>
+<p>Other, similar data modules can derive from this class.</p>
+<dl class="py method">
+<dt id="midas.scenario.modules.sbdata.SimbenchDataModule._instantiate_models">
+<code class="sig-name descname">_instantiate_models</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="n">mtype</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.modules.sbdata.SimbenchDataModule._instantiate_models" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start all models as specified in the mappings.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.modules.sbdata.SimbenchDataModule.check_module_params">
+<code class="sig-name descname">check_module_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.modules.sbdata.SimbenchDataModule.check_module_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the module params and provide default values.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.modules.sbdata.SimbenchDataModule.check_sim_params">
+<code class="sig-name descname">check_sim_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">module_params</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.modules.sbdata.SimbenchDataModule.check_sim_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the params for a certain simulator instance.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.modules.sbdata.SimbenchDataModule.connect">
+<code class="sig-name descname">connect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.modules.sbdata.SimbenchDataModule.connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create connections to other entities.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.modules.sbdata.SimbenchDataModule.connect_to_db">
+<code class="sig-name descname">connect_to_db</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.modules.sbdata.SimbenchDataModule.connect_to_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connect the models to db.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.modules.sbdata.SimbenchDataModule.connect_to_grid">
+<code class="sig-name descname">connect_to_grid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="n">mapping</span></em>, <em class="sig-param"><span class="n">attrs</span></em>, <em class="sig-param"><span class="n">mtype</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.modules.sbdata.SimbenchDataModule.connect_to_grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connect to the grid model.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.modules.sbdata.SimbenchDataModule.create_default_mapping">
+<code class="sig-name descname">create_default_mapping</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.modules.sbdata.SimbenchDataModule.create_default_mapping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a default mapping.</p>
+<p>Tries to read the default mapping from hdf5 db that stores
+the data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.modules.sbdata.SimbenchDataModule.gen_mod_key">
+<code class="sig-name descname">gen_mod_key</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mod_name</span></em>, <em class="sig-param"><span class="n">bus</span></em>, <em class="sig-param"><span class="n">eidx</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.modules.sbdata.SimbenchDataModule.gen_mod_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.modules.sbdata.SimbenchDataModule.get_grid_entity">
+<code class="sig-name descname">get_grid_entity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">grid_key</span></em>, <em class="sig-param"><span class="n">mtype</span></em>, <em class="sig-param"><span class="n">bus</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.modules.sbdata.SimbenchDataModule.get_grid_entity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.modules.sbdata.SimbenchDataModule.start_models">
+<code class="sig-name descname">start_models</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.modules.sbdata.SimbenchDataModule.start_models" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start models of a certain simulator.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-midas.scenario.modules.sndata">
+<span id="midas-scenario-modules-sndata-module"></span><h2>midas.scenario.modules.sndata module<a class="headerlink" href="#module-midas.scenario.modules.sndata" title="Permalink to this headline">¶</a></h2>
+<p>MIDAS upgrade module for Smart Nord data simulator.</p>
+<dl class="py class">
+<dt id="midas.scenario.modules.sndata.SmartNordDataModule">
+<em class="property">class </em><code class="sig-prename descclassname">midas.scenario.modules.sndata.</code><code class="sig-name descname">SmartNordDataModule</code><a class="headerlink" href="#midas.scenario.modules.sndata.SmartNordDataModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#midas.scenario.modules.sbdata.SimbenchDataModule" title="midas.scenario.modules.sbdata.SimbenchDataModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">midas.scenario.modules.sbdata.SimbenchDataModule</span></code></a></p>
+<dl class="py method">
+<dt id="midas.scenario.modules.sndata.SmartNordDataModule.check_sim_params">
+<code class="sig-name descname">check_sim_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">module_params</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.modules.sndata.SmartNordDataModule.check_sim_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the params for a certain simulator instance.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.modules.sndata.SmartNordDataModule.connect">
+<code class="sig-name descname">connect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.modules.sndata.SmartNordDataModule.connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create connections to other entities.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.modules.sndata.SmartNordDataModule.create_default_mapping">
+<code class="sig-name descname">create_default_mapping</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.modules.sndata.SmartNordDataModule.create_default_mapping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a default mapping.</p>
+<p>Tries to read the default mapping from hdf5 db that stores
+the data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.modules.sndata.SmartNordDataModule.start_models">
+<code class="sig-name descname">start_models</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.modules.sndata.SmartNordDataModule.start_models" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start models of a certain simulator.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-midas.scenario.modules">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-midas.scenario.modules" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">MIDAS</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../next_steps.html">Next steps</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">midas</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="midas.html">midas package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">midas</a><ul>
+  <li><a href="midas.html">midas package</a><ul>
+  <li><a href="midas.scenario.html">midas.scenario package</a><ul>
+      <li>Previous: <a href="midas.scenario.html" title="previous chapter">midas.scenario package</a></li>
+      <li>Next: <a href="midas.tools.html" title="next chapter">midas.tools package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Stephan Balduin.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/api/midas.scenario.modules.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

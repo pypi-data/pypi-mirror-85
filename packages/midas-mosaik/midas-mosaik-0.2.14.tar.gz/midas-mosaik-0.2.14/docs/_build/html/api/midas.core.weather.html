@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>midas.core.weather package &#8212; MIDAS  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="midas.scenario package" href="midas.scenario.html" />
+    <link rel="prev" title="midas.core.sndata package" href="midas.core.sndata.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="midas-core-weather-package">
+<h1>midas.core.weather package<a class="headerlink" href="#midas-core-weather-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-midas.core.weather.meta">
+<span id="midas-core-weather-meta-module"></span><h2>midas.core.weather.meta module<a class="headerlink" href="#module-midas.core.weather.meta" title="Permalink to this headline">¶</a></h2>
+<p>This module contains the mosaik meta for the weather simulator.</p>
+</div>
+<div class="section" id="module-midas.core.weather.simulator">
+<span id="midas-core-weather-simulator-module"></span><h2>midas.core.weather.simulator module<a class="headerlink" href="#module-midas.core.weather.simulator" title="Permalink to this headline">¶</a></h2>
+<p>This module contains the Weather simulator.</p>
+<dl class="py class">
+<dt id="midas.core.weather.simulator.WeatherSimulator">
+<em class="property">class </em><code class="sig-prename descclassname">midas.core.weather.simulator.</code><code class="sig-name descname">WeatherSimulator</code><a class="headerlink" href="#midas.core.weather.simulator.WeatherSimulator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">mosaik_api.Simulator</span></code></p>
+<p>The Weather simulator.</p>
+<dl class="py method">
+<dt id="midas.core.weather.simulator.WeatherSimulator.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num</span></em>, <em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">model_params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.core.weather.simulator.WeatherSimulator.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the simulation model instance (entity).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num</strong> (<em>int</em>) – The number of models to create.</p></li>
+<li><p><strong>model</strong> (<em>str</em>) – The name of the models to create. Must be present inside
+the simulator’s meta.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list with information on the created entity.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.core.weather.simulator.WeatherSimulator.get_data">
+<code class="sig-name descname">get_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">outputs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.core.weather.simulator.WeatherSimulator.get_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the requested output (if feasible).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>outputs</strong> (<em>dict</em>) – A <em>dict</em> containing requested outputs of each entity.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <em>dict</em> containing the values of the requested outputs.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.core.weather.simulator.WeatherSimulator.init">
+<code class="sig-name descname">init</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sid</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">sim_params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.core.weather.simulator.WeatherSimulator.init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called exactly ones after the simulator has been started.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sid</strong> (<em>str</em>) – Simulator ID for this simulator.</p></li>
+<li><p><strong>start_date</strong> (<em>str</em>) – Start date as UTC ISO 8601 timestring such as
+‘2019-01-01 00:00:00+0100’.</p></li>
+<li><p><strong>step_size</strong> (<em>int</em><em>, </em><em>optional</em>) – Step size for this simulator. Defaults to 900.</p></li>
+<li><p><strong>data_path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to the data folder. Defaults to the data folder in the
+midas root folder.</p></li>
+<li><p><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the weather database. Defaults to
+<em>weather_bre2009-2019.hdf5</em>, the file that is created by
+the <em>midas.tools.weather_data.build_weather_data</em> function.</p></li>
+<li><p><strong>interpolate</strong> (<em>bool</em><em>, </em><em>optional</em>) – If set to <em>True</em>, interpolation is enabled. Can be
+overwritten by model specific configuration.</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – A seed for the random number generator.</p></li>
+<li><p><strong>randomize</strong> (<em>bool</em><em>, </em><em>optional</em>) – If set to <em>True</em>, randomization of data will be enabled.
+Otherwise, the data from the database is return unchanged.
+Can be overwritten by model specific configuration.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The meta dict (set by <em>mosaik_api.Simulator</em>).</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.core.weather.simulator.WeatherSimulator.step">
+<code class="sig-name descname">step</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time</span></em>, <em class="sig-param"><span class="n">inputs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.core.weather.simulator.WeatherSimulator.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a simulation step.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time</strong> (<em>int</em>) – The current simulation step (by convention in seconds since
+simulation start.</p></li>
+<li><p><strong>inputs</strong> (<em>dict</em>) – A <em>dict</em> containing inputs for entities of this simulator.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The next step this simulator wants to be stepped.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-midas.core.weather">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-midas.core.weather" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">MIDAS</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../next_steps.html">Next steps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">midas</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="midas.html">midas package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">midas</a><ul>
+  <li><a href="midas.html">midas package</a><ul>
+  <li><a href="midas.core.html">midas.core package</a><ul>
+      <li>Previous: <a href="midas.core.sndata.html" title="previous chapter">midas.core.sndata package</a></li>
+      <li>Next: <a href="midas.scenario.html" title="next chapter">midas.scenario package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Stephan Balduin.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/api/midas.core.weather.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

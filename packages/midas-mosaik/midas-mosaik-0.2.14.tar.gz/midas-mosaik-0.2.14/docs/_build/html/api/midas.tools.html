@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>midas.tools package &#8212; MIDAS  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="midas.util package" href="midas.util.html" />
+    <link rel="prev" title="midas.scenario.modules package" href="midas.scenario.modules.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="midas-tools-package">
+<h1>midas.tools package<a class="headerlink" href="#midas-tools-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-midas.tools.simbench_data">
+<span id="midas-tools-simbench-data-module"></span><h2>midas.tools.simbench_data module<a class="headerlink" href="#module-midas.tools.simbench_data" title="Permalink to this headline">¶</a></h2>
+<p>This module contains a function to extract the profiles from
+simbench grids.</p>
+<dl class="py function">
+<dt id="midas.tools.simbench_data.build_simbench_data">
+<code class="sig-prename descclassname">midas.tools.simbench_data.</code><code class="sig-name descname">build_simbench_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">simbench_code</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.tools.simbench_data.build_simbench_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a simbench case and save the profiles in a hdf5 database.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-midas.tools.smartnord_data">
+<span id="midas-tools-smartnord-data-module"></span><h2>midas.tools.smartnord_data module<a class="headerlink" href="#module-midas.tools.smartnord_data" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="midas.tools.smartnord_data.build_smartnord_data">
+<code class="sig-prename descclassname">midas.tools.smartnord_data.</code><code class="sig-name descname">build_smartnord_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.tools.smartnord_data.build_smartnord_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="midas.tools.smartnord_data.convert_smartnord_data">
+<code class="sig-prename descclassname">midas.tools.smartnord_data.</code><code class="sig-name descname">convert_smartnord_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path_to_profiles</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.tools.smartnord_data.convert_smartnord_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the old-style Smard Nord database and convert the data.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-midas.tools.weather_data">
+<span id="midas-tools-weather-data-module"></span><h2>midas.tools.weather_data module<a class="headerlink" href="#module-midas.tools.weather_data" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="midas.tools.weather_data.build_weather_data">
+<code class="sig-prename descclassname">midas.tools.weather_data.</code><code class="sig-name descname">build_weather_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.tools.weather_data.build_weather_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="midas.tools.weather_data.load_data">
+<code class="sig-prename descclassname">midas.tools.weather_data.</code><code class="sig-name descname">load_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">target</span></em>, <em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.tools.weather_data.load_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="midas.tools.weather_data.unzip">
+<code class="sig-prename descclassname">midas.tools.weather_data.</code><code class="sig-name descname">unzip</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">fname</span></em>, <em class="sig-param"><span class="n">target</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.tools.weather_data.unzip" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-midas.tools">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-midas.tools" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">MIDAS</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../next_steps.html">Next steps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">midas</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="midas.html">midas package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">midas</a><ul>
+  <li><a href="midas.html">midas package</a><ul>
+      <li>Previous: <a href="midas.scenario.modules.html" title="previous chapter">midas.scenario.modules package</a></li>
+      <li>Next: <a href="midas.util.html" title="next chapter">midas.util package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Stephan Balduin.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/api/midas.tools.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
