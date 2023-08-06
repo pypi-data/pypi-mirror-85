@@ -1,0 +1,20 @@
+{% load git static %}
+
+<footer class="p46">
+    <div class="info">
+        <img alt="logo" src="{% static 'images/logobianco.svg' %}">
+        <div class="info_detail">
+            <span>Prodotto realizzato da Pagina46 s.r.l.</span>
+            <span>P.IVA e C.F. 02579350469</span>
+{#            <span>Via della Chiesa XXXII</span>#}
+{#            <span>Trav. I n. 231 Sorbano del Giudice</span>#}
+{#            <span>55100 Lucca - Italy</span>#}
+        </div>
+    </div>
+
+
+    <div class="repo_info">
+        <span>Repo: {% git_branch %}</span>
+        <span>Rev: {% git_revisions_hash %}</span>
+    </div>
+</footer>
