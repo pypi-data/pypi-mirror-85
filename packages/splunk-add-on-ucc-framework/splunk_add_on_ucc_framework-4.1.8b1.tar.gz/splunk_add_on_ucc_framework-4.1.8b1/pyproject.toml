@@ -1,0 +1,77 @@
+# SPDX-FileCopyrightText: 2020 Splunk Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+[tool.poetry]
+name = "splunk_add_on_ucc_framework"
+version = "4.1.8b1"
+description = "Splunk Add-on SDK formerly UCC is a build and code generation framework"
+authors = ["rfaircloth-splunk <rfaircloth@splunk.com>"]
+exclude = [
+    "build.py",
+    "splunk_add_on_ucc_framework/UCC-UI-lib/bower_components",
+    "splunk_add_on_ucc_framework/UCC-UI-lib/config",
+    "splunk_add_on_ucc_framework/UCC-UI-lib/node_modules",
+    "splunk_add_on_ucc_framework/UCC-UI-lib/testes",
+    ]
+include = [
+"splunk_add_on_ucc_framework/package",
+"splunk_add_on_ucc_framework/package/locale",
+"splunk_add_on_ucc_framework/package/locale/zh_CN",
+"splunk_add_on_ucc_framework/package/locale/zh_CN/LC_MESSAGES",
+"splunk_add_on_ucc_framework/package/default",
+"splunk_add_on_ucc_framework/package/default/data",
+"splunk_add_on_ucc_framework/package/default/data/ui",
+"splunk_add_on_ucc_framework/package/default/data/ui/nav",
+"splunk_add_on_ucc_framework/package/default/data/ui/views",
+"splunk_add_on_ucc_framework/package/appserver",
+"splunk_add_on_ucc_framework/package/appserver/static",
+"splunk_add_on_ucc_framework/package/appserver/static/css",
+"splunk_add_on_ucc_framework/package/appserver/static/js",
+"splunk_add_on_ucc_framework/package/appserver/static/js/build",
+"splunk_add_on_ucc_framework/package/appserver/static/styles",
+"splunk_add_on_ucc_framework/package/appserver/templates",
+"splunk_add_on_ucc_framework/requirements_py2.txt",
+"splunk_add_on_ucc_framework/requirements_py3.txt",
+"splunk_add_on_ucc_framework/requirements.txt",
+    ]
+
+readme = 'README.md'  # Markdown files are supported
+
+repository = "https://github.com/splunk/splunk-add-on-sdk-python/"
+homepage = "https://github.com/splunk/splunk-add-on-sdk-python/"
+
+keywords = ['splunk']
+
+[tool.poetry.dependencies]
+python = "^3.7"
+solnlib = '^3'
+jinja2 = "^2"
+mako= "^1"
+munch= "^2"
+lxml = "^4.3"
+future = "^0"
+splunktaucclib = "^4"
+wheel = "*"
+dunamai = "*"
+reuse = "*"
+#black = [
+#    { version = "20.8b1" , python = "^3.7" }
+#]
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.0"
+pytest-splunk-addon = { version = "^1.3", extras = [ "docker" ] }
+poetry-dynamic-versioning = "^0.10"
+
+[tool.poetry-dynamic-versioning]
+enable = true
+
+[tool.poetry.scripts]
+ucc-gen="splunk_add_on_ucc_framework:main"
+build-ucc="build:build_ucc"
+install-libs="splunk_add_on_ucc_framework:install_requirements"
+
+[build-system]
+requires = ["poetry>=1.0.0"]
+build-backend = "poetry.masonry.api"
