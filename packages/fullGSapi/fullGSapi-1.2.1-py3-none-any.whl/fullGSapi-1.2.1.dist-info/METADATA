@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: fullGSapi
+Version: 1.2.1
+Summary: UNKNOWN
+Home-page: UNKNOWN
+Author: ThaumicMekanism
+Author-email: thaumicmekanism@gmail.com
+License: MIT
+Platform: UNKNOWN
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: cryptography
+Requires-Dist: beautifulsoup4
+Requires-Dist: py-mini-racer
+Requires-Dist: requests
+Requires-Dist: pyyaml
+Provides-Extra: cli
+Requires-Dist: click ; extra == 'cli'
+Requires-Dist: tqdm ; extra == 'cli'
+Requires-Dist: pytz ; extra == 'cli'
+Requires-Dist: python-dateutil ; extra == 'cli'
+
+## Overview
+This is the full API for Gradescope so you can autograde exams!
+
+To install, run `pip install fullGSapi[cli]`. To develop, create a virtualenv and run `pip install -e .`.
+
+This is an **unofficial** tool which allows you to interact with Gradescope. Please **DO NOT** use it to spam their servers (you should really use rate limiting on it).
+
+This tool was created for educational purposes.
+
