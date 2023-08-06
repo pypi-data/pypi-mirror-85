@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: py-crtsh
+Version: 0.0.3
+Summary: A simple package to do basic queries of crt.sh
+Home-page: https://github.com/PlantDaddy/py-crtsh
+Author: Plant Daddy
+Author-email: CqP5TZ77NYBf5uQt@protonmail.com
+License: BSD
+Project-URL: Tracker, https://github.com/PlantDaddy/py-crtsh
+Description: # Py-CRTSH
+        
+        Licensed under 3 Clause BSD<br />
+        This module provides a method to do basic queries to the site, 
+        [crt.sh](https://crt.sh).
+        
+        Usage is very basic:
+        
+        ```python
+        from crtsh import Crtsh
+        query = Crtsh()
+        results = query.identify('test.com')
+        ```
+        
+        More advanced usage may be added as needed/requested
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
