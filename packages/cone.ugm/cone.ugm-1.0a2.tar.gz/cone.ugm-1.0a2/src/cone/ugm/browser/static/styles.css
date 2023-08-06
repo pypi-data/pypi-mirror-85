@@ -1,0 +1,290 @@
+.hidden {
+    display:none;
+}
+
+/* columns */
+div.left_column {
+    padding-left:0px;
+    padding-right:0px;
+}
+div.right_column {
+    padding-left:0px;
+    padding-right:0px;
+}
+@media (min-width: 992px) {
+    div.left_column {
+        padding-left:0px;
+        padding-right:6px;
+    }
+    div.right_column {
+        padding-left:6px;
+        padding-right:0px;
+    }
+}
+
+/* add button */
+div.add_button {
+    float:left;
+    margin-bottom:6px;
+}
+
+/* action icons */
+a.action {
+    line-height:16px;
+    font-size:16px;
+    text-decoration:none;
+    float:right;
+    margin-top:2px;
+}
+a.action:hover {
+    text-decoration:none;
+}
+a.add_item::before,
+a.add_item_disabled::before {
+    font-family:"Ionicons";
+    content: "\f218";
+}
+a.add_item,
+a.add_item:hover {
+    color:#00ff00;
+}
+a.add_item_disabled,
+a.add_item_disable:hover {
+    cursor:default;
+    color:#ccc !important;
+}
+a.remove_item::before,
+a.remove_item_disabled::before {
+    font-family:"Ionicons";
+    content: "\f209";
+}
+a.remove_item,
+a.remove_item:hover {
+    color:#ff0000;
+}
+a.remove_item_disabled,
+a.remove_item_disable:hover {
+    cursor:default;
+    color:#ccc !important;
+}
+a.delete_item::before,
+a.delete_item_disabled::before {
+    font-family:"Ionicons";
+    content: "\f12a";
+}
+a.delete_item,
+a.delete_item:hover {
+    color:#ff0000;
+}
+a.delete_item_disabled,
+a.delete_item_disable:hover {
+    cursor:default;
+    color:#ccc !important;
+}
+
+/* column listing */
+div.columnlisting .pagination {
+    margin-top:-12px;
+}
+div.columnlisting .pagination > li > a,
+div.columnlisting .pagination > li > span {
+    padding:10px 10px;
+}
+div.columnlisting div.column_filter {
+    float:right;
+}
+div.columnlisting div.column_limit {
+    float:right;
+    margin-right:12px;
+}
+div.columnlisting div.column_limit label {
+    display:inline-block;
+    padding-top:2px;
+}
+div.columnlisting div.column_limit input {
+    display:inline-block;
+    position:relative;
+    top:4px;
+}
+div.columnsorting {
+    margin-bottom:6px;
+}
+div.columnsorting div {
+    color:#000;
+}
+div.columnsorting .columnsorticon::before {
+    font-family:"Ionicons";
+    content:"\f20b";
+}
+div.columnsorting .btn.asc .columnsorticon::before {
+    font-family:"Ionicons";
+    content:"\f10d";
+}
+div.columnsorting .btn.desc .columnsorticon::before {
+    font-family:"Ionicons";
+    content:"\f104";
+}
+div.columnitems li {
+    cursor:pointer;
+}
+div.columnitems li.hidden {
+    display:none;
+}
+div.columnitems li.selected {
+    color:#fff;
+    background-color:#49539f !important;
+}
+div.columnitems div.cols {
+    float:left;
+    width:90%;
+}
+div.columnitems div.cols div {
+    float:left;
+    overflow:hidden;
+}
+div.columnitems div.cols div.sort_col_1 {
+    width:30%;
+}
+div.columnitems div.cols div.sort_col_2 {
+    width:70%;
+}
+div.columnitems div.actions {
+    float:right;
+}
+
+/* principal forms */
+span.go_to_principal,
+span.go_to_principals {
+    float:right;
+    font-size:220%;
+    margin-right:12px;
+    margin-top:2px;
+    cursor:pointer;
+}
+#form-groupform .display-text.form-control,
+#form-userform .display-text.form-control {
+    border:none;
+    box-shadow:none;
+    padding-left:0;
+}
+#image-preview-userform-portrait {
+    border-radius:3px 3px 3px 3px;
+    box-shadow:0px 0px 4px #666666;
+}
+#input-userform-portrait {
+    margin-top:12px;
+    margin-bottom:6px;
+}
+#checkbox-groupform-principal_roles-wrapper,
+#checkbox-userform-principal_roles-wrapper {
+    padding-left:0;
+}
+#checkbox-groupform-principal_roles-wrapper li,
+#checkbox-userform-principal_roles-wrapper li {
+    margin-top:0;
+    margin-bottom:0;
+    padding-bottom:4px;
+}
+#checkbox-groupform-principal_roles-wrapper input[type="checkbox"],
+#checkbox-userform-principal_roles-wrapper input[type="checkbox"] {
+    margin-left:0;
+}
+div.expiration-widget #input-userform-active {
+    width:35%;
+}
+div.expiration-widget #checkbox-userform-active {
+    display:inline-block;
+    position:relative;
+    top:2px;
+}
+div.expiration-widget label {
+    display:inline-block;
+    margin-left:12px;
+    margin-right:12px;
+}
+div.expiration-widget #checkbox-userform-active,
+div.expiration-widget #input-userform-active {
+    display:inline-block;
+}
+
+/* general settings */
+#form-ugm_settings .dictwidget th.actions,
+#form-ugm_settings .dictwidget td.actions {
+    width:7em;
+    padding:5px 0 0 0;
+}
+#form-ugm_settings .dict_actions {
+    margin-top:8px;
+    padding-right:0;
+    width:7em;
+}
+#form-ugm_settings tr th:first-child,
+#form-ugm_settings tr td:first-child {
+    padding-left:0;
+}
+#array-ugm_settings-users_exposed_attributes td.widget {
+    padding-bottom:4px;
+}
+#array-ugm_settings-users_exposed_attributes td.widget input {
+    margin-top:4px;
+}
+#field-ugm_settings-users_form_attrmap label,
+#field-ugm_settings-users_listing_columns label,
+#field-ugm_settings-users_exposed_attributes label,
+#field-ugm_settings-groups_form_attrmap label,
+#field-ugm_settings-groups_listing_columns label {
+    font-size:130%;
+    text-decoration:underline;
+    margin-top:12px;
+}
+
+/* localmanager settings */
+#array-localmanager_settings-rules table td.actions {
+    vertical-align:top;
+}
+#array-localmanager_settings-rules th.head_actions,
+#array-localmanager_settings-rules td.actions,
+#array-localmanager_settings-rules div.array_actions {
+    width:4em;
+}
+#array-localmanager_settings-rules div.array_actions {
+    margin-top:8px;
+}
+#array-localmanager_settings-rules table.rules_array {
+    width:100%;
+}
+#array-localmanager_settings-rules table.rules_array > thead th:first-child {
+    font-size:130%;
+    text-decoration:underline;
+}
+#array-localmanager_settings-rules table.rules_array > tbody > tr {
+    border-top:#ccc 1px solid;
+}
+#array-localmanager_settings-rules table.targets_array {
+    margin-top:0;
+    width:100%;
+}
+#array-localmanager_settings-rules div.source_field {
+    float:left;
+    width:45%;
+    padding-right:6px;
+    padding-top:6px;
+}
+#array-localmanager_settings-rules div.source_field label {
+    margin-bottom:7px;
+}
+#array-localmanager_settings-rules div.targets_field {
+    float:right;
+    width:55%;
+    padding-left:6px;
+}
+#array-localmanager_settings-rules div.targets_field input[type="text"] {
+    float:left;
+    width:90%;
+}
+#array-localmanager_settings-rules div.targets_field input[type="checkbox"] {
+    float:left;
+    position:relative;
+    top:5px;
+    margin-left:6px;
+}
