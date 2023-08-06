@@ -1,0 +1,441 @@
+active_locators:
+  - mode: ''
+    value: ''
+    index: 0
+    score: 0.5
+inactive_locators:
+  - mode: ''
+    value: ''
+    index: 0
+    score: 0.5
+actions:
+  - verb: ''
+    name: ''
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.5
+  - verb: fill
+    name: first_name
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.25
+      - mode: name
+        value: first_name
+        index: 0
+        score: 0.25
+      - mode: name
+        value: first-name
+        index: 0
+        score: 0.25
+      - mode: id
+        value: first_name
+        index: 0
+        score: 0.25
+      - mode: id
+        value: first-name
+        index: 0
+        score: 0.25
+      - mode: css
+        value: '[aria-label="First Name"]'
+        index: 0
+        score: 1.0
+      - mode: id
+        value: FirstName
+        index: 0
+        score: 0.5
+  - verb: fill
+    name: last_name
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.25
+      - mode: name
+        value: last_name
+        index: 0
+        score: 0.25
+      - mode: name
+        value: last-name
+        index: 0
+        score: 0.25
+      - mode: id
+        value: last_name
+        index: 0
+        score: 0.25
+      - mode: id
+        value: last-name
+        index: 0
+        score: 0.25
+      - mode: css
+        value: '[aria-label="Last Name"]'
+        index: 0
+        score: 1.0
+      - mode: id
+        value: LastName
+        index: 0
+        score: 0.5
+  - verb: fill
+    name: phone
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.0625
+      - mode: name
+        value: phone
+        index: 0
+        score: 0.0625
+      - mode: name
+        value: phone
+        index: 0
+        score: 0.0625
+      - mode: id
+        value: phone
+        index: 0
+        score: 0.0625
+      - mode: id
+        value: phone
+        index: 0
+        score: 0.0625
+      - mode: css
+        value: '[type="tel"]'
+        index: 0
+        score: 1.0
+      - mode: id
+        value: Phone
+        index: 0
+        score: 0.125
+  - verb: fill
+    name: address
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.0312
+      - mode: name
+        value: address
+        index: 0
+        score: 0.0312
+      - mode: name
+        value: address
+        index: 0
+        score: 0.0312
+      - mode: id
+        value: address
+        index: 0
+        score: 0.0312
+      - mode: id
+        value: address
+        index: 0
+        score: 0.0312
+      - mode: css
+        value: '[aria-label="Address Line 1"]'
+        index: 0
+        score: 1.0
+      - mode: id
+        value: Address
+        index: 0
+        score: 0.0625
+  - verb: fill
+    name: city
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.25
+      - mode: name
+        value: city
+        index: 0
+        score: 0.25
+      - mode: name
+        value: city
+        index: 0
+        score: 0.25
+      - mode: id
+        value: city
+        index: 0
+        score: 0.25
+      - mode: id
+        value: city
+        index: 0
+        score: 0.25
+      - mode: css
+        value: '[aria-label="City"]'
+        index: 0
+        score: 1.0
+      - mode: id
+        value: City
+        index: 0
+        score: 0.5
+  - verb: select
+    name: state
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.25
+      - mode: name
+        value: state
+        index: 0
+        score: 0.25
+      - mode: name
+        value: state
+        index: 0
+        score: 0.25
+      - mode: id
+        value: state
+        index: 0
+        score: 0.25
+      - mode: id
+        value: state
+        index: 0
+        score: 0.25
+      - mode: css
+        value: '[aria-label="State"]'
+        index: 0
+        score: 1.0
+      - mode: id
+        value: State
+        index: 0
+        score: 0.5
+  - verb: fill
+    name: zip_code
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.0078
+      - mode: name
+        value: zip_code
+        index: 0
+        score: 0.0078
+      - mode: name
+        value: zip-code
+        index: 0
+        score: 0.0078
+      - mode: id
+        value: zip_code
+        index: 0
+        score: 0.0078
+      - mode: id
+        value: zip-code
+        index: 0
+        score: 0.0078
+      - mode: css
+        value: '[aria-label="ZIP Code"]'
+        index: 0
+        score: 1.0
+      - mode: id
+        value: ZipCode
+        index: 0
+        score: 0.0156
+  - verb: fill
+    name: email
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.0156
+      - mode: name
+        value: email
+        index: 0
+        score: 0.0156
+      - mode: name
+        value: email
+        index: 0
+        score: 0.0156
+      - mode: id
+        value: email
+        index: 0
+        score: 0.0156
+      - mode: id
+        value: email
+        index: 0
+        score: 0.0156
+      - mode: css
+        value: '[type="email"]'
+        index: 0
+        score: 1.0
+      - mode: id
+        value: Email
+        index: 0
+        score: 0.0312
+  - verb: fill
+    name: email_confirmation
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.0156
+      - mode: name
+        value: email_confirmation
+        index: 0
+        score: 0.0156
+      - mode: name
+        value: email-confirmation
+        index: 0
+        score: 0.0156
+      - mode: id
+        value: email_confirmation
+        index: 0
+        score: 0.0156
+      - mode: id
+        value: email-confirmation
+        index: 0
+        score: 0.0156
+      - mode: css
+        value: '[type="email"]'
+        index: 1
+        score: 1.0
+      - mode: id
+        value: EmailConfirmation
+        index: 0
+        score: 0.0312
+  - verb: select
+    name: state_of_the_incident
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.0039
+      - mode: name
+        value: field101315264
+        index: 0
+        score: 1.0
+      - mode: name
+        value: incident-state
+        index: 0
+        score: 0.0078
+      - mode: id
+        value: incident_state
+        index: 0
+        score: 0.0078
+      - mode: id
+        value: incident-state
+        index: 0
+        score: 0.0078
+      - mode: css
+        value: '[title="Which state did this incident occur in?"]'
+        index: 0
+        score: 0.0076
+      - mode: id
+        value: IncidentState
+        index: 0
+        score: 0.0078
+      - mode: tag
+        value: select
+        index: 1
+        score: 0.0
+  - verb: fill
+    name: county_of_the_incident
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.125
+      - mode: name
+        value: incident_county
+        index: 0
+        score: 0.125
+      - mode: name
+        value: incident-county
+        index: 0
+        score: 0.125
+      - mode: id
+        value: incident_county
+        index: 0
+        score: 0.125
+      - mode: id
+        value: incident-county
+        index: 0
+        score: 0.125
+      - mode: css
+        value: "[title=\"What's the county where the incident occurred?\"]"
+        index: 0
+        score: 1.0
+      - mode: id
+        value: IncidentCounty
+        index: 0
+        score: 0.25
+  - verb: fill
+    name: name_of_the_polling_place
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.125
+      - mode: name
+        value: polling_place
+        index: 0
+        score: 0.125
+      - mode: name
+        value: polling-place
+        index: 0
+        score: 0.125
+      - mode: id
+        value: polling_place
+        index: 0
+        score: 0.125
+      - mode: id
+        value: polling-place
+        index: 0
+        score: 0.125
+      - mode: css
+        value: "[title=\"What's the name of the polling place where the incident occurred?\"\
+          ]"
+        index: 0
+        score: 1.0
+      - mode: id
+        value: PollingPlace
+        index: 0
+        score: 0.25
+  - verb: fill
+    name: description_of_the_incident
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.125
+      - mode: name
+        value: description
+        index: 0
+        score: 0.125
+      - mode: name
+        value: description
+        index: 0
+        score: 0.125
+      - mode: id
+        value: description
+        index: 0
+        score: 0.125
+      - mode: id
+        value: description
+        index: 0
+        score: 0.125
+      - mode: css
+        value: "[title=\"Please describe what's occurred or occurring\"]"
+        index: 0
+        score: 1.0
+      - mode: id
+        value: Description
+        index: 0
+        score: 0.25
+  - verb: click
+    name: submit_form
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.0156
+      - mode: text
+        value: Submit Form
+        index: 0
+        score: 0.0156
+      - mode: value
+        value: Submit Form
+        index: 0
+        score: 1.0

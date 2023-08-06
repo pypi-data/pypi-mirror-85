@@ -1,0 +1,265 @@
+active_locators:
+  - mode: ''
+    value: ''
+    index: 0
+    score: 0.5
+inactive_locators:
+  - mode: ''
+    value: ''
+    index: 0
+    score: 0.5
+actions:
+  - verb: ''
+    name: ''
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.5
+  - verb: fill
+    name: first_name
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.25
+      - mode: name
+        value: first_name
+        index: 0
+        score: 1.0
+      - mode: name
+        value: first-name
+        index: 0
+        score: 0.5
+      - mode: id
+        value: first_name
+        index: 0
+        score: 0.5
+      - mode: id
+        value: first-name
+        index: 0
+        score: 0.5
+      - mode: css
+        value: '[aria-label="First Name"]'
+        index: 0
+        score: 0.5
+  - verb: fill
+    name: last_name
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.25
+      - mode: name
+        value: last_name
+        index: 0
+        score: 1.0
+      - mode: name
+        value: last-name
+        index: 0
+        score: 0.5
+      - mode: id
+        value: last_name
+        index: 0
+        score: 0.5
+      - mode: id
+        value: last-name
+        index: 0
+        score: 0.5
+      - mode: css
+        value: '[aria-label="Last Name"]'
+        index: 0
+        score: 0.5
+  - verb: fill
+    name: email_address
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.125
+      - mode: name
+        value: email_address
+        index: 0
+        score: 0.125
+      - mode: name
+        value: email-address
+        index: 0
+        score: 0.125
+      - mode: id
+        value: email
+        index: 0
+        score: 1.0
+      - mode: id
+        value: email-address
+        index: 0
+        score: 0.25
+      - mode: css
+        value: '[aria-label="Email Address"]'
+        index: 0
+        score: 0.25
+  - verb: fill
+    name: cell_phone
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.125
+      - mode: name
+        value: cell_phone
+        index: 0
+        score: 0.125
+      - mode: name
+        value: cell-phone
+        index: 0
+        score: 0.125
+      - mode: id
+        value: cell_phone
+        index: 0
+        score: 0.125
+      - mode: id
+        value: phone
+        index: 0
+        score: 1.0
+      - mode: css
+        value: '[aria-label="Cell Phone"]'
+        index: 0
+        score: 0.25
+  - verb: fill
+    name: address
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.25
+      - mode: name
+        value: address
+        index: 0
+        score: 1.0
+      - mode: name
+        value: address
+        index: 0
+        score: 0.5
+      - mode: id
+        value: address
+        index: 0
+        score: 0.5
+      - mode: id
+        value: address
+        index: 0
+        score: 0.5
+      - mode: css
+        value: '[aria-label="Address"]'
+        index: 0
+        score: 0.5
+      - mode: id
+        value: Address
+        index: 0
+        score: 0.5
+  - verb: fill
+    name: city
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.25
+      - mode: name
+        value: city
+        index: 0
+        score: 1.0
+      - mode: name
+        value: city
+        index: 0
+        score: 0.5
+      - mode: id
+        value: city
+        index: 0
+        score: 0.5
+      - mode: id
+        value: city
+        index: 0
+        score: 0.5
+      - mode: css
+        value: '[aria-label="City"]'
+        index: 0
+        score: 0.5
+      - mode: id
+        value: City
+        index: 0
+        score: 0.5
+  - verb: select
+    name: state
+    locators:
+      - mode: id
+        value: ''
+        index: 0
+        score: 0.25
+      - mode: name
+        value: state
+        index: 0
+        score: 1.0
+      - mode: name
+        value: state
+        index: 0
+        score: 0.5
+      - mode: id
+        value: state
+        index: 0
+        score: 0.5
+      - mode: id
+        value: state
+        index: 0
+        score: 0.5
+      - mode: css
+        value: '[aria-label="State"]'
+        index: 0
+        score: 0.5
+      - mode: id
+        value: State
+        index: 0
+        score: 0.5
+  - verb: fill
+    name: zip_code
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.125
+      - mode: name
+        value: zip_code
+        index: 0
+        score: 0.125
+      - mode: name
+        value: zip-code
+        index: 0
+        score: 0.125
+      - mode: id
+        value: zipcode
+        index: 0
+        score: 1.0
+      - mode: id
+        value: zip-code
+        index: 0
+        score: 0.25
+      - mode: css
+        value: '[aria-label="Zip Code"]'
+        index: 0
+        score: 0.25
+      - mode: id
+        value: ZipCode
+        index: 0
+        score: 0.25
+  - verb: click
+    name: submit
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.25
+      - mode: text
+        value: Submit
+        index: 0
+        score: 1.0
+      - mode: text
+        value: Submit
+        index: 0
+        score: 0.5

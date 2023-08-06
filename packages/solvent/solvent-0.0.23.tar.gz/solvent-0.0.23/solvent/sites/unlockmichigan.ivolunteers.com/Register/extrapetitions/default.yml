@@ -1,0 +1,218 @@
+active_locators:
+  - mode: ''
+    value: ''
+    index: 0
+    score: 0.5
+inactive_locators:
+  - mode: ''
+    value: ''
+    index: 0
+    score: 0.5
+actions:
+  - verb: fill
+    name: email
+    locators:
+      - mode: id
+        value: Signee_Email
+        index: 0
+        score: 1.0
+      - mode: name
+        value: email
+        index: 0
+        score: 0.5
+      - mode: name
+        value: email
+        index: 0
+        score: 0.5
+      - mode: id
+        value: email
+        index: 0
+        score: 0.5
+      - mode: id
+        value: email
+        index: 0
+        score: 0.5
+      - mode: css
+        value: '[aria-label="Email"]'
+        index: 0
+        score: 0.5
+  - verb: fill
+    name: first_name
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.0625
+      - mode: name
+        value: first_name
+        index: 0
+        score: 0.0625
+      - mode: name
+        value: first-name
+        index: 0
+        score: 0.0625
+      - mode: id
+        value: Signee_FirstName
+        index: 0
+        score: 1.0
+      - mode: id
+        value: first-name
+        index: 0
+        score: 0.125
+      - mode: css
+        value: '[aria-label="First Name"]'
+        index: 0
+        score: 0.125
+  - verb: fill
+    name: last_name
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.0625
+      - mode: name
+        value: last_name
+        index: 0
+        score: 0.0625
+      - mode: name
+        value: last-name
+        index: 0
+        score: 0.0625
+      - mode: id
+        value: Signee_LastName
+        index: 0
+        score: 1.0
+      - mode: id
+        value: last-name
+        index: 0
+        score: 0.125
+      - mode: css
+        value: '[aria-label="Last Name"]'
+        index: 0
+        score: 0.125
+  - verb: fill
+    name: address
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.0625
+      - mode: name
+        value: address
+        index: 0
+        score: 0.0625
+      - mode: name
+        value: address
+        index: 0
+        score: 0.0625
+      - mode: id
+        value: Signee_AddressLine1
+        index: 0
+        score: 1.0
+      - mode: id
+        value: address
+        index: 0
+        score: 0.125
+      - mode: css
+        value: '[aria-label="Address"]'
+        index: 0
+        score: 0.125
+  - verb: fill
+    name: city
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.0625
+      - mode: name
+        value: city
+        index: 0
+        score: 0.0625
+      - mode: name
+        value: city
+        index: 0
+        score: 0.0625
+      - mode: id
+        value: Signee_City
+        index: 0
+        score: 1.0
+      - mode: id
+        value: city
+        index: 0
+        score: 0.125
+      - mode: css
+        value: '[aria-label="City"]'
+        index: 0
+        score: 0.125
+  - verb: select
+    name: state
+    locators:
+      - mode: id
+        value: Signee_State
+        index: 0
+        score: 1.0
+  - verb: fill
+    name: zip_code
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.125
+      - mode: name
+        value: zip_code
+        index: 0
+        score: 0.125
+      - mode: name
+        value: zip-code
+        index: 0
+        score: 0.125
+      - mode: id
+        value: Signee_PostalCode
+        index: 0
+        score: 1.0
+      - mode: id
+        value: zip-code
+        index: 0
+        score: 0.25
+      - mode: css
+        value: '[aria-label="Zip Code"]'
+        index: 0
+        score: 0.25
+  - verb: click
+    name: sign_up
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.125
+      - mode: text
+        value: Sign Up
+        index: 1
+        score: 1.0
+  - verb: fill
+    name: state
+    locators:
+      - mode: ''
+        value: ''
+        index: 0
+        score: 0.125
+      - mode: name
+        value: state
+        index: 0
+        score: 0.125
+      - mode: name
+        value: state
+        index: 0
+        score: 0.125
+      - mode: id
+        value: state
+        index: 0
+        score: 0.125
+      - mode: id
+        value: state
+        index: 0
+        score: 0.125
+      - mode: css
+        value: '[aria-label="State"]'
+        index: 0
+        score: 0.125
