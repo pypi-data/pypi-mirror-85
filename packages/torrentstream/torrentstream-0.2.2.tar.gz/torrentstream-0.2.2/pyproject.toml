@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "torrentstream"
+version = "0.2.2"
+description = "Quick n' dirty torrent streaming with libtorrent and python"
+authors = ["David Francos <opensource@davidfrancos.net>"]
+license = "Apache-2.0"
+readme="Readme.rst"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+async_timeout = "^3.0.1"
+rich = "^9.2.0"
+
+[tool.poetry.dev-dependencies]
+sphinx = "^3.3.0"
+yapf = "^0.30.0"
+
+[tool.poetry.scripts]
+torrentstream = "torrentstream:main"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
