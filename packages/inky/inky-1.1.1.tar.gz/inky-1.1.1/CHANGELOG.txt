@@ -1,0 +1,64 @@
+1.1.1
+-----
+
+* Enhancement: drive UC81559 CS with GPIO to avoid conflict with Grow workaround
+* Add 7-colour/UC8159 specifics to EEPROM
+* BugFix: define UC8159 colour and size constants in class
+* BugFix: fix auto to grab args properly, support UC8159 and fallback gracefully
+
+1.1.0
+-----
+
+* New: Support for UC8159-based 7-colour 600x448 display
+* Enhancement: auto now includes options for fallback
+* Enhancement: EEPROM can now give text string for display variant
+
+1.0.2
+-----
+
+* Enhancement: Always install Pi dependencies
+
+1.0.1
+-----
+
+* Enhancement: Tweak setup.py extras for easier dependency install
+
+1.0.0
+-----
+
+* New: Support for SSD1608-based displays
+* New: Mock Inky pHAT and wHAT displays
+* New: Automatic Inky detection and class constructor
+* Enhancement: Support for alternate i2c_bus when reading eeprom
+* Enhancement: Support for alternate spi_bus
+* Enhancement: Support for alternate GPIO driver
+* Enhancement: Replaced sys.exit calls with ImportError
+* Enhancement: Improved docstrings
+
+0.0.5
+-----
+
+* Enhancement: Added support for red/b/w high-temp Inky wHAT
+
+0.0.4
+-----
+
+* BugFix: Reverted normal red LUTs to correct values
+
+0.0.3
+-----
+
+* Enhancement: Added support for display variant detection
+* Enhancement: Added DocStrings
+* BugFix: Fixed set_border for all colours
+
+0.0.2
+-----
+
+* BugFix: Yellow Inky pHAT now yellow instead of brown/black
+* Enhancement: Performance tweak for set_image
+
+0.0.1
+-----
+
+* Initial Release
