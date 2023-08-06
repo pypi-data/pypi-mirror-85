@@ -1,0 +1,2151 @@
+[
+   {
+      "activity_name": "mytool",
+      "activity_uuid": "ee7be976-e64e-4b7a-8209-5901691cbd4d",
+      "start": {
+         "time_utc": "2020-11-18T17:12:57.487"
+      },
+      "stop": {
+         "time_utc": "2020-11-18T17:12:58.002"
+      },
+      "system": {
+         "ctapipe_version": "0.10.0.post1",
+         "ctapipe_resources_version": "not installed",
+         "eventio_version": "1.4.2",
+         "ctapipe_svc_path": null,
+         "executable": "/home/travis/virtualenv/python3.8.1/bin/python",
+         "platform": {
+            "architecture_bits": "64bit",
+            "architecture_linkage": "ELF",
+            "machine": "x86_64",
+            "processor": "x86_64",
+            "node": "travis-job-0f2f39a9-c3e3-4532-8be0-be226d07d530",
+            "version": "#31~18.04.1-Ubuntu SMP Mon Jun 22 15:24:52 UTC 2020",
+            "system": "Linux",
+            "release": "5.3.0-1029-gcp",
+            "libcver": [
+               "glibc",
+               "2.27"
+            ],
+            "num_cpus": 2,
+            "boot_time": "2020-11-18T17:02:37.000"
+         },
+         "python": {
+            "version_string": "3.8.1 (default, Dec 20 2019, 10:06:11) \n[GCC 7.4.0]",
+            "version": [
+               "3",
+               "8",
+               "1"
+            ],
+            "compiler": "GCC 7.4.0",
+            "implementation": "CPython"
+         },
+         "environment": {
+            "CONDA_DEFAULT_ENV": null,
+            "CONDA_PREFIX": null,
+            "CONDA_PYTHON_EXE": null,
+            "CONDA_EXE": null,
+            "CONDA_PROMPT_MODIFIER": null,
+            "CONDA_SHLVL": null,
+            "PATH": "/home/travis/virtualenv/python3.8.1/bin:/home/travis/bin:/home/travis/.local/bin:/usr/local/lib/jvm/openjdk11/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.nvm/versions/node/v10.16.0/bin:/home/travis/.kiex/elixirs/elixir-1.7.4/bin:/home/travis/.kiex/bin:/home/travis/.rvm/gems/ruby-2.6.5/bin:/home/travis/.rvm/gems/ruby-2.6.5@global/bin:/home/travis/.rvm/rubies/ruby-2.6.5/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/maven-3.6.3/bin:/usr/local/cmake-3.12.4/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin:/home/travis/.yarn/bin",
+            "LD_LIBRARY_PATH": null,
+            "DYLD_LIBRARY_PATH": null,
+            "USER": "travis",
+            "HOME": "/home/travis",
+            "SHELL": "/bin/bash"
+         },
+         "arguments": [
+            "/home/travis/virtualenv/python3.8.1/lib/python3.8/site-packages/ipykernel_launcher.py",
+            "-f",
+            "/tmp/tmpcp6k8nqg.json",
+            "--HistoryManager.hist_file=:memory:"
+         ],
+         "start_time_utc": "2020-11-18T17:12:57.495"
+      },
+      "input": [],
+      "output": [],
+      "config": {
+         "MyTool": {
+            "config_file": null,
+            "iterations": 5,
+            "log_config": {
+               "version": 1,
+               "disable_existing_loggers": false,
+               "formatters": {
+                  "file": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  },
+                  "console": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  }
+               },
+               "handlers": {
+                  "ctapipe-console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": 30
+                  },
+                  "console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": "NOTSET"
+                  }
+               },
+               "loggers": {
+                  "ctapipe": {
+                     "level": 30,
+                     "handlers": [
+                        "ctapipe-console"
+                     ],
+                     "propagate": false
+                  }
+               }
+            },
+            "log_datefmt": "%Y-%m-%d %H:%M:%S",
+            "log_file": null,
+            "log_file_level": "INFO",
+            "log_format": "[%(name)s]%(highlevel)s %(message)s",
+            "log_level": 30,
+            "provenance_log": "/home/travis/build/cta-observatory/ctapipe/docs/examples/mytool.provenance.log",
+            "quiet": false,
+            "show_config": false,
+            "show_config_json": false,
+            "MyComponent": {
+               "value": -1
+            },
+            "SecondaryMyComponent": {
+               "value": -1
+            },
+            "TelescopeWiseComponent": {
+               "param": [
+                  [
+                     "type",
+                     "*",
+                     5.0
+                  ]
+               ]
+            },
+            "AdvancedComponent": {
+               "infile": "/home/travis/.cache/ctapipe/gamma_test.simtel.gz",
+               "outfile": null,
+               "value1": -1,
+               "MyComponent": {
+                  "value": -1
+               }
+            }
+         }
+      },
+      "status": "completed",
+      "duration_min": 0.00858333333336958
+   }
+][
+   {
+      "activity_name": "mytool",
+      "activity_uuid": "ee7be976-e64e-4b7a-8209-5901691cbd4d",
+      "start": {
+         "time_utc": "2020-11-18T17:12:57.487"
+      },
+      "stop": {
+         "time_utc": "2020-11-18T17:12:58.002"
+      },
+      "system": {
+         "ctapipe_version": "0.10.0.post1",
+         "ctapipe_resources_version": "not installed",
+         "eventio_version": "1.4.2",
+         "ctapipe_svc_path": null,
+         "executable": "/home/travis/virtualenv/python3.8.1/bin/python",
+         "platform": {
+            "architecture_bits": "64bit",
+            "architecture_linkage": "ELF",
+            "machine": "x86_64",
+            "processor": "x86_64",
+            "node": "travis-job-0f2f39a9-c3e3-4532-8be0-be226d07d530",
+            "version": "#31~18.04.1-Ubuntu SMP Mon Jun 22 15:24:52 UTC 2020",
+            "system": "Linux",
+            "release": "5.3.0-1029-gcp",
+            "libcver": [
+               "glibc",
+               "2.27"
+            ],
+            "num_cpus": 2,
+            "boot_time": "2020-11-18T17:02:37.000"
+         },
+         "python": {
+            "version_string": "3.8.1 (default, Dec 20 2019, 10:06:11) \n[GCC 7.4.0]",
+            "version": [
+               "3",
+               "8",
+               "1"
+            ],
+            "compiler": "GCC 7.4.0",
+            "implementation": "CPython"
+         },
+         "environment": {
+            "CONDA_DEFAULT_ENV": null,
+            "CONDA_PREFIX": null,
+            "CONDA_PYTHON_EXE": null,
+            "CONDA_EXE": null,
+            "CONDA_PROMPT_MODIFIER": null,
+            "CONDA_SHLVL": null,
+            "PATH": "/home/travis/virtualenv/python3.8.1/bin:/home/travis/bin:/home/travis/.local/bin:/usr/local/lib/jvm/openjdk11/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.nvm/versions/node/v10.16.0/bin:/home/travis/.kiex/elixirs/elixir-1.7.4/bin:/home/travis/.kiex/bin:/home/travis/.rvm/gems/ruby-2.6.5/bin:/home/travis/.rvm/gems/ruby-2.6.5@global/bin:/home/travis/.rvm/rubies/ruby-2.6.5/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/maven-3.6.3/bin:/usr/local/cmake-3.12.4/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin:/home/travis/.yarn/bin",
+            "LD_LIBRARY_PATH": null,
+            "DYLD_LIBRARY_PATH": null,
+            "USER": "travis",
+            "HOME": "/home/travis",
+            "SHELL": "/bin/bash"
+         },
+         "arguments": [
+            "/home/travis/virtualenv/python3.8.1/lib/python3.8/site-packages/ipykernel_launcher.py",
+            "-f",
+            "/tmp/tmpcp6k8nqg.json",
+            "--HistoryManager.hist_file=:memory:"
+         ],
+         "start_time_utc": "2020-11-18T17:12:57.495"
+      },
+      "input": [],
+      "output": [],
+      "config": {
+         "MyTool": {
+            "config_file": null,
+            "iterations": 5,
+            "log_config": {
+               "version": 1,
+               "disable_existing_loggers": false,
+               "formatters": {
+                  "file": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  },
+                  "console": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  }
+               },
+               "handlers": {
+                  "ctapipe-console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": 20
+                  },
+                  "console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": "NOTSET"
+                  }
+               },
+               "loggers": {
+                  "ctapipe": {
+                     "level": 20,
+                     "handlers": [
+                        "ctapipe-console"
+                     ],
+                     "propagate": false
+                  }
+               }
+            },
+            "log_datefmt": "%Y-%m-%d %H:%M:%S",
+            "log_file": null,
+            "log_file_level": "INFO",
+            "log_format": "[%(name)s]%(highlevel)s %(message)s",
+            "log_level": 30,
+            "provenance_log": "/home/travis/build/cta-observatory/ctapipe/docs/examples/mytool.provenance.log",
+            "quiet": false,
+            "show_config": false,
+            "show_config_json": false,
+            "MyComponent": {
+               "value": -1
+            },
+            "SecondaryMyComponent": {
+               "value": -1
+            },
+            "TelescopeWiseComponent": {
+               "param": [
+                  [
+                     "type",
+                     "*",
+                     5.0
+                  ]
+               ]
+            },
+            "AdvancedComponent": {
+               "infile": "/home/travis/.cache/ctapipe/gamma_test.simtel.gz",
+               "outfile": null,
+               "value1": -1,
+               "MyComponent": {
+                  "value": -1
+               }
+            }
+         }
+      },
+      "status": "completed",
+      "duration_min": 0.00858333333336958
+   },
+   {
+      "activity_name": "mytool",
+      "activity_uuid": "f0c99f94-9364-4f3b-8823-cdb9ddcfe6fc",
+      "start": {
+         "time_utc": "2020-11-18T17:12:58.024"
+      },
+      "stop": {
+         "time_utc": "2020-11-18T17:12:58.343"
+      },
+      "system": {
+         "ctapipe_version": "0.10.0.post1",
+         "ctapipe_resources_version": "not installed",
+         "eventio_version": "1.4.2",
+         "ctapipe_svc_path": null,
+         "executable": "/home/travis/virtualenv/python3.8.1/bin/python",
+         "platform": {
+            "architecture_bits": "64bit",
+            "architecture_linkage": "ELF",
+            "machine": "x86_64",
+            "processor": "x86_64",
+            "node": "travis-job-0f2f39a9-c3e3-4532-8be0-be226d07d530",
+            "version": "#31~18.04.1-Ubuntu SMP Mon Jun 22 15:24:52 UTC 2020",
+            "system": "Linux",
+            "release": "5.3.0-1029-gcp",
+            "libcver": [
+               "glibc",
+               "2.27"
+            ],
+            "num_cpus": 2,
+            "boot_time": "2020-11-18T17:02:37.000"
+         },
+         "python": {
+            "version_string": "3.8.1 (default, Dec 20 2019, 10:06:11) \n[GCC 7.4.0]",
+            "version": [
+               "3",
+               "8",
+               "1"
+            ],
+            "compiler": "GCC 7.4.0",
+            "implementation": "CPython"
+         },
+         "environment": {
+            "CONDA_DEFAULT_ENV": null,
+            "CONDA_PREFIX": null,
+            "CONDA_PYTHON_EXE": null,
+            "CONDA_EXE": null,
+            "CONDA_PROMPT_MODIFIER": null,
+            "CONDA_SHLVL": null,
+            "PATH": "/home/travis/virtualenv/python3.8.1/bin:/home/travis/bin:/home/travis/.local/bin:/usr/local/lib/jvm/openjdk11/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.nvm/versions/node/v10.16.0/bin:/home/travis/.kiex/elixirs/elixir-1.7.4/bin:/home/travis/.kiex/bin:/home/travis/.rvm/gems/ruby-2.6.5/bin:/home/travis/.rvm/gems/ruby-2.6.5@global/bin:/home/travis/.rvm/rubies/ruby-2.6.5/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/maven-3.6.3/bin:/usr/local/cmake-3.12.4/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin:/home/travis/.yarn/bin",
+            "LD_LIBRARY_PATH": null,
+            "DYLD_LIBRARY_PATH": null,
+            "USER": "travis",
+            "HOME": "/home/travis",
+            "SHELL": "/bin/bash"
+         },
+         "arguments": [
+            "/home/travis/virtualenv/python3.8.1/lib/python3.8/site-packages/ipykernel_launcher.py",
+            "-f",
+            "/tmp/tmpcp6k8nqg.json",
+            "--HistoryManager.hist_file=:memory:"
+         ],
+         "start_time_utc": "2020-11-18T17:12:58.033"
+      },
+      "input": [],
+      "output": [],
+      "config": {
+         "MyTool": {
+            "config_file": null,
+            "iterations": 3,
+            "log_config": {
+               "version": 1,
+               "disable_existing_loggers": false,
+               "formatters": {
+                  "file": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  },
+                  "console": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  }
+               },
+               "handlers": {
+                  "ctapipe-console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": 20
+                  },
+                  "console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": "NOTSET"
+                  }
+               },
+               "loggers": {
+                  "ctapipe": {
+                     "level": 20,
+                     "handlers": [
+                        "ctapipe-console"
+                     ],
+                     "propagate": false
+                  }
+               }
+            },
+            "log_datefmt": "%Y-%m-%d %H:%M:%S",
+            "log_file": null,
+            "log_file_level": "INFO",
+            "log_format": "%(asctime)s : %(levelname)s [%(name)s %(funcName)s] %(message)s",
+            "log_level": 20,
+            "provenance_log": "/home/travis/build/cta-observatory/ctapipe/docs/examples/mytool.provenance.log",
+            "quiet": false,
+            "show_config": false,
+            "show_config_json": false,
+            "MyComponent": {
+               "value": -1
+            },
+            "SecondaryMyComponent": {
+               "value": -1
+            },
+            "TelescopeWiseComponent": {
+               "param": [
+                  [
+                     "type",
+                     "*",
+                     5.0
+                  ]
+               ]
+            },
+            "AdvancedComponent": {
+               "infile": "/home/travis/.cache/ctapipe/gamma_test.simtel.gz",
+               "outfile": null,
+               "value1": -1,
+               "MyComponent": {
+                  "value": -1
+               }
+            }
+         }
+      },
+      "status": "completed",
+      "duration_min": 0.005316666666761449
+   }
+][
+   {
+      "activity_name": "mytool",
+      "activity_uuid": "ee7be976-e64e-4b7a-8209-5901691cbd4d",
+      "start": {
+         "time_utc": "2020-11-18T17:12:57.487"
+      },
+      "stop": {
+         "time_utc": "2020-11-18T17:12:58.002"
+      },
+      "system": {
+         "ctapipe_version": "0.10.0.post1",
+         "ctapipe_resources_version": "not installed",
+         "eventio_version": "1.4.2",
+         "ctapipe_svc_path": null,
+         "executable": "/home/travis/virtualenv/python3.8.1/bin/python",
+         "platform": {
+            "architecture_bits": "64bit",
+            "architecture_linkage": "ELF",
+            "machine": "x86_64",
+            "processor": "x86_64",
+            "node": "travis-job-0f2f39a9-c3e3-4532-8be0-be226d07d530",
+            "version": "#31~18.04.1-Ubuntu SMP Mon Jun 22 15:24:52 UTC 2020",
+            "system": "Linux",
+            "release": "5.3.0-1029-gcp",
+            "libcver": [
+               "glibc",
+               "2.27"
+            ],
+            "num_cpus": 2,
+            "boot_time": "2020-11-18T17:02:37.000"
+         },
+         "python": {
+            "version_string": "3.8.1 (default, Dec 20 2019, 10:06:11) \n[GCC 7.4.0]",
+            "version": [
+               "3",
+               "8",
+               "1"
+            ],
+            "compiler": "GCC 7.4.0",
+            "implementation": "CPython"
+         },
+         "environment": {
+            "CONDA_DEFAULT_ENV": null,
+            "CONDA_PREFIX": null,
+            "CONDA_PYTHON_EXE": null,
+            "CONDA_EXE": null,
+            "CONDA_PROMPT_MODIFIER": null,
+            "CONDA_SHLVL": null,
+            "PATH": "/home/travis/virtualenv/python3.8.1/bin:/home/travis/bin:/home/travis/.local/bin:/usr/local/lib/jvm/openjdk11/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.nvm/versions/node/v10.16.0/bin:/home/travis/.kiex/elixirs/elixir-1.7.4/bin:/home/travis/.kiex/bin:/home/travis/.rvm/gems/ruby-2.6.5/bin:/home/travis/.rvm/gems/ruby-2.6.5@global/bin:/home/travis/.rvm/rubies/ruby-2.6.5/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/maven-3.6.3/bin:/usr/local/cmake-3.12.4/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin:/home/travis/.yarn/bin",
+            "LD_LIBRARY_PATH": null,
+            "DYLD_LIBRARY_PATH": null,
+            "USER": "travis",
+            "HOME": "/home/travis",
+            "SHELL": "/bin/bash"
+         },
+         "arguments": [
+            "/home/travis/virtualenv/python3.8.1/lib/python3.8/site-packages/ipykernel_launcher.py",
+            "-f",
+            "/tmp/tmpcp6k8nqg.json",
+            "--HistoryManager.hist_file=:memory:"
+         ],
+         "start_time_utc": "2020-11-18T17:12:57.495"
+      },
+      "input": [],
+      "output": [],
+      "config": {
+         "MyTool": {
+            "config_file": null,
+            "iterations": 5,
+            "log_config": {
+               "version": 1,
+               "disable_existing_loggers": false,
+               "formatters": {
+                  "file": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  },
+                  "console": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  }
+               },
+               "handlers": {
+                  "ctapipe-console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": 10
+                  },
+                  "console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": "NOTSET"
+                  }
+               },
+               "loggers": {
+                  "ctapipe": {
+                     "level": 10,
+                     "handlers": [
+                        "ctapipe-console"
+                     ],
+                     "propagate": false
+                  }
+               }
+            },
+            "log_datefmt": "%Y-%m-%d %H:%M:%S",
+            "log_file": null,
+            "log_file_level": "INFO",
+            "log_format": "[%(name)s]%(highlevel)s %(message)s",
+            "log_level": 30,
+            "provenance_log": "/home/travis/build/cta-observatory/ctapipe/docs/examples/mytool.provenance.log",
+            "quiet": false,
+            "show_config": false,
+            "show_config_json": false,
+            "MyComponent": {
+               "value": -1
+            },
+            "SecondaryMyComponent": {
+               "value": -1
+            },
+            "TelescopeWiseComponent": {
+               "param": [
+                  [
+                     "type",
+                     "*",
+                     5.0
+                  ]
+               ]
+            },
+            "AdvancedComponent": {
+               "infile": "/home/travis/.cache/ctapipe/gamma_test.simtel.gz",
+               "outfile": null,
+               "value1": -1,
+               "MyComponent": {
+                  "value": -1
+               }
+            }
+         }
+      },
+      "status": "completed",
+      "duration_min": 0.00858333333336958
+   },
+   {
+      "activity_name": "mytool",
+      "activity_uuid": "f0c99f94-9364-4f3b-8823-cdb9ddcfe6fc",
+      "start": {
+         "time_utc": "2020-11-18T17:12:58.024"
+      },
+      "stop": {
+         "time_utc": "2020-11-18T17:12:58.343"
+      },
+      "system": {
+         "ctapipe_version": "0.10.0.post1",
+         "ctapipe_resources_version": "not installed",
+         "eventio_version": "1.4.2",
+         "ctapipe_svc_path": null,
+         "executable": "/home/travis/virtualenv/python3.8.1/bin/python",
+         "platform": {
+            "architecture_bits": "64bit",
+            "architecture_linkage": "ELF",
+            "machine": "x86_64",
+            "processor": "x86_64",
+            "node": "travis-job-0f2f39a9-c3e3-4532-8be0-be226d07d530",
+            "version": "#31~18.04.1-Ubuntu SMP Mon Jun 22 15:24:52 UTC 2020",
+            "system": "Linux",
+            "release": "5.3.0-1029-gcp",
+            "libcver": [
+               "glibc",
+               "2.27"
+            ],
+            "num_cpus": 2,
+            "boot_time": "2020-11-18T17:02:37.000"
+         },
+         "python": {
+            "version_string": "3.8.1 (default, Dec 20 2019, 10:06:11) \n[GCC 7.4.0]",
+            "version": [
+               "3",
+               "8",
+               "1"
+            ],
+            "compiler": "GCC 7.4.0",
+            "implementation": "CPython"
+         },
+         "environment": {
+            "CONDA_DEFAULT_ENV": null,
+            "CONDA_PREFIX": null,
+            "CONDA_PYTHON_EXE": null,
+            "CONDA_EXE": null,
+            "CONDA_PROMPT_MODIFIER": null,
+            "CONDA_SHLVL": null,
+            "PATH": "/home/travis/virtualenv/python3.8.1/bin:/home/travis/bin:/home/travis/.local/bin:/usr/local/lib/jvm/openjdk11/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.nvm/versions/node/v10.16.0/bin:/home/travis/.kiex/elixirs/elixir-1.7.4/bin:/home/travis/.kiex/bin:/home/travis/.rvm/gems/ruby-2.6.5/bin:/home/travis/.rvm/gems/ruby-2.6.5@global/bin:/home/travis/.rvm/rubies/ruby-2.6.5/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/maven-3.6.3/bin:/usr/local/cmake-3.12.4/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin:/home/travis/.yarn/bin",
+            "LD_LIBRARY_PATH": null,
+            "DYLD_LIBRARY_PATH": null,
+            "USER": "travis",
+            "HOME": "/home/travis",
+            "SHELL": "/bin/bash"
+         },
+         "arguments": [
+            "/home/travis/virtualenv/python3.8.1/lib/python3.8/site-packages/ipykernel_launcher.py",
+            "-f",
+            "/tmp/tmpcp6k8nqg.json",
+            "--HistoryManager.hist_file=:memory:"
+         ],
+         "start_time_utc": "2020-11-18T17:12:58.033"
+      },
+      "input": [],
+      "output": [],
+      "config": {
+         "MyTool": {
+            "config_file": null,
+            "iterations": 3,
+            "log_config": {
+               "version": 1,
+               "disable_existing_loggers": false,
+               "formatters": {
+                  "file": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  },
+                  "console": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  }
+               },
+               "handlers": {
+                  "ctapipe-console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": 10
+                  },
+                  "console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": "NOTSET"
+                  }
+               },
+               "loggers": {
+                  "ctapipe": {
+                     "level": 10,
+                     "handlers": [
+                        "ctapipe-console"
+                     ],
+                     "propagate": false
+                  }
+               }
+            },
+            "log_datefmt": "%Y-%m-%d %H:%M:%S",
+            "log_file": null,
+            "log_file_level": "INFO",
+            "log_format": "%(asctime)s : %(levelname)s [%(name)s %(funcName)s] %(message)s",
+            "log_level": 20,
+            "provenance_log": "/home/travis/build/cta-observatory/ctapipe/docs/examples/mytool.provenance.log",
+            "quiet": false,
+            "show_config": false,
+            "show_config_json": false,
+            "MyComponent": {
+               "value": -1
+            },
+            "SecondaryMyComponent": {
+               "value": -1
+            },
+            "TelescopeWiseComponent": {
+               "param": [
+                  [
+                     "type",
+                     "*",
+                     5.0
+                  ]
+               ]
+            },
+            "AdvancedComponent": {
+               "infile": "/home/travis/.cache/ctapipe/gamma_test.simtel.gz",
+               "outfile": null,
+               "value1": -1,
+               "MyComponent": {
+                  "value": -1
+               }
+            }
+         }
+      },
+      "status": "completed",
+      "duration_min": 0.005316666666761449
+   },
+   {
+      "activity_name": "mytool",
+      "activity_uuid": "338a8351-2324-4efe-a8d1-221ed1e4088f",
+      "start": {
+         "time_utc": "2020-11-18T17:12:58.369"
+      },
+      "stop": {
+         "time_utc": "2020-11-18T17:12:58.704"
+      },
+      "system": {
+         "ctapipe_version": "0.10.0.post1",
+         "ctapipe_resources_version": "not installed",
+         "eventio_version": "1.4.2",
+         "ctapipe_svc_path": null,
+         "executable": "/home/travis/virtualenv/python3.8.1/bin/python",
+         "platform": {
+            "architecture_bits": "64bit",
+            "architecture_linkage": "ELF",
+            "machine": "x86_64",
+            "processor": "x86_64",
+            "node": "travis-job-0f2f39a9-c3e3-4532-8be0-be226d07d530",
+            "version": "#31~18.04.1-Ubuntu SMP Mon Jun 22 15:24:52 UTC 2020",
+            "system": "Linux",
+            "release": "5.3.0-1029-gcp",
+            "libcver": [
+               "glibc",
+               "2.27"
+            ],
+            "num_cpus": 2,
+            "boot_time": "2020-11-18T17:02:37.000"
+         },
+         "python": {
+            "version_string": "3.8.1 (default, Dec 20 2019, 10:06:11) \n[GCC 7.4.0]",
+            "version": [
+               "3",
+               "8",
+               "1"
+            ],
+            "compiler": "GCC 7.4.0",
+            "implementation": "CPython"
+         },
+         "environment": {
+            "CONDA_DEFAULT_ENV": null,
+            "CONDA_PREFIX": null,
+            "CONDA_PYTHON_EXE": null,
+            "CONDA_EXE": null,
+            "CONDA_PROMPT_MODIFIER": null,
+            "CONDA_SHLVL": null,
+            "PATH": "/home/travis/virtualenv/python3.8.1/bin:/home/travis/bin:/home/travis/.local/bin:/usr/local/lib/jvm/openjdk11/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.nvm/versions/node/v10.16.0/bin:/home/travis/.kiex/elixirs/elixir-1.7.4/bin:/home/travis/.kiex/bin:/home/travis/.rvm/gems/ruby-2.6.5/bin:/home/travis/.rvm/gems/ruby-2.6.5@global/bin:/home/travis/.rvm/rubies/ruby-2.6.5/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/maven-3.6.3/bin:/usr/local/cmake-3.12.4/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin:/home/travis/.yarn/bin",
+            "LD_LIBRARY_PATH": null,
+            "DYLD_LIBRARY_PATH": null,
+            "USER": "travis",
+            "HOME": "/home/travis",
+            "SHELL": "/bin/bash"
+         },
+         "arguments": [
+            "/home/travis/virtualenv/python3.8.1/lib/python3.8/site-packages/ipykernel_launcher.py",
+            "-f",
+            "/tmp/tmpcp6k8nqg.json",
+            "--HistoryManager.hist_file=:memory:"
+         ],
+         "start_time_utc": "2020-11-18T17:12:58.378"
+      },
+      "input": [],
+      "output": [],
+      "config": {
+         "MyTool": {
+            "config_file": null,
+            "iterations": 3,
+            "log_config": {
+               "version": 1,
+               "disable_existing_loggers": false,
+               "formatters": {
+                  "file": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  },
+                  "console": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  }
+               },
+               "handlers": {
+                  "ctapipe-console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": 10
+                  },
+                  "console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": "NOTSET"
+                  }
+               },
+               "loggers": {
+                  "ctapipe": {
+                     "level": 10,
+                     "handlers": [
+                        "ctapipe-console"
+                     ],
+                     "propagate": false
+                  }
+               }
+            },
+            "log_datefmt": "%Y-%m-%d %H:%M:%S",
+            "log_file": null,
+            "log_file_level": "INFO",
+            "log_format": "%(asctime)s : %(levelname)s [%(name)s %(funcName)s] %(message)s",
+            "log_level": 10,
+            "provenance_log": "/home/travis/build/cta-observatory/ctapipe/docs/examples/mytool.provenance.log",
+            "quiet": false,
+            "show_config": false,
+            "show_config_json": false,
+            "MyComponent": {
+               "value": -1
+            },
+            "SecondaryMyComponent": {
+               "value": -1
+            },
+            "TelescopeWiseComponent": {
+               "param": [
+                  [
+                     "type",
+                     "*",
+                     5.0
+                  ]
+               ]
+            },
+            "AdvancedComponent": {
+               "infile": "/home/travis/.cache/ctapipe/gamma_test.simtel.gz",
+               "outfile": null,
+               "value1": -1,
+               "MyComponent": {
+                  "value": -1
+               }
+            }
+         }
+      },
+      "status": "completed",
+      "duration_min": 0.005583333333429863
+   }
+][
+   {
+      "activity_name": "mytool",
+      "activity_uuid": "ee7be976-e64e-4b7a-8209-5901691cbd4d",
+      "start": {
+         "time_utc": "2020-11-18T17:12:57.487"
+      },
+      "stop": {
+         "time_utc": "2020-11-18T17:12:58.002"
+      },
+      "system": {
+         "ctapipe_version": "0.10.0.post1",
+         "ctapipe_resources_version": "not installed",
+         "eventio_version": "1.4.2",
+         "ctapipe_svc_path": null,
+         "executable": "/home/travis/virtualenv/python3.8.1/bin/python",
+         "platform": {
+            "architecture_bits": "64bit",
+            "architecture_linkage": "ELF",
+            "machine": "x86_64",
+            "processor": "x86_64",
+            "node": "travis-job-0f2f39a9-c3e3-4532-8be0-be226d07d530",
+            "version": "#31~18.04.1-Ubuntu SMP Mon Jun 22 15:24:52 UTC 2020",
+            "system": "Linux",
+            "release": "5.3.0-1029-gcp",
+            "libcver": [
+               "glibc",
+               "2.27"
+            ],
+            "num_cpus": 2,
+            "boot_time": "2020-11-18T17:02:37.000"
+         },
+         "python": {
+            "version_string": "3.8.1 (default, Dec 20 2019, 10:06:11) \n[GCC 7.4.0]",
+            "version": [
+               "3",
+               "8",
+               "1"
+            ],
+            "compiler": "GCC 7.4.0",
+            "implementation": "CPython"
+         },
+         "environment": {
+            "CONDA_DEFAULT_ENV": null,
+            "CONDA_PREFIX": null,
+            "CONDA_PYTHON_EXE": null,
+            "CONDA_EXE": null,
+            "CONDA_PROMPT_MODIFIER": null,
+            "CONDA_SHLVL": null,
+            "PATH": "/home/travis/virtualenv/python3.8.1/bin:/home/travis/bin:/home/travis/.local/bin:/usr/local/lib/jvm/openjdk11/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.nvm/versions/node/v10.16.0/bin:/home/travis/.kiex/elixirs/elixir-1.7.4/bin:/home/travis/.kiex/bin:/home/travis/.rvm/gems/ruby-2.6.5/bin:/home/travis/.rvm/gems/ruby-2.6.5@global/bin:/home/travis/.rvm/rubies/ruby-2.6.5/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/maven-3.6.3/bin:/usr/local/cmake-3.12.4/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin:/home/travis/.yarn/bin",
+            "LD_LIBRARY_PATH": null,
+            "DYLD_LIBRARY_PATH": null,
+            "USER": "travis",
+            "HOME": "/home/travis",
+            "SHELL": "/bin/bash"
+         },
+         "arguments": [
+            "/home/travis/virtualenv/python3.8.1/lib/python3.8/site-packages/ipykernel_launcher.py",
+            "-f",
+            "/tmp/tmpcp6k8nqg.json",
+            "--HistoryManager.hist_file=:memory:"
+         ],
+         "start_time_utc": "2020-11-18T17:12:57.495"
+      },
+      "input": [],
+      "output": [],
+      "config": {
+         "MyTool": {
+            "config_file": null,
+            "iterations": 5,
+            "log_config": {
+               "version": 1,
+               "disable_existing_loggers": false,
+               "formatters": {
+                  "file": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  },
+                  "console": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  }
+               },
+               "handlers": {
+                  "ctapipe-console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": 10
+                  },
+                  "console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": "NOTSET"
+                  }
+               },
+               "loggers": {
+                  "ctapipe": {
+                     "level": 10,
+                     "handlers": [
+                        "ctapipe-console"
+                     ],
+                     "propagate": false
+                  }
+               }
+            },
+            "log_datefmt": "%Y-%m-%d %H:%M:%S",
+            "log_file": null,
+            "log_file_level": "INFO",
+            "log_format": "[%(name)s]%(highlevel)s %(message)s",
+            "log_level": 30,
+            "provenance_log": "/home/travis/build/cta-observatory/ctapipe/docs/examples/mytool.provenance.log",
+            "quiet": false,
+            "show_config": false,
+            "show_config_json": false,
+            "MyComponent": {
+               "value": -1
+            },
+            "SecondaryMyComponent": {
+               "value": -1
+            },
+            "TelescopeWiseComponent": {
+               "param": [
+                  [
+                     "type",
+                     "*",
+                     5.0
+                  ]
+               ]
+            },
+            "AdvancedComponent": {
+               "infile": "/home/travis/.cache/ctapipe/gamma_test.simtel.gz",
+               "outfile": null,
+               "value1": -1,
+               "MyComponent": {
+                  "value": -1
+               }
+            }
+         }
+      },
+      "status": "completed",
+      "duration_min": 0.00858333333336958
+   },
+   {
+      "activity_name": "mytool",
+      "activity_uuid": "f0c99f94-9364-4f3b-8823-cdb9ddcfe6fc",
+      "start": {
+         "time_utc": "2020-11-18T17:12:58.024"
+      },
+      "stop": {
+         "time_utc": "2020-11-18T17:12:58.343"
+      },
+      "system": {
+         "ctapipe_version": "0.10.0.post1",
+         "ctapipe_resources_version": "not installed",
+         "eventio_version": "1.4.2",
+         "ctapipe_svc_path": null,
+         "executable": "/home/travis/virtualenv/python3.8.1/bin/python",
+         "platform": {
+            "architecture_bits": "64bit",
+            "architecture_linkage": "ELF",
+            "machine": "x86_64",
+            "processor": "x86_64",
+            "node": "travis-job-0f2f39a9-c3e3-4532-8be0-be226d07d530",
+            "version": "#31~18.04.1-Ubuntu SMP Mon Jun 22 15:24:52 UTC 2020",
+            "system": "Linux",
+            "release": "5.3.0-1029-gcp",
+            "libcver": [
+               "glibc",
+               "2.27"
+            ],
+            "num_cpus": 2,
+            "boot_time": "2020-11-18T17:02:37.000"
+         },
+         "python": {
+            "version_string": "3.8.1 (default, Dec 20 2019, 10:06:11) \n[GCC 7.4.0]",
+            "version": [
+               "3",
+               "8",
+               "1"
+            ],
+            "compiler": "GCC 7.4.0",
+            "implementation": "CPython"
+         },
+         "environment": {
+            "CONDA_DEFAULT_ENV": null,
+            "CONDA_PREFIX": null,
+            "CONDA_PYTHON_EXE": null,
+            "CONDA_EXE": null,
+            "CONDA_PROMPT_MODIFIER": null,
+            "CONDA_SHLVL": null,
+            "PATH": "/home/travis/virtualenv/python3.8.1/bin:/home/travis/bin:/home/travis/.local/bin:/usr/local/lib/jvm/openjdk11/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.nvm/versions/node/v10.16.0/bin:/home/travis/.kiex/elixirs/elixir-1.7.4/bin:/home/travis/.kiex/bin:/home/travis/.rvm/gems/ruby-2.6.5/bin:/home/travis/.rvm/gems/ruby-2.6.5@global/bin:/home/travis/.rvm/rubies/ruby-2.6.5/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/maven-3.6.3/bin:/usr/local/cmake-3.12.4/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin:/home/travis/.yarn/bin",
+            "LD_LIBRARY_PATH": null,
+            "DYLD_LIBRARY_PATH": null,
+            "USER": "travis",
+            "HOME": "/home/travis",
+            "SHELL": "/bin/bash"
+         },
+         "arguments": [
+            "/home/travis/virtualenv/python3.8.1/lib/python3.8/site-packages/ipykernel_launcher.py",
+            "-f",
+            "/tmp/tmpcp6k8nqg.json",
+            "--HistoryManager.hist_file=:memory:"
+         ],
+         "start_time_utc": "2020-11-18T17:12:58.033"
+      },
+      "input": [],
+      "output": [],
+      "config": {
+         "MyTool": {
+            "config_file": null,
+            "iterations": 3,
+            "log_config": {
+               "version": 1,
+               "disable_existing_loggers": false,
+               "formatters": {
+                  "file": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  },
+                  "console": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  }
+               },
+               "handlers": {
+                  "ctapipe-console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": 10
+                  },
+                  "console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": "NOTSET"
+                  }
+               },
+               "loggers": {
+                  "ctapipe": {
+                     "level": 10,
+                     "handlers": [
+                        "ctapipe-console"
+                     ],
+                     "propagate": false
+                  }
+               }
+            },
+            "log_datefmt": "%Y-%m-%d %H:%M:%S",
+            "log_file": null,
+            "log_file_level": "INFO",
+            "log_format": "%(asctime)s : %(levelname)s [%(name)s %(funcName)s] %(message)s",
+            "log_level": 20,
+            "provenance_log": "/home/travis/build/cta-observatory/ctapipe/docs/examples/mytool.provenance.log",
+            "quiet": false,
+            "show_config": false,
+            "show_config_json": false,
+            "MyComponent": {
+               "value": -1
+            },
+            "SecondaryMyComponent": {
+               "value": -1
+            },
+            "TelescopeWiseComponent": {
+               "param": [
+                  [
+                     "type",
+                     "*",
+                     5.0
+                  ]
+               ]
+            },
+            "AdvancedComponent": {
+               "infile": "/home/travis/.cache/ctapipe/gamma_test.simtel.gz",
+               "outfile": null,
+               "value1": -1,
+               "MyComponent": {
+                  "value": -1
+               }
+            }
+         }
+      },
+      "status": "completed",
+      "duration_min": 0.005316666666761449
+   },
+   {
+      "activity_name": "mytool",
+      "activity_uuid": "338a8351-2324-4efe-a8d1-221ed1e4088f",
+      "start": {
+         "time_utc": "2020-11-18T17:12:58.369"
+      },
+      "stop": {
+         "time_utc": "2020-11-18T17:12:58.704"
+      },
+      "system": {
+         "ctapipe_version": "0.10.0.post1",
+         "ctapipe_resources_version": "not installed",
+         "eventio_version": "1.4.2",
+         "ctapipe_svc_path": null,
+         "executable": "/home/travis/virtualenv/python3.8.1/bin/python",
+         "platform": {
+            "architecture_bits": "64bit",
+            "architecture_linkage": "ELF",
+            "machine": "x86_64",
+            "processor": "x86_64",
+            "node": "travis-job-0f2f39a9-c3e3-4532-8be0-be226d07d530",
+            "version": "#31~18.04.1-Ubuntu SMP Mon Jun 22 15:24:52 UTC 2020",
+            "system": "Linux",
+            "release": "5.3.0-1029-gcp",
+            "libcver": [
+               "glibc",
+               "2.27"
+            ],
+            "num_cpus": 2,
+            "boot_time": "2020-11-18T17:02:37.000"
+         },
+         "python": {
+            "version_string": "3.8.1 (default, Dec 20 2019, 10:06:11) \n[GCC 7.4.0]",
+            "version": [
+               "3",
+               "8",
+               "1"
+            ],
+            "compiler": "GCC 7.4.0",
+            "implementation": "CPython"
+         },
+         "environment": {
+            "CONDA_DEFAULT_ENV": null,
+            "CONDA_PREFIX": null,
+            "CONDA_PYTHON_EXE": null,
+            "CONDA_EXE": null,
+            "CONDA_PROMPT_MODIFIER": null,
+            "CONDA_SHLVL": null,
+            "PATH": "/home/travis/virtualenv/python3.8.1/bin:/home/travis/bin:/home/travis/.local/bin:/usr/local/lib/jvm/openjdk11/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.nvm/versions/node/v10.16.0/bin:/home/travis/.kiex/elixirs/elixir-1.7.4/bin:/home/travis/.kiex/bin:/home/travis/.rvm/gems/ruby-2.6.5/bin:/home/travis/.rvm/gems/ruby-2.6.5@global/bin:/home/travis/.rvm/rubies/ruby-2.6.5/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/maven-3.6.3/bin:/usr/local/cmake-3.12.4/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin:/home/travis/.yarn/bin",
+            "LD_LIBRARY_PATH": null,
+            "DYLD_LIBRARY_PATH": null,
+            "USER": "travis",
+            "HOME": "/home/travis",
+            "SHELL": "/bin/bash"
+         },
+         "arguments": [
+            "/home/travis/virtualenv/python3.8.1/lib/python3.8/site-packages/ipykernel_launcher.py",
+            "-f",
+            "/tmp/tmpcp6k8nqg.json",
+            "--HistoryManager.hist_file=:memory:"
+         ],
+         "start_time_utc": "2020-11-18T17:12:58.378"
+      },
+      "input": [],
+      "output": [],
+      "config": {
+         "MyTool": {
+            "config_file": null,
+            "iterations": 3,
+            "log_config": {
+               "version": 1,
+               "disable_existing_loggers": false,
+               "formatters": {
+                  "file": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  },
+                  "console": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  }
+               },
+               "handlers": {
+                  "ctapipe-console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": 10
+                  },
+                  "console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": "NOTSET"
+                  }
+               },
+               "loggers": {
+                  "ctapipe": {
+                     "level": 10,
+                     "handlers": [
+                        "ctapipe-console"
+                     ],
+                     "propagate": false
+                  }
+               }
+            },
+            "log_datefmt": "%Y-%m-%d %H:%M:%S",
+            "log_file": null,
+            "log_file_level": "INFO",
+            "log_format": "%(asctime)s : %(levelname)s [%(name)s %(funcName)s] %(message)s",
+            "log_level": 10,
+            "provenance_log": "/home/travis/build/cta-observatory/ctapipe/docs/examples/mytool.provenance.log",
+            "quiet": false,
+            "show_config": false,
+            "show_config_json": false,
+            "MyComponent": {
+               "value": -1
+            },
+            "SecondaryMyComponent": {
+               "value": -1
+            },
+            "TelescopeWiseComponent": {
+               "param": [
+                  [
+                     "type",
+                     "*",
+                     5.0
+                  ]
+               ]
+            },
+            "AdvancedComponent": {
+               "infile": "/home/travis/.cache/ctapipe/gamma_test.simtel.gz",
+               "outfile": null,
+               "value1": -1,
+               "MyComponent": {
+                  "value": -1
+               }
+            }
+         }
+      },
+      "status": "completed",
+      "duration_min": 0.005583333333429863
+   },
+   {
+      "activity_name": "mytool",
+      "activity_uuid": "00e93693-238d-4a2f-8fc0-12640279cfdd",
+      "start": {
+         "time_utc": "2020-11-18T17:12:58.736"
+      },
+      "stop": {
+         "time_utc": "2020-11-18T17:12:59.068"
+      },
+      "system": {
+         "ctapipe_version": "0.10.0.post1",
+         "ctapipe_resources_version": "not installed",
+         "eventio_version": "1.4.2",
+         "ctapipe_svc_path": null,
+         "executable": "/home/travis/virtualenv/python3.8.1/bin/python",
+         "platform": {
+            "architecture_bits": "64bit",
+            "architecture_linkage": "ELF",
+            "machine": "x86_64",
+            "processor": "x86_64",
+            "node": "travis-job-0f2f39a9-c3e3-4532-8be0-be226d07d530",
+            "version": "#31~18.04.1-Ubuntu SMP Mon Jun 22 15:24:52 UTC 2020",
+            "system": "Linux",
+            "release": "5.3.0-1029-gcp",
+            "libcver": [
+               "glibc",
+               "2.27"
+            ],
+            "num_cpus": 2,
+            "boot_time": "2020-11-18T17:02:37.000"
+         },
+         "python": {
+            "version_string": "3.8.1 (default, Dec 20 2019, 10:06:11) \n[GCC 7.4.0]",
+            "version": [
+               "3",
+               "8",
+               "1"
+            ],
+            "compiler": "GCC 7.4.0",
+            "implementation": "CPython"
+         },
+         "environment": {
+            "CONDA_DEFAULT_ENV": null,
+            "CONDA_PREFIX": null,
+            "CONDA_PYTHON_EXE": null,
+            "CONDA_EXE": null,
+            "CONDA_PROMPT_MODIFIER": null,
+            "CONDA_SHLVL": null,
+            "PATH": "/home/travis/virtualenv/python3.8.1/bin:/home/travis/bin:/home/travis/.local/bin:/usr/local/lib/jvm/openjdk11/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.nvm/versions/node/v10.16.0/bin:/home/travis/.kiex/elixirs/elixir-1.7.4/bin:/home/travis/.kiex/bin:/home/travis/.rvm/gems/ruby-2.6.5/bin:/home/travis/.rvm/gems/ruby-2.6.5@global/bin:/home/travis/.rvm/rubies/ruby-2.6.5/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/maven-3.6.3/bin:/usr/local/cmake-3.12.4/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin:/home/travis/.yarn/bin",
+            "LD_LIBRARY_PATH": null,
+            "DYLD_LIBRARY_PATH": null,
+            "USER": "travis",
+            "HOME": "/home/travis",
+            "SHELL": "/bin/bash"
+         },
+         "arguments": [
+            "/home/travis/virtualenv/python3.8.1/lib/python3.8/site-packages/ipykernel_launcher.py",
+            "-f",
+            "/tmp/tmpcp6k8nqg.json",
+            "--HistoryManager.hist_file=:memory:"
+         ],
+         "start_time_utc": "2020-11-18T17:12:58.745"
+      },
+      "input": [],
+      "output": [],
+      "config": {
+         "MyTool": {
+            "config_file": null,
+            "iterations": 3,
+            "log_config": {
+               "version": 1,
+               "disable_existing_loggers": false,
+               "formatters": {
+                  "file": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  },
+                  "console": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  }
+               },
+               "handlers": {
+                  "ctapipe-console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": 10
+                  },
+                  "console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": "NOTSET"
+                  }
+               },
+               "loggers": {
+                  "ctapipe": {
+                     "level": 10,
+                     "handlers": [
+                        "ctapipe-console"
+                     ],
+                     "propagate": false
+                  }
+               }
+            },
+            "log_datefmt": "%Y-%m-%d %H:%M:%S",
+            "log_file": null,
+            "log_file_level": "INFO",
+            "log_format": "%(asctime)s : %(levelname)s [%(name)s %(funcName)s] %(message)s",
+            "log_level": 10,
+            "provenance_log": "/home/travis/build/cta-observatory/ctapipe/docs/examples/mytool.provenance.log",
+            "quiet": false,
+            "show_config": false,
+            "show_config_json": false,
+            "MyComponent": {
+               "value": -1
+            },
+            "SecondaryMyComponent": {
+               "value": -1
+            },
+            "TelescopeWiseComponent": {
+               "param": [
+                  [
+                     "type",
+                     "*",
+                     5.0
+                  ]
+               ]
+            },
+            "AdvancedComponent": {
+               "infile": "/home/travis/.cache/ctapipe/gamma_test.simtel.gz",
+               "outfile": null,
+               "value1": -1,
+               "MyComponent": {
+                  "value": -1
+               }
+            }
+         }
+      },
+      "status": "completed",
+      "duration_min": 0.005533333333289647
+   }
+][
+   {
+      "activity_name": "mytool",
+      "activity_uuid": "ee7be976-e64e-4b7a-8209-5901691cbd4d",
+      "start": {
+         "time_utc": "2020-11-18T17:12:57.487"
+      },
+      "stop": {
+         "time_utc": "2020-11-18T17:12:58.002"
+      },
+      "system": {
+         "ctapipe_version": "0.10.0.post1",
+         "ctapipe_resources_version": "not installed",
+         "eventio_version": "1.4.2",
+         "ctapipe_svc_path": null,
+         "executable": "/home/travis/virtualenv/python3.8.1/bin/python",
+         "platform": {
+            "architecture_bits": "64bit",
+            "architecture_linkage": "ELF",
+            "machine": "x86_64",
+            "processor": "x86_64",
+            "node": "travis-job-0f2f39a9-c3e3-4532-8be0-be226d07d530",
+            "version": "#31~18.04.1-Ubuntu SMP Mon Jun 22 15:24:52 UTC 2020",
+            "system": "Linux",
+            "release": "5.3.0-1029-gcp",
+            "libcver": [
+               "glibc",
+               "2.27"
+            ],
+            "num_cpus": 2,
+            "boot_time": "2020-11-18T17:02:37.000"
+         },
+         "python": {
+            "version_string": "3.8.1 (default, Dec 20 2019, 10:06:11) \n[GCC 7.4.0]",
+            "version": [
+               "3",
+               "8",
+               "1"
+            ],
+            "compiler": "GCC 7.4.0",
+            "implementation": "CPython"
+         },
+         "environment": {
+            "CONDA_DEFAULT_ENV": null,
+            "CONDA_PREFIX": null,
+            "CONDA_PYTHON_EXE": null,
+            "CONDA_EXE": null,
+            "CONDA_PROMPT_MODIFIER": null,
+            "CONDA_SHLVL": null,
+            "PATH": "/home/travis/virtualenv/python3.8.1/bin:/home/travis/bin:/home/travis/.local/bin:/usr/local/lib/jvm/openjdk11/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.nvm/versions/node/v10.16.0/bin:/home/travis/.kiex/elixirs/elixir-1.7.4/bin:/home/travis/.kiex/bin:/home/travis/.rvm/gems/ruby-2.6.5/bin:/home/travis/.rvm/gems/ruby-2.6.5@global/bin:/home/travis/.rvm/rubies/ruby-2.6.5/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/maven-3.6.3/bin:/usr/local/cmake-3.12.4/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin:/home/travis/.yarn/bin",
+            "LD_LIBRARY_PATH": null,
+            "DYLD_LIBRARY_PATH": null,
+            "USER": "travis",
+            "HOME": "/home/travis",
+            "SHELL": "/bin/bash"
+         },
+         "arguments": [
+            "/home/travis/virtualenv/python3.8.1/lib/python3.8/site-packages/ipykernel_launcher.py",
+            "-f",
+            "/tmp/tmpcp6k8nqg.json",
+            "--HistoryManager.hist_file=:memory:"
+         ],
+         "start_time_utc": "2020-11-18T17:12:57.495"
+      },
+      "input": [],
+      "output": [],
+      "config": {
+         "MyTool": {
+            "config_file": null,
+            "iterations": 5,
+            "log_config": {
+               "version": 1,
+               "disable_existing_loggers": false,
+               "formatters": {
+                  "file": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  },
+                  "console": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  }
+               },
+               "handlers": {
+                  "ctapipe-console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": 10
+                  },
+                  "console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": "NOTSET"
+                  }
+               },
+               "loggers": {
+                  "ctapipe": {
+                     "level": 10,
+                     "handlers": [
+                        "ctapipe-console"
+                     ],
+                     "propagate": false
+                  }
+               }
+            },
+            "log_datefmt": "%Y-%m-%d %H:%M:%S",
+            "log_file": null,
+            "log_file_level": "INFO",
+            "log_format": "[%(name)s]%(highlevel)s %(message)s",
+            "log_level": 30,
+            "provenance_log": "/home/travis/build/cta-observatory/ctapipe/docs/examples/mytool.provenance.log",
+            "quiet": false,
+            "show_config": false,
+            "show_config_json": false,
+            "MyComponent": {
+               "value": -1
+            },
+            "SecondaryMyComponent": {
+               "value": -1
+            },
+            "TelescopeWiseComponent": {
+               "param": [
+                  [
+                     "type",
+                     "*",
+                     5.0
+                  ]
+               ]
+            },
+            "AdvancedComponent": {
+               "infile": "/home/travis/.cache/ctapipe/gamma_test.simtel.gz",
+               "outfile": null,
+               "value1": -1,
+               "MyComponent": {
+                  "value": -1
+               }
+            }
+         }
+      },
+      "status": "completed",
+      "duration_min": 0.00858333333336958
+   },
+   {
+      "activity_name": "mytool",
+      "activity_uuid": "f0c99f94-9364-4f3b-8823-cdb9ddcfe6fc",
+      "start": {
+         "time_utc": "2020-11-18T17:12:58.024"
+      },
+      "stop": {
+         "time_utc": "2020-11-18T17:12:58.343"
+      },
+      "system": {
+         "ctapipe_version": "0.10.0.post1",
+         "ctapipe_resources_version": "not installed",
+         "eventio_version": "1.4.2",
+         "ctapipe_svc_path": null,
+         "executable": "/home/travis/virtualenv/python3.8.1/bin/python",
+         "platform": {
+            "architecture_bits": "64bit",
+            "architecture_linkage": "ELF",
+            "machine": "x86_64",
+            "processor": "x86_64",
+            "node": "travis-job-0f2f39a9-c3e3-4532-8be0-be226d07d530",
+            "version": "#31~18.04.1-Ubuntu SMP Mon Jun 22 15:24:52 UTC 2020",
+            "system": "Linux",
+            "release": "5.3.0-1029-gcp",
+            "libcver": [
+               "glibc",
+               "2.27"
+            ],
+            "num_cpus": 2,
+            "boot_time": "2020-11-18T17:02:37.000"
+         },
+         "python": {
+            "version_string": "3.8.1 (default, Dec 20 2019, 10:06:11) \n[GCC 7.4.0]",
+            "version": [
+               "3",
+               "8",
+               "1"
+            ],
+            "compiler": "GCC 7.4.0",
+            "implementation": "CPython"
+         },
+         "environment": {
+            "CONDA_DEFAULT_ENV": null,
+            "CONDA_PREFIX": null,
+            "CONDA_PYTHON_EXE": null,
+            "CONDA_EXE": null,
+            "CONDA_PROMPT_MODIFIER": null,
+            "CONDA_SHLVL": null,
+            "PATH": "/home/travis/virtualenv/python3.8.1/bin:/home/travis/bin:/home/travis/.local/bin:/usr/local/lib/jvm/openjdk11/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.nvm/versions/node/v10.16.0/bin:/home/travis/.kiex/elixirs/elixir-1.7.4/bin:/home/travis/.kiex/bin:/home/travis/.rvm/gems/ruby-2.6.5/bin:/home/travis/.rvm/gems/ruby-2.6.5@global/bin:/home/travis/.rvm/rubies/ruby-2.6.5/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/maven-3.6.3/bin:/usr/local/cmake-3.12.4/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin:/home/travis/.yarn/bin",
+            "LD_LIBRARY_PATH": null,
+            "DYLD_LIBRARY_PATH": null,
+            "USER": "travis",
+            "HOME": "/home/travis",
+            "SHELL": "/bin/bash"
+         },
+         "arguments": [
+            "/home/travis/virtualenv/python3.8.1/lib/python3.8/site-packages/ipykernel_launcher.py",
+            "-f",
+            "/tmp/tmpcp6k8nqg.json",
+            "--HistoryManager.hist_file=:memory:"
+         ],
+         "start_time_utc": "2020-11-18T17:12:58.033"
+      },
+      "input": [],
+      "output": [],
+      "config": {
+         "MyTool": {
+            "config_file": null,
+            "iterations": 3,
+            "log_config": {
+               "version": 1,
+               "disable_existing_loggers": false,
+               "formatters": {
+                  "file": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  },
+                  "console": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  }
+               },
+               "handlers": {
+                  "ctapipe-console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": 10
+                  },
+                  "console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": "NOTSET"
+                  }
+               },
+               "loggers": {
+                  "ctapipe": {
+                     "level": 10,
+                     "handlers": [
+                        "ctapipe-console"
+                     ],
+                     "propagate": false
+                  }
+               }
+            },
+            "log_datefmt": "%Y-%m-%d %H:%M:%S",
+            "log_file": null,
+            "log_file_level": "INFO",
+            "log_format": "%(asctime)s : %(levelname)s [%(name)s %(funcName)s] %(message)s",
+            "log_level": 20,
+            "provenance_log": "/home/travis/build/cta-observatory/ctapipe/docs/examples/mytool.provenance.log",
+            "quiet": false,
+            "show_config": false,
+            "show_config_json": false,
+            "MyComponent": {
+               "value": -1
+            },
+            "SecondaryMyComponent": {
+               "value": -1
+            },
+            "TelescopeWiseComponent": {
+               "param": [
+                  [
+                     "type",
+                     "*",
+                     5.0
+                  ]
+               ]
+            },
+            "AdvancedComponent": {
+               "infile": "/home/travis/.cache/ctapipe/gamma_test.simtel.gz",
+               "outfile": null,
+               "value1": -1,
+               "MyComponent": {
+                  "value": -1
+               }
+            }
+         }
+      },
+      "status": "completed",
+      "duration_min": 0.005316666666761449
+   },
+   {
+      "activity_name": "mytool",
+      "activity_uuid": "338a8351-2324-4efe-a8d1-221ed1e4088f",
+      "start": {
+         "time_utc": "2020-11-18T17:12:58.369"
+      },
+      "stop": {
+         "time_utc": "2020-11-18T17:12:58.704"
+      },
+      "system": {
+         "ctapipe_version": "0.10.0.post1",
+         "ctapipe_resources_version": "not installed",
+         "eventio_version": "1.4.2",
+         "ctapipe_svc_path": null,
+         "executable": "/home/travis/virtualenv/python3.8.1/bin/python",
+         "platform": {
+            "architecture_bits": "64bit",
+            "architecture_linkage": "ELF",
+            "machine": "x86_64",
+            "processor": "x86_64",
+            "node": "travis-job-0f2f39a9-c3e3-4532-8be0-be226d07d530",
+            "version": "#31~18.04.1-Ubuntu SMP Mon Jun 22 15:24:52 UTC 2020",
+            "system": "Linux",
+            "release": "5.3.0-1029-gcp",
+            "libcver": [
+               "glibc",
+               "2.27"
+            ],
+            "num_cpus": 2,
+            "boot_time": "2020-11-18T17:02:37.000"
+         },
+         "python": {
+            "version_string": "3.8.1 (default, Dec 20 2019, 10:06:11) \n[GCC 7.4.0]",
+            "version": [
+               "3",
+               "8",
+               "1"
+            ],
+            "compiler": "GCC 7.4.0",
+            "implementation": "CPython"
+         },
+         "environment": {
+            "CONDA_DEFAULT_ENV": null,
+            "CONDA_PREFIX": null,
+            "CONDA_PYTHON_EXE": null,
+            "CONDA_EXE": null,
+            "CONDA_PROMPT_MODIFIER": null,
+            "CONDA_SHLVL": null,
+            "PATH": "/home/travis/virtualenv/python3.8.1/bin:/home/travis/bin:/home/travis/.local/bin:/usr/local/lib/jvm/openjdk11/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.nvm/versions/node/v10.16.0/bin:/home/travis/.kiex/elixirs/elixir-1.7.4/bin:/home/travis/.kiex/bin:/home/travis/.rvm/gems/ruby-2.6.5/bin:/home/travis/.rvm/gems/ruby-2.6.5@global/bin:/home/travis/.rvm/rubies/ruby-2.6.5/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/maven-3.6.3/bin:/usr/local/cmake-3.12.4/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin:/home/travis/.yarn/bin",
+            "LD_LIBRARY_PATH": null,
+            "DYLD_LIBRARY_PATH": null,
+            "USER": "travis",
+            "HOME": "/home/travis",
+            "SHELL": "/bin/bash"
+         },
+         "arguments": [
+            "/home/travis/virtualenv/python3.8.1/lib/python3.8/site-packages/ipykernel_launcher.py",
+            "-f",
+            "/tmp/tmpcp6k8nqg.json",
+            "--HistoryManager.hist_file=:memory:"
+         ],
+         "start_time_utc": "2020-11-18T17:12:58.378"
+      },
+      "input": [],
+      "output": [],
+      "config": {
+         "MyTool": {
+            "config_file": null,
+            "iterations": 3,
+            "log_config": {
+               "version": 1,
+               "disable_existing_loggers": false,
+               "formatters": {
+                  "file": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  },
+                  "console": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  }
+               },
+               "handlers": {
+                  "ctapipe-console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": 10
+                  },
+                  "console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": "NOTSET"
+                  }
+               },
+               "loggers": {
+                  "ctapipe": {
+                     "level": 10,
+                     "handlers": [
+                        "ctapipe-console"
+                     ],
+                     "propagate": false
+                  }
+               }
+            },
+            "log_datefmt": "%Y-%m-%d %H:%M:%S",
+            "log_file": null,
+            "log_file_level": "INFO",
+            "log_format": "%(asctime)s : %(levelname)s [%(name)s %(funcName)s] %(message)s",
+            "log_level": 10,
+            "provenance_log": "/home/travis/build/cta-observatory/ctapipe/docs/examples/mytool.provenance.log",
+            "quiet": false,
+            "show_config": false,
+            "show_config_json": false,
+            "MyComponent": {
+               "value": -1
+            },
+            "SecondaryMyComponent": {
+               "value": -1
+            },
+            "TelescopeWiseComponent": {
+               "param": [
+                  [
+                     "type",
+                     "*",
+                     5.0
+                  ]
+               ]
+            },
+            "AdvancedComponent": {
+               "infile": "/home/travis/.cache/ctapipe/gamma_test.simtel.gz",
+               "outfile": null,
+               "value1": -1,
+               "MyComponent": {
+                  "value": -1
+               }
+            }
+         }
+      },
+      "status": "completed",
+      "duration_min": 0.005583333333429863
+   },
+   {
+      "activity_name": "mytool",
+      "activity_uuid": "00e93693-238d-4a2f-8fc0-12640279cfdd",
+      "start": {
+         "time_utc": "2020-11-18T17:12:58.736"
+      },
+      "stop": {
+         "time_utc": "2020-11-18T17:12:59.068"
+      },
+      "system": {
+         "ctapipe_version": "0.10.0.post1",
+         "ctapipe_resources_version": "not installed",
+         "eventio_version": "1.4.2",
+         "ctapipe_svc_path": null,
+         "executable": "/home/travis/virtualenv/python3.8.1/bin/python",
+         "platform": {
+            "architecture_bits": "64bit",
+            "architecture_linkage": "ELF",
+            "machine": "x86_64",
+            "processor": "x86_64",
+            "node": "travis-job-0f2f39a9-c3e3-4532-8be0-be226d07d530",
+            "version": "#31~18.04.1-Ubuntu SMP Mon Jun 22 15:24:52 UTC 2020",
+            "system": "Linux",
+            "release": "5.3.0-1029-gcp",
+            "libcver": [
+               "glibc",
+               "2.27"
+            ],
+            "num_cpus": 2,
+            "boot_time": "2020-11-18T17:02:37.000"
+         },
+         "python": {
+            "version_string": "3.8.1 (default, Dec 20 2019, 10:06:11) \n[GCC 7.4.0]",
+            "version": [
+               "3",
+               "8",
+               "1"
+            ],
+            "compiler": "GCC 7.4.0",
+            "implementation": "CPython"
+         },
+         "environment": {
+            "CONDA_DEFAULT_ENV": null,
+            "CONDA_PREFIX": null,
+            "CONDA_PYTHON_EXE": null,
+            "CONDA_EXE": null,
+            "CONDA_PROMPT_MODIFIER": null,
+            "CONDA_SHLVL": null,
+            "PATH": "/home/travis/virtualenv/python3.8.1/bin:/home/travis/bin:/home/travis/.local/bin:/usr/local/lib/jvm/openjdk11/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.nvm/versions/node/v10.16.0/bin:/home/travis/.kiex/elixirs/elixir-1.7.4/bin:/home/travis/.kiex/bin:/home/travis/.rvm/gems/ruby-2.6.5/bin:/home/travis/.rvm/gems/ruby-2.6.5@global/bin:/home/travis/.rvm/rubies/ruby-2.6.5/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/maven-3.6.3/bin:/usr/local/cmake-3.12.4/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin:/home/travis/.yarn/bin",
+            "LD_LIBRARY_PATH": null,
+            "DYLD_LIBRARY_PATH": null,
+            "USER": "travis",
+            "HOME": "/home/travis",
+            "SHELL": "/bin/bash"
+         },
+         "arguments": [
+            "/home/travis/virtualenv/python3.8.1/lib/python3.8/site-packages/ipykernel_launcher.py",
+            "-f",
+            "/tmp/tmpcp6k8nqg.json",
+            "--HistoryManager.hist_file=:memory:"
+         ],
+         "start_time_utc": "2020-11-18T17:12:58.745"
+      },
+      "input": [],
+      "output": [],
+      "config": {
+         "MyTool": {
+            "config_file": null,
+            "iterations": 3,
+            "log_config": {
+               "version": 1,
+               "disable_existing_loggers": false,
+               "formatters": {
+                  "file": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  },
+                  "console": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  }
+               },
+               "handlers": {
+                  "ctapipe-console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": 10
+                  },
+                  "console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": "NOTSET"
+                  }
+               },
+               "loggers": {
+                  "ctapipe": {
+                     "level": 10,
+                     "handlers": [
+                        "ctapipe-console"
+                     ],
+                     "propagate": false
+                  }
+               }
+            },
+            "log_datefmt": "%Y-%m-%d %H:%M:%S",
+            "log_file": null,
+            "log_file_level": "INFO",
+            "log_format": "%(asctime)s : %(levelname)s [%(name)s %(funcName)s] %(message)s",
+            "log_level": 10,
+            "provenance_log": "/home/travis/build/cta-observatory/ctapipe/docs/examples/mytool.provenance.log",
+            "quiet": false,
+            "show_config": false,
+            "show_config_json": false,
+            "MyComponent": {
+               "value": -1
+            },
+            "SecondaryMyComponent": {
+               "value": -1
+            },
+            "TelescopeWiseComponent": {
+               "param": [
+                  [
+                     "type",
+                     "*",
+                     5.0
+                  ]
+               ]
+            },
+            "AdvancedComponent": {
+               "infile": "/home/travis/.cache/ctapipe/gamma_test.simtel.gz",
+               "outfile": null,
+               "value1": -1,
+               "MyComponent": {
+                  "value": -1
+               }
+            }
+         }
+      },
+      "status": "completed",
+      "duration_min": 0.005533333333289647
+   },
+   {
+      "activity_name": "mytool",
+      "activity_uuid": "58aba278-fffa-43aa-8149-f5b40d214a7a",
+      "start": {
+         "time_utc": "2020-11-18T17:12:59.126"
+      },
+      "stop": {
+         "time_utc": "2020-11-18T17:12:59.670"
+      },
+      "system": {
+         "ctapipe_version": "0.10.0.post1",
+         "ctapipe_resources_version": "not installed",
+         "eventio_version": "1.4.2",
+         "ctapipe_svc_path": null,
+         "executable": "/home/travis/virtualenv/python3.8.1/bin/python",
+         "platform": {
+            "architecture_bits": "64bit",
+            "architecture_linkage": "ELF",
+            "machine": "x86_64",
+            "processor": "x86_64",
+            "node": "travis-job-0f2f39a9-c3e3-4532-8be0-be226d07d530",
+            "version": "#31~18.04.1-Ubuntu SMP Mon Jun 22 15:24:52 UTC 2020",
+            "system": "Linux",
+            "release": "5.3.0-1029-gcp",
+            "libcver": [
+               "glibc",
+               "2.27"
+            ],
+            "num_cpus": 2,
+            "boot_time": "2020-11-18T17:02:37.000"
+         },
+         "python": {
+            "version_string": "3.8.1 (default, Dec 20 2019, 10:06:11) \n[GCC 7.4.0]",
+            "version": [
+               "3",
+               "8",
+               "1"
+            ],
+            "compiler": "GCC 7.4.0",
+            "implementation": "CPython"
+         },
+         "environment": {
+            "CONDA_DEFAULT_ENV": null,
+            "CONDA_PREFIX": null,
+            "CONDA_PYTHON_EXE": null,
+            "CONDA_EXE": null,
+            "CONDA_PROMPT_MODIFIER": null,
+            "CONDA_SHLVL": null,
+            "PATH": "/home/travis/virtualenv/python3.8.1/bin:/home/travis/bin:/home/travis/.local/bin:/usr/local/lib/jvm/openjdk11/bin:/opt/pyenv/shims:/home/travis/.phpenv/shims:/home/travis/perl5/perlbrew/bin:/home/travis/.nvm/versions/node/v10.16.0/bin:/home/travis/.kiex/elixirs/elixir-1.7.4/bin:/home/travis/.kiex/bin:/home/travis/.rvm/gems/ruby-2.6.5/bin:/home/travis/.rvm/gems/ruby-2.6.5@global/bin:/home/travis/.rvm/rubies/ruby-2.6.5/bin:/home/travis/gopath/bin:/home/travis/.gimme/versions/go1.11.1.linux.amd64/bin:/usr/local/maven-3.6.3/bin:/usr/local/cmake-3.12.4/bin:/usr/local/clang-7.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/home/travis/.rvm/bin:/home/travis/.phpenv/bin:/opt/pyenv/bin:/home/travis/.yarn/bin",
+            "LD_LIBRARY_PATH": null,
+            "DYLD_LIBRARY_PATH": null,
+            "USER": "travis",
+            "HOME": "/home/travis",
+            "SHELL": "/bin/bash"
+         },
+         "arguments": [
+            "/home/travis/virtualenv/python3.8.1/lib/python3.8/site-packages/ipykernel_launcher.py",
+            "-f",
+            "/tmp/tmpcp6k8nqg.json",
+            "--HistoryManager.hist_file=:memory:"
+         ],
+         "start_time_utc": "2020-11-18T17:12:59.136"
+      },
+      "input": [],
+      "output": [],
+      "config": {
+         "MyTool": {
+            "config_file": "/home/travis/build/cta-observatory/ctapipe/docs/examples/Tools.json",
+            "iterations": 5,
+            "log_config": {
+               "version": 1,
+               "disable_existing_loggers": false,
+               "formatters": {
+                  "file": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  },
+                  "console": {
+                     "()": null,
+                     "fmt": "%(asctime)s %(levelname)s [%(name)s] (%(module)s.%(funcName)s): %(message)s"
+                  }
+               },
+               "handlers": {
+                  "ctapipe-console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": 10
+                  },
+                  "console": {
+                     "class": "logging.StreamHandler",
+                     "formatter": "console",
+                     "stream": "ext://sys.stderr",
+                     "level": "NOTSET"
+                  }
+               },
+               "loggers": {
+                  "ctapipe": {
+                     "level": 10,
+                     "handlers": [
+                        "ctapipe-console"
+                     ],
+                     "propagate": false
+                  }
+               }
+            },
+            "log_datefmt": "%Y-%m-%d %H:%M:%S",
+            "log_file": null,
+            "log_file_level": "INFO",
+            "log_format": "[%(name)s]%(highlevel)s %(message)s",
+            "log_level": 10,
+            "provenance_log": "/home/travis/build/cta-observatory/ctapipe/docs/examples/mytool.provenance.log",
+            "quiet": false,
+            "show_config": false,
+            "show_config_json": false,
+            "MyComponent": {
+               "value": -1
+            },
+            "SecondaryMyComponent": {
+               "value": -1
+            },
+            "TelescopeWiseComponent": {
+               "param": [
+                  [
+                     "type",
+                     "*",
+                     5.0
+                  ]
+               ]
+            },
+            "AdvancedComponent": {
+               "infile": "/home/travis/build/cta-observatory/ctapipe/docs/examples/something.txt",
+               "outfile": null,
+               "value1": -1,
+               "MyComponent": {
+                  "value": -1
+               }
+            }
+         }
+      },
+      "status": "completed",
+      "duration_min": 0.009066666666726064
+   }
+]
