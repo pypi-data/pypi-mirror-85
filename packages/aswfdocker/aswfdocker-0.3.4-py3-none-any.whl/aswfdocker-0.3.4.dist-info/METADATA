@@ -1,0 +1,89 @@
+Metadata-Version: 2.1
+Name: aswfdocker
+Version: 0.3.4
+Summary: ASWF Docker Utilities
+Home-page: https://github.com/AcademySoftwareFoundation/aswf-docker
+Author: Aloys Baillet
+Author-email: aloys.baillet+github@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: certifi (==2020.4.5.1)
+Requires-Dist: chardet (==3.0.4)
+Requires-Dist: click (==7.1.2)
+Requires-Dist: importlib-resources (==3.3.0)
+Requires-Dist: jinja2 (==2.11.2)
+Requires-Dist: pygithub (==1.51)
+Requires-Dist: pyjwt (==1.7.1)
+Requires-Dist: pyyaml (==5.3.1)
+Requires-Dist: requests (==2.23.0)
+Requires-Dist: wrapt (==1.12.1)
+Requires-Dist: zipp (==3.4.0) ; python_version < "3.8" and python_version < "3.8"
+Requires-Dist: deprecated (==1.2.10) ; python_version >= "2.7" and python_version not in "3.0, 3.1, 3.2, 3.3"
+Requires-Dist: idna (==2.9) ; python_version >= "2.7" and python_version not in "3.0, 3.1, 3.2, 3.3"
+Requires-Dist: markupsafe (==1.1.1) ; python_version >= "2.7" and python_version not in "3.0, 3.1, 3.2, 3.3"
+Requires-Dist: urllib3 (==1.25.9) ; python_version >= "2.7" and python_version not in "3.0, 3.1, 3.2, 3.3, 3.4" and python_version < "4"
+
+# ASWF Python Utilities
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) ![pytest coverage](https://img.shields.io/azure-devops/coverage/academysoftwarefoundation/Academy%20Software%20Foundation/2/master)
+
+The `aswfdocker` command line tool is available to help with package and image builds.
+
+## Installation
+
+### For users:
+```bash
+git clone https://github.com/AcademySoftwareFoundation/aswf-docker
+cd aswf-docker
+python3 setup.py install
+```
+
+### For developers:
+First install [pipenv](https://github.com/pypa/pipenv) for Python 3: `pip3 install pipenv`.
+Then:
+```bash
+git clone https://github.com/AcademySoftwareFoundation/aswf-docker
+cd aswf-docker
+pipenv shell
+pipenv install --dev
+```
+You should now be in a python `virtualenv` shell where the `aswfdocker` command is available.
+
+### Finally
+You should check the command is working:
+```bash
+aswfdocker --help
+```
+
+## Usage
+### List packages and images
+List all known packages:
+```bash
+aswfdocker packages
+```
+List all known images:
+```bash
+aswfdocker images
+```
+
+## Development
+
+### Process
+Once in the `pipenv shell` you should first install the [pre-commit](https://pre-commit.com/) hooks by running `pre-commit install`
+The pre-commit hooks will run the following commands, which can be run individually as well:
+* run `black` on the code to ensure formatting is OK: `black python`
+* run the tests to ensure everything is OK: `pytest python/aswfdocker`
+* run [mypy](http://mypy-lang.org/) to ensure static types are OK: `mypy python/aswfdocker`
+* run `prospector` on the code to ensure linting is OK: `prospector -F python/aswfdocker`
+
+To run them all manually use `pre-commit run --all-files`.
+
+### Adding new pip dependencies
+* Run `pipenv install xyz`
+* Run `pipenv-setup sync` to update `setup.py` with added dependency (`pipenv-setup` is a "dev" dependency already declared in `PipFile`)
+
+
