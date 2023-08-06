@@ -1,0 +1,79 @@
+Metadata-Version: 2.1
+Name: arq-django-admin
+Version: 0.0.6
+Summary: An app that provides Django admin for ARQ
+Home-page: https://github.com/SlavaSkvortsov/arq-django-admin
+Author: Slava Skvortsov
+License: UNKNOWN
+Description: # ARQ Django admin
+        
+        ![](https://github.com/SlavaSkvortsov/arq-django-admin/workflows/test/badge.svg)
+        [![codecov](https://codecov.io/gh/SlavaSkvortsov/arq-django-admin/branch/master/graph/badge.svg)](https://codecov.io/gh/SlavaSkvortsov/arq-django-admin)
+        [![pypi](https://img.shields.io/pypi/v/arq-django-admin.svg)](https://pypi.python.org/pypi/arq-django-admin)
+        [![versions](https://img.shields.io/pypi/pyversions/arq-django-admin.svg)](https://github.com/SlavaSkvortsov/arq-django-admin)
+        
+        Django admin dashboard for [arq](https://github.com/samuelcolvin/arq).
+        ARQ Django admin is a simple app that allows you to configure your queues in django's settings.py and easily use them in your project.
+        
+        # Installation
+        - Install `arq-django-admin` ([or download from PyPI](https://pypi.org/project/arq-django-admin/)):
+        ```shell script
+        pip install arq-django-admin
+        ```
+        
+        - Add `arq_admin` to `INSTALLED_APPS` in `settings.py`:
+        ```python
+        INSTALLED_APPS = (
+            'arq_admin',
+            # other apps
+        )
+        ``` 
+        Make sure you added it before `django.contrib.admin`, otherwise you won't be able to see a link in the top right corner.
+        
+        - Configure your queues in Django's `settings.py`:
+        ```python
+        from arq.connections import RedisSettings
+        from arq.constants import default_queue_name
+        
+        
+        ARQ_QUEUES = {
+            default_queue_name: RedisSettings(
+                host='localhost',
+                port=6379,
+                database=0,
+            ),
+            'arq:another_queue_name': RedisSettings(),
+        }
+        ```
+        
+        - Include `arq_admin.urls` in your `urls.py`:
+        ```python
+        from django.urls import include, path
+        
+        
+        urlpatterns = [
+            # <...>
+            path('arq/', include('arq_admin.urls')),
+        ]
+        ```
+        
+        - If you use custom job serializer, you need to add deserializer to `settings.py`:
+        ```python
+        ARQ_DESERIALIZER = custom_job_deserializer
+        ```
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Monitoring
+Description-Content-Type: text/markdown
