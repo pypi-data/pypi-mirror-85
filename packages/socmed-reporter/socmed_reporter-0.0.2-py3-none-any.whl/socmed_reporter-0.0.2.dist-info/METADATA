@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: socmed-reporter
+Version: 0.0.2
+Summary: Social media tool
+Home-page: https://github.com/neko1101/socmed-reporter
+Author: Neko1101
+Author-email: fizdotcom@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
+Requires-Dist: beautifulsoup4 (==4.9.3)
+Requires-Dist: bs4 (==0.0.1)
+Requires-Dist: collection (==0.1.6)
+Requires-Dist: google (==3.0.0)
+Requires-Dist: soupsieve (==2.0.1)
+Provides-Extra: dev
+Requires-Dist: pytest (>=3.7) ; extra == 'dev'
+
+# socmed-reporter
+Social media tool.
+
+## Usage
+```
+pip install socmed-reporter
+```
+```
+from socmed_reporter.app import reporter
+socmeds = reporter("John Doe")
+print(socmeds)
+```
+
+
