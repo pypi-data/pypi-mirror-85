@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: bandlab-master
+Version: 1.2.4
+Summary: Master a song with BandLab
+Home-page: https://github.com/zmarffy/bandlab-master
+Author: Zeke Marffy
+Author-email: zmarffy@yahoo.com
+License: MIT
+Platform: UNKNOWN
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: selenium
+Requires-Dist: webdriver-extended (>=1.1)
+Requires-Dist: zmtools (>=1.4.0)
+
+# `bandlab-master`
+
+`bandlab-master` is a Python script that uploads a song to your [BandLab](https://www.bandlab.com/) account, masters it with default settings, and downloads it as WAV.
+
+## Requirements
+
+* `chromium`
+* `chromedriver`
+* `selenium` (a `pip` package)
+* `webdriver-extended` (a `pip` package)
+* `zmtools` (a `pip` package)
+
+**Note:** It is unknown how well this works if installed via the DEB file due to dependencies. I think you may need to use the non-snap version of Chromium. This will be addressed in the future.
+
+## Usage
+
+`bandlab-master [file_to_master]`
+
+Make sure your BandLab credentials are in `~/.bandlab/.creds`, username on first line and password on second.
+
+
