@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: zepben.cimbend
+Version: 0.13.0b2
+Summary: Python SDK for interacting with the Evolve platform
+Home-page: https://github.com/zepben/evolve-sdk-python
+Author: Kurt Greaves
+Author-email: kurt.greaves@zepben.com
+License: MPL 2.0
+Description: # Zepben cimbend (WIP) #
+        This library provides Zepben's CIM profile as a python module for simplified interaction with Zepben services. You can find an overview and diagrams of Zepben's profile [here](https://zepben.bitbucket.io/cim/evolve/).
+        
+        All classes exposed in `zepben.cimbend.cim` can be converted into protobuf messages and sent to/received from Zepben's gRPC services.
+        
+        Note this project is still a work in progress and unstable, and breaking changes may occur prior to 1.0.0. 
+        
+        More extensive documentation can be found in the [docs](docs/README.md)
+        
+        # Basic Usage #
+        
+        TODO
+        
+        ## Installation ##
+        Requirements:
+        
+        1. Python 3.7+
+        
+        Install straight from Pypi:
+        
+            pip install zepben.cimbend
+            
+        ## Developing ##
+        
+        This library depends on protobuf and gRPC for messaging. To set up for developing against this library, clone it first:
+        
+            git clone https://github.com/zepben/evolve-sdk-python.git
+        
+        Install as an editable install. Its recommended to install in a [Python virtualenv](https://virtualenv.pypa.io/en/stable/)
+        
+            cd evolve-sdk-python
+            pip install -e .[test]
+        
+        Run the tests: 
+        
+            python -m pytest
+        
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Provides-Extra: test
