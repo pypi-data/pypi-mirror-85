@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: appletlib
+Version: 1.0.2
+Summary: Python library providing a QSystemTrayIcon wrapper
+Home-page: https://github.com/jmechnich/appletlib
+Author: Joerg Mechnich
+Author-email: joerg.mechnich@gmail.com
+License: UNKNOWN
+Description: appletlib
+        ==============
+        
+        Python library providing a QSystemTrayIcon wrapper
+        
+        Classes
+        =============
+        
+        - Application: provides several convenience function for logging,
+          process detachment, application settings management
+        
+        - Indicator:  base class for systemtray applets. A splash
+          screen can be added as Indicator.splash.
+        
+        - SystemTrayIcon: triggers regular updates every interval ms. Update
+          by using SystemTrayIcon.setIcon( icon) and calling update().
+        
+        - Splash: semi-transparent splash screen that is shown on all virtual desktops.
+        
+        Requirements
+        ============
+        
+        - Python 3
+        - PyQt 5
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: POSIX :: Linux
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
