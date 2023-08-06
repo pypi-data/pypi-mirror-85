@@ -1,0 +1,5 @@
+extension API {
+    enum Urls {
+
+    }
+}
