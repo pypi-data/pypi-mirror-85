@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: metablock
+Version: 0.1.4
+Summary: A python client for Metablock API
+Home-page: https://github.com/quantmind/metablock-py
+Author-email: luca@quantmind.com
+Maintainer-email: luca@quantmind.com
+License: BSD
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: JavaScript
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Utilities
+Requires-Python: >=3.6.0
+Description-Content-Type: text/markdown
+Requires-Dist: aiohttp
+
+# A Python Client for Metablock API
+
+[![PyPI version](https://badge.fury.io/py/metablock.svg)](https://badge.fury.io/py/metablock)
+[![Python versions](https://img.shields.io/pypi/pyversions/metablock.svg)](https://pypi.org/project/metablock)
+[![Build](https://github.com/quantmind/metablock-py/workflows/build/badge.svg)](https://github.com/quantmind/metablock-py/actions?query=workflow%3Abuild)
+[![codecov](https://codecov.io/gh/quantmind/metablock-py/branch/master/graph/badge.svg?token=EAdSVpD0Af)](https://codecov.io/gh/quantmind/metablock-py)
+
+This is an asynchronous python client for [metablock API](https://api.metablock.io/v1/docs).
+
+## Installation
+
+This is a simple python package you can install via pip:
+
+```
+pip install metablock
+```
+
+## Usage
+
+Create the client
+
+```python
+from metablock import Metablock
+
+cli = Metablock()
+```
+
+
