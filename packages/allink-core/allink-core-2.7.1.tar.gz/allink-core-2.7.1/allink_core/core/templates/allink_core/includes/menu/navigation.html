@@ -1,0 +1,5 @@
+{% load i18n menu_tags %}
+
+{% for child in children %}
+    {% include 'includes/menu/navigation_item.html' with child=child %}
+{% endfor %}
