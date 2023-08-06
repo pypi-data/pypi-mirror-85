@@ -1,0 +1,70 @@
+Metadata-Version: 2.1
+Name: RackioSocket
+Version: 0.9
+Summary: A Rackio extension to add a SocketIO Server to Rackio
+Home-page: https://github.com/rack-io/rackio-socket
+Author: Nelson Carrasquel
+Author-email: rackio.framework@outlook.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: eventlet
+Requires-Dist: python-socketio
+Requires-Dist: gevent
+Requires-Dist: gevent-websocket
+
+# rackio-socket
+A Rackio extension to add a SocketIO Server to Rackio
+
+## Installation
+
+```
+pip install RackioSocket
+```
+
+## Usage
+
+```python
+from rackio import Rackio
+from rackio_socket import RackioSocket
+
+app = Rackio()
+
+RackioSocket(app, 5005)
+
+app.run(8028)
+```
+
+## SocketIO Client
+
+After running your application it will serve the SocketIO through the *5005* port.
+
+```javascript
+var socket = io('http://localhost:5005');
+```
+
+## Adding new events to your applications
+
+You can add your custom events using the decorator pattern.
+
+```python
+rs = RackioSocket()
+
+@rs.event
+def custom(sid):
+    print("custom event " , sid)
+    rs.emit("response", {"message": "this is the custom response"})
+
+
+@rs.on("another custom")
+def another_event(sid, data):
+
+    response = processing(data)
+
+    rs.emit('response', response)
+
+```
+
