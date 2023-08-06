@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: "tqtezos"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: tezos-secret
+  namespace: "tqtezos"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tqtezos-utils
+  namespace: "tqtezos"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tezos-config
+  namespace: "tqtezos"
