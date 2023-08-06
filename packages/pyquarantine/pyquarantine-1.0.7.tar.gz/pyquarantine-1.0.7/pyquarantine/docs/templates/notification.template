@@ -1,0 +1,33 @@
+<html>
+ <body>
+  <h1>Quarantine notification</h1>
+  <table>
+   <tr>
+    <td><b>Envelope-From:</b></td>
+    <td>{EMAIL_ENVELOPE_FROM}</td>
+   </tr>
+   <tr>
+    <td><b>From:</b></td>
+    <td>{EMAIL_FROM}</td>
+   </tr>
+   <tr>
+    <td><b>Envelope-To:</b></td>
+    <td>{EMAIL_ENVELOPE_TO}</td>
+   </tr>
+   <tr>
+    <td><b>To:</b></td>
+    <td>{EMAIL_TO}</td>
+   </tr>
+   <tr>
+    <td><b>Subject:</b></td>
+    <td>{EMAIL_SUBJECT}</td>
+   </tr>
+   <tr>
+    <td><b>Quarantine ID:</b></td>
+    <td>{EMAIL_QUARANTINE_ID}</td>
+   </tr>
+  </table><br/>
+  <h2>Preview of the original e-mail</h2>
+  {EMAIL_HTML_TEXT}
+ </body>
+</html>
