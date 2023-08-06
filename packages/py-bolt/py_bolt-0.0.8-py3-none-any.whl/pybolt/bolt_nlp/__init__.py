@@ -1,0 +1,2 @@
+from pybolt.bolt_nlp.word_discover import WordDiscover
+from pybolt.bolt_nlp.naive_bayes_classification.bernoulliNB import ClassificationModel as BernoulliClassifier
