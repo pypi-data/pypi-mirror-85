@@ -1,0 +1,71 @@
+{% extends 'release_notes/base.html' %}
+
+{% load release_notes %}
+
+{% block release_notes_extra_head %}
+	{% release_notes_feed %}
+
+	<style type="text/css">
+		.latest-label {
+			text-transform: uppercase;
+			background: #4a90e2;
+			border-color: #4a90e2;
+			color: white;
+			padding: 0px 10px;
+			font-size: 10px;
+			font-weight: bold;
+			border-radius: 4px;
+			margin: 0 10px;
+			vertical-align: top;
+		}
+		.release-note-row .latest-label {
+			display: none;
+		}
+		.release-note-row:first-child .latest-label {
+			display: inline-block;
+		}
+		.markdown p {
+			white-space: pre-wrap;
+		}
+	</style>
+{% endblock %}
+
+{% block release_notes_body_header %}
+	<div class="text-center m-t-lg m-b-lg">
+		<h1 class="font-light">Release Notes</h1>
+		{% if page_description %}
+			<p>{{ page_description }}</p>
+		{% endif %}
+	</div>
+{% endblock %}
+
+{% block release_notes_body %}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				{% for release_note in release_notes %}
+					<div class="row release-note-row">
+						<div class="col-sm-12">
+							<div class="release-note m-b-lg">
+								<div class="release-note-header m-b-sm">
+									<p class="font-light" style="font-size: 24px; margin-bottom: 0; display: inline-block;">
+										<i class="fa fa-{{ release_note.client.icon }}"></i>
+										{{ release_note.client.name }}
+										{% if release_note.version %} &middot; Version: {{ release_note.version }}{% endif %}
+									</p>
+									<span class="latest-label">Latest</span>
+								</div>
+								<div class="text-upper font-bold m-b-sm">
+										Released {{ release_note.release_date }}
+									</div>
+								<div class="markdown">
+									{{ release_note.notes|from_markdown }}
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}
