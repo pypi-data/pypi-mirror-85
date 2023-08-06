@@ -1,0 +1,38 @@
+#########################
+# Flake8 Configuration  #
+# (.flake8)             #
+# (formerly in tox.ini) #
+#########################
+[flake8]
+# flake8
+exclude =
+    .tox,
+    .git,
+    __pycache__,
+    docs/source/conf.py,
+    build,
+    dist,
+    tests/fixtures/*,
+    *.pyc,
+    *.egg-info,
+    .cache,
+    .eggs
+format = ${cyan}%(path)s${reset}:${yellow_bold}%(row)d${reset}:${green_bold}%(col)d${reset}: ${red_bold}%(code)s${reset} %(text)s
+ignore =
+    D105
+    E501
+    # ignore binary operator line breaks
+    W504
+
+# flake8-import-order
+application-import-names =
+    bio2bel
+    pybel
+    bel_resources
+    tests
+import-order-style = pycharm
+
+max-line-length = 120
+
+# mccabe
+max-complexity = 20
