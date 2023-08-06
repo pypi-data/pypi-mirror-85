@@ -1,0 +1,71 @@
+### Usage
+- To import everything:<br>
+`import vectors`<br>
+- To import only 2D and 3D points:<br>
+`from vectors import Vector2, Vector3, Slope`<br>
+- Create a 2D Vector:<br>
+`v = Vector2(x, y)`<br>
+- Create a 3D vector:<br>
+`v = Vector3(x, y, z)`<br>
+- Create a slope instance:<br>
+`m = Slope(rise, run)`
+- Get point information:<br>
+`_.x` or `_.y` or `_.z`<br>
+- Get all points/rise and run as a tuple:<br>
+`_.tuple()`<br>
+- Get all points/rise and run as an array list:<br>
+`_.list()`<br>
+- Get all points/rise and run as a dictionary:<br>
+`_.dict()`<br>
+- Get rise over run from slope object as a string formated as `rise/run`:<br>
+`_.string()`
+- Add two points:<br>
+`vectors.add(<v1>, <v2>)`<br>
+`_.add(v)`<br>
+- Subtract two points:<br>
+`vectors.subtract(<v1>, <v2>)`<br>
+`_.subtract(v)`<br>
+- Multiply two points:<br>
+`vectors.multiply(<v1>, <v2>)`<br>
+`_.multiply(v)`<br>
+- Divide two points:<br>
+`vectors.divide(<v1>, <v2>)`<br>
+`_.divide(v)`<br>
+- Simplify slope rise and run:<br>
+`_.simplify()`<br>
+- Generate a 2D vector matrix:<br>
+`vectors.generate_2d_matrix(<Vector2>, <Vector2>)`<br>
+- Generate a 3D vector matrix:<br>
+`vectors.generate_3d_matrix(<Vector3>, <Vector3>)`<br>
+
+### Usage Notes:
+- `vectors.find_slope(<Vector2>, <Vector2>)` returns a Slope class<br>
+- `vectors.generate_2d_square_matrix(<Vector2>, <Vector2>)` increments by one. This means your given Vector2 objects should only contain ints, no double or floats.<br>
+- You can add, subtract, multiply, and divide a `Vector2` and a `Vector3` (and vice versa). The output will be converted to a Vector3, using `0 <operator> <second_param>.z` as the z value<br>
+- IMPORTANT: Remember when dividing, you cannot divide by zero. `0 / 2` is valid, however `2 / 0` is not. If your second parameter has a 0, you WILL get an error<br>
+
+### Updates
+**11/18/2020 - 1.2.3<br>
+- Changed `vectors.generate_square_matrix(<Vector2>, <Vector2>)` to `vectors.generate_2d_matrix(<Vector2>, <Vector2>`<br>
+- Added `vectors.generate_3d_matrix(<Vector3>, <Vector3>)`<br>
+
+**11/18/2020 - 1.2.1**<br>
+- Added inline math functions<br>
+- Added square matrix generation with `vectors.generate_square_matrix(<Vector2>, <Vector2>)`<br>
+- Added `Slope` class<br>
+- Added `vectors.find_slope(<Vector2>, <Vector2>)`,  `_.simplify()`, and `_.string()` functions<br>
+
+**11/18/2020 - 1.1.2**<br>
+- Updated README.md<br>
+
+**11/18/2020 - 1.1.0**<br>
+- Added add, subtract, multiply, and dividing of Vector2 and Vector3<br>
+
+**11/18/2020 - 1.0.0**<br>
+- Fixed `Vector3.tuple()` showing as `(x, y, x)` instead of `(x, y, z)`<br>
+
+**11/17/2020 - 0.0.1**<br>
+- Package published<br>
+
+### Other Information
+See my other projects at https://fosterreichert.com
