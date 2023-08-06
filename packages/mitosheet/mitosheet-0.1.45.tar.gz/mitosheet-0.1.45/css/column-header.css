@@ -1,0 +1,19 @@
+
+/* 
+    we add the overflow: hidden property to the AgGrid header cell to ensure that
+    the column header does not overflow into the next cell. We have to add it here
+    because it was not working properly when just adding it to the .column-header-cell
+*/
+.ag-header-cell {
+    overflow: hidden;
+}
+
+.column-header-cell {
+    display: inline-flex;
+    flex-direction: row;
+}
+
+
+.column-header:hover {
+    text-decoration: underline;
+}
