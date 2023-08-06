@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: enrich
+Version: 0.1.dev1
+Summary: enrich
+Home-page: https://github.com/pycontribs/enrich
+Author: Sorin Sbarnea
+Author-email: sorin.sbarnea@gmail.com
+Maintainer: Sorin Sbarnea
+Maintainer-email: sorin.sbarnea@gmail.com
+License: MIT
+Project-URL: Bug Tracker, https://github.com/pycontribs/enrich/issues
+Project-URL: Release Management, https://github.com/pycontribs/enrich/releases
+Project-URL: CI, https://github.com/pycontribs/enrich/actions
+Project-URL: Source Code, https://github.com/pycontribs/enrich
+Keywords: console,logging,rich
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: System :: Systems Administration
+Classifier: Topic :: Utilities
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: rich (>=8.0)
+Provides-Extra: test
+Requires-Dist: mock (>=3.0.5) ; extra == 'test'
+Requires-Dist: pytest-cov (>=2.7.1) ; extra == 'test'
+Requires-Dist: pytest-plus ; extra == 'test'
+Requires-Dist: pytest-xdist (>=1.29.0) ; extra == 'test'
+Requires-Dist: pytest (>=5.4.0) ; extra == 'test'
+
+# enrich
+Enriched adds missing features to rich
+
+
