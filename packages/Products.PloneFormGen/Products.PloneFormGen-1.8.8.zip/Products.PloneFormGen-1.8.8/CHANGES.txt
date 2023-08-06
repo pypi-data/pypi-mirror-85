@@ -1,0 +1,180 @@
+Change History
+==============
+
+1.8.8 (2020-11-16)
+------------------
+
+- Fixed portal_skins directory path on Plone 5.2
+  It was ``PloneFormGen/skins/PloneFormGen`` but now has to be ``Products.PloneFormGen:skins/PloneFormGen``.
+  This might need an upgrade step, but you can also do this manually in portal_skins in the ZMI.
+  Note that PloneFormGen is not really tested on Plone 5.2.
+  In fact the automatic tests completely fail on 5.2, so use at your own risk.
+  [maurits]
+
+- Only apply quickedit bundle js and styles to the quickedit form.
+  [alecpm]
+
+
+1.8.7 (2019-11-22)
+------------------
+
+- Fix broken RichText fields on Plone 5.1.x.
+  [alecpm]
+
+
+1.8.6 (2019-07-29)
+------------------
+
+- Improve captcha error message.
+  [rodfersou, idgserpro]
+
+- Add uninstall profile and setuphandler. Make Plone 5.1 happy.
+  [smcmahon]
+
+- Allow comma for decimal separation in ExRangeValidator, because
+  it is allowed by the underlying archetypes fields. Make users in some
+  european countries happy.
+  [nilo]
+
+
+1.8.5 (2017-12-20)
+------------------
+
+- Use datepicker widget for datetime input
+  [tomgross, keul]
+
+
+1.8.4 (2017-07-08)
+------------------
+
+- Fix UnicodeDecodeError: RateScaleField with non-ascii values and without
+  Thank-you-page.
+  Fixes `issue #98 <https://github.com/smcmahon/Products.PloneFormGen/issues/98>`_.
+  [vkarppinen]
+
+- Remove collective.cover adapter reference.
+  (Closes `#194 <https://github.com/smcmahon/Products.PloneFormGen/issues/194>`_.
+  [rodfersou]
+
+- Fixed UnicodeDecodeError when vocabulary value is a non-ascii string.
+  This could happen in selection and multi selection fields.
+  [maurits]
+
+- Change captcha verification message for `#186 <https://github.com/smcmahon/Products.PloneFormGen/issues/186>`_.
+  [tkimnguyen]
+
+- Fix issue where quickedit view caused rendering issues because
+  of a tag not being closed.
+  [datakurre]
+
+- Fix issue where logic in FormSaveDataAdapter's getColumnTitles was
+  different than the logic for getColumnNames.
+  [mikerenfro]
+
+- Fix redundant template fallback value.
+  [zemm]
+
+
+1.8.3 (2016-12-06)
+------------------
+
+- Transform value to unicode before translating. Fix #182
+  [pbauer]
+
+
+1.8.2 (2016-11-22)
+------------------
+
+- Fixed showing translations of help text.  Since security release
+  1.8.1, help text was showing up with only the message id, for
+  example ``help_placeholder``.
+  Fixes `issue #178 <https://github.com/smcmahon/Products.PloneFormGen/issues/178>`_.
+  [maurits]
+
+- Use formActionOverride action in embedded view.  [fRiSi]
+
+- Add option to download data from saveDataAdapter in excel format
+  Excel download depends on the availability of the 'xlwt' python package.
+  [tmog]
+
+
+1.8.1 (2016-05-01)
+------------------
+
+- CGI escape field help (description); prevent method call.
+  Eliminates XSS vulnerability that could be exploited by users with the ability
+  to create forms.
+  [smcmahon]
+
+
+1.8.0 (2015-10-01)
+------------------
+
+- Moved our default_page_types setting to the registry.
+  [maurits]
+
+- Get email settings from registry.  Fixes several Plone 5 errors.
+  Do not use ``plone_utils.getSiteEncoding()``, because this is
+  deprecated and always returns ``utf-8``.
+  [maurits]
+
+- Load widget specific css on quickedit form.
+  [maurits]
+
+- Fix embedded view by removing deprecated global defines macro.
+  [buchi]
+
+- Removed inline javascript that tried to block inline validation.  It
+  had no effect anymore on Plone 5, as no inline validation is done
+  here anyway.  And it interferes with themes that load jQuery near
+  the bottom instead of in the head.
+  [maurits]
+
+
+1.8.0b4 (2015-09-09)
+--------------------
+
+- Changed our content types to use TinyMCEWidget instead of
+  RichWidget.  The old one only showed a plain textarea.  Fixes issue
+  #152.
+
+- Fixed ``propertiestool.xml`` to not break importing
+  ``types_not_searched``.
+
+
+1.8.0.beta3 (2015-07-20)
+------------------------
+
+- Show loading on new form OK.
+
+
+1.8.0.beta2 (2015-07-15)
+------------------------
+
+- Doc update.
+
+- travis config fixes.
+
+
+1.8.0.beta1 (2015-07-13)
+------------------------
+
+- Quick Editor working!
+
+- Use bundles architecture and requirejs.
+
+
+1.8.0.alpha1 (2015-06-29)
+-------------------------
+
+- Check commit log for changes related to P5 update.
+
+- 1.8 will target Plone 5. Maintenance branch is 1.7-maintenance.
+
+- Use content-core instead of main macro for templates using the
+  main_template's master macro. Among fitting better in the standard plone
+  environment and prepares for displaying in a full view (some modifications
+  needed).
+  [thet]
+
+For previous changes, see docs/HISTORY.txt.
