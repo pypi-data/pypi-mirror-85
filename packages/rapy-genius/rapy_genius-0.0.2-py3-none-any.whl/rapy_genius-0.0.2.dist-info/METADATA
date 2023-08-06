@@ -1,0 +1,142 @@
+Metadata-Version: 2.1
+Name: rapy-genius
+Version: 0.0.2
+Summary: a python api to collect data from genius.com using their API
+Home-page: https://github.com/maatarmed/rapy_genius
+Author: Maatar M
+Author-email: maatar93@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: argon2-cffi (==20.1.0)
+Requires-Dist: astroid (==2.4.2)
+Requires-Dist: async-generator (==1.10)
+Requires-Dist: attrs (==20.2.0)
+Requires-Dist: autopep8 (==1.5.4)
+Requires-Dist: backcall (==0.2.0)
+Requires-Dist: beautifulsoup4 (==4.9.3)
+Requires-Dist: bleach (==3.2.1)
+Requires-Dist: bs4 (==0.0.1)
+Requires-Dist: certifi (==2020.6.20)
+Requires-Dist: cffi (==1.14.3)
+Requires-Dist: chardet (==3.0.4)
+Requires-Dist: colorama (==0.4.4)
+Requires-Dist: cycler (==0.10.0)
+Requires-Dist: decorator (==4.4.2)
+Requires-Dist: defusedxml (==0.6.0)
+Requires-Dist: dill (==0.3.3)
+Requires-Dist: entrypoints (==0.3)
+Requires-Dist: filelock (==3.0.12)
+Requires-Dist: idna (==2.10)
+Requires-Dist: importlib-metadata (==2.0.0)
+Requires-Dist: isort (==5.6.4)
+Requires-Dist: jedi (==0.17.2)
+Requires-Dist: Jinja2 (==2.11.2)
+Requires-Dist: joblib (==0.17.0)
+Requires-Dist: json5 (==0.9.5)
+Requires-Dist: jsonschema (==3.2.0)
+Requires-Dist: kiwisolver (==1.2.0)
+Requires-Dist: lazy-object-proxy (==1.4.3)
+Requires-Dist: MarkupSafe (==1.1.1)
+Requires-Dist: mccabe (==0.6.1)
+Requires-Dist: mistune (==0.8.4)
+Requires-Dist: multiprocess (==0.70.11.1)
+Requires-Dist: nbclient (==0.5.1)
+Requires-Dist: nbconvert (==6.0.7)
+Requires-Dist: nbformat (==5.0.8)
+Requires-Dist: nest-asyncio (==1.4.2)
+Requires-Dist: packaging (==20.4)
+Requires-Dist: pandocfilters (==1.4.3)
+Requires-Dist: parso (==0.7.1)
+Requires-Dist: pickleshare (==0.7.5)
+Requires-Dist: Pillow (==8.0.1)
+Requires-Dist: pip-autoremove (==0.9.1)
+Requires-Dist: prometheus-client (==0.8.0)
+Requires-Dist: prompt-toolkit (==3.0.8)
+Requires-Dist: pyarrow (==2.0.0)
+Requires-Dist: pycodestyle (==2.6.0)
+Requires-Dist: pycparser (==2.20)
+Requires-Dist: Pygments (==2.7.2)
+Requires-Dist: pylint (==2.6.0)
+Requires-Dist: pymongo (==3.11.0)
+Requires-Dist: pyparsing (==2.4.7)
+Requires-Dist: pyrsistent (==0.17.3)
+Requires-Dist: python-dateutil (==2.8.1)
+Requires-Dist: pytz (==2020.1)
+Requires-Dist: pywin32 (==228)
+Requires-Dist: pywinpty (==0.5.7)
+Requires-Dist: pyzmq (==19.0.2)
+Requires-Dist: requests (==2.24.0)
+Requires-Dist: Send2Trash (==1.5.0)
+Requires-Dist: six (==1.15.0)
+Requires-Dist: soupsieve (==2.0.1)
+Requires-Dist: terminado (==0.9.1)
+Requires-Dist: testpath (==0.4.4)
+Requires-Dist: threadpoolctl (==2.1.0)
+Requires-Dist: toml (==0.10.2)
+Requires-Dist: tornado (==6.1)
+Requires-Dist: tqdm (==4.49.0)
+Requires-Dist: traitlets (==5.0.5)
+Requires-Dist: typed-ast (==1.4.1)
+Requires-Dist: urllib3 (==1.25.11)
+Requires-Dist: wcwidth (==0.2.5)
+Requires-Dist: webencodings (==0.5.1)
+Requires-Dist: wrapt (==1.12.1)
+Requires-Dist: xxhash (==2.0.0)
+Requires-Dist: zipp (==3.4.0)
+Provides-Extra: dev
+Requires-Dist: pytest (>=3.7) ; extra == 'dev'
+
+# Rapy_Genius
+
+Rapy is a package that uses the Genius API to collect data from genius.com as songs, artists and lyrics 
+
+This framework has two modules:
+    genius_api: Contains the GeniusApiManager class.
+    data_managger: Contains the GeniusApiDatabaseManager class that uses MongoDB and pymongo to store data and use it
+
+##### Visit https://docs.genius.com/ to get API client access.
+
+## Installation
+
+Run the following to install
+
+'''python
+
+    pip install rapy_genius
+
+'''
+
+## Usage
+
+'''python
+
+    from genius_api import GeniusApiManager
+    from data_manager import GeniusApiDatabaseManager
+    API_CLIENT_ACCESS_TOKEN = "XXXXXXXXX" #The Api client access token generated from https://docs.genius.com/
+    api_manager = GeniusApiManager(API_CLIENT_ACCESS_TOKEN)
+    db_manager = GeniusApiDatabaseManager(db_name='Genius_scrapper')
+    add_artist(45) #Eminem
+
+'''
+
+
+# Developing Rapy Genius
+
+to install rapy_genius along with the tools you need to develop and run tests
+
+'''bash
+
+    pip install -e .[dev]
+
+'''
+
+
+
+
+
+
+
