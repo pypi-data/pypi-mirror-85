@@ -1,0 +1,96 @@
+Metadata-Version: 2.1
+Name: fate-client
+Version: 0.2.1
+Summary: Clients for FATE, including flow_client and pipeline
+Home-page: https://fate.fedai.org/
+License: Apache-2.0
+Keywords: FATE,clients,Federated Learning
+Author: FederatedAI
+Author-email: contact@FedAI.org
+Requires-Python: >=3.6,<4.0
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Testing
+Requires-Dist: click (>=7.1.2,<8.0.0)
+Requires-Dist: flask (>=1.0.2,<2.0.0)
+Requires-Dist: loguru (>=0.5.1,<0.6.0)
+Requires-Dist: requests (>=2.24.0,<3.0.0)
+Requires-Dist: requests_toolbelt (>=0.9.1,<0.10.0)
+Requires-Dist: ruamel.yaml (>=0.16.10,<0.17.0)
+Requires-Dist: setuptools (>=50.0,<51.0)
+Requires-Dist: tensorflow (==1.15.4)
+Requires-Dist: torch (==1.4.0)
+Project-URL: Documentation, https://fate.readthedocs.io/en/latest/?badge=latest
+Project-URL: Repository, https://github.com/FederatedAI/FATE
+Description-Content-Type: text/x-rst
+
+FATE Client
+===========
+
+Tools for interacting with FATE.
+
+quick start
+-----------
+
+1. (optional) create virtual env
+
+   .. code-block:: bash
+
+      python -m venv venv
+      source venv/bin/activate
+
+
+2. install FATE Client
+
+   .. code-block:: bash
+
+      pip install fate-client
+
+
+Pipeline
+========
+
+A high-level python API that allows user to design, start,
+and query FATE jobs in a sequential manner. For more information,
+please refer to this `guide <./pipeline/README.rst>`__
+
+Initial Configuration
+---------------------
+
+1. Configure server information
+
+   .. code-block:: bash
+
+      # configure values in pipeline/config.yaml
+      # use real ip address to configure pipeline
+      pipeline init --ip 127.0.0.1 --port 9380 --log-directory ./logs
+
+
+FATE Flow Command Line Interface (CLI) v2
+=========================================
+
+A command line interface providing series of commands for user to design, start,
+and query FATE jobs. For more information, please refer to this `guide <./flow_client/README.rst>`__
+
+Initial Configuration
+---------------------
+
+1. Configure server information
+
+   .. code-block:: bash
+
+      # configure values in conf/service_conf.yaml
+      flow init -c /data/projects/fate/conf/service_conf.yaml
+      # use real ip address to initialize cli
+      flow init --ip 127.0.0.1 --port 9380
+
+
