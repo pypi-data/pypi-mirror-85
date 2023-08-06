@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: snowyowl
+Version: 2020.11.12
+Summary: Python library for working with Snowflake data warehouse
+Home-page: https://github.com/idin/snowyowl
+Author: Idin
+Author-email: py@idin.ca
+License: MIT
+Description: # *SnowyOwl*
+        
+        ## Usage
+        
+        ```python
+        from snowyowl import Snowflake
+        snowflake = Snowflake(
+        	user='user', 
+        	password='password', 
+        	warehouse='warehouse',
+        	account='account'
+        )
+        
+        snowflake.get_data('SELECT * FROM database.schema.table LIMIT 10')
+        ```
+Keywords: database
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: ~=3.6
+Description-Content-Type: text/markdown
