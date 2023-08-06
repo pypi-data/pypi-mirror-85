@@ -1,0 +1,82 @@
+[tool.poetry]
+name = "flex-config"
+version = "2.0.0-alpha.2"
+description="Easily configure Python apps via environment variables, YAML, and AWS SSM Param Store."
+repository="https://github.com/triaxtec/flex-config"
+documentation="https://triaxtec.github.io/flex-config"
+keywords=["config", "AWS", "SSM", "serverless", "environment"]
+readme = "docs/README.md"
+packages = [
+    {include = "flex_config"}
+]
+authors = ["Dylan Anthony <danthony@triaxtec.com>"]
+include = ["CHANGELOG.md", "flex_config/py.typed"]
+license = "MIT"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Topic :: Utilities",
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+boto3 = {version = "^1.13.1", optional = true}
+pyyaml = {version = "^5.3.1", optional = true}
+flake8 = "^3.8.4"
+autoflake = "^1.4"
+pydantic = "^1.7.2"
+
+[tool.poetry.extras]
+aws = ["boto3"]
+yaml = ["pyyaml"]
+all = ["boto3", "pyyaml"]
+
+[tool.poetry.dev-dependencies]
+pytest = "*"
+pytest-mock = "*"
+pytest-cov = "^2.8.1"
+mypy = "==0.*"
+safety = "*"
+black = {version = ">=20.8b1", allow-prereleases = true}
+taskipy = "^1.4.0"
+isort = "^5.6.4"
+mkdocs = "^1.1"
+mkdocs-material = "^5.1.5"
+markdown-include = "^0.5.1"
+mkdocstrings = "^0.11.0"
+
+[tool.taskipy.tasks]
+check = """
+    autoflake -i -r --expand-star-imports --remove-all-unused-imports --remove-unused-variables --ignore-init-module-imports flex_config\
+    && isort .\
+    && black .\
+    && flake8 flex_config\
+    && poetry export -f requirements.txt | poetry run safety check --bare --stdin\
+    && mypy flex_config \
+    && pytest --cov=flex_config --cov-report=term-missing
+"""
+
+[tool.black]
+line-length = 120
+target_version = ['py38']
+exclude = '''
+(
+  /(
+    | \.git
+    | \.venv
+    | \.mypy_cache
+    | openapi_python_client/templates
+    | docs
+  )/
+)
+'''
+
+[tool.isort]
+line_length = 120
+skip = ".venv"
+multi_line_output = 3
+include_trailing_comma = true
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
