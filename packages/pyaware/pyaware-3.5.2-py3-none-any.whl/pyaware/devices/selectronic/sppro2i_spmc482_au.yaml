@@ -1,0 +1,834 @@
+sources:
+  poll:
+    poll_interval: 5
+    blocks:
+      - [41000, 41010]
+      - [41016, 41017]
+      - [41020, 41021]
+      - [41048, 41051]
+      - [41089, 41090]
+      - [41107, 41109]
+      - [41533, 41534]
+      - [41599, 41605]
+      - [41913, 41921]
+parameters:
+    common-ac-voltage-scale:
+      source: poll
+      form:
+        type: ParamCType
+        address: 41000
+        idx: common-ac-voltage-scale
+        data_type: short
+      triggers:
+        process:
+          store:
+            - [always]
+    common-ac-current-scale:
+      source: poll
+      form:
+        type: ParamCType
+        address: 41001
+        idx: common-ac-current-scale
+        data_type: short
+      triggers:
+        process:
+          store:
+            - [always]
+    common-dc-voltage-scale:
+      source: poll
+      form:
+        type: ParamCType
+        address: 41002
+        idx: common-dc-voltage-scale
+        data_type: short
+      triggers:
+        process:
+          store:
+            - [always]
+    common-dc-current-scale:
+      source: poll
+      form:
+        type: ParamCType
+        address: 41003
+        idx: common-dc-current-scale
+        data_type: short
+      triggers:
+        process:
+          store:
+            - [always]
+    common-temperature-scale:
+      source: poll
+      form:
+        type: ParamCType
+        address: 41004
+        idx: common-temperature-scale
+        data_type: short
+      triggers:
+        process:
+          store:
+            - [always]
+    dc-inverter-power:
+      source: poll
+      form:
+        type: ParamCType
+        address: 41009
+        idx: dc-inverter-power
+        data_type: short
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    halfbridge-2-heatsink-temperature:
+      source: poll
+      form:
+        type: ParamCType
+        address: 41016
+        idx: halfbridge-2-heatsink-temperature
+        data_type: short
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    battery-temperature:
+      source: poll
+      form:
+        type: ParamCType
+        address: 41020
+        idx: battery-temperature
+        data_type: short
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    ac-inverter-power:
+      source: poll
+      form:
+        type: ParamCType
+        address: 41048
+        idx: ac-inverter-power
+        data_type: int
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    inverter-reactive-power:
+      source: poll
+      form:
+        type: ParamCType
+        address: 41050
+        idx: inverter-reactive-power
+        data_type: short
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    batt-soc-percent:
+      source: poll
+      form:
+        type: ParamCType
+        address: 41089
+        idx: batt-soc-percent
+        data_type: ushort
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    load-ac-power:
+      source: poll
+      form:
+        type: ParamCType
+        address: 41107
+        idx: load-ac-power
+        data_type: int
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    bms-voltage:
+      source: poll
+      form:
+        type: ParamCType
+        address: 41599
+        idx: bms-voltage
+        data_type: short
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    bms-current:
+      source: poll
+      form:
+        type: ParamCType
+        address: 41600
+        idx: bms-current
+        data_type: int
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    bms-alarm:
+      source: poll
+      form:
+        type: ParamBits
+        address: 41603
+        idx: bms-alarm
+        bitmask:
+          high-battery-voltage-alarm: 1
+          low-battery-voltage-alarm: 2
+          high-battery-temperature-alarm: 3
+          low-battery-temperature-alarm: 4
+          high-discharge-current-alarm: 7
+          high-charge-current-alarm: 8
+          bms-internal-fault-alarm: 11
+          imbalance-in-cell-voltage-alarm: 12
+    high-battery-voltage-alarm:
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    low-battery-voltage-alarm:
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    high-battery-temperature-alarm:
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    low-battery-temperature-alarm:
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    high-discharge-current-alarm:
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    high-charge-current-alarm:
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    bms-internal-fault-alarm:
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    imbalance-in-cell-voltage-alarm:
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    bms-warnings:
+      source: poll
+      form:
+        type: ParamBits
+        address: 41604
+        idx: bms-warnings
+        bitmask:
+          high-battery-voltage-warning: 1
+          low-battery-voltage-warning: 2
+          high-battery-temperature-warning: 3
+          low-battery-temperature-warning: 4
+          high-discharge-current-warning: 7
+          high-charge-current-warning: 8
+          bms-internal-fault-warning: 11
+          imbalance-in-cell-voltage-warning: 12
+          sub-pack-1-error-warning: 13
+          sub-pack-2-error-warning: 14
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    high-battery-voltage-warning:
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    low-battery-voltage-warning:
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    high-battery-temperature-warning:
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    low-battery-temperature-warning:
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    high-discharge-current-warning:
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    high-charge-current-warning:
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    bms-internal-fault-warning:
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    imbalance-in-cell-voltage-warning:
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    sub-pack-1-error-warning:
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    sub-pack-2-error-warning:
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    kaco1-ac-energy:
+      source: poll
+      form:
+        type: ParamCType
+        address: 41913
+        idx: kaco1-ac-energy
+        data_type: ushort
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    kaco1-ac-power:
+      source: poll
+      form:
+        type: ParamCType
+        address: 41914
+        idx: kaco1-ac-power
+        data_type: ushort
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    kaco1-dc-volts:
+      source: poll
+      form:
+        type: ParamCType
+        address: 41916
+        idx: kaco1-dc-volts
+        data_type: ushort
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    kaco1-dc-current:
+      source: poll
+      form:
+        type: ParamCType
+        address: 41917
+        idx: kaco1-dc-current
+        data_type: ushort
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    kaco1-temperature:
+      source: poll
+      form:
+        type: ParamCType
+        address: 41920
+        idx: kaco1-temperature
+        data_type: ushort
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+    service-required-reason-0:
+      source: poll
+      form:
+        type: ParamLookup
+        address: 41533
+        idx: service-required-reason-0
+        table: &warnings
+          0: No Service Required
+          2: Inverter - Low Battery Voltage Alert
+          3: Inverter - Low Battery Voltage Alert cleared
+          4: Inverter - DC Shutdown
+          5: Inverter - DC Shutdown cleared - Recovery Voltage reached
+          6: Battery - Hi Battery Alert
+          7: Battery - Hi Battery Alert Clear
+          10: Charger - Battery Capacity Alert - Provided 120% Capacity and voltage target not achieved
+          11: Charger - Battery Capacity Alert cleared - Voltage target achieved
+          12: Inverter - Low SoC Alert
+          13: Inverter - Low SoC Alert Cleared
+          14: Inverter - SoC Shutdown
+          15: Inverter - SoC Shutdown cleared
+          16: Battery - Over Temp Protection Alert
+          17: Battery - Over Temp Protection Alert cleared
+          18: Generator Controller - Low Fuel Alert
+          19: Generator Controller - Low Fuel Alert cleared
+          20: Generator Controller - Generator Fault Alert - Stop generator
+          21: Generator Controller - Generator Fault Alert cleared
+          22: Generator Controller - No Fuel Alert - Stop generator
+          23: Generator Controller - No Fuel Alert cleared
+          24: Service - Fan Alert - Fan not spinning
+          25: Service - Fan Alert cleared - Fan spinning or not required
+          26: Inverter - Low AC Alert
+          27: Inverter - Low AC Alert cleared
+          28: Inverter - Low AC Shutdown
+          29: Inverter - Low AC Shutdown cleared
+          30: System - AC Load Voltage Alert - Volts detected from unknown source
+          31: System - AC Load Voltage Alert cleared - No volts detected
+          32: Battery - Outside Mid Point Range
+          33: Battery - Within Mid Point Range
+          34: Battery - Mid Point Fault - Outside Range after Equalise
+          35: Battery - Mid Point Fault cleared
+          36: AC Source - Safety Monitor Alert - Neutral and Earth are not at same potential
+          37: AC Source - Safety Monitor Alert cleared
+          38: Unit - Self Test Fault - Power Module
+          39: Unit - Self Test Fault cleared - Power Module
+          40: System - Power Module - Current Limit Shutdown
+          41: System - Power Module - Current Limit Shutdown cleared
+          42: System - Batt Sense Alert - measurement out of range - using internal voltage sense
+          43: System - Batt Sense Alert cleared - using Batt Sense
+          44: Unit - Self Test Fault - Auto Zero
+          45: Unit - Self Test Fault cleared - Auto Zero
+          48: Unit - Instant Hi DC Voltage Fault
+          49: Unit - Instant Hi DC Voltage Fault cleared
+          50: Unit - Instant Low DC Voltage Fault
+          51: Unit - Instant Low DC Voltage Fault cleared
+          52: Unit - Power Supply Shutdown
+          53: Unit - Power Supply Shutdown cleared
+          54: Unit - Power Module - Low 14V Shutdown
+          55: Unit - Power Module - Low 14V Shutdown cleared
+          56: System - AC Source Contactor Fault - Contactor stuck open
+          57: System - AC Source Contactor Fault cleared - was open
+          58: Unit - AC Source Contactor Fault - Contactor stuck closed
+          59: Unit - AC Source Contactor Fault cleared - was closed
+          60: Unit - AC Source Contactor Fault - Contactor stuck closed - Earth Neutral link not present
+          61: Unit - AC Source Contactor Fault cleared - was closed - EN Link not present
+          62: System - Synchronised Overload Shutdown
+          63: System - Synchronised Overload Shutdown cleared
+          64: System - Hi Temperature Alert
+          65: System - Hi Temperature Alert cleared
+          66: System - Hi Temperature Shutdown
+          67: System - Hi Temperature Shutdown cleared
+          68: Service - AC Source Safety Monitor State does not match State of Actual Switch
+          69: Service - AC Source Safety Monitor State matches State of Actual Switch
+          74: Service - Power Module 1 Capacitor Life Alert - Life at or above 95%
+          75: Service - Power Module 1 Capacitor Life Alert cleared
+          76: Service - Power Module 2 Capacitor Life Alert - Life at or above 95%
+          77: Service - Power Module 2 Capacitor Life Alert cleared
+          78: Service - Fan Speed Alert - Speed lower than expected - Check Fan
+          79: Service - Fan Speed Alert cleared - Speed as expected
+          80: Service - Fan Life Alert - Life at or above 100% - Replace Fan
+          81: Service - Fan Life Alert cleared - Life reset to 0.
+          82: Service - Fan Filter Alert - Clean Filter
+          83: Service - Fan Filter Alert cleared - Filter clean button pressed
+          84: Unit - AC Source contactor fault - inverter volts detected at AC Source
+          85: Unit - AC Source contactor fault cleared
+          88: Unit - Loading Configuration Settings has timed out - retrying
+          90: Unit - Hi DC Voltage Fault
+          91: Unit - Hi DC Voltage Fault cleared
+          92: System - AC Load exceeding AC Source plus Inverter Rating
+          93: System - AC Load below AC Source plus Inverter Rating
+          94: System - Battery Temp sensor reading too high
+          95: System - Battery Temp sensor ok - was too high
+          96: System - Battery Temp sensor reading too low
+          97: System - Battery Temp sensor ok - was too low
+          98: System - Battery Temp sensor short circuit
+          99: System - Battery Temp sensor ok - was shorted
+          100: System - Battery Temp sensor open circuit
+          101: System - Battery Temp sensor ok - was open
+          102: Unit - Transformer Temp Fault - sensor reading too high
+          103: Unit - Transformer Temp Fault cleared - was too high
+          104: Unit - Transformer Temp Fault - sensor reading too low
+          105: Unit - Transformer Temp Fault cleared - was too low
+          106: Unit - Self Test Fault - Real Time Clock
+          107: Unit - Self Test Fault cleared - Real Time Clock
+          108: Unit - Real Time Clock - Reading same time
+          109: Unit - Real Time Clock - Reading older time
+          110: Unit - Real Time Clock - Reading newer time
+          111: Unit - Real Time Clock - Did not interrupt
+          112: Unit - Control PCA Factory defaults loaded
+          113: Unit - Power Module 1 - Factory defaults loaded
+          114: Unit - Power Module 2 - Factory defaults loaded
+          115: System - Common defaults loaded
+          116: System - Off Grid Unit Application defaults loaded
+          117: System - Sealed Battery Type defaults loaded
+          118: System - Service defaults loaded
+          119: Unit - Output Mode button fault - button stuck down
+          120: Unit - Generator button fault - button stuck down
+          121: Unit - Alarm Silence button fault - button stuck down
+          122: System - Reset
+          125: Generator Controller - Stopped due to no AC Volts Fault
+          126: Generator Controller - Stopped due to no AC Volts Fault Cleared
+          127: System - Main DC Supply Cable Open Circuit Fault
+          128: System - Main DC Supply Cable Open Circuit Fault Cleared
+          129: System - Synchronisation Fail - AC Source unsuitable
+          130: System - Synchronisation Fail - Cleared for retry
+          131: Unit - Power Module - Current Limit Shutdown
+          132: Unit - Power Module - Current Limit Shutdown Cleared
+          133: Inverter - AC Source out of tolerance Beeper On
+          134: Inverter - AC Source out of tolerance Beeper Off
+          135: Inverter - AC Source out of phase On
+          136: Inverter - AC Source out of phase Off
+          137: System - Lost SP SYNCH connection On
+          138: System - Lost SP SYNCH connection Off
+          139: System - multi-phase system fault On
+          140: System - multi-phase system fault Off
+          141: System - multi-phase system fault forcing shutdown On
+          142: System - multi-phase system fault forcing shutdown Off
+          143: System - Hi Battery Shutdown (AC Coupled) Fault
+          144: System - Hi Battery Shutdown (AC Coupled) Cleared
+          145: System - KACO 1 communcation Fault
+          146: System - KACO 1 communcation Fault Cleared
+          147: System - KACO 2 communcation Fault
+          148: System - KACO 2 communcation Fault Cleared
+          149: System - KACO 3 communcation Fault
+          150: System - KACO 3 communcation Fault Cleared
+          151: System - KACO 4 communcation Fault
+          152: System - KACO 4 communcation Fault Cleared
+          153: System - KACO 5 communcation Fault
+          154: System - KACO 5 communcation Fault Cleared
+          155: System - AC coupled frequency ramp invoked
+          156: System - AC coupled frequency ramp invoked off
+          157: System - Glitch prevention
+          158: System - Permanent Factory defaults loaded
+          159: System - System Scheduler defaults loaded
+          160: Inverter - Shutdown Input Active
+          161: Inverter - Shutdown Input Active Cleared
+          162: Battery Management - Alarm
+          163: Battery Management - Alarm Cleared
+          164: System - MPPT Fault
+          165: System - MPPT Fault Cleared
+          166: System - AC Coupled Inverter - Invalid device detected
+          167: System - AC Coupled Inverter - Invalid device detected Cleared
+        table_reversed:
+          Inverter - Low Battery Voltage Alert: 2
+          Inverter - Low Battery Voltage Alert cleared: 3
+          Inverter - DC Shutdown: 4
+          Inverter - DC Shutdown cleared - Recovery Voltage reached: 5
+          Battery - Hi Battery Alert: 6
+          Battery - Hi Battery Alert Clear: 7
+          Charger - Battery Capacity Alert - Provided 120% Capacity and voltage target not achieved: 10
+          Charger - Battery Capacity Alert cleared - Voltage target achieved: 11
+          Inverter - Low SoC Alert: 12
+          Inverter - Low SoC Alert Cleared: 13
+          Inverter - SoC Shutdown: 14
+          Inverter - SoC Shutdown cleared: 15
+          Battery - Over Temp Protection Alert: 16
+          Battery - Over Temp Protection Alert cleared: 17
+          Generator Controller - Low Fuel Alert: 18
+          Generator Controller - Low Fuel Alert cleared: 19
+          Generator Controller - Generator Fault Alert - Stop generator: 20
+          Generator Controller - Generator Fault Alert cleared: 21
+          Generator Controller - No Fuel Alert - Stop generator: 22
+          Generator Controller - No Fuel Alert cleared: 23
+          Service - Fan Alert - Fan not spinning: 24
+          Service - Fan Alert cleared - Fan spinning or not required: 25
+          Inverter - Low AC Alert: 26
+          Inverter - Low AC Alert cleared: 27
+          Inverter - Low AC Shutdown: 28
+          Inverter - Low AC Shutdown cleared: 29
+          System - AC Load Voltage Alert - Volts detected from unknown source: 30
+          System - AC Load Voltage Alert cleared - No volts detected: 31
+          Battery - Outside Mid Point Range: 32
+          Battery - Within Mid Point Range: 33
+          Battery - Mid Point Fault - Outside Range after Equalise: 34
+          Battery - Mid Point Fault cleared: 35
+          AC Source - Safety Monitor Alert - Neutral and Earth are not at same potential: 36
+          AC Source - Safety Monitor Alert cleared: 37
+          Unit - Self Test Fault - Power Module: 38
+          Unit - Self Test Fault cleared - Power Module: 39
+          System - Power Module - Current Limit Shutdown: 40
+          System - Power Module - Current Limit Shutdown cleared: 41
+          System - Batt Sense Alert - measurement out of range - using internal voltage sense: 42
+          System - Batt Sense Alert cleared - using Batt Sense: 43
+          Unit - Self Test Fault - Auto Zero: 44
+          Unit - Self Test Fault cleared - Auto Zero: 45
+          Unit - Instant Hi DC Voltage Fault: 48
+          Unit - Instant Hi DC Voltage Fault cleared: 49
+          Unit - Instant Low DC Voltage Fault: 50
+          Unit - Instant Low DC Voltage Fault cleared: 51
+          Unit - Power Supply Shutdown: 52
+          Unit - Power Supply Shutdown cleared: 53
+          Unit - Power Module - Low 14V Shutdown: 54
+          Unit - Power Module - Low 14V Shutdown cleared: 55
+          System - AC Source Contactor Fault - Contactor stuck open: 56
+          System - AC Source Contactor Fault cleared - was open: 57
+          Unit - AC Source Contactor Fault - Contactor stuck closed: 58
+          Unit - AC Source Contactor Fault cleared - was closed: 59
+          Unit - AC Source Contactor Fault - Contactor stuck closed - Earth Neutral link not present: 60
+          Unit - AC Source Contactor Fault cleared - was closed - EN Link not present: 61
+          System - Synchronised Overload Shutdown: 62
+          System - Synchronised Overload Shutdown cleared: 63
+          System - Hi Temperature Alert: 64
+          System - Hi Temperature Alert cleared: 65
+          System - Hi Temperature Shutdown: 66
+          System - Hi Temperature Shutdown cleared: 67
+          Service - AC Source Safety Monitor State does not match State of Actual Switch: 68
+          Service - AC Source Safety Monitor State matches State of Actual Switch: 69
+          Service - Power Module 1 Capacitor Life Alert - Life at or above 95%: 74
+          Service - Power Module 1 Capacitor Life Alert cleared: 75
+          Service - Power Module 2 Capacitor Life Alert - Life at or above 95%: 76
+          Service - Power Module 2 Capacitor Life Alert cleared: 77
+          Service - Fan Speed Alert - Speed lower than expected - Check Fan: 78
+          Service - Fan Speed Alert cleared - Speed as expected: 79
+          Service - Fan Life Alert - Life at or above 100% - Replace Fan: 80
+          Service - Fan Life Alert cleared - Life reset to 0.: 81
+          Service - Fan Filter Alert - Clean Filter: 82
+          Service - Fan Filter Alert cleared - Filter clean button pressed: 83
+          Unit - AC Source contactor fault - inverter volts detected at AC Source: 84
+          Unit - AC Source contactor fault cleared: 85
+          Unit - Loading Configuration Settings has timed out - retrying: 88
+          Unit - Hi DC Voltage Fault: 90
+          Unit - Hi DC Voltage Fault cleared: 91
+          System - AC Load exceeding AC Source plus Inverter Rating: 92
+          System - AC Load below AC Source plus Inverter Rating: 93
+          System - Battery Temp sensor reading too high: 94
+          System - Battery Temp sensor ok - was too high: 95
+          System - Battery Temp sensor reading too low: 96
+          System - Battery Temp sensor ok - was too low: 97
+          System - Battery Temp sensor short circuit: 98
+          System - Battery Temp sensor ok - was shorted: 99
+          System - Battery Temp sensor open circuit: 100
+          System - Battery Temp sensor ok - was open: 101
+          Unit - Transformer Temp Fault - sensor reading too high: 102
+          Unit - Transformer Temp Fault cleared - was too high: 103
+          Unit - Transformer Temp Fault - sensor reading too low: 104
+          Unit - Transformer Temp Fault cleared - was too low: 105
+          Unit - Self Test Fault - Real Time Clock: 106
+          Unit - Self Test Fault cleared - Real Time Clock: 107
+          Unit - Real Time Clock - Reading same time: 108
+          Unit - Real Time Clock - Reading older time: 109
+          Unit - Real Time Clock - Reading newer time: 110
+          Unit - Real Time Clock - Did not interrupt: 111
+          Unit - Control PCA Factory defaults loaded: 112
+          Unit - Power Module 1 - Factory defaults loaded: 113
+          Unit - Power Module 2 - Factory defaults loaded: 114
+          System - Common defaults loaded: 115
+          System - Off Grid Unit Application defaults loaded: 116
+          System - Sealed Battery Type defaults loaded: 117
+          System - Service defaults loaded: 118
+          Unit - Output Mode button fault - button stuck down: 119
+          Unit - Generator button fault - button stuck down: 120
+          Unit - Alarm Silence button fault - button stuck down: 121
+          System - Reset: 122
+          Generator Controller - Stopped due to no AC Volts Fault: 125
+          Generator Controller - Stopped due to no AC Volts Fault Cleared: 126
+          System - Main DC Supply Cable Open Circuit Fault: 127
+          System - Main DC Supply Cable Open Circuit Fault Cleared: 128
+          System - Synchronisation Fail - AC Source unsuitable: 129
+          System - Synchronisation Fail - Cleared for retry: 130
+          Unit - Power Module - Current Limit Shutdown: 131
+          Unit - Power Module - Current Limit Shutdown Cleared: 132
+          Inverter - AC Source out of tolerance Beeper On: 133
+          Inverter - AC Source out of tolerance Beeper Off: 134
+          Inverter - AC Source out of phase On: 135
+          Inverter - AC Source out of phase Off: 136
+          System - Lost SP SYNCH connection On: 137
+          System - Lost SP SYNCH connection Off: 138
+          System - multi-phase system fault On: 139
+          System - multi-phase system fault Off: 140
+          System - multi-phase system fault forcing shutdown On: 141
+          System - multi-phase system fault forcing shutdown Off: 142
+          System - Hi Battery Shutdown (AC Coupled) Fault: 143
+          System - Hi Battery Shutdown (AC Coupled) Cleared: 144
+          System - KACO 1 communcation Fault: 145
+          System - KACO 1 communcation Fault Cleared: 146
+          System - KACO 2 communcation Fault: 147
+          System - KACO 2 communcation Fault Cleared: 148
+          System - KACO 3 communcation Fault: 149
+          System - KACO 3 communcation Fault Cleared: 150
+          System - KACO 4 communcation Fault: 151
+          System - KACO 4 communcation Fault Cleared: 152
+          System - KACO 5 communcation Fault: 153
+          System - KACO 5 communcation Fault Cleared: 154
+          System - AC coupled frequency ramp invoked: 155
+          System - AC coupled frequency ramp invoked off: 156
+          System - Glitch prevention: 157
+          System - Permanent Factory defaults loaded: 158
+          System - System Scheduler defaults loaded: 159
+          Inverter - Shutdown Input Active: 160
+          Inverter - Shutdown Input Active Cleared: 161
+          Battery Management - Alarm: 162
+          Battery Management - Alarm Cleared: 163
+          System - MPPT Fault: 164
+          System - MPPT Fault Cleared: 165
+          System - AC Coupled Inverter - Invalid device detected: 166
+          System - AC Coupled Inverter - Invalid device detected Cleared: 167
+      triggers:
+        process:
+          store:
+            - [always]
+          send:
+            - [state]
+            - [time, 60]
+transformations:
+  - multiply_params:
+      definition:
+        dc-inverter-power:
+          - dc-inverter-power
+          - common-dc-voltage-scale
+          - common-ac-voltage-scale
+        halfbridge-2-heatsink-temperature:
+          - halfbridge-2-heatsink-temperature
+          - common-temperature-scale
+        battery-temperature:
+          - battery-temperature
+          - common-temperature-scale
+        ac-inverter-power:
+          - ac-inverter-power
+          - common-ac-voltage-scale
+          - common-ac-current-scale
+        inverter-reactive-power:
+          - inverter-reactive-power
+          - common-ac-voltage-scale
+          - common-ac-current-scale
+        load-ac-power:
+          - load-ac-power
+          - common-ac-voltage-scale
+          - common-ac-current-scale
+        bms-voltage:
+          - bms-voltage
+          - common-dc-voltage-scale
+        bms-current:
+          - bms-current
+          - common-dc-current-scale
+        kaco1-ac-energy:
+          - kaco1-ac-energy
+          - common-ac-voltage-scale
+          - common-ac-current-scale
+        kaco1-ac-power:
+          - kaco1-ac-power
+          - common-ac-voltage-scale
+          - common-ac-current-scale
+        kaco1-dc-volts:
+          - kaco1-dc-volts
+          - common-dc-voltage-scale
+        kaco1-dc-current:
+          - kaco1-dc-current
+          - common-dc-current-scale
+        kaco1-temperature:
+          - kaco1-temperature
+          - common-temperature-scale
+  - scale_values:
+      definition:
+        dc-inverter-power: 3.052e-7
+        halfbridge-2-heatsink-temperature: 3.052e-5
+        battery-temperature: 3.052e-5
+        ac-inverter-power: 3.815e-8
+        inverter-reactive-power: 3.052e-7
+        batt-soc-percent: 3.9e-3
+        load-ac-power: 3.815e-8
+        bms-voltage: 3.052e-6
+        bms-current: 3.052e-6
+        kaco1-ac-energy: 7.32e-6
+        kaco1-ac-power: 3.052e-7
+        kaco1-dc-volts: 7.63e-7
+        kaco1-dc-current: 3.052e-6
+        kaco1-temperature: 3.052e-5

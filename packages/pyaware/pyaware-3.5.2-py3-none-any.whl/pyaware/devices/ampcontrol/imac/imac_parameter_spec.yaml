@@ -1,0 +1,326 @@
+# Triggers available
+# state: null
+# value: value that needs to change by in order to trigger
+# time: seconds since last trigger
+# [always]
+
+type: "imac"
+name: "iMAC Controller"
+
+parameters:
+  serial-number:
+    name: "Serial number"
+    group: identification
+    triggers:
+      process:
+        send:
+          - [state]
+          - [time, 86400]
+  master-fieldbus-number:
+    name: "Fieldbus number"
+    group: fieldbus
+    type: int
+    triggers:
+      process:
+        send:
+          - [state]
+          - [time, 86400]
+  l1-fieldbus-healthy:
+    name: "L1 Fieldbus healthy"
+    group: fieldbus
+    type: bool
+  l1-fieldbus-fault:
+    name: "L1 Fieldbus fault"
+    group: fieldbus
+    type: bool
+  l1-data-block-just-complete:
+    name: "L1 Data Block"
+    group: fieldbus
+    type: bool
+    triggers:
+      process:
+        event:
+          - [state]
+  l1-line-speed:
+    name: "L1 Line Speed"
+    group: fieldbus
+    type: int
+    triggers:
+      process:
+        send:
+          - [state]
+          - [time, 86400]
+  ethernet-comms-status:
+    name: "Ethernet comms status"
+    description: "Ethernet communication is healthy"
+    group: status
+    type: bool
+    source: status
+    triggers:
+      process:
+        send:
+          - [state]
+          - [time, 60]
+  serial-comms-status:
+    name: "Serial comms status"
+    description: "Serial communication is healthy"
+    group: status
+    type: bool
+    source: status
+    triggers:
+      process:
+        send:
+          - [state]
+          - [time, 60]
+  roll-call-active:
+    name: "Roll Call Active"
+    description: "Roll Call Active"
+    group: status
+    type: bool
+    source: status
+    triggers:
+      process:
+        send:
+          - [always]
+  l1-short-circuit-status:
+    name: "L1 Fieldbus Short Circuit"
+    group: status
+    type: bool
+    source: poll
+    triggers:
+      process:
+        send:
+          - [state]
+          - [time, 600]
+  control-relay-state:
+    name: "Control relay (CR) state"
+    group: status
+    type: bool
+    source: poll
+    triggers:
+      process:
+        send:
+          - [state]
+          - [time, 600]
+  auxiliary-relay-state:
+    name: "Auxiliary relay (AR) state"
+    group: status
+    type: bool
+    source: poll
+    triggers:
+      process:
+        send:
+          - [state]
+          - [time, 600]
+  remote-bypass:
+    name: "Remote bypass"
+    description: "Indicates if a remote bypass was requested"
+    group: bypass
+    type: bool
+    source: poll
+  bypass-active:
+    name: "Bypass active"
+    description: "Indicates if any 'bypass' boundary sensor is active by either DI4 or IPC bypass"
+    group: bypass
+    type: bool
+    source: poll
+  error-offline-count:
+    name: "Error/Offline Count"
+    group: count
+    type: int
+    source: poll
+  error-clashes-count:
+    name: "Clash Count"
+    group: count
+    type: int
+    source: poll
+  legacy-hardware-version:
+    name: "Hardware version"
+    group: version
+    type: string
+    source: http
+    triggers:
+      process:
+        send:
+          - [state]
+  legacy-software-version:
+    name: "Software version"
+    group: version
+    type: string
+    source: http
+    triggers:
+      process:
+        send:
+          - [state]
+  legacy-firmware-version:
+    name: "Firmware version"
+    group: version
+    type: string
+    source: http
+    triggers:
+      process:
+        send:
+          - [state]
+  slp-version:
+    name: "SLP code version"
+    group: version
+    type: string
+    source: http
+    triggers:
+      process:
+        send:
+          - [state]
+  serial-protocol:
+    name: "Protocol"
+    group: communication
+    type: string # Modbus Slave
+    source: poll
+    triggers:
+      process:
+        send:
+          - [state]
+  serial-slave-address:
+    name: "Slave Address"
+    group: communication
+    type: int
+    source: poll
+    triggers:
+      process:
+        send:
+          - [state]
+  serial-mode:
+    name: "Mode"
+    group: communication
+    type: string # RS485/RS422, RS232
+    source: poll
+    triggers:
+      process:
+        send:
+          - [state]
+  serial-baud-rate:
+    name: "Baud rate"
+    group: communication
+    type: int
+    source: poll
+    triggers:
+      process:
+        send:
+          - [state]
+  serial-parity:
+    name: "Parity"
+    group: communication
+    type: string # Odd, Even, None
+    source: poll
+    triggers:
+      process:
+        send:
+          - [state]
+  serial-stop-bits:
+    name: "Stop bits"
+    group: communication
+    type: int
+    source: poll
+    triggers:
+      process:
+        send:
+          - [state]
+  ethernet-mac-address:
+    name: "MAC Address"
+    group: ethernet
+    type: string
+    source: rest
+    triggers:
+      process:
+        send:
+          - [state]
+  ethernet-ip-address:
+    name: "IP Address"
+    group: ethernet
+    type: string
+    source: poll
+    triggers:
+      process:
+        send:
+          - [state]
+  ethernet-ip-mask:
+    name: "IP Netmask"
+    group: ethernet
+    type: string
+    source: poll
+    triggers:
+      process:
+        send:
+          - [state]
+  ethernet-ip-gateway:
+    name: "IP Gateway"
+    group: ethernet
+    type: string
+    source: poll
+    triggers:
+      process:
+        send:
+          - [state]
+  ethernet-dhcp:
+    name: "DHCP Status"
+    group: ethernet
+    type: string
+    source: poll
+    triggers:
+      process:
+        send:
+          - [state]
+  temperature:
+    name: "Temperature in degrees Celsius"
+    group: sensor
+    type: float
+    triggers:
+      process:
+        send:
+          - [state]
+  master-backtrip-bypass:
+    name: "Master Backtrip AR Bypass"
+    triggers:
+      process:
+        send:
+          - [state]
+          - [time, 86400]
+  address-status:
+    name: "Address status"
+    group: address
+    type: array # Array 0-255
+    source: poll
+    triggers:
+      process:
+        send:
+          - [state]
+          - [time, 300]
+  address-status-raw:
+    name: "Address status raw"
+    group: address
+    type: array # Array 0-255
+    source: poll
+    triggers:
+      process:
+        send:
+          - [state]
+          - [time, 300]
+  address-resistance:
+    name: "Address resistance"
+    group: address
+    type: array # Array 0-255
+    source: poll
+    triggers:
+      process:
+        store:
+          - [state]
+        send:
+          - [time, 300]
+  slave-surface-trip:
+    name: "Slave Surface Trip"
+    group: trip
+    type: bool
+    triggers:
+      process:
+        send:
+          - [state]
+          - [time, 600]
