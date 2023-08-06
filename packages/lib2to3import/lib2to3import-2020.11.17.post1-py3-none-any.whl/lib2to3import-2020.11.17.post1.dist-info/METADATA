@@ -1,0 +1,73 @@
+Metadata-Version: 2.1
+Name: lib2to3import
+Version: 2020.11.17.post1
+Summary: lib2to3import is a utility to apply Python 2 to 3 code translation on import.
+Home-page: https://github.com/sakurai-youhei/lib2to3import
+Author: Youhei Sakurai
+Author-email: sakurai.youhei@gmail.com
+License: MIT
+Keywords: 2to3,lib2to3,import,importer
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Intended Audience :: Developers
+Requires-Dist: chardet
+
+""lib2to3import
+===============
+
+lib2to3import is a utility to apply Python 2 to 3 code translation on import.
+
+w/o lib2to3import
+-------------------
+
+  >>> from py2codes import py2_print
+  Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+    File "py2codes/py2_print.py", line 1
+      print "Written when Python 2 was majority."
+                                                ^
+  SyntaxError: Missing parentheses in call to 'print'
+
+With lib2to3import
+--------------------
+
+  >>> from lib2to3import import lib2to3importer, prepending
+  >>> fixers = ["lib2to3.fixes.fix_print"]
+  >>> with prepending(lib2to3importer(fixers, "py2codes.")):
+  ...     from py2codes import py2_print
+  ...
+  Written when Python 2 was majority.
+
+Limitation
+------------
+
+There's no way to apply fixes to 2 different roots concurrently.
+
+When you apply fixes to both 'foo.module' and 'bar.module' at one time, you
+have to leave out prefix parameter, that makes fixes applied to all of modules
+and packages to be imported.
+
+**Concurrent import**::
+
+  from lib2to3import import lib2to3importer, prepending
+  fixers = ["lib2to3.fixes.fix_print"]
+
+  with prepending(lib2to3importer(fixers)):
+      import foo.module  #  import chain: 1. foo.module -> 2. bar.module
+
+**2 steps import (Recommended)**::
+
+  from lib2to3import import lib2to3importer, prepending
+  fixers = ["lib2to3.fixes.fix_print"]
+
+  with prepending(lib2to3importer(fixers, "bar.")):
+      import bar.module  # ... 2
+
+  with prepending(lib2to3importer(fixers, "foo.")):
+      import foo.module  # ... 1
+
+
