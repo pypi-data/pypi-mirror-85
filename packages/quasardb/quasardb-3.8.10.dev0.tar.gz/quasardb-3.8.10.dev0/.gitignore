@@ -1,0 +1,48 @@
+# Build and tests
+/.eggs/
+/bin/
+/build*
+/project/
+/quasardb.egg-info/
+/x64/
+/test-reports/
+/quasardb/*.dylib
+/quasardb/*.so
+dist/
+quasardb/qdb_api.dll
+quasardb/quasardb.cp37-win_amd64.pyd
+
+# Where you must unzip qdb_api
+/qdb
+/qdb32
+/qdb64
+
+# Editors
+/.vscode/
+*.exe
+
+# Python
+*.pyc
+
+# Database directory
+/db
+
+# Datatbase log file
+*.out.txt
+*.err.txt
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Test specific
+cluster_private.key
+cluster_public.key
+insecure/
+secure/
+user_private.key
+users.cfg
