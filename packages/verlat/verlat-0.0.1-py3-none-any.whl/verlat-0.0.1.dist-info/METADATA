@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: verlat
+Version: 0.0.1
+Summary: Get to know the latest version of a python package on PyPI.
+Home-page: https://github.com/aahnik/py-utility-pack
+Author: Aahnik Daw
+Author-email: meet.aahnik@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# verlat
+
+Get to know the latest version of a python package on PyPI.
+
+Use code written by other people and save your time.
+
+Be Dry! You don't need to reinvent the wheel.
+
+## Installation
+
+```shell
+pip install verlat
+```
+
+## Usage
+
+```python
+from verlat import latest
+ver = latest('package_name')
+print(ver)
+# ver is a string containing the latest version name
+```
+
+Yeah! Its that simple!
+
+
