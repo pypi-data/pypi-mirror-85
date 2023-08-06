@@ -1,0 +1,262 @@
+Change Log
+==========
+
+
+0.3.6 (14/11/2020)
+-----------------
+* Improved handling of MetricConfusionMatrixBase with custom metrics
+
+
+0.3.5 (13/11/2020)
+-----------------
+* CallbackMonitor patience argument now optional for cleaner code
+* Better handling for binary get_stats in confusion matrix based metric
+
+
+0.3.4 (11/11/2020)
+-----------------
+* Added MetricConfusionMatrixBase for adding custom confusion matrix based metrics
+* Added ConfusionMatrixBasedMetric Enum to get specific metrics such as tp,fp,fn,tn,precision,sensitivity,specificity,recall,ppv,npv,accuracy,f1score
+* Added confusion matrix common metrics (TruePositives, TrueNegatives, FalsePositives, FalseNegatives)
+* Added MetricMethod enum to pass to MetricBase, now you can define whether your metric is based on MEAN, SUM or LAST of all batches
+* StatsPrint callback now support "print_confusion_matrix" and "print_confusion_matrix_normalized" arguments in case MetricConfusionMatrixBase metric is found
+* Added confusion matrix tests and example
+* Some custom layers renames (breaking changes in this part)
+
+
+0.3.3 (01/11/2020)
+-----------------
+* Added StatsResult class
+* Trainer.evaluate(...) now returns StatsResult instance with loss and metrics details
+
+
+0.3.2 (29/10/2020)
+-----------------
+* Fixed CollectOutputs callbacks on GPU
+* Pipfile explicit versioning
+
+
+0.3.1 (29/10/2020)
+-----------------
+* Fixed loading Trainer & Predictor on CPU from GPU checkpoint 
+* Fixed saving/loading if scheduler is None 
+
+
+0.3.0 (29/10/2020)
+-----------------
+* Added metric TopKCategoricalAccuracy
+* Added Predictor.from_trainer() method to Predictor class
+* Fixed loading predictor from_checkpoint if the checkpoint is not Full Trainer
+* Added unittest for TopKCategoricalAccuracy
+
+
+0.2.90 (28/10/2020)
+-----------------
+* Added verbosity support in Trainer.train(verbose=1) and Trainer.evaluate(verbose=1)
+* StatsPrint validation bug fix
+* Added unittest for StatsPrint validation
+
+
+0.2.81 (27/10/2020)
+-----------------
+* Minor release
+* Metrics optimizations
+
+
+0.2.8 (26/10/2020)
+-----------------
+* Added Predictor class !! predicting was never easier, see README for more details
+* Added example for train/save/load/predict using the new Predictor
+* Added unittests for predictor
+
+
+0.2.7 (25/10/2020)
+-----------------
+* Added trainer validation for metric_name_to_func
+* ModelCheckpoint args changed to accept CallbackMonitor
+* EarlyStopping args changed to accept CallbackMonitor
+* Adjusted examples and tests
+* Added more unittests
+
+
+0.2.6 (24/10/2020)
+-----------------
+* Added test for trainer save and load
+* Moved LossOptimizerHandlerBase validation to Trainer.train() instead if Trainer.__init__
+* Added name property to CallbackMonitorResult
+* StatsPrint now accept list of monitors arguments for metrics
+* StatsPrint will make validations on provided monitors
+* Removed num_epochs from Trainer arguments, now its in Trainer.train(num_epochs)
+* Adjusted all examples
+
+
+0.2.5 (22/10/2020)
+-----------------
+* Added predict_sample and predict_data_loader methods to Trainer
+* Added LossOptimizerHandler and LossOptimizerHandlerBase to callbacks
+* Trainer must have at least one callback of type LossOptimizerHandlerBase
+* Removed optimizer_step_and_zero_grad_criteria argument from Trainer, use LossOptimizerHandler callback instead
+* CallbackContext now have optimizer, scheduler and train_last_loss properties for easier access
+* CollectOutput arguments now must be passed explicitly
+* CallbackBase will raise exception if __call__ not implemented 
+* Trainer have callbacks validation upon initialization, more validations will be added 
+* SchedulerStep scheduler_parameters_func should accept CallbackContext instead of Trainer
+* Added copy_model_weights to torch_utils, (as requested, thank you for using lpd :))
+* Adjusted all examples
+
+
+0.2.4 (21/10/2020)
+-----------------
+* Added predict_batch
+* Adjusted predict example
+* Added threshold argument to BinaryAccuracy and BinaryAccuracyWithLogits
+
+
+0.2.3 (19/10/2020)
+-----------------
+* Custom metrics are now in a separate module
+* Custom metrics now classes instead of functions
+* Added unittests for metrics
+
+
+0.2.2 (18/10/2020)
+-----------------
+* Added predict method to trainer
+* Added State.PREDICT enum 
+* Added Phase.PREDICT_BEGIN and Phase.PREDICT_END enums
+* Added CollectOutputs callback
+* Added predict example
+* Moving some elements from nn.functional to nn
+* Added sample count to save/load model
+
+
+0.2.1 (15/10/2020)
+-----------------
+* Fix in Tensorboard metrics output
+
+
+0.2.0 (14/10/2020)
+-----------------
+* Added Phase and States validations to Callbacks
+* Added callbacks summary to trainer's summary
+* Added to trainer optimizer_step_and_zero_grad_criteria
+* Added sample_count and sample_count_in_epoch to Trainer and CallbackContext
+* StatsPrint will now print sample count
+* Added accumulate grads example
+* Changed cuda.manual_seed to cuda.manual_seed_all
+
+
+0.1.9 (13/10/2020)
+-----------------
+* bug fix in StatsPrint - print round numbers
+
+
+0.1.8 (12/10/2020)
+-----------------
+* Added KerasDecay scheduler
+* Added KerasDecay usage example
+* Better printing in StatsPrint callback when using multiple metrics
+
+
+0.1.7 (11/10/2020)
+-----------------
+* Fixed bug in TrainerStats for dynamic batch size
+* Added support for metric name as string in StatsPrint callback
+* Fixed some descriptions
+* Updated README
+
+
+0.1.6 (10/10/2020)
+-----------------
+* Trainer - added save_trainer and load_trainer methods
+* ModelCheckPoint - added the option to save the full trainer as checkpoint
+* Minor bug fix in callback_monitor
+* StatsPrint changing dict.keys() to set() to enable saving trainer
+* Binary accuracy removed restrictions of ndim==1
+* Added more seeds to seed_all and to seed_torch
+
+
+0.1.5 (09/10/2020)
+-----------------
+* Added verbosity to SchedulerStep
+* StatsPrint callback will now print learning rates for all param groups
+* Added get_lrs_from_optimizer to torch_utils 
+* Project PyPI setup fixes 
+
+
+0.1.4 (08/10/2020)
+-----------------
+This release contains breaking changes:
+* Renamed cb_phase to apply_on_phase 
+* Renamed CallbackPhase to Phase, TrainerState to State
+* Renamed Trainer.stop_training() to Trainer.stop(), so it also apply to testing
+* Trainer now keeps track of iteration count and iteration_in_epoch count
+* CallbackContext was expanded with iteration count and iteration_in_epoch count
+* Calling Trainer.stop() from a callback will now stop even on a batch level (and not only epoch level)
+
+
+0.1.3 (07/10/2020)
+-----------------
+* Bug fix in apply_on_states invocation of callbacks 
+
+
+0.1.2 (07/10/2020)
+-----------------
+* Readme fix 
+
+
+0.1.1 (07/10/2020)
+-----------------
+* Added TEST_BEGIN and TEST_END callbacks phases
+* Added CallbackMonitor
+* Added enums (lpd.enums) State, MonitorType, MonitorMode, StatsType
+
+
+0.1.0 (05/10/2020)
+-----------------
+* Introduced Phase and State to control timing of callback invocation
+* Added example of SchedulerStep every batch in train state
+* Trainer support for native pytorch dataloader
+* Added data loader example
+
+
+0.0.9 (04/10/2020)
+-----------------
+* Added support for setting trainer's scheduler to None
+* Added name property to trainer
+* Added trainer's description
+* Added last train/val/test loss objects
+* Reduce package size by moving images to another repo 
+* Added another example "Basic"
+* If no metrics provided, EpochEndStats will print "no metrics found"
+* Fixed trainer crash if no metric_name_to_func was provided
+* Added seed_all to general_utils
+* Added seed_torch to torch_utils
+* Added readme about utils
+
+
+0.0.8 (03/10/2020)
+-----------------
+* Added optional round_values_on_print_to to EpochEndStats and ModelCheckPoint callbacks
+* Removed round_values_to from TrainerStats & Stats (it didnt made sense anyway)
+* Removed print_round_values_to from trainer, its now on the callbacks themselves
+* Updated readme
+
+
+0.0.7 (03/10/2020)
+-----------------
+* Splited TrainerStats class into TrainerStats & Stats
+* Can now easily call trainer.train_stats.get_loss() or trainer.val_stats.get_metrics()
+* TrainerStats now has a reset() function
+* Using configs in example 
+* Code clean up and cosmetics
+
+
+0.0.6 (02/10/2020)
+-----------------
+* Scheduler step as callback, support for step() with or without parameters
+
+
+0.0.1 (01/10/2020)
+-----------------
+- First Release
