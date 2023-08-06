@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: equilibrator-pathway
+Version: 0.4.0b2
+Summary: Pathway analysis tools by eQuilibrator
+Home-page: https://gitlab.com/equilibrator/equilibrator-pathway
+Author: 
+Requires-Dist: path (~=15.0)
+Requires-Dist: pint (~=0.15)
+Requires-Dist: numpy (~=1.19)
+Requires-Dist: scipy (~=1.5)
+Requires-Dist: seaborn (~=0.10)
+Requires-Dist: uncertainties (~=3.1)
+Requires-Dist: osqp (~=0.6.1)
+Requires-Dist: cvxpy (==1.1.6)
+Requires-Dist: sbtab (==0.9.73)
+Requires-Dist: equilibrator-api (~=0.4.0b6)
+Provides-Extra: deployment
+Requires-Dist: click ; extra == 'deployment'
+Requires-Dist: click-log ; extra == 'deployment'
+Requires-Dist: python-dateutil ; extra == 'deployment'
+Requires-Dist: requests ; extra == 'deployment'
+Requires-Dist: tqdm ; extra == 'deployment'
+Provides-Extra: development
+Requires-Dist: black ; extra == 'development'
+Requires-Dist: isort ; extra == 'development'
+Requires-Dist: tox ; extra == 'development'
+Provides-Extra: test
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: pytest-cov ; extra == 'test'
+Requires-Dist: pytest-raises ; extra == 'test'
+
+Elad Noor
+Moritz E. Beber
+Author-email: 
+noor@imsb.biol.ethz.ch
+morbeb@biosustain.dtu.dk
+License: MIT License
+Description: UNKNOWN
+Keywords: biochemical reaction,eQuilibrator,pathway analysis,enzyme cost minimization,max-min driving force
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: Topic :: Scientific/Engineering :: Chemistry
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.6
+Provides-Extra: test
+Provides-Extra: development
+Provides-Extra: deployment
