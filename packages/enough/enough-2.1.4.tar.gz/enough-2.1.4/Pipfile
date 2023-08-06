@@ -1,0 +1,45 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+coverage = "==4.5"
+flake8 = "==3.5"
+mock = "==2.0.0"
+pip-tools = "==5.1.2"
+pytest-cov = "==2.6.1"
+pytest-mock = "==1.10.4"
+pytest-django = "==3.4.8"
+requests-mock = "==1.6.0"
+sphinx = "==1.8.2"
+tox = "==3.15.0"
+twine = "==1.13.0"
+dnspython = "==1.16.0"
+pipenv-to-requirements = "*"
+
+[packages]
+ansible = "==2.7.17"
+beautifulsoup4 = "==4.7.1"
+cliff = "*"
+django = "==2.2"
+djangorestframework = "==3.9.2"
+django-allauth = "==0.39.1"
+django-bootstrap3 = "==11.0.0"
+docker = "*"
+docker-compose = "*"
+future = "==0.18.2"
+icinga2api = {git = "https://github.com/fmnisme/python-icinga2api.git", ref = "9a1a3cc7968d6c72bf49e97ef387b2824e6835e9"}
+jinja2 = ">=1.1"
+testinfra = "==5.0.0"
+netaddr = "==0.7.19"
+openstacksdk = "*"
+python-openstackclient = "*"
+python-heatclient = "*"
+pytest = "==4.4.0"
+sh = "==1.12.14"
+shade = "==1.30.0"
+pyopenssl = "*"
+
+[requires]
+python_version = "3.8"
