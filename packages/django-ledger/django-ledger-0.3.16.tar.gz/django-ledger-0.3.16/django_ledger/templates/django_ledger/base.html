@@ -1,0 +1,39 @@
+{% load static %}
+{% load django_ledger %}
+{% load cache %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {# todo: pull entity name from session if available... #}
+    <title>Django Ledger | {{ page_title }}</title>
+    <script src="{% static 'django_ledger/bundle/styles.bundle.js' %}"></script>
+</head>
+
+<body>
+
+{% block nav %}
+    {% include 'django_ledger/includes/nav.html' %}
+{% endblock %}
+
+{% block header %}
+    {% include 'django_ledger/includes/page_header.html' with header_title=header_title %}
+{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+{% block messages %}
+    {% include 'django_ledger/includes/messages.html' with messages=messages %}
+{% endblock %}
+{% block content %}{% endblock %}
+{% block footer %}
+    {% include 'django_ledger/includes/footer.html' %}
+{% endblock %}
+
+{% block script_bottom %}
+    <script src="{% static 'django_ledger/bundle/djetler.bundle.js' %}"></script>
+{% endblock %}
+
+</body>
+</html>
