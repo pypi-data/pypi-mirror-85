@@ -1,0 +1,13 @@
+# Include the data files recursive-include data *
+
+include LICENSE
+include *.rst
+include docs/conf.py
+include docs/Makefile
+include docs/*.rst
+include docs/*.txt
+include tests/*
+exclude .circleci/*
+exclude *.pyc
+exclude __pycache__
+exclude Pipfile*
