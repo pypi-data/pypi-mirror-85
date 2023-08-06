@@ -1,0 +1,71 @@
+Metadata-Version: 2.1
+Name: mediumbackup
+Version: 1.1.1
+Summary: Backup your Medium Stories.
+Home-page: https://github.com/lucafrance/mediumbackup
+Author: Luca Franceschini
+Author-email: luca.france@outlook.com
+License: MIT License
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: python-medium
+Requires-Dist: markdownify
+Requires-Dist: beautifulsoup4
+Requires-Dist: requests
+
+# mediumbackup - A Backup Utility for Medium
+
+Saves all your Medium stories locally as html or markdown files. 
+
+## Installation
+```
+pip install mediumbackup
+```
+
+## Usage
+### As a script from the command line
+```
+python -m mediumbackup "<your username>"
+```
+### As a module
+```
+import mediumbackup as mb
+
+username = "<your username>"
+mb.backup_stories(username)
+```
+
+## Options
+Specify a folder.
+``` 
+python -m mediumbackup "<username>" --backup_dir "backup 2020-11-01"
+```
+Save as markdown.
+``` 
+python -m mediumbackup "<username>" --format "md"
+```
+Download images.
+``` 
+python -m mediumbackup "<username>" --format -i
+```
+Download images to a different folder than the stories.
+``` 
+python -m mediumbackup "<username>" --backup_dir "posts" --download_images --images_dir "assets/images" 
+```
+Include a front matter for jekyll.
+``` 
+python -m mediumbackup "<username>" --format "md" --jekyll_front_matter
+```
+
+
+## Tests
+To run the tests, execute:
+```
+python -m tests
+```
+
+
