@@ -1,0 +1,78 @@
+* Weighted Ensemble Python (wepy)
+
+[[./info/logo/wepy.svg]]
+
+# trying to make a zenodo badge but github doesn't support this
+# directly. Would have to add a separate build step for this.
+#+begin_export html
+<a href="https://doi.org/10.5281/zenodo.3973431"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3973431.svg" alt="DOI"></a>
+#+end_export
+
+[[https://adicksonlab.github.io/wepy/index.html][Sphinx Documentation]]
+
+[[https://github.com/ADicksonLab/wepy/blob/master/info/README.org][Plaintext Org-Mode Docs]]
+
+Modular implementation and framework for running weighted ensemble (WE)
+simulations in pure python, where the aim is to have simple things
+simple and complicated things possible. The latter being the priority.
+
+The goal of the architecture is that it should be highly modular to
+allow extension, but provide a "killer app" for most uses that just
+works, no questions asked.
+
+Comes equipped with support for [[https://github.com/pandegroup/openmm][OpenMM]] molecular dynamics,
+parallelization using multiprocessing, the [[http://pubs.acs.org/doi/abs/10.1021/jp411479c][WExplore]] 
+and REVO (Resampling Ensembles by Variance Optimization) resampling
+algorithms, and an HDF5 file format and library for storing and
+querying your WE datasets that can be used from the command line.
+
+The deeper architecture of ~wepy~ is intended to be loosely coupled,
+so that unforeseen use cases can be accomodated, but tightly
+integrated for the most common of use cases, i.e. molecular dynamics.
+
+This allows freedom for fast development of new methods.
+
+Full [[https://github.com/ADicksonLab/wepy/blob/master/info/introduction.org][introduction]].
+
+** Installation
+
+Also see: [[info/installation.org][Installation Instructions]]
+
+To install from pip:
+
+#+BEGIN_SRC bash
+  pip install wepy[all]
+#+END_SRC
+
+Which will install most dependencies.
+
+To install the optional, but likely desired feature, OpenMM you should
+probably just use the omnia channel on conda, otherwise you will need
+to compile it yourself.
+
+#+BEGIN_SRC bash
+  conda install -c omnia openmm
+#+END_SRC
+
+Check its installed by running the command line interface:
+
+#+begin_src bash :tangle check_installation.bash
+wepy --help
+#+end_src
+
+** Citations
+
+Current [[https://zenodo.org/badge/latestdoi/101077926][Zenodo DOI]].
+
+Cite software as:
+
+#+begin_example
+Samuel D. Lotz, Nazanin Donyapour, Alex Dickson, Tom Dixon, Nicole Roussey, & Rob Hall. (2020, August 4). ADicksonLab/wepy: 1.0.0 Major version release (Version v1.0.0). Zenodo. http://doi.org/10.5281/zenodo.3973431
+#+end_example
+
+Accompanying journal article (peer-review in process):
+
+- [[https://chemrxiv.org/s/369c2530c150add1450b][ChemRxiv]] preprint
+
+
+

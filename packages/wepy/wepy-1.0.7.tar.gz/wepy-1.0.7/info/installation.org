@@ -1,0 +1,54 @@
+* Installation
+
+
+To install from pip:
+
+#+BEGIN_SRC bash
+  pip install wepy
+#+END_SRC
+
+To install the optional, but likely desired feature, OpenMM you should
+probably just use the omnia channel on conda, otherwise you will need
+to compile it yourself.
+
+#+BEGIN_SRC bash
+  conda install -c omnia openmm
+#+END_SRC
+
+A helpful tip is to use the channel to specify which version of CUDA
+you want OpenMM compiled with. For example if you want OpenMM compiled
+on CUDA 10.0 you can use the channel 'omnia/label/cuda100', e.g.:
+
+#+begin_src 
+  conda install -c omnia/label/cuda100 openmm
+#+end_src
+
+There are some optional features you can install as well using the
+"extras" spec in pip. The base package aims to be very easy to install
+but lacks a lot of functionality that makes ~wepy~ useful for
+molecular dynamics. Currently, these are:
+
+- md :: extra packages for molecular dynamics
+- distributed :: extra packages to allow for distributed analysis
+- prometheus :: for monitoring simulations via [[https://prometheus.io][Prometheus]]
+- all :: installs all extras
+
+Check the setup.py file under ~extras_requirements~ for the full listing.
+
+#+BEGIN_SRC bash
+pip install wepy[md]
+#+END_SRC
+
+You can always install from git as well for the latest:
+
+#+BEGIN_SRC bash
+pip install git+https://github.com/ADicksonLab/wepy.git
+#+END_SRC
+
+
+If installation went alright you should have this command line
+interface for working with orchestration available:
+
+#+BEGIN_SRC bash :tangle check_installation.bash
+  wepy --help
+#+END_SRC
