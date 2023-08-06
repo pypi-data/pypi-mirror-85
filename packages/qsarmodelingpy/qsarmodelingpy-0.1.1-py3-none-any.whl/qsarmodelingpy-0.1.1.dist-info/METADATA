@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: qsarmodelingpy
+Version: 0.1.1
+Summary: A library for building and validating QSAR models
+Home-page: https://github.com/hellmrf/QSARModelingPyCore
+Author: Martins, J. P. A; Reis Filho, H. M.
+Author-email: jpam@qui.ufmg.br,helitonmrf@ufmg.br
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: scikit-learn
+Requires-Dist: deap
+
+# QSARModelingPy Core
+
+[![PyPI](https://img.shields.io/pypi/v/qsarmodelingpy)](https://pypi.org/project/qsarmodelingpy/)
+![PyPI - Format](https://img.shields.io/pypi/format/qsarmodelingpy)
+
+**QSARModeling** é uma ferramenta gratuita e open-source para a construção e validação de modelos QSAR e QSPR. [Originalmente desenvolvido](https://doi.org/10.1590/S0100-40422013000400013) em Java, esta biblioteca em Python permite ao usuário a aplicação programática, personalizável e escalável dos recursos do software.
+
+Alguns recursos podem ser destacados, como:
+
+-   Redução de dimensionalidade baseada em variância, correlação e autocorrelação;
+-   Seleção de variáveis: Ordered Predictors Selection (OPS) ou Algoritmo Genético (GA)
+-   Validação cruzada: y-randomization e leave-N-out
+-   Validação externa
+
+## Uso
+
+> Esta versão do QSARModelingPy Core é uma biblioteca para a linguagem de programação Python, com foco em programadores que desejam implementar sua própria versão do QSAR Modeling, expandi-lo ou utilizá-lo programaticamente. Se deseja uma versão funcional desenvolvida para o usuário final, veja [QSARModelingPy](https://github.com/hellmrf/QSARModelingPy).
+
+Para utilizar, instale a biblioteca em seu ambiente.
+
+```sh
+$ pip install qsarmodelingpy
+```
+
+
