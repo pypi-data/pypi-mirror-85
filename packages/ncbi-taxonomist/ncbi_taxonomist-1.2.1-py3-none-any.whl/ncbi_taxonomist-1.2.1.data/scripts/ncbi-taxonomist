@@ -1,0 +1,101 @@
+#!python
+"""
+..
+  Copyright 2020 The University of Sydney
+
+  This module is the entry point for ncbi-taxonomist
+.. moduleauthor:: Jan P Buchmann <jan.buchmann@sydney.edu.au>
+"""
+
+
+import os
+import sys
+
+
+import ncbitaxonomist.groupmanager
+import ncbitaxonomist.log.logger
+import ncbitaxonomist.mapper
+import ncbitaxonomist.collector
+import ncbitaxonomist.ncbitaxonomist
+import ncbitaxonomist.parser.arguments
+import ncbitaxonomist.payload.accession
+import ncbitaxonomist.payload.name
+import ncbitaxonomist.payload.taxid
+import ncbitaxonomist.resolve.resolver
+import ncbitaxonomist.subtree.subtreeanalyzer
+import ncbitaxonomist.utils
+
+
+logger = ncbitaxonomist.log.logger.get_logger()
+
+def main():
+  args = ncbitaxonomist.parser.arguments.parse(os.path.basename(__file__))
+  ncbitaxonomist.ncbitaxonomist.configure(args)
+  nt = ncbitaxonomist.ncbitaxonomist.NcbiTaxonomist(args.database)
+
+  if args.command == 'collect':
+    txcollector = ncbitaxonomist.collector.Collector(nt)
+    txcollector.collect(taxids=ncbitaxonomist.payload.taxid.TaxidPayload(args.taxids),
+                        names=ncbitaxonomist.payload.name.NamePayload(args.names))
+    return 0
+
+  if args.command == 'map':
+    if (args.taxids is None) and (args.names is None) and (args.accessions is None):
+      sys.exit("Error: require names or taxids or accessions. See -h.")
+    if not args.database:
+      args.remote = True
+    txmapper = ncbitaxonomist.mapper.Mapper(nt)
+    txmapper.map(taxids=ncbitaxonomist.payload.taxid.TaxidPayload(args.taxids),
+                 names=ncbitaxonomist.payload.name.NamePayload(args.names),
+                 accessions=ncbitaxonomist.payload.accession.AccessionPayload(args.accessions),
+                 remote=args.remote,
+                 entrezdb=args.entrezdb)
+    return 0
+
+  if args.command == 'import':
+    if not args.database:
+      sys.exit("Error: require path to database")
+    ncbitaxonomist.db.dbimporter.import_stdin(nt.db)
+    return 0
+
+  if args.command == 'resolve':
+    if not args.database:
+      args.remote = True
+    if (args.database is None) and (args.remote is False) and (args.mapping is False):
+      sys.exit("Error: no taxonomy source. Require path to local database, \
+                --remote flag or mapping result from STDIN.")
+    txresolver = ncbitaxonomist.resolve.resolver.Resolver(nt)
+    txresolver.resolve(taxids=ncbitaxonomist.payload.taxid.TaxidPayload(args.taxids),
+                       names=ncbitaxonomist.payload.name.NamePayload(args.names),
+                       mapping=args.mapping,
+                       remote=args.remote)
+    return 0
+
+  if args.command == 'subtree':
+    if not args.database:
+      sys.exit("Error: subtree requires a local database")
+    txst = ncbitaxonomist.subtree.subtreeanalyzer.SubtreeAnalyzer(nt.db)
+    txst.subtree(taxids=ncbitaxonomist.payload.taxid.TaxidPayload(args.taxids),
+                 names=ncbitaxonomist.payload.name.NamePayload(args.names),
+                 rank=args.rank, upper_rank=args.hrank, lower_rank=args.lrank)
+    return 0
+
+  if args.command == 'group':
+    if args.database is None:
+      sys.exit("The group command requires an existing taxonomist database. Abort")
+    groupmgr =  ncbitaxonomist.groupmanager.GroupManager(nt)
+    groupmgr.group(taxids=ncbitaxonomist.payload.taxid.TaxidPayload(args.taxids),
+                   names=ncbitaxonomist.payload.name.NamePayload(args.names),
+                   args=args)
+    return 0
+
+if __name__ == '__main__':
+  main()
+
+  #print("Resource usage: {}".format(resource.getrusage(resource.RUSAGE_SELF)), file=sys.stderr)
+  ##### Important ######
+  # Closing Stderr and Stdoutif no pipe is read in next step to prevent Errno 32 :
+  # Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='UTF-8'>
+  # BrokenPipeError: [Errno 32] Broken pipe
+  sys.stderr.close()
+  sys.stdout.close()
