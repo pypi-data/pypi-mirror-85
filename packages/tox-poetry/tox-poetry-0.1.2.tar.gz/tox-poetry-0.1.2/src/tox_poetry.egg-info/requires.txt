@@ -1,0 +1,16 @@
+pluggy
+toml
+
+[:python_version < "3"]
+tox==3.15.1
+
+[:python_version >= "3"]
+tox>=3.7.0
+
+[test]
+coverage
+pytest
+
+[test:python_version >= "3.9"]
+pycodestyle
+pylint
