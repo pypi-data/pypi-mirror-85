@@ -1,0 +1,33 @@
+[console_scripts]
+galini = galini.cli:main
+
+[galini.algorithms]
+bac = galini.branch_and_cut:BranchAndCutAlgorithm
+
+[galini.branching_strategy]
+default = galini.branch_and_cut.branching:BranchAndCutBranchingStrategy
+
+[galini.commands]
+info = galini.commands.info:InfoCommand
+plugins = galini.commands.plugins:PluginsCommand
+solve = galini.commands.solve:SolveCommand
+special_structure = galini.commands.special_structure:SpecialStructureCommand
+
+[galini.cuts_generators]
+outer_approximation = galini.outer_approximation:OuterApproximationCutsGenerator
+sdp = galini.sdp:SdpCutsGenerator
+triangle = galini.triangle:TriangleCutsGenerator
+
+[galini.initial_primal_search]
+default = galini.branch_and_cut.primal:DefaultInitialPrimalSearchStrategy
+no_primal = galini.branch_and_cut.primal:NoInitialPrimalSearchStrategy
+
+[galini.node_selection_strategy]
+default = galini.branch_and_bound.selection:BestLowerBoundSelectionStrategy
+
+[galini.primal_heuristic]
+default = galini.branch_and_cut.primal:DefaultPrimalHeuristic
+
+[galini.relaxation]
+default = galini.branch_and_cut.relaxation:DefaultRelaxation
+
