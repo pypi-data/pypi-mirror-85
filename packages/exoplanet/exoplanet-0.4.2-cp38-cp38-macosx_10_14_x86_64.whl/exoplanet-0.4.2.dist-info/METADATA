@@ -1,0 +1,106 @@
+Metadata-Version: 2.1
+Name: exoplanet
+Version: 0.4.2
+Summary: Fast and scalable MCMC for all your exoplanet needs
+Home-page: https://docs.exoplanet.codes
+Author: Daniel Foreman-Mackey
+Author-email: foreman.mackey@gmail.com
+Maintainer: Daniel Foreman-Mackey
+Maintainer-email: foreman.mackey@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+Requires-Dist: pybind11 (>=2.4)
+Requires-Dist: theano (>=1.0.4)
+Requires-Dist: numpy (>=1.13.0)
+Requires-Dist: pymc3 (>=3.5)
+Requires-Dist: astropy (>=3.1)
+Requires-Dist: pymc3-ext (>=0.0.1)
+Provides-Extra: dev
+Requires-Dist: scipy ; extra == 'dev'
+Requires-Dist: nose ; extra == 'dev'
+Requires-Dist: parameterized ; extra == 'dev'
+Requires-Dist: arviz ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-cov (>=2.6.1) ; extra == 'dev'
+Requires-Dist: pytest-env ; extra == 'dev'
+Requires-Dist: coveralls ; extra == 'dev'
+Requires-Dist: pybind11 ; extra == 'dev'
+Requires-Dist: batman-package ; extra == 'dev'
+Requires-Dist: sphinx (>=1.7.5) ; extra == 'dev'
+Requires-Dist: pandoc ; extra == 'dev'
+Requires-Dist: jupyter ; extra == 'dev'
+Requires-Dist: ipywidgets ; extra == 'dev'
+Requires-Dist: sphinx-typlog-theme ; extra == 'dev'
+Requires-Dist: nbformat ; extra == 'dev'
+Requires-Dist: nbconvert ; extra == 'dev'
+Requires-Dist: corner ; extra == 'dev'
+Requires-Dist: lightkurve ; extra == 'dev'
+Requires-Dist: jupytext ; extra == 'dev'
+Requires-Dist: rtds-action ; extra == 'dev'
+Requires-Dist: nbsphinx ; extra == 'dev'
+Requires-Dist: pre-commit ; extra == 'dev'
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: black-nbconvert ; extra == 'dev'
+Requires-Dist: isort ; extra == 'dev'
+Requires-Dist: toml ; extra == 'dev'
+Requires-Dist: flake8 ; extra == 'dev'
+Requires-Dist: nbstripout ; extra == 'dev'
+Requires-Dist: radvel ; extra == 'dev'
+Requires-Dist: jupyterlab ; extra == 'dev'
+Requires-Dist: pep517 ; extra == 'dev'
+Requires-Dist: twine ; extra == 'dev'
+Requires-Dist: rebound ; (sys_platform != "win32") and extra == 'dev'
+Requires-Dist: starry ; (sys_platform != "win32") and extra == 'dev'
+Requires-Dist: rebound-pymc3 (>=0.0.3) ; (sys_platform != "win32") and extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: sphinx (>=1.7.5) ; extra == 'docs'
+Requires-Dist: pandoc ; extra == 'docs'
+Requires-Dist: jupyter ; extra == 'docs'
+Requires-Dist: ipywidgets ; extra == 'docs'
+Requires-Dist: sphinx-typlog-theme ; extra == 'docs'
+Requires-Dist: nbformat ; extra == 'docs'
+Requires-Dist: nbconvert ; extra == 'docs'
+Requires-Dist: corner ; extra == 'docs'
+Requires-Dist: lightkurve ; extra == 'docs'
+Requires-Dist: jupytext ; extra == 'docs'
+Requires-Dist: rtds-action ; extra == 'docs'
+Requires-Dist: nbsphinx ; extra == 'docs'
+Provides-Extra: nbody
+Requires-Dist: rebound ; (sys_platform != "win32") and extra == 'nbody'
+Requires-Dist: rebound-pymc3 (>=0.0.3) ; (sys_platform != "win32") and extra == 'nbody'
+Provides-Extra: test
+Requires-Dist: scipy ; extra == 'test'
+Requires-Dist: nose ; extra == 'test'
+Requires-Dist: parameterized ; extra == 'test'
+Requires-Dist: arviz ; extra == 'test'
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: pytest-cov (>=2.6.1) ; extra == 'test'
+Requires-Dist: pytest-env ; extra == 'test'
+Requires-Dist: coveralls ; extra == 'test'
+Requires-Dist: pybind11 ; extra == 'test'
+Requires-Dist: batman-package ; extra == 'test'
+Requires-Dist: rebound ; (sys_platform != "win32") and extra == 'test'
+Requires-Dist: starry ; (sys_platform != "win32") and extra == 'test'
+Provides-Extra: tutorials
+Requires-Dist: jupytext (<1.7.0) ; extra == 'tutorials'
+Requires-Dist: jupyter ; extra == 'tutorials'
+Requires-Dist: nbconvert ; extra == 'tutorials'
+Requires-Dist: matplotlib ; extra == 'tutorials'
+Requires-Dist: corner ; extra == 'tutorials'
+Requires-Dist: lightkurve ; extra == 'tutorials'
+
+# exoplanet
+
+Fast & scalable MCMC for all your exoplanet needs!
+
+Read the documentation at [docs.exoplanet.codes](https://docs.exoplanet.codes).
+
+
