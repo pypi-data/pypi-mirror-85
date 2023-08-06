@@ -1,0 +1,35 @@
+{% extends base_template|default:"handyhelpers_base.htm" %}
+{% load staticfiles %}
+
+{% block local_head %}
+    {% include 'handyhelpers/component/zoom_cards.htm' %}
+    <link href="{% static 'hostmgr/css/hostmgr_zoom_cards.css' %}" rel="stylesheet">
+{% endblock local_head %}
+
+{% block content %}
+    <!-- Page header -->
+    <section class="animated fadeIn">
+        <header>
+            <div class="headline text-center">
+                <div class="container mb-5">
+                    <div class="h1 text-primary font-weight-bold">{{ title }}</div>
+                    <div class="h5 text-secondary">{{ subtitle }}</div>
+                </div>
+            </div>
+        </header>
+    </section>
+
+    <!-- Page Content -->
+    <section class="animated fadeIn" style="animation-delay: .25s;">
+        <div class="zoom-card-flex-container">
+            {% for item in item_list %}
+                <a href="{{ item.url }}" class="zoom-card zoom-action-card">
+                    <div class="icon"><i class="{{ item.icon }}"></i></div>
+                    <div class="title">{{ item.title }}</div>
+                </a>
+            {% endfor %}
+        </div>
+    </section>
+
+    {% include 'handyhelpers/component/modals.htm' %}
+{% endblock content %}
