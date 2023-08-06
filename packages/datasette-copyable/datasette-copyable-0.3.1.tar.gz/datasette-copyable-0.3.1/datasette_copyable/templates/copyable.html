@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Copy as {{ table_format }}{% endblock %}
+
+{% block extra_head %}
+<meta name="robots" content="noindex">
+<style type="text/css">
+textarea.copyable {
+    width: 100%;
+    height: 30em;
+}
+button.copyable-copy-button {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    display: inline-block;
+    margin-bottom: 3em;
+    font-weight: 400;
+    cursor: pointer;
+    text-align: center;
+    border-width: 1px;
+    border-style: solid;
+    padding: .5em 0.8em;
+    font-size: 0.9rem;
+    line-height: 1;
+    border-radius: .25rem;
+    width: 10em;
+}
+.raw-link a {
+    display: inline-block;
+    margin-left: 1em;
+}
+</style>
+{% endblock %}
+
+{% block nav %}
+    <p class="crumbs">
+        <a href="{{ base_url }}">home</a> /
+        <a href="{{ base_url }}{{ database }}">{{ database }}</a>{% if table %} /
+        <a href="{{ base_url }}{{ database }}/{{ table|quote_plus }}">{{ table }}</a>{% endif %}
+    </p>
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+<h1>Copy as {{ table_format }}</h1>
+
+<p>Formats: {% for format in table_formats %}
+    <a href="{{ format.link }}">{{ format.name }}</a>{% if not loop.last %} &middot; {% endif %}
+{% endfor %}</p>
+
+<div>
+<textarea class="copyable">{{ copyable }}</textarea>
+<p class="raw-link"><a href="{{ raw_link }}">Raw data</a></p>
+</div>
+
+<script>
+var ta = document.querySelector("textarea.copyable");
+var p = document.querySelector("p.raw-link");
+var button = document.createElement("button");
+button.className = "copyable-copy-button";
+button.innerHTML = "Copy to clipboard";
+button.onclick = () => {
+    ta.select();
+    document.execCommand("copy");
+    button.innerHTML = "Copied!";
+    setTimeout(() => {
+        button.innerHTML = "Copy to clipboard";
+    }, 1500);
+};
+p.appendChild(button);
+p.insertAdjacentElement("afterbegin", button);
+</script>
+
+{% endblock %}
