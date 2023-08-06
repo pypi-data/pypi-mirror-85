@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "tweakstream"
+version = "0.3.5"
+description = "Stream topics from gathering.tweakers.net"
+authors = ["Timo"]
+license = "MIT"
+
+readme = "README.md"
+
+[tool.poetry.scripts]
+tweakstream = "tweakstream.cli:cli"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.dependencies]
+python = ">=3.6"
+tweakers = "^0.3.3"
+appdirs = "^1.4"
+click = "^7.0"
+crayons = "^0.1.2"
+tabulate = "^0.8.3"
+
+
+[tool.poetry.dev-dependencies]
