@@ -1,0 +1,28 @@
+graft docs
+graft src
+graft tests
+
+prune docs/.doctrees
+prune docs/reference
+
+include .bumpversion.cfg
+include .coveragerc
+include .editorconfig
+
+include AUTHORS.rst
+include CHANGELOG.rst
+include LICENSE
+include LICENSE.LESSER
+include README.rst
+include TODO.rst
+
+include requirements.txt
+include tox.ini
+
+exclude clean_cache.sh
+exclude build.sh
+exclude docs.sh
+exclude appveyor.yml
+
+global-exclude *.py[cod] __pycache__
+global-exclude *.swp
