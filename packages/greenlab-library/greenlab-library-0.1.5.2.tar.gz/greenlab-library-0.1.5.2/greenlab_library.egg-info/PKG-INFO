@@ -1,0 +1,120 @@
+Metadata-Version: 2.1
+Name: greenlab-library
+Version: 0.1.5.2
+Summary: HungLV package
+Home-page: https://gitlab.com/greenlabs/greenlab_libraries
+Author: Hung LV
+Author-email: hunglv@greenglobal.vn
+License: MIT
+Description: # [GreenLab] - Libraries 
+        
+        ## 1. Description
+        
+        This library is built for specific tasks
+        
+        * **Face Recognition Project**
+          * Face Detection
+          * Extract Face Embedding
+          * Search Face in database
+        * **License Plate Recognition Project**
+        * **Crowd Counting Project**
+          * Density Map-based method
+          * Person Detection-based method
+        * **Imutils** 
+          * Modify the source code of https://github.com/jrosebr1/imutils for our purpose
+        
+        **Documentation**: https://leviethung2103.github.io/
+        
+        **Pypi Project**: https://pypi.org/project/greenlab-library/
+        
+        ## 2. Table of Contents
+        
+        * Setup guide
+        * Usage
+        * Examples
+        * APIs
+        * References
+        
+        ## 3. Setup guide
+        
+        ### 3.1 System requirements
+        
+        * Python>=3.6
+        * CUDA==10.1
+        * Tensorflow-GPU>=2.1.0
+        * Keras==2.3.1
+        
+        ### 3.2 Installation
+        
+        Create a new virtual environment, you can choose `virtualenv` or `anaconda`. 
+        
+        **Virtualenv** 
+        
+        ```
+        python3 -m venv venv
+        source venv/bin/activate
+        ```
+        
+        **Anaconda**
+        
+        ```
+        # create environment 
+        conda create --name face_recog_test python=3.7
+        conda activate face_recog_test
+        ```
+        
+        **Install packages and dependencies**
+        
+        ```
+        # install dependencies for cpu 
+        pip install -r configs/requirements/cpu_base.txt
+        # or install dependencies for gpu 
+        pip install -r configs/requirements/gpu_base.txt
+        
+        # install face recognition library
+        pip install --upgrade greenlab-library
+        ```
+        
+        ## 4. Usage
+        
+        ### 4.1 Face Recognition Library
+        
+        **Documentation**: https://leviethung2103.github.io/pkg/face_recognition.html
+        
+        **Getting started code:** https://github.com/leviethung2103/face-recognition-baseline
+        
+        ### 4.2 License Plate Library
+        
+        **Documentation**: https://leviethung2103.github.io/pkg/license_recog.html
+        
+        **Getting started code:** https://github.com/leviethung2103/license-plate-baseline
+        
+        ### 4.3 Crowd Counting Library
+        **Documentation**: 
+        **Getting started code:** https://gitlab.com/greenlabs/crowdcounting
+        
+        
+        ## 5. APIs
+        
+        ## 6. References
+        
+        [1. RetinaFaceModel](https://github.com/deepinsight/insightface/tree/master/RetinaFace)
+        
+        ## 7. Maintainers
+        
+        **Author:** Hung Le Viet
+        
+        **Last Update:** July 20, 2020
+        
+        ## Updates
+        * `[Jul 9]` Initial version `0.1.1`
+        * `[Jul 13]` Make the models can run on GPU/CPU. Integrated `rcnn` library. 
+        * `[Jul 20]` Version `0.1.3`: Update crowd counting into library. Restructure for requirements file.
+        * `[Nov 15]` Fix bug `nd.waitAll()` when inference 
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
