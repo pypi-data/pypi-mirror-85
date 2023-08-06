@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: CheckSSL
+Version: 0.2.1
+Summary: Python script to check on SSL certificates.
+Home-page: https://gocode.ru/microservices/checkssl-python
+Author: Vyacheslav Anzhiganov
+Author-email: hello@anzhiganov.com
+License: UNKNOWN
+Description: # CheckSSL
+        
+        Инструмент проверки действительности SSL-сертификата на сайтах.
+        
+        ## Установка
+        
+            pip install checkssl
+        
+        ## Использование
+        
+        Проверка домена:
+        
+            checkssl.py example.com
+        
+        Проверка нескольких доменов:
+            
+            checkssl.py example.com anzhiganov.com
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
