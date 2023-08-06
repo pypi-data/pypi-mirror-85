@@ -1,0 +1,20 @@
+[console_scripts]
+brender = examples.brender:main
+editvcp = qtpyvcp.tools.editvcp:main
+mini = examples.mini:main
+opengl_test = video_tests.opengl_test:main
+qcompile = qtpyvcp.tools.qcompile:main
+qtpyvcp = qtpyvcp.app:main
+qtpyvcp_test = video_tests.qtpyvcp_test:main
+vtk_test = video_tests.vtk_test:main
+
+[qtpyvcp.example_vcp]
+actions = examples.actions
+brender = examples.brender
+mini = examples.mini
+
+[qtpyvcp.test_vcp]
+opengl_test = video_tests.opengl_test
+qtpyvcp_test = video_tests.qtpyvcp_test
+vtk_test = video_tests.vtk_test
+
