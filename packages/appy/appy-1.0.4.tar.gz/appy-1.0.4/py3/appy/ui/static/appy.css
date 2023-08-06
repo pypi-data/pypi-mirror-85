@@ -1,0 +1,283 @@
+html { height: 100% }
+body { font: |fontSize| |fonts|; height: 100%; margin: 0 }
+pre { margin-left: 1em; background-color: #ececec; padding: 0.6em }
+h1 { font-size: 14pt; letter-spacing: 2px; font-weight: normal;
+     padding-bottom: 1em }
+h2 { font-size: 13pt; margin:6px 0 6px 0; font-style: italic;
+     font-weight: normal }
+h3 { font-size: 12pt; margin:4px 0 4px 0; font-weight: bold }
+h4 { font-size: 11pt; margin:4px 0 4px 0 }
+h5 { font-size: 9pt; margin:0; font-style: italic; font-weight: normal;
+     background-color: #d7dee4 }
+h6 { font-size: 9pt; margin:0; font-weight: bold }
+a { text-decoration: none; color: |linkColor| }
+a:visited { color: |visitedColor| }
+.unclickable { pointer-events: none; color: grey !important }
+table { font-size: 100%; border-collapse: collapse }
+form { margin: 0; padding: 0 }
+p { margin: 0 0 5px 0 }
+abbr { cursor: help; text-decoration: none }
+acronym { cursor: help }
+input { font: 100% |fonts| }
+input[type=image] { border: 0; background: none; cursor: pointer }
+input[type=checkbox] { border: 0; background: none; cursor: pointer }
+input[type=radio] { border: 0; background: none; cursor: pointer }
+input[type=file] { border: 0px solid #d0d0d0; cursor: pointer }
+input[type=button] { border: 1px solid |altColor|; margin: 0 5px;
+  padding: 3px 10px; background-color: transparent; color: |brightColor|;
+  cursor: pointer; text-transform: uppercase }
+input[type=submit] { border: 1px solid #d0d0d0; background-color: #f8f8f8;
+  cursor: pointer }
+input[type=text], input[type=password] {
+  outline: none; cursor: text; border: none; border-bottom: 1px solid #afb8d4;
+  padding: 3px 0; margin: 0 2px 0.6em 0; line-height: 1.4em;
+  font-family: |fonts|; background-color: transparent }
+select { border: none; border-bottom: 1px solid #afb8d4; outline: unset;
+  overflow-y: auto; font-family: |fonts|; font-size: 110%;
+  padding: 3px 20px 3px 3px; -moz-appearance: none; -webkit-appearance: none;
+  background: transparent url("../appy/select.png") no-repeat center right
+}
+select[multiple] { border: 1px solid #afb8d4; background-image: none;
+                   padding: 0; margin: 0 }
+option { background-color: white; color: black; font-size: 90% }
+textarea { width: 99%; font: 100% |fonts|; border: 1px solid #d0d0d0;
+           background-color: white; margin-bottom: 0.5em }
+label { color: |linkColor|; margin: 3px 0; text-transform: uppercase;
+        font-size: 95% }
+.subLabel { text-transform: none; padding-left: 5px }
+legend { padding-bottom: 2px; padding-right: 3px; color: black }
+ul { line-height: 1.2em; margin: 0 0 0.2em 0.6em;  padding: 0;
+     list-style: none outside none }
+ul li { margin: 0; background-image: url("../appy/li.gif");
+        padding: 0 0 5px 20px; background-repeat: no-repeat;
+        background-position: 0 4px }
+img { border: 0; vertical-align: middle }
+audio { margin: 2px 0 }
+
+.main { width: 100%; height: 100%; border: 0 }
+.mainC { font-size: 93% }
+.payload { display: flex; width: 100%; bottom: 0; position: absolute;
+           overflow-y: auto; overflow-x: auto; top: |headerHeight| }
+.payloadP { top: 0; height: 100% }
+.row { display: table-row }
+.wrongBrowser { color: darkred; font-size: 120%; padding: 2em;
+                text-align: center; position: fixed; z-index: 5;
+                margin: auto; left: 0; right: 0; background-color: white }
+.sticky { position: sticky; top: 0; z-index: 3 }
+.lang { margin-right: 6px }
+.changePassword { color: #494949 !important; font-style:italic; font-size: 90% }
+.pageTitle { text-transform: uppercase; font-weight: bold }
+.pageTitleP { text-align: center }
+input.button { color: |linkColor|; height: 24px; cursor: pointer;
+  background-color: transparent; background-repeat: no-repeat;
+  background-position: 6px 50%; padding: 0 8px 0 30px;
+  border: none; border-bottom: 1px solid grey; text-transform: none }
+div.button { padding: 4px 8px 4px 35px; background-color: transparent;
+  background-repeat: no-repeat; border: none; border-bottom: 1px solid grey;
+  margin-right: 5px }
+input.buttonSmall { font-size: 95% }
+.buttonSmall { margin-bottom: 10px }
+input.buttonIcon { vertical-align: bottom; margin: 0; border: 0;
+                   background-position: 0 100%; padding-left: 10px }
+input.buttonFixed { width: 150px; padding: 0 0 0 10px; margin-bottom: 6px }
+.fake { color: |warnColor| !important; cursor:help !important;
+        font-style: italic }
+.required { color: |warnColor|; font-weight: bold }
+.xhtml { background-color: transparent; padding: 4px }
+.xhtml p { margin: 3px 0 7px 0 }
+.xhtml h1 { padding: 0.5em 0; font-size: 130% }
+.xhtml h2 { padding: 0.4em 0; font-size: 120% }
+.xhtml img { margin: 10px 5px }
+.xhtml .picto { float: right; width: 40px; height: 40px}
+.xhtml a { font-weight: bold }
+.xhtml .docstring { color: #006dc1 }
+.xhtml .comment { color: #006a71 }
+.xhtml table { margin: 20px 0 }
+.xhtml table td, .xhtml table th { border: 1px solid grey; padding: 3px }
+.xhtml table th { background-color: #f0f0f0 }
+.clickable { cursor: pointer !important }
+.unclickable { pointer-events: none; cursor: default }
+.editable { cursor: crosshair !important }
+.help { cursor: help }
+.refLink { font-style: italic; padding-left: 5px; font-size: 90%;
+           color: #555555 }
+.refSel { font-size: 95%; padding: 2px 20px; margin: 0 10px;
+          border-bottom: 1px dashed #afb8d4 }
+.nbref { text-align: center }
+.buttons { margin-left: 4px }
+.rel { position: relative }
+.focus { margin: 7px 0; padding: 7px; background-color: #ced0d8;
+         border-radius: 2px 2px 2px 2px; box-shadow: 0 2px 4px #A9A9A9;
+         font-weight: bold }
+.focus td { padding: 4px 0px 4px 4px }
+.discreet { font-size: 95%; color: #555555; line-height: 150% }
+.discreet table td, .discreet table th { border: 1px solid grey; padding: 3px }
+.title {}
+.htitle { padding-right: 15px }
+.subTitle { font-size: 90%; color: #555555 }
+.subTitle table { border-collapse: collapse }
+.subTitle table td, .subTitle table th { border: 1px solid grey; padding: 3px;
+  position: initial }
+.current { font-weight: bold }
+.inputSearch { height: 15px; width: 120px; margin: 0 0 5px 5px !important }
+.content { padding: 30px; width: 100% }
+.public { width: 100% }
+.contentP { width: 100% }
+.popup { display: none;  background-color: |darkColor|; padding: 20px;
+         position: fixed; top: 50%; left: 50%; z-index : 100; 
+         color: |brightColor|; line-height: 1.3em;
+         transform: translate(-50%,-50%) }
+.popupI { display: block; margin: -10px auto 10px auto; width: 50% }
+#iframePopup { background-color: white; border: 1px |darkColor| solid }
+#iframeMask { position: fixed; width: 100%; height: 100%; z-index: 0;
+              background-color: white; opacity: 0; transition: opacity 0.4s }
+.iClose { position: absolute; top: 15px; right: 15px }
+#confirmActionPopup { max-height: 500px; overflow-y: auto }
+.dropdown { display:none; position: absolute; top: 18px; left: 3px;
+            border: 1px solid #cccccc; background-color: white;
+            padding: 4px; font-weight: lighter; font-size: 80%;
+            text-align: left; z-index: 2; line-height: normal }
+.dropdownMenu { cursor: pointer; font-size: 93%; position: relative }
+.dropdown a:hover { text-decoration: underline }
+.addForm { display: inline }
+.addFormMenu { display: inline; padding: 0 5px 0 3px }
+.inline { display: inline }
+.inlineIcon { float: right; cursor: pointer; padding: 0 3px 10px 0 }
+.icon { width: 35px }
+.iconM { width: 24px }
+.iconS { width: 18px; margin: 0 2px }
+.iconXS { width: 15px }
+.back { width: 24px; transform: rotate(180deg); margin-right: 10px }
+.list { margin-bottom: 3px; border-collapse: separate; border-spacing: 0 }
+.list td, .list th { color: |linkColor|; padding: 10px }
+.list th { font-weight: bold; background-color: rgba(255,255,255,0.8);
+           position: sticky; top: -2px; height: 3em;
+           border-bottom: 2px solid |linkColor|; z-index: 1 }
+.list td { font-size: 94% }
+.list a { font-weight: bold; padding-right: 10px }
+.compact { font-size: 95%; width: 100% }
+.compact th, .compact td { padding: 5px }
+.compact tr { vertical-align: middle }
+.grid { border-collapse: separate; border-spacing: 0px }
+.grid th { font-size: 90%; text-align: left; background-color: |altColorLight|;
+           position: sticky; top: -2px }
+.grid th, .grid td { padding: 10px }
+.small { text-align: left; margin: 5px 0 }
+.small th { background-color: |darkColor|; padding: 1px 5px;
+            border: 1px solid grey; color: |brightColor| }
+.small td { border: 1px solid grey; padding: 1px 5px }
+.popup .grid th, .popup .grid td { border: 1px solid grey }
+.calTable { font-size: 95% }
+.calTable td { border: 5px solid white; color: #555555; padding: 10px }
+.calEvt { width: 100% }
+.calEvt td { border: 0; padding: 0 3px 0 1px; margin: 0 }
+.calMany { background-color: #c1c5c7 }
+
+#summary { margin: 8px }
+#summaryCell { padding: 8px }
+#commentArea { margin: 5px 0 }
+#commentArea > div { font-style: italic; font-size: 90%; padding-bottom: 5px }
+.timeline { font-size: 85%; color: #555555 }
+.timeline tr { height: 18px }
+.timeline th { background-color: white; text-align: center;
+               padding: 0 1px !important }
+.timeline td { text-align: center; padding: 0 1px; border: 4px solid #f7f7f7 }
+.timeline a { font-size: 100% !important }
+.tlLeft { text-align: left !important; padding-left: 1px !important }
+.tlRight { text-align: right !important; padding-right: 1px !important }
+.msgTable { margin: 6px 0; width: 100%; font-size: 93% }
+.msgTable tr { vertical-align: top }
+.msgTable td, .msgTable th { border: 1px solid grey; color: #555555;
+                             padding: 0px 5px; text-align: left }
+.msgTable th { background-color: #f0e3b8; font-style: italic;
+               font-weight: normal }
+.cellGap { padding-right: 0.4em }
+.cellWE { color: #797979; font-style: italic;
+          background-color: |altColorLight| !important }
+.no td, .no th {
+  border: 0 !important; padding: 0 !important; margin: 0 !important;
+  background-color: transparent !important; font-size: 95% }
+.no a { font-weight: normal }
+.hidden { visibility: hidden }
+.simpleLabel { text-transform: none; padding-right: 3px; color: white }
+.trLabel { margin: 0.5em 0; border-bottom: 1px dashed |altColor| }
+.trLabel img { width: 18px; margin: 0 10px 5px 0 }
+.section1 { font-size: 120%; margin: 0.45em 0em 0.1em 0;
+            padding: 0.3em 0em 0.2em 0.1em; background-color: #eef3f5;
+            border-top: 1px solid #8CACBB;border-bottom: 1px solid #8cacbb }
+.section2 { font-size: 14pt; padding: 15px 0; text-transform: uppercase;
+            border-top: 1px dashed #cccccc; background-color: #f9f9f9 }
+.section3 { font-size: 100%; font-weight: bold; text-transform: uppercase;
+            padding: 2px 0px; background-color: |darkColor|;
+            text-align: center; color: white; padding: 5px }
+.even { background-color: rgba(243,243,247,0.7) }
+.odd { background-color: rgba(255,255,255,0.5) }
+.refMenuItem { border-top: grey 1px dashed; margin-top: 3px; padding-top: 3px }
+.topSpace { margin-top: 15px }
+.topSpaceS { margin-top: 8px }
+.bottomCell { padding-bottom: 30px }
+.bottomSpace { margin-bottom: 30px }
+.bottomSpaceS { margin-bottom: 15px }
+.paraSpace { margin: 3px 0 }
+.code { font-family: "Lucida Console","Courier New" }
+.codePara { background-color: #EEFFCC; border-color: grey;
+            border-style: solid none; border-width: 1px medium;
+            color: #333333; line-height: 120%;
+            padding: 10px; margin: 10px 0 10px 0 }
+.homeTable { background-color: #E3E3E3; border-top: 1px solid grey }
+.homeTable td { padding: 10px 5px 10px 10px }
+.homeTable th { padding-top: 5px; font-size: 105% }
+.first { margin-top: 0px }
+.error { margin: 5px }
+.smaller, .smaller select { font-size: 95% }
+.pod { padding: 0 10px }
+.phase .pod { display: block; padding: 10px 0 0 0 }
+.phase .smaller { font-size: 100% }
+.phase .iconS { width: 55px }
+.podTable { line-height: 20px }
+.hide { display: none }
+.tabs { position: relative; bottom: -2px;
+        border-collapse: separate; border-spacing: 4px 0 }
+.tabs td { padding: 3px 20px; text-align: center; font-size: 95%;
+           border-top-left-radius: 5px; border-top-right-radius: 5px;
+           border-bottom: |tabBorder|; font-weight: bold }
+.tabCur { border-top: |tabBorder|; border-right: |tabBorder|;
+          border-left: |tabBorder|; background-color: #fbfbfb;
+          border-bottom: none !important }
+.tabSep { padding-bottom: 1px }
+.tabBottom { border-bottom: |tabBorder| }
+.tab { background-color: #f1eeee }
+.navText { font-weight: bold; font-size: 90%; color: |linkColor|;
+           line-height: 1.5em }
+.navSep { color: |altColor|; margin: 0 6px }
+.navSib { padding-top: 10px; font-size: 90% }
+
+.language {color: #555555; font-size: 7pt; border: grey 1px solid; padding: 2px;
+           margin: 0 2px 0 4px; font-family: monospace }
+.highlight { background-color: yellow }
+.highlightRow { font-weight: bold; background-color: yellow; opacity: 0.6 }
+.globalActions { margin-bottom: 30px }
+.objectActions { margin: 7px 4px }
+.alignedActions { float: right; padding-right: 10px }
+.smallbox { margin: 0; vertical-align: middle }
+@keyframes blinkingBg {
+  0% { background-color: white; color: grey }
+  50% { background-color: grey; color: white }
+  100% { background-color: white; color: grey }
+}
+.blinkBg { animation: blinkingBg 1s infinite }
+.legend { font-size: 90%; color: grey }
+.legendRight { float: right; margin-left: 10px }
+.legend td { padding: 1px 0px; border: 0 !important }
+/* Bugfix for the calendar class from jscalendar */
+.calendar { z-index: 10 }
+/* Classes for gridder's thumbnails */
+.thumbnail { font-size: 105%;  background-color: white; padding: 10px;
+             border-radius: 15px; min-height: 300px; max-height: 350px;
+             overflow: hidden; position: relative }
+.thumbmore { position: absolute; bottom: 0; left: 0; width: 100%;
+             text-align: right; margin: 0; padding: 50px 0 25px 0;
+             background-image: linear-gradient(to bottom, transparent, white) }
+.thumbmore img { padding-right: 30px }
+.thumbtable { width: 100% }
+.thumbtable td { padding: 0 5px 3px 5px }
