@@ -1,0 +1,33 @@
+variables:
+  GIT_STRATEGY: clone
+
+stages:
+  - test
+  - deploy
+
+.install-deps-template: &install-deps
+  before_script:
+    - echo "Installing deps"
+    - python3 -m pip install poetry
+    - poetry install -vv
+
+run_tests:
+  <<: *install-deps
+  stage: test
+  tags:
+    - testing
+  script:
+    - poetry run pre-commit run --all-files
+    - poetry run dotenv -f envs/test.env run pytest -vv --cov=src
+
+deploy_app:
+  <<: *install-deps
+  stage: deploy
+  only: ['master']
+  tags:
+    - production
+  script:
+    - poetry run dotenv -f "${APP_ENV_FILE}" run alembic upgrade head;
+    - sh deploy.sh
+  environment:
+    name: production
