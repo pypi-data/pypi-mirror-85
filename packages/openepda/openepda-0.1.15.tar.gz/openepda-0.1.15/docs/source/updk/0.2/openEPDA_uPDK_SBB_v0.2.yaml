@@ -1,0 +1,449 @@
+# Bright Photonics B.V.
+# Copyright (c) 2018-2019, Ronald Broeke
+# license: Creative Commons, CC BY-ND 4.0"
+# attribution: openEPDA, ronald.broeke@openEPDA.org
+header:
+  _type: object
+  _required: true
+  _doc: Contains licensing and usage information.
+  _properties:
+    description:
+     _type: str
+     _required: true
+     _doc: Short info on the purpose of this scheme.
+     _default: schema to describe a uPDK
+    file_version:
+      _type: str
+      _required: true
+      _doc: Version of the SBB file.
+      _default: "1.0"
+    openEPDA:
+      _type: object
+      _required: true
+      _doc: openEPDA related information.
+      _properties:
+        version:
+          _type: str
+          _required: true
+          _doc: openEPDA version of this scheme.
+          _default: openEPDA-uPDK-SBB-v0.2
+        link:
+          _type: str
+          _required: true
+          _doc: Link to the openEPDA web-site.
+          _default: https://www.openEPDA.org
+    schema_license:
+      _type: object
+      _required: true
+      _doc: "License information for using this superschema and the derived schema."
+      _properties:
+        license:
+          _type: str
+          _required: true
+          _doc: "CC BY-ND 4.0 - Mandatory Creative Commons license condition."
+          _default: "CC BY-ND 4.0"
+        attribution:
+          _type: str
+          _required: true
+          _doc: "openEPDA--uPDK-SBB-v0.2, Ronald Broeke (c) 2017-2019 - Mandatory attribution required under the Creative Commons license."
+          _default: "openEPDA-uPDK-SBB-v0.2, Ronald Broeke (c) 2017-2019"
+    pdk_license:
+      _type: str
+      _required: true
+      _doc: "License conditions of the content in the YAML."
+      _example: "under NDA, Joe & sons #123-1999"
+
+xsections:
+  _type: object
+  _required: false
+  _doc: Contains zero or more cross section definitions.
+  _properties:
+    <xsection_name>:
+      _type: object
+      _required: false
+      _doc: Define a cross section reference named <xsection_name>.
+      _properties:
+         width:
+           _type: float
+           _required: false
+           _doc: Define the default width of a structure in this xsection <xsection_name>.
+         width_min:
+           _type: float
+           _required: false
+           _doc: Define the minimum width of a structure in this xsection <xsection_name>.
+         radius:
+           _type: float
+           _required: false
+           _doc: Define the default radius of a structure in this xsection <xsection_name>.
+         radius_min:
+           _type: float
+           _required: false
+           _doc: Define the minimum radius of a structure in this xsection <xsection_name>.
+         models:
+           _type: object
+           _required: false
+           _doc: Contains zero or more compact models for xsection <xsection_name>.
+           _properties:
+             models:
+              _type: subschema
+              _required: false
+              _doc: Models.
+blocks:
+  _type: object
+  _required: true
+  _doc: Contains zero or more BB definitions.
+  _properties:
+    <block_name>:
+      _type: object
+      _required: false
+      _doc: Define a BB reference named <block_name>.
+      _properties:
+        id:
+          _type: str
+          _default: null
+          _required: false
+          _doc: Reference to the unique ID used for this block across PDK version.
+        version:
+          _type: str
+          _required: false
+          _doc: BB version number set by the foundry.
+          _default: ""
+        license:
+          _type: str
+          _required: true
+          _doc: Licensing conditions of this BB.
+          _default: Block may be licensed.
+          _example: Licensed by foundry X under Y.
+        cellname:
+          _type: str
+          _required: false
+          _doc: Cellname of the BB. If no cellname label is found, the <block_name> is the cell name.
+        doc:
+          _type: str
+          _required: true
+          _doc: Short sentence to describe the BB to the user.
+          _default: ""
+        bbox:
+          _type: list
+          _required: true
+          _doc: Array of points (x, y) defining the bbox outline as a polygon. The polygon does not have to be closed.
+          _default: null
+          _example: [[0, 0], [10, 0], [10, 5], [0, 5]]
+        bb_width:
+          _type: float
+          _required: false
+          _doc: Width of the BB cell in um.
+        bb_length:
+          _type: float
+          _required: false
+          _doc: Length of the BB cell in um.
+        pin_in:
+          _type: str
+          _required: false
+          _doc: Name of default input pin of the BB.
+        pin_out:
+          _type: str
+          _required: false
+          _doc: Name of default output pin of the BB.
+        pins:
+          _type: object
+          _required: true
+          _doc: Contains one or more pin definitions for <block_name>.
+          _properties:
+            <pin_name>:
+              _type: object
+              _required: true
+              _doc: Define a pin named <pin_name>.
+              _properties:
+                id:
+                  _type: int
+                  _required: false
+                  _doc: Unique identifier.
+                width:
+                  _type: float
+                  _required: true
+                  _doc: Width of the pin.
+                  _example: 2.0
+                width_unit:
+                  _type: str
+                  _required: false
+                  _doc: Unit of the pin width.
+                  _allowed_values: list of allowed values
+                  _default: um
+                  _example: um
+                xsection:
+                  _type: str
+                  _required: true
+                  _doc: Cross section name.
+                  _example: WAVEGUIDE
+                alias:
+                  _type: str
+                  _required: false
+                  _doc: Alias for <pin_name>.
+                  _example: input1
+                doc:
+                  _type: str
+                  _required: true
+                  _doc: Short description of the pin.
+                  _example: optical input
+                xya:
+                  _type: list
+                  _required: true
+                  _doc: Pin coordinate (x, y, a) with respect to <block_name> origin.
+                  _example: [0, 0, 0]
+                xya_unit:
+                  _type: list
+                  _required: false
+                  _doc: Units of the (x, y, a) coordinate.
+                  _default: [um, um, deg]
+                direction:
+                  _type: str
+                  _required: false
+                  _doc: pin direction of xya w.r.t. the block; outward 'out' or inward 'in'.
+                  _default: out
+                  _allowed_values: [in, out]
+                radius:
+                  _type: float
+                  _required: false
+                  _doc: Radius of curvature at pin (0 or null is no curvature).
+                  -default: 0
+        models:
+          _type: object
+          _required: false
+          _doc: Define zero or more compact models.
+          _default: null
+          _properties:
+            models:
+              _type: subschema
+              _required: false
+              _doc: Models.
+        drc:
+          _type: object
+          _required: true
+          _doc: Define zero or more Design Rules.
+          _default: null
+          _properties:
+            drc_rules:
+              _type: subschema
+              _required: false
+              _doc: Design rules.
+        parameters:
+          _type: object
+          _required: true
+          _doc: Pcell only. Contains one or more BB parameter definitions.
+          _properties:
+            <parameter_name>:
+              _type: object
+              _required: false
+              _doc: Define a BB parameter.
+              _properties:
+                doc:
+                  _type: str
+                  _required: true
+                  _doc: Short parameter description.
+                  _default: No documentation provided
+                type:
+                  _type: str
+                  _required: true
+                  _doc: Data type.
+                  _allowed_values: [float, int, str, bool]
+                unit:
+                  _type: str
+                  _required: true
+                  _doc: Unit of the parameter.
+                  _allowed_values: list of allowed values
+                  _example: ['um']
+                min:
+                  _type: see type
+                  _required: 'true for float | int, false for str'
+                  _doc: Minimum value.
+                  _default: null
+                max:
+                  _type: see type
+                  _required: 'true for float | int, false for str'
+                  _doc: Maximum value.
+                  _default: null
+                value:
+                  _type: see type
+                  _required: true
+                  _doc: Default value.
+                  _allowed_values: list of allowed values if applicable
+                  _default: null
+                alias:
+                  _type: str
+                  _required: false
+                  _doc: Alias for <parameter_name>.
+        keywordparameters:
+           _type: list
+           _required: false
+           _doc: List of <parameter_name> used in the BB function call (subset of parameters). If the label is not present, all parameters are considered to be keyword parameters.
+           _example: [a, b, c]
+        cellnameparameters:
+           _type: list
+           _required: false
+           _doc: List of <parameter_name> for more descriptive cell names (subset of keywordparameters).
+           _example: b, x
+        call:
+          _type: str
+          _required: false
+          _doc: Name of function call that creates the BB.
+        groupname:
+          _type: str
+          _required: false
+          _doc: Name for grouping BB.
+        ip_block:
+          _type: object
+          _required: false
+          _doc: "Define ip_block data as ip_block."
+          _properties:
+            ip_block:
+              _type: subschema
+              _required: false
+              _doc: IP-block information.
+        icon:
+          _type: object
+          _required: false
+          _doc: Define an icon for <block_name>.
+          _domain: nazca
+          _properties:
+            function:
+              _type: str
+              _doc: Name of the function that returns a cell with the icon.
+            parameters:
+              _type: object
+              _doc: Parameters for which default will be overridden.
+              _properties:
+                bufx:
+                  _type: float
+                  _required: false
+                  _doc: Buffer in the x-direction in um.
+                bufy:
+                  _type: float
+                  _doc: Buffer in the y-direction in um.
+                  _required: false
+                length:
+                  _type: float
+                  _doc: Icon length in the x-direction in um.
+                  _required: false
+                width:
+                  _type: float
+                  _doc: Icon length in the y-direction in um.
+                  _required: false
+
+subschemas:
+  _type: object
+  _required: false
+  _doc: Describe zero or more subschemas.
+  _properties:
+    drc-rules:
+      _type: object
+      _required: false
+      _doc: Describe one or more <<drc-rules>>.
+      _properties:
+        angle:
+          _type: object
+          _required: false
+          _doc: Angle DRC rule for instantiation w.r.t the mask.
+          _properties:
+            values_and_domains:
+              _type: subschema
+              _required: false
+              _doc: Values and domains.
+        angle_mirror:
+          _type: object
+          _required: false
+          _doc: Angle DRC rule for instantiation w.r.t the mask with mirroring status.
+          _properties:
+            flip:
+              _type: object
+              _required: false
+              _doc: Group rules that apply for a flip=true state.
+              _properties:
+                values_and_domains:
+                  _type: subschema
+                  _required: false
+                  _doc: Values and domains.
+            noflip:
+              _type: object
+              _required: false
+              _doc: Group rules that apply for a flip=false state.
+              _properties:
+                values_and_domains:
+                  _type: subschema
+                  _required: false
+                  _doc: Values and domains.
+
+    values_and_domains:
+      _type: object
+      _required: false
+      _doc: Describe one or more <<values_and_domains>>.
+      _properties:
+        values:
+          _type: list
+          _required: false
+          _doc: List of allowed angles.  # TODO: really angles?
+          _example: [0, 90, 270]
+        domains:
+          _type: list
+          _required: false
+          _doc: List of allowed angle domains.
+          _example: [[0, 90], [180, 270]]
+
+    models:
+      _type: object
+      _required: false
+      _doc: Describe one or more models.
+      _properties:
+        <model_name>:
+          _type: object
+          _required: false
+          _doc: Define a compact model reference named <model_name>.
+          _example: model_1  # TODO: is this an example of an object?
+          _properties:
+            id:
+              _type: int
+              _required: false
+              _doc: Compact model unique identifier.
+            name:
+              _type: str
+              _required: false
+              _doc: Reference to a compact model description.
+            parameters:
+              _type: object
+              _required: false
+              _doc: Contains one or more parameter assignments.
+              _example:
+                a: 4.0
+                x: 10
+              _properties:
+                <parameter_name>:
+                  _type: str
+                  _required: false
+                  _doc: Assign a value to <parameter_name>.
+    ip_block:
+      _type: object
+      _required: false
+      _doc: Describe IP-block data.
+      _properties:
+        license:
+          _type: str
+          _required: false
+          _doc: License information.
+          _example: CC BY-ND 4.0
+        owner:
+          _type: str
+          _required: false
+          _doc: IP-Block owner.
+          _example: Bright Photonics
+        pgp_file:
+          _type: str
+          _required: false
+          _doc: Name of pgp encrypted IP-block file.
+        pgp_key:
+          _type: str
+          _required: false
+          _doc: Hash of public pgp key used to encrypt the IP-Block.
+        md5:
+          _type: str
+          _required: false
+          _doc: MD5 hash of decrypted pgp IP-block.

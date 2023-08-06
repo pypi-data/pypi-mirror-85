@@ -1,0 +1,24 @@
+# This file is part of openEPDA package
+# Author: Dzmitry Pustakhod
+# Copyright (c) 2020, TU/e - PITC and authors
+# attribution: openEPDA, d.pustakhod@tue.nl
+$schema: http://json-schema.org/draft-07/schema
+$id: http://openepda.org/schemas/gds_mapping_v0.1.yaml
+type: object
+required: [bb_info, bb_outline, bb_parameters, bbox, pin_info]
+properties:
+  bb_info:
+    type: array
+    items: [{type: integer}, {type: integer}]
+  bb_outline:
+    type: array
+    items: [{type: integer}, {type: integer}]
+  bb_parameters:
+    type: array
+    items: [{type: integer}, {type: integer}]
+  bbox:
+    type: array
+    items: [{type: integer}, {type: integer}]
+  pin_info:
+    type: array
+    items: [{type: integer}, {type: integer}]
