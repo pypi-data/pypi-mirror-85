@@ -1,0 +1,328 @@
+CHANGES
+=======
+
+* #8: Update docs formatting
+* #8: Covered influxdb-query with tests
+* #8: Refactor container test utils
+* Docs: Add example to the disk-space
+* Docs: Add example to the ovh-expiration
+* Docs: Add example to the ovh-expiration
+* Docs: Add example to the docker-container-log
+* #8: Initially added influxdb-query check
+
+v1.9.1
+------
+
+* #7: Added missing ARCH in docker tag
+* Updated badges
+
+v1.9
+----
+
+* #7: Clean up
+* #7: Build on ARM
+* #7: Set almost final pipelines
+* #7: Enable ARM build
+* #7: Attempt to keep the git tag in PBR build
+* #7: Attempting to resolve git tag retrieving
+* #7: Attempting to resolve git tag retrieving
+* #7: add missing wheel package
+* #7: add missing wheel package
+* #7: add missing hashbang
+* #7: return a value in :image task
+* #7: Compat
+* #7: Add login to registry
+* #7: Release job
+* #7: Release job
+* #7: Fixes related to GH Actions
+* #7: Fixes related to GH Actions
+* #7: Fixes related to GH Actions
+* #7: Fixes related to GH Actions
+* #7: Fixes related to GH Actions
+* #7: Moving to Github Actions
+* #7: Moving to Github Actions
+* Build on Python 3.7
+* #6: Implement "docker-container-log" check
+* Remove unused, nonsense check
+* Create index also on existing databases
+* Correct: sqlite3.Warning: You can only execute one statement at a time
+* Add index for better performance of the SQLite3
+
+v1.8
+----
+
+* Refactor: Moved docs to Python files
+* Postgres support: Included "postgres" check in docs
+* Postgres support: Added simple PostgreSQL check if the DB is up
+
+v1.8.rc1
+--------
+
+* Postgres support: Corrected one typo, and added distinction between no rights and no data
+* ARM: Correct package name
+* Fixed problem with building Docker image - after enforcing regeneration of requirements.txt
+* Postgres support: Added missing postgresql-devel required for building/installing psycopg2
+* Building: Always re-generate requirements.txt
+* Postgres support: Switch from psycopg2 to psycopg2-binary
+* Postgres support: Switch from psycopg2 to psycopg2-binary
+* Postgres support: Added psycopg2 as dependency
+* Postgres support: chmod +x
+* Docs: Added PostgreSQL replication checks
+* Added PostgreSQL replication checks
+
+v1.7
+----
+
+* Docs: Added passwords deploying strategy
+* Docs: Added templating documentation
+
+v1.7.rc5
+--------
+
+* Runner: Added a simple templating in input variables. Example: ${ENV.USER} to see current user. Use this mechanism to pass credentials securely
+* Runner: Added some default timeout for safety reasons
+
+v1.7.rc4
+--------
+
+* SSH: Added creation of .ssh directory and known\_hosts file if not present
+* SSH: Added support for adding to known\_hosts first time
+* Tests: Increased SSH container timeout to avoid random failures
+* Load avg checks: Corrected invalid casting in timeout parameter and extracted code into the checklib
+* Formatting
+* Docker: Added required packages
+* Reminder check: Correct a misleading message
+* Docs: Deleted development-only information
+
+v1.7.rc3
+--------
+
+* Docker: Fixed containers - added missing gcc after adding dependency that requires compilation
+* Added correct requirements.txt
+* Tests: Corrected paths in tests
+* Checks: Add swap-usage-max-percent
+* Checks: Added load-average and load-average-auto
+
+v1.7.rc2
+--------
+
+* CI: Increased timeout for SSH container
+* CI: Added missing make task
+* CI: debug
+* CI: Fix build by allowing running in venv
+* CI: Fix build by allowing running in venv
+* Docs: Added all new checks to docs
+* Docs: Fixed errors in the docs
+* Added new check - \`ssh-files-checksum\`: \`Calls remote process using SSH and expects: the listed files and checksums will be matching\`
+* SSH-based checks are now sharing the same code by using a library, simplified imports and made them more safe
+* Runner: Added support for lists and dicts in parameters
+* Add \`ssh-fingerprint\` check: \`Verifies if remote host fingerprint matches. Helps detecting man-in-the-middle and server takeover attacks.\`
+* Tests: Close the docker socket to avoid warnings in tests
+* Tests: Separate unit tests from functional tests, improve pipeline - correct mistake
+* Tests: Separate unit tests from functional tests, improve pipeline
+
+v1.7.rc1
+--------
+
+* Tests: Improved tests that uses SSH container - the container is setup one for a class
+* Tests: Collecting output from SSH container
+* Refactored "replication-running" check syntax and added additional status information
+* CI: Attempt to run unit tests on travis
+* CI: Trying to bring up the unit tests
+* Covered "reminder" check with tests
+* CI: Fixing Python 3.7 build
+* CI: Add missing pipenv
+* Add compatibility with Python 3.7 stage
+* Downgrade packages for Python 3.6 compatibility
+* No longer require strict Python version, correct Docker builds
+* Corrected mistake in travis configuration
+* Changing the way the application is deployed. Introducing pipenv
+* Enabled docker in travis builds as it is required for testing
+* Covered "ssh-command" with tests and fixed all spotted bugs
+* Preparation for the Pipenv support
+* Updated documentation for requirements
+* Added documentation for "reminder" check
+* Added ssh-command
+* Added "reminder" check that should remind about upcoming dates
+* Docker: Fixed typo in entrypoint
+
+v1.6.1
+------
+
+* Cleared username from cron entry
+* Restored /etc/crontabs/root as it was previously working
+* Unified docker images to base on same OS - Alpine 3.9: Do not have to support two cron types
+* Unified docker images to base on same OS - Alpine 3.9
+* Correct crontab support to be compatible with multiple cron systems
+* Corrected ARM dockerfile by adding supervisord config file
+
+v1.6
+----
+
+* Makefile: Switched shell to bash
+* CI: Fixed typo
+* Moving to Travis
+* Fixed documentation styling for new check
+* Added retry support
+* Added ovh-expiration check
+* Refactored - moved infrastructural things to separate directory, added Slack notifications
+
+v1.5.2
+------
+
+* Bugfix: The CHECK\_INTERVAL expression was evaluated, but it should not
+
+v1.5.1
+------
+
+* Fixed possibly not executing crontab due to syntax error (double quote remained from docker environment variables)
+
+v1.5.0
+------
+
+* Simplified docs
+* Docker: Cleaned up the container, now we can be sure that the installed version of infracheck is used, the database have it's constant place at "/database/db.sqlite3", the crontab endpoint have explict arguments same as server
+* domain-expiration: Shell whois checking method got exception handling
+
+v1.4.3
+------
+
+* domain-expiration: Properly handling not registered domains
+
+v1.4.2
+------
+
+* Domain Expiration is now properly handling ".info" domains
+* Runner: Now contains the stderr
+
+v1.4.1
+------
+
+* Fixed: --force flag was not considered, --lazy needed to be also specified
+* Fixed types casting in arguments passing from CLI
+* Fixed types casting in arguments passing from CLI
+* Hotfix: Fixed 503 on HTTP caused by missing new params
+* Updated suggestion in reference in docs
+
+1.4.0
+-----
+
+* Added --lazy flag
+* Added --wait / WAIT\_TIME, secured \`domain-expiration\` check against CPU overload
+
+v1.3.0
+------
+
+* Added docs, clean up
+* Resolved unit tests
+* Resolved "rate limit exceeded" in domain-expiration check, by adding waits
+* Added caching mechanism, so the HTTP endpoint will not execute all checks each time. Now the background process triggered by crontab will be updating status cache, and the HTTP endpoint will read it
+* Fixed documentation syntax
+* Fixed link to the documentation
+* Travis: Setting correct Python versions
+* Travis: Setting correct Python versions
+* Travis: Setting correct Python versions
+* Fixed mistake in path
+* Changed description format for PyPI, allowing failures on travis nightly and pypi3
+* Changed to mime of description to text/markdown for PyPI
+* Trying to fix the travis build
+* Trying to fix the travis build
+* Fixed travis build after path change
+* Switched to Alpine 3.9, fixed incorrect path after recent changes
+* Resolved permissions problem
+* Added tests for domain-expiration check, updated documentation, dependencies list
+* Renamed check to fit the convention
+* Added domain-expiration check
+* Corrected package name
+
+v1.1.2
+------
+
+* Fixed invalid types casting - when the value in checks parameters was an integer, then there was an exception
+* Update LICENSE
+* Create LICENSE
+* Resolved test after changes done on purpose
+* Added example free-ram usage
+* Applied PEP-8 rules to the free-ram file
+* Added missing documentation
+* Changed names to fit into the existing naming convention
+* fix the test
+* fix free\_ram.py and free\_ram\_test.sh according to code review
+* Add a check to watch for available RAM and a test for this check
+
+v1.1.1
+------
+
+* update disk-space-test.sh to run check with proper name
+* fix disk-space-test.sh and add a mock value for checks/disk-space
+* Change app/checks/disk-space so that it uses environmental variablesw
+* Rewrite app/checks/disk-space to python, change the syntax
+* Updated changelog, changed min. Python version to 3.5
+
+v1.1
+----
+
+* Update README.md
+* Update README.md
+* Reordered badges (commited from github)
+* Added badges (commited in github)
+* Deleted support for Python 3.7 as on Travis it does not work
+* Replaced call to "bc", as it works differently on different operating systems. The floats support in bash is not so good
+* Switched from sh to bash
+* CI: Added Python 3.7 to the build
+* Stripped out characters different than numbers and dots for compatiblity reasons
+* Reverted last CI change
+* Added Mattermost notification to notify riotkit collective
+* Resolved #2: Disk space is now properly recognized
+* Travis-CI: Release to PYPI conditions
+* Building not only on tags
+* Updated credentials
+* Added information about the docker container variables
+
+v1.0.1
+------
+
+* Fixed crontab on Debian / armhf
+* Added coverage ignore for server and argument parsing
+* Added supervisor and scheduled job support using cron
+* Fixed regression after change of name of global status from "status" to "global\_status" - so it could be easily checked with an external monitoring software
+* Added additional checks to the docker images
+
+v1.0
+----
+
+* Updated readme
+* Resolved a problem on CI
+* Added a docs badge
+* Added docs, fixed ARM build
+* Added coverage submission
+* Added MySQL replication check
+* Added MySQL and PostgreSQL clients to the container
+* Better tests coverage for controller and checkers
+* Travis: Clean up, not supporting Python 3.4 anymore
+* Fixed: Paths with non-project structure were also marked as valid
+* Properly marking now the global status, so it would be possible to check it by the monitoring
+* Improved "http" check, so it is now following redirections and extra failing on non 200 pages
+* Playing with travis build
+* Fixed travis build
+* Fixed travis build
+* Adjusting travis build
+* Added a few tests, updated travis config, set up setuptools using pbr
+* Added File Repository's Bahub check
+* Fixed floats support in disk-space healthcheck
+* Corrected docker package name
+* Switched ARM build to Debian, CURL is now ignoring certificate problems (like it is on healthcheck services), there should be a separate check for certificate expiration and validity
+* Switched to Alpine 3.8 for ARM image
+* Added ARM build
+
+v0.1.1
+------
+
+* Fixed docker entrypoint, added more checks, added example
+* Added support for "CMD" in docker
+* Added support for path prefixing
+* Fixed possibility to add custom checks
+* Clean up
+* Moved README.md to proper directory
+* Added travis integration
+* Added to git
