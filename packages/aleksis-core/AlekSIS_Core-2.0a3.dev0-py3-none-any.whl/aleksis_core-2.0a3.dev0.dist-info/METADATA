@@ -1,0 +1,194 @@
+Metadata-Version: 2.1
+Name: aleksis-core
+Version: 2.0a3.dev0
+Summary: AlekSIS (School Information System) — Core
+Home-page: https://aleksis.org/
+License: EUPL-1.2-or-later
+Keywords: SIS,education,school,digitisation,school apps
+Author: Dominik George
+Author-email: dominik.george@teckids.org
+Maintainer: Jonathan Weth
+Maintainer-email: wethjo@katharineum.de
+Requires-Python: >=3.7,<4.0
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django :: 3.0
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Education
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Application
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Typing :: Typed
+Provides-Extra: celery
+Provides-Extra: ldap
+Requires-Dist: Celery[django,redis] (>=4.4.0,<5.0.0); extra == "celery"
+Requires-Dist: Django (>=3.0,<4.0)
+Requires-Dist: Pillow (>=7.0,<8.0)
+Requires-Dist: calendarweek (>=0.4.3,<0.5.0)
+Requires-Dist: celery-haystack (>=0.10.0,<0.11.0); extra == "celery"
+Requires-Dist: celery-progress (>=0.0.14,<0.0.15)
+Requires-Dist: colour (>=0.1.5,<0.2.0)
+Requires-Dist: django-any-js (>=1.0,<2.0)
+Requires-Dist: django-auth-ldap (>=2.2,<3.0); extra == "ldap"
+Requires-Dist: django-bleach (>=0.6.1,<0.7.0)
+Requires-Dist: django-cache-memoize (>=0.1.6,<0.2.0)
+Requires-Dist: django-celery-beat (>=2.0.0,<3.0.0); extra == "celery"
+Requires-Dist: django-celery-email (>=3.0.0,<4.0.0); extra == "celery"
+Requires-Dist: django-celery-results (>=1.1.2,<2.0.0); extra == "celery"
+Requires-Dist: django-ckeditor (>=6.0.0,<7.0.0)
+Requires-Dist: django-colorfield (>=0.3.0,<0.4.0)
+Requires-Dist: django-dbbackup (>=3.3.0,<4.0.0)
+Requires-Dist: django-debug-toolbar (>=2.0,<3.0)
+Requires-Dist: django-dynamic-preferences (>=1.9,<2.0)
+Requires-Dist: django-easy-audit (>=1.2rc1,<2.0)
+Requires-Dist: django-favicon-plus-reloaded (>=1.0.4,<2.0.0)
+Requires-Dist: django-filter (>=2.2.0,<3.0.0)
+Requires-Dist: django-guardian (>=2.2.0,<3.0.0)
+Requires-Dist: django-hattori (>=0.2,<0.3)
+Requires-Dist: django-haystack (==3.0b1)
+Requires-Dist: django-health-check (>=3.12.1,<4.0.0)
+Requires-Dist: django-impersonate (>=1.4,<2.0)
+Requires-Dist: django-ipware (>=3.0,<4.0)
+Requires-Dist: django-js-reverse (>=0.9.1,<0.10.0)
+Requires-Dist: django-jsonstore (>=0.4.1,<0.5.0)
+Requires-Dist: django-maintenance-mode (>=0.15.0,<0.16.0)
+Requires-Dist: django-material (>=1.6.0,<2.0.0)
+Requires-Dist: django-menu-generator (>=1.0.4,<2.0.0)
+Requires-Dist: django-middleware-global-request (>=0.1.2,<0.2.0)
+Requires-Dist: django-phonenumber-field[phonenumbers] (<5.1)
+Requires-Dist: django-polymorphic (>=3.0.0,<4.0.0)
+Requires-Dist: django-prometheus (>=2.1.0,<3.0.0)
+Requires-Dist: django-pwa (>=1.0.8,<2.0.0)
+Requires-Dist: django-reversion (>=3.0.7,<4.0.0)
+Requires-Dist: django-sass-processor (>=0.8,<0.9)
+Requires-Dist: django-settings-context-processor (>=0.2,<0.3)
+Requires-Dist: django-tables2 (>=2.1,<3.0)
+Requires-Dist: django-templated-email (>=2.3.0,<3.0.0)
+Requires-Dist: django-two-factor-auth[sms,phonenumbers,call,yubikey] (>=1.12.1,<2.0.0)
+Requires-Dist: django-yarnpkg (>=6.0,<7.0)
+Requires-Dist: django_select2 (>=7.1,<8.0)
+Requires-Dist: django_widget_tweaks (>=1.4.5,<2.0.0)
+Requires-Dist: dynaconf[toml,yaml,ini] (>=3.1,<4.0)
+Requires-Dist: html2text (>=2020.0.0,<2021.0.0)
+Requires-Dist: importlib-metadata (>=2.0.0,<3.0.0); python_version < "3.8"
+Requires-Dist: libsass (>=0.20.0,<0.21.0)
+Requires-Dist: license-expression (>=1.2,<2.0)
+Requires-Dist: psutil (>=5.7.0,<6.0.0)
+Requires-Dist: psycopg2 (>=2.8,<3.0)
+Requires-Dist: python-memcached (>=1.59,<2.0)
+Requires-Dist: requests (>=2.22,<3.0)
+Requires-Dist: rules (>=2.2,<3.0)
+Requires-Dist: spdx-license-list (>=0.5.0,<0.6.0)
+Project-URL: Documentation, https://aleksis.org/AlekSIS-Core/docs/html/
+Project-URL: Repository, https://edugit.org/AlekSIS/official/AlekSIS-Core
+Description-Content-Type: text/x-rst
+
+AlekSIS — All-libre extensible kit for school information systems
+=================================================================
+
+Warning
+-------
+
+**This is an alpha version of AlekSIS, the free school information system.
+The AlekSIS team is looking for schools who want to help shape the 2.0
+final release and supports interested schools in operating AlekSIS.**
+
+What AlekSIS is
+----------------
+
+`AlekSIS`_ is a web-based school information system (SIS) which can be used to
+manage and/or publish organisational subjects of educational institutions.
+
+Formerly two separate projects (BiscuIT and SchoolApps), developed by
+`Teckids e.V.`_ and a team of students at `Katharineum zu Lübeck`_, they
+were merged into the AlekSIS project in 2020.
+
+AlekSIS is a platform based on Django, that provides central funstions
+and data structures that can be used by apps that are developed and provided
+seperately. The AlekSIS team also maintains a set of official apps which
+make AlekSIS a fully-featured software solutions for the information
+management needs of schools.
+
+By design, the platform can be used by schools to write their own apps for
+specific needs they face, also in coding classes. Students are empowered to
+create real-world applications that bring direct value to their environment.
+
+AlekSIS is part of the `schul-frei`_ project as a component in sustainable
+educational networks.
+
+Core features
+--------------
+
+* For users:
+
+ * Custom menu entries (e.g. in footer)
+ * Global preferences
+ * Group types
+ * Manage announcements
+ * Manage groups
+ * Manage persons
+ * Notifications via SMS email or dashboard
+ * Rules and permissions for users, objects and pages
+ * Two factor authentication via Yubikey, OTP or SMS
+ * User preferences
+
+* For admins
+
+ * Asynchronous tasks with celery
+ * Authentication via LDAP
+ * Automatic backup of database, static and media files
+
+Official apps
+-------------
+
++--------------------------------------+---------------------------------------------------------------------------------------------+
+| App name                             | Purpose                                                                                     |
++======================================+=============================================================================================+
+| `AlekSIS-App-Chronos`_               | The Chronos app provides functionality for digital timetables.                              |
++--------------------------------------+---------------------------------------------------------------------------------------------+
+| `AlekSIS-App-DashboardFeeds`_        | The DashboardFeeds app provides functionality to add RSS or Atom feeds to dashboard         |
++--------------------------------------+---------------------------------------------------------------------------------------------+
+| `AlekSIS-App-Hjelp`_                 | The Hjelp app provides functionality for aiding users.                                      |
++--------------------------------------+---------------------------------------------------------------------------------------------+
+| `AlekSIS-App-LDAP`_                  | The LDAP app provides functionality to import users and groups from LDAP                    |
++--------------------------------------+---------------------------------------------------------------------------------------------+
+| `AlekSIS-App-Untis`_                 | This app provides import and export functions to interact with Untis, a timetable software. |
++--------------------------------------+---------------------------------------------------------------------------------------------+
+
+
+Licence
+-------
+
+::
+
+  Copyright © 2017, 2018, 2019, 2020 Jonathan Weth <wethjo@katharineum.de>
+  Copyright © 2017, 2018, 2019 Frank Poetzsch-Heffter <p-h@katharineum.de>
+  Copyright © 2018, 2019, 2020 Julian Leucker <leuckeju@katharineum.de>
+  Copyright © 2018, 2019, 2020 Hangzhi Yu <yuha@katharineum.de>
+  Copyright © 2019, 2020 Dominik George <dominik.george@teckids.org>
+  Copyright © 2019, 2020 Tom Teichler <tom.teichler@teckids.org>
+  Copyright © 2019 mirabilos <thorsten.glaser@teckids.org>
+
+  Licenced under the EUPL, version 1.2 or later
+
+Please see the LICENCE.rst file accompanying this distribution for the
+full licence text or on the `European Union Public Licence`_ website
+https://joinup.ec.europa.eu/collection/eupl/guidelines-users-and-developers
+(including all other official language versions).
+
+.. _AlekSIS: https://aleksis.org/
+.. _Teckids e.V.: https://www.teckids.org/
+.. _Katharineum zu Lübeck: https://www.katharineum.de/
+.. _European Union Public Licence: https://eupl.eu/
+.. _schul-frei: https://schul-frei.org/
+.. _AlekSIS-App-Chronos: https://edugit.org/AlekSIS/official/AlekSIS-App-Chronos
+.. _AlekSIS-App-DashboardFeeds: https://edugit.org/AlekSIS/official/AlekSIS-App-DashboardFeeds
+.. _AlekSIS-App-Hjelp: https://edugit.org/AlekSIS/official/AlekSIS-App-Hjelp
+.. _AlekSIS-App-LDAP: https://edugit.org/AlekSIS/official/AlekSIS-App-LDAP
+.. _AlekSIS-App-Untis: https://edugit.org/AlekSIS/official/AlekSIS-App-Untis
+

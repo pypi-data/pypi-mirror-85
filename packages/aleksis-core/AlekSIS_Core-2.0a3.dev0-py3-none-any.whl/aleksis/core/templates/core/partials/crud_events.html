@@ -1,0 +1,62 @@
+{% load i18n data_helpers %}
+
+<ul class="collection">
+  {% for event in obj.crud_events %}
+    {% if no_m2m and event.event_type == event.M2M_CHANGE or event.event_type == event.M2M_CHANGE_REV %}
+    {% else %}
+      <li class="collection-item">
+        <strong>
+          {% if event.event_type == event.CREATE %}
+            {% blocktrans with person=event.user.person %}
+              Created by {{ person }}
+            {% endblocktrans %}
+          {% elif event.event_type == event.UPDATE %}
+            {% blocktrans with person=event.user.person %}
+              Updated by {{ person }}
+            {% endblocktrans %}
+          {% elif event.event_type == event.DELETE %}
+            {% blocktrans with person=event.user.person %}
+              Deleted by {{ person }}
+            {% endblocktrans %}
+          {% elif event.event_type == event.M2M_CHANGE %}
+            {% blocktrans with person=event.user.person %}
+              Updated by {{ person }}
+            {% endblocktrans %}
+          {% elif event.event_type == event.M2M_CHANGE_REV %}
+            {% blocktrans with person=event.user.person %}
+              Updated by {{ person }}
+            {% endblocktrans %}
+          {% endif %}
+        </strong>
+
+        <div class="left" style="margin-right: 10px;">
+          {% if event.event_type == event.CREATE %}
+            <i class="material-icons">add_circle</i>
+          {% elif event.event_type == event.UPDATE %}
+            <i class="material-icons">edit</i>
+          {% elif event.event_type == event.DELETE %}
+            <i class="material-icons">delete</i>
+          {% elif event.event_type == event.M2M_CHANGE %}
+            <i class="material-icons">edit</i>
+          {% elif event.event_type == event.M2M_CHANGE_REV %}
+            <i class="material-icons">edit</i>
+          {% endif %}
+        </div>
+        <div class="right">
+          {{ event.datetime }}
+        </div>
+        {% parse_json event.changed_fields as changed_fields %}
+        {% if changed_fields %}
+          <ul>
+            {% for field, change in changed_fields.items %}
+              {% verbose_name event.content_type.app_label event.content_type.model field as verbose_name %}
+              <li>
+                {{ verbose_name }}: <s>{{ change.0 }}</s> → {{ change.1 }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>

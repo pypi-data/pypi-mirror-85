@@ -1,0 +1,18 @@
+{% load i18n %}
+<ul class="tabs">
+  <li class="tab ">
+    <a href="{% url registry_url %}"
+       class="{% if not active_section %}active{% endif %}"
+       target="_self">
+      {% trans "All" %}
+    </a>
+    {% for section in registry.section_objects.values %}
+      <li class="tab">
+        <a class="{% if active_section == section.name %}active{% endif %}"
+           href="{% url registry_url section.name %}"
+           target="_self">
+          {{ section.verbose_name }}
+        </a>
+      </li>
+    {% endfor %}
+</ul>
