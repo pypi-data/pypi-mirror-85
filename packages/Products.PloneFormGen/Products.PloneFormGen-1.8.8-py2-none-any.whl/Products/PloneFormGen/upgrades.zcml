@@ -1,0 +1,76 @@
+<configure
+    xmlns:zope="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+
+    <genericsetup:upgradeStep
+        source="1.5.4"
+        destination="1.5.5"
+        title="Empty upgrade step"
+        description=""
+        profile="Products.PloneFormGen:default"
+        handler="Products.PloneFormGen.upgrades.null_upgrade_step"
+        />
+
+    <genericsetup:upgradeStep
+        source="1.5.5"
+        destination="1.6.0b3"
+        title="Empty upgrade step"
+        description=""
+        profile="Products.PloneFormGen:default"
+        handler="Products.PloneFormGen.upgrades.null_upgrade_step"
+        />
+
+    <genericsetup:upgradeStep
+        source="1.7.a1"
+        destination="170"
+        title="Install jqueryui"
+        description=""
+        profile="Products.PloneFormGen:default"
+        handler=".upgrades.upgrade_to_170"
+        />
+
+    <genericsetup:upgradeStep
+        source="170"
+        destination="171"
+        title="Reload profile"
+        description=""
+        profile="Products.PloneFormGen:default"
+        handler=".upgrades.upgrade_to_171"
+        />
+
+    <genericsetup:upgradeSteps
+        source="171"
+        destination="180"
+        profile="Products.PloneFormGen:default">
+      <genericsetup:upgradeDepends
+          title="Import registry.xml"
+          import_steps="plone.app.registry propertiestool"
+          />
+    </genericsetup:upgradeSteps>
+
+    <genericsetup:upgradeStep
+        source="180"
+        destination="190"
+        title="Migrate old CalendarWidget to DatetimeWidget"
+        profile="Products.PloneFormGen:default"
+        handler=".upgrades.upgrade_to_190"
+        />
+
+    <genericsetup:upgradeDepends
+        source="190"
+        destination="191"
+        profile="Products.PloneFormGen:default"
+        title="Import registry.xml"
+        import_steps="plone.app.registry"
+        />
+
+    <genericsetup:upgradeDepends
+        source="191"
+        destination="192"
+        profile="Products.PloneFormGen:default"
+        title="Update skin path"
+        import_steps="skins"
+        />
+
+</configure>
