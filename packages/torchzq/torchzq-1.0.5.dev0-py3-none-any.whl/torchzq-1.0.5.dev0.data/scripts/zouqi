@@ -1,0 +1,18 @@
+#!/bin/bash
+
+zouqi () {
+    cmd=$(python3 -m torchzq.cli $@)
+    bash -c "$cmd"
+}
+
+case "$1" in
+    *.y*ml)
+        zouqi "$@"
+        ;;
+    board)
+        tensorboard "${@:2}"
+        ;;
+    *)
+        echo "Error: Unknown command: \"$1\"."
+        ;;
+esac
