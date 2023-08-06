@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: momotor-engine-proto
+Version: 4.1.1
+Summary: Momotor Engine Protocol Library
+Home-page: https://momotor.org/
+Author: Erik Scheffers
+Author-email: e.t.j.scheffers@tue.nl
+License: UNKNOWN
+Project-URL: Documentation, https://momotor.org/doc/engine/momotor-engine-proto/
+Project-URL: Source, https://gitlab.tue.nl/momotor/engine-py3/momotor-engine-proto/
+Project-URL: Tracker, https://gitlab.tue.nl/momotor/engine-py3/momotor-engine-proto/issues
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: momotor-engine-shared (~=1.0)
+Requires-Dist: asyncio-extras
+Requires-Dist: protobuf (~=3.13.0)
+Requires-Dist: h2 (~=4.0)
+Requires-Dist: grpclib (~=0.4.0)
+Requires-Dist: py-multihash
+Requires-Dist: base58 (<2.0)
+Requires-Dist: backoff
+Requires-Dist: multidict
+Provides-Extra: docs
+Requires-Dist: Sphinx ; extra == 'docs'
+Requires-Dist: sphinx-autodoc-typehints ; extra == 'docs'
+Provides-Extra: test
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: pytest-cov ; extra == 'test'
+Requires-Dist: pytest-pythonpath ; extra == 'test'
+Provides-Extra: tools
+Requires-Dist: grpcio-tools (~=1.33.2) ; extra == 'tools'
+
+This package is a part of [Momotor](https://momotor.org/), a tool for automated processing of digital content. 
+
+Momotor accepts digital content as a product bundle and generates a result bundle from this product under 
+control of a recipe bundle. 
+
+Momotor is like a continuous integration system, but broader in scope. The 
+type of content that Momotor can process is not restricted; each recipe may impose its own constraints. 
+One application of Momotor in an educational setting is the automatic generation of feedback on work submitted 
+for programming assignments.
+
+---
+
+The `momotor-engine-proto` package provides the Momotor RPC protocol for communication between the Momotor 
+broker and clients, and also for the communication between the Momotor broker and workers.
+
+The protocol uses the Google RPC (gRPC) protocol.
+
+
