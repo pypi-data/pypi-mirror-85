@@ -1,0 +1,55 @@
+{
+    "schema_version": 2,
+    "connections": [
+        {
+            "from": "integers.out",
+            "to": "some_block.in1",
+            "channel": "integers"
+        },
+        {
+            "from": "some_block.out",
+            "to": "analysis.input",
+            "channel": "integers"
+        }
+    ],
+    "datasets": [
+        {
+            "outputs": [
+                "out"
+            ],
+            "name": "integers"
+        }
+    ],
+    "loops": [
+    ],
+    "blocks": [
+    	{
+    		"name": "some_block",
+    		"synchronized_channel": "integers",
+    		"inputs": [
+    			"in1"
+    		],
+    		"outputs":[
+    			"out"
+    		]
+    	}
+    ],
+    "analyzers": [
+        {
+            "inputs": [
+                "input"
+            ],
+            "synchronized_channel": "integers",
+            "name": "analysis"
+        }
+    ],
+    "representation": {
+      "connections": {
+      },
+      "blocks": {
+      },
+      "channel_colors": {
+        "integers": "#5555ff"
+      }
+    }
+}

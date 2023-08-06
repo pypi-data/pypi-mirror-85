@@ -1,0 +1,28 @@
+{
+    "algorithm": "legacy/add/1",
+    "channel": "main",
+    "inputs": {
+        "in1": {
+            "database": "integers_db/1",
+            "protocol": "double",
+            "set": "double",
+            "output": "a",
+            "channel": "main"
+        },
+        "in2": {
+            "hash": "abcdef0123456789AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "channel": "main"
+        }
+    },
+    "outputs": {
+        "out": {
+          "channel": "main"
+        }
+    },
+    "parameters": {
+    },
+    "environment": {
+        "name": "Python for tests",
+        "version": "1.3.0"
+    }
+}
