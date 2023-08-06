@@ -1,0 +1,70 @@
+#!/usr/bin/env ipython --
+# -*- coding: utf-8 -*-
+from __future__ import print_function, division, absolute_import, unicode_literals
+import argparse, os, shutil, glob
+from os import path
+
+
+if __name__ == '__main__':
+    import script_utils # Append mripy to Python path
+    from mripy import afni, utils, io, surface
+    timer = script_utils.ScriptTimer()
+    
+    parser = argparse.ArgumentParser(description='Create depth mask from surface ROI.')
+    parser.add_argument('-i', '--input', default='../SUMA', help='input SUMA directory (default ../SUMA)')
+    parser.add_argument('-o', '--output', default=None, help='output SUMA.hd directory (default ../SUMA.hd)')
+    parser.add_argument('-f', '--surf', nargs='+', default=['pial', 'smoothwm', 'inflated'], help='surfaces that need to be interpolated')
+    parser.add_argument('-p', '--power', type=int, default=2, help='number of iterations for face quadrisection (default 2, i.e., 16x denser)')
+    parser.add_argument('-m', '--mask', default=None, help='only interp mesh within mask (to save resources)')
+    parser.add_argument('-j', '--jobs', type=int, default=2, help='number of parallel processes (default 2)')
+    args = parser.parse_args()
+    if args.output is None:
+        args.output = path.join(path.dirname(args.input), 'SUMA.hd')
+    if not path.exists(args.output):
+        os.makedirs(args.output)
+    else:
+        raise RuntimeError('"{0}" already exists! Quit for now...'.format(args.output))
+
+    # Determine surf mesh and surf vol file format
+    hemis = ['lh', 'rh']
+    suma_subj = afni.get_suma_subj(args.input)
+    sv = path.basename(afni.get_surf_vol(args.input))
+    ext = afni.get_surf_type(args.input)
+
+    # Infer mask file variants
+    if args.mask is not None:
+        masks = afni.infer_surf_dset_variants(args.mask, hemis=hemis)
+        for hemi, mask in masks.items():
+            idx, val = io.read_surf_data(mask)
+            masks[hemi] = idx[val!=0]
+
+    # Interpolate surface meshes
+    def interp_mesh(fin, fout, mask):
+        print('processing {0}...'.format(fin))
+        try:
+            verts, faces = io.read_surf_mesh(fin)
+        except ValueError:
+            verts, faces = io.read_patch_asc(fin)[:2]
+        verts, faces = surface.quadruple_mesh(verts, faces, power=args.power, mask=mask)
+        io.write_surf_mesh(fout, verts, faces)
+    pc = utils.PooledCaller(pool_size=args.jobs)
+    for surf in args.surf:
+        for hemi in hemis:
+            fname = f"{hemi}.{surf}{ext}"
+            pc.run(interp_mesh, path.join(args.input, fname), path.join(args.output, fname), 
+                masks[hemi] if args.mask is not None else None)
+    pc.wait()
+
+    # Create spec files
+    for hemi in hemis:
+        afni.generate_spec(f"{args.output}/{suma_subj}_{hemi}.spec", [f"{hemi}.{surf}{ext}" for surf in args.surf], ext=ext)
+    afni.generate_spec(f"{args.output}/{suma_subj}_both.spec", [f"{hemi}.{surf}{ext}" for surf in args.surf for hemi in hemis], ext=ext)
+    afni.generate_spec(f"{args.output}/{suma_subj}_view.spec", [f"{hemi}.{surf}{ext}" for surf in ['smoothwm', 'inflated'] for hemi in hemis], ext=ext)
+
+    # Copy SurfVol from SUMA directory
+    !3dcopy {args.input}/{sv} {args.output}/{sv}
+
+    # Create viewing scripts for afni and suma
+    with open('{0}/run_suma_hd'.format(args.output), 'w') as fout:
+        fout.write('afni -niml &\n')
+        fout.write(f"suma -spec {suma_subj}_view.spec -sv {sv} &\n")
