@@ -1,0 +1,9 @@
+# Legal stuff
+include README.rst
+include LICENSE.txt
+recursive-include licenses *
+
+# Source code
+graft src
+
+global-exclude *.py[cod] __pycache__/* *.so *.dylib
