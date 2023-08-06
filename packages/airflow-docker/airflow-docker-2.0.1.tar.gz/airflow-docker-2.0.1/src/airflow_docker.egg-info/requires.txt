@@ -1,0 +1,23 @@
+apache-airflow[celery,docker]==1.10.9
+airflow-docker-helper>=0.2.0
+airflow-queue-stats==0.1.4
+boto3
+
+[dev]
+releasely>=1.1
+
+[docs]
+sphinx
+sphinx_rtd_theme
+
+[linting]
+isort
+black
+flake8
+
+[testing]
+pytest
+pytest-cov
+
+[testing:python_version < "3"]
+mock
