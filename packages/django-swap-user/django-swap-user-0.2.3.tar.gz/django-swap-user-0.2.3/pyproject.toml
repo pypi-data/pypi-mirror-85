@@ -1,0 +1,68 @@
+[tool.black]
+line-length = 100
+exclude = '''
+(
+  \.eggs
+  |\.git
+  |\.hg
+  |\.mypy_cache
+  |\.nox
+  |\.tox
+  |\.venv
+  |_build
+  |buck-out
+  |build
+  |dist
+  |models
+)
+'''
+
+[tool.isort]
+line_length = 100
+sections = ["FUTURE", "STDLIB", "DJANGO", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+multi_line_output = 3
+known_django = "django"
+profile = "django"
+src_paths = "swap_user"
+
+[tool.poetry]
+name = "django-swap-user"
+version = "0.2.3"
+description = "(Beta) Simple and flexible way to swap default Django User"
+authors = ["Artem Innokentiev <artinnok@protonmail.com>"]
+maintainers = ["Artem Innokentiev <artinnok@protonmail.com>"]
+readme = "README.md"
+keywords = [
+  "django",
+  "swap",
+  "user",
+  "custom",
+  "user",
+  "auth",
+  "model",
+  "email",
+  "username",
+  "phone",
+  "mixins",
+  "authentication"
+]
+license = "MIT"
+repository = "http://github.com/artinnok/django-swap-user"
+packages = [
+    { include = "swap_user" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+django = "~2.1"
+
+[tool.poetry.dev-dependencies]
+black = "^19.10b0"
+isort = "^5.1.4"
+pytest = "^5.4.3"
+mypy = "^0.782"
+pytest-django = "^4.1.0"
+
+[build-system]
+requires = ["poetry>=1.0.8"]
+build-backend = "poetry.masonry.api"
