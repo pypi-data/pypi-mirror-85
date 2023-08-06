@@ -1,0 +1,16 @@
+xarray>=0.15
+
+[docs]
+sphinx
+recommonmark
+sphinx_rtd_theme
+nbsphinx
+
+[docs:python_version < "3.8"]
+importlib_metadata
+
+[tests]
+pytest>=4.6
+pytest-pep8
+pytest-cov
+coveralls
