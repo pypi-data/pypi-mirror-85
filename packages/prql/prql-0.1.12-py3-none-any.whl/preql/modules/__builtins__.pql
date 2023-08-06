@@ -1,0 +1,325 @@
+
+func _sql_agg_func(name, obj, t=null) {
+    if (t==null) {
+        if (not (isa(obj, collection) and count(columns(obj))==1)) {
+            throw new TypeError(name + "() only accepts lists or tables with one column. Got '" + repr(type(obj)) + "'")
+        }
+
+        t = type(obj).elem
+    }
+
+    if (not (issubclass(t, number))) {
+        throw new TypeError(name + "() expects numeric elements, instead got: '" + repr(t) + "'")
+    }
+
+    if (isa(obj, aggregate)) {
+        return SQL(t, name + "($obj)")
+    } else {
+        obj = list(obj)
+        if (isa(obj, list)) {
+            return one one obj{ => item: _sql_agg_func(name, item, t) }     // Recursive
+        }
+    }
+    throw new TypeError(name + "() doesn't support object of type '" + repr(type(field)) + "'")
+}
+
+func sum(field: collection) {
+    "Sum up a column or a list"
+    return _sql_agg_func("SUM", field)
+}
+
+func mean(field: collection) {
+    "Mean of a column or a list"
+    return _sql_agg_func("AVG", field, float)
+}
+
+func min(field: collection) {
+    "Find the minimum of a column or a list"
+    return _sql_agg_func("MIN", field)
+}
+
+func max(field: collection) {
+    "Find the maximum of a column or a list"
+    return _sql_agg_func("MAX", field)
+}
+
+func first(obj: collection) {
+    "Return the first member of a column or a list"
+
+    if (isa(obj, aggregate)) {
+        return SQL(type(obj).elem, "($obj)")
+    } else {
+        obj = list(obj)
+        if (isa(obj, list)) {
+            return one one obj{ => item: first(item) }     // Recursive
+        }
+    }
+}
+
+func first_or_null(obj: collection) {
+    "Return the first member of a column or a list, or null if it's empty"
+
+    if (isa(obj, aggregate)) {
+        return SQL(type(obj).elem, "($obj)")
+    } else {
+        obj = list(obj)
+        if (isa(obj, list)) {
+            row = one? obj{ => item: first(item) }     // Recursive
+            if (row == null) {
+                return null
+            }
+            return one row
+        }
+    }
+}
+
+
+
+func count_false(field: collection) {
+    "Count how many values in the field are false or zero"
+    return SQL(int, "sum(cast($field=0 as int))")
+}
+func count_true(field: collection) {
+    "Count how many values in the field are true (non-zero)"
+    return SQL(int, "sum(cast($field!=0 as int))")
+}
+
+func limit(tbl: collection, n: int) {
+    "Return the first 'n' rows in table"
+    return tbl[..n]
+}
+
+func limit_offset(tbl: collection, lim: int, offset: int) = SQL(type(tbl), "SELECT * FROM $tbl LIMIT $lim OFFSET $offset")
+
+func enum(tbl: collection) {
+    "Return the table with a new index column"
+    return tbl{index: SQL(int, "row_number() over ()"), ...}
+}
+
+func upper(s: string) {
+    "Return a copy of the string converted to uppercase."
+    return SQL(string, "upper($s)")
+}
+
+func lower(s: string) {
+    "Return a copy of the string converted to uppercase."
+    return SQL(string, "lower($s)")
+}
+
+func length(s: string) {
+    "Return the length of the string"
+    return SQL(int, "length($s)")
+}
+
+func round(n: number) {
+    "Return a rounded float"
+    return SQL(float, "round($n)")
+}
+
+
+func dict(...x) {
+    "Construct a dictionary"
+    return x
+}
+
+func _zipjoin(join_func, table1, table2) {
+	"Add index to each table, and then join"
+	return join_func(a: enum(table1).index, b: enum(table2).index) {
+			// Remove index from nested structs
+			a {... !index}
+			b {... !index}
+		}
+}
+
+func commit() {
+    "Commit the current transaction"
+    force_eval(SQL(nulltype, "COMMIT"))
+}
+
+func is_empty(tbl) {
+    "Returns whether a table expression is empty or not"
+    // count(t) would also work, but it will evaluate all the elements of `tbl`
+    // We only care if there is at least one.
+    return count(tbl[..1]) == 0
+}
+
+func list_median(x) {
+    "Find the median of a list"
+    cnt = count(x)
+    middle_item_offset = (cnt-1)/~2
+    middle_item_count = (2-cnt%2)   // 1 for odd count, 2 for even
+    mid_items = x order {item} [middle_item_offset..][..middle_item_count]
+    return mean(mid_items)
+}
+
+"Join two tables into one by matching rows with the same index"
+func zipjoin(a: collection, b: collection) = _zipjoin(join, a, b)
+func zipjoin_left(a: collection, b: collection) = _zipjoin(leftjoin, a, b)
+func zipjoin_longest(a: collection, b: collection) = _zipjoin(outerjoin, a, b)
+
+func distinct(t: collection) {
+    "Remove identical rows"
+    return SQL(t, "SELECT distinct * FROM $t")
+}
+
+func pi() = SQL(float, "PI()")
+func now() = SQL(datetime, "NOW()")
+func repeat(s: string, num: int) = SQL(string, "REPEAT($s, $num)")
+
+if (get_db_type() == "postgres") {
+    func random() = SQL(float, "RANDOM()")
+
+    func str_index(a, b) = SQL(int, "POSITION($a in $b)")
+} else {
+    if (get_db_type() == "sqlite" or get_db_type() == "duck") {
+        func repeat(s: string, num: int) = SQL(string, "replace(hex(zeroblob($num)), '00', $s)")
+        func now() = SQL(datetime, "datetime('now')")   // Sqlite
+        func random() = SQL(float, "abs(CAST(random() AS REAL))/9223372036854775808")
+        func pi() = SQL(float, "3.141592653589793")
+
+        func year(date) = SQL(int, "strftime('%Y', $date)")
+        func month(date) = SQL(int, "strftime('%m', $date)")
+        func day(date) = SQL(int, "strftime('%d', $date)")
+        func hour(date) = SQL(int, "strftime('%H', $date)")
+        func minute(date) = SQL(int, "strftime('%M', $date)")
+        func day_of_week(date) = SQL(int, "strftime('%w', $date)")
+        func week_of_year(date) = SQL(int, "strftime('%W', $date)")
+        func count_distinct(field: collection) = SQL(int, "count(distinct $field)")
+
+        func str_index(a: string, b: string) = SQL(int, "INSTR($b, $a)")
+
+    } else {
+        if (get_db_type() == "mysql") {
+            func random() = SQL(float, "RAND()")
+
+            func str_index(a: string, b: string) = SQL(int, "INSTR($b, $a)")    // same as sqlite
+
+            // TODO use AST interface instead?
+            func count_false(field) {
+                "Count how many values in the field are false or zero"
+                return SQL(int, "sum(cast($field=0 as unsigned))")
+            }
+            func count_true(field) {
+                "Count how many values in the field are true (non-zero)"
+                return SQL(int, "sum(cast($field!=0 as unsigned))")
+            }
+
+        }
+        else {
+            throw new TypeError("Unexpected")
+        }
+    }
+}
+
+func str_contains(a: string, b: string) = str_index(a, b) > 0
+func str_notcontains(a: string, b: string) = str_index(a, b) == 0
+
+func sample_ratio_fast(tbl, ratio) {
+    "Return a random sample of rows from the table, at the approximate amount of (ratio*count(tbl))."
+    return tbl[random() < ratio]    // random() will be re-evaluated for every row
+}
+
+func sample_fast(tbl: collection, n: int, bias: number=0.05) {
+    """Return a random sample of n rows from the table in one query (or at worst two queries)
+
+    Higher values of 'bias' increase the chance of success in a single query,
+    but may introduce a higher bias in the randomness of the chosen rows, especially in sorted tables.
+    """
+    c = count(tbl)
+    if (n > c) {
+        throw new ValueError("Asking for a sample size larger than the table")
+    }
+    if (bias < 0) {
+        throw new ValueError("Cannot have a negative bias")
+    }
+    if (n <= 0) {
+        throw new ValueError("n must be a number above 0")
+    }
+
+    if (n == c) {
+        return tbl
+    }
+
+    const table results = sample_ratio_fast(tbl, (1+bias) * n / c)[..n]
+    if (count(results) == n) {
+        return results
+    }
+    // This should happen very rarely
+    return results + limit(tbl, n - count(results))
+}
+
+func page(table, index, page_size=20) {
+    offset = index*page_size
+    return table[offset..(offset+page_size)]
+}
+
+func remove_table(table) {
+    SQL(nulltype, "DROP TABLE $table")
+}
+
+func remove_tables(tables) {
+    "TODO"
+
+    for (table in tables) {
+        SQL(nulltype, "DROP TABLE $table")
+    }
+}
+
+func bfs(edges: table, initial: table) {
+    """Performs a breadth-first search on a graph
+
+    Parameters:
+        edges - a table of type {src: int, dst: int}, defining the edges of the graph
+        initial - list[int], specifies from which nodes to start
+    """
+    bfs = SQL(list[int], "SELECT * FROM $initial UNION SELECT e.dst FROM $edges e JOIN $self bfs ON e.src = bfs.item")
+    return SQL(list[int], "SELECT bfs.item FROM $bfs bfs")
+}
+
+
+func walk_tree(edges: table, initial: table, max_rank: int) {
+    """Walk a tree and keep track of rank.
+
+    Not unique! Nodes may be visited more than once. Cycles will repeat until max_rank!
+
+    Parameters:
+            edges - a table of type {src: int, dst: int}, defining the edges of the graph
+            initial - list[int], specifies from which nodes to start
+            max_rank - integer limiting how far to search
+    """
+    table node {
+        id: int
+        rank: int
+    }
+    bfs = SQL(node, "SELECT *, 0 FROM $initial UNION ALL SELECT e.dst, bfs.rank+1 FROM $edges e JOIN $self bfs ON e.src = bfs.id WHERE bfs.rank < $max_rank")
+    return SQL(node, "SELECT bfs.id, bfs.rank FROM $bfs bfs")
+}
+
+
+func range(lst: list, start: union[int, function], end: union[int, function]) {
+    "Produce a range of numbers as rows for each item in the list, based on `start` and `end`"
+	if (isa(start, int)) {
+		s = start
+	} else if (isa(start, function)) {
+		s = min(lst{start(item)})
+	}
+
+	if (isa(end, int)) {
+		e = end
+	} else if (isa(end, function)) {
+		e = max(lst{end(item)}) + 1
+	}
+	r = [s..e]
+
+	mul = joinall(l: lst, i: r) {i: i.item, l.item }
+
+	if (isa(start, function)) {
+		mul = mul[i >= start(item)]
+	}
+
+	if (isa(end, function)) {
+		mul = mul[i <= end(item)]
+	}
+
+	return mul
+}
