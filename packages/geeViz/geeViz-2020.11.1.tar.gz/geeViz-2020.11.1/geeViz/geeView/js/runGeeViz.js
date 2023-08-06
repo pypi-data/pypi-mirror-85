@@ -1,0 +1,5 @@
+function runGeeViz(){
+Map2.addSerializedLayer('{"result": "0", "values": {"0": {"functionInvocationValue": {"functionName": "Image.constant", "arguments": {"value": {"constantValue": 1}}}}}}',{"max": 1, "min": 1, "palette": "F00"},'Layer 1',true);
+Map2.addSerializedLayer('{"result": "0", "values": {"0": {"functionInvocationValue": {"functionName": "GeometryConstructors.Polygon", "arguments": {"coordinates": {"constantValue": [[[-123.22566968374625, 39.677209599269155], [-123.22566968374625, 38.993179504697586], [-122.60494214468375, 38.993179504697586], [-122.60494214468375, 39.677209599269155]]]}, "geodesic": {"constantValue": false}}}}}}',{"strokeColor": "0000FF"},'Study Area',false);
+synchronousCenterObject({"geodesic": false, "type": "Polygon", "coordinates": [[[-123.22566968374625, 38.993179504697586], [-122.60494214468375, 38.993179504697586], [-122.60494214468375, 39.677209599269155], [-123.22566968374625, 39.677209599269155], [-123.22566968374625, 38.993179504697586]]]})
+}
