@@ -1,0 +1,209 @@
+{% extends 'base.html' %}
+{% block title %} Announcement Detail {% endblock %}
+
+{% block header %}
+<div class="row noprint">
+    <div class="col-sm-12 col-md-12">
+        <ol class="breadcrumb">
+            <li><a href="{% url 'plugins:netbox_announcement:announcement_list' %}">Announcements</a></li>
+            <li>{{ announcement.slug }}</li>
+        </ol>
+    </div>
+</div>
+
+{% endblock %}
+{% block content %}
+
+<div class="row">
+    {% comment %} <form class="form form-horizontal"> {% endcomment %}
+    {% csrf_token %}
+        <div class="col-md-offset-2 col-md-8">
+        <h3>Announcement Detail</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>Main Announcement</strong>
+                </div>
+                <table class="table table-hover panel-body attr-table">
+                    <tr>
+                        <td> Subject:</td>
+                        <td>{{ announcement.subject }}</td>
+                    </tr>
+                    <tr>
+                        <td> Current Status: </td>
+                        <td>
+                            <select id="status_update" name="status_update" class="form-control col-md-3">
+                                {% for status in announcement_status %}
+                                    <option value="{{status.id}}" {% if status.id == announcement.status.id %} selected="selected" {% endif %}> {{status.status}} </option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Content: </td>
+                        <td><textarea class="form-control" cols="40" rows="10" readonly>{{ announcement.content }}</textarea></td>
+                    </tr>
+                    <tr>
+                        <td> Related: </td>
+                        <td>
+                        {% if announcement.type == 'server' and announcement.server_type == 'vm' %}
+                            <ul>
+                            {% for vm in announcement.related_vm.all %}
+                                <li><a href="{{ vm.get_absolute_url }}">{{ vm }}</a></li>
+                                {% empty %}
+                                    —
+                            {% endfor %}
+                            </ul>
+                        {% elif announcement.type == 'server' and announcement.server_type == 'device'%}
+                            <ul>
+                            {% for device in announcement.related_device.all %}
+                                <li><a href="{{ device.get_absolute_url }}">{{ device }}</a></li>
+                                {% empty %}
+                                    —
+                            {% endfor %}
+                            </ul>
+                        {% elif announcement.type == 'network'%}
+                            <ul>
+                            {% for site in announcement.related_site.all %}
+                                <li><a href="{{ site.get_absolute_url }}">{{ site }}</a></li>
+                                {% empty %}
+                                    —
+                            {% endfor %}
+                            </ul>
+                        {% else %}
+                                —
+                        {% endif %} 
+                        </td>
+                    </tr>
+                </table>
+                <div class="panel-footer text-right noprint">
+                    <button class="btn btn-xs btn-primary" id="btn_status_update" name="btn_status_update"><i class="fa fa-edit"></i> Status Update</button>
+                </div>
+            </div>
+        </div>
+    {% comment %} </form> {% endcomment %}
+    <div class="col-md-offset-2 col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>Announcement Updates</strong>
+            </div>
+            <table class="table table-hover table-headings panel-body component-list">
+                <thead>
+                    <tr>
+                        <th>Create Time</th>
+                        <th>Author</th>
+                        <th>Content</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for update in announcement_updates %}
+                    {% include 'netbox_announcement/announcement_update_table.html' %}
+                {% empty %}
+                    <tr><td colspan="4" class="text-center text-muted">&mdash; No announcement updates &mdash;</td></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <table class="table table-hover panel-body attr-table">
+                {% csrf_token %}
+                    <tr>
+                        <td> Update Announcement Content:</td>
+                        <td><textarea id="update_content" name="update_content" class="form-control" cols="40" rows="5" placeholder="Update Announcement Content"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td> Announcement Status:</td>
+                        <td>
+                            <select id="update_status" name="update_status" class="form-control">
+                                {% for status in announcement_status %}
+                                    <option value="{{status.id}}" {% if status.id == announcement.status.id %} selected="selected" {% endif %}> {{status.status}} </option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    <input type="hidden" id="user" name="user" value="{{ request.user.id }}">
+                    <input type="hidden" id="announcement" name="announcement" value="{{ announcement.pk }}">
+            </table>
+            <div class="panel-footer text-right noprint">
+                <button class="btn btn-xs btn-primary" id="btn_post_update" name="btn_post_update"><i class="fa fa-plus"></i> Post Update</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+$(document).ready(function(){
+    console.log($('#announcement').val());
+    console.log($('#update_status').val());
+    $('#btn_status_update').click(function(){
+        if ($('#status_update').val() == null) {
+            alert('Select updated status!');
+            return false
+        }
+        var csrf_token = $('input[name=csrfmiddlewaretoken]').val();
+        var url = netbox_api_path + "plugins/announcement/announcments/" + "{{ announcement.pk }}" + "/"
+        $.ajax({
+            url: url,
+            method: 'PATCH',
+            dataType: 'json',
+            data: {
+                'status': $('#status_update').val()
+            },
+            beforeSend: function(xhr, settings) {
+                xhr.setRequestHeader("X-CSRFToken", csrf_token)
+            },
+            success: function(result) {
+                alert("Announcement status updated successfully!")
+                window.location.reload(true);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                if (xhr.status == 403) {
+                    alert("Permission denied.");
+                } else {
+                    alert(xhr.responseText)
+                }
+            }
+
+        })
+    });
+    $('#btn_post_update').click(function(){
+        var csrf_token = $('input[name=csrfmiddlewaretoken]').val();
+        var url = netbox_api_path + "plugins/announcement/announcement-updates/"
+        if ($('#update_status').val() == null) {
+            alert('Select Announcement update status!');
+            return false
+        }
+        
+        $.ajax({
+            url: url,
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                'status': $('#update_status').val(),
+                'user': $('#user').val(),
+                'announcement': $('#announcement').val(),
+                'content':$('#update_content').val()
+            },
+            beforeSend: function(xhr, settings) {
+                xhr.setRequestHeader("X-CSRFToken", csrf_token)
+            },
+            success: function(result) {
+                alert("Announcement update created successfully!")
+                window.location.reload(true);
+                //window.location.href = "{% url 'plugins:netbox_announcement:announcement' pk=announcement.pk %}"
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                if (xhr.status == 403) {
+                    alert("Permission denied.");
+                } else {
+                    alert(xhr.responseText)
+                }
+            }
+            
+        })
+    });
+})
+</script>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% load helpers %}
+
+<ul class="nav nav-tabs" style="margin-bottom: 20px">
+    <li role="presentation" {% if active_tab == 'company' %} class="active" {% endif %}>
+        <a href="{% url 'plugins:netbox_announcement:announcement_add' %}">Company</a>
+    </li>
+    <li role="presentation" {% if active_tab == 'network' %} class="active" {% endif %}>
+        <a href="{% url 'plugins:netbox_announcement:announcement_network_add' %}">Network</a>
+    </li>
+    <li role="presentation" {% if active_tab == 'server_device' %} class="active" {% endif %}>
+        <a href="{% url 'plugins:netbox_announcement:announcement_device_add'%} ">Server(Device)</a>
+    </li>
+    <li role="presentation" {% if active_tab == 'server_vm' %} class="active" {% endif %}>
+        <a href="{% url 'plugins:netbox_announcement:announcement_vm_add' %}">Server(Virtual Machine)</a>
+    </li>
+</ul>

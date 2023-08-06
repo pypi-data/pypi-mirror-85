@@ -1,0 +1,5 @@
+{% if perms.virtualization.view_virtualmachine %}
+    <a href="{% url 'plugins:netbox_announcement:announcement_list' %}?type=server&server_type=vm&related_vm={{ object.id }}" class="btn btn-info">
+        <span class="fa fa-list" aria-hidden="true"></span> VM Announcements
+    </a>
+{% endif %}
