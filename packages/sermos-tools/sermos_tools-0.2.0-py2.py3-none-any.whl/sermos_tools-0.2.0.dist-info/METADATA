@@ -1,0 +1,83 @@
+Metadata-Version: 2.1
+Name: sermos-tools
+Version: 0.2.0
+Summary: Sermos Tools
+Home-page: https://bitbucket.org/rhoai/sermos-tools
+Maintainer: Sermos, LLC
+License: Commercial
+Platform: UNKNOWN
+Provides-Extra: build
+Requires-Dist: twine ; extra == 'build'
+Requires-Dist: wheel ; extra == 'build'
+Provides-Extra: date_extractor
+Requires-Dist: regex (==2019.11.1) ; extra == 'date_extractor'
+Requires-Dist: cytoolz (<0.11,>=0.10.1) ; extra == 'date_extractor'
+Provides-Extra: dev
+Requires-Dist: honcho ; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: sphinx (<4,>=3.0.2) ; extra == 'docs'
+Requires-Dist: boto3 (<2,>=1.11) ; extra == 'docs'
+Provides-Extra: hasher
+Provides-Extra: language_detector
+Requires-Dist: langdetect (<1.1,>=1.0.7) ; extra == 'language_detector'
+Provides-Extra: slack_notifier
+Requires-Dist: attrs (<20,>=19) ; extra == 'slack_notifier'
+Requires-Dist: requests (>=2.24.0) ; extra == 'slack_notifier'
+Provides-Extra: sparse_embedding_search
+Requires-Dist: pysparnn (>=0.4.1) ; extra == 'sparse_embedding_search'
+Requires-Dist: rho-ml (>=0.10.0) ; extra == 'sparse_embedding_search'
+Provides-Extra: test
+Requires-Dist: pytest-cov (<3,>=2.6.1) ; extra == 'test'
+Requires-Dist: tox (<4,>=3.14.1) ; extra == 'test'
+Requires-Dist: coverage (<5,>=4.5) ; extra == 'test'
+Requires-Dist: mock (<2,>=1) ; extra == 'test'
+Provides-Extra: text_extractor
+Requires-Dist: python-magic (<1.0.0,>=0.4.15) ; extra == 'text_extractor'
+Requires-Dist: pdftotext (<3.0.0,>=2.1.1) ; extra == 'text_extractor'
+Requires-Dist: beautifulsoup4 (<5.0.0,>=4.6.3) ; extra == 'text_extractor'
+Provides-Extra: thumbnail_generator
+Requires-Dist: python-magic (<1.0.0,>=0.4.15) ; extra == 'thumbnail_generator'
+Requires-Dist: pdf2image (<1.12,>=1.9.0) ; extra == 'thumbnail_generator'
+Requires-Dist: boto3 (<2,>=1.11) ; extra == 'thumbnail_generator'
+
+# Sermos Tools
+
+Tool Catalog for use in Sermos applications.
+
+## Philosophy
+
+There are countless tasks that take place in a typical 'data science enabled'
+workflow and many of them are *common*. Sermos Tools are intended to provide
+instant access to tooling that accomplishes those common tasks so you can move
+quickly and with confidence. A Sermos Tool has been tested in production, comes
+with specific python requirements and with a curated Docker environment to
+ensure the tool runs in a containerized environment (without you fighting with
+underlying system dependencies!).
+
+## Building a Tool
+
+## Tool Acceptance Criteria
+
+## Contributing
+
+## Testing
+
+Testing is a critical part of the Sermos Tools ecosystem. Every tool that is
+accepted into the production Tool Catalog must have appropriate tests with
+reasonable test coverage and hygeine.
+
+### Run Tests
+
+To run the tests, ensure you've installed the `test` extras
+(`pip install -e .[test]`). Sermos currently supports Python 3.7+.
+
+Run tests for all tools:
+
+    $ tox
+
+To run tests for one or more select tests, provide a comma-separated list of
+environment names, which match the name of the tools/{{dirname}}
+
+    $ tox -e date_extractor,hasher
+
+
