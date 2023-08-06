@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: dutil
+Version: 0.2.9
+Summary: A few useful tools for data wrangling
+Home-page: https://github.com/mysterious-ben/dutil
+Author: Yaroslav Kopotilov
+Author-email: UNKNOWN
+License: Apache License, Version 2.0
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: pyarrow
+Requires-Dist: dill
+Requires-Dist: loguru
+Requires-Dist: xxhash
+Requires-Dist: dask[delayed]
+Requires-Dist: ipython
+Requires-Dist: fuzzywuzzy
+Requires-Dist: python-Levenshtein
+
+# dutil
+
+A few data utilities to make life of a data scientist easier
+
+## Installation
+
+```shell
+pip install dutil
+```
+
+## Modules
+
+- `jupyter` (tools for jupyter notebooks)
+- `pipeline` (data caching and pipelines)
+- `stats` (statistical functions)
+- `transform` (data transformations)
+- `string` (string manipulations)
+
