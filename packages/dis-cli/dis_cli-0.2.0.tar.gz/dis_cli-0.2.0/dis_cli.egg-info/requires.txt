@@ -1,0 +1,15 @@
+click>=7
+rich>=9
+
+[:python_version < "3.7"]
+dataclasses>=0.6
+
+[tests]
+pytest>=6
+pytest-cov>=2.10
+
+[tests:python_version < "3.7"]
+importlib-resources
+
+[tests:python_version < "3.8"]
+importlib-metadata

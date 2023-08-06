@@ -1,0 +1,63 @@
+Metadata-Version: 2.1
+Name: dis-cli
+Version: 0.2.0
+Summary: A tool to inspect disassembled Python code on the command line.
+Home-page: https://github.com/JoshKarpel/dis-cli
+Author: Josh Karpel
+Author-email: josh.karpel@gmail.com
+License: MIT
+Description: # dis-cli
+        
+        ![PyPI](https://img.shields.io/pypi/v/dis-cli)
+        
+        [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/JoshKarpel/dis-cli/master.svg)](https://results.pre-commit.ci/latest/github/JoshKarpel/dis-cli/master)
+        [![codecov](https://codecov.io/gh/JoshKarpel/dis-cli/branch/master/graph/badge.svg?token=Y4LLQ82PZ1)](https://codecov.io/gh/JoshKarpel/dis-cli)
+        
+        `dis-cli` is a command line tool for displaying Python source and bytecode.
+        
+        ![dis.dis](https://github.com/JoshKarpel/dis-cli/raw/master/examples/dis.dis.png)
+        
+        ## Installation
+        
+        `dis-cli` can be installed from [PyPI](https://pypi.org/project/dis-cli/).
+        To install via `pip`, run
+        
+        ```bash session
+        $ pip install dis-cli
+        ```
+        
+        ## Usage
+        
+        `dis-cli` provides a command line program, `dis`,
+        which takes a "import-like" path to a function to display information about.
+        For example, if you have a package `a`, with a submodule `b`, containing a function `c`,
+        you could run `dis` on it like this:
+        ```bash session
+        $ dis a.b.c
+        ```
+        Just like you could import `c` in a script:
+        ```python
+        import a.b.c
+        ```
+        
+        `dis` takes a few other options.
+        Try running `dis --help` to see what's available!
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Disassemblers
+Classifier: Topic :: Utilities
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Provides-Extra: tests
