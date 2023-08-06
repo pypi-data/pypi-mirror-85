@@ -1,0 +1,13 @@
+__author__ = 'Carlos Vigo <carlosv@phys.ethz.ch>'
+__email__ = '<carlosv@phys.ethz.ch>'
+__short_author__ = 'Carlos Vigo'
+__copyright__ = '2020, Carlos Vigo'
+__module_name__ = 'polarity_switcher.py'
+__package_name__ = 'polarity-switcher'
+__project_name__ = 'Polarity Switcher'
+__url__ = 'https://gitlab.ethz.ch/exotic-matter/cw-beam/polarity-switcher'
+__documentation__ = 'https://polarity-switcher.readthedocs.io'
+__version__ = '0.1.0'
+__short_version__ = '0.1.0'
+__description__ = 'Readout software for the EPIC Polarity Switcher'
+
