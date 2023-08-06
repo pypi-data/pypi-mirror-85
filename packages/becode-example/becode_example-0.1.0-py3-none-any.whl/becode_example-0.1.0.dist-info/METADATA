@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: becode-example
+Version: 0.1.0
+Summary: Demo library
+Home-page: https://becode_example.readthedocs.io/
+Author: Joffrey Bienvenu
+Author-email: joffreybvn@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+
+
+# Becode example
+
+Small demo library
+
+### Installation
+
+```
+pip install becode_example
+```
+
+### Get started
+
+Here is how to multiply one number by another:
+
+```Python
+from becode_example import Multiplication
+
+# Instantiate a Multiplication object
+multiplication = Multiplication(2)
+
+# Call the multiply method
+result = multiplication.multiply(5)
+```
+
