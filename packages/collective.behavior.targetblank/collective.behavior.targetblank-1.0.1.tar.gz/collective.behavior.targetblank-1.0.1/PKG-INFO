@@ -1,0 +1,112 @@
+Metadata-Version: 2.1
+Name: collective.behavior.targetblank
+Version: 1.0.1
+Summary: A target blank option for Link content type
+Home-page: https://pypi.python.org/pypi/collective.behavior.targetblank
+Author: Benoit Suttor
+Author-email: bsuttor@imio.be
+License: GPL version 2
+Description: .. This README is meant for consumption by humans and pypi. Pypi can render rst files so please do not use Sphinx features.
+           If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide.html
+           This text does not appear on pypi or github. It is a comment.
+        
+        ===============================
+        collective.behavior.targetblank
+        ===============================
+        
+        This package add target blank option for Link content type. When it checked,
+        link will open in new tab instead of current tab.
+        
+        
+        .. image:: https://travis-ci.org/IMIO/collective.behavior.targetblank.png
+            :target: http://travis-ci.org/IMIO/collective.behavior.targetblank
+        
+        .. image:: https://coveralls.io/repos/github/IMIO/collective.behavior.targetblank/badge.svg?branch=master
+            :target: https://coveralls.io/github/IMIO/collective.behavior.targetblank?branch=master
+        
+        
+        Features
+        --------
+        
+        - Add Checkbox field on Link type
+        
+        
+        Translations
+        ------------
+        
+        This product has been translated into
+        
+        - French
+        - English
+        
+        
+        Installation
+        ------------
+        
+        Install collective.behavior.targetblank by adding it to your buildout::
+        
+            [buildout]
+        
+            ...
+        
+            eggs =
+                collective.behavior.targetblank
+        
+        
+        and then running ``bin/buildout``
+        
+        
+        Contribute
+        ----------
+        
+        - Issue Tracker: https://github.com/IMIO/collective.behavior.targetblank/issues
+        - Source Code: https://github.com/IMIO/collective.behavior.targetblank
+        
+        
+        Support
+        -------
+        
+        If you are having issues, please let us know on Issuer Tracker.
+        
+        
+        License
+        -------
+        
+        The project is licensed under the GPLv2.
+        
+        
+        Contributors
+        ============
+        
+        - Benoit Suttor, bsuttor@imio.be
+        
+        
+        Changelog
+        =========
+        
+        
+        1.0.1 (2020-11-13)
+        ------------------
+        
+        - Fix French .po compilation error
+          [laulaz]
+        
+        
+        1.0.0 (2019-03-12)
+        ------------------
+        
+        - Initial release.
+          [bsuttor]
+        
+Keywords: Python Plone
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Plone
+Classifier: Framework :: Plone :: Addon
+Classifier: Framework :: Plone :: 4.3
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Requires-Python: ==2.7
+Provides-Extra: test
