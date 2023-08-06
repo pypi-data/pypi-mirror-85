@@ -1,0 +1,31 @@
+image: python:3.8
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+cache:
+  paths:
+    - .cache/pip
+    - venv/
+
+before_script:
+  - python -V
+  - pip install virtualenv
+  - virtualenv venv
+  - source venv/bin/activate
+
+test:
+  only:
+    - develop
+    - master
+  script:
+    - pip install torch==1.7.0+cpu torchvision==0.8.1+cpu torchaudio==0.7.0 -f https://download.pytorch.org/whl/torch_stable.html
+    - pip install -e .
+    - pip install coverage
+    - wget https://madx.web.cern.ch/madx/releases/5.05.02/madx-linux64-intel
+    - chmod +x madx-linux64-intel
+    - export MADX="$(pwd)/madx-linux64-intel"
+    - cd dipas/test/
+    - coverage run --source=dipas -m unittest discover
+    - coverage report
+  timeout: 8h

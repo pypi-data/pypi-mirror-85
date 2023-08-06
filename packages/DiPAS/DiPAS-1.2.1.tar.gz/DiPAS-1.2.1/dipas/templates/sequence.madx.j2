@@ -1,0 +1,9 @@
+{% with command=sequence -%}
+    {{ label }}: {% include 'command.madx.j2' %};
+{% endwith %}
+{% for element in elements %}
+    {% with command=element.command %}
+    {{ element.label }}: {% include 'command.madx.j2' %}, at = {{ element.at | round(6) }};
+    {% endwith %}
+{% endfor %}
+endsequence;
