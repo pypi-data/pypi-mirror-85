@@ -1,0 +1,11 @@
+include __pkginfo__.py
+include LICENSE
+include requirements.txt
+prune **/__pycache__
+recursive-include chemistry_tools requirements.txt
+recursive-exclude tests *
+prune tests*
+include chemistry_tools/pubchem/requirements.txt
+include chemistry_tools/formulae/requirements.txt
+recursive-include chemistry_tools *.pyi
+include chemistry_tools/py.typed

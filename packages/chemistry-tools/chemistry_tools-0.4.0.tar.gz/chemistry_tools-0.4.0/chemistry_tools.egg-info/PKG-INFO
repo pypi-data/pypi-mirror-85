@@ -1,0 +1,253 @@
+Metadata-Version: 2.1
+Name: chemistry-tools
+Version: 0.4.0
+Summary: Python tools for analysis of chemical compounds.
+Home-page: https://github.com/domdfcoding/chemistry_tools
+Author: Dominic Davis-Foster
+Author-email: dominic@davis-foster.co.uk
+License: GNU Lesser General Public License v3 or later (LGPLv3+)
+Project-URL: Documentation, https://chemistry_tools.readthedocs.io
+Project-URL: Issue_Tracker, https://github.com/domdfcoding/chemistry_tools/issues
+Project-URL: Source_Code, https://github.com/domdfcoding/chemistry_tools
+Description: =====================
+        Chemistry Tools
+        =====================
+        
+        .. start short_desc
+        
+        **Python tools for analysis of chemical compounds.**
+        
+        .. end short_desc
+        
+        .. start shields
+        
+        .. list-table::
+        	:stub-columns: 1
+        	:widths: 10 90
+        
+        	* - Docs
+        	  - |docs| |docs_check|
+        	* - Tests
+        	  - |travis| |actions_windows| |actions_macos| |coveralls| |codefactor| |pre_commit_ci|
+        	* - PyPI
+        	  - |pypi-version| |supported-versions| |supported-implementations| |wheel|
+        	* - Anaconda
+        	  - |conda-version| |conda-platform|
+        	* - Activity
+        	  - |commits-latest| |commits-since| |maintained|
+        	* - Other
+        	  - |license| |language| |requires| |pre_commit|
+        
+        .. |docs| image:: https://img.shields.io/readthedocs/chemistry_tools/latest?logo=read-the-docs
+        	:target: https://chemistry_tools.readthedocs.io/en/latest/?badge=latest
+        	:alt: Documentation Build Status
+        
+        .. |docs_check| image:: https://github.com/domdfcoding/chemistry_tools/workflows/Docs%20Check/badge.svg
+        	:target: https://github.com/domdfcoding/chemistry_tools/actions?query=workflow%3A%22Docs+Check%22
+        	:alt: Docs Check Status
+        
+        .. |travis| image:: https://img.shields.io/travis/com/domdfcoding/chemistry_tools/master?logo=travis
+        	:target: https://travis-ci.com/domdfcoding/chemistry_tools
+        	:alt: Travis Build Status
+        
+        .. |actions_windows| image:: https://github.com/domdfcoding/chemistry_tools/workflows/Windows%20Tests/badge.svg
+        	:target: https://github.com/domdfcoding/chemistry_tools/actions?query=workflow%3A%22Windows+Tests%22
+        	:alt: Windows Tests Status
+        
+        .. |actions_macos| image:: https://github.com/domdfcoding/chemistry_tools/workflows/macOS%20Tests/badge.svg
+        	:target: https://github.com/domdfcoding/chemistry_tools/actions?query=workflow%3A%22macOS+Tests%22
+        	:alt: macOS Tests Status
+        
+        .. |requires| image:: https://requires.io/github/domdfcoding/chemistry_tools/requirements.svg?branch=master
+        	:target: https://requires.io/github/domdfcoding/chemistry_tools/requirements/?branch=master
+        	:alt: Requirements Status
+        
+        .. |coveralls| image:: https://img.shields.io/coveralls/github/domdfcoding/chemistry_tools/master?logo=coveralls
+        	:target: https://coveralls.io/github/domdfcoding/chemistry_tools?branch=master
+        	:alt: Coverage
+        
+        .. |codefactor| image:: https://img.shields.io/codefactor/grade/github/domdfcoding/chemistry_tools?logo=codefactor
+        	:target: https://www.codefactor.io/repository/github/domdfcoding/chemistry_tools
+        	:alt: CodeFactor Grade
+        
+        .. |pypi-version| image:: https://img.shields.io/pypi/v/chemistry_tools
+        	:target: https://pypi.org/project/chemistry_tools/
+        	:alt: PyPI - Package Version
+        
+        .. |supported-versions| image:: https://img.shields.io/pypi/pyversions/chemistry_tools?logo=python&logoColor=white
+        	:target: https://pypi.org/project/chemistry_tools/
+        	:alt: PyPI - Supported Python Versions
+        
+        .. |supported-implementations| image:: https://img.shields.io/pypi/implementation/chemistry_tools
+        	:target: https://pypi.org/project/chemistry_tools/
+        	:alt: PyPI - Supported Implementations
+        
+        .. |wheel| image:: https://img.shields.io/pypi/wheel/chemistry_tools
+        	:target: https://pypi.org/project/chemistry_tools/
+        	:alt: PyPI - Wheel
+        
+        .. |conda-version| image:: https://img.shields.io/conda/v/domdfcoding/chemistry_tools?logo=anaconda
+        	:target: https://anaconda.org/domdfcoding/chemistry_tools
+        	:alt: Conda - Package Version
+        
+        .. |conda-platform| image:: https://img.shields.io/conda/pn/domdfcoding/chemistry_tools?label=conda%7Cplatform
+        	:target: https://anaconda.org/domdfcoding/chemistry_tools
+        	:alt: Conda - Platform
+        
+        .. |license| image:: https://img.shields.io/github/license/domdfcoding/chemistry_tools
+        	:target: https://github.com/domdfcoding/chemistry_tools/blob/master/LICENSE
+        	:alt: License
+        
+        .. |language| image:: https://img.shields.io/github/languages/top/domdfcoding/chemistry_tools
+        	:alt: GitHub top language
+        
+        .. |commits-since| image:: https://img.shields.io/github/commits-since/domdfcoding/chemistry_tools/v0.4.0
+        	:target: https://github.com/domdfcoding/chemistry_tools/pulse
+        	:alt: GitHub commits since tagged version
+        
+        .. |commits-latest| image:: https://img.shields.io/github/last-commit/domdfcoding/chemistry_tools
+        	:target: https://github.com/domdfcoding/chemistry_tools/commit/master
+        	:alt: GitHub last commit
+        
+        .. |maintained| image:: https://img.shields.io/maintenance/yes/2020
+        	:alt: Maintenance
+        
+        .. |pre_commit| image:: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
+        	:target: https://github.com/pre-commit/pre-commit
+        	:alt: pre-commit
+        
+        .. |pre_commit_ci| image:: https://results.pre-commit.ci/badge/github/domdfcoding/chemistry_tools/master.svg
+        	:target: https://results.pre-commit.ci/latest/github/domdfcoding/chemistry_tools/master
+        	:alt: pre-commit.ci status
+        
+        .. end shields
+        
+        
+        Installation
+        ================
+        
+        .. start installation
+        
+        ``chemistry_tools`` can be installed from PyPI or Anaconda.
+        
+        To install with ``pip``:
+        
+        .. code-block:: bash
+        
+        	$ python -m pip install chemistry_tools
+        
+        To install with ``conda``:
+        
+        	* First add the required channels
+        
+        	.. code-block:: bash
+        
+        		$ conda config --add channels http://conda.anaconda.org/domdfcoding
+        		$ conda config --add channels http://conda.anaconda.org/conda-forge
+        
+        	* Then install
+        
+        	.. code-block:: bash
+        
+        		$ conda install chemistry_tools
+        
+        .. end installation
+        
+        
+        lookup and pubchem adapted from PubChemPy
+        =========================================
+        Python interface to the PubChem REST API
+        
+        |
+        
+        Copyright 2017 Matt Swain <m.swain@me.com>
+        
+        https://github.com/mcs07/PubChemPy
+        
+        Available under the MIT License
+        
+        
+        SpectrumSimilarity
+        ======================================
+        Perform mass spectrum similarity calculations
+        
+        |
+        
+        Adapted from SpectrumSimilarity.R
+        
+        Part of OrgMassSpecR
+        
+        Copyright 2011-2017 Nathan Dodder <nathand@sccwrp.org>
+        
+        https://cran.r-project.org/web/packages/OrgMassSpecR/index.html
+        
+        Available under the BSD 2-Clause License
+        
+        
+        elements and formulae
+        =========================
+        
+        Provides properties for the elements in the periodic table, and functions
+        for parsing formulae and calculating isotope distributions.
+        
+        Calculations are based on the isotopic composition of the elements. Mass
+        deficiency due to chemical bonding is not taken into account.
+        
+        Examples of valid formulae are ``H2O``, ``[2H]2O``, ``CH3COOH``, ``EtOH``,
+        ``CuSO4.5H2O``, and ``(COOH)2``. Formulae are case sensitive.
+        
+        |
+        
+        Based on ChemPy (https://github.com/bjodah/chempy)
+        
+        Copyright (c) 2015-2018, Björn Dahlgren
+        
+        All rights reserved.
+        
+        |
+        
+        Also based on molmass (https://github.com/cgohlke/molmass)
+        
+        Copyright (c) 1990-2020, Christoph Gohlke
+        
+        All rights reserved.
+        
+        Licensed under the BSD 3-Clause License
+        
+        |
+        
+        Also based on Pyteomics (https://github.com/levitsky/pyteomics)
+        
+        Copyright (c) 2011-2015, Anton Goloborodko & Lev Levitsky
+        
+        Licensed under the Apache License
+        
+Keywords: chemistry,utility
+Platform: Windows
+Platform: macOS
+Platform: Linux
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Database :: Front-Ends
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: Topic :: Scientific/Engineering :: Chemistry
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Typing :: Typed
+Requires-Python: >=3.6.1
+Description-Content-Type: text/x-rst
+Provides-Extra: pubchem
+Provides-Extra: formulae
+Provides-Extra: plotting
+Provides-Extra: toxnet
+Provides-Extra: all
