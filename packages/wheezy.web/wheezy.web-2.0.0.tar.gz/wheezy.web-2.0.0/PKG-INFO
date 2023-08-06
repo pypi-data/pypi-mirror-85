@@ -1,0 +1,101 @@
+Metadata-Version: 2.1
+Name: wheezy.web
+Version: 2.0.0
+Summary: A lightweight, high performance, high concurrency WSGI web framework with the key features to build modern, efficient web
+Home-page: https://github.com/akornatskyy/wheezy.web
+Author: Andriy Kornatskyy
+Author-email: andriy.kornatskyy@live.com
+License: MIT
+Description: # wheezy.web
+        
+        [![Build Status](https://travis-ci.org/akornatskyy/wheezy.web.svg?branch=master)](https://travis-ci.org/akornatskyy/wheezy.web)
+        [![Coverage Status](https://coveralls.io/repos/github/akornatskyy/wheezy.web/badge.svg?branch=master)](https://coveralls.io/github/akornatskyy/wheezy.web?branch=master)
+        [![Documentation Status](https://readthedocs.org/projects/wheezyweb/badge/?version=latest)](https://wheezyweb.readthedocs.io/en/latest/?badge=latest)
+        [![pypi version](https://badge.fury.io/py/wheezy.web.svg)](https://badge.fury.io/py/wheezy.web)
+        
+        [wheezy.web](https://pypi.org/project/wheezy.web/) is a lightweight,
+        [high performance](https://mindref.blogspot.com/2012/09/python-fastest-web-framework.html),
+        high concurrency [WSGI](http://www.python.org/dev/peps/pep-3333) web
+        framework with the key features to *build modern, efficient web*:
+        
+        - Requires Python 2.4-2.7 or 3.2+.
+        - MVC architectural pattern
+          ([push](http://en.wikipedia.org/wiki/Web_application_framework#Push-based_vs._pull-based)-based).
+        - Functionality includes
+          [routing](https://github.com/akornatskyy/wheezy.routing),
+          [model update/validation](https://github.com/akornatskyy/wheezy.validation),
+          [authentication/authorization](https://github.com/akornatskyy/wheezy.security),
+          [content](https://wheezyhttp.readthedocs.io/en/latest/userguide.html#content-cache)
+          [caching](https://github.com/akornatskyy/wheezy.caching) with
+          [dependency](https://wheezycaching.readthedocs.io/en/latest/userguide.html#cachedependency),
+          xsrf/resubmission protection, AJAX+JSON, i18n (gettext),
+          middlewares, and more.
+        - Template engine agnostic (integration with
+          [jinja2](http://jinja.pocoo.org),
+          [mako](http://www.makotemplates.org),
+          [tenjin](http://www.kuwata-lab.com/tenjin/) and
+          [wheezy.template](https://github.com/akornatskyy/wheezy.template)) plus
+          [html widgets](https://github.com/akornatskyy/wheezy.html).
+        
+        It is optimized for performance, well tested and documented.
+        
+        Resources:
+        
+        - [source code](https://github.com/akornatskyy/wheezy.web),
+          [examples](https://github.com/akornatskyy/wheezy.web/tree/master/demos)
+          ([live](http://wheezy.pythonanywhere.com)) and
+          [issues](https://github.com/akornatskyy/wheezy.web/issues)
+          tracker are available on
+          [github](https://github.com/akornatskyy/wheezy.web)
+        - [documentation](https://wheezyweb.readthedocs.io/en/latest/)
+        
+        ## Install
+        
+        [wheezy.web](https://pypi.org/project/wheezy.web/) requires
+        [python](https://www.python.org) version 2.4 to 2.7 or 3.2+. It is
+        independent of operating system. You can install it from
+        [pypi](https://pypi.org/project/wheezy.web/) site:
+        
+        ```sh
+        pip install -U wheezy.web
+        ```
+        
+        If you run into any issue or have comments, go ahead and add on
+        [github](https://github.com/akornatskyy/wheezy.web).
+        
+Keywords: wsgi web handler static template mako tenjin jinja2 routing middleware caching transforms
+Platform: any
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.4
+Classifier: Programming Language :: Python :: 2.5
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Application
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Middleware
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
+Provides-Extra: mako
+Provides-Extra: tenjin
+Provides-Extra: jinja2
+Provides-Extra: wheezy.template
