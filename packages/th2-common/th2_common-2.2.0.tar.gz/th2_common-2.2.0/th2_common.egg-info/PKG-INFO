@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: th2-common
+Version: 2.2.0
+Summary: th2_common
+Home-page: https://github.com/th2-net/th2-common-py
+Author: TH2-devs
+Author-email: th2-devs@exactprosystems.com
+License: Apache License 2.0
+Description: # TH2 Common Library (Python)
+        
+        ## Installing
+        Use the following command to configure the required packages:
+        ```
+        pip install th2-common==version -i https://nexus.exactpro.com/repository/th2-pypi/simple/ --extra-index-url https://pypi.python.org/simple/
+        ```
+        If you already have the kernel installed, use the following command to update:
+        ```
+        pip install th2-common==version -i https://nexus.exactpro.com/repository/th2-pypi/simple/ --extra-index-url https://pypi.python.org/simple/ -U
+        ```
+        Where `version` is the tag number in the repository.
+        
+        Or just add it as a dependency to the requirements.txt. Example:
+        
+        ```th2-common==1.1.63```
+Platform: UNKNOWN
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
