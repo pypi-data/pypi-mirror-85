@@ -1,0 +1,38 @@
+{% extends 'utilities/obj_edit.html' %}
+{% load form_helpers %}
+{% block tabs %}
+    {% if not obj.pk %}
+        {% include 'netbox_announcement/inc/announcement_edit_header.html' with active_tab='server_vm' %}
+    {% endif %}
+{% endblock %}
+{% block form %}
+    <div class="panel panel-default">
+        <div class="panel-heading"><strong>Announcement</strong></div>
+        <div class="panel-body">
+            
+            {% render_field form.subject %}
+            {% render_field form.slug %}
+            {% render_field form.status %}
+            {% render_field form.content_preset %}
+            {% render_field form.content %}
+            <input type="hidden" name="type" id="id_type" value="server" />
+            <input type="hidden" name="server_type" id="id_server_type" value="vm" />
+            <input type="hidden" id="user" name="user" value="{{ request.user.id }}">
+            <div class="form-group">
+                <div class="col-md-9 col-md-offset-3">
+                    <div class="checkbox">
+                        <label for="separate">
+                            <input type="checkbox" name="separate" placeholder="create separate announcement per selection" id="separate"> Create separate announcement per selection
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading"><strong> Announcement Assignment to Server(Virtual Machine)</strong></div>
+        <div class="panel-body">
+            {% render_field form.related_vm%}
+        </div>
+    </div>
+{% endblock %}
