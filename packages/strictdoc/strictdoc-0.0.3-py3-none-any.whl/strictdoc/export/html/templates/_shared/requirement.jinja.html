@@ -1,0 +1,77 @@
+<article class="requirement"
+{%- if requirement.status %}
+data-status='{{ requirement.status.lower() }}'
+{%- endif %}>
+
+  <header class="requirement_headers">
+    <div data-section='meta'></div>
+    <div data-section='statement'></div>
+    <div data-section='comment'></div>
+  </header>
+
+  <section class="requirement_section" data-section='meta'>
+
+    {%- if anchor is defined -%}
+    <div data-role='anchor' id="{{ anchor }}"></div>
+    {%- endif -%}
+
+    <h{{ requirement.ng_level }} class="section-title" data-level="{{ requirement.context.title_number_string }}">
+      {{ requirement.title if requirement.title else (requirement.uid if requirement.uid else '') }}
+    </h{{ requirement.ng_level }}>
+
+  {%- if requirement.has_meta -%}
+    <dl class="requirement_meta">
+      {%- if requirement.uid %}
+      <div><dt>UID</dt><dd>{{ requirement.uid }}</dd></div>
+      {%- endif %}
+      {%- if requirement.status %}
+      <div><dt>Status</dt><dd>{{ requirement.status }}</dd></div>
+      {%- endif %}
+      {%- if requirement.tags %}
+      <div><dt>Tags</dt><dd>{{ ', '.join(requirement.tags) }}</dd></div>
+      {%- endif %}
+    </dl>
+  {%- endif %}
+
+  {%- if traceability_index.has_parent_requirements(requirement) %}
+  <ul class="requirement_parent">
+    {%- for requirement in traceability_index.get_parent_requirements(requirement) %}
+    <li><a href="#">
+      {%- if requirement.uid %}
+      <span class="requirement_parent-uid">{{ requirement.uid }} </span>
+      {%- endif %}
+      {{ requirement.title }}
+    </a></li>
+    {%- endfor %}
+    </ul>
+  {%- endif %}
+
+  </section>
+  <section class="requirement_section" data-section='statement'>
+
+  {%- if requirement.statement or requirement.statement_multiline -%}
+    <div class="requirement_statement">
+      {{ renderer.render_requirement_statement(requirement) }}
+    </div>
+  {%- endif -%}
+
+  {%- if requirement.body %}
+    <div><p>
+      {{ requirement.body }}
+    </p></div>
+  {%- endif %}
+
+  </section>
+  <section class="requirement_section" data-section='comment'>
+
+  {%- if requirement.comments %}
+    {%- for comment in requirement.comments %}
+      <div class="requirement_comment">
+        {{ renderer.render_comment(comment) }}
+      </div>
+    {%- endfor %}
+  {%- endif %}
+
+  </section>
+
+</article>
