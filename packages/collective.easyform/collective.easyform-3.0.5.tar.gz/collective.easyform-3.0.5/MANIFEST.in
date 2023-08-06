@@ -1,0 +1,18 @@
+exclude *.sh
+exclude .*.cfg
+exclude .coveragerc
+exclude .DS_Store
+exclude .tx
+exclude .tx/config
+exclude buildout.cfg
+exclude tests.cfg
+global-exclude *.pyc __pycache__
+graft docs
+graft src/collective
+include *.cfg
+exclude pyvenv.cfg
+include *.rst
+include *.txt
+include pyproject.toml
+recursive-exclude news *
+exclude news
