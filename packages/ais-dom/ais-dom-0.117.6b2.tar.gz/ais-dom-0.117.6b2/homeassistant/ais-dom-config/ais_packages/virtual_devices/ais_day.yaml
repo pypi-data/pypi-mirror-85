@@ -1,0 +1,14 @@
+sensor:
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+  - platform: template
+    sensors:
+      daytodisplay:
+        friendly_name: 'Data'
+        value_template: "{{ as_timestamp(states('sensor.date')) | timestamp_custom('%-d/%-m')  }}"
+binary_sensor:
+  - platform: workday
+    name: "Dzień pracujący"
+    country: PL
