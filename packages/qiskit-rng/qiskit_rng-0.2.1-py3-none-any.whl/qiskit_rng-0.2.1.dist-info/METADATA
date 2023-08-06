@@ -1,0 +1,113 @@
+Metadata-Version: 2.1
+Name: qiskit-rng
+Version: 0.2.1
+Summary: Qiskit Random Number Generator.
+Home-page: https://github.com/qiskit-community/qiskit_rng
+Author: Qiskit Development Team
+Author-email: hello@qiskit.org
+License: Apache 2.0
+Project-URL: Bug Tracker, https://https://github.com/qiskit-community/qiskit_rng/issues
+Project-URL: Documentation, https://qiskit-rng.readthedocs.io
+Project-URL: Source Code, https://https://github.com/qiskit-community/qiskit_rng
+Keywords: qiskit quantum cqc qrng
+Platform: UNKNOWN
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Scientific/Engineering
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: qiskit-ibmq-provider (>=0.10)
+
+# Qiskit Random Number Generation
+
+[![License](https://img.shields.io/github/license/Qiskit/qiskit-ignis.svg?style=popout-square)](https://opensource.org/licenses/Apache-2.0)
+[![Build Status](https://github.com/qiskit-community/qiskit_rng/workflows/Tests/badge.svg?style=popout-square)](https://github.com/qiskit-community/qiskit_rng/actions)
+[![](https://img.shields.io/github/release/qiskit-community/qiskit_rng.svg?style=popout-square)](https://github.com/qiskit-community/qiskit_rng/releases)
+[![](https://img.shields.io/pypi/dm/qiskit_rng.svg?style=popout-square)](https://pypi.org/project/qiskit_rng/)
+
+Qiskit is an open-source framework for working with noisy intermediate-scale
+quantum computers (NISQ) at the level of pulses, circuits, and algorithms.
+
+This project contains support for Random Number Generation using [Qiskit] 
+and [IBM Quantum Experience] backends. The 
+resulting raw numbers can then be passed to [Cambridge Quantum Computing] (CQC)
+randomness extractors to get higher-quality random numbers.
+
+## Installation
+
+You can install the project using pip:
+
+```bash
+pip install qiskit_rng
+```
+
+PIP will handle all python dependencies automatically, and you will always
+install the latest (and well-tested) version.
+
+
+## Usage
+
+### Setting up the IBM Quantum Provider
+
+You will need setup your IBM Quantum Experience account and provider in order to 
+access IBM Quantum backends. See [qiskit-ibmq-provider](https://github.com/Qiskit/qiskit-ibmq-provider)
+for more details.
+
+### Generating random numbers using an IBM Quantum backend
+
+To generate random numbers using an IBM Quantum backend:
+
+```python
+from qiskit import IBMQ
+from qiskit_rng import Generator
+
+IBMQ.load_account()
+rng_provider = IBMQ.get_provider(hub='MY_HUB', group='MY_GROUP', project='MY_PROJECT')
+backend = rng_provider.backends.ibmq_ourence
+
+generator = Generator(backend=backend)
+output = generator.sample(num_raw_bits=1024).block_until_ready()
+print(output.mermin_correlator)
+```
+
+The `output` you get back contains useful information such as the 
+Weak Source of Randomness (`result.wsr`) used to generate the circuits, the resulting bits 
+(`result.raw_bits`), and the Mermin correlator value (`result.mermin_correlator`). 
+
+
+### Using CQC extractors to get highly random output
+
+If you have access to the CQC extractors, you can feed the outputs from the previous
+step to obtain higher quality random numbers:
+
+```python
+random_bits = output.extract()
+```
+
+The code above uses the default parameter values, but the extractor is highly 
+configurable. See documentation for some use case examples and parameter suggestions.
+
+## Documentation
+
+Usage and API documentation can be found [here](https://qiskit-rng.readthedocs.io/en/latest/).
+
+## License
+
+[Apache License 2.0].
+
+
+[Qiskit]: https://qiskit.org
+[IBM Quantum Experience]: https://quantum-computing.ibm.com
+[Cambridge Quantum Computing]: https://cambridgequantum.com
+[Apache License 2.0]: https://github.com/qiskit-community/qiskit_rng/blob/master/LICENSE.txt
+
+
