@@ -1,0 +1,219 @@
+# Triggers available
+# state: null
+# value: value that needs to change by in order to trigger
+# time: seconds since last trigger
+# [always]
+default_cos: &default_cos
+  [state]
+
+daily_sync: &daily_sync
+  [time, 86400]
+
+parameters:
+  dev-id:
+    source: roll
+    triggers:
+      process:
+        store:
+          - [always]
+        send:
+          - *daily_sync
+          - *default_cos
+  address-single:
+    source: block
+    triggers:
+      process:
+        send:
+          - [always]
+  modbus-slave-address:
+    source: block
+    triggers:
+      collect:
+        read:
+          - [deadline, 3600]
+      process:
+        send:
+          - [always]
+  modbus-start-address:
+    source: block
+    triggers:
+      collect:
+        read:
+          - [deadline, 3600]
+      process:
+        send:
+          - [always]
+  modbus-register-count:
+    source: block
+    triggers:
+      collect:
+        read:
+          - [deadline, 3600]
+      process:
+        send:
+          - [always]
+  comms-error:
+    source: poll
+    triggers:
+      process:
+        store:
+          - [time, 60]
+        send:
+          - *daily_sync
+          - *default_cos
+          - [time, 120]
+  comms-error-count:
+    source: poll
+    triggers:
+      process:
+        store:
+          - [time, 60]
+        send:
+          - *daily_sync
+          - *default_cos
+          - [time, 120]
+  raw-word-0:
+    source: poll
+    triggers:
+      process:
+        store:
+          - [time, 60]
+        send:
+          - *daily_sync
+          - *default_cos
+          - [time, 120]
+  raw-word-1:
+    source: poll
+    triggers:
+      process:
+        store:
+          - [time, 60]
+        send:
+          - *default_cos
+          - [time, 120]
+  raw-word-2:
+    source: poll
+    triggers:
+      process:
+        store:
+          - [time, 60]
+        send:
+          - *default_cos
+          - [time, 120]
+  raw-word-3:
+    source: poll
+    triggers:
+      process:
+        store:
+          - [time, 60]
+        send:
+          - *default_cos
+          - [time, 120]
+  raw-word-4:
+    source: poll
+    triggers:
+      process:
+        store:
+          - [time, 60]
+        send:
+          - *default_cos
+          - [time, 120]
+  raw-word-5:
+    source: poll
+    triggers:
+      process:
+        store:
+          - [time, 60]
+        send:
+          - *default_cos
+          - [time, 120]
+  raw-word-6:
+    source: poll
+    triggers:
+      process:
+        store:
+          - [time, 60]
+        send:
+          - *default_cos
+          - [time, 120]
+  raw-word-7:
+    source: poll
+    triggers:
+      process:
+        store:
+          - [time, 60]
+        send:
+          - *default_cos
+          - [time, 120]
+  raw-word-8:
+    source: poll
+    triggers:
+      process:
+        store:
+          - [time, 60]
+        send:
+          - *default_cos
+          - [time, 120]
+  raw-word-9:
+    source: poll
+    triggers:
+      process:
+        store:
+          - [time, 60]
+        send:
+          - *default_cos
+          - [time, 120]
+  raw-word-10:
+    source: poll
+    triggers:
+      process:
+        store:
+          - [time, 60]
+        send:
+          - *default_cos
+          - [time, 120]
+  raw-word-11:
+    source: poll
+    triggers:
+      process:
+        store:
+          - [time, 60]
+        send:
+          - *default_cos
+          - [time, 120]
+  raw-word-12:
+    source: poll
+    triggers:
+      process:
+        store:
+          - [time, 60]
+        send:
+          - *default_cos
+          - [time, 120]
+  raw-word-13:
+    source: poll
+    triggers:
+      process:
+        store:
+          - [time, 60]
+        send:
+          - *default_cos
+          - [time, 120]
+  raw-word-14:
+    source: poll
+    triggers:
+      process:
+        store:
+          - [time, 60]
+        send:
+          - *default_cos
+          - [time, 120]
+  raw-word-15:
+    source: poll
+    triggers:
+      process:
+        store:
+          - [time, 60]
+        send:
+          - *default_cos
+          - [time, 120]
