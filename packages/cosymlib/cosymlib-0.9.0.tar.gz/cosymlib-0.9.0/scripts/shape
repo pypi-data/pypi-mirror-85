@@ -1,0 +1,130 @@
+#!/usr/bin/env python
+from cosymlib import file_io
+from cosymlib.shape import tools
+from cosymlib.file_io.tools import add_extra_keywords, print_header, print_footer, print_input_info
+from cosymlib.file_io import read_generic_structure_file
+from cosymlib import Cosymlib
+import argparse
+import sys
+
+
+# positional arguments
+parser = argparse.ArgumentParser(description='Shape')
+parser.add_argument(type=str,
+                    dest='input_file',
+                    help='input file with structures')
+parser.add_argument(type=str,
+                    dest="yaml_input",
+                    nargs='?',
+                    default=None,
+                    help='Input file with keywords')
+
+# Main options
+parser.add_argument('-m', '--measure',
+                    dest='measure',
+                    metavar='SH',
+                    default=None,
+                    help='compute the SH measure of the input structures (use "custom" to use custom structure')
+parser.add_argument('-s', '--structure',
+                    dest='structure',
+                    action='store_true',
+                    default=False,
+                    help='return the nearest structure to the reference shape')
+parser.add_argument('-o', '--output_name',
+                    dest='output_name',
+                    metavar='filename',
+                    default=None,
+                    help='store the output into a file')
+parser.add_argument('-c', '--central_atom',
+                    dest='central_atom',
+                    metavar='N',
+                    type=int,
+                    default=0,
+                    help='define central atom as the atom in position N in the input structure')
+parser.add_argument('-r', '--references',
+                    dest='references',
+                    action='store_true',
+                    default=False,
+                    help='store the coordinates of the reference polyhedra in a file')
+parser.add_argument('-cref', '--custom_ref',
+                    dest='custom_ref',
+                    metavar='filename',
+                    default=None,
+                    help='define filename containing the structure/s to be used as reference (requires -m custom)')
+
+# Extra options
+parser.add_argument('-l', '--labels', action='store_true',
+                    dest='labels',
+                    default=False,
+                    help='show the reference shape labels')
+parser.add_argument('--info',
+                    action='store_true',
+                    default=False,
+                    help='print information about the input structures')
+
+# Modifiers
+parser.add_argument('--fix_permutation',
+                    dest='fix_permutation',
+                    action='store_true',
+                    default=False,
+                    help='do not permute atoms')
+
+args = parser.parse_args()
+
+if args.yaml_input:
+    add_extra_keywords(args, args.yaml_input)
+
+common_output = open(args.output_name, 'w') if args.output_name is not None else sys.stdout
+print_header(common_output)
+
+structures = read_generic_structure_file(args.input_file, read_multiple=True)
+structure_set = Cosymlib(structures)
+
+n_atoms = structure_set.get_n_atoms()
+vertices = n_atoms if args.central_atom == 0 else n_atoms - 1
+
+if args.references:
+
+    if args.output_name is None:
+        output_references = common_output
+        print('Reference shapes\n----------------')
+    elif args.central_atom == 0:
+        output_references = open('L{}.xyz'.format(vertices), 'w')
+    else:
+        output_references = open('ML{}.xyz'.format(vertices), 'w')
+
+    for label in tools.get_structure_references(vertices):
+        ref_structure = tools.get_test_structure(label, central_atom=args.central_atom)
+        output_references.write(file_io.get_file_xyz_txt(ref_structure))
+
+if args.info:
+    print_input_info(structure_set.get_geometries(), output=common_output)
+    exit()
+
+# Shape's commands
+if args.labels:
+    common_output.write(tools.get_shape_label_info(n_atoms, with_central_atom=args.central_atom))
+    exit()
+
+if args.measure == 'custom':
+    if args.custom_ref is not None:
+        reference = file_io.read_generic_structure_file(args.custom_ref, read_multiple=True)
+    else:
+        raise Exception('Custom reference file not defined (use: --custom_ref filename)')
+else:
+    reference = args.measure
+
+if args.measure:
+    structure_set.print_shape_measure(reference,
+                                      central_atom=args.central_atom,
+                                      fix_permutation=args.fix_permutation,
+                                      output=common_output)
+
+if args.structure:
+    common_output.write("\nOriginal structures vs reference polyhedra\n")
+    structure_set.print_shape_structure(reference,
+                                        central_atom=args.central_atom,
+                                        fix_permutation=args.fix_permutation,
+                                        output=common_output)
+
+print_footer(common_output)

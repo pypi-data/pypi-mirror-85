@@ -1,0 +1,104 @@
+#!/usr/bin/env python
+import argparse
+import os
+import sys
+from cosymlib.molecule.geometry import Geometry
+from cosymlib import file_io
+from cosymlib.file_io import classic_inputs
+from cosymlib import Cosymlib
+from cosymlib.shape import tools
+
+
+parser = argparse.ArgumentParser(description='Shape')
+parser.add_argument(type=str, dest='input_file', nargs='?', help='input file name(+extension)')
+parser.add_argument('-n', dest='n', action='store', default=None,
+                    type=int, help='show the reference labels for a given structure')
+
+
+args = parser.parse_args(sys.argv[1:])
+
+print('Starting...')
+
+# Shape's commands
+if args.n:
+    print(tools.get_shape_label_info(args.n, old=True))
+
+if args.input_file is not None:
+    if os.stat(args.input_file).st_size == 0:
+        raise FileExistsError('File {} is empty'.format(os.path.basename(args.input_file)))
+    output_name, file_extension = os.path.splitext(args.input_file)
+
+    structures, options = classic_inputs.read_old_input(args.input_file)
+    central_atom = options['%central_atom']
+    symobj = Cosymlib(structures)
+
+    if options['%test']:
+        test_structure = []
+        symbols = ['H' for _ in range(options['%n_atoms'])]
+        symbols.append('N')
+        for label in tools.get_structure_references(options['%n_atoms']):
+            test_structure.append(Geometry(symbols=symbols,
+                                           positions=tools.get_test_structure(label,
+                                                                              central_atom=central_atom),
+                                           name=label))
+
+        if central_atom == 0:
+            output = open('{}/L{}.xyz'.format(os.path.dirname(output_name), options['%n_atoms']), 'w')
+        else:
+            output = open('{}/ML{}.xyz'.format(os.path.dirname(output_name), options['%n_atoms']), 'w')
+        output.write(file_io.get_file_xyz_txt(test_structure))
+        exit()
+
+    reference_polyhedron = []
+    if options['%labels'] != 0:
+        for number in options['%labels']:
+            if int(number) == 0:
+                for ref in file_io.get_geometry_from_file_ref(output_name + '.ref', read_multiple=True):
+                    reference_polyhedron.append(ref)
+            else:
+                reference_polyhedron.append(tools.get_shape_label(int(number), options['%n_atoms']))
+
+    if options['%fullout']:
+        output_name = open(output_name + '.tab', 'w')
+        symobj.print_shape_measure(reference_polyhedron,
+                                   central_atom=central_atom,
+                                   output=output_name)
+        symobj.print_shape_structure(reference_polyhedron,
+                                     central_atom=central_atom,
+                                     output=output_name)
+
+    elif options['%path']:
+        output_name = open(output_name + '.tab', 'w')
+        if len(reference_polyhedron) > 2:
+            print('Error. No more than two labels can be specified for a path calculation')
+            exit()
+        symobj.print_minimum_distortion_path_shape(reference_polyhedron[0],
+                                                   reference_polyhedron[1],
+                                                   central_atom=central_atom,
+                                                   output=output_name)
+    else:
+        output_name = open(output_name + '.tab', 'w')
+        symobj.print_shape_measure(reference_polyhedron,
+                                   central_atom=central_atom,
+                                   output=output_name)
+
+
+    # if args.custom_reference_structure is not None:
+    #     reference_polyhedron = file_io.read_input_file(args.custom_reference_structure)
+    # elif not reference_polyhedron:
+    #     reference_polyhedron = [args.shape_label]
+    #
+
+    #
+    # if args.shape_map:
+    #     symobj.write_minimum_distortion_path_shape_2file(args.shape_map[0],
+    #                                                      args.shape_map[1],
+    #                                                      central_atom=args.central_atom_position,
+    #                                                      show=True)
+    # if args.shape_path:
+    #     symobj.write_path_parameters_2file(args.shape_map[0],
+    #                                        args.shape_map[1],
+    #                                        central_atom=args.central_atom_position,
+    #                                        output_name=args.output_name)
+
+print('End of shape calculation')
