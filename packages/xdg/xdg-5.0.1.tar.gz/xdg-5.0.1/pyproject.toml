@@ -1,0 +1,41 @@
+[tool.black]
+line-length = 79
+
+[tool.isort]
+profile = "black"
+line_length = 79
+
+[tool.poetry]
+name = "xdg"
+version = "5.0.1"
+description = "Variables defined by the XDG Base Directory Specification"
+authors = ["Scott Stevenson <scott@stevenson.io>"]
+license = "ISC"
+readme = "README.md"
+homepage = "https://github.com/srstevenson/xdg"
+repository = "https://github.com/srstevenson/xdg"
+keywords = ["xdg", "base", "directory", "specification"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Operating System :: Unix",
+    "Operating System :: Microsoft :: Windows",
+]
+include = ["LICENCE", "src/xdg/py.typed"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+
+[tool.poetry.dev-dependencies]
+black = "=18.9b0"
+flake8 = "^3.6"
+isort = "^5.0.0"
+mypy = "^0.782"
+nox = "^2018.10"
+pylint = "^2.6.0"
+pytest = "^4.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
