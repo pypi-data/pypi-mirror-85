@@ -1,0 +1,854 @@
+#!/usr/bin/python3
+# PYTHON_ARGCOMPLETE_OK
+
+# Note that PYTHON_ARGCOMPLETE_OK enables "global completion" from the argcomplete package.
+
+import argparse
+import os
+import argcomplete
+import sys
+
+import simexpal as extl
+import simexpal.build
+import simexpal.evloop
+import simexpal.launch.fork
+import simexpal.launch.queue
+import simexpal.launch.slurm
+import simexpal.launch.sge
+import simexpal.queuesock
+import simexpal.util as util
+from simexpal.base import Status
+from simexpal.base import YmlLoader
+from itertools import zip_longest
+import yaml
+import warnings
+
+warnings.simplefilter(action='default', category=DeprecationWarning)  # do not ignore DeprecationWarnings
+
+colors = {
+	'red': '\x1b[31m',
+	'green': '\x1b[32m',
+	'yellow': '\x1b[33m',
+	'reset': '\x1b[0m',
+}
+
+# Disable escape sequence emission if the output is not a TTY.
+if not os.isatty(sys.stdout.fileno()):
+	for c in colors:
+		colors[c] = ''
+
+# ---------------------------------------------------------------------------------------
+
+main_parser = argparse.ArgumentParser()
+main_parser.add_argument('-C', type=str)
+main_subcmds = main_parser.add_subparsers(metavar='<command>')
+main_subcmds.required = True
+
+def cli_selects_run(args, run):
+	if args.experiment is not None:
+		if args.experiment != run.experiment.name:
+			return False
+	if args.instance is not None:
+		if args.instance != run.instance.shortname:
+			return False
+	if args.revision is not None:
+		if (run.experiment.revision is None
+				or args.revision != run.experiment.revision.name):
+			return False
+	if args.variants is not None:
+		exp_variants = [var.name for var in run.experiment.variation]
+		for wanted_var in args.variants:
+			if wanted_var not in exp_variants:
+				return False
+	if args.axes is not None:
+		exp_axes = [var.axis for var in run.experiment.variation]
+		for wanted_axis in args.axes:
+			if wanted_axis not in exp_axes:
+				return False
+	if args.instset is not None:
+		if args.instset not in run.instance.instsets:
+			return False
+	if args.run is not None:
+		if args.run != run.experiment.name + '/' + run.instance.shortname:
+			return False
+	if args.failed:
+		if not run.get_status().is_negative:
+			return False
+	elif args.unfinished:
+		status = run.get_status()
+		if not (status.is_neutral or status == Status.NOT_SUBMITTED):
+			return False
+
+	return True
+
+def select_runs_from_cli(cfg, args, default_all=True):
+	if (not can_select_runs_from_cli(args) and default_all
+			or args.all):
+		yield from cfg.discover_all_runs()
+	else:
+		for run in cfg.discover_all_runs():
+			if cli_selects_run(args, run):
+				yield run
+
+def can_select_runs_from_cli(args):
+	if (args.experiment is not None
+			or args.instance is not None
+			or args.revision is not None
+			or args.instset is not None
+			or args.variants is not None
+			or args.axes is not None
+			or args.run is not None
+			or args.all
+			or args.failed
+			or args.unfinished):
+		return True
+	return False
+
+run_selection_parser = argparse.ArgumentParser(add_help=False)
+run_selection_parser.add_argument('--instset', type=str)
+run_selection_parser.add_argument('--experiment', type=str)
+run_selection_parser.add_argument('--instance', type=str)
+run_selection_parser.add_argument('--revision', type=str)
+run_selection_parser.add_argument('--variants', type=str, nargs='+', help='name of different variants (space separated)')
+run_selection_parser.add_argument('--axes', type=str, nargs='+', help='name of different variant axes (space separated)')
+run_selection_parser.add_argument('--run', type=str, help='given as experiment/instance')
+run_selection_parser.add_argument('--all', action='store_true')
+run_selection_parser.add_argument('--failed', action='store_true')
+run_selection_parser.add_argument('--unfinished', action='store_true')
+
+# ---------------------------------------------------------------------------------------
+
+def cli_selects_build(args, build):
+	if len(args.revisions) > 0 and build.revision.name not in args.revisions:
+		return False
+	if len(args.builds) > 0 and build.name not in args.builds:
+		return False
+
+	return True
+
+def select_builds_from_cli(args, broad):
+	narrow = dict()
+	for build in broad:
+		if cli_selects_build(args, build):
+			if build.revision not in narrow:
+				narrow[build.revision] = [build]
+			else:
+				narrow[build.revision].append(build)
+
+	return sorted(narrow, key=lambda rev: rev.name), narrow
+
+def purge_builds_from(args, selection, delete_source=False):
+	ordered_revisions, sel = select_builds_from_cli(args, selection)
+	for revision in ordered_revisions:
+		for build in sel[revision]:
+			if not args.f:
+				print("This would purge build '{}' of revision '{}'. Use '-f' to confirm this action.".format(
+					build.name, build.revision.name))
+				continue
+			else:
+				print("Purging build '{}' of revision '{}'".format(build.name, build.revision.name))
+				build.purge(delete_source)
+
+build_selection_parser = argparse.ArgumentParser(add_help=False)
+build_selection_parser.add_argument('--revisions', nargs='*', type=str, default=[])
+build_selection_parser.add_argument('builds', nargs='*', type=str)
+
+# ---------------------------------------------------------------------------------------
+
+def select_phases_from_cli(args):
+
+	def subsequent_phases(start_phase):
+		return [phase for phase in simexpal.build.Phase if phase >= start_phase]
+
+	if args.recheckout:
+		if not args.f:
+			print("This would delete the local git repository for the build and reclone it. Confirm this action"
+					" by using the '-f' flag.")
+			return []
+		else:
+			return subsequent_phases(simexpal.build.Phase.CHECKOUT)
+	elif args.checkout:
+		if not args.f:
+			print("This would delete the local git repository for the build and reclone it. Confirm this action"
+					" by using the '-f' flag.")
+			return []
+		else:
+			return [simexpal.build.Phase.CHECKOUT]
+	elif args.reregenerate:
+		return subsequent_phases(simexpal.build.Phase.REGENERATE)
+	elif args.regenerate:
+		return [simexpal.build.Phase.REGENERATE]
+	elif args.reconfigure:
+		return subsequent_phases(simexpal.build.Phase.CONFIGURE)
+	elif args.configure:
+		return [simexpal.build.Phase.CONFIGURE]
+	elif args.compile:
+		return [simexpal.build.Phase.COMPILE]
+	elif args.reinstall:
+		return subsequent_phases(simexpal.build.Phase.INSTALL)
+	elif args.install:
+		return [simexpal.build.Phase.INSTALL]
+	else:
+		# This case also includes 'args.recompile == True'
+		return subsequent_phases(simexpal.build.Phase.COMPILE)
+
+phase_selection_parser = argparse.ArgumentParser(add_help=False)
+phase_selection_mechanism = phase_selection_parser.add_mutually_exclusive_group()
+phase_selection_mechanism.add_argument('--recheckout', action='store_true',
+			help='Delete local build git repository, reclone, regenerate, reconfigure, recompile and reinstall it')
+phase_selection_mechanism.add_argument('--checkout', action='store_true',
+			help='Delete local git repository for build and (re-)clone it')
+phase_selection_mechanism.add_argument('--reregenerate', action='store_true',
+			help='Regenerate, reconfigure, recompile and reinstall build')
+phase_selection_mechanism.add_argument('--regenerate', action='store_true',
+			help='(Re-)Regenerate build')
+phase_selection_mechanism.add_argument('--reconfigure', action='store_true',
+			help='Reconfigure, recompile and reinstall build')
+phase_selection_mechanism.add_argument('--configure', action='store_true',
+			help='(Re-)Configure build')
+phase_selection_mechanism.add_argument('--recompile', action='store_true',
+			help='Recompile and reinstall build')
+phase_selection_mechanism.add_argument('--compile', action='store_true',
+			help='(Re-)Compile build')
+phase_selection_mechanism.add_argument('--reinstall', action='store_true',
+			help='Reinstall build')
+phase_selection_mechanism.add_argument('--install', action='store_true',
+			help='(Re-)Install build')
+
+# ---------------------------------------------------------------------------------------
+# Basic commands.
+# ---------------------------------------------------------------------------------------
+
+def do_instances(args):
+	return do_instances_list(args)
+
+instances_parser = main_subcmds.add_parser('instances', help='Manage instances',
+		aliases=['i'])
+instances_parser.set_defaults(cmd=do_instances)
+instances_subcmds = instances_parser.add_subparsers(dest='instances_subcmd')
+
+def do_instances_list(args):
+	cfg = extl.base.config_for_dir()
+
+	print('{:40.40} {:60.60}'.format('Instance short name', 'Instance sets'))
+	print('{:40.40} {:60.60}'.format('-------------------', '-------------'))
+	for instance in cfg.all_instances():
+		if instance.check_available():
+			print(colors['green'], end='')
+		else:
+			print(colors['red'], end='')
+
+		cur_instsets = ', '.join([str(s) for s in sorted(instance.instsets)]) if instance.instsets != {None} else ''
+		print('{:40.40} {:60.60}'.format(instance.shortname, cur_instsets), end='')
+		print(colors['reset'])
+
+instances_list_parser = instances_subcmds.add_parser('list')
+instances_list_parser.set_defaults(cmd=do_instances_list)
+
+def do_instances_install(args):
+	cfg = extl.base.config_for_dir()
+
+	for instance in cfg.all_instances():
+		if args.overwrite:
+			util.try_rmfile(os.path.join(cfg.instance_dir(), instance.shortname))
+		instance.install()
+
+instances_install_parser = instances_subcmds.add_parser('install')
+instances_install_parser.set_defaults(cmd=do_instances_install)
+instances_install_parser.add_argument('--overwrite', action='store_true')
+
+def do_instances_process(args):
+	cfg = extl.base.config_for_dir()
+
+	for inst in cfg.all_instances():
+		if not inst.check_available():
+			print("Skipping unavailable instance '{}'".format(inst.shortname))
+			continue
+		if len(inst.filenames) > 1:
+			print("Skipping instance '{}' as it does not have a unique filename".format(inst.shortname))
+			continue
+		if os.access(os.path.join(cfg.instance_dir(), inst.shortname + '.info'), os.F_OK):
+			continue
+
+		print("Processing instance '{}'".format(inst.shortname))
+		with open(os.path.join(cfg.instance_dir(), inst.shortname + '.info.tmp'), 'w') as f:
+			extl.util.compute_network_size(os.path.join(cfg.instance_dir(), inst.unique_filename), f)
+		os.rename(os.path.join(cfg.instance_dir(), inst.shortname + '.info.tmp'),
+				os.path.join(cfg.instance_dir(), inst.shortname + '.info'))
+
+instances_process_parser = instances_subcmds.add_parser('process')
+instances_process_parser.set_defaults(cmd=do_instances_process)
+
+def do_instances_run_transform(args):
+	cfg = extl.base.config_for_dir()
+
+	for instance in cfg.all_instances():
+		if instance.shortname != args.instname:
+			continue
+		instance.run_transform(args.transform, args.output)
+
+instances_transform_parser = instances_subcmds.add_parser('run-transform')
+instances_transform_parser.set_defaults(cmd=do_instances_run_transform)
+instances_transform_parser.add_argument('--transform', type=str, required=True)
+instances_transform_parser.add_argument('--output', type=str, required=True)
+instances_transform_parser.add_argument('instname', type=str)
+
+# ---------------------------------------------------------------------------------------
+
+builds_parser = main_subcmds.add_parser('builds', help='Build programs',
+		aliases=['b'])
+builds_subcmds = builds_parser.add_subparsers(dest='builds_subcmd')
+builds_subcmds.required = True
+
+def do_builds_make(args):
+	cfg = extl.base.config_for_dir()
+
+	ordered_revisions, sel = select_builds_from_cli(args, cfg.all_non_dev_builds())
+	for revision in ordered_revisions:
+
+		simexpal.build.make_builds(cfg, revision,
+				[build.info for build in sel[revision]], [], [])
+
+builds_make_parser = builds_subcmds.add_parser('make', parents=[build_selection_parser])
+builds_make_parser.set_defaults(cmd=do_builds_make)
+
+def do_builds_purge(args):
+	cfg = extl.base.config_for_dir()
+
+	purge_builds_from(args, cfg.all_non_dev_builds())
+
+builds_purge_parser = builds_subcmds.add_parser('purge', parents=[build_selection_parser])
+builds_purge_parser.set_defaults(cmd=do_builds_purge)
+builds_purge_parser.add_argument('-f', action='store_true', help='Execute purge')
+
+def do_builds_remake(args):
+	cfg = extl.base.config_for_dir()
+	args.recheckout = True
+	args.f = True
+
+	wanted_phases = select_phases_from_cli(args)
+	ordered_revisions, sel = select_builds_from_cli(args, cfg.all_non_dev_builds())
+	for revision in ordered_revisions:
+
+		simexpal.build.make_builds(cfg, revision,
+				[build.info for build in sel[revision]], [build.name for build in sel[revision]], wanted_phases)
+
+builds_remake_parser = builds_subcmds.add_parser('remake', parents=[build_selection_parser])
+builds_remake_parser.set_defaults(cmd=do_builds_remake)
+
+# ---------------------------------------------------------------------------------------
+
+def do_develop(args):
+	cfg = extl.base.config_for_dir()
+
+	wanted_phases = select_phases_from_cli(args)
+	if not wanted_phases:
+		return
+
+	if args.purge:
+		purge_builds_from(args, cfg.all_dev_builds(), args.delete_source)
+
+	else:
+		ordered_revisions, sel = select_builds_from_cli(args, cfg.all_dev_builds())
+		for revision in ordered_revisions:
+
+			simexpal.build.make_builds(cfg, revision,
+					[build.info for build in sel[revision]], [build.name for build in sel[revision]], wanted_phases)
+
+dev_builds_parser = main_subcmds.add_parser('develop', help='Build local programs',
+		aliases=['d'], parents=[phase_selection_parser, build_selection_parser])
+dev_builds_parser.set_defaults(cmd=do_develop)
+dev_builds_parser.add_argument('--purge', action='store_true', help='Purge selected dev-builds')
+dev_builds_parser.add_argument('-f', action='store_true', help='Confirm action')
+dev_builds_parser.add_argument('--delete-source', action='store_true', help='Deletes the source directory when purging')
+
+# ---------------------------------------------------------------------------------------
+
+def do_experiments(args):
+	args.detailed = False
+	args.compact = False
+	args.full = False
+
+	return do_experiments_list(args, as_default_subcmd=True)
+
+experiments_parser = main_subcmds.add_parser('experiments', help='Manage experiments',
+		aliases=['e'])
+experiments_parser.set_defaults(cmd=do_experiments)
+experiments_subcmds = experiments_parser.add_subparsers(dest='experiments_subcmd')
+
+def do_experiments_list(args, as_default_subcmd=False):
+
+	def color_for_status(status):
+		if status.is_neutral:
+			return colors['yellow']
+		elif status.is_positive:
+			return colors['green']
+		elif status.is_negative:
+			return colors['red']
+		return ''
+
+	def show_compact_list(calc_exp_len=False):
+
+		def print_experiment_statistics():
+
+			def _get_table_entries(status_list, include_status_string=False):
+				entry_list = []
+				for s in status_list:
+					if status_dict[s] > 0:
+						prefix = ''
+						if include_status_string:
+							prefix = str(s) + ': '
+
+						entry_list.append((color_for_status(s),
+											prefix + str(status_dict[s]) + '/' + str(num_runs),
+											colors['reset']))
+
+				return entry_list
+
+			started_statistics = _get_table_entries([Status.STARTED])
+			finished_statistics = _get_table_entries([Status.FINISHED])
+			failures_statistics = _get_table_entries([status for status in Status if status.is_negative],
+													include_status_string=True)
+			other_statistics = _get_table_entries([Status.NOT_SUBMITTED, Status.IN_SUBMISSION, Status.SUBMITTED],
+												include_status_string=True)
+
+			for e_entry, s_entry, fin_entry, fail_entry, o_entry in zip_longest(
+					[('', exp_display_name, '')], started_statistics, finished_statistics, failures_statistics, other_statistics,
+					fillvalue=('', '', '')):
+
+				print('{}{:{len}{}.{len}} {}{:10.10}{} {}{:10.10}{} {}{:20.20}{} {}{}{}'.format(
+					*e_entry, *s_entry, *fin_entry, *fail_entry, *o_entry, len=exp_len))
+
+		if calc_exp_len:
+			exp_len = max([len(run.experiment.display_name) for run in selection])
+		else:
+			exp_len = 30
+
+		print('{:{len}.{len}} {:10.10} {:10.10} {:20.20} {}'.format(
+			'Experiment', 'started', 'finished', 'failures', 'other', len=exp_len))
+		print('{:{len}.{len}} {:10.10} {:10.10} {:20.20} {}'.format(
+			'----------', '-------', '--------', '--------', '-----', len=exp_len))
+
+		exp_name = None
+		exp_vars = None
+		exp_rev = None
+		exp_display_name = None
+		status_dict = {}
+		for run in selection:
+			cur_exp_name = run.experiment.name
+			cur_exp_rev = run.experiment.revision.name if run.experiment.revision is not None else None
+			cur_exp_vars = [var.name for var in run.experiment.variation]
+			cur_status = run.get_status()
+			cur_exp_display_name = run.experiment.display_name
+
+			# this check assumes that the runs are sorted by their experiment name, revision name and variation names
+			if cur_exp_name != exp_name or cur_exp_rev != exp_rev or cur_exp_vars != exp_vars:
+				if exp_name is not None:
+					print_experiment_statistics()
+
+				# Reset statistics for new experiment
+				exp_name = cur_exp_name
+				exp_rev = cur_exp_rev
+				exp_vars = cur_exp_vars
+				exp_display_name = cur_exp_display_name
+				for status in simexpal.base.Status:
+					status_dict[status] = 0
+				num_runs = 0  # number of runs of current experiment
+
+			status_dict[cur_status] += 1
+			num_runs += 1
+
+		print_experiment_statistics()
+
+	def show_detailed_list(calc_exp_len=False):
+		if calc_exp_len:
+			exp_len = max([len(run.experiment.display_name) for run in selection])
+		else:
+			exp_len = 45
+
+		print('{:{len}.{len}} {:35.35} {}'.format('Experiment', 'Instance', 'Status', len=exp_len))
+		print('{:{len}.{len}} {:35.35} {}'.format('----------', '--------', '------', len=exp_len))
+		for run in selection:
+			exp, instance, status = (run.experiment, run.instance.shortname, run.get_status())
+
+			print(color_for_status(status), end='')
+			print('{:{len}.{len}} {:35.35} [{}] {}'.format(exp.display_name, instance, run.repetition, str(status), len=exp_len))
+			print(colors['reset'], end='')
+
+	cfg = extl.base.config_for_dir()
+
+	if as_default_subcmd:
+		selection = list(cfg.discover_all_runs())
+	else:
+		selection = list(select_runs_from_cli(cfg, args))
+
+	if args.detailed:
+		show_detailed_list(args.full)
+	elif args.compact:
+		show_compact_list(args.full)
+	else:
+		if len(selection) < simexpal.base.EXPERIMENTS_LIST_THRESHOLD:
+			show_detailed_list(args.full)
+		else:
+			show_compact_list(args.full)
+	print(len(selection), "experiments in total")
+
+	cfg.writeback_status_cache()
+
+experiments_list_parser = experiments_subcmds.add_parser('list',
+		parents=[run_selection_parser])
+experiments_list_parser.set_defaults(cmd=do_experiments_list)
+experiments_list_parser.add_argument('--compact', action='store_true')
+experiments_list_parser.add_argument('--detailed', action='store_true')
+experiments_list_parser.add_argument('--full', action='store_true')
+
+def do_experiments_info(args):
+	cfg = extl.base.config_for_dir()
+
+	selection = select_runs_from_cli(cfg, args)
+
+	exp_name_set = set()
+	instance_name_set = set()
+	instset_name_set = set()
+	variants_name_set = set()
+	axis_name_set = set()
+
+	for run in selection:
+		exp_name_set.add(run.experiment.name)
+
+		for iset in run.instance.instsets:
+			if iset is not None:
+				instset_name_set.add(iset)
+		instance_name_set.add(run.instance.shortname)
+		for var in run.experiment.variation:
+			variants_name_set.add(var.name)
+		for var in run.experiment.variation:
+			axis_name_set.add(var.axis)
+
+	print("All related experiments are:")
+	for exp in sorted(list(exp_name_set)):
+		print('\t', exp)
+	print("All related instsets are:")
+	for instset in sorted(list(instset_name_set)):
+		print('\t', instset)
+	print("All related instances are:")
+	for inst in sorted(list(instance_name_set)):
+		print('\t', inst)
+	print("All related axes are:")
+	for ax in sorted(list(axis_name_set)):
+		print('\t', ax)
+	print("All related variants are:")
+	for v in sorted(list(variants_name_set)):
+		print('\t', v)
+
+	cfg.writeback_status_cache()
+
+experiments_info_parser = experiments_subcmds.add_parser('info',
+		parents=[run_selection_parser])
+experiments_info_parser.set_defaults(cmd=do_experiments_info)
+
+def do_experiments_launch(args):
+	cfg = extl.base.config_for_dir()
+
+	# Key: launcher name; Value: (common.Launcher object, list of runs to be executed by the launcher)-tuple
+	launchers = {}
+
+	def create_launcher(scheduler, queue=None):
+		if scheduler == 'slurm':
+			return extl.launch.slurm.SlurmLauncher(queue)
+		elif scheduler == 'sge':
+			return extl.launch.sge.SgeLauncher(queue)
+		elif scheduler == 'queue':
+			return extl.launch.queue.QueueLauncher()
+		elif scheduler == 'fork':
+			return extl.launch.fork.ForkLauncher()
+		else:
+			raise RuntimeError('Unknown scheduler {}'.format(scheduler))
+
+	def append_to_launchers_dict(launcher_name, run, *args):
+		# *args contains all positional arguments of create_launcher().
+		if launcher_name not in launchers:
+			launchers[launcher_name] = (create_launcher(*args), [run])
+		else:
+			launchers[launcher_name][1].append(run)
+
+	lf_yml = None
+	default_yml = None
+	try:
+		file_path = os.path.expanduser('~/.simexpal/launchers.yml')
+		f = open(file_path, 'r')
+	except FileNotFoundError:
+		pass
+	else:
+		with f:
+			lf_yml = yaml.load(f, Loader=YmlLoader)
+
+			# Find the default launcher.
+			default_yml_list = [default_yml for default_yml in lf_yml['launchers']
+								if 'default' in default_yml and default_yml['default']]
+
+			if len(default_yml_list) > 1:
+				raise RuntimeError('Default launcher is not unique')
+			if default_yml_list:
+				default_yml = default_yml_list[0]
+
+	def get_launcher_info_from_yml(launcher_name):
+		# Find the specified launcher.
+
+		# If launcher_name is already in the launchers dict, we do not need the info
+		# on the launcher as the launcher already has been created for launcher_name.
+		if launcher_name in launchers:
+			return None, None
+
+		info_yml_list = [info_yml for info_yml in lf_yml['launchers']
+						if info_yml['name'] == launcher_name]
+
+		if not info_yml_list:
+			raise RuntimeError('There is no launcher named {}'.format(launcher_name))
+		if len(info_yml_list) > 1:
+			raise RuntimeError('Launcher {} is not unique'.format(launcher_name))
+		info_yml = info_yml_list[0]
+
+		return info_yml['scheduler'], info_yml['queue'] if 'queue' in info_yml else None
+
+	for run in select_runs_from_cli(cfg, args):
+		if not run.instance.check_available():
+			print("Skipping run {}/{}[{}] as instance is not available".format(
+					run.experiment.name, run.instance.shortname, run.repetition))
+			continue
+
+		if args.launcher:
+			launcher_info = get_launcher_info_from_yml(args.launcher)
+			append_to_launchers_dict(args.launcher, run, *launcher_info)
+
+		elif args.launch_through:
+			append_to_launchers_dict(args.launch_through, run, args.launch_through, args.queue)
+
+		elif run.experiment.effective_launcher is not None:
+			launcher_info = get_launcher_info_from_yml(run.experiment.effective_launcher)
+			append_to_launchers_dict(run.experiment.effective_launcher, run, *launcher_info)
+
+		elif default_yml:
+			# Fallback: use the default launcher.
+			queue = default_yml['queue'] if 'queue' in default_yml else None
+			append_to_launchers_dict(default_yml['name'], run, default_yml['scheduler'], queue)
+		else:
+			# Final fallback: use the the fork()-based launcher.
+			append_to_launchers_dict('_fork', run, 'fork')
+
+	for launcher, launcher_runs in launchers.values():
+		# If the launcher supports submit_multiple, we prefer that.
+		try:
+			submit_to_launcher = launcher.submit_multiple
+		except AttributeError:
+			def submit_to_launcher(cfg, runs):
+				for run in runs:
+					launcher.submit(cfg, run)
+
+		submit_to_launcher(cfg, launcher_runs)
+
+		cfg.writeback_status_cache()
+
+experiments_launch_parser = experiments_subcmds.add_parser('launch',
+		parents=[run_selection_parser])
+experiments_launch_parser.set_defaults(cmd=do_experiments_launch)
+experiments_launch_mechanism = experiments_launch_parser.add_mutually_exclusive_group()
+experiments_launch_mechanism.add_argument('--launcher', type=str)
+experiments_launch_mechanism.add_argument('--launch-through',
+		choices=['fork', 'queue', 'slurm', 'sge'])
+experiments_launch_parser.add_argument('--queue', type=str)
+
+def do_experiments_purge(args):
+	cfg = extl.base.config_for_dir()
+
+	if not can_select_runs_from_cli(args):
+		print("Use an additional argument to purge the respective files.\n"
+			  "Use 'simex e purge -h' to look at the list of possible arguments.", file=sys.stderr)
+		return
+	else:
+		for run in select_runs_from_cli(cfg, args, default_all=False):
+			(exp, instance) = (run.experiment, run.instance.shortname)
+
+			if args.f:
+				print("Purging experiment '{}', instance '{}' [{}]".format(
+						exp.name, instance, run.repetition))
+
+				util.try_rmfile(run.aux_file_path('lock'))
+				util.try_rmfile(run.aux_file_path('run'))
+				util.try_rmfile(run.aux_file_path('stderr'))
+				util.try_rmfile(run.aux_file_path('stdout'))
+				util.try_rmfile(run.aux_file_path('run.tmp'))
+				util.try_rmfile(run.output_file_path('status'))
+				util.try_rmfile(run.output_file_path('status.tmp'))
+
+				for ext in run.experiment.info.output_extensions:
+					util.try_rmfile(run.output_file_path(ext))
+
+				run.purge_status_cache_dict()
+
+			else:
+				print("This would purge experiment '{}', instance '{}' [{}]. Use '-f' to confirm this action.".format(
+						exp.name, instance, run.repetition))
+
+	cfg.writeback_status_cache()
+
+experiments_purge_parser = experiments_subcmds.add_parser('purge',
+		parents=[run_selection_parser])
+experiments_purge_parser.set_defaults(cmd=do_experiments_purge)
+experiments_purge_parser.add_argument('-f', action='store_true', help='execute purge')
+
+def do_experiments_print_output(args):
+	cfg = extl.base.config_for_dir()
+
+	if not can_select_runs_from_cli(args):
+		print("Use an additional argument to print the respective output files.\n"
+			  "Use 'simex e print -h' to look at the list of possible arguments.", file=sys.stderr)
+		return
+	else:
+		for run in select_runs_from_cli(cfg, args, default_all=False):
+			print('Experiment: {}'.format(run.experiment.name))
+			print('Instance: {}'.format(run.instance.shortname))
+			print('Output:\n\n{}\n'.format(util.read_file(run.output_file_path_from_yml())))
+			print('Error Output:\n\n{}\n'.format(util.read_file(run.aux_file_path('stderr'))))
+
+	cfg.writeback_status_cache()
+
+experiments_print_parser = experiments_subcmds.add_parser('print',
+		parents=[run_selection_parser])
+experiments_print_parser.set_defaults(cmd=do_experiments_print_output)
+
+# ---------------------------------------------------------------------------------------
+
+def do_archive(args):
+	import tarfile
+
+	tar = tarfile.open('data.tar.gz', 'w:gz')
+	tar.add('experiments.yml')
+	tar.add('output/')
+	tar.close()
+
+archive_parser = main_subcmds.add_parser('archive', help='Archive experimental results')
+archive_parser.set_defaults(cmd=do_archive)
+
+# ---------------------------------------------------------------------------------------
+# Advanced commands.
+# ---------------------------------------------------------------------------------------
+
+queue_parser = main_subcmds.add_parser('queue', help='Local batch queue for experiments',
+		aliases=['q'])
+queue_subcmds = queue_parser.add_subparsers()
+queue_subcmds.required = True
+
+def do_queue_daemon(args):
+	import shutil
+	import subprocess
+
+	script = os.path.abspath(sys.argv[0])
+
+	if shutil.which('systemd-run'):
+		subprocess.check_call(['systemd-run', '--user',
+				script, 'internal-queuesock'])
+	else:
+		raise RuntimeError('No supported service manager is available')
+
+queue_daemon_parser = queue_subcmds.add_parser('daemon')
+queue_daemon_parser.set_defaults(cmd=do_queue_daemon)
+
+def do_queue_stop(args):
+	simexpal.queuesock.stop_queue()
+
+queue_stop_parser = queue_subcmds.add_parser('stop')
+queue_stop_parser.set_defaults(cmd=do_queue_stop)
+
+def do_queue_interactive(args):
+	loop = simexpal.evloop.EventLoop()
+	simexpal.queuesock.run_queue(loop, force=args.force, sockfd=args.sockfd)
+	loop.run()
+
+queue_interactive_parser = queue_subcmds.add_parser('interactive')
+queue_interactive_parser.set_defaults(cmd=do_queue_interactive)
+queue_interactive_parser.add_argument('--sockfd', type=int)
+queue_interactive_parser.add_argument('--force', action='store_true')
+
+# ---------------------------------------------------------------------------------------
+# Internal commands. Not intended for CLI users.
+# ---------------------------------------------------------------------------------------
+
+def do_invoke(args, basedir=None):
+	if args.slurm:
+		with open(args.specfile, 'r') as f:
+			yml = util.read_yaml_file(f)
+		manifest = extl.launch.common.RunManifest(yml['manifest'])
+		extl.launch.common.invoke_run(manifest)
+	elif args.slurm_array:
+		with open(args.specfile, 'r') as f:
+			yml = util.read_yaml_file(f)
+
+		assert 'SLURM_ARRAY_TASK_ID' in os.environ
+		n = int(os.environ['SLURM_ARRAY_TASK_ID'])
+
+		manifest = extl.launch.common.RunManifest(yml['manifests'][n])
+		extl.launch.common.invoke_run(manifest)
+	else:
+		# Legacy handling for SGE.
+		cfg = extl.base.config_for_dir(basedir=basedir)
+
+		sel = [ ]
+		for run in cfg.discover_all_runs():
+			if args.specfile is not None:
+				with open(args.specfile, 'r') as f:
+					spec_yml = yaml.load(f, Loader=YmlLoader)
+
+				assert args.sge_index
+				index = int(os.environ['SGE_TASK_ID'])
+				ent_yml = spec_yml['array'][index]
+
+				if run.experiment.name != ent_yml['experiment']:
+					continue
+				if run.instance.shortname != ent_yml['instance']:
+					continue
+				if run.repetition != ent_yml['repetition']:
+					continue
+			else:
+				if run.experiment.name != args.experiment:
+					continue
+				if run.instance.shortname != args.instance:
+					continue
+				if run.repetition != args.repetition:
+					continue
+			sel.append(run)
+
+		for run in sel:
+			if args.n:
+				print("Would launch {}/{}[{}]".format(run.experiment.name, run.instance.shortname,
+						run.repetition))
+			else:
+				manifest = extl.launch.common.compile_manifest(run)
+				extl.launch.common.invoke_run(manifest)
+
+invoke_parser = main_subcmds.add_parser('internal-invoke')
+invoke_parser.set_defaults(cmd=do_invoke)
+invoke_parser.add_argument('-n', action='store_true')
+invoke_parser.add_argument('--slurm', action='store_true')
+invoke_parser.add_argument('--slurm-array', action='store_true')
+invoke_parser.add_argument('--sge-index', action='store_true')
+invoke_parser.add_argument('--experiment', type=str) # Legacy argument for SGE.
+invoke_parser.add_argument('--instance', type=str) # Legacy argument for SGE.
+invoke_parser.add_argument('--repetition', type=int) # Legacy argument for SGE.
+invoke_parser.add_argument('specfile', type=str)
+
+def do_internal_queuesock(args):
+	loop = simexpal.evloop.EventLoop()
+	simexpal.queuesock.run_queue(loop, sockfd=args.sockfd)
+	loop.run()
+
+internal_queuesock_parser = main_subcmds.add_parser('internal-queuesock')
+internal_queuesock_parser.set_defaults(cmd=do_internal_queuesock)
+internal_queuesock_parser.add_argument('--sockfd', type=int)
+
+# ---------------------------------------------------------------------------------------
+
+argcomplete.autocomplete(main_parser)
+main_args = main_parser.parse_args()
+main_args.cmd(main_args)
+
