@@ -1,0 +1,96 @@
+Metadata-Version: 2.1
+Name: Mopidy-Sangu
+Version: 1.2.0
+Summary: Democratic, collaborative playlist frontend for Mopidy made with Flutter
+Home-page: https://github.com/smckend/mopidy_sangu
+Author: Samuel McKendrick, Agnieszka Lewicka
+Author-email: sam.macca9@gmail.com,
+License: Apache License, Version 2.0
+Platform: UNKNOWN
+Classifier: Environment :: No Input/Output (Daemon)
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Multimedia :: Sound/Audio :: Players
+Requires-Python: >=3.7
+Requires-Dist: Mopidy (>=3.0.0)
+Requires-Dist: Pykka (>=2.0.1)
+Requires-Dist: setuptools
+Provides-Extra: dev
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: check-manifest ; extra == 'dev'
+Requires-Dist: flake8 ; extra == 'dev'
+Requires-Dist: flake8-bugbear ; extra == 'dev'
+Requires-Dist: flake8-import-order ; extra == 'dev'
+Requires-Dist: isort[pyproject] ; extra == 'dev'
+Requires-Dist: twine ; extra == 'dev'
+Requires-Dist: wheel ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+Provides-Extra: lint
+Requires-Dist: black ; extra == 'lint'
+Requires-Dist: check-manifest ; extra == 'lint'
+Requires-Dist: flake8 ; extra == 'lint'
+Requires-Dist: flake8-bugbear ; extra == 'lint'
+Requires-Dist: flake8-import-order ; extra == 'lint'
+Requires-Dist: isort[pyproject] ; extra == 'lint'
+Provides-Extra: release
+Requires-Dist: twine ; extra == 'release'
+Requires-Dist: wheel ; extra == 'release'
+Provides-Extra: test
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: pytest-cov ; extra == 'test'
+
+****************************
+Mopidy-Sangu
+****************************
+
+.. image:: https://img.shields.io/pypi/v/Mopidy-Sangu
+    :target: https://pypi.org/project/Mopidy-Sangu/
+    :alt: Latest PyPI version
+
+Frontend for mopidy to manage a playlist in a diplomatic fashion. Collaborators can add and vote for songs they'd like
+to hear, and everyone's song choice will be played eventually with no skipping currently allowed. Democracy.
+
+
+Installation
+============
+
+Install by running::
+
+    pip install Mopidy-Sangu
+
+Configuration
+=============
+
+Before starting Mopidy, you must add configuration for
+Mopidy-Sangu to your Mopidy configuration file::
+
+    [sangu]
+    enabled = true
+    admin_password = <some-pass>
+    enable_play_button = <bool> # optional
+    fallback_playlist_uri = <some-supported-uri-of-playlist-or-album> # optional
+    shuffle_fallback_playlist = <bool> # optional
+    stream_url = <url-mopidy-output-is-streamed-to> # optional
+
+
+Project resources
+=================
+
+- `Source code <https://github.com/smckend/mopidy-sangu>`_
+- `Issue tracker <https://github.com/smckend/mopidy-sangu/issues>`_
+- `Changelog <https://github.com/smckend/mopidy-sangu/blob/master/CHANGELOG.rst>`_
+
+
+Credits
+=======
+
+- Original authors: `Samuel McKendrick <https://github.com/smckend>`_, `Agnieszka Lewicka <https://github.com/AgnieszkaLewicka>`_
+- Current maintainer(s): `Samuel McKendrick <https://github.com/smckend>`_
+- `Contributors <https://github.com/smckend/mopidy-sangu/graphs/contributors>`_
+
+
