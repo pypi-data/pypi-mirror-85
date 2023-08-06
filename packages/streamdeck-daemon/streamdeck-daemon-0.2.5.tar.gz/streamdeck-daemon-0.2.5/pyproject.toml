@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "streamdeck-daemon"
+version = "0.2.5"
+description = "A Simple daemon for controlling the Elgato Stremdeck devices"
+authors = ["Jesper Fussing Mørk <jfm@moerks.dk>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+streamdeck = "^0.8.2"
+pyyaml = "^5.3.1"
+pillow = "^7.2.0"
+pyautogui = "^0.9.51"
+pluginbase = "^1.0.0"
+xdg = "^4.0.1"
+phue = "^1.1"
+simpleobsws = "^0.0.7"
+
+[tool.poetry.dev-dependencies]
+neovim = "^0.3.1"
+pytest = "^6.1.1"
+flake8 = "^3.8.4"
+pytest-mock = "^3.3.1"
+
+[tool.poetry.scripts]
+streamdeck = "streamdeck_daemon.streamdeck:run_streamdeck"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
