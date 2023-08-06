@@ -1,0 +1,10 @@
+---
+- hosts: primary
+  environment:
+    KAYOBE_CONFIG_SOURCE_PATH: "{{ kayobe_config_src_dir }}"
+    # Don't provision a seed VM - use the Zuul VM as the seed host.
+    KAYOBE_SEED_VM_PROVISION: 0
+  tasks:
+    - name: Ensure seed is deployed
+      shell:
+        cmd: "{{ kayobe_src_dir }}/dev/seed-deploy.sh &> {{ logs_dir }}/ansible/seed-deploy"
