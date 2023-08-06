@@ -1,0 +1,5 @@
+{% if perms.dcim.view_device %}
+    <a href="{% url 'plugins:netbox_announcement:announcement_list' %}?type=server&server_type=device&related_device={{ object.id }}" class="btn btn-info">
+        <span class="fa fa-list" aria-hidden="true"></span> Device Announcements
+    </a>
+{% endif %}
