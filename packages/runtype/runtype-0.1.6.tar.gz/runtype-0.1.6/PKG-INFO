@@ -1,0 +1,29 @@
+Metadata-Version: 1.1
+Name: runtype
+Version: 0.1.6
+Summary: Type dispatch and validation for run-time
+Home-page: https://github.com/erezsh/runtype
+Author: Erez Shinan
+Author-email: erezshin@gmail.com
+License: MIT
+Download-URL: https://github.com/erezsh/runtype/tarball/master
+Description: 
+        runtype is composed of several utility modules:
+        
+        1. dispatch - Provides a decorator for fast multi-dispatch at run-time for functions, with sophisticated ambiguity resolution.
+        
+        2. dataclass - Improves on Python's existing dataclass, by verifying the type-correctness of its attributes at run-time. Also provides a few useful methods for dataclasses.
+        
+        3. isa - Provides alternative functions to `isinstance` and `issubclass`, that undestand Python's `typing` module.
+        
+        Runtype's integration with the `typing` module allows to use type signatures such as `List[int]`, `Optional[str]`, or `Union[int, str, Callable]`.
+        
+Keywords: types typing dispatch dataclass runtime
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Quality Assurance
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: MIT License
