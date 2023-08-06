@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: mscviplib
+Version: 2.201116.83
+Summary: Python Wrapper for Microsoft Custom Vision Image Processing Library (mscviplib)
+Home-page: https://docs.microsoft.com/en-us/azure/cognitive-services/custom-vision-service/
+Author: Microsoft Corporation
+Author-email: python@microsoft.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation
+Classifier: Topic :: Multimedia :: Graphics
+Requires-Python: >=3.7
+Requires-Dist: numpy
+Requires-Dist: pillow (<7)
+
+mscviplib
+===========
+
+An image preprocessing and augmentation module for use with CustomVision.ai machine learning models.
+See [Custom Vision Service](https://docs.microsoft.com/en-us/azure/cognitive-services/custom-vision-service/) for background and details.
+
+
+Installation
+============
+
+To install::
+
+    pip install mscviplib
+
+Note that currently, this module only works (and is only useful) on Linux.
+
+
+Usage
+=====
+
+The main functions are: 
+ - ``GetImageMetadata`` returns metadata object used with the subsequent preprocessing call.
+ - ``PreprocessForInferenceAsTensor`` Performs image preprocessing for inference. Returns [Channel x Height x Width] normalized float tensor.
+ - ``PreprocessForInferenceAsImage`` Performs image preprocessing for inference. Returns an image as RGB or BGR bytes. 
+
