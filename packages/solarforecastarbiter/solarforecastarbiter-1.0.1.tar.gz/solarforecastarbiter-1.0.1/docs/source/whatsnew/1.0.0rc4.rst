@@ -1,0 +1,120 @@
+.. _whatsnew_100rc4:
+
+.. py:currentmodule:: solarforecastarbiter
+
+1.0.0rc4 (October 29, 2020)
+---------------------------
+
+This is the fourth 1.0 release candidate.
+
+API Changes
+~~~~~~~~~~~
+* Changed ``validation.validator.check_irradiance_day_night`` to
+  :py:func:`validation.validator.check_day_night`. This function is now only
+  recommended for instantaneous values. See new function
+  :py:func:`validation.validator.check_day_night_interval` for
+  non-instantaneous values. (:issue:`465`, :issue:`577`, :pull:`579`)
+* :py:func:`validation.validator.check_ac_power_limits` and
+  :py:func:`validation.validator.check_dc_power_limits` now accept a Series of
+  day/night bools instead of a Series of solar zenith. This allows for a more
+  careful calculation of day/night bools for non-instantaneous intervals
+  without complicating the AC/DC limit functions. (:issue:`577`, :pull:`579`)
+* :py:class:`datamodel.QualityFlagFilter` has two new keyword arguments:
+  ``discard_before_resample`` and ``resample_threshold_percentage`` that
+  control how the filter will be applied when resampling.
+  (:issue:`556`, :pull:`580`)
+* New functions :py:func:`metrics.preprocessing.filter_resample`,
+  :py:func:`metrics.preprocessing.align`, and
+  :py:func:`metrics.preprocessing.check_reference_forecast_consistency`
+  replace functions ``metrics.preprocessing.apply_validation``,
+  ``metrics.preprocessing.exclude``, and
+  ``metrics.preprocessing.resample_and_align``.
+  (:issue:`556`, :pull:`580`)
+* Added `new_index` argument to :py:func:`utils.compute_aggregate` to define
+  an index for the computed aggregate. (:issue:`587`)(:pull:`590`)
+* Added :py:mod:`solarforecastarbiter.io.reference_observations.bsrn`
+  to initialize reference data from the BSRN network (:issue:`541`) (:pull:`604`)
+* Removed ``preprocessing.VALIDATION_RESULT_TOTAL_STRING`` and
+  ``preprocessing.UNDEFINED_DATA_STRING``.
+* Added CRPS skill score metric :py:func:`metrics.probabilistic.crps_skill_score`
+  (:issue:`494`) (:pull:`605`)
+* Added :py:func:`reports.template.build_summary_stats_json`,
+  :py:func:`metrics.calculator.calculate_summary_statistics`, and
+  :py:func:`metrics.calculator.calculate_all_summary_statistics` to
+  support adding summary statistics to reports (:issue:`355`, :pull:`606`)
+
+
+Enhancements
+~~~~~~~~~~~~
+* Add :py:func:`validation.validator.check_day_night_interval` for determining
+  day/night status for non-instantaneous intervals. (:issue:`577`, :pull:`579`)
+* Allow users to render reports without full access to the time series data of
+  the report's forecasts and observations. Users with limited permissions on a
+  report may need to instantiate a :py:class:`datamodel.Report` object from an
+  api response from the ``/reports`` endpoint manually. (:pull:`585`)
+* Add seasons to metrics category options. (:issue:`552`, :pull:`592`)
+* Allow setting ``uncertainty=None`` on :py:class:`datamodel.Observation` to
+  indicate an unknown uncertainty (:pull:`591`)
+* Update :py:func:`io.utils.ensure_timestamps` to raise a descriptive TypeError
+  for missing arguments to the underlying function (:issue:`498`)(:pull:`595`)
+* Interval label, interval value type, and aggregate type are now validated
+  when creating datamodel objects (:issue:`213`) (:pull:`596`)
+* Add the automatically generated `constant_value_units` attribute to
+  :py:class:`datamodel.ProbabilisticForecast` and :py:class:`datamodel.ProbabilisticForecastConstantValue`
+  (:issue:`470`) (:pull:`598`)
+* Enable downloading the forecast/observation metadata and the resampled
+  timeseries from a HTML report (:issue:`354`) (:pull:`601`)
+* Add :py:meth:`io.api.APISession.chunk_value_requests` for requesting large
+  amounts of data. (:issue:`573`)(:pull:`600`)
+* Restructured and rewrote report data preprocessing text to account for
+  new filter/resample pattern and clarify the processes. Added a table that
+  summarizes the filter combinations applied in the report.
+  (:issue:`589`, :pull:`602`, :pull:`607`)
+* Added summary statistics for resample and aligned observations,
+  forecasts, and reference forecasts to reports (:issue:`355`, :pull:`606`)
+
+
+Bug fixes
+~~~~~~~~~
+* Night time validation flag for non-instantaneous data is now calculated
+  based on the percentage of night time points in the interval, rather than
+  the night time flag at the interval label. (:issue:`577`, :pull:`579`)
+* Irradiance limit flags and clear sky exceeded flag for non-instantaneous data
+  now use average solar position over the interval, rather than the solar
+  position at the interval label. (:pull:`579`)
+* Filtering on flags such as NIGHTTIME may now be applied after resampling so
+  that interval averages are still calculated correctly.
+  (:issue:`556`, :pull:`580`)
+* Allow for scaling of x axis tick frequency on report metric plots to avoid
+  crowding for *date* category. (:issue:`578`) (:pull:`581`)
+* Fix spacing of plot titles to avoid long names running out of container and
+  Plotly toolbar overlap. (:issue:`577`) (:pull:`581`)
+* Dynamically calculate plot height to avoid truncating long forecast names
+  in total metric plots. (:issue:`576`) (:pull:`581`) (:pull:`582`)
+* Fix GEFS file fetching for upgraded model (:issue:`544`) (:pull:`584`)
+* Fixed issue with overlapping table entries for report metric, validation, and
+  preprocessing tables. Tables are now horizontally scrollable to avoid overlap
+  of columns. (:issue:`418`) (:pull:`588`)
+* Fixed bug causing `KeyError` to be raised when computing an aggregate
+  outside an included observation's `effective_from` and `effective_until`.
+  (:issue:`587`)(:pull:`590`)
+* Fixed bug in process management when fetching NWP files which caused the
+  script to hang indefinitely if a process were killed by the OS
+  (:issue:`343`) (:pull:`594`)
+* Stop errors generated in the report process from being sent to
+  sentry (:issue:`329`) (:pull:`597`)
+* Avoid stacking of forecasts errors in the Total plots in reports
+  and show the full forecast name on hover (:issue:`463`) (:pull:`599`)
+
+
+Contributors
+~~~~~~~~~~~~
+
+* Will Holmgren (:ghuser:`wholmgren`)
+* Leland Boeman (:ghuser:`lboeman`)
+* Cliff Hansen (:ghuser:`cwhanse`)
+* Tony Lorenzo (:ghuser:`alorenzo175`)
+* Justin Sharp (:ghuser:`MrWindAndSolar`)
+* Aidan Tuohy
+* Adam Wigington (:ghuser:`awig`)
+* David Larson (:ghuser:`dplarson`)

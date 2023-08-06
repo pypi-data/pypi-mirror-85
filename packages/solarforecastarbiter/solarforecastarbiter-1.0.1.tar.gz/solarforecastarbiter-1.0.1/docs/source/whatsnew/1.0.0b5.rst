@@ -1,0 +1,158 @@
+.. _whatsnew_100b5:
+
+1.0.0b5 (April 27, 2020)
+------------------------
+
+This is the fifth 1.0 beta release.
+
+Highlights include:
+
+* support for event forecasts and reports
+* using plotly to generate report figures
+* support for normalized metrics in the reports
+* an option to account for uncertainty using a deadband in reports
+* support for forecast skill in reports
+
+See below for the full list of changes.
+
+
+API Changes
+~~~~~~~~~~~
+* Added :py:mod:`solarforecastarbiter.reports.figures` which contains modules
+  for creating Bokeh and Plotly report figures.
+* Added :py:mod:`solarforecastarbiter.reports.figures.plotly_figures` to create
+  report figures using plotly (:pull:`359`)(:pull:`388`)
+* :py:func:`solarforecastarbiter.reports.figures.bokeh_figures.output_svg`
+  now takes a :py:class:`selenium.webdriver.remote.webdriver.WebDriver` as an
+  optional argument (:pull:`345`)
+* Add metrics for deterministic event forecasts
+  :py:func:`solarforecastarbiter.metrics.event.probability_of_detection`,
+  :py:func:`solarforecastarbiter.metrics.event.false_alarm_ratio`,
+  :py:func:`solarforecastarbiter.metrics.event.probability_of_false_detection`,
+  :py:func:`solarforecastarbiter.metrics.event.critical_success_index`,
+  :py:func:`solarforecastarbiter.metrics.event.event_bias`, and
+  :py:func:`solarforecastarbiter.metrics.event.event_accuracy`. (:issue:`347`) (:pull:`348`)
+* Add functions to get the time range of values available in the API:
+  :py:func:`solarforecastarbiter.io.api.get_observation_time_range`,
+  :py:func:`solarforecastarbiter.io.api.get_forecast_time_range`,
+  :py:func:`solarforecastarbiter.io.api.get_probabilistic_forecast_constant_value_time_range`.
+  (:pull:`369`)
+* Start and end are now optional parameters for the
+  `solararbiter referencedata update` CLI command (:pull:`369`)
+* :py:func:`solarforecastarbiter.vavlidation.tasks.validate_timestamp` has been
+  replaced with
+  :py:func:`solarforecastarbiter.vavlidation.tasks.validate_defaults` which
+  also adds a nighttime flag (:pull:`382`)
+* Removed ``normalizer`` keyword argument from
+  :py:func:`solarforecastarbiter.metrics.calculate_metrics` and
+  :py:func:`solarforecastarbiter.metrics.calculate_deterministic_metrics`.
+  Normalization is now determined by the attributes of the datamodel objects.
+  (:pull:`379`)
+* Many functions in :py:mod:`solarforecastarbiter.metrics.deterministic` gain
+  a keyword argument ``error_fnc`` for specifying a function that calculates
+  the nominal difference forecast - observation. Among other things, this
+  is useful for specifying a deadband. (:pull:`378`)
+* Added support for probabilistic forecasts with
+  :py:func:`solarforecastarbiter.metrics.calculator.calculate_metrics` modifications and
+  :py:func:`solarforecastarbiter.metrics.calculator.calculate_probabilistic_metrics` addition. (:issue:`315`) (:issue:`266`) (:pull:`367`)
+* Added api function to get all values of a :py:class:`solarforecastarbiter.datamodel.ProbabilisticForecast` with addition of
+  :py:func:`solarforecastarbiter.io.api.get_probabilistic_forecast_values`. (:pull:`367`)
+* Removed ``ref_pair`` from
+  :py:func:`solarforecastarbiter.metrics.calculator.calculate_metrics`
+  and ``ref_fx_obs`` from
+  :py:func:`solarforecastarbiter.metrics.calculator.calculate_deterministic_metrics`
+  and
+  :py:func:`solarforecastarbiter.metrics.calculator.calculate_probabilistic_metrics`.
+  Instead, use the reference forecast attributes of
+  :py:class:`solararbiter.ForecastObservation` and
+  :py:class:`solararbiter.ProcessedForecastObservation` to supply reference
+  forecast metadata and values. (:issue:`386`, :pull:`387`)
+* :py:func:`solarforecastarbiter.metrics.preprocessing.resample_and_align` now
+  requires input reference forecast time series (optionally ``None``), and
+  also returns processed reference forecast time series (or ``None``).
+  (:issue:`386`, :pull:`387`)
+* Added capability to import reference data from DOE ARM sites in the
+  :py:mod:`solarforecastarbiter.io.reference_observations.arm` module. Data can
+  be initialized and updated via the Solar Forecast Arbiter CLI
+  ``referencedata`` command.(:pull:`390`)
+* Added support for event observations and forecasts with
+  :py:func:`solarforecastarbiter.datamodel.Observation` modifications and
+  :py:func:`solarforecastarbiter.datamodel.EventForecast` addition. (:issue:`357`) (:pull:`361`) (:pull:`399`)
+* Added support for evaluating event forecasts with
+  :py:func:`solarforecastarbiter.metrics.calculator.calculate_metrics` modification,
+  :py:func:`solarforecastarbiter.metrics.calculator.calculate_event_metrics` addition and
+  :py:func:`solarforecastarbiter.metrics.preprocessing.resample_and_align` modifications. (:issue:`357`) (:issue:`380`) (:pull:`361`)
+* Added support for plotting timeseries of event observations and forecasts to
+  :py:func:`solararbiter.plotting.timeseries.make_basic_timeseries`. (:pull:`394`)
+
+Enhancements
+~~~~~~~~~~~~
+* Report plots are now created using Plotly. Bokeh figure generation moved to
+  :py:mod:`solarforecastarbiter.reports.figures.bokeh_figures` for users
+  still interested in bokeh figures.(:pull:`359`)
+* Report timeseries plots no longer draw lines over missing data points
+  (:issue:`351`).
+* Double clicking a forecast or observation in the legend of report timeseries
+  plots will toggle the display of all other timeseries. (:issue:`253`)
+* Clean up any PhantomJS drivers created to render SVGs (:issue:`344`)
+  (:pull:`349`)
+* Reference data updates can now proceed from the last value in the API
+  to avoid any artificial data gaps (:pull:`369`) (:issue:`353`)
+* GHI validation now includes checks on if a period is cloud-free and will be
+  flagged with CLEARSKY (:issue:`210`) (:pull:`382`)
+* All data validation now includes the generation of the NIGHTTIME flag
+  (:issue:`293`) (:pull:`382`)
+* Metrics automatically determine normalization based on Observation type.
+  AC power observations are normalized by AC capacity; DC power by DC
+  capacity. Normalized metrics set to ``nan`` for all other variables.
+  (:issue:`370`) (:pull:`379`)
+* Metrics ``'mae', 'mbe', 'rmse', 'mape', 'nmae', 'nmbe', 'nrmse', 's'`` may
+  now be calculated using a deadband. The deadband is specified as a
+  percentage of the observations. The error forecast - observation is
+  set to 0 within the deadband. The deadband is controlled using the
+  :py:class:`solarforecastarbiter.datamodel.ForecastObservation` and
+  :py:class:`solarforecastarbiter.datamodel.ForecastAggregate`
+  ``uncertainty`` argument. ``None`` implies no deadband and a float
+  sets the deadband. Additionally, for
+  :py:class:`solarforecastarbiter.datamodel.ForecastObservation`,
+  the string ``'observation_uncertainty'`` may be supplied to set the
+  deadband equal to
+  :py:attr:`solarforecastarbiter.datamodel.Observation.uncertainty`.
+  (:issue:`358`, :pull:`378`)
+* Reports can now report the forecast skill metric (s) when a reference
+  forecast is provided. The metadata table of forecasts and observations now
+  includes reference forecasts. (:issue:`386`, :pull:`387`)
+* Reports now support evaluating event forecasts. (:issue:`380`) (:pull:`361`)
+
+
+Bug fixes
+~~~~~~~~~
+* Fix using deprecated 'M' string for a month offset in
+  :py:func:`solarforecastarbiter.io.reference_observaions.srml.fetch`
+  (:issue:`341`) (:pull:`342`)
+* Fix CLI report generation when status not set in report metadata
+  (:pull:`345`)
+* Fix bug with APISession list functions when only a single value is available.
+  (:pull:`367`)
+* Fix type errors in observation validation by ensuring all time series values from
+  :py:mod:`solarforecastaribter.io.api` functions are coerced to float
+  and converting to float before validation (:issue:`252`) (:pull:`384`)
+* Enforce metric order consistency. (:issue:`352`) (:pull:`396`)
+* Eliminate most warnings from test suite. (:issue:`385`) (:pull:`395`)
+* :py:func:`solarforecastarbiter.metrics.deterministic.forecast_skill` now
+  returns 0 if both forecast and reference forecast errors are 0. (:pull:`395`)
+* Clarify report data validation section text and table. (:issue:`413`)
+  (:pull:`422`)
+
+
+Contributors
+~~~~~~~~~~~~
+
+* Will Holmgren (:ghuser:`wholmgren`)
+* Leland Boeman (:ghuser:`lboeman`)
+* Cliff Hansen (:ghuser:`cwhanse`)
+* Tony Lorenzo (:ghuser:`alorenzo175`)
+* Justin Sharp (:ghuser:`MrWindAndSolar`)
+* Aidan Tuohy
+* Adam Wigington (:ghuser:`awig`)
+* David Larson (:ghuser:`dplarson`)
