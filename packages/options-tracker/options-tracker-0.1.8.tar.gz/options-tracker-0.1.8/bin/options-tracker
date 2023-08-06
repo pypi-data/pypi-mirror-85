@@ -1,0 +1,63 @@
+#!/usr/bin/env python3
+
+import click
+from datetime import datetime
+import dateparser
+
+from optionstracker.value import value
+from optionstracker.price import get_price
+from optionstracker.vesting import vested
+from optionstracker.tax import capital_gains_tax
+
+mirriad_price_url = (
+    'https://www.londonstockexchange.com/'
+    'stock/MIRI/mirriad-advertising-plc/company-page')
+
+
+@click.command()
+@click.option('--short', '-s', is_flag=True, help='single line output')
+@click.option('--grant-date', default='2020-05-18', help='default: 2020-05-18')
+@click.option(
+    '--market-price', type=float, help='override live market price (pence)')
+@click.option(
+    '--lse-price-url', default=mirriad_price_url,
+    help='default: {}'.format(mirriad_price_url))
+@click.option(
+    '--vesting-rate', type=float, default=0.0277, help='default: 0.0277')
+@click.option(
+    '--vesting-interval', default='m', help='default: m. m=monthly y=annually')
+@click.argument('grant-quantity', type=int)
+@click.argument('grant-price-pence', type=float)
+def track_options(
+        grant_quantity, grant_price_pence, vesting_rate, lse_price_url,
+        grant_date, vesting_interval, market_price, short):
+    if not market_price:
+        bid, offer = get_price(lse_price_url)
+        market_price = '0' if bid == '-' else bid
+    grant_date = dateparser.parse(grant_date)
+    vested_quantity, _ = vested(
+          grant_quantity, datetime.now(), grant_date, vesting_rate,
+          vesting_interval)
+    total_value = value(
+      grant_quantity, grant_price_pence, float(market_price))
+    vested_value = value(
+      vested_quantity, grant_price_pence, float(market_price))
+    vested_value_after_tax = vested_value - capital_gains_tax(vested_value)
+    if short:
+        print('{}/{}, {}, £{:,.2f}/£{:,.2f} [£{:.2f}]'.format(
+          vested_quantity, grant_quantity, market_price,
+          vested_value / 100, total_value / 100,
+          vested_value_after_tax / 100))
+    else:
+        print('Market Bid: {}p'.format(bid))
+        print('Options: {:,d} @ {}p granted on {}'.format(
+          grant_quantity, grant_price_pence, grant_date.strftime('%x')))
+        print('Vested Quantity:', vested_quantity)
+        print('Total Value: £{:,.2f}'.format(total_value / 100))
+        print('Vested Value: £{:,.2f}'.format(vested_value / 100))
+        print('Vested Value, less CGT: £{:,.2f}'.format(
+            vested_value_after_tax / 100))
+
+
+if __name__ == '__main__':
+    track_options()
