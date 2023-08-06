@@ -1,0 +1,288 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"id": "http://halo-framework.serverlessdjango.com/schemas/settings.json#",
+	"title": "Schema for halo settings",
+	"description": "Halo framework settings with all app components and elements",
+	"type": "object",
+	"properties": {
+		"stages": {
+              "type": "array",
+              "items": {"enum": ["dev", "tst","prd"]}
+            },
+		"application_name": {"type": "string", "maxLength": 128},
+		"alias": {"type": "string", "maxLength": 15,"description": "add your alias to the project"},
+		"aws_region": {"enum": ["us-east-1", "us-east-2","us-west-1","us-west-2","ca-central-1","eu-central-1","eu-west-1","eu-west-2","eu-west-3","ap-northeast-1","ap-northeast-2","ap-northeast-3","ap-southeast-1","ap-southeast-2","ap-south-1","sa-east-1"]},
+		"profile_name": {"type": "string", "maxLength": 128},
+		"deploy_tool": {"enum": ["zappa","sls"]},
+		"plugins": {
+              "type": "array",
+              "items": {"type": "string", "maxLength": 128}
+            },
+		"mservices": {
+			"type": "object",
+			"patternProperties": {
+				"^.*$": {
+					"type": "object",
+					"properties": {					
+						"type": {"enum": ["front","back","north","south","rpc"],
+							"description": "front=http+html, back=http+json, north=api+html, south=api+json,rpc=http+thrift"},
+						"comment": {"type": "string"},
+						"url": {"type": "string","format": "uri"},
+						"overwrite_if_exists": {"type": "boolean"},
+						"runtime": {"enum": ["python3.6","python3.7","python3.8"]},
+						"framework": {"enum": ["django","flask"]},
+						"libs": {
+							  "type": "array",
+							  "items": {"type": "string"}
+							},
+						"extra_permissions": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"Effect": {"type": "string"},
+									"Action": {
+									  "type": "array",
+									  "items": {"type": "string"}
+									},
+									"Resource": {"type": "string"}
+								}
+							}
+						},
+						"urls": {"type": "string"},
+						"db": {
+							"type": "object",
+							"properties": {
+								"type": {"enum": ["dynamodb"]},
+								"db_ver": {"type": "integer","minimum": 1},
+								"schema": {
+									"type": "object",
+									"properties": {
+										"indexes": {
+											"type": "object",
+											"patternProperties": {
+												"^.*$": {
+													"type": "object",
+													"properties": {
+														"name": {"type": "string", "maxLength": 15,"format":"[a-zA-Z0-9_]"},
+														"type": {"enum": ["global","local"]},
+														"projection" : {"enum": ["All","KeysOnly"]},
+														"fields": {
+															"type": "array",
+															"items": {
+																"type": "object",
+																"properties": {
+																	"name": {"type": "string", "maxLength": 15,"format":"[a-zA-Z0-9_]"},
+																	"type": {"enum": ["UnicodeAttribute","NumberAttribute","UTCDateTimeAttribute","BooleanAttribute","JSONAttribute","ListAttribute","MapAttribute"]},
+																	"key": {"enum": ["hash_key","range_key"]}
+																}
+															}
+														}
+													}
+												}
+											}
+										},
+										"tables": {
+											"type": "object",
+											"patternProperties": {
+												"^.*$": {
+													"type": "object",
+													"properties": {
+														"name": {"type": "string", "maxLength": 15,"format":"[a-zA-Z0-9_]"},
+														"type": {"enum": ["Model"]},
+														"read_capacity_units": {"type": "integer","minimum": 1},
+														"write_capacity_units": {"type": "integer","minimum": 1},
+														"fields": {
+															"type": "array",
+															"items": {
+																"type": "object",
+																"properties": {
+																	"name": {"type": "string", "maxLength": 15,"format":"[a-zA-Z0-9_]"},
+																	"type": {"enum": ["UnicodeAttribute","NumberAttribute","UTCDateTimeAttribute","BooleanAttribute","JSONAttribute","ListAttribute","MapAttribute","Index"]},
+																	"null": {"enum": ["True","False"]},
+																	"default": {"type": "string"},
+																	"key": {"enum": ["hash_key","range_key"]}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						"apis": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"name": {"type": "string", "maxLength": 128},
+									"url": {
+                                        "type": "string",
+                                        "format": "uri",
+                                        "pattern": "^(http|https|rpc|service)://"
+                                    },
+									"type": {"enum": ["service","rest","soap"]},
+									"keys": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"name": {"type": "string", "maxLength": 15,"format":"[a-zA-Z0-9_]"},
+												"val": {"type": "string"}
+											}
+										}
+									}
+								}
+							}
+						},
+						"events": {
+							"type": "object",
+							"properties": {
+								"send": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"name": {
+												"type": "string",
+												"maxLength": 128
+											},
+											"target": {
+												"type": "string",
+												"maxLength": 128
+											},
+											"key": {
+												"type": "string",
+												"maxLength": 128
+											},
+											"val": {
+												"type": "string",
+												"maxLength": 128
+											}
+										}
+									}
+								},
+								"get": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"name": {
+												"type": "string",
+												"maxLength": 128
+											},
+											"key": {
+												"type": "string",
+												"maxLength": 128
+											},
+											"val": {
+												"type": "string",
+												"maxLength": 128
+											}
+										}
+									}
+								}
+							}
+						},
+						"dev": {
+							"type": "object",
+							"properties": {
+								"s3_bucket": {"type": "string","maxLength": 15,"format":"[a-zA-Z0-9\\-]"},
+								"name": {"type": "string", "maxLength": 15,"description": "add your name to the env"},
+								"apis": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"name": {"type": "string", "maxLength": 15,"format":"[a-zA-Z0-9_]"},
+											"url": {
+												"type": "string",
+												"format": "uri",
+												"pattern": "^(http|https|rpc|service)://"
+											},
+											"keys": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"name": {"type": "string", "maxLength": 15,"format":"[a-zA-Z0-9_]"},
+														"val": {"type": "string"}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						"tst": {
+							"type": "object",
+							"properties": {
+								"s3_bucket": {"type": "string","maxLength": 15,"format":"[a-zA-Z0-9\\-]"},
+								"name": {"type": "string", "maxLength": 15,"format":"[a-zA-Z0-9_]" ,"description": "add your name to the env"},
+								"apis": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"name": {"type": "string", "maxLength": 15,"format":"[a-zA-Z0-9_]"},
+											"url": {
+												"type": "string",
+												"format": "uri",
+												"pattern": "^(http|https|rpc|service)://"
+											},
+											"keys": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"name": {"type": "string", "maxLength": 15,"format":"[a-zA-Z0-9_]"},
+														"val": {"type": "string"}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						"prd": {
+							"type": "object",
+							"properties": {
+								"s3_bucket": {"type": "string","maxLength": 15,"format":"[a-zA-Z0-9\\-]"},
+								"name": {"type": "string", "maxLength": 15,"format":"[a-zA-Z0-9_]","description": "add your name to the env"},
+								"apis": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"name": {"type": "string", "maxLength": 15,"format":"[a-zA-Z0-9_]"},
+											"url": {
+												"type": "string",
+												"format": "uri",
+												"pattern": "^(http|https|rpc|service)://"
+											},
+											"keys": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"name": {"type": "string", "maxLength": 15,"format":"[a-zA-Z0-9_]"},
+														"val": {"type": "string"}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}			
+}
