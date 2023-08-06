@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: pypi-client
+Version: 0.1.1
+Summary: PyPI command-line tool
+Home-page: https://github.com/abahdanovich/pypi-client
+License: MIT
+Keywords: pypi,client,cli,github,search
+Author: Andrzej Bogdanowicz
+Author-email: bahdanovich@rtbhouse.com
+Requires-Python: >=3.9,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: appdirs (>=1.4.4,<2.0.0)
+Requires-Dist: click (>=7.1.2,<8.0.0)
+Requires-Dist: diskcache (>=5.0.3,<6.0.0)
+Requires-Dist: lxml (>=4.6.1,<5.0.0)
+Requires-Dist: pypistats (>=0.12.1,<0.13.0)
+Requires-Dist: requests (>=2.24.0,<3.0.0)
+Requires-Dist: tabulate (>=0.8.7,<0.9.0)
+Requires-Dist: tqdm (>=4.51.0,<5.0.0)
+Project-URL: Bug Tracker, https://github.com/abahdanovich/pypi-client/issues
+Project-URL: Repository, https://github.com/abahdanovich/pypi-client
+Description-Content-Type: text/markdown
+
+PyPI client
+===========
+
+```
+Usage: pypi-client [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  auth-github  Log into GitHub
+  search       Search python package by name
+```
