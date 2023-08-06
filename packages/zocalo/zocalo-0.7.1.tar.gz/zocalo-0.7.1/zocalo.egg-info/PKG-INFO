@@ -1,0 +1,156 @@
+Metadata-Version: 1.2
+Name: zocalo
+Version: 0.7.1
+Summary: Infrastructure components for automated data processing at Diamond Light Source
+Home-page: https://github.com/DiamondLightSource/zocalo-python
+Author: Markus Gerstel
+Author-email: scientificsoftware@diamond.ac.uk
+License: BSD license
+Description: ======
+        Zocalo
+        ======
+        
+        
+        .. image:: https://img.shields.io/pypi/v/zocalo.svg
+                :target: https://pypi.python.org/pypi/zocalo
+                :alt: PyPI release
+        
+        .. image:: https://img.shields.io/conda/vn/conda-forge/zocalo.svg
+                :target: https://anaconda.org/conda-forge/zocalo
+                :alt: Conda version
+        
+        .. image:: https://img.shields.io/travis/com/DiamondLightSource/python-zocalo.svg
+                :target: https://travis-ci.com/DiamondLightSource/python-zocalo
+                :alt: Build status
+        
+        .. image:: https://img.shields.io/lgtm/grade/python/g/DiamondLightSource/python-zocalo.svg?logo=lgtm&logoWidth=18
+                :target: https://lgtm.com/projects/g/DiamondLightSource/python-zocalo/context:python
+                :alt: Language grade: Python
+        
+        .. image:: https://img.shields.io/lgtm/alerts/g/DiamondLightSource/python-zocalo.svg?logo=lgtm&logoWidth=18
+                :target: https://lgtm.com/projects/g/DiamondLightSource/python-zocalo/alerts/
+                :alt: Total alerts
+        
+        .. image:: https://readthedocs.org/projects/zocalo/badge/?version=latest
+                :target: https://zocalo.readthedocs.io/en/latest/?badge=latest
+                :alt: Documentation status
+        
+        .. image:: https://img.shields.io/pypi/pyversions/zocalo.svg
+                :target: https://pypi.org/project/zocalo/
+                :alt: Supported Python versions
+        
+        .. image:: https://flat.badgen.net/dependabot/DiamondLightSource/python-zocalo?icon=dependabot
+                :target: https://github.com/DiamondLightSource/python-zocalo/pulls
+                :alt: Dependabot dependency updates
+        
+        .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+                :target: https://github.com/ambv/black
+                :alt: Code style: black
+        
+        .. image:: https://img.shields.io/pypi/l/zocalo.svg
+                :target: https://pypi.python.org/pypi/zocalo
+                :alt: BSD license
+        
+        Infrastructure components for automated data processing at Diamond Light Source
+        
+        * Documentation: https://zocalo.readthedocs.io.
+        
+        
+        Features
+        --------
+        
+        * TODO
+        
+        Credits
+        -------
+        
+        This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+        
+        .. _Cookiecutter: https://github.com/audreyr/cookiecutter
+        .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+        
+        
+        =======
+        History
+        =======
+        
+        0.7.1 (2020-11-13)
+        ------------------
+        * Add a --dry-run option to zocalo.go
+        
+        0.7.0 (2020-11-02)
+        ------------------
+        * Drop support for Python 3.5
+        * Update language constructs for Python 3.6+
+        
+        0.6.4 (2020-11-02)
+        ------------------
+        * Add support for Python 3.9
+        
+        0.6.3 (2020-05-25)
+        ------------------
+        * Remove stomp.py requirement - this is pulled in via workflows only
+        
+        0.6.2 (2019-07-16)
+        ------------------
+        * Set live flag in service environment if service started with '--live'
+        
+        0.6.0 (2019-06-17)
+        ------------------
+        * Start moving dlstbx scripts to zocalo package:
+          * zocalo.go
+          * zocalo.wrap
+        * Entry point 'dlstbx.wrappers' has been renamed 'zocalo.wrappers'
+        * Dropped Python 3.4 support
+        
+        
+        0.5.4 (2019-03-22)
+        ------------------
+        * Compatibility fixes for graypy >= 1.0
+        
+        0.5.2 (2018-12-11)
+        ------------------
+        * Don't attempt to load non-existing file
+        
+        
+        0.5.1 (2018-12-04)
+        ------------------
+        * Fix packaging bug which meant files were missing from the release
+        
+        
+        0.5.0 (2018-12-04)
+        ------------------
+        * Add zocalo.service command to start services
+        
+        
+        0.4.0 (2018-12-04)
+        ------------------
+        * Add status notification thread logic
+        
+        
+        0.3.0 (2018-12-04)
+        ------------------
+        * Add schlockmeister service and base wrapper class
+        
+        
+        0.2.0 (2018-11-28)
+        ------------------
+        * Add function to enable logging to graylog
+        
+        
+        0.1.0 (2018-10-19)
+        ------------------
+        * First release on PyPI.
+        
+Keywords: zocalo
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.6
