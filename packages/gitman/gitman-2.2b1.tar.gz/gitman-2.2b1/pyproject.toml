@@ -1,0 +1,94 @@
+[tool.poetry]
+
+name = "gitman"
+version = "2.2b1"
+description = "A language-agnostic dependency manager using Git."
+
+license = "MIT"
+
+authors = ["Jace Browning <jacebrowning@gmail.com>"]
+
+readme = "README.md"
+
+homepage = "https://pypi.org/project/gitman"
+documentation = "https://gitman.readthedocs.io"
+repository = "https://github.com/jacebrowning/gitman"
+
+keywords = [
+    "git",
+    "version control",
+    "build systems",
+    "dependency management",
+    "submodules",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Build Tools",
+    "Topic :: Software Development :: Version Control",
+    "Topic :: System :: Software Distribution",
+]
+
+[tool.poetry.dependencies]
+
+python = "^3.7"
+
+datafiles = "~0.11"
+minilog = "^2.0"
+
+[tool.poetry.dev-dependencies]
+
+# Formatters
+black = "=19.10b0"
+isort = "=4.3.21"
+
+# Linters
+mypy = "^0.761"
+pydocstyle = "*"
+pylint = { git = "https://github.com/PyCQA/pylint", rev = "e169e83e52fedc6624235d45e8e8737294a0fedf" } # 2.4.5 has not yet been released
+
+# Testing
+pytest = "^5.1.2"
+pytest-cov = "*"
+pytest-describe = "^1.0"
+pytest-expecter = "^2.1"
+pytest-random = "*"
+freezegun = "*"
+
+# Reports
+coveragespace = "*"
+
+# Documentation
+mkdocs = "~1.0"
+pygments = "^2.5.2"
+
+# Tooling
+pyinstaller = "*"
+sniffer = "*"
+MacFSEvents = { version = "*", platform = "darwin" }
+pync = { version = "*", platform = "darwin" }
+rope = "^0.14.0"
+
+[tool.poetry.scripts]
+
+gitman = "gitman.cli:main"
+git-deps = "gitman.plugin:main"
+
+[tool.black]
+
+target-version = ["py36"]
+skip-string-normalization = true
+
+[build-system]
+
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
