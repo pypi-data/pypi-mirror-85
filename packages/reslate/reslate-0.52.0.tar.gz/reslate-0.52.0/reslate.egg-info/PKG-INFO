@@ -1,0 +1,133 @@
+Metadata-Version: 2.1
+Name: reslate
+Version: 0.52.0
+Summary: A command-line tool to generate and update Sphinx-based API documentation pages.
+Home-page: https://gitlab.com/sjrowlinson/reslate
+Author: Samuel Rowlinson
+Author-email: sjrowlinson@virginmedia.com
+License: GPL
+Project-URL: Source, https://gitlab.com/sjrowlinson/reslate
+Description: ![](https://gitlab.com/sjrowlinson/reslate/raw/master/images/reslate_logo.png)
+        
+        An automatic API documentation pages generator and updater for Sphinx-based docs.
+        
+        - Follow the latest changes: https://gitlab.com/sjrowlinson/reslate
+        
+        *Note: `reslate` is still in the alpha stage of development.*
+        
+        ## Setting up `reslate`
+        
+        `reslate` is designed, primarily, to be used with a `git`-based repository consisting
+        of the contents of a Python package which has [Sphinx](http://www.sphinx-doc.org/en/master/)
+        generated documentation. In this way, it is intended to be used as a step in the pre-commit
+        process as it accepts a number of modified source files and attempts to update / generate API
+        documentation from these modifications.
+        
+        This is the recommended way of using `reslate` and, as a consequence of this, you do
+        not necessarily have to install `reslate` manually as your `pre-commit` hook script will take
+        care of this for you.
+        
+        If installing reslate is not a problem for you then Option 1 is the quickest way to set up
+        the necessary files. Otherwise, if for whatever reason you do not want to / cannot install
+        `reslate` manually, Option 2 will guide you through this (short, two-stage) set-up process manually.
+        
+        Whichever option you choose, not that you will need to install the [pre-commit package](https://pre-commit.com/#new-hooks)
+        to use `reslate` in this way.
+        
+        ### Option 1) Install `reslate` and initialise
+        
+        To install `reslate` simply run:
+        
+        ```
+        pip install reslate
+        ```
+        
+        Then in the root directory of the local copy of your project repository, run:
+        
+        ```
+        reslate --init
+        ```
+        
+        to:
+        
+        - create the `.reslate-config.yaml` file required for running `reslate`,
+        - and create / modify the `.pre-commit-config.yaml` file with an entry for
+          the `reslate` hook.
+        
+        ### Option 2) Create files required for `reslate` manually
+        
+        To get started, you simply need to complete these two steps:
+        
+        - Create a `.reslate-config.yaml` file in the root of your
+          repository directory with the following contents:
+        
+            ```
+            # path to package source code relative to package root
+            package_source_path: <PATH_TO_PKG_SRC>
+        
+            # path to package documentation source relative to package root
+            docs_source_path: <PATH_TO_DOCS_SRC>
+        
+            # files and patterns to exclude from documenting
+            exclude:
+                files: ['^_', '^\.', 'version', 'test']
+                subpkgs: ['^_', '^\.', version', 'test']
+        
+                classes: []
+                enums: []
+                dataclasses: []
+                methods: []
+                functions: []
+            ```
+        
+          where you should replace `<PATH_TO_PKG_SRC>` with the relative path to your Python package
+          source code (this will, in almost all cases, be just the name of your Python package), and
+          `<PATH_TO_DOCS_SRC>` with the relative path to your documentation source files (typically `docs/source`).
+        
+        - Add (or modify) a `.pre-commit-config.yaml` file to your repository root with the following contents:
+        
+            ```
+            repos:
+                - repo: https://gitlab.com/sjrowlinson/reslate
+                rev: v1.0.0
+                hooks:
+                    - id: reslate
+            ```
+        
+        ### Requirements for `reslate`
+        
+        You will need to install the [pre-commit package](https://pre-commit.com/#new-hooks)
+        to use `reslate` in the recommended way.
+        
+        The [Sphinx autosummary extension](https://www.sphinx-doc.org/en/master/usage/extensions/autosummary.html) will
+        need to be added to the `extensions` list of your Sphinx `conf.py` file:
+        
+        ```
+        extension = [
+            # ...
+            "sphinx.ext.autosummary",
+            # ...
+        ]
+        ```
+        
+        ## Using `reslate`
+        
+        After completing the setting up process above, you're essentially done! Now whenever you `git commit` any staged
+        changes which add, remove or modify any Python or Cython files within your package, `reslate` will run as part of
+        the `pre-commit` process and update your API documentation pages accordingly. Any documentation files added, removed
+        or changed will then be automatically amended to your commit upon completion of the `pre-commit` hooks.
+        
+Keywords: documentation git pre-commit
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Software Development :: Documentation
+Classifier: Topic :: Software Development :: Version Control :: Git
+Classifier: Topic :: Documentation
+Classifier: Topic :: Documentation :: Sphinx
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
