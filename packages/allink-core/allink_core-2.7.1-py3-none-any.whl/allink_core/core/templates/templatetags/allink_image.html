@@ -1,0 +1,94 @@
+{% load thumbnail %}
+{% if image %}
+    <picture id="{{ picture_id }}" class="lazyloader {% if not icon_enabled %}no-icon{% endif %} {% if not bg_enabled %}no-bg{% endif %} {% if bg_color and bg_color != 0 %}project-color-{{bg_color}}{% endif %} {% if not lazyload_enabled %}lazyloader--disabled{% endif %}">
+
+        {# end render figure/figcaption #}
+
+        {# XXL #}
+        {% if thumbnail_xxl %}
+            <source {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_xxl.url}}, {{thumbnail_xxl.high_resolution.url}} 2x" {% if lazyload_enabled %}srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="{% endif %} media="(min-width:1520px)">
+        {% endif %}
+
+        {# XL #}
+        {% if thumbnail_xl %}
+            <source {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_xl.url}}, {{thumbnail_xl.high_resolution.url}} 2x" {% if lazyload_enabled %}srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="{% endif %} media="(min-width:1280px)">
+        {% endif %}
+
+        {# LG #}
+        {% if thumbnail_lg %}
+            <source {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_lg.url}}, {{thumbnail_lg.high_resolution.url}} 2x" {% if lazyload_enabled %}srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="{% endif %} media="(min-width:1040px)">
+        {% endif %}
+
+        {# MD #}
+        {% if thumbnail_md %}
+            <source {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_md.url}}, {{thumbnail_md.high_resolution.url}} 2x" {% if lazyload_enabled %}srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="{% endif %} media="(min-width:800px)">
+        {% endif %}
+
+        {# SM #}
+        {% if thumbnail_sm %}
+            <source {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_sm.url}}, {{thumbnail_sm.high_resolution.url}} 2x" {% if lazyload_enabled %}srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="{% endif %} media="(min-width:580px)">
+        {% endif %}
+
+        {# XS #}
+        <img
+            class="{% if lazyload_enabled %}lazyload{% endif %}"
+            {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_xs.url}}, {{thumbnail_xs.high_resolution.url}} 2x"
+            {% if lazyload_enabled %}srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="{% endif %}
+            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+            {% if alt_text %}alt="{{ alt_text }}"
+            {% elif instance.picture.default_alt_text %}alt="{{ instance.picture.default_alt_text }}"
+            {% elif instance.picture.name %}alt="{{ instance.picture.name }}"{% endif %}
+            {{ instance.attributes_str }}
+        >
+
+    </picture>
+
+    <style>
+
+        {% comment %}
+            The magic CSS placeholder "hack"
+        {% endcomment %}
+
+        {% if ratio_percent_xs %}
+            #{{ picture_id }} {
+                padding-bottom: {% if vh_enabled %}{{ ratio_vh_xs }}{% else %}{{ ratio_percent_xs }}{% endif %};
+            }
+        {% endif %}
+        {% if ratio_percent_sm %}
+            @media (min-width:580px) {
+                #{{ picture_id }} {
+                    padding-bottom: {% if vh_enabled %}{{ ratio_vh_sm }}{% else %}{{ ratio_percent_sm }}{% endif %};
+                }
+            }
+        {% endif %}
+        {% if ratio_percent_md %}
+            @media (min-width:800px) {
+                #{{ picture_id }} {
+                    padding-bottom: {% if vh_enabled %}{{ ratio_vh_md }}{% else %}{{ ratio_percent_md }}{% endif %};
+                }
+            }
+        {% endif %}
+        {% if ratio_percent_lg %}
+            @media (min-width:1040px) {
+                #{{ picture_id }} {
+                    padding-bottom: {% if vh_enabled %}{{ ratio_vh_lg }}{% else %}{{ ratio_percent_lg }}{% endif %};
+                }
+            }
+        {% endif %}
+        {% if ratio_percent_xl %}
+            @media (min-width:1280px) {
+                #{{ picture_id }} {
+                    padding-bottom: {% if vh_enabled %}{{ ratio_vh_xl }}{% else %}{{ ratio_percent_xl }}{% endif %};
+                }
+            }
+        {% endif %}
+        {% if ratio_percent_xxl %}
+            @media (min-width:1520px) {
+                #{{ picture_id }} {
+                    padding-bottom: {% if vh_enabled %}{{ ratio_vh_xxl }}{% else %}{{ ratio_percent_xxl }}{% endif %};
+                }
+            }
+        {% endif %}
+
+    </style>
+{% endif %}

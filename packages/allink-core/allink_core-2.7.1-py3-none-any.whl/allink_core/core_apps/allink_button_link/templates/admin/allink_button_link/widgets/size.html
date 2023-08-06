@@ -1,0 +1,13 @@
+<div class="btn-container">
+    {% for group, options, index in widget.optgroups %}
+        {% for option in options %}
+            <div class="btn-item {% if option.value in widget.value %}active{% endif %}" data-toggle-active-state>
+                <div class="btn btn-default btn-{{option.value}}" >
+                    {% include option.template_name with widget=option %}
+                </div>
+            </div>
+        {% endfor %}
+    {% endfor %}
+</div>
+
+{# selected: {{ option.value }} #}
