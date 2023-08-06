@@ -1,0 +1,15 @@
+track, aperture = {{ aperture|lower }}, recloss = {{ recloss|lower }}, onepass = true, dump = true, onetable = true;
+    {% for p in particles %}
+    start, x = {{ p[0] }}, px = {{ p[1] }}, y = {{ p[2] }}, py = {{ p[3] }}, t = {{ p[4] }}, pt = {{ p[5] }};
+    {% endfor %}
+
+    {% for obs in observe %}
+    observe, place = {{ obs }};
+    {% endfor %}
+
+    run, turns = {{ turns }}, maxaper = {{ maxaper }};
+    {% if recloss %}
+
+    write, table = trackloss, file;
+    {% endif %}
+endtrack;
