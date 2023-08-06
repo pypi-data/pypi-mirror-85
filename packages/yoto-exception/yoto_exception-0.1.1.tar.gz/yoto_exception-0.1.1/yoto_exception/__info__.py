@@ -1,0 +1,5 @@
+__version__ = '0.1.1'
+__author__ = '有大家科技有限公司'
+__description__ = 'yoto_api的异常模块'
+__email__ = 'dev@funji.club'
+__url__ = 'https://gitlab.corp.funji.club/funji_dev/im/yoto_exception.git'

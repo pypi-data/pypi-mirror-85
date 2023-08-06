@@ -1,0 +1,77 @@
+Metadata-Version: 2.1
+Name: yoto_exception
+Version: 0.1.1
+Summary: yoto_api的异常模块
+Home-page: https://gitlab.corp.funji.club/funji_dev/im/yoto_exception.git
+Author: 有大家科技有限公司
+Author-email: dev@funji.club
+License: BSD
+Description: # yoto_excpetion
+        
+        yoto_api的异常类，包括错误码和错误提示
+        
+        **要求**: Python 3.9+
+        
+        ---
+        
+        ## 错误码
+        
+        错误码文档：[错误码](https://funji.feishu.cn/docs/doccnbqSDQKvX0URRHg9rLnejY4#)
+        
+        ---
+        
+        ## 更新pypi的包
+        
+        1、生成wheel包
+        ```
+        python3 setup.py sdist bdist_wheel
+        ```
+        2、上传wheel文件
+        
+            账号密码可以直接输入，也可以生成一个文件$HOME/.pypirc，内容如下：
+        
+            [pypi]
+        
+                username = __token__
+        
+                password = pypi-AgEIcHlwaS5vcmcCJDk3MjE5MzdjLWEyYmMtNGI5OC05YmU3LTdmNzFkNjRiMjc3MgACJXsicGVybWlzc2lvbnMiOiAidXNlciIsICJ2ZXJzaW9uIjogMX0AAAYgBOxVPheoeWle95iQjr7l65chP_KbSrhVxze6o3S9AMA
+        
+        ```
+        python3 -m twine upload dist/*
+        ```
+        
+        ## 安装
+        
+        ```shell
+        pip install -i https://test.pypi.org/simple/ yoto-exception
+        ```
+        
+        ---
+        
+        ## 使用
+        
+        ```
+            from yoto_excpetion import register_exception
+        
+            from src.core.log import logger
+            from src.utils.common import alarm
+        
+        
+            def create_app(app: FastAPI):
+        
+                ... 添加一些操作在捕获异常之前
+        
+                register_exception(app, logger, alarm)  # 注册捕获异常信息
+        
+                ... 添加一些操作在捕获异常之后
+        ```
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
