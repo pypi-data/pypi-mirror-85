@@ -1,0 +1,27 @@
+# include pyproject
+include pyproject.toml
+
+# include VERSION file
+include VERSION
+
+# include the README
+include *.md
+
+# include the license file
+include LICENSE.txt
+
+# include docs
+include docs/*
+
+# include coverage config
+include .coveragerc
+
+# include tox config
+include tox.ini
+
+# include Trave CI config
+include .travis.yml
+
+# include pyfx config
+include src/pyfx/config/*.yml
+include src/pyfx/view/keymapper/modes/*.yml
