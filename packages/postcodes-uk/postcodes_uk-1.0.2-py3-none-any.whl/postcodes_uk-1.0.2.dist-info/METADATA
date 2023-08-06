@@ -1,0 +1,75 @@
+Metadata-Version: 2.1
+Name: postcodes-uk
+Version: 1.0.2
+Summary: Validate and format UK postcodes.
+Home-page: https://github.com/marco-cardoso/uk_postcodes
+Author: Marco Cardoso
+Author-email: marco.carddoso.2020@gmail.com
+License: BSD 3
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.6.0
+Description-Content-Type: text/markdown
+Requires-Dist: pytest (==5.4.3)
+
+
+# UK postcodes library
+
+Requirements :
+
+<ul>
+    <li>Python 3.6</li>
+</ul>
+
+# How to install it ?
+
+
+## Using PIP
+
+    pip install postcodes-uk
+
+## Manually
+
+In the root folder execute :
+
+    python setup.py install
+
+# How to use it ?
+
+## Validate a postcode
+
+    import postcodes_uk
+    postcodes_uk.validate("EC1A 1BB")
+
+This will return a boolean with the validation result.
+
+## Format a postcode
+
+    from postcodes_uk import Postcode
+    postcode = Postcode(area="EC", district="1A", sector=1, unit="BB")
+    print(postcode)
+
+ This will print the formatted postcode.
+
+ ## Create a Postcode object from a string
+
+    from postcodes_uk import Postcode
+    postcode = Postcode.from_string("EC1A 1BB")
+    print(postcode.area)
+
+This could be useful to extract the area/district/sector/unit from the postcode.
+
+
+# How to execute the tests ?
+
+In the root folder, execute :
+
+    pytest
+
