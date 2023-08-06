@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: watson-transformer
+Version: 0.0.15
+Summary: wrap Watson API into pyspark transformers
+Home-page: 
+Author: Kai Niu
+Author-email: kai.niu@ibm.com
+License: BSD 2-Clause License
+Keywords: pyspark,data science,pipeline
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Utilities
+Requires-Python: >=3.4
+Description-Content-Type: text/markdown
+Requires-Dist: ibm-watson (>=4.4.0)
+Requires-Dist: botocore (>=1.12.82)
+Requires-Dist: ibm-cos-sdk (>=2.4.3)
+Requires-Dist: ibm-cos-sdk-core (>=2.4.3)
+Requires-Dist: ibm-cos-sdk-s3transfer (>=2.4.3)
+Provides-Extra: dev
+Provides-Extra: test
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: pytest-cov ; extra == 'test'
+Requires-Dist: mock ; extra == 'test'
+
+wrap Watson API into pyspark transformers
+
+
