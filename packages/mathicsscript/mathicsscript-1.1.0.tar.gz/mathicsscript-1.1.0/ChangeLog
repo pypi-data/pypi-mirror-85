@@ -1,0 +1,131 @@
+2020-11-14  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/settings.py, mathicsscript/version.py, setup.py: Get
+	ready for release 1.1.0
+
+2020-10-25  rocky <rb@dustyfeet.com>
+
+	* Makefile, README.rst, mathicsscript/__main__.py,
+	mathicsscript/termshell.py, setup.py, test/test_completion.py,
+	test/test_term_background.py: Administrivia: * add 1st pytest - command completion * add Makefile "clean" target * blacken some files * Don't do default pymodules
+
+2020-10-25  rocky <rb@dustyfeet.com>
+
+	* .pre-commit-config.yaml: Add pre-commit hook to blacken
+
+2020-10-25  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/termshell.py: Try git commit hook
+
+2020-10-25  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/termshell.py: Bang on readline completion Since [ is no longer in set_completer_delims, we have to split the
+	line on the last one of these before we complete.  For example "Integrate[Si" has to split of "Si" to complete against,
+	but prepend "Integrate[" to any completions.  The same thing is true for symbol names.
+
+2020-10-25  rocky <rb@dustyfeet.com>
+
+	* README.rst, mathicsscript/__main__.py, mathicsscript/mmalexer.py,
+	mathicsscript/term_background.py, mathicsscript/termshell.py,
+	screenshots/README.md, screenshots/mathicsscript1.cast,
+	screenshots/mathicsscript2.cast, setup.py: Improve lexer, style, add
+	screenshot lexer: $ is allowed in an identifier styles: Go with pariaso as the
+	       default style.  Note - this has an entry for NameSpace whereas
+	       something like stat doesn't screenshots:   one for tab completion and entering symbols   another for multi-line entry and history across sessions
+
+2020-10-24  rocky <rb@dustyfeet.com>
+
+	* NEWS.md, admin-tools/git2cl, admin-tools/make-dist.sh,
+	admin-tools/pyenv-versions, mathicsscript/term_background.py,
+	mathicsscript/version.py, setup.py, test/test_term_background.py: 
+	Get ready for release 1.1.0rc1
+
+2020-10-21  R. Bernstein <rocky@users.noreply.github.com>
+
+	* README.rst: Update README.rst
+
+2020-10-18  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/__main__.py, mathicsscript/termshell.py: A couple of
+	bugs
+
+2020-10-18  rocky <rb@dustyfeet.com>
+
+	* Makefile, mathicsscript/termshell.py, setup.py: Administrivia
+
+2020-10-18  rocky <rb@dustyfeet.com>
+
+	* Makefile, rst2html.py, setup.py: Administrivia * Add mathicsscript/inputrc to distribution * Add rst-check and sdist Makefile targets
+
+2020-10-18  rocky <rb@dustyfeet.com>
+
+	* : commit db3e1b5135e7df18e4f5065b3fe4e74bac8cff7f Author: rocky
+	<rb@dustyfeet.com> Date:   Sun Oct 18 17:08:11 2020 -0400
+
+2020-10-17  R. Bernstein <rocky@users.noreply.github.com>
+
+	* : Extended terminal handling
+
+2020-10-16  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/inputrc, mathicsscript/termshell.py: Start adding
+	extended terminal handling
+
+2020-10-14  rocky <rb@dustyfeet.com>
+
+	* MANIFEST.in, README.rst, mathicsscript/inputrc,
+	mathicsscript/termshell.py: Limited inputrc for pi, deg, \TeX greek
+	etc
+
+2020-10-03  R. Bernstein <rocky@users.noreply.github.com>
+
+	* : Merge pull request #1 from Mathics3/history-multiline-entry Make logical lines be one history item
+
+2020-09-29  rocky <rb@dustyfeet.com>
+
+	* README.rst: Add a README
+
+2020-09-28  rocky <rb@dustyfeet.com>
+
+	* .gitignore, Makefile, {tmathics => mathicsscript}/__init__.py,
+	{tmathics => mathicsscript}/__main__.py, mathicsscript/settings.py,
+	{tmathics => mathicsscript}/term_background.py, {tmathics =>
+	mathicsscript}/termshell.py, {tmathics =>
+	mathicsscript}/version.py, setup.py: rename tmathics->mathicsscript
+
+2020-09-24  rocky <rb@dustyfeet.com>
+
+	* tmathics/__main__.py: WIP svg image handling
+
+2020-09-24  rocky <rb@dustyfeet.com>
+
+	* tmathics/__main__.py, tmathics/termshell.py: Handle MathMLForm
+	more properly
+
+2020-09-23  rocky <rb@dustyfeet.com>
+
+	* tmathics/__main__.py, tmathics/termshell.py: Split out
+	TerminalShell from main program
+
+2020-09-23  rocky <rocky@gnu.org>
+
+	* tmathics/__main__.py: Small corrections
+
+2020-09-22  rocky <rb@dustyfeet.com>
+
+	* tmathics/__main__.py: Read and write GNU Readline History
+
+2020-09-22  rocky <rocky@gnu.org>
+
+	* setup.py, tmathics/__main__.py: Start using pygments for coloring
+	output
+
+2020-09-22  rocky <rocky@gnu.org>
+
+	* tmathics/__main__.py: Convert to using click
+
+2020-09-21  rocky <rocky@gnu.org>
+
+	* Cull code from Mathics/main and revise ...  colorama is no longer optional.  We'll be using click soon.  Start
+	to pull in my better terminal-detection script.
+
