@@ -1,0 +1,250 @@
+Metadata-Version: 2.1
+Name: guardata
+Version: 0.1.6
+Summary: Desktop client for a modern and trustless data cloud storage service
+Home-page: https://guardata.app
+Author: BitLogiK
+Author-email: contact@bitlogik.fr
+License: AGPLv3
+Keywords: cloud data storage sharing cryptography
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Operating System :: Microsoft :: Windows :: Windows 8
+Classifier: Operating System :: Microsoft :: Windows :: Windows 8.1
+Classifier: Operating System :: Microsoft :: Windows :: Windows 10
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: MacOS
+Classifier: Topic :: Communications :: File Sharing
+Classifier: Topic :: Office/Business
+Classifier: Topic :: Security :: Cryptography
+Classifier: Topic :: System :: Archiving :: Backup
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
+Requires-Dist: attrs (==19.2.0)
+Requires-Dist: click (==7.0)
+Requires-Dist: msgpack (==0.6.2)
+Requires-Dist: wsproto (==0.15.0)
+Requires-Dist: toastedmarshmallow (==0.2.6)
+Requires-Dist: pendulum (==2.1.2)
+Requires-Dist: PyNaCl (==1.4.0)
+Requires-Dist: trio (==0.16.0)
+Requires-Dist: async-generator (>=1.9)
+Requires-Dist: structlog (==19.2.0)
+Requires-Dist: importlib-resources (==1.0.2)
+Requires-Dist: colorama (==0.4.0)
+Requires-Dist: async-exit-stack (==1.0.1)
+Requires-Dist: outcome (==1.0.0)
+Requires-Dist: packaging (==20.4)
+Requires-Dist: PyQt5 (==5.14.2)
+Requires-Dist: pyqt5-sip (==12.8.0)
+Requires-Dist: Babel (==2.6.0)
+Requires-Dist: zxcvbn (==4.4.28)
+Requires-Dist: psutil (==5.6.3)
+Requires-Dist: fusepy (==3.0.1) ; platform_system == "Linux" or platform_system == "Darwin"
+Requires-Dist: winfspy (==0.8.0) ; platform_system == "Windows"
+Requires-Dist: contextvars (==2.1) ; python_version < "3.7"
+Provides-Extra: all
+Requires-Dist: jinja2 (==2.11.2) ; extra == 'all'
+Requires-Dist: pytest (==5.4.3) ; extra == 'all'
+Requires-Dist: pytest-xdist (==1.32.0) ; extra == 'all'
+Requires-Dist: pytest-trio (==0.5.2) ; extra == 'all'
+Requires-Dist: pytest-qt (==3.3.0) ; extra == 'all'
+Requires-Dist: pytest-rerunfailures (==9.0) ; extra == 'all'
+Requires-Dist: hypothesis (==5.3.0) ; extra == 'all'
+Requires-Dist: hypothesis-trio (==0.5.0) ; extra == 'all'
+Requires-Dist: trustme (==0.6.0) ; extra == 'all'
+Requires-Dist: pbr (==4.0.2) ; extra == 'all'
+Requires-Dist: triopg (==0.5.0) ; extra == 'all'
+Requires-Dist: trio-asyncio (==0.11.0) ; extra == 'all'
+Requires-Dist: pywin32 (==227) ; (platform_system == "Windows") and extra == 'all'
+Provides-Extra: dev
+Requires-Dist: jinja2 (==2.11.2) ; extra == 'dev'
+Requires-Dist: pytest (==5.4.3) ; extra == 'dev'
+Requires-Dist: pytest-xdist (==1.32.0) ; extra == 'dev'
+Requires-Dist: pytest-trio (==0.5.2) ; extra == 'dev'
+Requires-Dist: pytest-qt (==3.3.0) ; extra == 'dev'
+Requires-Dist: pytest-rerunfailures (==9.0) ; extra == 'dev'
+Requires-Dist: hypothesis (==5.3.0) ; extra == 'dev'
+Requires-Dist: hypothesis-trio (==0.5.0) ; extra == 'dev'
+Requires-Dist: trustme (==0.6.0) ; extra == 'dev'
+Requires-Dist: pbr (==4.0.2) ; extra == 'dev'
+Requires-Dist: triopg (==0.5.0) ; extra == 'dev'
+Requires-Dist: trio-asyncio (==0.11.0) ; extra == 'dev'
+Requires-Dist: pywin32 (==227) ; (platform_system == "Windows") and extra == 'dev'
+
+
+.. image:: https://raw.githubusercontent.com/bitlogik/guardata/master/guardata/client/gui/rc/images/logos/guardata_vert.png
+    :align: center
+
+|
+|
+
+guardata is a secure and trustless cloud storage service, to share and sync your files with on-premise modern encryption.
+
+|
+
+Homepage: https://guardata.app
+
+Key features :
+
+- Cloud storage
+- Virtual drive
+- Time machine
+- Local encryption, Trust no one
+- Share & sync securely
+- Access control and logging
+- open source
+
+guardata is based on the `Parsec technology <https://www.youtube.com/watch?v=Ds89nhbO0yk>`_ developed by Scille. The code base is a fork from `parsec-cloud <https://github.com/Scille/parsec-cloud>`_. The cryptographic routines are provided by the `lisodium library <https://doc.libsodium.org/>`_.
+
+
+Differences with the Parsec reference implementation :
+
+- The encryption stream cipher algorithm is updated from Salsa20 to Chacha20. guardata is using XChaCha20-Poly1305 which has an `IETF draft standard <https://tools.ietf.org/html/draft-irtf-cfrg-xchacha-03>`_, and is `used by NordPass <https://nordpass.com/features/xchacha20-encryption/>`_ and by `CloudFlare <https://blog.cloudflare.com/do-the-chacha-better-mobile-performance-with-cryptography/>`_.
+- The password key derivation algorithm is setup to be 6 times stronger
+- Password strength required in the GUI is much higher
+- The debug monitoring telemetry is fully removed, for a full hassle-free privacy
+- Files blocks cut size is bigger, optimised for internet synchronization
+- SHA2 hash is replaced everywhere by Blake2b
+- More secure short codes for 2-way auth : from 40 bits with hmac-sha2 to 50 bits with argon2id
+- Improve server socket management (parsec-cloud sends header separated from data)
+- Data (encrypted) are local only in Windows, not shared with Microsoft through roaming
+- UX improved (invitation redirect, offline)
+
+
+Install
+-------
+
+| Get the guardata client software on
+| https://guardata.app/get
+|
+
+
+Documentation
+-------------
+
+| Documentation is available at
+| https://docs.guardata.app
+|
+
+
+guardata history
+----------------
+
+0.1.6 - 2020-11-16
+^^^^^^^^^^^^^^^^^^
+
+* Updates in the GUI
+
+  * Fix crash when loading >2GB file
+  * Improve loading file link
+  * Email address in sharing list
+  * Refine calendar for time machine
+  * Copy/paste between worspaces
+  * Catch no more remaining drives on Windows
+  * All dialogs are non-blocking
+  * UX improved for machine greeting
+
+* Works on MacOS 11 (untested on ARM)
+* Better stability on Mac
+* URL scheme now works on Mac
+* various small improvements
+
+
+0.1.4 - 2020-10-16
+^^^^^^^^^^^^^^^^^^
+
+* Updates in the GUI
+
+  * Modal stability fix (blank, hidden error, input disabled,...)
+  * Various UI improvements on group activation modal
+  * Fix dialog crash when closing on Mac
+  * More friendly group join data input
+  * Nicer widget for snapshot workspaces
+  * Show user role in workspace GUI
+  * Save GUI window size and position
+  * Spinner on GUI directory loading
+  * Fix and improve login tabs
+  * Version update check on Mac
+  * Display data size of the group in the GUI
+
+* Logs on Mac
+* Possible args on Mac
+* Some Python dependencies updated
+* Improve mountpoint cancelling
+* Better error display
+* Improve server queries handling
+
+
+0.1.2 - 2020-09-22
+^^^^^^^^^^^^^^^^^^
+
+* First MacOSX version
+* Fix Snap building
+* GUI : refresh login list when logout
+* GUI : don't ask to select account if only 1
+* Cleanups (pkg, files)
+* Windows installer simplified
+* Script for dev to add devices/users much faster
+* many dependencies updated
+* Improve backend management of websocket
+
+
+0.1.0 - 2020-09-12
+^^^^^^^^^^^^^^^^^^
+
+* Updates in the GUI
+
+  * Many fixes and improvements
+  * Spinners for tiles queries
+  * Smaller user/devices tiles
+  * Blue tone changed for the official guardata
+  * Pagination for users and devices
+  * Works when offline or network errors
+  * Much faster reencryption
+  * Sharing roles change ack
+  * Searching for users or devices improved
+
+* Windows data path is local (no roaming)
+* Fix Windows path handling
+* No more inopportune warnings about resources usage
+* Remove all old APIs methods
+* Testing env improve (compatibility, UI)
+* Python3 specified everywhere
+* Network buffer of the backend server improved (send once, receive more)
+* Update invitation style
+* Add a copy button to redirect invite
+* Redirect invite page has automatic internationalization
+* Client messages have more buffer
+* CI/CD pipelines strenghten and cleanup
+* Python package for Windows updated to 3.7.9
+* Fix a closing file bug
+
+
+0.0.4 - 2020-08-30
+^^^^^^^^^^^^^^^^^^
+
+* Updates in the GUI
+
+  * Filtering in workspace preview
+  * Improve device adding
+  * Fix bad message with wrong name during claim user
+  * Improve Return key detection at login
+  * Add spinner when querying the server
+
+* Better handling of Parsec link
+* Update Windows installer, restore app icon
+* Snap package available
+* Improve CI pipelines
+* Tests scripts for developers are now working
+
+0.0.2 - 2020-08-25
+^^^^^^^^^^^^^^^^^^
+
+* First version
+
+
+
+
