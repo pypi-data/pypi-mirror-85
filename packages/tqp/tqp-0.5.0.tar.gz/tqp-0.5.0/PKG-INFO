@@ -1,0 +1,85 @@
+Metadata-Version: 2.1
+Name: tqp
+Version: 0.5.0
+Summary: An opinionated library for pub/sub over SQS and SNS
+Home-page: https://github.com/4Catalyzer/tqp
+Author: Giacomo Tagliabue
+Author-email: giacomo@gmail.com
+License: MIT
+Description: # TQP
+        
+        An opinionated library for pub/sub over SQS and SNS
+        
+        ## Topic
+        
+        To publish on a topic:
+        
+        ```py
+        topic = Topic('widgets--created')
+        topic.publish({'id': '123456'})
+        ```
+        
+        ## Topic Queue Poller
+        
+        To read from the topic:
+        
+        ```py
+        poller = TopicQueuePoller('my_poller')
+        
+        @poller.handler('widgets--created')
+        def process_created_widget(item):
+            widget_id = item['id']
+            print(f'Widget {widget_id} was created')
+        
+        poller.start()
+        ```
+        
+        ### S3 notifications
+        
+        It is also possible to poll for s3 object notifications
+        
+        ```py
+        @poller.s3_handler('my-bucket-name')
+        def process_file_created(msg):
+            print(msg)
+            # {
+            #     'event_name': 'ObjectCreated:Put',
+            #     'bucket_name': 'bespin-dev-consular21d51f71-11lpitfowdylc',
+            #     'object': {
+            #         'key': 'genome.fasta',
+            #         'size': 124,
+            #         'eTag': '5d9d04cd0b9d3b314d9bd622da06ab74',
+            #         'sequencer': '005FAD55883A198E97'
+            #     },
+            # }
+        ```
+        
+        ### Flask
+        
+        A Flask binding is also provided:
+        
+        ```py
+        poller = FlaskTopicQueuePoller('my_poller', app=flask_app)
+        ```
+        
+        When using the Flask poller, you can also specify how to format the logs:
+        
+        ```py
+        # the argument (optional) is a function that takes the message payload as input and return a message identifier
+        poller.set_log_formatter(lambda payload: payload["message"].get("id", "<NO ID>"))
+        ```
+        
+Keywords: pub sub pubsub flask
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3 :: Only
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Provides-Extra: dev
