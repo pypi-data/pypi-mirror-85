@@ -1,0 +1,185 @@
+Metadata-Version: 1.2
+Name: scikit-mobility
+Version: 1.1.2
+Summary: A toolbox for analyzing and processing mobility data.
+Home-page: https://github.com/scikit-mobility
+Maintainer: skmob Developers
+Maintainer-email: gianni.barlacchi@gmail.com
+License: MIT
+Description: [![DOI](https://zenodo.org/badge/184337448.svg)](https://zenodo.org/badge/latestdoi/184337448)
+        [![HitCount](http://hits.dwyl.io/scikit-mobility/scikit-mobility.svg)](http://hits.dwyl.io/scikit-mobility/scikit-mobility)
+        
+        
+        # scikit-mobility - mobility analysis in Python
+        
+        <img src="logo_skmob.png" width=300/>
+        
+        ###### Try `scikit-mobility` without installing it in a MyBinder notebook:  
+        [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/scikit-mobility/scikit-mobility/master)
+        
+        `scikit-mobility` is a library for human mobility analysis in Python. The library allows to: 
+        
+        - represent trajectories and mobility flows with proper data structures, `TrajDataFrame` and `FlowDataFrame`. 
+        
+        - manage and manipulate mobility data of various formats (call detail records, GPS data, data from social media, survey data, etc.);
+        
+        - extract mobility metrics and patterns from data, both at individual and collective level (e.g., length of displacements, characteristic distance, origin-destination matrix, etc.)
+        
+        - generate synthetic individual trajectories using standard mathematical models (random walk models, exploration and preferential return model, etc.)
+        
+        - generate synthetic mobility flows using standard migration models (gravity model, radiation model, etc.)
+        
+        - assess the privacy risk associated with a mobility data set
+        
+        ## Table of contents
+        1. [Documentation](#documentation)
+        2. [Citing](#citing)
+        3. [Collaborate with us](#collaborate)
+        4. [Installation](#installation)
+        
+        	- [with conda](#installation_conda)
+        	- [without conda](#installation_no_conda)
+        	- [test installation](#test_installation)
+        	
+        5. [Tutorials](#tutorials)
+        6. [Examples](#examples)
+        
+        	- [TrajDataFrame](#trajdataframe)
+        	- [FlowDataFrame](#flowdataframe)
+        	- [Preprocessing](#preprocessing)
+        	- [Measures](#measures)
+        	- [Collective generative models](#collective_models)
+        	- [Individual generative models](#individual_models)
+        	- [Privacy](#privacy)
+        
+        
+        <a id='documentation'></a>
+        ## Documentation
+        The documentation of scikit-mobility's classes and functions is available at: https://scikit-mobility.github.io/scikit-mobility/
+        
+        <a id='citing'></a>
+        ## Citing
+        
+        if you use scikit-mobility please cite the following paper: 
+        
+        > Luca Pappalardo, Filippo Simini, Gianni Barlacchi and Roberto Pellungrini.
+        > **scikit-mobility: a Python library for the analysis, generation and risk assessment of mobility data**,
+        > 2019, https://arxiv.org/abs/1907.07062
+        
+        Bibtex:
+        ```bibtex
+        @misc{pappalardo2019scikitmobility, 
+        title={scikit-mobility: a Python library for the analysis, generation and risk assessment of mobility data},
+        author={Luca Pappalardo and Filippo Simini and Gianni Barlacchi and Roberto Pellungrini},
+        year={2019},
+        eprint={1907.07062},
+        archivePrefix={arXiv},
+        primaryClass={physics.soc-ph}
+        }
+        ```
+        
+        <a id='collaborate'></a>
+        ## Collaborate with us
+        `scikit-mobility` is an active project and any contribution is welcome.
+        
+        If you would like to include your algorithm in `scikit-mobility`, feel free to fork the project, open an issue and contact us.
+        
+        <a id='installation'></a>
+        ## Install
+        First, clone the repository - this creates a new directory `./scikit_mobility`. 
+        
+                git clone https://github.com/scikit-mobility/scikit-mobility scikit_mobility
+        
+        <a id='installation_conda'></a>
+        ### with conda - miniconda
+        
+        1. Create an environment `skmob` and install pip
+        
+                conda create -n skmob pip python=3.7
+        
+        2. Activate
+            
+                source activate skmob
+        
+        3. Install skmob
+        
+                cd scikit-mobility
+                python setup.py install
+        
+            If the installation of a required library fails, reinstall it with `conda install`.      
+        
+        4. OPTIONAL to use `scikit-mobility` on the jupyter notebook
+        
+            - Install the kernel
+            
+                  conda install ipykernel
+                  
+            - Open a notebook and check if the kernel `skmob` is on the kernel list. If not, run the following: 
+            	- On Mac and Linux
+        	    
+                  	  env=$(basename `echo $CONDA_PREFIX`)
+                  	  python -m ipykernel install --user --name "$env" --display-name "Python [conda env:"$env"]"
+        		
+               - On Windows
+               
+                     python -m ipykernel install --user --name skmob --display-name "Python [conda env: skmob]"
+        	       
+        :exclamation: You may run into dependency issues if you try to import the package in Python. If so, try installing the following packages as followed.
+        
+        ```
+        conda install -n skmob pyproj urllib3 chardet markupsafe
+        ```
+        <a id='installation_no_conda'></a>          
+        ### without conda (python >= 3.6 required)
+        
+        
+        1. Create an environment `skmob`
+        
+                python3 -m venv skmob
+        
+        2. Activate
+            
+                source skmob/bin/activate
+        
+        3. Install skmob
+        
+                cd scikit-mobility
+                python setup.py install
+        
+        
+        4. OPTIONAL to use `scikit-mobility` on the jupyter notebook
+        
+        	- Activate the virutalenv:
+        	
+        			source skmob/bin/activate
+        	
+        	- Install jupyter notebook:
+        		
+        			pip install jupyter 
+        	
+        	- Run jupyter notebook 			
+        			
+        			jupyter notebook
+        			
+        	- (Optional) install the kernel with a specific name
+        			
+        			ipython kernel install --user --name=skmob
+        			
+        
+        # Related packages
+        [*movingpandas*](https://github.com/anitagraser/movingpandas) is a similar package that deals with movement data. Instead of implementing new data structures tailored for trajectories (`TrajDataFrame`) and mobility flows (`FlowDataFrame`), *movingpandas* describes a trajectory using a *geopandas* `GeoDataFrame`. There is little overlap in the covered use cases and implemented functionality (comparing [*scikit-mobility* tutorials](https://github.com/scikit-mobility/tutorials) and [*movingpandas* tutorials](https://github.com/anitagraser/movingpandas/tree/master/tutorials)): *scikit-mobility* focuses on computing human mobility metrics, generating synthetic trajectories and assessing privacy risks of mobility datasets. *movingpandas* on the other hand focuses on spatio-temporal data exploration with corresponding functions for data manipulation and analysis.
+        
+Platform: UNKNOWN
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development
+Classifier: Topic :: Scientific/Engineering
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.6
