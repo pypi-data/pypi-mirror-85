@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: bb-flask-monitor
+Version: 0.0.3
+Summary: A Prometheus middleware for your Python Flask app.
+Home-page: https://github.com/labbsr0x/flask-monitor
+Author: Gustavo Coelho
+Author-email: gutorc@hotmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Framework :: Flask
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Environment :: Console
+Classifier: Environment :: MacOS X
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Internet
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: prometheus-client (>=0.6.0)
+Requires-Dist: APScheduler (>=3.6.3)
+Requires-Dist: flask (>=1.0.0)
+Requires-Dist: requests
+Provides-Extra: flask
+Requires-Dist: Flask (>=1.0.0) ; extra == 'flask'
+
+A Prometheus middleware to add basic but very useful metrics for your Python Flask app.
+
+
