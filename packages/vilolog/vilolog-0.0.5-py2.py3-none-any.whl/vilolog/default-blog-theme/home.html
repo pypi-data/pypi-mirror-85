@@ -1,0 +1,37 @@
+@=# data: {renderTpl, req, res, blogTitle, blogDescription, footerLine, pageList}
+<!doctype html>
+<html>
+<head>
+    {{= data.renderTpl("blog-head-common.html", data=data) =}}
+    <title>{{: data.blogTitle :}}</title>
+</head>
+<body>
+    {{= data.renderTpl("blog-header.html", data=data) =}}
+    @= pageList = data.pageList;    # Short alias.
+    @= if not pageList:
+    @{
+        <br><br>
+        <p>Nothing here, yet.</p>
+        <br><br>
+    @}
+    @= else:
+    @{
+        @= for page in pageList:
+        @{
+            <div class="pageItem">
+                <p class="bottommarginless monaco">{{: page.meta.get("isoDate") :}}</p>
+                <h3 class="topmarginless">
+                    <a href="/{{: page.meta.slug :}}">{{: page.meta.title :}}</a>
+                </h3>
+                @= if page.meta.get("excerpt"):
+                @{
+                    <p>{{: page.meta.excerpt :}}</p>
+                    <p class="align-right"><a href="/{{: page.meta.slug :}}">Read more ...</a></p>
+                @}
+                <br>
+            </div>
+        @}
+    @}
+    {{= data.renderTpl("blog-footer.html", data=data) =}}
+</body>
+</html>

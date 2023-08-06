@@ -1,0 +1,29 @@
+@=# data: {req, res, blogTitle, blogDescription, footerLine,  currentPage, nextPage, prevPage}
+@= import qree;
+@= import markdown;
+<!doctype html>
+<html>
+<head>
+    {{= data.renderTpl("blog-head-common.html", data=data) =}}
+    <title>{{: data.blogTitle :}}</title>
+</head>
+<body>
+    {{= data.renderTpl("blog-header.html", data=data) =}}
+    {{= "<h1 class='red'>[PREVIEW]</h1>" if data.isPreview else "" =}}
+    
+    <div class="main">{{= markdown.markdown(data.currentPage.body, extensions=['fenced_code']) =}}</div>
+    <br>
+    <div>
+        @= if data.nextPage:
+        @{
+            <div>Next: <a href="/{{: data.nextPage.meta.slug :}}">{{: data.nextPage.meta.title :}}</a></div>
+        @}
+        @= if data.prevPage:
+        @{
+            <div>Previous: <a href="/{{: data.prevPage.meta.slug :}}">{{: data.prevPage.meta.title :}}</a></div>
+        @}
+    </div>
+    
+    {{= data.renderTpl("blog-footer.html", data=data) =}}
+</body>
+</html>
