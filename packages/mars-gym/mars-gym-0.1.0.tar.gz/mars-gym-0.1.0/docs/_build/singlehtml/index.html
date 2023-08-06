@@ -1,0 +1,889 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>mars-gym 0.0.0 documentation</title>
+
+
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+
+
+
+
+
+
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+
+
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+</head>
+
+<body class="wy-body-for-nav">
+
+
+  <div class="wy-grid-for-nav">
+
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+
+
+            <a href="#" class="icon icon-home" alt="Documentation Home"> mars-gym
+
+
+
+          </a>
+
+
+
+
+              <div class="version">
+                0.0.0
+              </div>
+
+
+
+
+
+
+        </div>
+
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+
+
+
+
+              <!-- Local TOC -->
+              <div class="local-toc"><p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="index.html#document-index">Welcome to MARS’s documentation!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-install">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-quick_start">Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#dataset">Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#prepare-data">Prepare data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#model-and-simulation">Model and Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#evaluation">Evaluation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-dataviz">Evaluation Plaftform</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-guilde_data_enginnering_module">Data Enginnering Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-guilde_simulation_module">Simulation Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-guilde_evaluation_module">Evaluation Module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">MARS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-contrib">Contribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-authors">Authors</a></li>
+</ul>
+</div>
+
+
+        </div>
+
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+
+      <nav class="wy-nav-top" aria-label="top navigation">
+
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">mars-gym</a>
+
+      </nav>
+
+
+      <div class="wy-nav-content">
+
+        <div class="rst-content">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+
+      <li>mars-gym 0.0.0 documentation</li>
+
+
+      <li class="wy-breadcrumbs-aside">
+
+
+
+      </li>
+
+  </ul>
+
+
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+
+  <div class="section" id="welcome-to-mars-s-documentation">
+<h1>Welcome to MARS’s documentation!<a class="headerlink" href="#welcome-to-mars-s-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The MARS-Gym is in ‘beta’ and currently under active development. Improvements to the code or documentation are welcome!</p>
+</div>
+<p>MARS-Gym (MArketplace Recommender Systems Gym), a benchmark framework for modeling, training, and evaluating RL-based recommender systems for marketplaces.</p>
+<p>Three main components composes the framework:</p>
+<ul class="simple">
+<li><p>Data Engineering Module: A highly customizable module where the consumer can ingest and process a massive amount of data for learning using spark jobs.</p></li>
+<li><p>Simulation Module: Holds an extensible module built on top of PyTorch to design learning architectures. It also possesses an OpenAI’s Gym environment that ingests the processed dataset to run a multi-agent system that simulates the targeted marketplace.</p></li>
+<li><p>Evaluation Module: Provides a set of distinct perspectives on the agent’s performance. It presents traditional recommendation metrics, off-policy evaluation metrics, and fairness indicators. This component is powered by a user-friendly interface to facilitate the analysis and comparison betweenagents</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/img2.jpg"><img alt="_images/img2.jpg" src="_images/img2.jpg" style="width: 700px;" /></a>
+<div class="section" id="table-of-contents">
+<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<span id="document-install"></span><div class="section" id="install">
+<h3>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h3>
+<p>MARS-Gym is available for Python 3.6. The recommended way to install MARS-Gym is <code class="code docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> python -m pip install mars-gym
+</pre></div>
+</div>
+<p>or from the repo:</p>
+<p><strong>Git</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git clone https://gitlab.com/deeplearningbrasil/deep-reco-gym
+<span class="gp">$</span> <span class="nb">cd</span> mars-gym
+<span class="gp">$</span> conda env create -f environment.yml
+<span class="gp">$</span> conda activate mars-gym
+
+<span class="gp">$</span> pip install -e .
+</pre></div>
+</div>
+<p>Test MARS-Gym installation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">unittest</span>
+</pre></div>
+</div>
+</div>
+<span id="document-quick_start"></span><div class="section" id="quick-start">
+<h3>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h3>
+<p>In this tutorial we will present a simple example using MARS. Each module will be explained in a superficial way with focus on the application.</p>
+<a class="reference internal image-reference" href="_images/img2.jpg"><img alt="_images/img2.jpg" class="align-center" src="_images/img2.jpg" style="width: 700px;" /></a>
+<p>Three main components make the framework:</p>
+<ul class="simple">
+<li><p>The first one is a highly customizable module where the consumer can ingest and process a massive amount of <strong>data</strong> for learning using spark jobs.</p></li>
+<li><p>The second component was designed for <strong>training</strong> purposes. It holds an extensible module built on top of PyTorch to design learning architectures. It also has an OpenAI Gym environment that ingests the processed dataset to simulate the targeted marketplace.</p></li>
+<li><p>Finally, the last component is an <strong>evaluation</strong> module that provides a set of distinct perspectives on the agent’s performance. It presents not only traditional recommendation metrics but also off-policy evaluations, to account for the bias induced from the historical data representation.</p></li>
+</ul>
+<p>All code used in this guide is designed to ilustrate how each class must be implemented. They will
+vary according to each project, but the consistent and necessary methods are displayed here. Some examples
+can be found at the <code class="code docutils literal notranslate"><span class="pre">samples</span></code> folder. These are used to run our examples, so make sure this folder is
+located in the same place you’ll be running the commands from the following sections.</p>
+<div class="section" id="dataset">
+<h4>Dataset<a class="headerlink" href="#dataset" title="Permalink to this headline">¶</a></h4>
+<p>MARS provides some datasets preprocessed as examples to test the framework. They are real datasets,
+which contain interaction data between users and items and the metadata of the items to be recommended.</p>
+<ul class="simple">
+<li><p>Trivago Dataset - <a class="reference external" href="http://recsys.trivago.cloud/challenge/dataset/">http://recsys.trivago.cloud/challenge/dataset/</a></p></li>
+<li><p>Yoochose Dataset - <a class="reference external" href="http://2015.recsyschallenge.com/challenge.html">http://2015.recsyschallenge.com/challenge.html</a></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">mars_gym.data</span> <span class="kn">import</span> <span class="n">utils</span>
+ <span class="o">&gt;&gt;&gt;</span> <span class="n">utils</span><span class="o">.</span><span class="n">datasets</span><span class="p">()</span>
+ <span class="p">[</span><span class="s1">&#39;random&#39;</span><span class="p">,</span>
+<span class="s1">&#39;yoochoose&#39;</span><span class="p">,</span>
+<span class="s1">&#39;processed_yoochoose&#39;</span><span class="p">,</span>
+<span class="s1">&#39;trivago_rio&#39;</span><span class="p">,</span>
+<span class="s1">&#39;processed_trivago_rio&#39;</span><span class="p">]</span>
+
+ <span class="o">&gt;&gt;&gt;</span> <span class="n">df</span><span class="p">,</span> <span class="n">df_meta</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;processed_trivago_rio&#39;</span><span class="p">)</span>
+ <span class="o">&gt;&gt;&gt;</span> <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+   <span class="n">session_id</span>    <span class="n">user_id</span>       <span class="n">timestamp</span>   <span class="n">action_type</span>       <span class="n">item_id</span>   <span class="n">impressions</span>                                       <span class="n">list_reference_item</span>                             <span class="n">pos_item_id</span> <span class="n">clicked</span>
+ <span class="mi">0</span> <span class="mi">05</span><span class="n">fe82b496fb9</span> <span class="n">M1Z13DD0P2KH</span>  <span class="mi">1541422443</span>  <span class="n">clickout</span> <span class="n">item</span>     <span class="mi">4304686</span>   <span class="p">[</span><span class="s1">&#39;109351&#39;</span><span class="p">,</span> <span class="s1">&#39;150138&#39;</span><span class="p">,</span> <span class="s1">&#39;4345728&#39;</span><span class="p">,</span> <span class="s1">&#39;105014&#39;</span><span class="p">,</span> <span class="s1">&#39;478&#39;</span><span class="o">...</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>                            <span class="mi">7</span>           <span class="mf">1.0</span>
+ <span class="mi">1</span> <span class="mi">05</span><span class="n">fe82b496fb9</span> <span class="n">M1Z13DD0P2KH</span>  <span class="mi">1541422474</span>  <span class="n">clickout</span> <span class="n">item</span>     <span class="mi">960255</span>    <span class="p">[</span><span class="s1">&#39;1475717&#39;</span><span class="p">,</span> <span class="s1">&#39;5196406&#39;</span><span class="p">,</span> <span class="s1">&#39;104880&#39;</span><span class="p">,</span> <span class="s1">&#39;109351&#39;</span><span class="p">,</span> <span class="s1">&#39;68&#39;</span><span class="o">...</span> <span class="p">[</span><span class="s1">&#39;4304686&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>                     <span class="mi">20</span>          <span class="mf">1.0</span>
+ <span class="mi">2</span> <span class="mi">05</span><span class="n">fe82b496fb9</span> <span class="n">M1Z13DD0P2KH</span>  <span class="mi">1541423039</span>  <span class="n">clickout</span> <span class="n">item</span>     <span class="mi">2188598</span>   <span class="p">[</span><span class="s1">&#39;104558&#39;</span><span class="p">,</span> <span class="s1">&#39;326781&#39;</span><span class="p">,</span> <span class="s1">&#39;104786&#39;</span><span class="p">,</span> <span class="s1">&#39;1223390&#39;</span><span class="p">,</span> <span class="s1">&#39;206&#39;</span><span class="o">...</span> <span class="p">[</span><span class="s1">&#39;4304686&#39;</span><span class="p">,</span> <span class="s1">&#39;960255&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>               <span class="mi">9</span>           <span class="mf">1.0</span>
+ <span class="mi">3</span> <span class="mi">05</span><span class="n">fe82b496fb9</span> <span class="n">M1Z13DD0P2KH</span>  <span class="mi">1541424631</span>  <span class="n">clickout</span> <span class="n">item</span>     <span class="mi">8459162</span>   <span class="p">[</span><span class="s1">&#39;105014&#39;</span><span class="p">,</span> <span class="s1">&#39;5659850&#39;</span><span class="p">,</span> <span class="s1">&#39;478121&#39;</span><span class="p">,</span> <span class="s1">&#39;109351&#39;</span><span class="p">,</span> <span class="s1">&#39;956&#39;</span><span class="o">...</span> <span class="p">[</span><span class="s1">&#39;4304686&#39;</span><span class="p">,</span> <span class="s1">&#39;960255&#39;</span><span class="p">,</span> <span class="s1">&#39;2188598&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>        <span class="mi">23</span>          <span class="mf">1.0</span>
+ <span class="mi">4</span> <span class="mi">05</span><span class="n">fe82b496fb9</span> <span class="n">M1Z13DD0P2KH</span>  <span class="mi">1541424685</span>  <span class="n">interaction</span> <span class="n">info</span>  <span class="mi">8459162</span>   <span class="n">NaN</span>                                                <span class="p">[</span><span class="s1">&#39;4304686&#39;</span><span class="p">,</span> <span class="s1">&#39;960255&#39;</span><span class="p">,</span> <span class="s1">&#39;2188598&#39;</span><span class="p">,</span> <span class="s1">&#39;8459162&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span> <span class="o">-</span><span class="mi">1</span>          <span class="mf">0.0</span>
+
+ <span class="o">&gt;&gt;&gt;</span> <span class="n">df_meta</span><span class="p">[[</span><span class="s1">&#39;list_metadata&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+   <span class="n">list_metadata</span>
+ <span class="mi">0</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">...</span>
+ <span class="mi">1</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">...</span>
+ <span class="mi">2</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">...</span>
+ <span class="mi">3</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">...</span>
+ <span class="mi">4</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">...</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="code docutils literal notranslate"><span class="pre">load_dataset()</span></code> function will download and load only the datasets in <code class="code docutils literal notranslate"><span class="pre">mars_gym.data.utils.datasets()</span></code></p>
+</div>
+</div>
+<div class="section" id="prepare-data">
+<h4>Prepare data<a class="headerlink" href="#prepare-data" title="Permalink to this headline">¶</a></h4>
+<p>The Data Engineering Module is responsible for preprocessing the data and setting up interactions and metadata for
+the simulation module. It uses <a class="reference external" href="https://github.com/spotify/luigi">Luigi</a> as a pipeline tool.</p>
+<p><code class="code docutils literal notranslate"><span class="pre">BasePrepareDataFrames</span></code> is the main class responsible for validating and preparing the data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mars_gym.data.utils</span> <span class="kn">import</span> <span class="n">DownloadDataset</span>
+
+<span class="k">class</span> <span class="nc">PrepareInteractionData</span><span class="p">(</span><span class="n">luigi</span><span class="o">.</span><span class="n">Task</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">requires</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">DownloadDataset</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="s2">&quot;processed_trivago_rio&quot;</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="n">OUTPUT_PATH</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">output</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">luigi</span><span class="o">.</span><span class="n">LocalTarget</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATASET_DIR</span><span class="p">,</span> <span class="s2">&quot;dataset.csv&quot;</span><span class="p">,))</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">DATASET_DIR</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+
+        <span class="c1"># .... transform dataset</span>
+
+        <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">()</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">PrepareMetaData</span><span class="p">(</span><span class="n">luigi</span><span class="o">.</span><span class="n">Task</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">requires</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">DownloadDataset</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="s2">&quot;processed_trivago_rio&quot;</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="n">OUTPUT_PATH</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">output</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">luigi</span><span class="o">.</span><span class="n">LocalTarget</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATASET_DIR</span><span class="p">,</span> <span class="s2">&quot;metadata.csv&quot;</span><span class="p">,))</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">DATASET_DIR</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+
+        <span class="c1"># .... transform dataset</span>
+
+        <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">()</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="s2">&quot;item_id&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The class inherited from <code class="code docutils literal notranslate"><span class="pre">BasePrepareDataFrames</span></code> is the one we will use from within MARS. It is necessary to implement 4 methods in this class. The <code class="code docutils literal notranslate"><span class="pre">timestamp_property</span></code>, which is a feature that defines the temporal order, <code class="code docutils literal notranslate"><span class="pre">dataset_dir</span></code>, which is the local path where the dataset will be saved, <code class="code docutils literal notranslate"><span class="pre">read_data_frame_path</span></code>, which is the local path of the interaction dataset and <code class="code docutils literal notranslate"><span class="pre">metadata_data_frame_path</span></code>, which is the local path of the metadata dataset.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mars_gym.data.task</span> <span class="kn">import</span> <span class="n">BasePrepareDataFrames</span>
+
+<span class="k">class</span> <span class="nc">PrepareTrivagoDataFrame</span><span class="p">(</span><span class="n">BasePrepareDataFrames</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">requires</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">PrepareInteractionData</span><span class="p">(),</span>
+            <span class="n">PrepareMetaData</span><span class="p">(),</span>
+        <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">timestamp_property</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;timestamp&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">dataset_dir</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">DATASET_DIR</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">read_data_frame_path</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">input</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">path</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">metadata_data_frame_path</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">input</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">path</span>
+</pre></div>
+</div>
+<p>It is possible to test this pipeline before the simulation. Since this is a Luigi task it will give you summary about its success or failure, the commands to test are the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">samples.trivago_simple.data</span> <span class="kn">import</span> <span class="n">PrepareTrivagoDataFrame</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">luigi</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">job</span> <span class="o">=</span> <span class="n">PrepareTrivagoDataFrame</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">luigi</span><span class="o">.</span><span class="n">build</span><span class="p">([</span><span class="n">job</span><span class="p">],</span> <span class="n">local_scheduler</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">....</span>
+<span class="go">INFO: Worker Worker(salt=154256821, workers=1, host=user-pc, username=user,</span>
+<span class="go">pid=16527) was stopped. Shutting down Keep-Alive thread</span>
+<span class="go">INFO:</span>
+<span class="go">===== Luigi Execution Summary =====</span>
+
+<span class="go">Scheduled 4 tasks of which:</span>
+<span class="go">* 4 ran successfully:</span>
+<span class="go">    - 1 DownloadDataset(output_path=output, dataset=processed_trivago_rio)</span>
+<span class="go">    - 1 PrepareInteractionData()</span>
+<span class="go">    - 1 PrepareMetaData()</span>
+<span class="go">    - 1 PrepareTrivagoDataFrame(...)</span>
+
+<span class="go">This progress looks :) because there were no failed tasks or missing dependencies</span>
+
+<span class="go">===== Luigi Execution Summary =====</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">o</span><span class="o">.</span><span class="n">path</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">job</span><span class="o">.</span><span class="n">output</span><span class="p">()]</span>
+<span class="go">[&#39;.../train_cc25c002c7.csv&#39;,</span>
+<span class="go">&#39;.../val_cc25c002c7.csv&#39;,</span>
+<span class="go">&#39;.../test_cc25c002c7.csv&#39;,</span>
+<span class="go">&#39;.../metadata.csv&#39;]</span>
+</pre></div>
+</div>
+<p>The <code class="code docutils literal notranslate"><span class="pre">BasePrepareDataFrames</span></code> is highly configurable and parameterizable. In general, the output of this job is the split and processed datasets to be used by MARS.</p>
+<ul class="simple">
+<li><p><cite>DATASET_DIR/train_cc25c002c7.csv</cite></p></li>
+<li><p><cite>DATASET_DIR/val_cc25c002c7.csv</cite></p></li>
+<li><p><cite>DATASET_DIR/test_cc25c002c7.csv</cite></p></li>
+<li><p><cite>DATASET_DIR/metadata.csv</cite></p></li>
+</ul>
+</div>
+<div class="section" id="configuration">
+<h4>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h4>
+<p>Before the simulation, we need to prepare a configuration file with the design parameters and contextual information to be used in the model. We need to define a variable as an instance of <code class="code docutils literal notranslate"><span class="pre">ProjectConfig</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mars_gym.data.dataset</span> <span class="kn">import</span> <span class="n">InteractionsDataset</span>
+<span class="kn">from</span> <span class="nn">mars_gym.meta_config</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">samples.trivago_rio</span> <span class="kn">import</span> <span class="n">data</span>
+
+<span class="n">trivago_rio</span> <span class="o">=</span> <span class="n">ProjectConfig</span><span class="p">(</span>
+    <span class="n">base_dir</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">BASE_DIR</span><span class="p">,</span>
+    <span class="n">prepare_data_frames_task</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">PrepareTrivagoDataFrame</span><span class="p">,</span>
+    <span class="n">dataset_class</span><span class="o">=</span><span class="n">InteractionsDataset</span><span class="p">,</span>
+    <span class="n">user_column</span><span class="o">=</span><span class="n">Column</span><span class="p">(</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="n">IOType</span><span class="o">.</span><span class="n">INDEXABLE</span><span class="p">),</span>
+    <span class="n">item_column</span><span class="o">=</span><span class="n">Column</span><span class="p">(</span><span class="s2">&quot;item_id&quot;</span><span class="p">,</span> <span class="n">IOType</span><span class="o">.</span><span class="n">INDEXABLE</span><span class="p">),</span>
+    <span class="n">other_input_columns</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;pos_item_id&quot;</span><span class="p">,</span> <span class="n">IOType</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">),</span>
+        <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;list_reference_item&quot;</span><span class="p">,</span> <span class="n">IOType</span><span class="o">.</span><span class="n">INDEXABLE_ARRAY</span><span class="p">,</span> <span class="n">same_index_as</span><span class="o">=</span><span class="s2">&quot;item_id&quot;</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="n">metadata_columns</span><span class="o">=</span><span class="p">[</span><span class="n">Column</span><span class="p">(</span><span class="s2">&quot;list_metadata&quot;</span><span class="p">,</span> <span class="n">IOType</span><span class="o">.</span><span class="n">INT_ARRAY</span><span class="p">),],</span>
+    <span class="n">output_column</span><span class="o">=</span><span class="n">Column</span><span class="p">(</span><span class="s2">&quot;clicked&quot;</span><span class="p">,</span> <span class="n">IOType</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">),</span>
+    <span class="n">available_arms_column_name</span><span class="o">=</span><span class="s2">&quot;impressions&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">base_dir</span></code>: Local path where the dataset and files generated by the data engineer module will be saved</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">prepare_data_frames_task</span></code>: Class inherited from BasePrepareDataFrames. This defines the data engineer pipeline.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">dataset_class</span></code>: This class defines how the dataset will be used in the simulation module. MARS already implements different types.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">user_column</span></code>: Column that identifies the user</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">item_column</span></code>: Column that identifies the item</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">other_input_columns</span></code>: Columns that will be used as input for the model and context</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">metadata_columns</span></code>: Metadata columns that will be used as input for the model and context</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">output_column</span></code>: Reward column, the column that defines wether the recommendation was sucessful or not</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">available_arms_column_name</span></code>: Name of the column with items available for recommendation at the time of interaction. This column must contain a list of items the same type as <code class="code docutils literal notranslate"><span class="pre">item_column</span></code>. If this information is not available, MARS will randomly generate the items.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We recommend creating a <cite>config.py</cite> file with all project definitions. It is common to have several different configurations to experiment.</p>
+</div>
+</div>
+<div class="section" id="model-and-simulation">
+<h4>Model and Simulation<a class="headerlink" href="#model-and-simulation" title="Permalink to this headline">¶</a></h4>
+<p>The Recommendation Agent is composed of Reward Estimator and a Recommendation Policy. The model is trained using the rewards from the environment and the policy chooses actions (recommendations) using the context received, again, from the environment.</p>
+<div class="section" id="reward-estimator">
+<h5>Reward Estimator<a class="headerlink" href="#reward-estimator" title="Permalink to this headline">¶</a></h5>
+<p>In order to implement a Reward Estimator ρ(x, a) we use a Pytorch Model that will estimate a reward in a contextual bandit problem. It uses the context ‘x’ (all information passed from environment) and the available actions ‘a’ to estimate a reward for each action.</p>
+</div>
+<div class="section" id="model">
+<h5>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h5>
+<p>The model needs to inherit from RecommenderModule. This class receives through its constructor the <code class="code docutils literal notranslate"><span class="pre">ProjectConfig</span></code> and a <code class="code docutils literal notranslate"><span class="pre">Dict</span></code>  with IndexMapping for all categorical variables. The model is a Pytorch <code class="code docutils literal notranslate"><span class="pre">nn.Module</span></code> and receives in the foward function all context defined in <code class="code docutils literal notranslate"><span class="pre">ProjectConfig</span></code> (<code class="code docutils literal notranslate"><span class="pre">user_column</span></code>, <code class="code docutils literal notranslate"><span class="pre">item_column</span></code>, <code class="code docutils literal notranslate"><span class="pre">other_input_columns</span></code>, and <code class="code docutils literal notranslate"><span class="pre">metadata_columns</span></code>).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">luigi</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">from</span> <span class="nn">mars_gym.meta_config</span> <span class="kn">import</span> <span class="n">ProjectConfig</span>
+<span class="kn">from</span> <span class="nn">mars_gym.model.abstract</span> <span class="kn">import</span> <span class="n">RecommenderModule</span>
+
+
+<span class="k">class</span> <span class="nc">SimpleLinearModel</span><span class="p">(</span><span class="n">RecommenderModule</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">project_config</span><span class="p">:</span> <span class="n">ProjectConfig</span><span class="p">,</span>
+        <span class="n">index_mapping</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
+    <span class="p">):</span>
+      <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">      build model architecture</span>
+<span class="sd">      &quot;&quot;&quot;</span>
+      <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">project_config</span><span class="p">,</span> <span class="n">index_mapping</span><span class="p">)</span>
+      <span class="c1">#...</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">user_ids</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">item_ids</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">pos_item_id</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">list_reference_item</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">list_metadata</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+    <span class="p">):</span>
+      <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">      build forward</span>
+<span class="sd">      &quot;&quot;&quot;</span>
+      <span class="k">pass</span>
+</pre></div>
+</div>
+<p>This model will be trained using the Counterfactual Risk Minimization (CRM) [<a class="reference external" href="https://www.cs.cornell.edu/people/tj/publications/swaminathan_joachims_15b.pdf">1</a>] to reduce bias that came from the dataset. Everything about this training can be parameterized and easily altered.</p>
+<ul class="simple">
+<li><p>[<a class="reference external" href="https://www.cs.cornell.edu/people/tj/publications/swaminathan_joachims_15b.pdf">1</a>] Adith Swaminathan and Thorsten Joachims. 2015. Counterfactual Risk Minimization: Learning from Logged Bandit Feedback. In Proceedings of the 32nd International Conference on International Conference on Machine Learning - Volume 37 (Lille, France) (ICML’15). JMLR.org, 814–823.</p></li>
+</ul>
+<p><strong>Model Example</strong></p>
+<p>This is an example of a simple linear model used in the trivago samples:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SimpleLinearModel</span><span class="p">(</span><span class="n">RecommenderModule</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">project_config</span><span class="p">:</span> <span class="n">ProjectConfig</span><span class="p">,</span>
+        <span class="n">index_mapping</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
+        <span class="n">n_factors</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">metadata_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">window_hist_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">project_config</span><span class="p">,</span> <span class="n">index_mapping</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">user_embeddings</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_users</span><span class="p">,</span> <span class="n">n_factors</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">item_embeddings</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_items</span><span class="p">,</span> <span class="n">n_factors</span><span class="p">)</span>
+
+        <span class="c1"># user + item + flatten hist + position + metadata</span>
+        <span class="n">num_dense</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n_factors</span> <span class="o">+</span> <span class="n">window_hist_size</span> <span class="o">*</span> <span class="n">n_factors</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">metadata_size</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">dense</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">num_dense</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span> <span class="n">nn</span><span class="o">.</span><span class="n">SELU</span><span class="p">(),</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">flatten</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">input</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">user_ids</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">item_ids</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">pos_item_id</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">list_reference_item</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">list_metadata</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="n">user_emb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_embeddings</span><span class="p">(</span><span class="n">user_ids</span><span class="p">)</span>
+        <span class="n">item_emb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">item_embeddings</span><span class="p">(</span><span class="n">item_ids</span><span class="p">)</span>
+        <span class="n">history_items_emb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">item_embeddings</span><span class="p">(</span><span class="n">list_reference_item</span><span class="p">)</span>
+
+        <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span>
+            <span class="p">(</span>
+                <span class="n">user_emb</span><span class="p">,</span>
+                <span class="n">item_emb</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">history_items_emb</span><span class="p">),</span>
+                <span class="n">pos_item_id</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+                <span class="n">list_metadata</span><span class="o">.</span><span class="n">float</span><span class="p">(),</span>
+            <span class="p">),</span>
+            <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="recommendation-policy">
+<h5>Recommendation Policy<a class="headerlink" href="#recommendation-policy" title="Permalink to this headline">¶</a></h5>
+<p>We need to implement a Recommendation Policy π(a|x), this is a bandit strategy ‘π’ that will choose an action ‘a’ based on the context ‘x’.</p>
+<a class="reference internal image-reference" href="_images/math_policy_recommendation.png"><img alt="_images/math_policy_recommendation.png" class="align-center" src="_images/math_policy_recommendation.png" style="width: 100px;" /></a>
+<p><strong>Bandit</strong></p>
+<p>The Bandit needs to be inherited from BanditPolicy. We need to implement the <code class="code docutils literal notranslate"><span class="pre">._select_idx(...)</span></code> function. This method is called by the environment to receive an action given the context.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mars_gym.model.bandit</span> <span class="kn">import</span> <span class="n">BanditPolicy</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="k">class</span> <span class="nc">BasePolicy</span><span class="p">(</span><span class="n">BanditPolicy</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reward_model</span><span class="p">:</span> <span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize bandit information and params</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">reward_model</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_select_idx</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">arm_indices</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+        <span class="n">arm_contexts</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">arm_scores</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">pos</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Choose the index of arm selected in turn</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">action</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">arm_indices</span></code>: Available actions at the time of interaction (same as <code class="code docutils literal notranslate"><span class="pre">available_arms_column_name</span></code>)</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">arm_contexts</span></code>: Context information at the time of interaction</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">arm_scores</span></code>: Estimated reward, that came from Reward Estimator, for each action.</p></li>
+</ul>
+<p><strong>Example of Epsilon-Greedy Policy</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">EGreedyPolicy</span><span class="p">(</span><span class="n">BanditPolicy</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reward_model</span><span class="p">:</span> <span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">reward_model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rng</span> <span class="o">=</span> <span class="n">RandomState</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_select_idx</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">arm_indices</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+        <span class="n">arm_contexts</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">arm_scores</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">pos</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
+
+        <span class="n">n_arms</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arm_indices</span><span class="p">)</span>
+        <span class="n">arm_probas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span> <span class="o">/</span> <span class="n">n_arms</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rng</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_epsilon</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_epsilon</span><span class="p">]):</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arm_indices</span><span class="p">),</span> <span class="n">p</span><span class="o">=</span><span class="n">arm_probas</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">arm_scores</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">action</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="simulation">
+<h5>Simulation<a class="headerlink" href="#simulation" title="Permalink to this headline">¶</a></h5>
+<p>MARS-Gym simulates the dynamics of the marketplace. This includes several processes.
+The framework filters only successful interactions. They are the only ones that
+tell us what the users really want, thus they are used to compose the rewards. Each
+simulation step is an interaction, with observations being the user’s metadata, and
+actions being the items to recommend. The sequence of steps follows the sequence of
+interactions in the filtered ground-truth dataset to maintain the temporal dynamic.
+Finally, the interactions between the proposed agent and the environment generate
+new interaction logs that are used in subsequent steps.</p>
+<a class="reference internal image-reference" href="_images/img3.jpg"><img alt="_images/img3.jpg" class="align-center" src="_images/img3.jpg" style="width: 700px;" /></a>
+<p>For simulation, we use the <code class="code docutils literal notranslate"><span class="pre">InteractionTraining</span></code> class. This class is a Gym implementation and receives as parameters the information about the project (<code class="code docutils literal notranslate"><span class="pre">ProjectConfig</span></code>), reward estimator (<code class="code docutils literal notranslate"><span class="pre">RecommenderModule</span></code>), bandit policy (<code class="code docutils literal notranslate"><span class="pre">BanditPolicy</span></code>) and other training parameters.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mars_gym.simulation.interaction</span> <span class="kn">import</span> <span class="n">InteractionTraining</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">job_train</span> <span class="o">=</span> <span class="n">InteractionTraining</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">project</span><span class="o">=</span><span class="s2">&quot;samples.trivago_simple.config.trivago_rio&quot;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">recommender_module_class</span><span class="o">=</span><span class="s2">&quot;samples.trivago_simple.simulation.SimpleLinearModel&quot;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">recommender_extra_params</span><span class="o">=</span><span class="p">{</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="s2">&quot;n_factors&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="s2">&quot;metadata_size&quot;</span><span class="p">:</span> <span class="mi">148</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="s2">&quot;window_hist_size&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="p">},</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">bandit_policy_class</span><span class="o">=</span><span class="s2">&quot;samples.trivago_simple.simulation.EGreedyPolicy&quot;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">bandit_policy_params</span><span class="o">=</span><span class="p">{</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="s2">&quot;epsilon&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="s2">&quot;seed&quot;</span><span class="p">:</span> <span class="mi">42</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="p">},</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">test_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">obs_batch_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">num_episodes</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">luigi</span><span class="o">.</span><span class="n">build</span><span class="p">([</span><span class="n">job_train</span><span class="p">],</span> <span class="n">local_scheduler</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">...</span>
+<span class="go">0/100(t): 100%|████████████████████████████████████████████████████████████████████████████████████████| 12/12 [00:00&lt;00:00, 30.32it/s, loss=0.0025, running_loss=0.0024]</span>
+<span class="go">1/100(t): 100%|█████████████████████████████████████████████████████████████████████████████████████████| 12/12 [00:00&lt;00:00, 45.82it/s, loss=0.003, running_loss=0.0028]</span>
+<span class="gp">...</span>
+<span class="gp">...</span>
+<span class="go">10/100(v): 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00&lt;00:00, 81.10it/s, val_loss=0.2949]</span>
+
+<span class="go">Interaction Stats (75.36%)</span>
+<span class="go">          count      mean       std</span>
+<span class="go">dataset</span>
+<span class="go">all      7300.0  0.044110  0.205353</span>
+<span class="go">train    5840.0  0.042808  0.202442</span>
+<span class="go">valid    1460.0  0.049315  0.216599</span>
+
+<span class="go">Saving logs...</span>
+<span class="go">Saving test set predictions...</span>
+<span class="go">100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2422/2422 [00:00&lt;00:00, 4063441.72it/s]</span>
+<span class="go">100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2422/2422 [00:00&lt;00:00, 3831989.55it/s]</span>
+<span class="go">100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2422/2422 [00:16&lt;00:00, 151.33it/s]</span>
+
+<span class="go">INFO: Informed scheduler that task   InteractionTraining____samples_trivago____epsilon___0_1__4fc1370d9d   has status   DONE</span>
+<span class="go">2020-06-22 08:41:37,842 : INFO : Informed scheduler that task   InteractionTraining____samples_trivago____epsilon___0_1__4fc1370d9d   has status   DONE</span>
+<span class="go">DEBUG: Asking scheduler for work...</span>
+</pre></div>
+</div>
+<p>The best way to run is in <strong>Script Mode</strong>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> mars-gym run interaction <span class="se">\</span>
+--project samples.trivago_simple.config.trivago_rio <span class="se">\</span>
+--recommender-module-class samples.trivago_simple.simulation.SimpleLinearModel <span class="se">\</span>
+--recommender-extra-params <span class="s1">&#39;{&quot;n_factors&quot;: 10, &quot;metadata_size&quot;: 148, &quot;window_hist_size&quot;: 5}&#39;</span> <span class="se">\</span>
+--bandit-policy-class samples.trivago_simple.simulation.EGreedyPolicy <span class="se">\</span>
+--bandit-policy-params <span class="s1">&#39;{&quot;epsilon&quot;: 0.1}&#39;</span> <span class="se">\</span>
+--obs-batch-size <span class="m">100</span>
+
+<span class="go">...</span>
+<span class="go">...</span>
+<span class="go">Interaction Stats (75.36%)</span>
+<span class="go">          count      mean       std</span>
+<span class="go">dataset</span>
+<span class="go">all      7300.0  0.044110  0.205353</span>
+<span class="go">train    5840.0  0.042808  0.202442</span>
+<span class="go">valid    1460.0  0.049315  0.216599</span>
+
+<span class="go">Saving logs...</span>
+<span class="go">Saving test set predictions...</span>
+<span class="go">100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2422/2422 [00:00&lt;00:00, 4063441.72it/s]</span>
+<span class="go">100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2422/2422 [00:00&lt;00:00, 3831989.55it/s]</span>
+<span class="go">100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2422/2422 [00:16&lt;00:00, 151.33it/s]</span>
+
+<span class="go">INFO: Informed scheduler that task   InteractionTraining____samples_trivago____epsilon___0_1__4fc1370d9d   has status   DONE</span>
+<span class="go">2020-06-22 08:41:37,842 : INFO : Informed scheduler that task   InteractionTraining____samples_trivago____epsilon___0_1__4fc1370d9d   has status   DONE</span>
+<span class="go">DEBUG: Asking scheduler for work...</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Make sure you have downloaded the dataset to be processed. In this script specifically, we are using the “processed_trivago_rio” dataset</p>
+</div>
+<p>Each simulation generates artifacts for evaluation and metadata that can be used to deploy models in another environment:</p>
+<ul class="simple">
+<li><p>../params.json</p></li>
+<li><p>../sim-datalog.csv</p></li>
+<li><p>../index_mapping.pkl</p></li>
+<li><p>../bandit.pkl</p></li>
+<li><p>../weights.pt</p></li>
+<li><p>../test_set_predictions.csv</p></li>
+</ul>
+</div>
+<div class="section" id="supervised-learning">
+<h5>Supervised Learning<a class="headerlink" href="#supervised-learning" title="Permalink to this headline">¶</a></h5>
+<p>It is also possible to use MARS-gym for supervised learning. It is useful for validating and testing the reward model before using it in a simulation. In such cases, we can use <code class="code docutils literal notranslate"><span class="pre">SupervisedModelTraining</span></code> class with similar parameters.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> mars-gym run supervised <span class="se">\</span>
+--project samples.trivago_simple.config.trivago_rio <span class="se">\</span>
+--recommender-module-class samples.trivago_simple.simulation.SimpleLinearModel <span class="se">\</span>
+--recommender-extra-params <span class="s1">&#39;{&quot;n_factors&quot;: 10, &quot;metadata_size&quot;: 148, &quot;window_hist_size&quot;: 5}&#39;</span> <span class="se">\</span>
+--early-stopping-min-delta <span class="m">0</span>.0001 --negative-proportion <span class="m">0</span>.8 <span class="se">\</span>
+--learning-rate <span class="m">0</span>.0001 --epochs <span class="m">50</span> --batch-size <span class="m">100</span> --metrics<span class="o">=</span><span class="s1">&#39;[&quot;loss&quot;]&#39;</span>
+
+<span class="go">...</span>
+<span class="go">...</span>
+<span class="go">DEBUG: Checking if SupervisedModelTraining(project=samples.trivago_simple.config.trivago_rio,</span>
+<span class="go">sample_size=-1, minimum_interactions=5, session_test_size=0.1, test_size=0.2,</span>
+<span class="go">dataset_split_method=time, test_split_type=random, val_size=0.2, n_splits=5,</span>
+<span class="go">split_index=0, data_frames_preparation_extra_params={}, sampling_strategy=none,</span>
+<span class="go">balance_fields=[], sampling_proportions={}, use_sampling_in_validation=False, eq_filters={},</span>
+<span class="go">neq_filters={}, isin_filters={}, seed=42, observation=, negative_proportion=0.8,</span>
+<span class="go">recommender_module_class=samples.trivago_simple.simulation.SimpleLinearModel,</span>
+<span class="go">recommender_extra_params={&quot;n_factors&quot;: 10, &quot;metadata_size&quot;: 148, &quot;window_hist_size&quot;: 5},</span>
+<span class="go">device=cuda, batch_size=100, epochs=50, optimizer=adam, optimizer_params={},</span>
+<span class="go">learning_rate=0.0001, loss_function=mse, loss_function_params={}, gradient_norm_clipping=0.0,</span>
+<span class="go">gradient_norm_clipping_type=2, early_stopping_patience=5, early_stopping_min_delta=0.0001,</span>
+<span class="go">monitor_metric=val_loss, monitor_mode=min, generator_workers=0, pin_memory=False,</span>
+<span class="go">policy_estimator_extra_params={}, metrics=[&quot;loss&quot;], bandit_policy_class=mars_gym.model.bandit.ModelPolicy,</span>
+<span class="go">bandit_policy_params={}) is complete</span>
+<span class="go">...</span>
+<span class="go">20/50(t): 100%|████████████████████████████████████████████████████████████████| 388/388 [00:01&lt;00:00, 242.70it/s, loss=0.129, running_loss=0.1277]</span>
+<span class="go">20/50(v): 100%|███████████████████████████████████████████████████████████████████████████████████| 97/97 [00:00&lt;00:00, 323.86it/s, val_loss=0.125]</span>
+<span class="go">21/50(t): 100%|████████████████████████████████████████████████████████████████| 388/388 [00:01&lt;00:00, 201.85it/s, loss=0.1291, running_loss=0.129]</span>
+<span class="go">21/50(v): 100%|██████████████████████████████████████████████████████████████████████████████████| 97/97 [00:00&lt;00:00, 323.73it/s, val_loss=0.1252]</span>
+<span class="go">Saving test set predictions...</span>
+<span class="go">100%|█████████████████████████████████████████████████████████████████████████████████████████████████████| 2422/2422 [00:00&lt;00:00, 3655489.13it/s]</span>
+<span class="go">100%|█████████████████████████████████████████████████████████████████████████████████████████████████████| 2422/2422 [00:00&lt;00:00, 3219842.88it/s]</span>
+<span class="go">100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████| 2422/2422 [00:13&lt;00:00, 181.27it/s]</span>
+<span class="go">...</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/history.jpg"><img alt="_images/history.jpg" class="align-center" src="_images/history.jpg" style="width: 400px;" /></a>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="evaluation">
+<h4>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">¶</a></h4>
+<p>We have a specific command for evaluation. This task implements three rating categories: Rank Metrics, Fairness Metrics, and Off-policy Metrics. Before the evaluation, it is
+necessary to run a simulation or supervised training, after this we will use the <code class="code docutils literal notranslate"><span class="pre">task_id</span></code> provided by luigi, and also used as the folder name in
+<code class="code docutils literal notranslate"><span class="pre">output/interaction/InteractionTraining/results/task_id</span></code>. For evaluation, we use the <code class="code docutils literal notranslate"><span class="pre">mars-gym</span> <span class="pre">evaluate</span></code> command, which has the <code class="code docutils literal notranslate"><span class="pre">mars-gym</span> <span class="pre">evaluate</span> <span class="pre">interaction</span></code> and
+<code class="code docutils literal notranslate"><span class="pre">mars-gym</span> <span class="pre">evaluate</span> <span class="pre">supervised</span></code> variants.</p>
+<p>Each evaluation command generates many artifacts with metrics and metadata that can be used by the Evaluation Platform.</p>
+<ul class="simple">
+<li><p>EVALUATION_DIR/metrics.json</p></li>
+<li><p>EVALUATION_DIR/rank_metrics.csv</p></li>
+<li><p>EVALUATION_DIR/df_offpolicy.csv</p></li>
+<li><p>EVALUATION_DIR/fairness_df.csv</p></li>
+<li><p>EVALUATION_DIR/fairness_metrics.csv</p></li>
+</ul>
+<div class="section" id="rank-metrics">
+<h5>Rank Metrics<a class="headerlink" href="#rank-metrics" title="Permalink to this headline">¶</a></h5>
+<p>By default, every run of <code class="code docutils literal notranslate"><span class="pre">mars-gym</span> <span class="pre">evaluate</span></code> will compute Rank Metrics, such as:</p>
+<ul class="simple">
+<li><p>nDCG</p></li>
+<li><p>Mean Average Precision</p></li>
+</ul>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> mars-gym evaluate interaction <span class="se">\</span>
+--model-task-id InteractionTraining____samples_trivago____epsilon___0_1__3fe8c849e3
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/rank.png"><img alt="_images/rank.png" src="_images/rank.png" style="width: 500px;" /></a>
+<p>Notice that each evaluation command will receive its own <code class="code docutils literal notranslate"><span class="pre">task_id</span></code> preceded by the training’s <code class="code docutils literal notranslate"><span class="pre">task_id</span></code>.</p>
+</div>
+<div class="section" id="off-policy-metrics">
+<h5>Off-policy Metrics<a class="headerlink" href="#off-policy-metrics" title="Permalink to this headline">¶</a></h5>
+<p>For off-policy evaluation, MARS-Gym uses three main estimators [<a class="reference external" href="https://dl.acm.org/doi/10.5555/3104482.3104620">3</a>]:</p>
+<ul class="simple">
+<li><p>Direct Method</p></li>
+<li><p>Inverse Propensity Score</p></li>
+<li><p>Doubly Robust</p></li>
+</ul>
+<p>All of which can be seen and compared with our Evaluation Platform.</p>
+<p>In order to run these metrics, just add the flag <code class="code docutils literal notranslate"><span class="pre">--offpolicy-eval</span></code> to the command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> mars-gym evaluate interaction <span class="se">\</span>
+--model-task-id InteractionTraining____samples_trivago____epsilon___0_1__3fe8c849e3 <span class="se">\</span>
+--offpolicy-eval
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/off.png"><img alt="_images/off.png" src="_images/off.png" style="width: 500px;" /></a>
+<p>[<a class="reference external" href="https://dl.acm.org/doi/10.5555/3104482.3104620">3</a>] Miroslav Dudík, John Langford, and Lihong Li. 2011. Doubly Robust Policy Evaluation and Learning. InProceedings of the 28th InternationalConference on International Conference on Machine Learning(Bellevue, Washington, USA)(ICML’11). Omnipress, Madison, WI, USA, 1097–1104.</p>
+</div>
+<div class="section" id="fairness-metrics">
+<h5>Fairness Metrics<a class="headerlink" href="#fairness-metrics" title="Permalink to this headline">¶</a></h5>
+<p>In MARS-Gym, we consider three perspectives to measure fairness [<a class="reference external" href="https://doi.org/10.1145/3038912.3052660">2</a>]:</p>
+<ul class="simple">
+<li><p><strong>Disparate Treatment</strong></p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/treatment.png"><img alt="_images/treatment.png" src="_images/treatment.png" style="width: 500px;" /></a>
+<ul class="simple">
+<li><p><strong>Disparate Impact</strong></p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/impact.png"><img alt="_images/impact.png" src="_images/impact.png" style="width: 500px;" /></a>
+<ul class="simple">
+<li><p><strong>Disparate Mistreatment</strong></p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/mistreatment.png"><img alt="_images/mistreatment.png" src="_images/mistreatment.png" style="width: 500px;" /></a>
+<p>To calculate the metrics of fairness, you need to pass the parameter
+<code class="code docutils literal notranslate"><span class="pre">--fairness-columns</span></code>, this parameter receives an array of attributes according to
+which the metrics will be computed. Ex:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> mars-gym evaluate interaction <span class="se">\</span>
+--model-task-id InteractionTraining____samples_trivago____epsilon___0_1__3fe8c849e3 <span class="se">\</span>
+--fairness-columns <span class="s1">&#39;[&quot;pos_item_id&quot;]&#39;</span>
+</pre></div>
+</div>
+<p>[<a class="reference external" href="https://doi.org/10.1145/3038912.3052660">2</a>] Zafar et. al, 2017. Fairness Beyond Disparate Treatment &amp; Disparate Impact: Learning
+Classification without Disparate Mistreatment <a class="reference external" href="https://doi.org/10.1145/3038912.3052660">https://doi.org/10.1145/3038912.3052660</a></p>
+</div>
+<div class="section" id="evaluation-platform">
+<h5>Evaluation Platform<a class="headerlink" href="#evaluation-platform" title="Permalink to this headline">¶</a></h5>
+<p>The Evaluation Platform is a web application that centralizes all views of the evaluation metrics.</p>
+<a class="reference internal image-reference" href="_images/image1.png"><img alt="_images/image1.png" class="align-center" src="_images/image1.png" style="width: 800px;" /></a>
+<p>It is an external service made with <a class="reference external" href="https://www.streamlit.io/">Streamlit</a> library. To start the service, use this command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> mars-gym viz
+
+<span class="go">You can now view your Streamlit app in your browser.</span>
+<span class="go">Local URL: http://localhost:8501</span>
+</pre></div>
+</div>
+<p>In this platform you’ll be able to select experiments, metrics, and visualize them in a number of ways, including the iteraction results from training.</p>
+</div>
+</div>
+</div>
+<span id="document-dataviz"></span><div class="section" id="evaluation-plaftform">
+<h3>Evaluation Plaftform<a class="headerlink" href="#evaluation-plaftform" title="Permalink to this headline">¶</a></h3>
+<p>MARS-Gym comes with a platform for viewring results.</p>
+<a class="reference internal image-reference" href="_images/image1.png"><img alt="_images/image1.png" src="_images/image1.png" style="width: 600px;" /></a>
+<p>Run Data Viz Platform:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mars</span><span class="o">-</span><span class="n">gym</span> <span class="n">viz</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="toctree-wrapper compound">
+<span id="document-guilde_data_enginnering_module"></span><div class="section" id="data-enginnering-module">
+<h3>Data Enginnering Module<a class="headerlink" href="#data-enginnering-module" title="Permalink to this headline">¶</a></h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum augue diam, placerat ut urna tincidunt, tristique eleifend felis. Duis tellus libero, commodo vitae mauris eu, suscipit mollis leo. Quisque in nulla fermentum, iaculis risus eu, sollicitudin est. Mauris quis elementum metus. Maecenas mattis efficitur diam at tempor. Integer consequat gravida sagittis. Nam a ultrices odio.</p>
+<a class="reference internal image-reference" href="_images/img2.jpg"><img alt="_images/img2.jpg" src="_images/img2.jpg" style="width: 600px;" /></a>
+</div>
+<span id="document-guilde_simulation_module"></span><div class="section" id="simulation-module">
+<h3>Simulation Module<a class="headerlink" href="#simulation-module" title="Permalink to this headline">¶</a></h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum augue diam, placerat ut urna tincidunt, tristique eleifend felis. Duis tellus libero, commodo vitae mauris eu, suscipit mollis leo. Quisque in nulla fermentum, iaculis risus eu, sollicitudin est. Mauris quis elementum metus. Maecenas mattis efficitur diam at tempor. Integer consequat gravida sagittis. Nam a ultrices odio.</p>
+<a class="reference internal image-reference" href="_images/img2.jpg"><img alt="_images/img2.jpg" src="_images/img2.jpg" style="width: 600px;" /></a>
+</div>
+<span id="document-guilde_evaluation_module"></span><div class="section" id="evaluation-module">
+<h3>Evaluation Module<a class="headerlink" href="#evaluation-module" title="Permalink to this headline">¶</a></h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum augue diam, placerat ut urna tincidunt, tristique eleifend felis. Duis tellus libero, commodo vitae mauris eu, suscipit mollis leo. Quisque in nulla fermentum, iaculis risus eu, sollicitudin est. Mauris quis elementum metus. Maecenas mattis efficitur diam at tempor. Integer consequat gravida sagittis. Nam a ultrices odio.</p>
+<a class="reference internal image-reference" href="_images/img2.jpg"><img alt="_images/img2.jpg" src="_images/img2.jpg" style="width: 600px;" /></a>
+</div>
+</div>
+<div class="toctree-wrapper compound">
+<span id="document-contrib"></span><div class="section" id="contribution">
+<h3>Contribution<a class="headerlink" href="#contribution" title="Permalink to this headline">¶</a></h3>
+</div>
+<span id="document-authors"></span><div class="section" id="authors">
+<h3>Authors<a class="headerlink" href="#authors" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Marlesson R. O. de Santana</p></li>
+<li><p>Luckeciano C. Melo</p></li>
+<li><p>Fernando H. F. Camargo</p></li>
+<li><p>Bruno Brandão</p></li>
+<li><p>Renan Oliveira</p></li>
+<li><p>Sandor Caetano</p></li>
+<li><p>Anderson Soares</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+
+          </div>
+          <footer>
+
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+        &copy; Copyright 2020, MARS-Gym Authors
+
+    </p>
+  </div>
+
+
+
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+
+
+
+
+
+</body>
+</html>
