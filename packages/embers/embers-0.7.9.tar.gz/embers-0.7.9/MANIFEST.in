@@ -1,0 +1,8 @@
+include LICENSE
+include README.md
+include MANIFEST.in
+include requirements.txt
+recursive-include src *
+recursive-exclude docs *
+exclude *.yml
+recursive-exclude * __pycache__
