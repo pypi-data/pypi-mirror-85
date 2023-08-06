@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+{% block body %}
+    <section class="container">
+        <div class="section">
+            <h1 class="title">任务状态查询</h1>
+            <div class="container">
+                <form method="post">
+                    <div class="field has-addons">
+                        <p class="control">
+                            <input type="text" class="input" placeholder="任务ID" name="tid" {% if tid is not none %}
+                                   value="{{ tid }}" {% endif %}>
+                        </p>
+                        <p class="control">
+                            <input type="submit" class="button" value="查询">
+                        </p>
+                    </div>
+                </form>
+            </div>
+            <div class="container mt-5">
+                {% if state %}
+                    <h2 class="subtitle">任务[{{ tid }}]当前状态</h2>
+                    <table class="table is-bordered">
+                        <tbody>
+                        <tr>
+                            <th style="width: 20%">当前状态</th>
+                            <td style="width: 80%">{{ state.state }}</td>
+                        </tr>
+                        {% if state.ip %}
+                            <tr>
+                                <th>IP</th>
+                                <td>{{ state.ip }}</td>
+                            </tr>
+                        {% endif %}
+                        {% if state.pid %}
+                            <tr>
+                                <th>工作单元运行进程ID</th>
+                                <td>{{ state.pid }}</td>
+                            </tr>
+                        {% endif %}
+                        {% if state.exitcode %}
+                            <tr>
+                                <th>退出Code</th>
+                                <td>{{ state.exitcode }}</td>
+                            </tr>
+                        {% endif %}
+                        {% if state.updated_at %}
+                            <tr>
+                                <th>更新时间</th>
+                                <td>{{ state.updated_at }}</td>
+                            </tr>
+                        {% endif %}
+                        {% if state.logs %}
+                            <tr>
+                                <th>日志信息</th>
+                                <td>{{ state.logs }}</td>
+                            </tr>
+                        {% endif %}
+                        <tr>
+                            <th></th>
+                            <td><a href="{{ url_for('pages.page_record', query_type='tid', q=tid) }}">调度详情</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

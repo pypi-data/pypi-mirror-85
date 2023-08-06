@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div class="container">
+        <section class="section">
+            <h4 class="title is-4">当前调度统计</h4>
+            <div class="tile is-ancestor has-text-centered">
+                <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <p class="title">{{ task_size }}</p>
+                        <p class="subtitle">任务总数</p>
+                    </article>
+                </div>
+                <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <p class="title">{{ worker_size }}</p>
+                        <p class="subtitle">工作单元总数</p>
+                    </article>
+                </div>
+                <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <p class="title">{{ payload_size }}</p>
+                        <p class="subtitle">在运行的任务总数</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <section class="section mt">
+            <h4 class="title is-4">区分任务类型负载统计</h4>
+            <table class="table is-bordered">
+                <thead>
+                <tr>
+                    <th>任务类型</th>
+                    <th>负载量</th>
+                    <th>总数</th>
+                    <th>备注</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for task_type, payload_num, total_num in task_stats %}
+                    <tr>
+                        <td>
+                            <a href="{{ url_for('pages.page_record', query_type='task_type', q=task_type) }}">{{ task_type }}</a>
+                        </td>
+                        <td>{{ payload_num }}</td>
+                        <td>{{ total_num }}</td>
+                        <td>
+                            {% if total_num - payload_num > 0 %}
+                                <i class="fas fa-exclamation-triangle has-text-danger"></i>需要更多的工作单元
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block body %}
+    <section class="container">
+        <div class="section">
+            <h1 class="title">当前工作单元列表</h1>
+            <table class="table is-bordered">
+                <thead>
+                <tr>
+                    <th>ID(点击打开调度日志)</th>
+                    <th>处理类型</th>
+                    <th>最大处理任务数量</th>
+                    <th>负载量</th>
+                    <th>hostname</th>
+                    <th>IP</th>
+                    <th>PID</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for w in workers %}
+                    <tr>
+                        <td><a href="{{ url_for('pages.page_record', query_type='wid', q=w.wid) }}">{{ w.wid }}</a></td>
+                        <td>{{ w.handle_type }}</td>
+                        <td>{{ w.max_handle_num }}</td>
+                        <td>{{ w.curr_handle_num }}</td>
+                        <td>{{ w.hostname }}</td>
+                        <td>{{ w.hostip }}</td>
+                        <td>{{ w.pid }}</td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}
