@@ -1,0 +1,76 @@
+Metadata-Version: 2.1
+Name: vagquery
+Version: 1.2
+Summary: Queries for VAG public transportation time schedules
+Home-page: https://github.com/derphilipp/vagquery
+License: MIT
+Keywords: vag,public,transport
+Author: Philipp Weißmann
+Author-email: mail@philipp-weissmann.de
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: pytz (>=2018.07,<2019.0)
+Requires-Dist: requests (>=2.18.4,<3.0.0)
+Project-URL: Repository, https://github.com/derphilipp/vagquery
+Description-Content-Type: text/markdown
+
+# vagquery
+
+[![Build Status](https://travis-ci.org/derphilipp/vagquery.svg?branch=master)](https://travis-ci.org/derphilipp/vagquery)
+[![Coverage Status](https://coveralls.io/repos/derphilipp/vagquery/badge.png?branch=master)](https://coveralls.io/r/derphilipp/vagquery?branch=master)
+
+
+A python library for generating and executing queries for the VAG public transport system
+[start.vag.de](https://start.vag.de)
+
+This enables users with disabilities, hackers and you to receive information from the start.vag website.
+
+# General usage
+
+Two classes are usually used:
+
+```
+    import vagquery
+    # Query for stations beginning with 'Schwe'
+    stations = vagquery.StationQuery("Schwe").query()
+    for station in stations:
+        print(station)
+
+
+    # Query for next departures of the main railway station (id: 510)
+    departures = vagquery.DepartureQuery(510).query()
+    for departure in departures:
+        print(departure)
+```
+
+Specialized usage
+============================
+
+For repeated queries, the query object can be created and run again and again:
+
+```
+    dquery = vagquery.DepartureQuery(510)
+    departures = dquery.query()
+    # ...
+    # much later
+    # ...
+    departures = dquery.query()
+```
+
+For a custom formating of the departures, the properties of a departure object can be used:
+
+```
+    departures = vagquery.DepartureQuery(510).query()
+    for departure in departures:
+        print(departure.product + " " + str(departure.latitude) + str(departure.longitude))
+```
+
+# License
+
+*vagquery* is licensed under the MIT license.
+
+
