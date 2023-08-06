@@ -1,0 +1,30 @@
+pip>=18.0
+certifi
+setuptools>=36.2.1
+virtualenv-clone>=0.2.5
+virtualenv
+
+[:python_version < "3"]
+enum34
+
+[:python_version < "3.5"]
+typing
+
+[dev]
+towncrier
+bs4
+twine
+sphinx<2
+flake8<4.0,>=3.3.0
+parver
+invoke
+
+[dev:python_version >= "3.6"]
+black
+
+[tests]
+pytest<5.0
+pytest-timeout
+pytest-xdist<2.0
+flaky
+mock
