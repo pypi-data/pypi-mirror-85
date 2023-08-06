@@ -1,0 +1,68 @@
+## v0.11.0 - 20/11/15
+
+* Add . to PYTHONPATH in from_command
+* Add doks settings to pyproject.toml
+* Improve output slightly
+* Add describe_doks for custom help messages
+* Move rst to its own subdirectory
+* Read _DOKS from the main module
+* Better description of partials
+* Indent function signatures that are too long
+* Use shortened name for xmod modules
+* Print to sys.stderr consistently
+* Read doks arguments from pyproject.toml
+* Handle partial functions better
+* New --force argument
+* Handle default targets better
+* Add a Comments header for epilogs
+* Fix results for simp
+* Commit test for wrong results for simp
+* Rename some test files
+* from_command now expects strings only
+* from_files.py no longer knows about variables
+
+## v0.10.3 - 20/10/07
+
+* Enable Python 3.9
+
+## v0.10.2 - 20/10/07
+
+* Add shields.yml to MANIFEST.in
+
+## v0.10.1 - 20/09/06
+
+* Improve robustness, check error cases
+* Add MANIFEST.in
+* Use tdir() parameter chdir
+* Skip functions without doc strings in rst.py
+* Use simplified tdir calls
+
+## v0.10.0 - 20/07/10
+
+* Show a window around rst errors (fix #8)
+* New --auto flag (fix #10)
+* Don't write timestamp-only changes (fix #9)
+* Fail on empty modules
+
+## v0.9.3 - 20/06/20
+
+* Add a test for README.rst's sanity
+
+## v0.9.2 - 20/06/20
+
+* Follow wrapped functions to find source
+* Fix sections to be hierarchical
+* Read existing section characters from document
+* Move data from test_doks.py into a text file
+* Temporarily lower code coverage threshold
+* Add links to source code
+* Use inspect.getdoc() (see #2)
+* Add self-link to doks (fix #4)
+* Move the tests directory to test
+* Improve shield and variable handling
+* Use doks to generate doks
+* Move some requirements
+
+## v0.9.1 - 20/05/28
+
+* First release
