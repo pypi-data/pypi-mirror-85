@@ -1,0 +1,15 @@
+include AUTHORS.rst
+include CONTRIBUTING.rst
+include HISTORY.rst
+include LICENSE
+include README.rst
+
+exclude sicor/AC/data/EnMAP_LUT_MOD5_formatted_1nm
+exclude sicor/sensors/S2MSI/GranuleInfo/data/S2_tile_data_full.json
+
+recursive-exclude tests *
+recursive-exclude examples *
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+
+recursive-include docs *.rst conf.py Makefile make.bat *.jpg *.png *.gif

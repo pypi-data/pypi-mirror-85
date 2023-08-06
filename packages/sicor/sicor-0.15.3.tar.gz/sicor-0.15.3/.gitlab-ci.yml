@@ -1,0 +1,130 @@
+before_script:
+  - git lfs pull
+  - mkdir -p public/images/
+  - cp -r docs/images/* public/images/
+
+stages:
+    - test
+    - deploy
+
+# install sicor in new (fresh) conda environment
+test_sicor_install:
+  stage: test
+  script:
+    - source /root/miniconda3/bin/activate
+    - conda create -y -q --name sicor_testinstall python=3
+    - source activate sicor_testinstall
+    - conda config --add channels conda-forge # Fix for gdal, libgdal installed from defaults channels causing ImportError: libpoppler.so.76: cannot open shared object file: No such file or directory
+    - conda config --set channel_priority strict
+    # run sicor installation
+    - conda install --yes -q sicor
+    # test if its importable
+    - cd ..
+    - pwd
+    - ls
+    - python -c "import sicor; print(sicor)"
+    - python -c "from sicor.sicor_enmap import sicor_ac_enmap"
+    - python -c "from sicor.sicor_ac import ac"
+
+# sicor enmap tests
+test_sicor_enmap:
+  stage: test
+  script:
+    - source /root/miniconda3/bin/activate
+    - source activate sicor_env
+    - export GDAL_DATA=/root/miniconda3/envs/sicor_env/share/gdal
+    - export PYTHONPATH=$PYTHONPATH:/root  # /root <- directory needed later
+    - pip install pycodestyle --upgrade
+    - conda install -c conda-forge gdown
+    # copy testdata and download  LUT
+    - cp -r /root/EnPT/enpt /root/miniconda3/envs/sicor_env/lib/python3.8/site-packages/enpt-0.14.1-py3.8.egg/
+    - cp -r /root/EnPT/tests /root/miniconda3/envs/sicor_env/lib/python3.8/site-packages/enpt-0.14.1-py3.8.egg/
+    - make lint
+    - make nosetests_enmap  # enmap tests are called here
+    - pip install sphinx_rtd_theme  # Read-the-docs theme for SPHINX documentation
+    - make docs
+  artifacts:
+    paths:
+      - htmlcov/
+      - docs/_build/html/
+      - tests/linting/flake8.log
+      - tests/linting/pycodestyle.log
+      - tests/linting/pydocstyle.log
+      - nosetests.html
+      - nosetests.xml
+    when: always
+
+# sicor sentinel-2 tests
+test_sicor_s2:
+  stage: test
+  only:  # for first pipeline of new branch, changes are evaluated as true for all files and everything will be built
+      changes:
+          - sicor/AC/RtFo.py
+          - sicor/ECMWF/*
+          - sicor/sicor_ac.py
+          - tests/test_sicor_s2.py
+  script:
+    - source /root/miniconda3/bin/activate
+    - source activate sicor_env
+    - export GDAL_DATA=/root/miniconda3/envs/sicor_env/share/gdal
+    - export PYTHONPATH=$PYTHONPATH:/root  # /root <- directory needed later
+    - pip install pycodestyle --upgrade
+    - conda install -c conda-forge pygrib cachetools gdown
+    - make lint
+    - make nosetests_s2  # sentinel-2 tests are called here
+    - pip install sphinx_rtd_theme  # Read-the-docs theme for SPHINX documentation
+    - make docs
+  artifacts:
+    paths:
+      - htmlcov/
+      - docs/_build/html/
+      - tests/linting/flake8.log
+      - tests/linting/pycodestyle.log
+      - tests/linting/pydocstyle.log
+      - nosetests.html
+      - nosetests.xml
+    when: always
+
+pages:  # this job must be called 'pages' to advise GitLab to upload content to GitLab Pages
+  stage: deploy
+  dependencies:
+    - test_sicor_enmap
+  script:
+    # Create the public directory
+    - rm -rf public
+    - mkdir public
+    - mkdir -p public/doc
+    - mkdir -p public/images/
+    - mkdir -p public/coverage
+    - mkdir -p public/nosetests_reports
+    # Copy over the docs
+    - cp -r docs/_build/html/* public/doc/
+    - cp -r docs/images/* public/images/
+    # Copy over the coverage reports
+    - cp -r htmlcov/* public/coverage/
+    # Copy over the nosetests reports
+    - cp nosetests.* public/nosetests_reports/
+    # Check if everything is working great
+    - ls -al public
+    - ls -al public/doc
+    - ls -al public/coverage
+    - ls -al public/nosetests_reports
+  artifacts:
+    paths:
+      - public
+    expire_in: 30 days
+
+deploy_pypi:
+    stage: deploy
+    dependencies:
+        - test_sicor_enmap
+    script:
+        - source /root/miniconda3/bin/activate sicor_env
+        - conda install -c conda-forge pygrib
+        - pip install -U twine
+        - python setup.py sdist
+        - twine upload dist/*
+    only:
+        - /^v\d+\.\d+\.\d+([abc]\d*)?$/
+    except:
+        - dev
