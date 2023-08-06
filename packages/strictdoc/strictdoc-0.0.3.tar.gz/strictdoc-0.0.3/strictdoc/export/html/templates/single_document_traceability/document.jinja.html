@@ -1,0 +1,57 @@
+{% extends "base.jinja.html" %}
+{% block title %}Traceability{% endblock %}
+{% block viewtype %}traceability-view{% endblock %}
+
+{% block content %}
+
+      {% include "_shared/tags.jinja.html" %}
+
+      <div class="content">
+      {%- for section_or_requirement in document_iterator.all_content() %}
+
+        {%- if section_or_requirement.is_requirement %}
+        <section class="content_section">
+          <div class="content_item" data-role="parents">
+          {%- for requirement in traceability_index.get_parent_requirements(section_or_requirement) %}
+
+            {% include "_shared/requirement.jinja.html" %}
+
+          {%- endfor -%}
+          </div>
+
+          <div class="content_item" data-role="current">
+            {%- set requirement = section_or_requirement %}
+
+            {%- with anchor=link_renderer.render(section_or_requirement) -%}
+            {% include "_shared/requirement.jinja.html" %}
+            {%- endwith -%}
+
+          </div>
+          <div class="content_item" data-role="children">
+          {%- for requirement in traceability_index.get_children_requirements(section_or_requirement) %}
+
+            {% include "_shared/requirement.jinja.html" %}
+
+          {%- endfor -%}
+          </div>
+        </section>
+
+        {%- elif section_or_requirement.is_section %}
+        <section class="content_section">
+
+          <div class="content_item" data-role="parents"></div>
+          <div class="content_item" data-role="current">
+
+            {%- set section = section_or_requirement %}
+            {%- with anchor=link_renderer.render(section_or_requirement) -%}
+            {% include "_shared/docsection.jinja.html" %}
+            {%- endwith -%}
+          </div>
+          <div class="content_item" data-role="children"></div>
+        </section>
+        {%- endif %}
+
+      {%- endfor %}
+      </div>
+
+{% endblock content %}
