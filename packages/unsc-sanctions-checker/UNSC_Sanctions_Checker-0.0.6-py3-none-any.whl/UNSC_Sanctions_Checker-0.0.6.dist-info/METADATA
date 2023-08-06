@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: UNSC-Sanctions-Checker
+Version: 0.0.6
+Summary: UNSC Sanctions checker with a GUI
+Home-page: https://github.com/Lcrs123/UNSC_Sanctions_Checker
+Author: Lucas Camillo
+Author-email: lucascamillo333@hotmail.com
+License: GNU
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: Microsoft :: Windows
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: fuzzywuzzy
+Requires-Dist: requests
+Requires-Dist: pandas
+
+# Simple UNSC Sanctions checker with a GUI and fuzzy matching.
+
+Simple GUI for checking names against the UNSC Sanctions List.
+
+Uses fuzzy matching score for hits. For single name matches, we recommend using 90 Score.
+
+Loads sanctions list in xml format. You can supply your own list or download it
+from the UNSC website from within the program.
+
+# Usage
+
+You can run the script directly through the terminal:
+
+`python UNSC_Sanctions_Checker.py`
+
+Or in python you can do:
+
+```
+import UNSC_Sanctions_Checker
+
+app = UNSC_Sanctions_Checker.Application()
+app.main()
+```
+
+
