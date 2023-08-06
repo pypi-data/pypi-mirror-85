@@ -1,0 +1,1 @@
+This is a library which calculates the rank by given data.
