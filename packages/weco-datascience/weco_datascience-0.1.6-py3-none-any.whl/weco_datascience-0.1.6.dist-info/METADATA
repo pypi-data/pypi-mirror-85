@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: weco-datascience
+Version: 0.1.6
+Summary: Common functionality for data science applications in the Wellcome Collection
+Home-page: https://github.com/wellcomecollection/data-science
+License: UNKNOWN
+Author: Harrison Pim
+Author-email: h.pim@wellcome.ac.uk
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Classifier: License :: OSI Approved :: MIT License
+Requires-Dist: aiofile==3.1.0
+Requires-Dist: aiohttp[speedups]==3.6.2
+Requires-Dist: async-timeout==3.0.1
+Requires-Dist: boto3==1.12.14
+Requires-Dist: Pillow==7.0.0
+Requires-Dist: piffle==0.3.0
+Requires-Dist: black==19.10b0 ; extra == "dev"
+Requires-Dist: flake8==3.8.1 ; extra == "dev"
+Requires-Dist: isort==4.3.21 ; extra == "dev"
+Requires-Dist: pytest-asyncio==0.14.0 ; extra == "dev"
+Provides-Extra: dev
+
+# weco-datascience
+
+Common functionality for data science applications in the Wellcome Collection platform
+
