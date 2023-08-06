@@ -1,0 +1,5 @@
+import UIKit
+
+enum Storyboards {
+
+}
