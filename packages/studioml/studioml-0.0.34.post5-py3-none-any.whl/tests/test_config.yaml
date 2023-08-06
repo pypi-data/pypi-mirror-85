@@ -1,0 +1,40 @@
+database:
+    type: s3
+    authentication: none
+    aws_access_key: minio
+    aws_secret_key: minio123
+    bucket: test-database
+    endpoint: http://localhost:9000/
+
+env:
+    AWS_ACCESS_KEY_ID: minio
+    AWS_DEFAULT_REGION: us-west-2
+    AWS_SECRET_ACCESS_KEY: minio123
+
+server:
+    authentication: None
+
+storage:
+    type: s3
+    aws_access_key: minio
+    aws_secret_key: minio123
+    bucket: test-storage
+    endpoint: http://localhost:9000/
+
+log:
+    name: output.log
+
+saveWorkspaceFrequency: 1m #how often is workspace being saved (minutes)
+saveMetricsFrequency: 1m
+verbose: error
+
+cloud:
+    queue:
+        rmq: amqp://guest:guest@localhost:5672/%2f?connection_attempts=30&retry_delay=1&socket_timeout=15
+
+resources_needed:
+    cpus: 2
+    ram:  3g
+    hdd:  60g
+    gpus: 0
+
