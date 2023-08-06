@@ -1,0 +1,6 @@
+[console_scripts]
+paprika-to-sqlite = paprika_to_sqlite.cli:cli
+
+[datasette]
+paprika = paprika_to_sqlite.datasette_paprika
+
