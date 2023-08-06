@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: ToJyutping
+Version: 0.1.7
+Summary: 粵語拼音自動標註工具 Cantonese Pronunciation Automatic Labeling Tool
+Home-page: https://github.com/CanCLID/ToJyutping
+Author: Cantonese Computational Linguistics Infrastructure Development Workgroup
+Author-email: support@jyutping.org
+License: UNKNOWN
+Project-URL: Bug Reports, https://github.com/CanCLID/ToJyutping/issues
+Project-URL: Source, https://github.com/CanCLID/ToJyutping
+Description: # ToJyutping ![](https://github.com/CanCLID/ToJyutping/workflows/Python%20Package/badge.svg)
+        
+        Install:
+        
+        ```sh
+        $ pip install ToJyutping
+        ```
+        
+        Usage:
+        
+        ```python
+        >>> import ToJyutping
+        >>> ToJyutping.get_jyutping_list('一瓩係乜嘢嚟㗎？')
+        [('一', 'jat1'), ('瓩', 'cin1 ngaa5'), ('係', 'hai6'), ('乜', 'mat1'), ('嘢', 'je5'), ('嚟', 'lai4'), ('㗎', 'gaa3'), ('？', None)]
+        >>> ToJyutping.get_jyutping('一瓩係乜嘢嚟㗎？')
+        '一(jat1)瓩(cin1 ngaa5)係(hai6)乜(mat1)嘢(je5)嚟(lai4)㗎(gaa3)？'
+        >>> ToJyutping.get_ipa('一瓩係乜嘢嚟㗎？')
+        '一(jɐt˥)瓩(t͡sʰiːn˥ ŋaː˨˧)係(hɐi˨)乜(mɐt˥)嘢(jɛː˨˧)嚟(lɐi˨˩)㗎(kaː˧)？'
+        ```
+        
+        Helper:
+        
+        ```python
+        >>> ToJyutping.jyutping2ipa('jat1')
+        'jɐt˥'
+        ```
+        
+Keywords: chinese cantonese nlp natural-language-processing
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Text Processing :: Linguistic
+Classifier: Natural Language :: Cantonese
+Classifier: Natural Language :: Chinese (Simplified)
+Classifier: Natural Language :: Chinese (Traditional)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Requires-Python: >=3.5, <4
+Description-Content-Type: text/markdown
