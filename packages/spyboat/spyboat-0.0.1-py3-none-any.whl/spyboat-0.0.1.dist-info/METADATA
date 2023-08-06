@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: spyboat
+Version: 0.0.1
+Summary: SpyBOAT - Spatial pyBOAT 
+Home-page: https://github.com/tensionhead/SpyBOAT
+License: UNKNOWN
+Author: Gregor Mönke
+Author-email: gregor.moenke@embl.de
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 3
+Requires-Dist: numpy >=1.18
+Requires-Dist: matplotlib >=3.1
+Requires-Dist: scikit-image >=0.14.0
+Requires-Dist: pyboat >=0.8.22
+
+# SpyBOAT - Spatial pyBOAT
+
+Small pipeline to wavelet transform 3D-Stacks (time,Y,X) based on the analysis tools
+provided by [pyBOAT](https://github.com/tensionhead/pyBOAT). The supplied input
+movie gets analyzed pixel by pixel along the time axis, yielding up to
+four output movies:
+
+- phase movie
+- period movie
+- amplitude movie
+- power movie
+
+This is the complete 2D-analogue to the results for univariate time-series provided by pyBOAT.
