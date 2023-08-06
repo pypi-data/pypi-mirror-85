@@ -1,0 +1,87 @@
+Metadata-Version: 2.1
+Name: BioVenn
+Version: 1.0.12
+Summary: BioVenn: Create Area-Proportional Venn Diagrams from Biological Lists
+Home-page: https://www.biovenn.nl
+Author: Tim Hulsen
+Author-email: thulsen@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: biomart
+Requires-Dist: matplotlib
+Requires-Dist: numpy
+
+Draw an area-proportional Venn diagram of 2 or 3 circles
+========================================================
+
+The draw_venn function creates an area-proportional Venn diagram of 2 or 3 circles, based on lists of (biological) identifiers. It requires three parameters: input lists X, Y and Z. For a 2-circle Venn diagram, one of these lists should be left empty. Duplicate identifiers are removed automatically, and a mapping from Entrez and/or Affymetrix to Ensembl IDs is available. BioVenn is case-sensitive. In SVG mode, text and numbers can be dragged and dropped.  
+
+When using this BioVenn Python package for a publication, please cite:  
+[BioVenn - a web application for the comparison and visualization of biological lists using area-proportional Venn diagrams. T. Hulsen, J. de Vlieg and W. Alkema, BMC Genomics 2008, 9 (1): 488](https://bmcgenomics.biomedcentral.com/articles/10.1186/1471-2164-9-488)  
+and  
+[BioVenn - Create Area-Proportional Venn Diagrams from Biological Lists. T. Hulsen, Python package version 1.0.12](https://pypi.org/project/BioVenn/)
+
+Parameters
+----------
+
+list_x (Required) List with IDs from dataset X  
+list_y (Required) List with IDs from dataset Y  
+list_z (Required) List with IDs from dataset Z  
+title (Optional) The title of the Venn diagram (default is "BioVenn")  
+t_f (Optional) The font of the main title (default is "serif")  
+t_fb (Optional) The font "face" of the main title (default is "bold")  
+t_s (Optional) The size of the main title (default is 20)  
+t_c (Optional) The colour of the main title (default is "black")  
+subtitle (Optional) The subtitle of the Venn diagram (default is "(C) 2007-2020 Tim Hulsen")  
+st_f (Optional) The font of the subtitle (default is "serif")  
+st_fb (Optional) The font "face" of the subtitle (default is "bold")  
+st_s (Optional) The size of the subtitle (default is 15)  
+st_c (Optional) The colour of the subtitle (default is "black")  
+xtitle (Optional) The X title of the Venn diagram (default is "ID set X")  
+xt_f (Optional) The font of the X title (default is "serif")  
+xt_fb (Optional) The font "face" of the X title (default is "bold")  
+xt_s (Optional) The size of the X title (default is 10)  
+xt_c (Optional) The colour of the X title (default is "black")  
+ytitle (Optional) The Y title of the Venn diagram (default is "ID set Y")  
+yt_f (Optional) The font of the Y title (default is "serif")  
+yt_fb (Optional) The font "face" of the Y title (default is "bold")  
+yt_s (Optional) The size of the Y title (default is 10)  
+yt_c (Optional) The colour of the Y title (default is "black")  
+ztitle (Optional) The Z title of the Venn diagram (default is "ID set Z")  
+zt_f (Optional) The font of the Z title (default is "serif")  
+zt_fb (Optional) The font "face" of the Z title (default is "bold")  
+zt_s (Optional) The size of the Z title (default is 10)  
+zt_c (Optional) The colour of the Z title (default is "black")  
+nrtype (Optional) The type of the numbers to be displayed: absolute (abs) numbers or percentages (pct) (default is "abs")  
+nr_f (Optional) The font of the numbers (default is "serif")  
+nr_fb (Optional) The font "face" of the numbers (default is "bold")  
+nr_s (Optional) The size of the numbers (default is 10)  
+nr_c (Optional) The colour of the numbers (default is "black")  
+x_c (Optional) The colour of the X circle (default is "red")  
+y_c (Optional) The colour of the X circle (default is "green")  
+z_c (Optional) The colour of the X circle (default is "blue")  
+bg_c (Optional) The background colour (default is "white")  
+width (Optional) The width of the output file (in pixels for BMP/JPEG/PNG/TIF or in centiinch for PDF/SVG; default is 1000)  
+height (Optional) The height of the output file (in pixels for BMP/JPEG/PNG/TIF or in centiinch for PDF/SVG; default is 1000)  
+output (Optional) Output format: "bmp", "jpg", "pdf", "png", "svg" or "tif" (anything else writes to the screen; default is "screen")  
+filename (Optional) The name of the output file (default is "biovenn" + extension of the selected output format)  
+map2ens (Optional) Map from Entrez or Affymetrix IDs to Ensembl IDs (default is False)
+
+Returns
+-------
+
+An image of the Venn diagram is generated in the desired output format.  
+Also returns an object with thirteen lists: X, Y, Z, X only, Y only, Z only, XY, XZ, YZ, XY only, XZ only, YZ only, XYZ.
+
+Example
+-------
+
+list_x = ("1007_s_at","1053_at","117_at","121_at","1255_g_at","1294_at")  
+list_y = ("1255_g_at","1294_at","1316_at","1320_at","1405_i_at")  
+list_z = ("1007_s_at","1405_i_at","1255_g_at","1431_at","1438_at","1487_at","1494_f_at")  
+biovenn = draw_venn(list_x, list_y, list_z, subtitle="Example diagram", nrtype="abs")
+
