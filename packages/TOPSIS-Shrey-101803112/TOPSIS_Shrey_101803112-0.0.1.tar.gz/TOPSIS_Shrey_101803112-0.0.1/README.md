@@ -1,0 +1,1 @@
+This Python Package is made for educatinal purposes by Shrey Shourya studying at TIET,Patiala.
