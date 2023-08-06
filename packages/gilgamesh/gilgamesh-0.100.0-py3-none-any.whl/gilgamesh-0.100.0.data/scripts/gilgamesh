@@ -1,0 +1,350 @@
+#!python
+"""
+GILGAMESH
+Copyright (C) 2019  Contributors as noted in the AUTHORS file
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+"""
+
+def main():
+    import os, sys, argparse, json, errno
+    from pathlib import Path
+    from pprint import pprint
+
+    VERSION = '1.0-rc1'
+
+    parser = argparse.ArgumentParser(prog="ggm",
+            formatter_class=argparse.RawTextHelpFormatter,
+            description='gilgamesh-cli',
+            epilog="Enjoy!", )
+    helpstr='''
+single
+gen-cert
+gen-id
+install-user
+install
+stop-all
+version
+(client, gateway, server)
+    '''
+    parser.add_argument('cmd', help=helpstr)
+    parser.add_argument('name', nargs='?', help="<my_app>/<cert_name>")
+    args = parser.parse_args()
+
+    if 'version' == args.cmd:
+        print(f'{BASE_CFG["version"]}')
+        sys.exit(0)
+    elif 'gen-cert' == args.cmd:
+        role='gen-cert'
+        if not args.name:
+            print('No certificate name given!')
+            sys.exit(1)
+    elif 'gen-id' == args.cmd:
+        role='gen-id'
+    elif 'install' == args.cmd:
+        role='install'
+    elif 'install-user' == args.cmd:
+        role='install-user'
+    elif 'single' in args.cmd:
+        role='single'
+        if not args.name:
+            print('No kernel name given!')
+            sys.exit(1)
+    elif 'client' == args.cmd:
+        role='client'
+    elif 'gateway' == args.cmd:
+        role='gateway'
+    elif 'server' == args.cmd:
+        role='server'
+    else:
+        print('no comprende')
+        sys.exit(1)
+
+    if not role in ['install', 'install-user']:
+        etc = Path('/etc/gilgamesh')
+        if not etc.exists():
+            print('/etc/gilgamesh missing. "ggm install" first!')
+            sys.exit(1)
+
+        with open(f'{etc}/paths.json', 'r') as raw:
+            path_cfg = json.load(raw)
+
+        if not args.cmd == 'gen-id':
+            fname = etc / 'device_id'
+            with open( fname, 'r') as device_cfg:
+                DEVICE_ID = device_cfg.readline().strip()
+
+            BASE_CFG = {'device_id': DEVICE_ID, 'version': VERSION}
+
+    if role == 'single':
+        path = Path.cwd()
+        name = args.name
+
+        # check if config exists
+        fname = path / f'{name}.json'
+        if fname.exists():
+            with open(fname, 'r') as raw:
+                cfg = json.load(raw)
+        else:
+            print(f'Config: {args.name}.json not found!')
+            sys.exit(1)
+
+        # check if app exists and proceed loading it with cfg params
+        import importlib.util as iutil
+        fname = path / f'{name}.py'
+        if not fname.exists():
+            print(f'App: {args.name}.py not found!')
+            sys.exit(1)
+        funcname = name+'_process'
+        modname = f'my_awesome_app.{name}'
+
+        cfg.update(BASE_CFG)
+        cfg['name'] = name
+        cfg['verbose'] = True
+        if 'config' in cfg:
+            cfg.update(**cfg['config'])
+            del cfg['config']
+
+        spec = iutil.spec_from_file_location(modname, fname)
+        module = iutil.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        func = getattr(module, funcname)
+        func(cfg)
+
+    elif role in ['client', 'gateway', 'server']:
+        import asyncio
+        from zmq.asyncio import Context
+        from ggm.lib.utils import update_nested_dict
+        from ggm.lib.utils import Kmap
+        from pkg_resources import resource_filename
+        import ggm
+
+        # aquire config data
+        cfg = dict()
+        for path in path_cfg['config_paths']:
+            fname = Path(path + f'/{role}.json')
+            if fname.exists():
+                with open(fname, 'r') as raw:
+                    raw_dict = json.load(raw)
+                    # allow only one storage adapter at a time
+                    for st in raw_dict['storage']:
+                        try:
+                            if cfg['storage'][st] is not raw_dict['storage'][st]:
+                                print(f'Overriding storage: {st}')
+                                del cfg['storage'][st]
+                        except Exception as e:
+                            pass
+
+                    cfg = update_nested_dict(cfg, raw_dict)
+
+        # update base_cfg
+        for opt in cfg['global_options'].keys():
+            BASE_CFG[opt] = cfg['global_options'][opt]
+
+        resource_types = dict()
+        for resource_type in cfg['storage'].keys():
+            resource_types[resource_type] = list(cfg['storage'][resource_type].keys())[0]
+        BASE_CFG['resource_types'] = resource_types
+
+        BASE_CFG['keys_path'] = Path(path_cfg['keys_path'])
+        BASE_CFG['data_path'] = Path(path_cfg['data_path'])
+
+        # kernels that are always active
+        for active in ['data_kernel', 'state_updater', 'resource_worker']:
+            cfg['core'][active]["enabled"] = True
+
+        # build kernel map
+        kmap = Kmap(BASE_CFG)
+
+        # add storage workers
+        for resource_type in cfg['storage'].keys():
+            for kname, kcfg in cfg['storage'][resource_type].items():
+                if not 'config' in kcfg.keys():
+                    kcfg['config'] = dict()
+                kcfg['config']['resource_type'] = resource_type
+                kcfg['config']['storage_path'] = f'{path_cfg["data_path"]}/{resource_type}'
+                if 'worker_count' in kcfg:
+                    for i in range(0, kcfg['worker_count']):
+                        xname = f'{resource_type}_{kname}_{i}'
+                        kmap.append_spec('storage', kname, kcfg, xname)
+                else:
+                    kmap.append_spec('storage', kname, kcfg)
+
+        # add core kernels
+        for kname, kcfg in cfg['core'].items():
+            if kcfg['enabled']:
+                if 'worker_count' in kcfg:
+                    for i in range(0, kcfg['worker_count']):
+                        xname = kname+f'_{i}'
+                        kmap.append_spec('core', kname, kcfg, xname)
+                else:
+                    kmap.append_spec('core', kname, kcfg)
+
+        # add upstream kernels
+        for kname, kcfg in cfg['topology']['upstream'].items():
+            tmp = {'config': kcfg}
+            kmap.append_spec('core', 'uplink', tmp, xname=kname)
+
+        # add downstream kernels
+        for kname, kcfg in cfg['topology']['downstream'].items():
+            tmp = {'config': kcfg}
+            kmap.append_spec('core', 'ironbase', tmp, xname=kname)
+
+        # add app kernels
+        for kname, kcfg in cfg['app'].items():
+            if kcfg['enabled']:
+                fname = Path(resource_filename(ggm.__name__, f'app/{kname}.py'))
+                mod_path = False
+                if fname.exists():
+                    mod_path = fname.parent
+                for path in path_cfg['app_paths']:
+                    fname = Path(f'{path}/{kname}.py')
+                    if fname.exists():
+                        mod_path = Path(path)
+                # continue if no matching file is found
+                if mod_path:
+                    kmap.append_spec('app', kname, kcfg, path=mod_path)
+
+        #
+        # configure and start resource manager
+        #
+        rm_config = dict()
+
+        # add config for process devices (storage <--> resource_worker) 
+        rm_config['resource_types'] = []
+        for resource_type in cfg['storage'].keys():
+            rm_config['resource_types'].append(resource_type)
+
+        loop = asyncio.get_event_loop()
+        #loop.set_debug(True)
+        rm_config['loop'] = loop
+        rm_config['context'] = Context()
+        rm_config.update(BASE_CFG)
+
+
+        # import and start GResourceManager
+        from ggm.core.resource_manager import GResourceManager
+
+        rm = GResourceManager(kmap.kmap, **rm_config)
+        rm.start()
+        print('Starting Gilgamesh Resource Manager.')
+        loop.run_forever()
+
+    elif role == "install":
+        from pkg_resources import resource_filename
+        import ggm
+        from shutil import copyfile
+
+        try:
+            os.makedirs('/etc/gilgamesh')
+        except IOError as e:
+            if e.errno == errno.EACCES:
+                print("You need root permissions to do this!")
+                sys.exit(1)
+            elif e.errno == errno.EEXIST:
+                print("/etc/gilgamesh exists, probably an old installation?")
+            else:
+                print(e)
+                sys.exit(1)
+
+        def check_create(fname, destdir):
+            src = Path(resource_filename(ggm.__name__, f'distfiles/{fname}'))
+            dest = destdir/fname
+            if not dest.exists():
+                copyfile(src, dest)
+            else:
+                print(f'{dest} already exists. skipping...')
+
+        etc = Path('/etc/gilgamesh')
+        #systemd = Path('/etc/systemd/system')
+
+        #fname = 'ggm@.service'
+        #check_create(fname, systemd)
+
+        for d in ['mqtt', 'timescaledb']:
+            fname = f'{d}.dist'
+            check_create(fname, etc)
+
+        for j in ['client_config', 'paths', 'client', 'gateway', 'server']:
+            fname = f'{j}.json'
+            check_create(fname, etc)
+
+        print("""Installation successful!
+create:
+    run 'ggm gen-certs' to generate some certificates
+    run 'ggm gen-id' to generate /etc/device_id
+edit:
+    !!! /etc/gilgamesh/paths.json
+    /etc/gilgamesh/<type>.json
+start:
+    systemctl start ggm@<type>
+""")
+        sys.exit(0)
+
+    elif role == "install-user":
+        from pkg_resources import resource_filename
+        import ggm
+        from shutil import copyfile
+
+        home = Path.home()
+        base_path = home/'.gilgamesh'
+
+        try:
+            os.makedirs(base_path)
+        except IOError as e:
+            if e.errno == errno.EEXIST:
+                print('~/.gilgamesh exists, probably an old installation?')
+            else:
+                print(e)
+                sys.exit(1)
+
+        def check_create(fname, destdir):
+            src = Path(resource_filename(ggm.__name__, f'distfiles/{fname}'))
+            dest = destdir/fname
+            if not dest.exists():
+                copyfile(src, dest)
+            else:
+                print(f'{dest} already exists. skipping...')
+
+        makepaths = ['config', 'data', 'keys']
+        for path in makepaths:
+            try:
+                os.makedirs(base_path/path)
+            except Exception as e:
+                print(e)
+                print(f'~/.gilgamesh/{path} exists, probably an old installation?')
+
+        for j in ['client_config', 'gateway']:
+            fname = f'{j}.json'
+            check_create(fname, base_path/'config')
+
+        sys.exit(0)
+
+    elif role == "gen-cert":
+        from ggm.lib.utils import generate_certificate
+        generate_certificate(path_cfg['keys_path'], args.name)
+
+    elif role == "gen-id":
+        f = etc / Path('device_id')
+        if f.exists():
+            print(f'{f} already exists. skipping...')
+            sys.exit(1)
+        else:
+            import uuid
+            uuid_str = str(uuid.uuid4())
+            with open(f,'w') as raw:
+                raw.write(uuid_str)
+
+if __name__ == '__main__':
+    main()

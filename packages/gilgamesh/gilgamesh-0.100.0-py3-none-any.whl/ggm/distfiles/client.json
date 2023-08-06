@@ -1,0 +1,69 @@
+{
+	"app": {
+		"rpi_health": {
+			"enabled": false,
+			"config": {
+				"interval": 10
+			}
+		}
+	},
+	"core": {
+		"state_updater": {
+			"enabled": true
+		},
+		"resource_worker": {
+			"enabled": true,
+			"worker_count": 1
+		},
+		"data_kernel": {
+			"enabled": true,
+			"config": {
+				"buffer_max_age": 30,
+				"buffer_max_size": 10,
+				"vacuum_interval": 5,
+				"port": 6003
+			}
+		}
+	},
+	"storage": {
+		"json": {
+			"nostorage": {
+				"worker_count": 1,
+				"config": {
+					"client_key": "client",
+					"server_key": "server",
+					"hostname": "ggm.server",
+					"port": 6001
+				}
+			}
+		},
+		"series": {
+			"nostorage": {
+				"worker_count": 1,
+				"config": {
+					"client_key": "client",
+					"server_key": "server",
+					"hostname": "ggm.server",
+					"port": 6001
+				}
+			}
+		}
+	},
+	"topology": {
+		"upstream": {
+			"upstream-node": {
+				"client_key": "client",
+				"server_key": "gateway",
+				"hostname": "gateway.local",
+				"port": 6001
+			}
+		},
+		"downstream": {
+		}
+	},
+	"global_options": {
+		"verbose": true,
+		"cache": false,
+		"resource_filter": false
+	}
+}

@@ -1,0 +1,14 @@
+[Unit]
+Description=GILGAMESH %i
+After=multi-user.target
+
+[Service]
+Type=exec
+User=pi
+WorkingDirectory=/home/pi
+ExecStart=/usr/local/bin/gilgamesh %i
+ExecStop=/usr/local/bin/gilgamesh stop-all
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

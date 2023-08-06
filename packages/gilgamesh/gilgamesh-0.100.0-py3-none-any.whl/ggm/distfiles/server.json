@@ -1,0 +1,65 @@
+{
+	"app": {
+		"rpi_health": {
+			"enabled": false,
+			"config": {
+				"interval": 10
+			}
+		},
+		"http_api": {
+			"enabled": true,
+			"config": {
+				"listen": "0.0.0.0",
+				"port": 5555
+			}
+		},
+		"mqtt_bridge": {
+			"enabled": false
+		}
+	},
+	"core": {
+		"state_updater": {
+			"enabled": true
+		},
+		"resource_worker": {
+			"enabled": true,
+			"worker_count": 8
+		},
+		"data_kernel": {
+			"enabled": true,
+			"config": {
+				"buffer_max_age": 60,
+				"buffer_max_size": 100,
+				"vacuum_interval": 10,
+				"port": 6003
+			}
+		}
+	},
+	"storage": {
+		"json": {
+			"jsqlite": {
+				"worker_count": 4
+			}
+		},
+		"series": {
+			"timescale": {
+				"worker_count": 8
+			}
+		}
+	},
+	"topology": {
+		"upstream": {
+		},
+		"downstream": {
+			"private-api": {
+				"server_key": "server",
+				"port": 6001
+			}
+		}
+	},
+	"global_options": {
+		"verbose": true,
+		"cache": false,
+		"resource_filter": false
+	}
+}
