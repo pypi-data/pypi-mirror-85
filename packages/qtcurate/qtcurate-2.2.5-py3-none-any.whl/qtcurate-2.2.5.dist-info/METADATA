@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: qtcurate
+Version: 2.2.5
+Summary: Theia SDK Search and Data Extraction
+Home-page: https://github.com/quantxt/qtcurate-sdk-python
+Author: Milojko Bjelanovic
+Author-email: mbjelanovic@quantxt.com
+License: Apache License 2.0
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Requires-Dist: smart-open
+
+# Quantxt Theia Python client library
+
+
+The official [Quantxt][quantxt] Python client library.
+
+Theia is a fully managed document extraction software. User needs to first configure the fields that they want to extract. Theia guarantees correct extraction of data if the fields are configured properly. Fields can be embedded in plain text, within tables or within forms.
+
+Theia can process documents in various formats including PDF, TIFF, PNG, JPEG, TSV, TXT and Ms Excel. Scanned documents are automatically detected and run through OCR before extraction. 
+
+
+## Installation
+
+### Requirements
+
+- Python 3.6 or later
+
+
+### Installation
+
+```
+pip install qtcurate
+```
+
+[quantxt]: http://quantxt.com
+
+Refer to the [Samples](sample) for examples
+
+[Official documentation](http://quantxt.com/pages/documentation.html)
+
+Contact us at <support@quantxt.com> for API key or technical questions.
+
+
