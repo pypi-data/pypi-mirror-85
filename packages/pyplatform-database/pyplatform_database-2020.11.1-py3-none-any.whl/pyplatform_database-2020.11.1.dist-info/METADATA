@@ -1,0 +1,63 @@
+Metadata-Version: 2.1
+Name: pyplatform-database
+Version: 2020.11.1
+Summary: Pyplatform-database package provides read and write functions for Microsoft SQL database.
+Home-page: https://github.com/mhadi813/pyplatform
+Author: Muhammad Hadi
+Author-email: mhadi813@gmail.com
+License: BSD
+Keywords: google bigquery cloud functions storage jupyterlab python SQL
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Office/Business
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
+Requires-Dist: pyodbc (==4.0.28)
+Requires-Dist: sqlalchemy (==1.3.19)
+Requires-Dist: xlrd (==1.2.0)
+Requires-Dist: XlsxWriter (==1.3.3)
+Requires-Dist: openpyxl (==3.0.5)
+Requires-Dist: pyplatform-common
+
+### Pyplatform-database package provides read and write functions for Microsoft SQL database.
+
+## Installation
+```python
+pip install pyplatform-database
+```
+
+## Authentication and environment variables
+Refer to [main page](https://github.com/mhadi813/pyplatform) for documentation on authentication
+
+## Exploring the modules
+```python
+
+from pyplatform.database import *
+show_me()
+```
+
+## Usage
+### reading from SQL table, default database provided in credential file
+```python
+from pyplatform.database import *
+query = """SELECT * FROM dbo.fact_sample_superstore"""
+df = az_to_df(query)
+df.head()
+
+```
+
+### writing pandas dataframe to sql table with non default setting
+```python
+
+from pyplatform.database import *
+# df #TODO create dataframe as source
+table_name = 'dbo.fact_sample_superstore'
+engine = azure_sql_engine(database='testDB')  #changing database only
+df_to_azure_sql(df,table_name, engine=engine)
+
+```
+
