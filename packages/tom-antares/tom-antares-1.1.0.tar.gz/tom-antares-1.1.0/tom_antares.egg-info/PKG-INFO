@@ -1,0 +1,56 @@
+Metadata-Version: 2.1
+Name: tom-antares
+Version: 1.1.0
+Summary: Antares broker module for the TOM Toolkit
+Home-page: https://tomtoolkit.github.io
+Author: TOM Toolkit Project
+Author-email: dcollom@lco.global
+License: UNKNOWN
+Description: # Antares TOM Broker Module
+        
+        This module adds [Antares](https://antares.noao.edu/) support to the TOM
+        Toolkit. Using this module TOMs can query and listen to Antares streams.
+        
+        ## Installation:
+        
+        Install the module into your TOM environment:
+        
+            pip install tom-antares
+        
+        Add `tom_antares.antares.AntaresBroker` to the `TOM_ALERT_CLASSES` in your TOM's
+        `settings.py`:
+        
+            TOM_ALERT_CLASSES = [
+                'tom_alerts.brokers.mars.MARSBroker',
+                ...
+                'tom_antares.antares.AntaresBroker'
+            ]
+        
+        You'll need Antares credentials to use this plugin. You can register for an account [here](https://antares.noao.edu/accounts/register/). Add your Antares credentials to your project
+        's `settings.py`:
+        
+            BROKERS = {
+                'anatares': {
+                    'api_key': 'YOUR ANTARES API KEY',
+                    'api_secret': 'YOUR ANTARES API SECRET'
+                }
+            }
+        
+        ## Running the tests
+        
+        In order to run the tests, run the following in your virtualenv:
+        
+        `python tom_antares/tests/run_tests.py`
+        
+Keywords: tomtoolkit,astronomy,astrophysics,cosmology,science,fits,observatory,antares
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Scientific/Engineering :: Astronomy
+Classifier: Topic :: Scientific/Engineering :: Physics
+Description-Content-Type: text/markdown
+Provides-Extra: test
