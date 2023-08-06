@@ -1,0 +1,95 @@
+Metadata-Version: 2.1
+Name: webrtc-streaming
+Version: 0.1.4
+Summary: Ready to use WebRTC Streaming
+Home-page: https://github.com/cartovarc/webrtc_streaming
+Author: Carlos Tovar
+Author-email: cartovarc@gmail.com
+License: BSD license
+Keywords: webrtc_streaming
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.5
+Requires-Dist: aiortc (==1.0.0)
+Requires-Dist: grpcio-tools (==1.33.2)
+Requires-Dist: grpcio (==1.33.2)
+Requires-Dist: python-socketio (==4.6.0)
+Requires-Dist: requests (==2.22.0)
+
+================
+WebRTC Streaming
+================
+
+
+.. image:: https://img.shields.io/pypi/v/webrtc-streaming.svg
+        :target: https://pypi.python.org/pypi/webrtc-streaming
+
+.. image:: https://img.shields.io/travis/cartovarc/webrtc_streaming.svg
+        :target: https://travis-ci.com/cartovarc/webrtc_streaming
+
+.. image:: https://readthedocs.org/projects/webrtc-streaming/badge/?version=latest
+        :target: https://webrtc-streaming.readthedocs.io/en/latest/?badge=latest
+        :alt: Documentation Status
+
+
+.. image:: https://pyup.io/repos/github/cartovarc/webrtc_streaming/shield.svg
+     :target: https://pyup.io/repos/github/cartovarc/webrtc_streaming/
+     :alt: Updates
+
+
+
+Ready to use WebRTC Streaming
+
+
+* Free software: BSD license
+* Documentation: https://webrtc-streaming.readthedocs.io.
+
+
+Requirements
+------------
+* https://ffmpeg.org/download.html
+* https://gstreamer.freedesktop.org/documentation/installing/index.html?gi-language=c
+
+
+Features
+--------
+
+* Receive H264/RTP packets over UDP and send it using WebRTC
+
+
+Install PyPI
+------------
+
+.. code:: bash
+
+    $ pip install webrtc_streaming
+
+
+Usage example
+-------------
+Check examples folder
+
+
+Credits
+-------
+
+This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+
+
+=======
+History
+=======
+
+0.1.4 (2020-11-17)
+------------------
+
+* First release on PyPI.
+
+
