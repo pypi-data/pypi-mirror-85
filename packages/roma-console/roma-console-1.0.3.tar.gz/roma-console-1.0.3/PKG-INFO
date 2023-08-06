@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: roma-console
+Version: 1.0.3
+Summary: Utilities for print fancy text in terminal.
+Home-page: https://github.com/WilliamRo/console
+Author: William Ro
+Author-email: willi4m@zju.edu.cn
+License: Apache-2.0
+Download-URL: https://github.com/WilliamRo/console/tarball/v1.0.3
+Description: Console
+        -------
+        
+        This package provides necessary tools for printing text (with fancy styles
+        if specified) in terminal.
+        To use, import an instance of `Console` class by 
+        ```python
+        from console import console
+        ```
+        
+        ### Text With Fancy Styles
+        Fancy texts are produced based on `termcolor` package.
+        The usage of this package is similar to `termcolor`:
+        ```python
+        console.write_line('Hello World!', color='yellow')
+        ```
+        However, `console` provides another way to print text base on a simple **syntax**,
+        which is more flexible and powerful:
+        ```python
+        console.write_line('#{Hello}{red} #{World}{blue}{bold}!')
+        ```
+        Here, the syntax is `#{<text>}[{<text_color>}][<text_highlight>}][{<attributes_1>}]...[{<attributes_N>}]`.
+        
+        Example of other fancy usages:
+        ```python
+        console.split('#{-}{red}#{-}{yellow}#{-}{blue}')
+        ```
+        
+Keywords: console,terminal,color
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Other Audience
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Artistic Software
+Classifier: Topic :: Printing
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
