@@ -1,0 +1,108 @@
+{
+  "src/lib/components/DashTabulator.react.js": {
+    "description": "DashTabulator is an implementation of the React Tabulator from \nhttps://github.com/ngduc/react-tabulator/ and https://github.com/olifolkerd/tabulator.\nIt takes a property, `column`, and `data`\ndisplays it in tabulator.\nThe `options` property is passed to Tabulator to perform regular options\ndownloading as xlsx is enabled by default.",
+    "displayName": "DashTabulator",
+    "methods": [
+      {
+        "name": "rowClick",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "e",
+            "type": null
+          },
+          {
+            "name": "row",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "cellEdited",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "cell",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "downloadData",
+        "docblock": null,
+        "modifiers": [],
+        "params": [],
+        "returns": null
+      }
+    ],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID used to identify this component in Dash callbacks."
+      },
+      "columns": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": "A label that will be printed when this component is rendered."
+      },
+      "data": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": "The value displayed in the input."
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes\nto Dash, to make them available for callbacks."
+      },
+      "options": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Tabulator Options"
+      },
+      "rowClicked": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "rowClick captures the row that was clicked on"
+      },
+      "cellEdited": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "cellEdited captures the cell that was clicked on"
+      },
+      "dataChanged": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": "dataChanged captures the cell that was clicked on"
+      },
+      "downloadButtonType": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "downloadButtonType"
+      }
+    }
+  }
+}
