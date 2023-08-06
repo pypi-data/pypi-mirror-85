@@ -1,0 +1,66 @@
+Metadata-Version: 2.1
+Name: parsrt
+Version: 1.2
+Summary: A minimalistic (100LOC) library to read SRT files into a workable format.
+Home-page: https://github.com/vukgr/parsrt
+Author: VukGr
+Author-email: vuk.grujic.5@hotmail.com
+License: MIT
+Download-URL: https://github.com/user/parsrt/archive/v_10.tar.gz
+Description: Module parsrt
+        =============
+        A minimalistic (100LOC) library to read SRT files into a workable format.
+        
+        Simply provides a way to convert SRT strings into Sub objects (via the parse 
+        functions) and vice versa (via the Sub class' __str__ function).
+        By avoiding regex it gets speeds around 50% faster than the fastest python 
+        SRT/Subtitle library I could find (cdown/srt).
+        Install via: pip install parsrt
+        
+        Functions
+        ---------
+        
+            
+        `parse_file(path, encoding='ascii')`
+        :   Reads a file and converts the contents into an Sub object array.
+            
+            Args:
+                path: The path the SRT file is located at.
+                encoding: The encodding of the file (same as with open()).
+            
+            Returns:
+                An Sub object array.
+        
+            
+        `parse_str(srt)`
+        :   Converts a string into an Sub object array.
+            
+            Args:
+                srt: A valid SRT string.
+            
+            Returns:
+                An Sub object array.
+            
+            Raises:
+                ValueError: Invalid SRT string.
+        
+        Classes
+        -------
+        
+        `Sub(index, time, text)`
+        :   Subtitle info object.
+            
+            Attributes:
+                index: An SRT index value.
+                time: A tuple containing the start and end timestamps as timedelta objects.
+                text: A string value containing the subtitle's text.
+        
+Keywords: SRT,TINY,MINIMALISTIC,FAST
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
