@@ -1,0 +1,67 @@
+sets:
+  - name: defconfigs
+    # Build with e.g.:
+    # tuxbuild build-set --git-repo 'https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git' --git-ref master --tux-config https://gitlab.com/Linaro/tuxbuild/-/raw/master/examples/buildsets.yaml --set-name defconfigs
+    builds:
+      - {target_arch: arm,    toolchain: gcc-8,    kconfig: multi_v7_defconfig}
+      - {target_arch: arm,    toolchain: gcc-9,    kconfig: multi_v7_defconfig}
+      - {target_arch: arm,    toolchain: gcc-10,   kconfig: multi_v7_defconfig}
+      - {target_arch: arm,    toolchain: clang-10, kconfig: multi_v7_defconfig}
+
+      - {target_arch: arm64,  toolchain: gcc-8,    kconfig: defconfig}
+      - {target_arch: arm64,  toolchain: gcc-9,    kconfig: defconfig}
+      - {target_arch: arm64,  toolchain: gcc-10,   kconfig: defconfig}
+      - {target_arch: arm64,  toolchain: clang-10, kconfig: defconfig}
+
+      - {target_arch: i386,   toolchain: gcc-8,    kconfig: defconfig}
+      - {target_arch: i386,   toolchain: gcc-9,    kconfig: defconfig}
+      - {target_arch: i386,   toolchain: gcc-10,   kconfig: defconfig}
+
+      - {target_arch: x86_64, toolchain: gcc-8,    kconfig: defconfig}
+      - {target_arch: x86_64, toolchain: gcc-9,    kconfig: defconfig}
+      - {target_arch: x86_64, toolchain: gcc-10,   kconfig: defconfig}
+      - {target_arch: x86_64, toolchain: clang-10, kconfig: defconfig}
+
+      - {target_arch: mips,   toolchain: gcc-8,    kconfig: ci20_defconfig}
+      - {target_arch: mips,   toolchain: gcc-9,    kconfig: ci20_defconfig}
+      - {target_arch: mips,   toolchain: gcc-10,   kconfig: ci20_defconfig}
+
+      - {target_arch: arc,    toolchain: gcc-8,    kconfig: hsdk_defconfig}
+      - {target_arch: arc,    toolchain: gcc-9,    kconfig: hsdk_defconfig}
+      - {target_arch: arc,    toolchain: gcc-10,   kconfig: hsdk_defconfig}
+
+      - {target_arch: riscv,  toolchain: gcc-9,    kconfig: defconfig}
+      - {target_arch: riscv,  toolchain: gcc-8,    kconfig: defconfig}
+      - {target_arch: riscv,  toolchain: gcc-10,   kconfig: defconfig}
+
+  - name: allmodconfigs
+    # Build with e.g.:
+    # tuxbuild build-set --git-repo 'https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git' --git-ref master --tux-config https://gitlab.com/Linaro/tuxbuild/-/raw/master/examples/buildsets.yaml --set-name allmodconfigs
+    builds:
+      - {target_arch: arm,    toolchain: gcc-8,    kconfig: allmodconfig}
+      - {target_arch: arm,    toolchain: gcc-9,    kconfig: allmodconfig}
+      - {target_arch: arm,    toolchain: gcc-10,   kconfig: allmodconfig}
+      - {target_arch: arm,    toolchain: clang-10, kconfig: allmodconfig}
+
+      - {target_arch: arm64,  toolchain: gcc-8,    kconfig: allmodconfig}
+      - {target_arch: arm64,  toolchain: gcc-9,    kconfig: allmodconfig}
+      - {target_arch: arm64,  toolchain: gcc-10,   kconfig: allmodconfig}
+      - {target_arch: arm64,  toolchain: clang-10, kconfig: allmodconfig}
+
+      - {target_arch: i386,   toolchain: gcc-8,    kconfig: allmodconfig}
+      - {target_arch: i386,   toolchain: gcc-9,    kconfig: allmodconfig}
+      - {target_arch: i386,   toolchain: gcc-10,   kconfig: allmodconfig}
+      - {target_arch: i386,   toolchain: clang-10, kconfig: allmodconfig}
+
+      - {target_arch: x86_64, toolchain: gcc-8,    kconfig: allmodconfig}
+      - {target_arch: x86_64, toolchain: gcc-9,    kconfig: allmodconfig}
+      - {target_arch: x86_64, toolchain: gcc-10,   kconfig: allmodconfig}
+      - {target_arch: x86_64, toolchain: clang-10, kconfig: allmodconfig}
+
+      - {target_arch: mips,   toolchain: gcc-8,    kconfig: allmodconfig}
+      - {target_arch: mips,   toolchain: gcc-9,    kconfig: allmodconfig}
+      - {target_arch: mips,   toolchain: gcc-10,   kconfig: allmodconfig}
+
+      - {target_arch: riscv,  toolchain: gcc-8,    kconfig: allmodconfig}
+      - {target_arch: riscv,  toolchain: gcc-9,    kconfig: allmodconfig}
+      - {target_arch: riscv,  toolchain: gcc-10,   kconfig: allmodconfig}

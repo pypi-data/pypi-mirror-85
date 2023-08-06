@@ -1,0 +1,10 @@
+#!/bin/sh
+
+. ${0%/*}/test_helper.sh
+
+test_call() {
+  run python3 -m tuxbuild
+  assertTrue 'echo $output | grep -q "Usage: tuxbuild"'
+}
+
+. shunit2

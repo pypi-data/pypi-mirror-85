@@ -1,0 +1,109 @@
+image:
+  name: python:3.7-buster
+
+services:
+  - docker:dind
+
+stages:
+  - test
+  - build
+  - build-docker
+  - publish
+
+test-tuxbuild:
+  stage: test
+  script:
+    - pip install -r requirements.txt -r requirements-dev.txt .
+    - pip install -e . # For some reason, pytest-cov does not work without this
+    - black --check --diff .
+    - flake8 .
+    - pytest --cov=tuxbuild .
+
+test-tuxbuild-integration:
+  stage: test
+  image: python:3.7-buster
+  before_script:
+    - apt-get -q update
+    - apt-get install -qy shunit2 git
+  script:
+    - python3 -m pip install -r requirements-dev.txt -e .
+    - run-parts --report test/integration
+
+test-dockerfile:
+  stage: test
+  image: hadolint/hadolint
+  script:
+    - hadolint Dockerfile
+
+test-markdown:
+  stage: test
+  image: pipelinecomponents/markdownlint
+  script:
+    - mdl -r MD001,MD002,MD003,MD004,MD005,MD006,MD007,MD009,MD010,MD011,MD012,MD014,MD018,MD019,MD020,MD021,MD022,MD023,MD024,MD025,MD026,MD027,MD028,MD029,MD030,MD031,MD032,MD034,MD035,MD036,MD037,MD038,MD039,MD046 README.md
+
+build:
+  stage: build
+  script:
+    - python setup.py sdist bdist_wheel
+    - python setup.py --version > version.txt # save tuxbuild's version string
+  artifacts:
+    paths:
+      - dist/
+      - version.txt
+
+publish-pypi:
+  stage: publish
+  script:
+    - pip install -U twine
+    - twine upload dist/*
+  variables:
+    TWINE_NON_INTERACTIVE: "true"
+  only:
+    - tags
+  dependencies:
+    - build
+
+.docker:
+  image: docker
+  only:
+    - tags
+  before_script:
+    - docker info
+    - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - export tag="tuxbuild/tuxbuild:$(cat version.txt)${TAG_APPEND}"
+    - export latest="tuxbuild/tuxbuild:latest${TAG_APPEND}"
+  script:
+    - docker build --pull --tag "${tag}" --tag "${latest}" .
+    - docker push "${tag}"
+    - docker push "${latest}"
+  variables:
+    DOCKER_DRIVER: overlay2
+
+docker-amd64:
+  extends: .docker
+  stage: build-docker
+  dependencies:
+    - build
+  variables:
+    TAG_APPEND: -amd64
+
+docker-arm64:
+  extends: .docker
+  stage: build-docker
+  tags:
+     - arm64-dind
+  dependencies:
+    - build
+  variables:
+    TAG_APPEND: -arm64
+
+publish-dockerhub:
+  extends: .docker
+  stage: publish
+  variables:
+    DOCKER_CLI_EXPERIMENTAL: "enabled"
+  script:
+    - docker manifest create "${tag}" "${tag}-amd64" "${tag}-arm64"
+    - docker manifest create "${latest}" "${latest}-amd64" "${latest}-arm64"
+    - docker manifest push "${tag}"
+    - docker manifest push "${latest}"
