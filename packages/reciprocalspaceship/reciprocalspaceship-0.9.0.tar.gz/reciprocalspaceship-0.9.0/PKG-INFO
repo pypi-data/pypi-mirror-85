@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: reciprocalspaceship
+Version: 0.9.0
+Summary: Tools for exploring reciprocal space
+Home-page: https://hekstra-lab.github.io/reciprocalspaceship/
+Author: Kevin M. Dalton, Jack B. Greisman
+Author-email: kmdalton@g.harvard.edu, greisman@g.harvard.edu
+License: MIT
+Project-URL: Bug Tracker, https://github.com/Hekstra-Lab/reciprocalspaceship/issues
+Project-URL: Documentation, https://hekstra-lab.github.io/reciprocalspaceship/
+Project-URL: Source Code, https://github.com/Hekstra-Lab/reciprocalspaceship
+Description: 
+        ``reciprocalspaceship`` provides a ``pandas``-style interface for
+        analyzing and manipulating reflection data from crystallography 
+        experiments. Using this library, it is possible to interactively work 
+        with crystallographic data in Python, enabling easy integration  with 
+        modern scientific computing libraries. ``reciprocalspaceship`` is 
+        intended to support the rapid prototyping of new crystallographic methods 
+        and custom analyses while maintaining clear, reproducible, and performant 
+        code.
+        
+        Features of this library include:
+        
+          - Crystallographically-aware ``pandas`` objects, datatypes, and syntax 
+            that are familiar to Python users.
+          - Convenient integration with `GEMMI <https://gemmi.readthedocs.io/en/latest/>`__ 
+            to provide built-in methods and support for developing functions that 
+            use space groups, unit cell parameters, and crystallographic symmetry 
+            operations.
+          - Support for reading and writing MTZ reflection files.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Scientific/Engineering :: Chemistry
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Programming Language :: Python
+Requires-Python: >3.6
+Provides-Extra: dev
