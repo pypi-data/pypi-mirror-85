@@ -1,0 +1,287 @@
+Metadata-Version: 2.1
+Name: susi
+Version: 1.1.1
+Summary: Python package for unsupervised, supervised and semi-supervised self-organizing maps (SOM)
+Home-page: https://github.com/felixriese/susi
+Author: Felix M. Riese
+Author-email: github@felixriese.de
+License: BSD-3-Clause
+Description: .. image:: https://badge.fury.io/py/susi.svg
+            :target: https://pypi.org/project/susi/
+            :alt: PyPi - Code Version
+        
+        .. image:: https://img.shields.io/pypi/pyversions/susi.svg
+            :target: https://pypi.org/project/susi/
+            :alt: PyPI - Python Version
+        
+        .. image:: https://travis-ci.com/felixriese/susi.svg?branch=master
+            :target: https://travis-ci.com/felixriese/susi
+            :alt: Travis.CI Status
+        
+        .. image:: https://readthedocs.org/projects/susi/badge/?version=latest
+            :target: https://susi.readthedocs.io/en/latest/?badge=latest
+            :alt: Documentation Status
+        
+        .. image:: https://codecov.io/gh/felixriese/susi/branch/master/graph/badge.svg
+            :target: https://codecov.io/gh/felixriese/susi
+            :alt: Codecov
+        
+        .. image:: https://api.codacy.com/project/badge/Grade/d304689a7364437db1ef998cf7765f5a
+        	:target: https://app.codacy.com/app/felixriese/susi
+        	:alt: Codacy Badge
+        
+        |
+        
+        .. image:: https://raw.githubusercontent.com/felixriese/susi/master/docs/_static/susi_logo_small.png
+            :target: https://github.com/felixriese/susi
+            :align: right
+            :alt: SuSi logo
+        
+        SuSi: Supervised Self-organizing maps in Python
+        ===============================================
+        
+        Python package for unsupervised, supervised and semi-supervised self-organizing maps (SOM)
+        
+        Description
+        -----------
+        
+        We present the SuSi package for Python.
+        It includes a fully functional SOM for unsupervised, supervised and semi-supervised tasks.
+        The class structure is set up as follows:
+        
+        - SOMClustering: Unsupervised SOM for clustering
+        
+          - SOMEstimator: Base class for supervised and semi-supervised SOMs
+        
+            - SOMRegressor: Regression SOM
+            - SOMClassifier: Classification SOM
+        
+        :License:
+            `3-Clause BSD license <LICENSE>`_
+        
+        :Author:
+            `Felix M. Riese <mailto:github@felixriese.de>`_
+        
+        :Citation:
+            see `Citation`_ and in the `bibtex <https://github.com/felixriese/susi/blob/master/bibliography.bib>`_ file
+        
+        :Documentation:
+            `Documentation <https://susi.readthedocs.io/en/latest/index.html>`_
+        
+        :Installation:
+            `Installation guidelines <https://susi.readthedocs.io/en/latest/install.html>`_
+        
+        :Paper:
+            `F. M. Riese, S. Keller and S. Hinz in Remote Sensing, 2020 <https://www.mdpi.com/2072-4292/12/1/7>`_
+        
+        
+        Installation
+        ------------
+        
+        .. code:: bash
+        
+            pip3 install susi
+        
+        More information can be found in the `installation guidelines <https://susi.readthedocs.io/en/latest/install.html>`_.
+        
+        .. image:: https://static.pepy.tech/personalized-badge/susi?period=total&units=international_system&left_color=black&right_color=blue&left_text=Downloads
+        	:target: https://pepy.tech/project/susi
+        	:alt: Downloads
+        
+        Examples
+        --------
+        
+        A collection of code examples can be found in `the documentation <https://susi.readthedocs.io/en/latest/examples.html>`_.
+        Code examples as Jupyter Notebooks can be found here:
+        
+        * `examples/SOMClustering <https://github.com/felixriese/susi/blob/master/examples/SOMClustering.ipynb>`_
+        * `examples/SOMRegressor <https://github.com/felixriese/susi/blob/master/examples/SOMRegressor.ipynb>`_
+        * `examples/SOMRegressor_semisupervised <https://github.com/felixriese/susi/blob/master/examples/SOMRegressor_semisupervised.ipynb>`_
+        * `examples/SOMClassifier <https://github.com/felixriese/susi/blob/master/examples/SOMClassifier.ipynb>`_
+        * `examples/SOMClassifier_semisupervised <https://github.com/felixriese/susi/blob/master/examples/SOMClassifier_semisupervised.ipynb>`_
+        
+        FAQs
+        -----
+        
+        - **How should I set the initial hyperparameters of a SOM?** For more details
+          on the hyperparameters, see in `documentation/hyperparameters
+          <https://susi.readthedocs.io/en/latest/hyperparameters.html>`_.
+        - **How can I optimize the hyperparameters?** The SuSi hyperparameters
+          can be optimized, for example, with `scikit-learn.model_selection.GridSearchCV
+          <https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html>`_,
+          since the SuSi package is developed according to several scikit-learn
+          guidelines.
+        
+        
+        ------------
+        
+        
+        Citation
+        --------
+        
+        The bibtex file including both references is available in `bibliography.bib
+        <https://github.com/felixriese/susi/blob/master/bibliography.bib>`_.
+        
+        **Paper:**
+        
+        F. M. Riese, S. Keller and S. Hinz, "Supervised and Semi-Supervised Self-Organizing
+        Maps for Regression and Classification Focusing on Hyperspectral Data",
+        *Remote Sensing*, vol. 12, no. 1, 2020. `DOI:10.3390/rs12010007
+        <https://doi.org/10.3390/rs12010007>`_
+        
+        .. code:: bibtex
+        
+            @article{riese2020supervised,
+                author = {Riese, Felix~M. and Keller, Sina and Hinz, Stefan},
+                title = {{Supervised and Semi-Supervised Self-Organizing Maps for
+                          Regression and Classification Focusing on Hyperspectral Data}},
+                journal = {Remote Sensing},
+                year = {2020},
+                volume = {12},
+                number = {1},
+                article-number = {7},
+                URL = {https://www.mdpi.com/2072-4292/12/1/7},
+                ISSN = {2072-4292},
+                DOI = {10.3390/rs12010007}
+            }
+        
+        **Code:**
+        
+        Felix M. Riese, "SuSi: SUpervised Self-organIzing maps in Python",
+        Zenodo, 2019. `DOI:10.5281/zenodo.2609130
+        <https://doi.org/10.5281/zenodo.2609130>`_
+        
+        .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.2609130.svg
+           :target: https://doi.org/10.5281/zenodo.2609130
+        
+        .. code:: bibtex
+        
+            @misc{riese2019susicode,
+                author = {Riese, Felix~M.},
+                title = {{SuSi: Supervised Self-Organizing Maps in Python}},
+                year = {2019},
+                DOI = {10.5281/zenodo.2609130},
+                publisher = {Zenodo},
+                howpublished = {\href{https://doi.org/10.5281/zenodo.2609130}{doi.org/10.5281/zenodo.2609130}}
+            }
+        
+        -------------
+        
+        License
+        -------
+        
+        This project is published under the `3-Clause BSD <LICENSE>`_ license.
+        
+        .. image:: https://img.shields.io/pypi/l/susi.svg
+            :target: https://github.com/felixriese/susi/blob/master/LICENSE
+            :alt: PyPI - License
+        
+        
+        Change Log
+        ==========
+        
+        [1.1.1] - 2020-11-18
+        --------------------
+        - [ADDED] New distance metric "spectralangle".
+        - [ADDED] FAQs.
+        - [ADDED] Separate between positional and keyword parameters.
+        - [ADDED] Plot script for neighborhood distance weight matrix.
+        - [FIXED] Added inherited members to code documentation.
+        
+        [1.1.0] - 2020-08-31
+        --------------------
+        - [ADDED] Logo.
+        - [ADDED] SOMPlots documentation.
+        - [REMOVED] Python 3.5 support. Now, only 3.6-3.8 are supported.
+        - [FIXED] Scikit-learn warnings regarding validation of positional arguments.
+        - [FIXED] Sphinx documentation warnings.
+        
+        [1.0.10] - 2020-04-21
+        ------------------------------------
+        - [ADDED] Support for Python 3.8.x.
+        - [ADDED] Test coverage and MultiOutput test.
+        - [CHANGED] Function `setPlaceholder` to `set_placeholder`.
+        - [FIXED] Documentation links
+        
+        [1.0.9] - 2020-04-07
+        ------------------------
+        - [ADDED] Documentation of the hyperparameters.
+        - [ADDED] Plot scripts.
+        - [CHANGED] Structure of the module files.
+        
+        [1.0.8] - 2020-01-20
+        ------------------------
+        - [FIXED] Replaced scikit-learn `sklearn.utils.fixes.parallel_helper`, see #12.
+        
+        [1.0.7] - 2019-11-28
+        ------------------------
+        - [ADDED] Optional tqdm visualization of the SOM training
+        - [ADDED] New `init_mode_supervised` called `random_minmax`.
+        - [CHANGED] Official name of package changes from `SUSI` to `SuSi`.
+        - [CHANGED] Docstrings for functions are now according to guidelines.
+        - [FIXED] Semi-supervised classification handling, sample weights
+        - [FIXED] Supervised classification SOM initalization of `n_iter_supervised`
+        - [FIXED] Code refactored according to prospector
+        - [FIXED] Resolved bug in `get_datapoints_from_node()` for unsupervised SOM.
+        
+        [1.0.6] - 2019-09-11
+        ------------------------
+        - [ADDED] Semi-supervised abilities for classifier and regressor
+        - [ADDED] Example notebooks for semi-supervised applications
+        - [ADDED] Tests for example notebooks
+        - [CHANGED] Requirements for the SuSi package
+        - [REMOVED] Support for Python 3.4
+        - [FIXED] Code looks better in documentation with sphinx.ext.napoleon
+        
+        [1.0.5] - 2019-04-23
+        ------------------------
+        - [ADDED] PCA initialization of the SOM weights with 2 principal components
+        - [ADDED] Variable variance
+        - [CHANGED] Moved installation guidelines and examples to documentation
+        
+        [1.0.4] - 2019-04-21
+        ------------------------
+        - [ADDED] Batch algorithm for unsupervised and supervised SOM
+        - [ADDED] Calculation of the unified distance matrix (u-matrix)
+        - [FIXED] Added estimator_check of scikit-learn and fixed recognized issues
+        
+        [1.0.3] - 2019-04-09
+        ------------------------
+        - [ADDED] Link to arXiv paper
+        - [ADDED] Mexican-hat neighborhood distance weight
+        - [ADDED] Possibility for different initialization modes
+        - [CHANGED] Simplified initialization of estimators
+        - [FIXED] URLs and styles in documentation
+        - [FIXED] Colormap in Salinas example
+        
+        [1.0.2] - 2019-03-27
+        ------------------------
+        - [ADDED] Codecov, Codacy
+        - [CHANGED] Moved decreasing_rate() out of SOM classes
+        - [FIXED] Removed duplicate constructor for SOMRegressor, fixed fit() params
+        
+        [1.0.1] - 2019-03-26
+        ------------------------
+        - [ADDED] Config file for Travis
+        - [ADDED] Requirements for read-the-docs documentation
+        
+        [1.0.0] - 2019-03-26
+        ------------------------
+        - Initial release
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Scientific/Engineering
+Description-Content-Type: text/x-rst
+Provides-Extra: docs
