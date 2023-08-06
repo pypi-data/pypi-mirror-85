@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "openbayes-serving"
+version = "0.1.9"
+description = "Framework for Openbayes Serving"
+authors = ["Proton <bwang@openbayes.com>"]
+maintainers = ["Proton <bwang@openbayes.com>"]
+homepage = "https://openbayes.com"
+repository = "https://github.com/signcl/python-openbayes-serving"
+license = "MIT"
+classifiers = [
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Natural Language :: Chinese (Simplified)",
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+flask = "^1.1.1"
+msgpack = "^0.6.2"
+requests = "^2.24.0"
+pprintpp = "^0.4.0"
+uvicorn = "^0.12.2"
+httptools = "^0.1.1"
+uvloop = "^0.14.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.3.5"
+neovim = "^0.3.1"
+
+[[tool.poetry.source]]
+name = "aliyun"
+url = "http://mirrors.aliyun.com/pypi/"
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
