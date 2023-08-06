@@ -1,0 +1,415 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-09-02 13:51+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: jacc/admin.py:85
+#, python-brace-format
+msgid "({total_count} account entries)"
+msgstr ""
+
+#: jacc/admin.py:99
+#, python-brace-format
+msgid ""
+"Total debits {total_debits:.2f} | - total credits {total_credits:.2f} | = "
+"{total_amount:.2f}"
+msgstr ""
+
+#: jacc/admin.py:106 jacc/admin.py:111
+msgid "settlement"
+msgstr ""
+
+#: jacc/admin.py:112
+msgid "not settlement"
+msgstr ""
+
+#: jacc/admin.py:126
+msgid "account entry type"
+msgstr ""
+
+#: jacc/admin.py:143 jacc/models.py:153
+msgid "account type"
+msgstr ""
+
+#: jacc/admin.py:166 jacc/admin.py:170
+msgid "Exactly one account entry must be selected"
+msgstr ""
+
+#: jacc/admin.py:195 jacc/admin.py:744 jacc/models.py:70 jacc/models.py:85
+#: jacc/models.py:109 jacc/models.py:149 jacc/models.py:172 jacc/models.py:245
+#: jacc/models.py:428
+msgid "created"
+msgstr ""
+
+#: jacc/admin.py:212
+msgid "cannot.modify.archived.account.entry"
+msgstr "Archived account entries cannot be modified."
+
+#: jacc/admin.py:302 jacc/admin.py:883 jacc/models.py:74 jacc/models.py:115
+msgid "account entry source file"
+msgstr ""
+
+#: jacc/admin.py:308 jacc/admin.py:567 jacc/models.py:176
+msgid "account"
+msgstr ""
+
+#: jacc/admin.py:316 jacc/models.py:116
+msgid "source invoice"
+msgstr ""
+
+#: jacc/admin.py:324 jacc/models.py:117
+msgid "settled invoice"
+msgstr ""
+
+#: jacc/admin.py:332 jacc/models.py:118
+msgid "settled item"
+msgstr ""
+
+#: jacc/admin.py:418
+msgid "Derived account entry amount cannot be larger than original"
+msgstr ""
+
+#: jacc/admin.py:454
+msgid "invoice items"
+msgstr ""
+
+#: jacc/admin.py:455
+msgid "invoices items"
+msgstr ""
+
+#: jacc/admin.py:486 jacc/admin.py:558
+msgid "id"
+msgstr ""
+
+#: jacc/admin.py:505 jacc/admin.py:506
+msgid "settlements"
+msgstr ""
+
+#: jacc/admin.py:587 jacc/models.py:256
+msgid "late days"
+msgstr ""
+
+#: jacc/admin.py:594
+msgid "late.days.filter.not.due"
+msgstr "not due yet"
+
+#: jacc/admin.py:595 jacc/admin.py:596 jacc/admin.py:597 jacc/admin.py:598
+msgid "late.days.filter.late.range"
+msgstr "late {}-{}d"
+
+#: jacc/admin.py:599
+msgid "late.days.filter.late.over.days"
+msgstr "late over {}d"
+
+#: jacc/admin.py:621
+#, python-brace-format
+msgid "({total_count} invoices)"
+msgstr ""
+
+#: jacc/admin.py:636
+msgid "Total"
+msgstr ""
+
+#: jacc/admin.py:637 jacc/forms.py:8 jacc/models.py:114 jacc/models.py:251
+#: jacc/templates/admin/jacc/accountentry/reverse_entry.html:10
+msgid "amount"
+msgstr ""
+
+#: jacc/admin.py:750 jacc/models.py:247
+msgid "sent"
+msgstr ""
+
+#: jacc/admin.py:756 jacc/models.py:248
+msgid "due date"
+msgstr ""
+
+#: jacc/admin.py:762 jacc/models.py:255
+msgid "close date"
+msgstr ""
+
+#: jacc/admin.py:790
+msgid "is liability"
+msgstr ""
+
+#: jacc/admin.py:886
+msgid "Add reverse charge"
+msgstr ""
+
+#: jacc/admin.py:887
+msgid "Re-send invoices"
+msgstr ""
+
+#: jacc/admin.py:888
+msgid "Refresh cached fields"
+msgstr ""
+
+#: jacc/admin.py:889
+msgid "Summarize account entries"
+msgstr ""
+
+#: jacc/admin.py:890
+msgid "Summarize invoice statistics"
+msgstr ""
+
+#: jacc/admin.py:891
+msgid "set_as_asset"
+msgstr "Set as asset"
+
+#: jacc/admin.py:892
+msgid "set_as_liability"
+msgstr "Set as liability"
+
+#: jacc/apps.py:7
+msgid "Accounting"
+msgstr ""
+
+#: jacc/forms.py:7 jacc/models.py:111
+#: jacc/templates/admin/jacc/accountentry/reverse_entry.html:9
+msgid "timestamp"
+msgstr ""
+
+#: jacc/forms.py:9 jacc/models.py:113
+#: jacc/templates/admin/jacc/accountentry/reverse_entry.html:11
+msgid "description"
+msgstr ""
+
+#: jacc/forms.py:10
+msgid "reverse.charge.form.default.description"
+msgstr "refund"
+
+#: jacc/models.py:35
+msgid "Debit"
+msgstr ""
+
+#: jacc/models.py:36
+msgid "Credit"
+msgstr ""
+
+#: jacc/models.py:50
+msgid "Not due yet"
+msgstr ""
+
+#: jacc/models.py:51
+msgid "Due"
+msgstr ""
+
+#: jacc/models.py:52
+msgid "Late"
+msgstr ""
+
+#: jacc/models.py:53
+msgid "Paid"
+msgstr ""
+
+#: jacc/models.py:60
+msgid "Invoice"
+msgstr ""
+
+#: jacc/models.py:61
+msgid "Credit Note"
+msgstr ""
+
+#: jacc/models.py:69 jacc/models.py:84 jacc/models.py:147 jacc/models.py:170
+#: jacc/models.py:430
+msgid "name"
+msgstr ""
+
+#: jacc/models.py:71 jacc/models.py:86 jacc/models.py:110 jacc/models.py:150
+#: jacc/models.py:173 jacc/models.py:246 jacc/models.py:429
+msgid "last modified"
+msgstr ""
+
+#: jacc/models.py:75
+msgid "account entry source files"
+msgstr ""
+
+#: jacc/models.py:82 jacc/models.py:146
+msgid "code"
+msgstr ""
+
+#: jacc/models.py:83
+msgid "identifier"
+msgstr ""
+
+#: jacc/models.py:87
+msgid "payback priority"
+msgstr ""
+
+#: jacc/models.py:88
+msgid "is settlement"
+msgstr ""
+
+#: jacc/models.py:89
+msgid "is payment"
+msgstr ""
+
+#: jacc/models.py:92
+msgid "entry type"
+msgstr ""
+
+#: jacc/models.py:93
+msgid "entry types"
+msgstr ""
+
+#: jacc/models.py:108
+msgid "record account"
+msgstr ""
+
+#: jacc/models.py:112 jacc/models.py:169 jacc/models.py:243
+msgid "type"
+msgstr ""
+
+#: jacc/models.py:115
+msgid "entry.source.file.help.text"
+msgstr "e.g. settlement file"
+
+#: jacc/models.py:116
+msgid "entry.source.invoice.help.text"
+msgstr "e.g. invoice for invoice row entries"
+
+#: jacc/models.py:117
+msgid "entry.settled.invoice.help.text"
+msgstr "e.g. settled invoice"
+
+#: jacc/models.py:118
+#, fuzzy
+#| msgid "entry.settled.invoice.help.text"
+msgid "entry.settled.item.help.text"
+msgstr "e.g. settled invoice"
+
+#: jacc/models.py:119
+msgid "account.entry.parent"
+msgstr "parent"
+
+#: jacc/models.py:120
+msgid "archived"
+msgstr ""
+
+#: jacc/models.py:123
+msgid "account entry"
+msgstr ""
+
+#: jacc/models.py:124
+msgid "account entries"
+msgstr ""
+
+#: jacc/models.py:142 jacc/models.py:195
+msgid "balance"
+msgstr ""
+
+#: jacc/models.py:148 jacc/models.py:185
+msgid "asset"
+msgstr ""
+
+#: jacc/models.py:154
+msgid "account types"
+msgstr ""
+
+#: jacc/models.py:162 jacc/models.py:190
+#, fuzzy
+#| msgid "set_as_liability"
+msgid "liability"
+msgstr "Set as liability"
+
+#: jacc/models.py:171
+msgid "currency"
+msgstr ""
+
+#: jacc/models.py:177
+msgid "accounts"
+msgstr ""
+
+#: jacc/models.py:244
+msgid "invoice number"
+msgstr ""
+
+#: jacc/models.py:249
+msgid "notes"
+msgstr ""
+
+#: jacc/models.py:250
+msgid "filename"
+msgstr ""
+
+#: jacc/models.py:252
+msgid "paid amount"
+msgstr ""
+
+#: jacc/models.py:253
+msgid "unpaid amount"
+msgstr ""
+
+#: jacc/models.py:254
+msgid "overpaid amount"
+msgstr ""
+
+#: jacc/models.py:257 jacc/models.py:421
+msgid "state"
+msgstr ""
+
+#: jacc/models.py:269
+msgid "invoice"
+msgstr ""
+
+#: jacc/models.py:270
+msgid "invoices"
+msgstr ""
+
+#: jacc/models.py:372
+msgid "is paid"
+msgstr ""
+
+#: jacc/models.py:377
+msgid "is due"
+msgstr ""
+
+#: jacc/models.py:433
+msgid "contract"
+msgstr ""
+
+#: jacc/models.py:434
+msgid "contracts"
+msgstr ""
+
+#: jacc/settle.py:115
+msgid ""
+"Cannot settle credit note amount which is larger than remaining unpaid "
+"balance"
+msgstr ""
+
+#: jacc/settle.py:124
+msgid "credit.note.reconciliation"
+msgstr ""
+
+#: jacc/templates/admin/jacc/account/change_form.html:8
+msgid "History"
+msgstr ""
+
+#: jacc/templates/admin/jacc/account/change_form.html:12
+msgid "Account Entries"
+msgstr ""
+
+#: jacc/templates/admin/jacc/account/change_form.html:14
+msgid "View on site"
+msgstr ""
+
+#: jacc/templates/admin/jacc/accountentry/reverse_entry.html:18
+msgid "Save"
+msgstr ""
+
+#~ msgid "entry.settled.item"
+#~ msgstr "e.g. settled row in invoice"
