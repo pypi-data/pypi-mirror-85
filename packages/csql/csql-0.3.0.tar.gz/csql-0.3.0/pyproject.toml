@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "csql"
+description = "Simple library for writing composeable SQL queries"
+version = "0.3.0"
+authors = ["Jarrad Whitaker <akdor1154@gmail.com>"]
+license = "LGPL-3.0-or-later"
+readme = "README.md"
+homepage = "https://github.com/akdor1154/python-csql"
+repository = "https://github.com/akdor1154/python-csql"
+keywords = ["sql", "analytics"]
+classifiers = [
+	"Development Status :: 3 - Alpha",
+	"Operating System :: OS Independent",
+	"Topic :: Database"
+]
+include = [
+	"LICENCE.md"
+]
+
+[tool.poetry.dependencies]
+python = "^3.6.1"
+dataclasses = {version = "^0.7", python = "<3.7"}
+pandas = {version = "^1", optional = true}
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.1.1"
+astpretty = "^2.0.0"
+mypy = "^0.790"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
+[tool.poetry.extras]
+pandas = ["pandas"]
