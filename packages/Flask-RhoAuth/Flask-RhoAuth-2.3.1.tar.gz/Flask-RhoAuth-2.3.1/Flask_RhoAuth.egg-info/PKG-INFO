@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: Flask-RhoAuth
+Version: 2.3.1
+Summary: Rho AI Authorization Library
+Home-page: https://bitbucket.org/rhoai/flask-rhoauth
+Maintainer: Rho AI
+License: Commercial
+Description: # Flask-RhoAuth
+        
+        Authorization Library Based on StormPath and Flask-Security
+        
+        ## Testing
+        
+        To run the tests we need to install pyenv and tox.
+        
+        Follow the instructions for [pyenv](https://github.com/pyenv/pyenv#installation)
+        and [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv#installation)
+        to install pyenv.
+        
+        After pyenv is intalled, then install tox
+        
+            $ pip install tox
+        
+        Then install the different python versions in pyenv
+        
+            $ pyenv install 3.6.7 3.7.4
+        
+        
+        Now, run the tests:
+            
+            $ pyenv shell $(cat .python-version)
+            $ make test
+        
+Platform: UNKNOWN
+Provides-Extra: openid
+Provides-Extra: apiauth
+Provides-Extra: test
