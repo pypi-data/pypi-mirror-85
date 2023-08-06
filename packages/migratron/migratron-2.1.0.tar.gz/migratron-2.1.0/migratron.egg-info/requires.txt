@@ -1,0 +1,35 @@
+pygments
+psycopg2
+six
+
+[dev]
+twine>=1.13.0
+flake8>=3.5.0
+coverage>=4.5.1
+pytest>=4.6.3
+pytest-cov>=2.7.1
+pytest-runner>=5.1
+flake8-assertive>=1.1.0
+
+[dev-strict]
+twine==1.13.0
+flake8==3.5.0
+coverage==4.5.1
+pytest==4.6.3
+pytest-cov==2.7.1
+pytest-runner==5.1
+flake8-assertive==1.1.0
+
+[dev-strict:python_version > "3.5"]
+black==19.3b0
+
+[dev-strict:python_version > "3.6"]
+flake8-blind-except==0.1.1
+flake8-broken-line==0.1.0
+
+[dev:python_version > "3.5"]
+black>=19.3b0
+
+[dev:python_version > "3.6"]
+flake8-blind-except>=0.1.1
+flake8-broken-line>=0.1.0
