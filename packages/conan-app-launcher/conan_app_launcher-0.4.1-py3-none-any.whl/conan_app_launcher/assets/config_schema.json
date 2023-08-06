@@ -1,0 +1,81 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "app": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Displayed name for application."
+                },
+                "package_id": {
+                    "type": "string",
+                    "description": "Conan package reference id, like app/1.0.0@usr/stable"
+                },
+                "executable": {
+                    "type": "string",
+                    "description": "Relative path in package to the executable."
+                },
+                "args": {
+                    "type": "string",
+                    "description": "Optional arguments for the executable."
+                },
+                "console_application": {
+                    "type": "boolean",
+                    "default": "False",
+                    "description": "CMD style application like bash. Opens in new shell window."
+                },
+                "icon": {
+                    "type": "string",
+                    "description": "Displayed custom icon for application."
+                }
+            },
+            "required": [
+                "name",
+                "package_id",
+                "executable"
+            ]
+        },
+        "tab": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Displayed name for tab."
+                },
+                "apps": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/app",
+                        "description": "Array of applications displayed on tab."
+                    }
+                }
+            },
+            "required": [
+                "name",
+                "apps"
+            ]
+        }
+    },
+    "title": "App Config",
+    "description": "Layout for conan app launcher",
+    "type": "object",
+    "properties": {
+        "version": {
+            "type": "string",
+            "const": "0.2.0",
+            "description": "Schema version"
+        },
+        "tabs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/tab",
+                "description": "Array of tabs to be displayed."
+            }
+        }
+    },
+    "required": [
+        "version",
+        "tabs"
+    ]
+}
