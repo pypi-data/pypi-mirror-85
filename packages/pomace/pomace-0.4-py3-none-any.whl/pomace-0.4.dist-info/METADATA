@@ -1,0 +1,69 @@
+Metadata-Version: 2.1
+Name: pomace
+Version: 0.4
+Summary: Dynamic page objects for browser automation.
+Home-page: https://pypi.org/project/pomace
+License: MIT
+Keywords: browser automation,page object model,selenium,splinter
+Author: Jace Browning
+Author-email: jacebrowning@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Internet :: WWW/HTTP :: Browsers
+Classifier: Topic :: Software Development :: Testing
+Requires-Dist: beautifulsoup4 (>=4.8.2,<5.0.0)
+Requires-Dist: bullet (>=2.1.0,<3.0.0)
+Requires-Dist: cleo (>=0.7.6,<0.8.0)
+Requires-Dist: datafiles (==0.11b4)
+Requires-Dist: faker (>=4.1.1,<5.0.0)
+Requires-Dist: inflection (>=0.4.0,<0.5.0)
+Requires-Dist: ipython (>=7.12.0,<8.0.0)
+Requires-Dist: minilog (>=2.0b2,<3.0)
+Requires-Dist: parse (>=1.14.0,<2.0.0)
+Requires-Dist: splinter (>=0.12.0,<0.13.0)
+Requires-Dist: webdriver_manager (>=2.5.0,<3.0.0)
+Requires-Dist: zipcodes (>=1.1.2,<2.0.0)
+Project-URL: Documentation, https://pomace.readthedocs.io
+Project-URL: Repository, https://github.com/jacebrowning/pomace
+Description-Content-Type: text/markdown
+
+# Overview
+
+Dynamic page objects for browser automation.
+
+This project was generated with [cookiecutter](https://github.com/audreyr/cookiecutter) using [jacebrowning/template-python](https://github.com/jacebrowning/template-python).
+
+[![Unix Build Status](https://img.shields.io/travis/jacebrowning/pomace/develop.svg?label=unix)](https://travis-ci.org/jacebrowning/pomace)
+[![Windows Build Status](https://img.shields.io/appveyor/ci/jacebrowning/pomace/develop.svg?label=window)](https://ci.appveyor.com/project/jacebrowning/pomace)
+[![Coverage Status](https://img.shields.io/coveralls/jacebrowning/pomace/develop.svg)](https://coveralls.io/r/jacebrowning/pomace)
+[![PyPI Version](https://img.shields.io/pypi/v/pomace.svg)](https://pypi.org/project/pomace)
+[![PyPI License](https://img.shields.io/pypi/l/pomace.svg)](https://pypi.org/project/pomace)
+
+# Setup
+
+## Requirements
+
+- Python 3.7+
+
+## Installation
+
+On macOS:
+
+```
+$ brew install pipx
+$ pipx ensurepath
+$ pipx install pomace
+$ pomace shell
+$ pomace run
+```
+
