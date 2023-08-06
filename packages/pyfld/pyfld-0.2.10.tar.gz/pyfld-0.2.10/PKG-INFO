@@ -1,0 +1,93 @@
+Metadata-Version: 2.1
+Name: pyfld
+Version: 0.2.10
+Summary: pyfld
+Home-page: https://github.com/tsukada-cs/pyfld
+Author: Taiga Tsukada
+Author-email: tsukada.cs@gmail.com
+Maintainer: Taiga Tsukada
+Maintainer-email: tsukada.cs@gmail.com
+License: GPLv3+
+Description: # pyfld
+        [![Build Status](https://travis-ci.com/tsukada-cs/pyfld.svg?branch=main)](https://travis-ci.com/tsukada-cs/pyfld)
+        [![Coverage Status](https://coveralls.io/repos/github/tsukada-cs/pyfld/badge.svg)](https://coveralls.io/github/tsukada-cs/pyfld?branch=main)
+        
+        Python package for detecting line segments from images.
+        
+        In order to extract line segments, Lee et al., (2014) devised a simple but reliable extractor inspired from Bay et al., (2005). Lee et al., (2014) described it as follows.
+        > Given an image, Canny edges are detected first and the system extracts line segments as follows: At an edge pixel the extractor connects a straight line with a neighboring one, and continues fitting lines and extending to the next edge pixel until it satisfies co-linearity with the current line segment. If the extension meets a high curvature, the extractor returns the current segment only if it is longer than 20 pixels, and repeats the same steps until all the edge pixels are consumed. Then with the segments, the system incrementally merges two segments with length weight if they are overlapped or closely located and the difference of orientations is sufficiently small.
+        
+        This package is designed to allow fine tuning of parameters based on this approach.
+        
+        ## Instration
+        The currently recommended method of installation is via pip:
+        ```shell
+        pip install tropycal
+        ```
+        
+        pyfld can also be installed by cloning the GitHub repository:
+        ```shell
+        git clone https://github.com/tsukada-cs/pyfld
+        cd pyfld
+        pip install .
+        ```
+        
+        ## Dependencies
+        * numpy >= 1.17.3
+        * opencv >= 2.4
+        
+        ## Sample Usage
+        Standard use case:
+        ```python
+        import numpy as np
+        from PIL import Image
+        
+        from pyfld import FastLineDetector
+        
+        img = Image.open("sample.png")
+        img = np.asarray(img.convert("L"))
+        
+        length_threshold = 10
+        distance_threshold = 1.41421356
+        canny_th1 = 50
+        canny_th2 = 50
+        canny_aperture_size = 3
+        do_merge = False
+        
+        fld = FastLineDetector(length_threshold, distance_threshold, canny_th1, canny_th2, canny_aperture_size, do_merge)
+        segments = fld.detect(img)
+        x1, y1, x2, y2 = np.array(segments).T
+        ```
+        
+        If the `img` is already binarized, set `canny_aperture_size=0`. Then, the Canny method is not used, and edge detection is performed directly on the input image.
+        
+        
+        Example of line segment visualization:
+        ```python
+        import matplotlib.pyplot as plt
+        
+        fig, ax = plt.subplots()
+        ax.imshow(img, cmap="gray")
+        ax.plot([x1, x2], [y1, y2], c="r")
+        plt.show()
+        ```
+        <img width="349" alt="FLD_output" src="https://user-images.githubusercontent.com/45615081/97328052-f47fd700-18b8-11eb-844f-949790c4aa5e.png">
+        
+        ## Reference
+        * J. Han Lee, S. Lee, G. Zhang, J. Lim, W. Kyun Chung, I. Hong Suh. "Outdoor place recognition in urban environments using straight lines." In 2014 IEEE International Conference on Robotics and Automation (ICRA), pp.5550–5557. IEEE, 2014. [[Link to PDF]](http://cvlab.hanyang.ac.kr/~jwlim/files/icra14linerec.pdf)
+        * H. Bay, V. Ferraris, and L. Van Gool, “Wide-Baseline Stereo Matching with Line Segments.” In Proc. of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR), vol.1, no., pp.329-336, June 2005. [[Link to PDF]](https://homes.esat.kuleuven.be/~konijn/publications/2005/CVPR-HB-05.pdf)
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX :: Linux
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Topic :: Scientific/Engineering
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
