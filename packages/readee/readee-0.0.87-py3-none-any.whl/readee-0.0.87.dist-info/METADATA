@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: readee
+Version: 0.0.87
+Summary: Library for export webpage to reader mode html.
+Home-page: https://github.com/gaoyunzhi/readee
+Author: Yunzhi Gao
+Author-email: gaoyunzhi@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.0
+Description-Content-Type: text/markdown
+Requires-Dist: bs4
+Requires-Dist: readability-lxml
+Requires-Dist: telegram-util
+Requires-Dist: opencc-python-reimplemented
+Requires-Dist: cached-url
+
+# readee
+
+Library for export webpage to reader mode html.
+
+## usage
+
+```
+import readee
+beautiful_soup_html = readee.export(url = webpage_url)
+```
+
+optional args:
+- content: raw webpage, will skip url fetching
+- list_replace: will replace list, usually for telegraph export
+
+## how to install
+
+`pip3 install readee`
+
