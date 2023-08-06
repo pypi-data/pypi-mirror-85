@@ -1,0 +1,161 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="collective.templates">
+
+  <i18n:registerTranslations directory="locales" />
+
+  <!--
+    Be careful if you use general includeDependencies, it can have sideffects!
+    Better import explicite packages or configurations ;)
+  -->
+  <includeDependencies package="." />
+
+  <include package=".browser" />
+
+  <include file="permissions.zcml" />
+
+  <include file="upgrades.zcml" />
+
+  <genericsetup:registerProfile
+      name="default"
+      title="collective.templates"
+      directory="profiles/default"
+      description="Installs the collective.templates add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      post_handler=".setuphandlers.post_install"
+      />
+
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="collective.templates (uninstall)"
+      directory="profiles/uninstall"
+      description="Uninstalls the collective.templates add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      post_handler=".setuphandlers.uninstall"
+      />
+
+  <utility
+      factory=".setuphandlers.HiddenProfiles"
+      name="collective.templates-hiddenprofiles"
+      />
+
+  <!-- -*- extra stuff goes here -*- -->
+
+  <browser:resourceDirectory
+      name="collective.templates"
+      directory="resources" />
+
+  <browser:page
+      name="view"
+      for="collective.templates.tlcenter.ITLCenter"
+      class="collective.templates.tlcenter.TLCenterView"
+      template="view_templates/tlcenter_view.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="view"
+      for="collective.templates.tlproject.ITLProject"
+      class="collective.templates.tlproject.TLProjectView"
+      template="view_templates/tlproject_view.pt"
+      permission="zope2.View"
+      />
+
+  <adapter
+    factory="collective.templates.tlproject.ValidateTLProjectUniqueness"
+    />
+
+
+  <adapter factory="collective.templates.mailtoauthor.MailToAuthorAdapter"/>
+
+  <browser:page
+        for="Products.CMFCore.interfaces.ISiteRoot"
+        name="mail-to-template-author"
+        class="collective.templates.mailtoauthor.ReCaptchaForm"
+        permission="zope2.View"
+        />
+
+  <adapter
+      factory=".mailtoauthor.ReCaptcha"
+      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+      provides=".mailtoauthor.IReCaptchaForm"
+   />
+
+
+  <adapter factory="collective.templates.mailtoprojectowner.MailToProjectOwnerAdapter"/>
+
+  <browser:page
+        for="collective.templates.tlproject.ITLProject"
+        name="contact-template-project-owner"
+        class="collective.templates.mailtoprojectowner.ReCaptchaForm"
+        permission="zope2.View"
+        />
+
+  <adapter
+      factory=".mailtoprojectowner.ReCaptcha"
+      for="collective.templates.tlproject.ITLProject"
+      provides=".mailtoprojectowner.IReCaptchaForm"
+   />
+  <subscriber
+      for="collective.templates.tlproject.ITLProject
+               zope.lifecycleevent.interfaces.IObjectAddedEvent"
+    handler="collective.templates.tlproject.notifyAboutNewProject"
+    />
+
+  <subscriber
+    for="collective.templates.tlproject.ITLProject
+               Products.CMFCore.interfaces.IActionSucceededEvent"
+    handler="collective.templates.tlproject.notifyProjectManager"
+    />
+
+  <subscriber
+    for="collective.templates.tlproject.ITLProject
+               Products.CMFCore.interfaces.IActionSucceededEvent"
+    handler="collective.templates.tlproject.notifyAboutNewReviewlistentry"
+    />
+
+  <subscriber
+    for="collective.templates.tlcenter.ITLCenter
+               zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+    handler="collective.templates.notifications.notifiyAboutNewVersion"
+    />
+
+  <subscriber
+    for="collective.templates.tlproject.ITLProject
+         zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+    handler="collective.templates.tlproject.textmodified_project"
+    />
+
+  <browser:viewlet
+      name="ownprojects"
+      for="collective.templates.tlcenter.ITLCenter"
+      view="plone.app.layout.globals.interfaces.IViewView"
+      manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
+      class="collective.templates.tlcenter.TLCenterOwnProjectsViewlet"
+      template="view_templates/own_projects.pt"
+      permission="zope2.View"
+      />
+
+
+  <utility
+      name="Templatecategories"
+      component=".vocabularies.CategoriesVocabularyFactory" />
+
+  <utility
+      name="Templatelicenses"
+      component=".vocabularies.LicensesVocabularyFactory" />
+
+  <utility
+      name="Templateversions"
+      component=".vocabularies.VersionsVocabularyFactory" />
+
+  <utility
+      name="Templateplatforms"
+      component=".vocabularies.PlatformVocabularyFactory" />
+
+
+</configure>
