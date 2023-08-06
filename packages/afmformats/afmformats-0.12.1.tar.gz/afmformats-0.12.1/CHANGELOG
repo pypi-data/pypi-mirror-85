@@ -1,0 +1,74 @@
+0.12.1
+ - maintenance release
+0.12.0
+ - ref: rewrite JPK data file reader: new JPKReader class (#4)
+ - enh: add new LazyData class for loading data on demand (#4)
+0.11.0
+ - feat: allow defining "detect" method to determine whether a recipe
+   can open a file (#7)
+0.10.2
+ - maintenance release
+0.10.1
+ - fix: parsing issue when loading .ibw files without AM/PM in "Time"
+   metadata (#8)
+ - enh: make sure "time" is always parsed as HH:MM:SS.S when adding
+   it to `MetaData`
+ - enh: compute "curve id" and "session id" from "date", "time", and
+   "enum" if not given in `MetaData`
+0.10.0
+ - feat: allow to override metadata when loading data
+ - feat: support new file format from AFM workshop (.csv)
+ - feat: support new file format from JPK (.jpk-qi-data)
+ - feat: support new file format from NT-MDT (.txt exported by Nova)
+ - enh: implement `AFMFormatRecipe` class for handling and verifying
+   recipe dictionaries
+ - enh: implement `register_format` function
+0.9.0
+ - feat: support new file format from Asylum Research, Igor (.ibw)
+ - ref: always compute piezo range metadata instead of taking it from
+   the set value in the acquisition settings (JKP format) 
+0.8.0
+ - enh: do not export "index" column to HDF5 files to save disk space
+ - enh: save column units when exporting to HDF5
+ - ref: moved class methods and constants from "afm_fdist" to "afm_data"
+ - docs: add code reference, basic usage, and list of file formats
+0.7.1
+ - fix: exporting to HDF5 did not work when a h5py.Group was used
+ - fix: exporting to HDF5 did not reset the "enum" key
+ - enh: use gzip compression in HDF5 file format
+ - enh: allow "h5" and "hdf5" as HDF5 file format specifiers during
+   export
+0.7.0
+ - BREAKING CHANGE: piezo height is now loaded as "calibrated" and
+   not as "nominal" (JPK file format)
+ - fix: metadata acquisition "duration" and "point count" only showed data
+   of apporach part (JPK file format)
+ - enh: load metadata "speed" and "rate" separately for approach and
+   retract part
+ - ref: restructured meta data organization
+0.6.0
+ - feat: force-distance metadata can now be saved and loaded for
+   the .tab file format (#3)
+ - feat: implement new HDF5-based file format (read/write)
+ - feat: support piezo height (JPK file format)
+ - enh: improve parsing of JPK files (#1)
+0.5.2
+ - ref: drop pandas dependency (#2)
+0.5.1
+ - fix: allow "force-modulation" feedback mode
+0.5.0
+ - feat: meta data summary with `MetaData.get_summary`
+0.4.1
+ - ref: group meta data by topic
+ - fix: identifier in JPK file format was actually session identifier
+0.4.0
+ - BREAKING CHANGE: change metadata key names 
+ - enh: add class for checking metadata
+0.3.0
+ - feat: support tab-separated values file format (.tab)
+ - fix: file formats were not registered correctly
+ - ref: derive file format errors from own error classes
+0.2.0
+ - compatibility changes towards nanite
+0.1.0
+ - initial version
