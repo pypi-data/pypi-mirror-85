@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: psicalc
+Version: 0.0.8
+Summary: Algorithm for clustering protein multiple sequence alignments using normalized mutual information.
+Home-page: https://github.com/mandosoft/psi-calc
+Author: Thomas Townsley
+Author-email: thomas@mandosoft.dev
+License: UNKNOWN
+Keywords: bioinformatics
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: pandas
+Requires-Dist: scikit-learn
+
+# Psi-Calc
+
+This is a package for clustering Multiple Sequence Alignments (MSAs) utilizing normalized mutual information as a measure of relative strength. For more details visit: https://github.com/mandosoft/psi-calc.
+
+As an example:
+
+```
+import psicalc as pc
+
+file = "<your_fasta_file>" # e.g "PF02517_seed.txt"
+
+data = pc.read_txt_file_format(file) # read Fasta file
+
+pc.find_clusters(7, data) # will sample every 7th column
+```
+
+The program will run and return a csv file with the strongest clusters found in the MSA provided.
+
+
