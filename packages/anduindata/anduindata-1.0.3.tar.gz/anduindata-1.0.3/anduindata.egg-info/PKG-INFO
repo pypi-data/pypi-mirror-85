@@ -1,0 +1,31 @@
+Metadata-Version: 1.2
+Name: anduindata
+Version: 1.0.3
+Summary: a mysql connector
+Home-page: https://github.com/campanulamediuml/Anduin
+Author: campanula
+Author-email: 421248329@qq.com
+License: MIT
+Description: 这是一个超轻型sql映射为键值对的框架，支持自动管理连接池和清理超时连接池
+        与mysql保持心跳的周期为30秒
+        连接池将会保持在10个作为稳定链接
+        可以通过修改anduin.dbserver.data_manager.data_manager.min_keep_connection控制系统维持的连接池数量
+        
+        依赖pymysql
+        通过from anduin.server import Data
+        
+        Data.find
+        Data.selet
+        Data.update
+        Data.insert
+        Data.delete
+        进行操作
+        
+        Data.query可以直接执行sql语句
+Keywords: mysql
+Platform: any
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.2
