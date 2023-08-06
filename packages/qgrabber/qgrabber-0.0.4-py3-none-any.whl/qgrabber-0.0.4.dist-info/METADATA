@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: qgrabber
+Version: 0.0.4
+Summary: Scan QR codes using your webcam, pyzbar and wxpython. No usage of opencv
+Home-page: https://github.com/sander76/qrabber
+License: UNKNOWN
+Author: Sander Teunissen
+Author-email: no_mail@nomail.com
+Requires-Python: >=3.7
+Classifier: License :: OSI Approved :: MIT License
+Requires-Dist: aio-wx-widgets>=0.0.4
+Requires-Dist: comtypes>=1.1.7
+Requires-Dist: pyzbar
+Requires-Dist: numpy
+Requires-Dist: pylint ; extra == "dev"
+Requires-Dist: nox ; extra == "dev"
+Requires-Dist: pytest-cov ; extra == "dev"
+Requires-Dist: coverage[toml]>=5.0.3 ; extra == "dev"
+Requires-Dist: pre-commit ; extra == "dev"
+Requires-Dist: pytest ; extra == "test"
+Requires-Dist: pytest-asyncio ; extra == "test"
+Requires-Dist: pytest-mock ; extra == "test"
+Provides-Extra: dev
+Provides-Extra: test
