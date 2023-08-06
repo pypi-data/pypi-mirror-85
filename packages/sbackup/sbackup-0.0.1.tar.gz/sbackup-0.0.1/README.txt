@@ -1,0 +1,3 @@
+A simple GUI folder backup manager utilizing python3 backend. Users can selectively choose the files of specific extensions for backup from any computer directory/folder. "backuper" will keep the directory structure intact inside the backup folder. The backup folder will be named "Backup_%m_%d_%Y" with a specific date stamp at the end as "%m_%d_%Y". Users can also choose to zip the backup folder and a .zip folder will be created in the same directory along with the "Backup_%m_%d_%Y" folder. Users are advised to limit their extension to fewer numbers if the directory needed to be backed up is huge in size. Restricted files can not be cloned in the backup folder without granting the necessary permission.
+
+Please refer to the "LICENCE.txt" file for more details.
