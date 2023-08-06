@@ -1,0 +1,60 @@
+Metadata-Version: 2.1
+Name: getjobs
+Version: 1.0
+Summary: UNKNOWN
+Home-page: https://github.com/ronaldsoft/getjob
+Author: Ronald Rivera
+Author-email: ronaldsoft8423@gmail.com
+License: GNUv3.0
+Description: # Getjob: Automate to jobs applications
+        
+        This code is to send emails with different contexts depending on company info, language, postulation job, and recruiter info.
+        
+        ## Installation
+        
+        Use the package manager [pip](https://pypi.org/project/getjob/1.0/) to install getjob
+        
+        ```bash
+        pip install getjob
+        ```
+        ## Requirements
+        * python <= 2.7
+        
+        ## Usage
+        
+        ### Module Import
+        ```python
+        from getjob import GetJob
+        
+        #sent mail
+        mail = GetJob(profile, sms_path, bulk_path, doc_path) #replace values to paths
+        #send bulk email
+        mail.send()
+        ```
+        
+        ## Comnand line
+        Sending out a bulk email.
+        
+        Send mails with a custom profile:
+        ```
+        $ ./getjob.py path/profile.json path/templates/ path/data.csv path/file.pdf
+        ```
+        ## Contributing
+        Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+        
+        Please make sure to update tests as appropriate.
+        
+        ## License
+        [GNU](https://www.gnu.org/licenses/)
+Keywords: jobs,work,recruiter
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
