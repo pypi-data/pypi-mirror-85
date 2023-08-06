@@ -1,0 +1,81 @@
+# openepda.schemas.cdf_schema_v0.3.yaml
+#
+# This file contains JSON Schema for Chip Description File
+#
+# Author(s): Dzmitry Pustakhod
+#
+# Copyright: TU/e - PITC and authors
+#
+$schema: http://json-schema.org/draft-07/schema
+$id: http://openepda.org/schemas/cdf_schema_v0.3.yaml
+type: object
+properties:
+  cdf:  # file identifier
+    description: Unique file identifier.
+    type: string
+  cell: {type: string}
+  unit:
+    type: string
+    description: Length unit for the numeric values.
+    pattern: ^[cun]*m$
+  bbox:
+    type: array
+    items:
+      - type: array
+        description: South-west corner coordinates.
+        items: [{type: number}, {type: number}]
+      - type: array
+        description: North-east corner coordinates.
+        items: [{type: number}, {type: number}]
+  fiducial:
+    type: object
+    properties:  # Three types of fiducials are recognized
+      target:  # type 1
+        type: object  # keys are fiducial ids
+        additionalProperties:
+          type: array  # values are fiducial coordinates
+          items: [{type: number}, {type: number}]  # (u, v): chip coordinates
+      cornerUL:  # type 2
+        type: object  # keys are fiducial ids
+        additionalProperties:
+          type: array  # values are fiducial coordinates
+          items: [{type: number}, {type: number}]  # (u, v): chip coordinates
+      disc:  # type 3
+        type: object  # keys are fiducial ids
+        additionalProperties:
+          type: array  # values are fiducial coordinates
+          items: [{type: number}, {type: number}]  # (u, v): chip coordinates
+    additionalProperties: false
+  io:
+    type: object
+    properties:  # Three types of io's are recognized
+      optical_port:  # type 1
+        type: object  # keys are port ids
+        additionalProperties:
+          type: array  # values are port coordinates
+          items: [{type: number}, {type: number}]  # (u, v): chip coordinates
+      dc_pad:  # type 2
+        type: object  # keys are dc_pad ids
+        additionalProperties:
+          type: array  # values are dc_pad coordinates
+          items: [{type: number}, {type: number}]  # (u, v): chip coordinates
+      rf_pad:  # type 3
+        type: object  # keys are rf_pad ids
+        additionalProperties:
+          type: array  # values are rf_pad coordinates
+          items: [{type: number}, {type: number}]  # (u, v): chip coordinates
+    additionalProperties: false
+  _openEPDA:
+    type: object
+    properties:
+      format:
+        const: openEPDA-CDF
+      version:
+        type: string
+        enum: ["0.3"]
+      link:
+        type: string
+        description: Link to openEPDA site.
+        pattern: "^[hH][tT][tT][pP][sS]://([wW]{3}.)?[oO][pP][eE][nN][eE][pP][dD][aA].org(/openepda_cdf_format.html)?$"
+required: [cdf, cell, unit, bbox, io, _openEPDA]
+additionalProperties: false

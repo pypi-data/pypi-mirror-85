@@ -1,0 +1,352 @@
+# Bright Photonics B.V.
+# Copyright (c) 2018-2019, Ronald Broeke
+# license: Creative Commons, CC BY-ND 4.0"
+# attribution: openEPDA, ronald.broeke@openEPDA.org
+$schema: http://json-schema.org/draft-07/schema
+$id: http://openepda.org/schemas/updk_sbb_schema_v0.2.yaml
+type: object
+properties:
+  header:
+    type: object
+    description: Contains licensing and usage information.
+    properties:
+      description:
+        type: string
+        description: Short info on the purpose of this scheme.
+        default: Schema to describe a uPDK.
+      file_version:
+        type: [string, number]
+        description: Version of the SBB file.
+        default: "1.0"
+      openEPDA:
+        type: object
+        description: openEPDA related information.
+        properties:
+          version:
+            type: string
+            description: openEPDA version of this scheme.
+            default: openEPDA-uPDK-SBB-v0.2
+          link:
+            type: string
+            description: Link to openEPDA site.
+            pattern: "^[hH][tT][tT][pP][sS]?://([wW]{3}.)?[oO][pP][eE][nN][eE][pP][dD][aA].org(/pdk_components.html)?$"
+        required: [version, link]
+      schema_license:
+        type: object
+        description: "License information for using this schema and the derived instances."
+        properties:
+          license:
+            type: string
+            description: "CC BY-ND 4.0 - Mandatory Creative Commons license condition."
+            default: "CC BY-ND 4.0"
+          attribution:
+            type: string
+            description: "openEPDA--uPDK-SBB-v0.2, Ronald Broeke (c) 2017-2019 - Mandatory attribution required under the Creative Commons license."
+            default: "openEPDA-uPDK-SBB-v0.2, Ronald Broeke (c) 2017-2019"
+        required: [license, attribution]
+      pdk_license:
+        type: [string, 'null']
+        description: "License conditions of the content in the YAML."
+        examples: ["under NDA, Joe & sons #123-1999"]
+    required: [description, file_version, openEPDA, schema_license, pdk_license]
+  xsections:
+    type: object
+    description: Contains zero or more cross section definitions.
+    additionalProperties:  # <xsection_name>
+      type: object
+      description: Define a cross section reference named <xsection_name>.
+      properties:
+        width:
+          type: number
+          description: Define the default width of a structure in this xsection <xsection_name>.
+        width_min:
+          type: number
+          description: Define the minimum width of a structure in this xsection <xsection_name>.
+        radius:
+          type: number
+          description: Define the default radius of a structure in this xsection <xsection_name>.
+        radius_min:
+          type: number
+          description: Define the minimum radius of a structure in this xsection <xsection_name>.
+        models:
+          type: object
+          description: Contains zero or more compact models for xsection <xsection_name>.
+          properties:
+            models:
+              type: object  # subshema
+              description: Models.
+  blocks:
+    type: object
+    description: Contains zero or more BB definitions.
+    additionalProperties:  # <block_name>
+      type: object
+      description: Define a BB reference named after the <block_name>.
+      required: [doc, bbox, pins, drc, parameters]
+      properties:
+        id:
+          type: [string, 'null']
+          default: null
+          description: Reference to the unique ID used for this block across PDK version.
+        version:
+          type: string
+          description: BB version number set by the foundry.
+          default: ''
+        license:
+          type: string
+          description: Licensing conditions of this BB.
+          default: Block may be licensed.
+          examples: ['Licensed by foundry X under Y.']
+        cell_name:
+          type: string
+          description: Cellname of the BB. If no cellname label is found, the <block_name> is the cell name.
+        doc:
+          type: string
+          description: Short sentence to describe the BB to the user.
+          default: ''
+        bbox:
+          type: [array, 'null']
+          description: Array of points (x, y) defining the bbox outline as a polygon. The polygon does not have to be closed.
+          default: null
+          examples: [[[0, 0], [10, 0], [10, 5], [0, 5]]]
+        bb_width: {type: [number, string], description: Width of the BB cell in um.}
+        bb_length: {type: [number, string], description: Length of the BB cell in um.}
+        pin_in: {type: string, description: Name of default input pin of the BB.}
+        pin_out: {type: string, description: Name of default output pin of the BB.}
+        pins:
+          type: object
+          description: Contains one or more pin definitions for <block_name>.
+          additionalProperties:  # <pin_name>
+            type: object
+            description: Define a pin named <pin_name>.
+            properties:
+              id: {type: integer, description: Unique identifier.}
+              width: {type: [string, number],  description: Width of the pin., examples: [2.0]}
+              width_unit:
+                type: string
+                description: Unit of the pin width.
+                pattern: ^[cun]*m$  # length unit
+                default: um
+                examples: [um]
+              xsection: {type: string, description: Cross-section name., examples: [WAVEGUIDE]}
+              alias: { type: string, description: Alias for <pin_name>., examples: [input1]}
+              doc:
+                type: string
+                description: Short description of the pin.
+                examples: ['optical input']
+              xya:
+                type: array
+                description: Pin coordinate (x, y, a) with respect to the <block_name> origin.
+                items:  # can be an expression
+                  - {type: [string, number]}  # x
+                  - {type: [string, number]}  # y
+                  - {type: [string, number]}  # a
+                examples:
+                  - [0, 0, 0]
+              xya_unit:
+                type: array
+                description: Units of the (x, y, a) coordinate.
+                items:
+                  - {type: string, pattern: '^[cun]*m$'}  # x
+                  - {type: string, pattern: '^[cun]*m$'}  # y
+                  - {const: deg}  # a
+              direction:
+                type: string
+                description: Pin direction of xya w.r.t. the block; outward 'out' or inward 'in'.
+                default: out
+                enum: [in, out]
+              radius:
+                type: [string, number]
+                description: Radius of curvature at pin (0 or null is no curvature).
+                default: 0
+              show:
+                type: boolean
+                description: A flag whether the pin should be visible or not.
+                default: true
+            required: [width, xsection, doc, xya]
+            additionalProperties: false
+        models:
+          type: [object, 'null']
+          description: Define zero or more compact models.
+          default: null
+          properties:
+            models:
+              type: object  # subschema
+              description: models
+        drc:
+          type: [object, 'null']
+          description: Define zero or more design rules.
+          drc_rules:
+            type: object  # subschema
+            description: DRC rules.
+        parameters:
+          title: BB parameters.
+          description: Additional properties are parameter names, their values are parameter descriptions.
+          type: [object, 'null']
+          default: null
+          additionalProperties:  # <parameter_name>
+            title: BB parameter.
+            type: object
+            description: Define BB parameters here.
+            properties:
+              doc:
+                type: string
+                description: Short parameter description.
+                default: No documentation provided.
+              type:
+                type: string
+                description: Data Type
+                enum: [float, int, str, bool]
+              unit:
+                type: string
+                description: Unit of the parameter.
+                examples: ['um']
+              min: {type: [integer, number], description: Minimum value.}
+              max: {type: [integer, number], description: Maximum value.}
+              alias: {type: string, description: Alias for <parameter name>.}
+            allOf:
+            -
+              if: {properties: {type: {const: float}}}
+              then: {properties: {value: {type: [integer, number], description: Default value.}}}
+            -
+              if: {properties: {type: {const: int}}}
+              then: {properties: {value: {type: integer, description: Default value.}}}
+            -
+              if: {properties: {type: {const: bool}}}
+              then: {properties: {value: {type: boolean, description: Default value.}}}
+            -
+              if: {properties: {type: {const: str}}}
+              then: {properties: {value: {type: string, description: Default value.}}}
+            if:
+              description: "`min` and `max` are only required if the parameter is of a numeric type."
+              properties: {type: {enum: [str, bool]}}
+            then: {required: [doc, type, value]}
+            else: {required: [doc, type, value, min, max, unit]}
+        keywordparameters:
+          type: [array, 'null']
+          description: List of <parameter_name> used in the BB function call (subset of parameters). If the label is not present, all parameters are considered to be keyword parameters.
+          examples: [[a, b, c]]
+        cellnameparameters:
+          type: [array, 'null']
+          description: List of <parameter_name> for more descriptive cell names (subset of keywordparameters).
+          examples: [[b, x]]
+        call:
+          type: string
+          description: Name of function call that creates the BB.
+        groupname: {type: string, description: Name for grouping BB.}
+        ip_block:
+          type: object
+          description: "Define ip_block data as ip_block."
+          properties:
+            ip_block:
+              type: object  # subschema
+              description: IP-block information.
+        icon:
+          type: object
+          description: Define an icon for <block_name>.
+          # _domain: nazca
+          properties:
+            function:
+              type: string
+              description: Name of the function that returns a cell with the icon.
+            parameters:
+              type: object
+              description: Parameters for which default will be overridden.
+              properties:
+                bufx: {type: [number, string], description: Buffer in the x-direction in um.}
+                bufy: {type: [number, string], description: Buffer in the y-direction in um.}
+                length: {type: [number, string], description: Icon length in the x-direction in um.}
+                width: {type: [number, string], description: Icon length in the y-direction in um.}
+  subschemas:
+    type: object
+    description: Describe zero or more subschemas.
+    properties:
+      drc-rules:
+        type: object
+        description: Describe one or more <<drc-rules>>.
+        properties:
+          angle:
+            type: object
+            description: Angle DRC rule for instantiation w.r.t the mask.
+            properties:
+              values_and_domains:
+                type: object  # subschema
+                description: Values and domains.
+          angle_mirror:
+            type: object
+            description: Angle DRC rule for instantiation w.r.t the mask with mirroring status.
+            properties:
+              flip:
+                type: object
+                description: Group rules that apply for a flip=true state.
+                properties:
+                  values_and_domains:
+                    type: object  # subschema
+                    description: Values and domains.
+              noflip:
+                type: object
+                description: Group rules that apply for a flip=false state.
+                properties:
+                  values_and_domains:
+                    type: object  # subschema
+                    description: Values and domains.
+      values_and_domains:
+        type: object
+        description: Describe one or more <<values_and_domains>>.
+        properties:
+          values:
+            type: array
+            description: List of allowed angles.
+            examples:
+              - [0, 90, 270]
+          domains:
+            type: array
+            description: List of allowed angle domains.
+            examples:
+              - [[0, 90], [180, 270]]
+      models:
+        type: object
+        description: Describe one or more models.
+        additionalProperties:  # <model_name>
+          type: object
+          description: Define a compact model reference named <model_name>.
+          # examples: [model_1]
+          properties:
+            id:
+              type: integer
+              description: Compact model unique identifier.
+            name:
+              type: string
+              description: Reference to a compact model description.
+            parameters:
+              type: object
+              description: Contains one or more parameter assignments.
+              examples:
+                - {a: 4.0, x: 10}
+              additionalProperties:  # <parameter_name>
+                type: string
+                description: Assign a value to <parameter_name>.
+      ip_block:
+        type: object
+        description: Describe ip-block data.
+        properties:
+          license:
+            type: string
+            description: License information.
+            examples:
+              - CC BY-ND 4.0
+          owner:
+            type: string
+            description: IP-Block owner.
+            examples:
+              - Bright Photonics
+          pgp_file:
+            type: string
+            description: Name of PGP-encrypted IP-block file.
+          pgp_key:
+            type: string
+            description: Hash of public PGP key used to encrypt the IP-Block.
+          md5:
+            type: string
+            description: MD5 hash of decrypted IP-block.
+required: [header, blocks]
+additionalProperties: false
