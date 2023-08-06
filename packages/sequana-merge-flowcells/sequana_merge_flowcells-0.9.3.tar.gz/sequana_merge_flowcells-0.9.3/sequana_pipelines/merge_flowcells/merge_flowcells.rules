@@ -1,0 +1,59 @@
+"""merge_flowcells pipeline
+
+Author: Thomas Cokelaer
+Affiliation: Institut Pasteur @ 2020
+
+This pipeline is part of Sequana software (sequana.readthedocs.io)
+
+snakemake -s merge_flowcells.rules --forceall --stats stats.txt --cores 4
+
+
+"""
+import os
+import glob
+import sequana
+from sequana import snaketools as sm
+
+# This must be defined before the include
+configfile: "config.yaml"
+
+
+paths = config['flowcell_paths']
+input_pattern = config['input_pattern']
+print(paths)
+
+print("Checking that we have identical fastq.gz files in all paths")
+filenames = sorted(glob.glob(paths[0] + "/" + input_pattern))
+filenames = [os.path.split(filename)[1] for filename in filenames]
+
+for path in paths:
+    these_filenames = sorted(glob.glob(path + "/" +  input_pattern))
+    these_filenames = [os.path.split(filename)[1] for filename in these_filenames]
+    assert these_filenames == filenames
+
+# somehow we must save inside a subdirectory
+rule all:
+    input: expand("output/{filename}", filename=filenames)
+
+
+rule merge_flowcells:
+    input: expand("{path}/{{filename}}", path=paths)
+    output: "output/{filename}"
+    shell:
+        """
+        sequana fastq {input} --merge --output {output}
+        """
+
+onsuccess:
+    shell("chmod -R g+w .")
+
+    from sequana.snaketools import OnSuccessCleaner
+    sc = OnSuccessCleaner()
+    sc.files_to_remove.append("merge_flowcells.rules")
+    #toremove = config["onsuccess"]["toclean"]
+    sc.files_to_remove.append('merge_flowcells.sh')
+    sc.add_makefile()
+    print("Once done, please clean up the directory using\n'make clean'")
+
+onerror:
+    print("An error occurred. See message above.")

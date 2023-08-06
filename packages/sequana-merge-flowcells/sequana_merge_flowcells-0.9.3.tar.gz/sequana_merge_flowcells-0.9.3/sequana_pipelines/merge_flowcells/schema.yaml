@@ -1,0 +1,13 @@
+# Schema validator for the quality_control
+# author: Thomas Cokelaer
+
+type: map
+mapping:
+    "input_pattern":
+        type: str
+        required: True
+    "flowcell_paths":
+        type: seq
+        required: True
+        sequence:
+          - type: str
