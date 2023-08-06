@@ -1,0 +1,40 @@
+#{{label|lower}} {
+    width: calc(100px * {{ command.attributes['l'] }} + 20px);
+{% if command.keyword|lower == 'quadrupole' %}
+    {% if command.attributes['k1'] == '0.0' %}
+        {% if drift_quads %}
+            background-image: var(--icon-drift);
+        {% else %}
+            background-image: var(--icon-quadrupole-grey);
+        {% endif %}
+    {% elif command.attributes['k1'].startswith('-') %}
+        background-image: var(--icon-quadrupole-red);
+    {% else %}
+        background-image: var(--icon-quadrupole-blue);
+    {% endif %}
+{% else %}
+    {% if command.keyword|lower == 'hkicker' or command.keyword|lower == 'vkicker' %}
+        {% set attribute = command.attributes['kick'] %}
+    {% elif command.keyword|lower == 'rbend' or command.keyword|lower == 'sbend' %}
+        {% set attribute = '%f'|format(-1.0 * (command.attributes['angle']|float)) %}
+    {% elif command.keyword|lower == 'sextupole' %}
+        {% set attribute = command.attributes['k2'] %}
+    {% else %}
+        {% set attribute = 'none' %}
+    {% endif %}
+    {% if attribute == 'none' %}
+        background-image: var(--icon-{{command.keyword|lower}});
+    {% else %}
+        {% if attribute == '0.0' %}
+            background-image: var(--icon-{{command.keyword|lower}}-grey);
+        {% elif attribute.startswith('-') %}
+            background-image: var(--icon-{{command.keyword|lower}}-red);
+        {% else %}
+            background-image: var(--icon-{{command.keyword|lower}}-blue);
+        {% endif %}
+    {% endif %}
+{% endif %}
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
