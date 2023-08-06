@@ -1,0 +1,1 @@
+(self["webpackChunk_jupyterlab_application_top"]=self["webpackChunk_jupyterlab_application_top"]||[]).push([[5907],{85907:(a,t,e)=>{"use strict";e.r(t);e.d(t,{default:()=>o});var n=e(29103);var p=e.n(n);const c={id:"@jupyterlab/ui-components-extension:labicon-manager",provides:n.ILabIconManager,autoStart:true,activate:a=>Object.create(null)};const o=c}}]);
