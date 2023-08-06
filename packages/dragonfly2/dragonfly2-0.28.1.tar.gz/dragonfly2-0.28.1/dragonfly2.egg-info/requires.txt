@@ -1,0 +1,36 @@
+setuptools>=40.0.0
+packaging>=19.0
+six
+pyperclip>=1.7.0
+regex
+decorator
+lark-parser==0.8.*
+json-rpc
+Werkzeug
+requests
+
+[:platform_system == "Darwin"]
+pynput>=1.4.2
+pyobjc>=5.2
+py-applescript==1.0.0
+
+[:platform_system == "Linux"]
+psutil>=5.5.1
+pynput>=1.4.2
+
+[:platform_system == "Windows"]
+comtypes
+pywin32
+
+[:python_version < "3.4"]
+enum34
+
+[kaldi]
+kaldi-active-grammar~=1.8.0
+sounddevice==0.3.*
+webrtcvad-wheels==2.0.*
+
+[sphinx]
+sphinxwrapper>=1.2.0
+pyjsgf>=1.7.0
+pyaudio

@@ -1,0 +1,30 @@
+﻿
+.. _RefEngines:
+
+Engines sub-package
+============================================================================
+
+Dragonfly supports multiple speech recognition engines as its backend.
+The *engines* sub-package implements the interface code for each
+supported engine.
+
+
+Main SR engine back-end interface
+----------------------------------------------------------------------------
+
+.. automodule:: dragonfly.engines
+   :members:
+
+
+Engine back-ends
+----------------------------------------------------------------------------
+
+.. toctree::
+    :maxdepth: 1
+
+    base_engine
+    natlink_engine
+    sapi5_engine
+    kaldi_engine
+    sphinx_engine
+    text_engine
