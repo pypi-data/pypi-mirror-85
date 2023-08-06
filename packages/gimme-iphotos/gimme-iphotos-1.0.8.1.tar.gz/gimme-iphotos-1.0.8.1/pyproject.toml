@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "gimme-iphotos"
+version = "1.0.8.1"
+description = "Download photos and videos from iCloud"
+authors = ["German Lashevich <german.lashevich@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/Zebradil/Gimme-iPhotos"
+packages = [
+    { include = "gimme_iphotos" }
+]
+
+[tool.poetry.scripts]
+gimme-iphotos = 'gimme_iphotos:main'
+
+[tool.poetry.dependencies]
+python = "^3.6"
+# pyicloud = "^0.9.6"
+# Required fix is not yet released (https://github.com/picklepete/pyicloud/pull/300/)
+pyicloud-z = "^0.9.7-beta.2"
+tqdm = "^4.45.0"
+colorama = "^0.4.3"
+
+[tool.poetry.dev-dependencies]
+black = "^19.10b0"
+isort = "^4.3.21"
+pylint = "^2.4.4"
+ipython = "^7.13.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
