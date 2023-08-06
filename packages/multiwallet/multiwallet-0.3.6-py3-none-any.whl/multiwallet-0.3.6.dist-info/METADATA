@@ -1,0 +1,101 @@
+Metadata-Version: 2.1
+Name: multiwallet
+Version: 0.3.6
+Summary: Stateless multisig bitcoin wallet
+Home-page: https://github.com/mflaxman/multiwallet
+Author: Michael Flaxman
+Author-email: multiwallet@michaelflaxman.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: buidl (==0.2.1)
+Requires-Dist: PyQt5 (==5.15.1)
+
+# THIS REPOSITORY COMES WITH ZERO GUARANTEES! USE AT YOUR OWN RISK!
+
+GUI version of CLI [multiwallet](https://twitter.com/mflaxman/status/1321503036724989952).
+
+#### Seedpicker
+![](https://raw.githubusercontent.com/mflaxman/multiwallet/main/images/seedpicker.png)
+
+#### Recieve
+![](https://raw.githubusercontent.com/mflaxman/multiwallet/main/images/receive.png)
+
+#### Send
+![](https://raw.githubusercontent.com/mflaxman/multiwallet/main/images/send.png)
+
+## Install
+
+#### Easy
+Downloadable binary link here (MacOS only):  
+<https://github.com/mflaxman/multiwallet/releases>
+
+#### Medium
+```bash
+$ pip3 install multiwallet
+$ multiwallet_gui
+```
+
+#### Advanced
+```bash
+git clone https://github.com/mflaxman/multiwallet.git
+cd multiwallet
+python3 -m virtualenv .venv3
+source .venv3/bin/activate
+python3 setup.py develop
+python multiwallet_gui/app.py 
+```
+
+## Roadmap:
+* Add detailed TX view (not just summary) to UI
+* Add QR code generation on send/receive
+* Add units (sats/BTC) toggle
+* Test/release on multiple OS
+* Better form handling/validation
+* Support arbitrary paths
+* Add libsec
+* Add webcam on receive/send
+* Sign binaries
+* Dark mode
+* Reproducible build
+
+## Maintainer Notes for Releases
+
+Make a new release branch:
+```bash
+$ git checkout -b v0.x.x
+```
+
+Commit your changes, being sure to bump the version number in `setup.py`.
+
+Basic tests:
+```bash
+$ black --check . && flake8 .
+```
+
+Make a downloadable MacOS binary to upload to GitHub:
+```
+$ ./make_macos_release.sh 
+```
+
+Go to [GitHub release page](https://github.com/mflaxman/multiwallet/releases/new) and use tag version `v0.x.x` and target `v0.x.x` (target is the branch name which is independent of the tag).
+Write a title, description, and drag the binary from the previous step.
+Hit `Publish release`.
+
+Update PyPI:
+```
+$ ./update_pypi.sh
+```
+
+Merge into main:
+```
+$ git checkout main
+$ git merge v0.x.x
+```
+TODO: better to `merge` into `main` first?
+
+
