@@ -1,0 +1,66 @@
+Metadata-Version: 2.1
+Name: minet
+Version: 0.35.2
+Summary: A webmining CLI tool & library for python.
+Home-page: http://github.com/medialab/minet
+Author: Jules Farjas, Guillaume Plique, Pauline Breteau
+License: MIT
+Keywords: webmining
+Platform: UNKNOWN
+Requires-Python: >=3
+Description-Content-Type: text/markdown
+Requires-Dist: beautifulsoup4 (>=4.7.1)
+Requires-Dist: browser-cookie3 (==0.7.6)
+Requires-Dist: casanova (==0.9.0)
+Requires-Dist: cchardet (==2.1.4)
+Requires-Dist: cython (>=0.29.4)
+Requires-Dist: dateparser (>=0.7.1)
+Requires-Dist: json5 (>=0.8.5)
+Requires-Dist: keyring (<19.3)
+Requires-Dist: lxml (>=4.3.0)
+Requires-Dist: ndjson (>=0.3.1)
+Requires-Dist: numpy (>=1.16.1)
+Requires-Dist: persist-queue (>=0.4.2)
+Requires-Dist: pytz (>=2019.3)
+Requires-Dist: pyyaml
+Requires-Dist: quenouille (>=0.6.2)
+Requires-Dist: tqdm (>=4.31.1)
+Requires-Dist: twitter (>=1.18.0)
+Requires-Dist: ural (>=0.25.0)
+Requires-Dist: urllib3[secure] (>=1.25.3)
+
+[![Build Status](https://travis-ci.org/medialab/minet.svg)](https://travis-ci.org/medialab/minet)
+
+![Minet](img/minet.png)
+
+**minet** is a webmining CLI tool & library for python. It adopts a lo-fi approach to various webmining problems by letting you perform a variety of actions from the comfort of your command line. No database needed: raw data files will get you going.
+
+In addition, **minet** also exposes its high-level programmatic interface as a library so you can tweak its behavior at will.
+
+## Features
+
+* Multithreaded, memory-efficient fetching from the web.
+* Multithreaded, scalable crawling using a comfy DSL.
+* Multiprocessed raw text content extraction from HTML pages.
+* Multiprocessed scraping from HTML pages using a comfy DSL.
+* URL-related heuristics utilities such as extraction, normalization and matching.
+* Data collection from various APIs such as [CrowdTangle](https://www.crowdtangle.com/).
+
+## Installation
+
+`minet` can be installed using pip:
+
+```shell
+pip install minet
+```
+
+## Cookbook
+
+To learn how to use `minet` and understand how it may fit your use cases, you should definitely check out our [Cookbook](./cookbook).
+
+## Usage
+
+* [Using minet as a command line tool](./docs/cli.md)
+* [Using minet as a python library](./docs/lib.md)
+
+
