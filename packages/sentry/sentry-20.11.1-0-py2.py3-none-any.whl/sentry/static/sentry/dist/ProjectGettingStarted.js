@@ -1,0 +1,2 @@
+(window.sntryWpJsonp=window.sntryWpJsonp||[]).push([[152],{2946:function(t,n,e){"use strict";e.r(n);var a=e(3),r=(e(1),e(205)),s=e(8),c=e(0);function d(t){var n=t.className,e=t.children;return Object(c.f)(r.b,{className:n},e)}d.displayName="GettingStarted",n.default=Object(a.a)(d,{target:"egs0sph0"})("background:",(function(t){return t.theme.background}),";padding-top:",Object(s.a)(3),";")}}]);
+//# sourceMappingURL=ProjectGettingStarted.js.map

@@ -1,0 +1,12 @@
+import { __makeTemplateObject } from "tslib";
+import styled from '@emotion/styled';
+import { css } from '@emotion/core';
+import { growIn } from 'app/styles/animations';
+var checkedCss = function (p) { return css(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  display: block;\n  width: 1rem;\n  height: 1rem;\n  border-radius: 50%;\n  background-color: ", ";\n  animation: 0.2s ", " ease;\n  opacity: ", ";\n"], ["\n  display: block;\n  width: 1rem;\n  height: 1rem;\n  border-radius: 50%;\n  background-color: ", ";\n  animation: 0.2s ", " ease;\n  opacity: ", ";\n"])), p.theme.green300, growIn, p.disabled ? 0.4 : null); };
+var Radio = styled('input')(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  display: flex;\n  padding: 0;\n  width: 1.5em;\n  height: 1.5em;\n  position: relative;\n  border-radius: 50%;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid ", ";\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.04);\n  background: none;\n  appearance: none;\n\n  /* TODO(bootstrap): Our bootstrap CSS adds this, we can remove when we remove that */\n  margin: 0 !important;\n\n  &:focus,\n  &.focus-visible {\n    outline: none !important;\n    border: 1px solid ", ";\n    box-shadow: rgba(209, 202, 216, 0.5) 0 0 0 3px;\n  }\n\n  &:checked:after {\n    content: '';\n    ", "\n  }\n"], ["\n  display: flex;\n  padding: 0;\n  width: 1.5em;\n  height: 1.5em;\n  position: relative;\n  border-radius: 50%;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid ", ";\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.04);\n  background: none;\n  appearance: none;\n\n  /* TODO(bootstrap): Our bootstrap CSS adds this, we can remove when we remove that */\n  margin: 0 !important;\n\n  &:focus,\n  &.focus-visible {\n    outline: none !important;\n    border: 1px solid ", ";\n    box-shadow: rgba(209, 202, 216, 0.5) 0 0 0 3px;\n  }\n\n  &:checked:after {\n    content: '';\n    ", "\n  }\n"])), function (p) { return p.theme.border; }, function (p) { return p.theme.border; }, checkedCss);
+Radio.defaultProps = {
+    type: 'radio',
+};
+export default Radio;
+var templateObject_1, templateObject_2;
+//# sourceMappingURL=radio.jsx.map

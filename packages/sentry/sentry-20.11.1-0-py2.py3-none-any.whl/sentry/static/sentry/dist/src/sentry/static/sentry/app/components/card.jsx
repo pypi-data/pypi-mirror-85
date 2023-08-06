@@ -1,0 +1,8 @@
+import { __makeTemplateObject } from "tslib";
+import { css } from '@emotion/core';
+import styled from '@emotion/styled';
+var hoverStyle = css(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  &:focus,\n  &:hover {\n    box-shadow: 0px 0px 0px 6px rgba(209, 202, 216, 0.2);\n    position: relative;\n    outline: none;\n  }\n\n  &:active {\n    box-shadow: 0px 0px 0px 6px rgba(209, 202, 216, 0.5);\n  }\n\n  /* This is to ensure the graph is visually clickable */\n  * {\n    cursor: pointer;\n  }\n"], ["\n  &:focus,\n  &:hover {\n    box-shadow: 0px 0px 0px 6px rgba(209, 202, 216, 0.2);\n    position: relative;\n    outline: none;\n  }\n\n  &:active {\n    box-shadow: 0px 0px 0px 6px rgba(209, 202, 216, 0.5);\n  }\n\n  /* This is to ensure the graph is visually clickable */\n  * {\n    cursor: pointer;\n  }\n"])));
+var Card = styled('div')(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  background: ", ";\n  border: 1px solid ", ";\n  border-radius: ", ";\n  display: flex;\n  align-items: stretch;\n  flex-direction: column;\n  transition: box-shadow 0.2s ease;\n  text-align: left;\n  padding: 0;\n\n  ", ";\n  ", ";\n"], ["\n  background: ", ";\n  border: 1px solid ", ";\n  border-radius: ", ";\n  display: flex;\n  align-items: stretch;\n  flex-direction: column;\n  transition: box-shadow 0.2s ease;\n  text-align: left;\n  padding: 0;\n\n  ", ";\n  ", ";\n"])), function (p) { return p.theme.background; }, function (p) { return p.theme.border; }, function (p) { return p.theme.borderRadius; }, function (p) { return p.interactive && 'cursor: pointer'; }, function (p) { return p.interactive && hoverStyle; });
+export default Card;
+var templateObject_1, templateObject_2;
+//# sourceMappingURL=card.jsx.map

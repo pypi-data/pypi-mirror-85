@@ -1,0 +1,2 @@
+export default "\n  display: block;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  width: 100%;\n  direction: rtl;\n  text-align: left;\n";
+//# sourceMappingURL=overflowEllipsisLeft.jsx.map

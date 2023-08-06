@@ -1,0 +1,150 @@
+Metadata-Version: 2.1
+Name: sentry
+Version: 20.11.1
+Summary: A realtime logging and aggregation server.
+Home-page: https://sentry.io
+Author: Sentry
+Author-email: oss@sentry.io
+License: BSL-1.1
+Platform: UNKNOWN
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development
+Classifier: License :: Other/Proprietary License
+Description-Content-Type: text/markdown
+Requires-Dist: beautifulsoup4 (<4.8,>=4.7.1)
+Requires-Dist: boto3 (<1.4.6,>=1.4.1)
+Requires-Dist: botocore (<1.5.71)
+Requires-Dist: celery (==4.4.7)
+Requires-Dist: click (<8.0,>=7.0)
+Requires-Dist: confluent-kafka (==1.5.0)
+Requires-Dist: croniter (<0.4.0,>=0.3.34)
+Requires-Dist: datadog (<0.31.0,>=0.15.0)
+Requires-Dist: django-crispy-forms (==1.7.2)
+Requires-Dist: django-picklefield (<1.1.0,>=0.3.0)
+Requires-Dist: django-sudo (<4.0.0,>=3.0.0)
+Requires-Dist: Django (<1.12,>=1.11)
+Requires-Dist: djangorestframework (==3.6.4)
+Requires-Dist: email-reply-parser (<0.6.0,>=0.5.0)
+Requires-Dist: google-api-core (==1.14.3)
+Requires-Dist: google-auth (==1.6.3)
+Requires-Dist: google-cloud-core (==0.29.1)
+Requires-Dist: google-cloud-bigtable (==0.32.2)
+Requires-Dist: google-cloud-pubsub (==0.35.4)
+Requires-Dist: google-cloud-storage (==1.13.3)
+Requires-Dist: googleapis-common-protos (==1.6.0)
+Requires-Dist: jsonschema (==3.2.0)
+Requires-Dist: lxml (<4.4.0,>=4.3.3)
+Requires-Dist: maxminddb (==1.5.4)
+Requires-Dist: mistune (<0.9,>0.7)
+Requires-Dist: mmh3 (<2.4,>=2.3.1)
+Requires-Dist: parsimonious (==0.8.0)
+Requires-Dist: petname (<2.7,>=2.6)
+Requires-Dist: phonenumberslite (<8.12.0,>=8.11.0)
+Requires-Dist: Pillow (<7.0.0,>=6.2.2)
+Requires-Dist: progressbar2 (<3.33,>=3.32)
+Requires-Dist: psycopg2-binary (<2.9.0,>=2.7.0)
+Requires-Dist: PyJWT (<1.6.0,>=1.5.0)
+Requires-Dist: pyrsistent (==0.16.0)
+Requires-Dist: python-dateutil (<3.0.0,>=2.0.0)
+Requires-Dist: python-memcached (<2.0.0,>=1.53)
+Requires-Dist: python3-saml (<1.5,>=1.4.0)
+Requires-Dist: python-u2flib-server (<6.0.0,>=5.0.0)
+Requires-Dist: PyYAML (<5.4,>=5.3)
+Requires-Dist: qrcode (<6.2.0,>=6.1.0)
+Requires-Dist: rb (<2.0.0,>=1.8.0)
+Requires-Dist: redis-py-cluster (==2.1.0)
+Requires-Dist: redis (==3.3.11)
+Requires-Dist: requests-oauthlib (==1.2.0)
+Requires-Dist: requests[security] (<2.21.0,>=2.20.0)
+Requires-Dist: rfc3339-validator (==0.1.2)
+Requires-Dist: rfc3986-validator (==0.1.1)
+Requires-Dist: sentry-relay (<0.9.0,>=0.8.1)
+Requires-Dist: sentry-sdk (<0.18.0,>=0.17.7)
+Requires-Dist: simplejson (<3.12.0,>=3.11.0)
+Requires-Dist: six (<1.12.0,>=1.11.0)
+Requires-Dist: sqlparse (<0.3.0,>=0.2.0)
+Requires-Dist: statsd (<3.2.0,>=3.1.0)
+Requires-Dist: structlog (==17.1.0)
+Requires-Dist: symbolic (<8.0.0,>=7.3.5)
+Requires-Dist: toronado (<0.1.0,>=0.0.11)
+Requires-Dist: ua-parser (<0.11.0,>=0.10.0)
+Requires-Dist: unidiff (>=0.5.4)
+Requires-Dist: urllib3 (==1.24.2)
+Requires-Dist: uwsgi (<2.1.0,>2.0.0)
+Requires-Dist: billiard (==3.6.3)
+Requires-Dist: kombu (==4.6.11)
+Requires-Dist: hiredis (==0.3.1)
+Requires-Dist: cffi (<2.0,>=1.11.5)
+Requires-Dist: cssutils (==1.0.2)
+Requires-Dist: cssselect (==1.0.3)
+Requires-Dist: setproctitle (<1.2.0,>=1.1.7)
+Requires-Dist: phabricator (<0.8,>=0.6.0)
+Requires-Dist: selenium (==3.141.0)
+Requires-Dist: msgpack (<0.7.0,>=0.6.1) ; python_version < "3.0"
+Requires-Dist: functools32 (<3.3,>=3.2.3) ; python_version < "3.2"
+Requires-Dist: futures (<4.0.0,>=3.2.0) ; python_version < "3.2"
+Requires-Dist: ipaddress (<1.1.0,>=1.0.16) ; python_version < "3.3"
+Requires-Dist: mock (==3.0.5) ; python_version < "3.3"
+Requires-Dist: enum34 (<1.2.0,>=1.1.6) ; python_version < "3.4"
+Requires-Dist: msgpack (<1.1.0,>=1.0.0) ; python_version >= "3.0"
+Provides-Extra: rabbitmq
+Requires-Dist: amqp (==2.6.1) ; extra == 'rabbitmq'
+
+<p align="center">
+  <p align="center">
+    <a href="https://sentry.io/?utm_source=github&utm_medium=logo" target="_blank">
+      <img src="https://sentry-brand.storage.googleapis.com/sentry-logo-black.png" alt="Sentry" height="72">
+    </a>
+  </p>
+  <p align="center">
+    Users and logs provide clues. Sentry provides answers.
+  </p>
+</p>
+
+# What's Sentry?
+
+Sentry is a service that helps you monitor and fix crashes
+in realtime. The server is in Python, but it contains a full API for
+sending events from any language, in any application.
+
+<p align="center">
+  <img src="https://github.com/getsentry/sentry/raw/master/src/sentry/static/sentry/images/screenshots/thumb-1.png" width="290">
+  <img src="https://github.com/getsentry/sentry/raw/master/src/sentry/static/sentry/images/screenshots/thumb-2.png" width="290">
+  <img src="https://github.com/getsentry/sentry/raw/master/src/sentry/static/sentry/images/screenshots/thumb-3.png" width="290">
+</p>
+
+## Official Sentry SDKs
+
+  - [JavaScript](https://github.com/getsentry/sentry-javascript)
+  - [React-Native](https://github.com/getsentry/react-native-sentry)
+  - [Python](https://github.com/getsentry/sentry-python)
+  - [Ruby](https://github.com/getsentry/raven-ruby)
+  - [PHP](https://github.com/getsentry/sentry-php)
+  - [Go](https://github.com/getsentry/sentry-go)
+  - [Rust](https://github.com/getsentry/sentry-rust)
+  - [Java](https://github.com/getsentry/sentry-java)
+  - [Objective-C/Swift](https://github.com/getsentry/sentry-cocoa)
+  - [C\#](https://github.com/getsentry/sentry-dotnet)
+  - [Perl](https://github.com/getsentry/perl-raven)
+  - [Elixir](https://github.com/getsentry/sentry-elixir)
+  - [Laravel](https://github.com/getsentry/sentry-laravel)
+
+# Resources
+
+  - [Documentation](https://docs.sentry.io/)
+  - [Community](https://forum.sentry.io/) (Bugs, feature requests,
+    general questions)
+  - [Contributing](https://docs.sentry.io/internal/contributing/)
+  - [Bug Tracker](https://github.com/getsentry/sentry/issues)
+  - [Code](https://github.com/getsentry/sentry)
+  - [Transifex](https://www.transifex.com/getsentry/sentry/) (Translate
+    Sentry\!)
+
+

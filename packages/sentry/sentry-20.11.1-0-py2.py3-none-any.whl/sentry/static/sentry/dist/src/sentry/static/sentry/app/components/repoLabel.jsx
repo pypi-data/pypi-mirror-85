@@ -1,0 +1,7 @@
+import { __makeTemplateObject } from "tslib";
+import styled from '@emotion/styled';
+import overflowEllipsis from 'app/styles/overflowEllipsis';
+var RepoLabel = styled('span')(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  /* label mixin from bootstrap */\n  font-weight: 700;\n  color: ", ";\n  text-align: center;\n  white-space: nowrap;\n  border-radius: 0.25em;\n  /* end of label mixin from bootstrap */\n\n  ", ";\n\n  display: inline-block;\n  vertical-align: text-bottom;\n  line-height: 1;\n  background: ", ";\n  padding: 3px;\n  max-width: 86px;\n  font-size: ", ";\n"], ["\n  /* label mixin from bootstrap */\n  font-weight: 700;\n  color: ", ";\n  text-align: center;\n  white-space: nowrap;\n  border-radius: 0.25em;\n  /* end of label mixin from bootstrap */\n\n  ", ";\n\n  display: inline-block;\n  vertical-align: text-bottom;\n  line-height: 1;\n  background: ", ";\n  padding: 3px;\n  max-width: 86px;\n  font-size: ", ";\n"])), function (p) { return p.theme.white; }, overflowEllipsis, function (p) { return p.theme.gray200; }, function (p) { return p.theme.fontSizeSmall; });
+export default RepoLabel;
+var templateObject_1;
+//# sourceMappingURL=repoLabel.jsx.map

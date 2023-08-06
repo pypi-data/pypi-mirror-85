@@ -1,0 +1,2 @@
+(window.sntryWpJsonp=window.sntryWpJsonp||[]).push([[170],{2884:function(n,t,o){"use strict";o.r(t);var r=o(1),e=o.n(r),i=o(56);t.default=Object(i.a)((function(n){var t=n.children,o=n.organization,r=n.project;return(e.a.isValidElement(t)?e.a.cloneElement(t,{organization:o,project:r}):null)}))}}]);
+//# sourceMappingURL=ProjectSourceMaps.js.map
