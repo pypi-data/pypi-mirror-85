@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+	{{ passing_scripts|safe }}
+	<script type="text/javascript">
+//		{-% include "js/start_stop_progress.js" %}
+		function get_object_list() {
+//			start_progress();
+			{% if booleanfield_exists %}
+				true_false = Array('true', 'false');
+			{% endif %}
+			{% for field in fields %}
+				{% ifequal field.1 "number" %}
+					{{ field.0 }}_gt = $('#{{ field.0 }}_gt').val();
+					{{ field.0 }}_lt = $('#{{ field.0 }}_lt').val();
+				{% endifequal %}
+				{% ifequal field.1 "text" %}
+					{{ field.0 }} = $('#{{ field.0 }}').val();
+				{% endifequal %}
+				{% ifequal field.1 "date" %}
+					{{ field.0 }}_gt = $('#{{ field.0 }}_gt').val();
+					{{ field.0 }}_lt = $('#{{ field.0 }}_lt').val();
+				{% endifequal %}
+				{% ifequal field.1 "relation" %}
+					{{ field.0 }} = $('#{{ field.0 }}').val();
+					if ({{ field.0 }} == null) {
+						{{ field.0 }} = '';
+					}
+				{% endifequal %}
+				{% ifequal field.1 "boolean" %}
+					{{ field.0 }} = Array();
+					for (var c = 0; c < true_false.length; c++) {
+						if ($('#{{ field.0 }}_' + true_false[c]).is(':checked')) {
+							{{ field.0 }}[{{ field.0 }}.length] = true_false[c];
+						}
+					}
+				{% endifequal %}
+			{% endfor %}
+			{% if allow_overall_search %}
+				is_overall_search = $('#is_overall_search').val();
+				overall_search = $('#overall_search').val();
+			{% endif %}
+			$.get("{{ ajax_url }}"{% for field in fields %}+ '{% if forloop.counter0 %}&{% else %}?{% endif %}{% ifequal field.2 "text" %}{{ field.0 }}=' + {{ field.0 }}{% endifequal %}{% ifequal field.2 "ltgt" %}{{ field.0 }}_gt=' + {{ field.0 }}_gt + '&{{ field.0 }}_lt=' + {{ field.0 }}_lt{% endifequal %}{% ifequal field.2 "relation" %}{{ field.0 }}=' + {{ field.0 }}{% endifequal %}{% endfor %}{% if allow_overall_search %} + '&is_overall_search=' + is_overall_search + '&overall_search=' + overall_search{% endif %}, function(data) {
+				ids = data.split('\n')[0];
+				$('#ge_object').val('{{ class_name }}');
+				$('#ge_ids').val(ids);
+				valid_data = data.split('\n').slice(1).join('\n')
+				$('#object_list').html(valid_data);
+				$('#object_table').DataTable();
+				if (ids.length > 0) {
+					$('#download_excelsheet').show();
+				} else {
+					$('#download_excelsheet').hide();
+				}
+			});
+		}
+		
+		function download_excelsheet() {
+			ge_ids = $('#ge_ids').val();
+			ge_import_instruction_for_obj = $('#ge_import_instruction_for_obj').val();
+			ge_import_instruction_for_report = $('#ge_import_instruction_for_report').val();
+			window.location = '{% url "download_excelsheet" %}?ge_ids=' + ge_ids + '&ge_import_instruction_for_obj=' + ge_import_instruction_for_obj + '&ge_import_instruction_for_report=' + ge_import_instruction_for_report;
+		}
+	</script>
+{% endblock %}
+
+{% block scriptsready %}
+	$.fn.datepicker.defaults.format = 'dd/mm/yyyy';
+
+	$('.input-daterange input').each(function() {
+		$(this).datepicker();
+	});
+
+	{% for field in fields %}
+		{% ifequal field.1 "text" %}
+			$('#{{ field.0 }}').keyup(function(e) {
+				{% if allow_prompt_ajax_search %}
+					get_object_list();
+				{% else %}
+					if (e.keyCode == 13) {
+						get_object_list();
+					};
+				{% endif %}
+			});
+		{% endifequal %}
+		{% ifequal field.1 "number" %}
+			$('#{{ field.0 }}_gt, #{{ field.0 }}_lt').keyup(function(e) {
+				{% if allow_prompt_ajax_search %}
+					get_object_list();
+				{% else %}
+					if (e.keyCode == 13) {
+						get_object_list();
+					};
+				{% endif %}
+			});
+		{% endifequal %} 
+	{% endfor %}
+	
+	$('#submit_ajax_query').click(function() {
+		get_object_list();
+	});
+{% endblock %}
+
+{% block content %}
+
+	<div class="container-fluid">
+		<div class="container-fluid col-sm-4">
+			<div class="well well-sm">
+				<div class="btn-group" role="group" aria-label="">
+					<div><h4>{{ class_name }}s</H4></div>
+					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#excelModal" id="download_excelsheet" style="display: none;" onClick="download_excelsheet(); return false;">Download Excel</button>
+					<button type="button" class="btn btn-default" onClick="window.location = '{{ url_new }}'">New</button>
+				</div>
+			</div>
+			
+			<div class="panel panel-default">
+				{% if allow_overall_search %}
+					<input type="hidden" name="is_overall_search" id="is_overall_search" value="">
+					<ul class="nav nav-tabs" role="tablist">
+						<li role="presentation" class="active"><A href="#general" data-toggle="tab" onClick="$('#is_overall_search').val(''); return false;">General</A></li>
+						<li role="presentation"><A href="#overall" data-toggle="tab" onClick="$('#is_overall_search').val('True'); return false;">Overall</A></li>
+					</ul>
+				{% endif %}
+				<div class="panel-body">
+					<div class="form-horizontal">
+						{% if allow_overall_search %}
+							<div class="tab-content">
+								<div role="tabpanel" class="tab-pane active" id="general">
+						{% endif %}
+						{% for field in fields %}
+							<div class="form-group">
+								<label for="{{ field.0 }}" class="col-sm-4 control-label">{{ field.3.label }}</label>
+								<div class="col-sm-8">
+									{% ifequal field.1 'text' %}
+										<input type="text" class="form-control" id="{{ field.0 }}" placeholder="{{ field.0 }}">
+									{% endifequal %}
+									{% ifequal field.1 'number' %}
+										<div class="input-group">
+											<input type="text" class="form-control" id="{{ field.0 }}_gt">
+											<div class="input-group-addon">to</div>
+											<input type="text" class="form-control" id="{{ field.0 }}_lt">
+										</div>
+									{% endifequal %}
+									{% ifequal field.1 'date' %}
+										<div class="input-group input-daterange">
+											<input type="text" class="form-control" id="{{ field.0 }}_gt">
+											<div class="input-group-addon">to</div>
+											<input type="text" class="form-control" id="{{ field.0 }}_lt">
+										</div>
+									{% endifequal %}
+									{% ifequal field.1 'boolean' %}
+										<label class="checkbox-inline">
+											<input type="checkbox" id="{{ field.0 }}_true">
+											True
+										</label>
+										<label class="checkbox-inline">
+											<input type="checkbox" id="{{ field.0 }}_false">
+											False
+										</label>
+									{% endifequal %}
+									{% ifequal field.1 'relation' %}
+										<select id="{{ field.0 }}" class="form-control selectpicker" data-live-search="true" data-dropup-auto="false" multiple>
+											<option value="-1">--</option>
+											{% for key, value in field.3.relational_obj_values %}
+												<option value="{{ key }}">{{ value }}</option>
+											{% endfor %}
+										</select>
+									{% endifequal %}
+								</div>
+							</div>
+						{% endfor %}
+						{% if allow_overall_search %}
+								</div>
+								<div role="tabpanel" class="tab-pane" id="overall">
+									<div class="input-group">
+										<input type="text" class="form-control" id="overall_search">
+									</div>
+								</div>
+								<BR>
+							</div>
+						{% endif %}
+						<input type="hidden" name="ge_object" id="ge_object">
+						<input type="hidden" name="ge_ids" id="ge_ids">
+						<input type="hidden" name="ge_import_instruction_for_obj" id="ge_import_instruction_for_obj" value="{{ import_instruction_for_obj }}">
+						<input type="hidden" name="ge_import_instruction_for_report" id="ge_import_instruction_for_report" value="{{ import_instruction_for_report }}">
+						{% include "blocks/find_button_for_ajax_searches.html" %}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-8">
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active"><A href="{{ class_names_lower }}" data-toggle="tab">{{ class_names_lower }}s</A></li>
+			</ul>
+			
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="object_list"><!-- tab 1 -->
+				</div>
+			</div>
+			
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane" id="filter_tab">
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
