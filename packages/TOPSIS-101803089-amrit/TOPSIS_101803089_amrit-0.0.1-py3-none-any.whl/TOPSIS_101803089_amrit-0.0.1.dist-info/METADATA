@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: TOPSIS-101803089-amrit
+Version: 0.0.1
+Summary: implementation of TOPSIS
+Home-page: https://github.com/Amrit054/TOPSIS-101803089-amrit
+Author: Amrit Jain
+Author-email: ajain1_be18@thapar.edu
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+ï»¿Implementation of TOPSIS
+===================
+
+
+->Input File
+1. Input file contain three or more columns
+2. First column is the object/variable name (e.g. M1, M2, M3, M4â€¦...)
+3. From 2nd to last columns contain numeric values only
+-> Output Files
+Result file contains all the columns of input file and two additional columns having TOPSIS SCORE and RANK
+
+----------
+
+
+Installation
+-------------
+pip install TOPSIS-101803089-amrit
+
+----------
+
+
+License
+-------------------
+
+Â© 2020 Amrit Jain
+
+This repository is licensed under the MIT license. See LICENSE for details.
+
+Sample input in cmd
+-------------------
+python topsis.py data.csv 1,1,1,1 -,+,-,- result.csv
+
+usage-
+python topsis.py 'InputDataFile' 'Weights' 'Impacts' 'ResultFileName'
+
