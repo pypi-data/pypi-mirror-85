@@ -1,0 +1,79 @@
+Metadata-Version: 2.1
+Name: a2od
+Version: 0.0.2
+Summary: Convert Anki style flashcards to Emacs org-drill format
+Home-page: https://github.com/yfe404/anki2orgdrill
+Author: Yann Feunteun
+Author-email: yann.feunteun@protonmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: click
+
+* anki2orgdrill
+
+
+** What are flashcards ? 
+
+From Wikipedia: 
+
+A flashcard or flash card is a card bearing information, as words or numbers, on either or both sides, used in classroom drills or in private study. One writes a question on a side and an answer overleaf. Flashcards can bear vocabulary, historical dates, formulae or any subject matter that can be learned via a question-and-answer format. Flashcards are widely used as a learning drill to aid memorization. They are often associated with spaced repetition, i.e. reviewed at expanding time intervals. 
+
+** What is Anki ? 
+
+Anki is a spaced repetition flashcard program.
+
+
+** What is org-drill ? 
+
+Org-Drill is an extension for Org mode. Org-Drill uses a spaced repetition algorithm to conduct interactive "drill sessions", using org files as sources of facts to be memorised. 
+
+
+
+** Features
+
+Convert a single export file in plain text from Anki to a single 
+file in org-drill format.
+
+*Currently, only two-sided cards are supported.*
+
+
+** Installation
+
+   #+begin_src sh
+   pip install -r requirements.txt
+   #+end_src
+
+** Usage
+
+#+BEGIN_SRC sh
+Usage: a2od.py convert [OPTIONS] SRC DST
+
+  Convert Anki style flashcards to Emacs org-drill format.
+
+  params:   src: Anki Cards in plain text export.   dst: Destination org
+  file.
+
+Options:
+  --help  Show this message and exit.
+#+END_SRC
+
+*** Example 
+
+    #+begin_src sh
+    python3 a2od.py convert ~/Downloads/AllDecks.txt decks.org
+    #+end_src
+
+
+** References 
+
+- https://en.wikipedia.org/wiki/Flashcard
+- https://en.wikipedia.org/wiki/Anki_(software)
+- https://orgmode.org/worg/org-contrib/org-drill.html
+- https://orgmode.org/
+
+
