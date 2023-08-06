@@ -1,0 +1,21 @@
+#!/usr/bin/python3
+
+from csl import Console, os
+from ofn import format
+from prs import parse_cli
+from trm import execute
+
+def main():
+    import obj
+    obj.wd = os.path.expanduser("~/.bot")
+    cfg = parse_cli()
+    c = Console()
+    c.scan("irc")
+    c.init(cfg.sets.mods)
+    if cfg.txt:
+        return c.cmd(cfg.otxt)
+    c.start()
+    c.wait()
+     
+execute(main)
+os._exit(0)
