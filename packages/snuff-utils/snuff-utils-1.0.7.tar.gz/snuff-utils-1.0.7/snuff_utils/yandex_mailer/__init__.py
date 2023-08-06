@@ -1,0 +1,1 @@
+from .YandexMailer import YandexMailer
