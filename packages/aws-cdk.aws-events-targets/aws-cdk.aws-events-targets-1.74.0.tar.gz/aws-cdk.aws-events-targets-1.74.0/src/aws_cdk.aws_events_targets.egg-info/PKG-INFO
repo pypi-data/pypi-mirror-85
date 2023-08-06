@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: aws-cdk.aws-events-targets
+Version: 1.74.0
+Summary: Event targets for Amazon EventBridge
+Home-page: https://github.com/aws/aws-cdk
+Author: Amazon Web Services
+License: Apache-2.0
+Project-URL: Source, https://github.com/aws/aws-cdk.git
+Description: # Event Targets for Amazon EventBridge
+        
+        <!--BEGIN STABILITY BANNER-->---
+        
+        
+        ![cdk-constructs: Stable](https://img.shields.io/badge/cdk--constructs-stable-success.svg?style=for-the-badge)
+        
+        ---
+        <!--END STABILITY BANNER-->
+        
+        This library contains integration classes to send Amazon EventBridge to any
+        number of supported AWS Services. Instances of these classes should be passed
+        to the `rule.addTarget()` method.
+        
+        Currently supported are:
+        
+        * Start a CodeBuild build
+        * Start a CodePipeline pipeline
+        * Run an ECS task
+        * Invoke a Lambda function
+        * Publish a message to an SNS topic
+        * Send a message to an SQS queue
+        * Start a StepFunctions state machine
+        * Queue a Batch job
+        * Make an AWS API call
+        * Put a record to a Kinesis stream
+        * Put a record to a Kinesis Data Firehose stream
+        
+        See the README of the `@aws-cdk/aws-events` library for more information on
+        EventBridge.
+        
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: JavaScript
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Typing :: Typed
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved
+Classifier: Framework :: AWS CDK
+Classifier: Framework :: AWS CDK :: 1
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
