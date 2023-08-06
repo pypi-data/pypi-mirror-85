@@ -1,0 +1,1 @@
+INFINITY : int = 65535
