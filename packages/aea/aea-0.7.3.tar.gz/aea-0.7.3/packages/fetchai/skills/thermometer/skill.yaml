@@ -1,0 +1,71 @@
+name: thermometer
+author: fetchai
+version: 0.15.0
+type: skill
+description: The thermometer skill implements the functionality to sell data.
+license: Apache-2.0
+aea_version: '>=0.7.0, <0.8.0'
+fingerprint:
+  README.md: QmUH2RCKZZ3sKBptXtYZaFJTsJFyk5P1aeTNYYV1YPRNxP
+  __init__.py: QmWwtn66KS6RLnoAJKVzJqppboFdKr7oE1KRkwkoQH1aKp
+  behaviours.py: QmWgXU9qgahXwMKNqLLfDiGNYJozSXv2SVMkoPDQncC7ok
+  dialogues.py: QmPXfUWDxnHDaHQqsgtVhJ2v9dEgGWLtvEHKFvvFcDXGms
+  handlers.py: QmNujxh4FtecTar5coHTJyY3BnVnsseuARSpyTLUDmFmfX
+  strategy.py: Qmd3Ugpid9WTMnJUMLdK89PQrcivae264vWk7UrEntb9z9
+fingerprint_ignore_patterns: []
+connections: []
+contracts: []
+protocols:
+- fetchai/default:0.9.0
+- fetchai/fipa:0.10.0
+- fetchai/ledger_api:0.7.0
+- fetchai/oef_search:0.10.0
+skills:
+- fetchai/generic_seller:0.16.0
+behaviours:
+  service_registration:
+    args:
+      services_interval: 20
+    class_name: ServiceRegistrationBehaviour
+handlers:
+  fipa:
+    args: {}
+    class_name: FipaHandler
+  ledger_api:
+    args: {}
+    class_name: LedgerApiHandler
+  oef_search:
+    args: {}
+    class_name: OefSearchHandler
+models:
+  default_dialogues:
+    args: {}
+    class_name: DefaultDialogues
+  fipa_dialogues:
+    args: {}
+    class_name: FipaDialogues
+  ledger_api_dialogues:
+    args: {}
+    class_name: LedgerApiDialogues
+  oef_search_dialogues:
+    args: {}
+    class_name: OefSearchDialogues
+  strategy:
+    args:
+      data_for_sale:
+        temperature: 26
+      has_data_source: false
+      is_ledger_tx: true
+      location:
+        latitude: 51.5194
+        longitude: 0.127
+      service_data:
+        key: seller_service
+        value: thermometer_data
+      service_id: thermometer_data
+      unit_price: 10
+    class_name: Strategy
+dependencies:
+  pyserial: {}
+  temper-py: {}
+is_abstract: false
