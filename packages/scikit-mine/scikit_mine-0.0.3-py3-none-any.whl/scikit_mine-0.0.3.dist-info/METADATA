@@ -1,0 +1,114 @@
+Metadata-Version: 2.1
+Name: scikit-mine
+Version: 0.0.3
+Summary: Pattern mining in Python
+Home-page: https://github.com/scikit-mine/scikit-mine
+Maintainer: R. Adon
+Maintainer-email: remi.adon@gmail.com
+License: new BSD
+Download-URL: https://github.com/scikit-mine/scikit-mine
+Platform: UNKNOWN
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development
+Classifier: Topic :: Scientific/Engineering
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/x-rst
+Requires-Dist: scipy (>=1.2.1)
+Requires-Dist: pandas (>=1.0.0)
+Requires-Dist: joblib (>=0.11.1)
+Requires-Dist: sortedcontainers (>=2.1.0)
+Requires-Dist: roaringbitmap (==0.7) ; platform_system != "Windows"
+Provides-Extra: docs
+Requires-Dist: sphinx ; extra == 'docs'
+Requires-Dist: sphinx-gallery ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme ; extra == 'docs'
+Requires-Dist: numpydoc ; extra == 'docs'
+Requires-Dist: matplotlib ; extra == 'docs'
+Provides-Extra: tests
+Requires-Dist: pytest ; extra == 'tests'
+Requires-Dist: pytest-cov ; extra == 'tests'
+
+
+.. image:: https://badge.fury.io/py/scikit-mine.svg
+    :target: https://badge.fury.io/py/scikit-mine
+
+
+.. image:: https://codecov.io/gh/remiadon/scikit-mine/branch/master/graph/badge.svg
+  :target: https://codecov.io/gh/remiadon/scikit-mine
+
+.. image:: https://img.shields.io/badge/powered%20by-INRIA-orange.svg?style=flat&colorA=384257&colorB=E23324
+  :target: https://www.inria.fr/en
+
+
+Scikit-mine : pattern mining in Python
+
+* **Descriptive analysis**, leading to **interpretable**, concise descriptions using the `Minimum Description Length Principle <https://en.wikipedia.org/wiki/Minimum_description_length>`_
+* **Fast** Algorithms
+* **Simple, extendable API**, inspired by scikit-learn_
+
+.. _scikit-learn: https://scikit-learn.org/
+
+
+Resources
+---------
+
+* Free software: BSD license
+* GitHub: https://github.com/scikit-mine/scikit-mine
+* Documentation: https://scikit-mine.github.io/scikit-mine/
+
+
+Quickstart
+----------
+
+
+scikit-mine is a Python module for pattern mining built on top of
+Pandas/Numpy/SciPy and is distributed under the 3-Clause BSD license.
+
+It is currently maintained by a team of volunteers.
+
+See examples in the tutorials; the notebooks are available here_.
+
+
+.. _here: https://github.com/scikit-mine/scikit-mine/tree/master/docs/tutorials
+
+
+Dependencies
+------------
+
+scikit-mine requires Python>=3.6,
+and some extra dependencies
+
+* scipy>=1.2.1
+* pandas>=1.0.0
+* sortedcontainers>=2.1.0
+* roaringbitmap==0.7
+* joblib>=0.11.1
+
+**scikit-learn** is not a dependency. However, scikit-mine is **contiuously tested for interactions with scikit-learn**
+
+Development
+-----------
+
+This project is funded by the `INRIA center in Rennes, Brittany, France <https://www.inria.fr/fr/centre-inria-rennes-bretagne-atlantique>`_.
+
+We welcome new contributors of all experience levels. 
+
+
+Contributors
+------------
+
+- Rémi Adon (https://github.com/remiadon)
+- Peggy Cellier (https://github.com/PeggyCellier)
+- Alexandre Termier (https://github.com/alexandre-termier)
+- Luis Galárraga (https://github.com/lgalarra)
+- Josie Signe (https://github.com/Darlysia)
+
+
