@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "pycrud"
+version = "0.3.1"
+description = "A common crud framework for web."
+authors = ["fy <fy0748@gmail.com>"]
+
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/fy0/pycrud"
+repository = "https://github.com/fy0/pycrud"
+
+[tool.poetry.dependencies]
+python = ">=3.6.9"
+PyPika = ">=0.42.1"
+typing_extensions = ">=3.6.5"
+pydantic = ">=1.6.1"
+multidict = ">=4.5,<6.0"
+
+[tool.poetry.dev-dependencies]
+pytest = ">=5.2"
+peewee = ">=3.13.3"
+SQLAlchemy = ">=1.3.19"
+pytest-cov = "^2.10.1"
+pytest-asyncio = "^0.14.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
