@@ -1,0 +1,23 @@
+[console_scripts]
+easeml = easeml.commands.client:main
+
+[easeml]
+create = easeml.commands.create:create_action_group
+download = easeml.commands.download:download_action_group
+init = easeml.commands.batch:easeml_init
+show = easeml.commands.show:show_action_group
+
+[easeml.create]
+dataset = easeml.commands.create:create_dataset
+job = easeml.commands.create:create_new_job
+module = easeml.commands.create:create_module
+
+[easeml.download]
+dataset = easeml.commands.download:download_dataset
+model = easeml.commands.download:download_model
+
+[easeml.show]
+dataset = easeml.commands.show:show_dataset
+job = easeml.commands.show:show_job
+task = easeml.commands.show:show_task
+
