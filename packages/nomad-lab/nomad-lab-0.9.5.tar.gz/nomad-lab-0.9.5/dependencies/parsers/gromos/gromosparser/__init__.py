@@ -1,0 +1,1 @@
+from .GROMOSParser import GromacsParserInterface as GromosParser
