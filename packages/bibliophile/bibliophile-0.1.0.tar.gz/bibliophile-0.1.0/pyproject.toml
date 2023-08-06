@@ -1,0 +1,61 @@
+[tool.black]
+include = '\.py$'
+# Don't attempt to normalize strings
+# (Preserves the convention of "single quotes for data, double quotes for humans")
+skip-string-normalization = true
+# Tell Black that this code is specifically meant for 3.6 instead of using per-file detection.
+# (without this, Black will only apply certain stylistic changes in the presence of 3.6+ syntax)
+# For example, f-strings prove that code requires 3.6 and Black will format differently.
+target_version = ["py36"]
+
+[tool.coverage.run]
+branch = true
+source = ["bibliophile"]
+
+[tool.isort]
+profile = "black"
+known_first_party = "bibliophile"
+
+[tool.pylint.'MESSAGES CONTROL']
+disable = [
+  # Black handles all formatting
+  'format',
+  # I'm okay with TODO comments
+  'fixme',
+  # module-level `logger` should be allowed
+  'invalid-name',
+  # Not all modules need a docstring
+  'missing-docstring',
+]
+
+[tool.pylint.REPORTS]
+reports = false
+score = false
+
+[tool.poetry]
+name = "bibliophile"
+version = "0.1.0"
+description = "Find books at your local library"
+license = "GPL-3.0"
+readme = "README.md"
+homepage = "https://biblo.dcain.me"
+repository = "https://github.com/DavidCain/bibliophile-backend/"
+authors = ["David Cain <davidjosephcain@gmail.com>"]
+# Per PEP 561, this special file indicates that the Python source is typed
+include = ["bibliophile/py.typed"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+beautifulsoup4 = "*"
+grequests = "*"
+lxml = "*"
+requests = "*"
+
+[tool.poetry.dev-dependencies]
+black = { version = "*", allow-prereleases = true }
+codecov = "*"
+coverage = "*"
+isort = ">= 5.0.0"  # Version 5 includes Black compatibility
+mypy = "*"
+pylint = "*"
+pytest = "*"
