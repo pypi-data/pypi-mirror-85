@@ -1,0 +1,62 @@
+Metadata-Version: 2.1
+Name: roonapi
+Version: 0.0.27
+Summary: Provides a python interface to interact with Roon
+Home-page: https://github.com/pavoni/pyroon
+License: Apache-2.0
+Keywords: roon,api
+Author: Marcel van der Veldt
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: ifaddr (>=0.1.0)
+Requires-Dist: requests (>=2.0)
+Requires-Dist: six (>=1.10.0)
+Requires-Dist: websocket_client (>=0.57.0)
+Project-URL: Repository, https://github.com/pavoni/pyroon
+Description-Content-Type: text/markdown
+
+# python-roon
+python library to interface with the Roon API (www.roonlabs.com)
+
+Full documentation will follow asap
+See the tests folder for some more code examples.
+
+
+Some example code:
+
+```
+from roonapi import RoonApi
+appinfo = {
+        "extension_id": "python_roon_test",
+        "display_name": "Python library for Roon",
+        "display_version": "1.0.0",
+        "publisher": "marcelveldt",
+        "email": "mygreat@emailaddress.com"
+    }
+
+# host can be None if you want to use discovery - but this sometimes returns the local machine, not the real roon server
+host = "192.168.1.x"
+
+# Can be None if you don't yet have a token
+token = open('mytokenfile').read()
+
+roonapi = RoonApi(appinfo, token)
+
+# get all zones (as dict)
+print(roonapi.zones)
+
+# get all outputs (as dict)
+print(roonapi.outputs)
+
+# receive state updates in your callback
+roonapi.register_state_callback(my_state_callback)
+
+
+# save the token for next time
+with open('mytokenfile', 'w') as f:
+    f.write(roonapi.token)
+
