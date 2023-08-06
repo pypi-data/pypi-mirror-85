@@ -1,0 +1,1 @@
+testcanarybot is a vk async framework for bots.
