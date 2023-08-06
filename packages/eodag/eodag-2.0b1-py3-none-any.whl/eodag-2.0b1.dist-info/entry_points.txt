@@ -1,0 +1,28 @@
+[console_scripts]
+eodag = eodag.cli:eodag
+
+[eodag.plugins.api]
+UsgsApi = eodag.plugins.apis.usgs:UsgsApi
+
+[eodag.plugins.auth]
+GenericAuth = eodag.plugins.authentication.generic:GenericAuth
+HTTPHeaderAuth = eodag.plugins.authentication.header:HTTPHeaderAuth
+KeycloakOIDCPasswordAuth = eodag.plugins.authentication.keycloak:KeycloakOIDCPasswordAuth
+OAuth = eodag.plugins.authentication.oauth:OAuth
+OIDCAuthorizationCodeFlowAuth = eodag.plugins.authentication.openid_connect:OIDCAuthorizationCodeFlowAuth
+TokenAuth = eodag.plugins.authentication.token:TokenAuth
+
+[eodag.plugins.crunch]
+FilterLatestByName = eodag.plugins.crunch.filter_latest_tpl_name:FilterLatestByName
+FilterLatestIntersect = eodag.plugins.crunch.filter_latest_intersect:FilterLatestIntersect
+FilterOverlap = eodag.plugins.crunch.filter_overlap:FilterOverlap
+
+[eodag.plugins.download]
+AwsDownload = eodag.plugins.download.aws:AwsDownload
+HTTPDownload = eodag.plugins.download.http:HTTPDownload
+S3RestDownload = eodag.plugins.download.s3rest:S3RestDownload
+
+[eodag.plugins.search]
+CSWSearch = eodag.plugins.search.csw:CSWSearch
+QueryStringSearch = eodag.plugins.search.qssearch:QueryStringSearch
+
