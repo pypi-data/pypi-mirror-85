@@ -1,0 +1,34 @@
+{% extends "apps/base.html" %}
+{% load staticfiles %}
+
+{% block extra_css %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static "css/abyss.widget.css" %}">
+  <link rel="stylesheet" href="{% static "css/detail.css" %}">
+  <link rel="stylesheet" href="{% static "css/metrics/components/resources.css" %}">
+  <link rel="stylesheet" href="{% static "css/metrics/components/metrics.legacy.css" %}">
+{% endblock %}
+
+{% block navbar %}
+  {% include "apps/navbar.html" with active="resources" %}
+{% endblock %}
+
+{% block app-content %}
+  <div class="row">
+    <div class="col-md-12">
+      <script id="settings" type="application/json">
+       {
+           "GRAFANA_URL": "{{ grafana_url|safe }}"
+       }
+      </script>
+      <div id="resources"></div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{% static "js/vendor/jquery.flot.min.js" %}"></script>
+  <script src="{% static "js/vendor/jquery.flot.time.min.js" %}"></script>
+  <script src="{% static "js/vendor/jquery.flot.tooltip.min.js" %}"></script>
+  <script src="{% static "js/pages/resources.legacy.js" %}"></script>
+{% endblock %}

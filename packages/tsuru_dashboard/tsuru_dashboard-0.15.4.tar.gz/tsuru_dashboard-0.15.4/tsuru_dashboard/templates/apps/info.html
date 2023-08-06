@@ -1,0 +1,70 @@
+{% extends "apps/base.html" %}
+{% load staticfiles %}
+
+{% block extra_css %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static "css/abyss.widget.css" %}">
+  <link rel="stylesheet" href="{% static "css/detail.css" %}">
+{% endblock %}
+
+{% block navbar %}
+  {% include "apps/navbar.html" with active="info" %}
+{% endblock %}
+
+{% block app-content %}
+  <div class="row">
+    <div class="col-md-12">
+      {% for group in app.grouped_units %}
+      <h3>Units [{{ group.process_name }}]{% if group.version %} [version: {{ group.version }}]{% endif %}</h3>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Unit</th>
+            <th>Status</th>
+            <th>Host</th>
+            <th>Port</th>
+            <th>Routable</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for unit in group.units %}
+            <tr>
+              <td>{{ unit.ID }}</td>
+              <td>{{ unit.Status }}</td>
+              <td>{{ unit.HostAddr }}</td>
+              <td>{{ unit.HostPort }}</td>
+              <td>{{ unit.Routable }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% endfor %}
+    </div>
+  </div>
+  {% if app.service_instances %}
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Services instances</h3>
+        <div class="content">
+          <table class="table containers-app">
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th>Instance</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for instance in app.service_instances %}
+                <tr>
+                  <td>{{ instance.servicename }}</td>
+                  <td><a href="{% url 'service-detail' instance.servicename instance.name %}"> {{ instance.name }} </a></td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  </div>
+{% endblock %}
