@@ -1,0 +1,109 @@
+[tool.poetry]
+name = "AlekSIS-Core"
+version = "2.0a3.dev0"
+packages = [
+    { include = "aleksis" }
+]
+readme = "README.rst"
+include = ["CHANGELOG.rst", "LICENCE.rst", "docs/*", "docs/**/*", "aleksis/**/*.mo", "tox.ini"]
+
+description = "AlekSIS (School Information System) — Core"
+authors = ["Dominik George <dominik.george@teckids.org>", "Julian Leucker <leuckeju@katharineum.de>", "mirabilos <thorsten.glaser@teckids.org>", "Frank Poetzsch-Heffter <p-h@katharineum.de>", "Tom Teichler <tom.teichler@teckids.org>", "Jonathan Weth <wethjo@katharineum.de>", "Hangzhi Yu <yuha@katharineum.de>"]
+maintainers = ["Jonathan Weth <wethjo@katharineum.de>", "Dominik George <dominik.george@teckids.org>"]
+license = "EUPL-1.2-or-later"
+homepage = "https://aleksis.org/"
+repository = "https://edugit.org/AlekSIS/official/AlekSIS-Core"
+documentation = "https://aleksis.org/AlekSIS-Core/docs/html/"
+keywords = ["SIS", "education", "school", "digitisation", "school apps"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Web Environment",
+    "Framework :: Django :: 3.0",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Topic :: Education",
+    "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+    "Typing :: Typed",
+]
+
+[[tool.poetry.source]]
+name = "gitlab"
+url = "https://edugit.org/api/v4/projects/461/packages/pypi/simple"
+secondary = true
+
+[tool.poetry.dependencies]
+python = "^3.7"
+Django = "^3.0"
+django-any-js = "^1.0"
+django-debug-toolbar = "^2.0"
+django-easy-audit = {version ="^1.2rc1", allow-prereleases = true}
+django-middleware-global-request = "^0.1.2"
+django-menu-generator = "^1.0.4"
+django-tables2 = "^2.1"
+Pillow = "^7.0"
+django-phonenumber-field = {version = "<5.1", extras = ["phonenumbers"]}
+django-sass-processor = "^0.8"
+libsass = "^0.20.0"
+colour = "^0.1.5"
+dynaconf = {version = "^3.1", extras = ["yaml", "toml", "ini"]}
+django-settings-context-processor = "^0.2"
+django-auth-ldap = { version = "^2.2", optional = true }
+django-maintenance-mode = "^0.15.0"
+django-ipware = "^3.0"
+django-impersonate = "^1.4"
+python-memcached = "^1.59"
+django-hattori = "^0.2"
+psycopg2 = "^2.8"
+django_select2 = "^7.1"
+requests = "^2.22"
+django-two-factor-auth = { version = "^1.12.1", extras = [ "yubikey", "phonenumbers", "call", "sms" ] }
+django-yarnpkg = "^6.0"
+django-material = "^1.6.0"
+django-pwa = "^1.0.8"
+django-dynamic-preferences = "^1.9"
+django_widget_tweaks = "^1.4.5"
+django-filter = "^2.2.0"
+django-templated-email = "^2.3.0"
+html2text = "^2020.0.0"
+django-ckeditor = "^6.0.0"
+django-js-reverse = "^0.9.1"
+calendarweek = "^0.4.3"
+Celery = {version="^4.4.0", optional=true, extras=["django", "redis"]}
+django-celery-results = {version="^1.1.2", optional=true}
+django-celery-beat = {version="^2.0.0", optional=true}
+django-celery-email = {version="^3.0.0", optional=true}
+django-jsonstore = "^0.4.1"
+django-polymorphic = "^3.0.0"
+django-colorfield = "^0.3.0"
+django-bleach = "^0.6.1"
+django-guardian = "^2.2.0"
+rules = "^2.2"
+django-cache-memoize = "^0.1.6"
+django-haystack = {version="3.0b1", allow-prereleases = true}
+celery-haystack = {version="^0.10.0", optional=true}
+django-dbbackup = "^3.3.0"
+spdx-license-list = "^0.5.0"
+license-expression = "^1.2"
+django-reversion = "^3.0.7"
+django-favicon-plus-reloaded = "^1.0.4"
+django-health-check = "^3.12.1"
+psutil = "^5.7.0"
+celery-progress = "^0.0.14"
+django-prometheus = "^2.1.0"
+importlib-metadata = {version = "^2.0.0", python = "<3.8"}
+
+[tool.poetry.extras]
+ldap = ["django-auth-ldap"]
+celery = ["Celery", "django-celery-results", "django-celery-beat", "django-celery-email", "celery-haystack"]
+
+[tool.poetry.dev-dependencies]
+aleksis-builddeps = "*"
+
+[tool.black]
+line-length = 100
+exclude = "/migrations/"
+
+[build-system]
+requires = ["poetry>=1.0"]
+build-backend = "poetry.masonry.api"

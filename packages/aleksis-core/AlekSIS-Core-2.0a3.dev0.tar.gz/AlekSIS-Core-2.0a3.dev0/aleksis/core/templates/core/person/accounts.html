@@ -1,0 +1,65 @@
+{# -*- engine:django -*- #}
+
+{% extends "core/base.html" %}
+
+{% load i18n any_js %}
+
+{% block extra_head %}
+  {{ persons_accounts_formset.media.css }}
+  {% include_css "select2-materialize" %}
+{% endblock %}
+
+{% block browser_title %}{% blocktrans %}Link persons to accounts{% endblocktrans %}{% endblock %}
+{% block page_title %}
+  {% blocktrans %}Link persons to accounts{% endblocktrans %}
+{% endblock %}
+
+{% block content %}
+  <div class="alert info">
+    <p>
+      <i class="material-icons left">info</i>
+      {% blocktrans %}
+        You can use this form to assign user accounts to persons. Use the
+        dropdowns to select existing accounts; use the text fields to create new
+        accounts on-the-fly. The latter will create a new account with the
+        entered username and copy all other details from the person.
+      {% endblocktrans %}
+    </p>
+  </div>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ persons_accounts_formset.management_form }}
+
+    <button type="submit" class="btn green waves-effect waves-light">
+      <i class="material-icons left">save</i>
+      {% blocktrans %}Update{% endblocktrans %}
+    </button>
+
+    <table>
+      <tr>
+        <th>{% blocktrans %}Person{% endblocktrans %}</th>
+        <th>{% blocktrans %}Existing account{% endblocktrans %}</th>
+        <th>{% blocktrans %}New account{% endblocktrans %}</th>
+      </tr>
+      {% for form in persons_accounts_formset %}
+        {{ form.id }}
+        <tr>
+          <td>
+            {{ form.last_name }}
+            {{ form.first_name }}
+          </td>
+          <td>{{ form.user }}</td>
+          <td>{{ form.new_user }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+
+    <button type="submit" class="btn green waves-effect waves-light">
+      <i class="material-icons left">save</i>
+      {% blocktrans %}Update{% endblocktrans %}
+    </button>
+  </form>
+  {% include_js "select2-materialize" %}
+  {{ persons_accounts_formset.media.js }}
+{% endblock %}

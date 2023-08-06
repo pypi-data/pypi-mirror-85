@@ -1,0 +1,176 @@
+{# -*- engine:django -*- #}
+
+{% load i18n menu_generator static sass_tags any_js pwa rules %}
+{% get_current_language as LANGUAGE_CODE %}
+
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+  {% include "core/partials/meta.html" %}
+
+  <title>
+    {% block no_browser_title %}
+      {% block browser_title %}{% endblock %} —
+    {% endblock %}
+    {{ request.site.preferences.general__title }}
+  </title>
+
+  {# CSS #}
+  {% include_css "material-design-icons" %}
+  <link rel="stylesheet" href="{% sass_src 'style.scss' %}">
+
+  {# Add JS URL resolver #}
+  <script src="{% url "js_reverse" %}" type="text/javascript"></script>
+
+  {# Add i18n names for calendar (for use in datepicker) #}
+  {# Passing the locale is not necessary for the scripts to work, but prevents caching issues #}
+  <script src="{% url "javascript-catalog" %}?locale={{ LANGUAGE_CODE }}" type="text/javascript"></script>
+  <script src="{% url "calendarweek_i18n_js" %}?first_day=6&amp;locale={{ LANGUAGE_CODE }}"
+          type="text/javascript"></script>
+
+  {# Include jQuery early to provide $(document).ready #}
+  {% include_js "jQuery" %}
+
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+<header>
+  <!-- Menu button (sidenav) -->
+  <div class="container">
+    <a href="#" data-target="slide-out" class="top-nav sidenav-trigger hide-on-large-only">
+      <i class="material-icons">menu</i>
+    </a>
+  </div>
+
+  <!-- Nav bar (logged in as, logout) -->
+  <nav>
+    <a class="brand-logo" href="/">{{ request.site.preferences.general__title }}</a>
+
+    <div class="nav-wrapper">
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        {% if user.is_authenticated %}
+          <li>{% trans "Logged in as" %} {{ user.get_username }}</li>
+          <li>
+            <a href="{% url 'logout' %}">{% trans "Logout" %} <i class="material-icons right">exit_to_app</i></a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main nav (sidenav) -->
+  <ul id="slide-out" class="sidenav sidenav-fixed">
+    <li class="logo">
+      {% static "img/aleksis-banner.svg" as aleksis_banner %}
+      <a id="logo-container" href="/" class="brand-logo">
+        <img src="{% firstof request.site.preferences.theme__logo.url aleksis_banner %}"
+             alt="{{ request.site.preferences.general__title }} – Logo">
+      </a>
+    </li>
+    {% has_perm 'core.search' user as search %}
+    {% if search %}
+      <li class="search">
+        <form method="get" action="{% url "haystack_search" %}" id="search-form" class="autocomplete">
+          <div class="search-wrapper">
+            <input id="search" name="q" placeholder="{% trans "Search" %}">
+            <i class="material-icons">search</i>
+          </div>
+        </form>
+      </li>
+    {% endif %}
+    <li class="no-padding">
+      {% include "core/partials/sidenav.html" %}
+    </li>
+  </ul>
+</header>
+
+
+<main role="main">
+  {% include 'core/partials/no_person.html' %}
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert {% if message.tags %}{{ message.tags }}{% else %}info{% endif %}">
+        <p>
+          {% if message.tags == "success" %}
+            <i class="material-icons left">check_circle</i>
+          {% elif  message.tags == "info" %}
+            <i class="material-icons left">info</i>
+          {% elif  message.tags == "warning" %}
+            <i class="material-icons left">warning</i>
+          {% elif  message.tags == "error" %}
+            <i class="material-icons left">error</i>
+          {% endif %}
+          {{ message }}
+        </p>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  {% block no_page_title %}
+    <h4>{% block page_title %}{% endblock %}</h4>
+  {% endblock %}
+
+  {% block content %}{% endblock %}
+</main>
+
+
+<footer class="page-footer">
+  <div class="container">
+    <div class="row no-margin footer-row-large">
+      <div class="col l6 s12 no-pad-left height-inherit">
+        <div class="white-text valign-bot">
+          {% include 'core/partials/language_form.html' %}
+        </div>
+      </div>
+      <div class="col xl15 l6 offset-xl01 s12 no-pad-right">
+        <ul class="no-margin right">
+          {% include "core/partials/footer-menu.html" %}
+        </ul>
+      </div>
+    </div>
+    <div class="row no-margin footer-row-small">
+      <div class="white-text make-it-higher">
+        {% include 'core/partials/language_form.html' %}
+      </div>
+      <ul class="no-margin footer-ul">
+        {% include "core/partials/footer-menu.html" %}
+      </ul>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      <div class="left">
+        <a class="blue-text text-lighten-4" href="{% url "about_aleksis" %}">
+          {% trans "About AlekSIS — The Free School Information System" %}
+        </a>
+        © The AlekSIS Team
+      </div>
+      <div class="right">
+        <span id="doit"></span>
+        {% if request.site.preferences.footer__impress_url %}
+          <a class="blue-text text-lighten-4" href="{{ request.site.preferences.footer__impress_url }}">
+            {% trans "Impress" %}
+          </a>
+        {% endif %}
+        {% if request.site.preferences.footer__privacy_url and request.site.preferences.footer__impress_url %}
+          ·
+        {% endif %}
+        {% if request.site.preferences.footer__privacy_url %}
+          <a class="blue-text text-lighten-4" href="{{ request.site.preferences.footer__privacy_url }}">
+            {% trans "Privacy Policy" %}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+{% include_js "materialize" %}
+<script type="text/javascript" src="{% static 'js/search.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

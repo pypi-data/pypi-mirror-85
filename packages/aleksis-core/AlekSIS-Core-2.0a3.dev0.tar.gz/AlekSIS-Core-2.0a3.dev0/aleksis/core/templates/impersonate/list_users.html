@@ -1,0 +1,29 @@
+{# -*- engine:django -*- #}
+{# Derived from the original template in django-impersonate #}
+
+{% extends "core/base.html" %}
+{% load i18n %}
+
+{% block page_title %}
+  {% blocktrans %}Impersonate user{% endblocktrans %}
+{% endblock %}
+
+{% block content %}
+  {% if page.object_list %}
+    <div class="collection">
+      {% for user in page.object_list %}
+        <a class="collection-item" href="{% url 'impersonate-start' user.pk %}{{ redirect }}">
+          {{ user }}
+        </a>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if page.has_previous %}
+    <a href="{% url 'impersonate-list' %}?page={{ page.previous_page_number }}">Previous Page</a> &nbsp;
+  {% endif %}
+
+  {% if page.has_next %}
+    <a href="{% url 'impersonate-list' %}?page={{ page.next_page_number }}">Next Page</a> &nbsp;
+  {% endif %}
+{% endblock %}

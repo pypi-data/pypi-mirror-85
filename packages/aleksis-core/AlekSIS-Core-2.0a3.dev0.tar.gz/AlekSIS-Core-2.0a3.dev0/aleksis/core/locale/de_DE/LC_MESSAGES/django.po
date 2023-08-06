@@ -1,0 +1,2177 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: AlekSIS (School Information System) 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-08-02 16:29+0200\n"
+"PO-Revision-Date: 2020-08-02 15:00+0000\n"
+"Last-Translator: Jonathan Weth <teckids@jonathanweth.de>\n"
+"Language-Team: German <https://translate.edugit.org/projects/aleksis/aleksis/"
+"de/>\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.0.1\n"
+
+#: filters.py:37 templates/core/base.html:77 templates/core/group/list.html:20
+#: templates/core/person/list.html:24 templates/search/search.html:7
+#: templates/search/search.html:22
+msgid "Search"
+msgstr "Suchen"
+
+#: filters.py:53
+msgid "Search by name"
+msgstr "Nach Namen suchen"
+
+#: filters.py:65
+msgid "Search by contact details"
+msgstr "Nach Kontaktdetails suchen"
+
+#: forms.py:46
+msgid "You cannot set a new username when also selecting an existing user."
+msgstr "Sie können keine neuen Benutzer erstellen, wenn Sie gleichzeitig einen existierenden Benutzer auswählen."
+
+#: forms.py:50
+msgid "This username is already in use."
+msgstr "Dieser Benutzername wird bereits genutzt."
+
+#: forms.py:74
+msgid "Base data"
+msgstr "Basisdaten"
+
+#: forms.py:80
+msgid "Address"
+msgstr "Adresse"
+
+#: forms.py:81
+msgid "Contact data"
+msgstr "Kontaktdaten"
+
+#: forms.py:83
+msgid "Advanced personal data"
+msgstr "Zusätzliche persönliche Daten"
+
+#: forms.py:114
+msgid "New user"
+msgstr "Neuer Benutzer"
+
+#: forms.py:114
+msgid "Create a new account"
+msgstr "Neues Benutzerkonto erstellen"
+
+#: forms.py:126 models.py:91
+msgid "School term"
+msgstr "Schuljahr"
+
+#: forms.py:127
+msgid "Common data"
+msgstr "Allgemeine Daten"
+
+#: forms.py:128 forms.py:170 menus.py:152 models.py:105
+#: templates/core/person/list.html:8 templates/core/person/list.html:9
+msgid "Persons"
+msgstr "Personen"
+
+#: forms.py:129
+msgid "Additional data"
+msgstr "Zusätzliche Datne"
+
+#: forms.py:163 forms.py:166 models.py:35
+msgid "Date"
+msgstr "Datum"
+
+#: forms.py:164 forms.py:167 models.py:43
+msgid "Time"
+msgstr "Zeit"
+
+#: forms.py:172 menus.py:160 models.py:319 templates/core/group/list.html:8
+#: templates/core/group/list.html:9 templates/core/person/full.html:136
+msgid "Groups"
+msgstr "Gruppen"
+
+#: forms.py:176
+msgid "From when until when should the announcement be displayed?"
+msgstr "Von wann bis wann soll die Ankündigung angezeigt werden?"
+
+#: forms.py:179
+msgid "Who should see the announcement?"
+msgstr "Wer soll die Ankündigung sehen?"
+
+#: forms.py:180
+msgid "Write your announcement:"
+msgstr "Schreiben Sie ihre Ankündigung:"
+
+#: forms.py:219
+msgid "You are not allowed to create announcements which are only valid in the past."
+msgstr "Sie dürfen keine Ankündigungen erstellen, die nur für die Vergangenheit gültig sind."
+
+#: forms.py:223
+msgid "The from date and time must be earlier then the until date and time."
+msgstr "Das Startdatum und die Startzeit müssen vor dem Enddatum und der Endzeit sein."
+
+#: forms.py:232
+msgid "You need at least one recipient."
+msgstr "Sie benötigen mindestens einen Empfänger."
+
+#: menus.py:7 templates/two_factor/core/login.html:6
+#: templates/two_factor/core/login.html:10
+#: templates/two_factor/core/login.html:86
+msgid "Login"
+msgstr "Anmelden"
+
+#: menus.py:13
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: menus.py:19
+msgid "Account"
+msgstr "Konto"
+
+#: menus.py:26
+msgid "Stop impersonation"
+msgstr "Verkleidung beenden"
+
+#: menus.py:35 templates/core/base.html:56
+msgid "Logout"
+msgstr "Abmelden"
+
+#: menus.py:41
+msgid "2FA"
+msgstr "2FA"
+
+#: menus.py:47
+msgid "Me"
+msgstr "Ich"
+
+#: menus.py:56 templates/dynamic_preferences/form.html:5
+msgid "Preferences"
+msgstr "Einstellungen"
+
+#: menus.py:67
+msgid "Admin"
+msgstr "Admin"
+
+#: menus.py:75 models.py:564 templates/core/announcement/list.html:7
+#: templates/core/announcement/list.html:8
+msgid "Announcements"
+msgstr "Ankündigungen"
+
+#: menus.py:86 models.py:92 templates/core/school_term/list.html:8
+#: templates/core/school_term/list.html:9
+msgid "School terms"
+msgstr "Schuljahre"
+
+#: menus.py:97 templates/core/management/data_management.html:6
+#: templates/core/management/data_management.html:7
+msgid "Data management"
+msgstr "Datenverwaltung"
+
+#: menus.py:105 templates/core/pages/system_status.html:5
+#: templates/core/pages/system_status.html:7
+msgid "System status"
+msgstr "Systemstatus"
+
+#: menus.py:116
+msgid "Impersonation"
+msgstr "Verkleidung"
+
+#: menus.py:124
+msgid "Configuration"
+msgstr "Konfiguration"
+
+#: menus.py:135
+msgid "Backend Admin"
+msgstr "Backend-Administration"
+
+#: menus.py:143
+msgid "People"
+msgstr "Leute"
+
+#: menus.py:168 models.py:727 templates/core/group_type/list.html:8
+#: templates/core/group_type/list.html:9
+msgid "Group types"
+msgstr "Gruppentypen"
+
+#: menus.py:179
+msgid "Persons and accounts"
+msgstr "Personen und Konten"
+
+#: menus.py:190
+msgid "Groups and child groups"
+msgstr "Gruppen und Kindgruppen"
+
+#: menus.py:201 models.py:363 templates/core/additional_field/list.html:8
+#: templates/core/additional_field/list.html:9
+msgid "Additional fields"
+msgstr "Zusätzliche Felder"
+
+#: menus.py:216 templates/core/group/child_groups.html:7
+#: templates/core/group/child_groups.html:9
+msgid "Assign child groups to groups"
+msgstr "Kindgruppen zu Gruppen zuordnen"
+
+#: mixins.py:406
+msgid "Linked school term"
+msgstr "Zugeordnetes Schuljahr"
+
+#: models.py:33
+msgid "Boolean (Yes/No)"
+msgstr "Boolean (Ja/Nein)"
+
+#: models.py:34
+msgid "Text (one line)"
+msgstr "Text (eine Zeile)"
+
+#: models.py:36
+msgid "Date and time"
+msgstr "Datum und Uhrzeit"
+
+#: models.py:37
+msgid "Decimal number"
+msgstr "Dezimalzahl"
+
+#: models.py:38 models.py:146
+msgid "E-mail address"
+msgstr "E-Mail-Adresse"
+
+#: models.py:39
+msgid "Integer"
+msgstr "Ganze Zahl"
+
+#: models.py:40
+msgid "IP address"
+msgstr "IP-Adresse"
+
+#: models.py:41
+msgid "Boolean or empty (Yes/No/Neither)"
+msgstr "Boolean oder leer (Ja/Nein/weder)"
+
+#: models.py:42
+msgid "Text (multi-line)"
+msgstr "Text (mehrzeilig)"
+
+#: models.py:44
+msgid "URL / Link"
+msgstr "URL / Link"
+
+#: models.py:56 models.py:700
+msgid "Name"
+msgstr "Name"
+
+#: models.py:58
+msgid "Start date"
+msgstr "Startdatum"
+
+#: models.py:59
+msgid "End date"
+msgstr "Enddatum"
+
+#: models.py:77
+msgid "The start date must be earlier than the end date."
+msgstr "Das Startdatum muss vor dem Enddatum liegen."
+
+#: models.py:84
+msgid "There is already a school term for this time or a part of this time."
+msgstr ""
+"Es gibt bereits ein Schuljahr für diesen Zeitraum oder einen Teilzeitraum."
+
+#: models.py:104 templates/core/person/accounts.html:36
+msgid "Person"
+msgstr "Person"
+
+#: models.py:107
+msgid "Can view address"
+msgstr "Kann Adresse sehen"
+
+#: models.py:108
+msgid "Can view contact details"
+msgstr "Kann Kontaktdetails sehen"
+
+#: models.py:109
+msgid "Can view photo"
+msgstr "Kann Foto sehen"
+
+#: models.py:110
+msgid "Can view persons groups"
+msgstr "Kann Gruppen einer Person sehen"
+
+#: models.py:111
+msgid "Can view personal details"
+msgstr "Kann persönliche Daten sehen"
+
+#: models.py:116
+msgid "female"
+msgstr "weiblich"
+
+#: models.py:116
+msgid "male"
+msgstr "männlich"
+
+#: models.py:124
+msgid "Linked user"
+msgstr "Verknüpfter Benutzer"
+
+#: models.py:126
+msgid "Is person active?"
+msgstr "Ist die Person aktiv?"
+
+#: models.py:128
+msgid "First name"
+msgstr "Vorname"
+
+#: models.py:129
+msgid "Last name"
+msgstr "Nachname"
+
+#: models.py:131
+msgid "Additional name(s)"
+msgstr "Zusätzliche Namen"
+
+#: models.py:135 models.py:332
+msgid "Short name"
+msgstr "Kurzname"
+
+#: models.py:138
+msgid "Street"
+msgstr "Straße"
+
+#: models.py:139
+msgid "Street number"
+msgstr "Hausnummer"
+
+#: models.py:140
+msgid "Postal code"
+msgstr "Postleitzahl"
+
+#: models.py:141
+msgid "Place"
+msgstr "Ort"
+
+#: models.py:143
+msgid "Home phone"
+msgstr "Festnetz"
+
+#: models.py:144
+msgid "Mobile phone"
+msgstr "Handy"
+
+#: models.py:148
+msgid "Date of birth"
+msgstr "Geburtsdatum"
+
+#: models.py:149
+msgid "Sex"
+msgstr "Geschlecht"
+
+#: models.py:151
+msgid "Photo"
+msgstr "Foto"
+
+#: models.py:155 templates/core/person/full.html:129
+msgid "Guardians / Parents"
+msgstr "Erziehungsberechtigte / Eltern"
+
+#: models.py:162
+msgid "Primary group"
+msgstr "Primärgruppe"
+
+#: models.py:165 models.py:423 models.py:447 models.py:532 models.py:720
+#: templates/core/person/full.html:112
+msgid "Description"
+msgstr "Beschreibung"
+
+#: models.py:296
+msgid "Title of field"
+msgstr "Feldtitel"
+
+#: models.py:298
+msgid "Type of field"
+msgstr "Feldtyp"
+
+#: models.py:305
+msgid "Addtitional field for groups"
+msgstr "Zusätzliche Felder für Gruppen"
+
+#: models.py:306
+msgid "Addtitional fields for groups"
+msgstr "Zusätzliche Felder für Gruppen"
+
+#: models.py:318
+msgid "Group"
+msgstr "Gruppe"
+
+#: models.py:320
+msgid "Can assign child groups to groups"
+msgstr "Kann Kindgruppen zu Gruppen zuordnen"
+
+#: models.py:330
+msgid "Long name"
+msgstr "Langer Name"
+
+#: models.py:340 templates/core/group/full.html:65
+msgid "Members"
+msgstr "Mitglieder"
+
+#: models.py:343 templates/core/group/full.html:62
+msgid "Owners"
+msgstr "Leiter/-innen"
+
+#: models.py:350 templates/core/group/full.html:54
+msgid "Parent groups"
+msgstr "Übergeordnete Gruppen"
+
+#: models.py:358
+msgid "Type of group"
+msgstr "Gruppentyp"
+
+#: models.py:419
+msgid "User"
+msgstr "Benutzer"
+
+#: models.py:422 models.py:446 models.py:531
+#: templates/core/announcement/list.html:18
+msgid "Title"
+msgstr "Titel"
+
+#: models.py:425
+msgid "Application"
+msgstr "Anwendung"
+
+#: models.py:431
+msgid "Activity"
+msgstr "Aktivität"
+
+#: models.py:432
+msgid "Activities"
+msgstr "Aktivitäten"
+
+#: models.py:438
+msgid "Sender"
+msgstr "Absender"
+
+#: models.py:443
+msgid "Recipient"
+msgstr "Empfänger"
+
+#: models.py:448 models.py:701
+msgid "Link"
+msgstr "Link"
+
+#: models.py:450
+msgid "Read"
+msgstr "Gelesen"
+
+#: models.py:451
+msgid "Sent"
+msgstr "Versandt"
+
+#: models.py:464
+msgid "Notification"
+msgstr "Benachrichtigung"
+
+#: models.py:465
+msgid "Notifications"
+msgstr "Benachrichtigungen"
+
+#: models.py:533
+msgid "Link to detailed view"
+msgstr "Link zur detaillierten Ansicht"
+
+#: models.py:536
+msgid "Date and time from when to show"
+msgstr "Datum und Uhrzeit des Anzeigestarts"
+
+#: models.py:539
+msgid "Date and time until when to show"
+msgstr "Anzeigezeitraum"
+
+#: models.py:563
+msgid "Announcement"
+msgstr "Ankündigung"
+
+#: models.py:601
+msgid "Announcement recipient"
+msgstr "Empfänger der Ankündigung"
+
+#: models.py:602
+msgid "Announcement recipients"
+msgstr "Empfänger der Ankündigung"
+
+#: models.py:652
+msgid "Widget Title"
+msgstr "Widget-Titel"
+
+#: models.py:653
+msgid "Activate Widget"
+msgstr "Widget aktivieren"
+
+#: models.py:671
+msgid "Dashboard Widget"
+msgstr "Dashboard-Widget"
+
+#: models.py:672
+msgid "Dashboard Widgets"
+msgstr "Dashboard-Widgets"
+
+#: models.py:678
+msgid "Menu ID"
+msgstr "Menü-ID"
+
+#: models.py:690
+msgid "Custom menu"
+msgstr "Benutzerdefiniertes Menü"
+
+#: models.py:691
+msgid "Custom menus"
+msgstr "Benutzerdefinierte Menüs"
+
+#: models.py:698
+msgid "Menu"
+msgstr "Menü"
+
+#: models.py:702
+msgid "Icon"
+msgstr "Icon"
+
+#: models.py:708
+msgid "Custom menu item"
+msgstr "Benutzerdefiniertes Menüelement"
+
+#: models.py:709
+msgid "Custom menu items"
+msgstr "Benutzerdefinierte Menüelemente"
+
+#: models.py:719
+msgid "Title of type"
+msgstr "Titel des Typs"
+
+#: models.py:726 templates/core/group/full.html:46
+msgid "Group type"
+msgstr "Gruppentyp"
+
+#: models.py:736
+msgid "Can view system status"
+msgstr "Kann Systemstatus sehen"
+
+#: models.py:737
+msgid "Can link persons to accounts"
+msgstr "Kann Personen mit Benutzerkonten verknüpfen"
+
+#: models.py:738
+msgid "Can manage data"
+msgstr "Kann Daten verwalten"
+
+#: models.py:739
+msgid "Can impersonate"
+msgstr "Kann sich verkleiden"
+
+#: models.py:740
+msgid "Can use search"
+msgstr "Kann Suche benutzen"
+
+#: models.py:741
+msgid "Can change site preferences"
+msgstr "Kann Konfiguration ändern"
+
+#: models.py:742
+msgid "Can change person preferences"
+msgstr "Kann Einstellungen einer Person verändern"
+
+#: models.py:743
+msgid "Can change group preferences"
+msgstr "Kann Einstellungen einer Gruppe verändern"
+
+#: preferences.py:24
+msgid "Authentication"
+msgstr "Authentifizierung"
+
+#: preferences.py:33
+msgid "Site title"
+msgstr "Seitentitel"
+
+#: preferences.py:42
+msgid "Site description"
+msgstr "Seitenbeschreibung"
+
+#: preferences.py:51
+msgid "Primary colour"
+msgstr "Primärfarbe"
+
+#: preferences.py:60
+msgid "Secondary colour"
+msgstr "Akzentfarbe"
+
+#: preferences.py:68
+msgid "Logo"
+msgstr "Logo"
+
+#: preferences.py:76
+msgid "Favicon"
+msgstr "Favicon"
+
+#: preferences.py:84
+msgid "PWA-Icon"
+msgstr "PWA-Icon"
+
+#: preferences.py:93
+msgid "Mail out name"
+msgstr "Ausgangsmailname"
+
+#: preferences.py:102
+msgid "Mail out address"
+msgstr "E-Mail-Ausgangsadresse"
+
+#: preferences.py:112
+msgid "Link to privacy policy"
+msgstr "Link zur Datenschutzerklärung"
+
+#: preferences.py:122
+msgid "Link to imprint"
+msgstr "Link zum Impressum"
+
+#: preferences.py:132
+msgid "Name format for addressing"
+msgstr "Namensformat für Anreden"
+
+#: preferences.py:146
+msgid "Channels to use for notifications"
+msgstr "Aktivierte Benachrichtungskanäle"
+
+#: preferences.py:156
+msgid "Regular expression to match primary group, e.g. '^Class .*'"
+msgstr "Regulärer Ausdruck um Primärgruppen zu finden, z. B.  '^Class .*'"
+
+#: preferences.py:165
+msgid "Field on person to match primary group against"
+msgstr "Feld um Primärgruppen zu finden"
+
+#: preferences.py:177
+msgid "Display name of the school"
+msgstr "Sichtbarer Name der Schule"
+
+#: preferences.py:186
+msgid "Official name of the school, e.g. as given by supervisory authority"
+msgstr "Offizieller Name der Schule, wie er z.B. von der Behörde vorgegeben ist"
+
+#: preferences.py:194
+msgid "Enabled custom authentication backends"
+msgstr "Benutzerdefinierte Authentifizierungsbackends aktivieren"
+
+#: settings.py:300
+msgid "English"
+msgstr "Englisch"
+
+#: settings.py:301
+msgid "German"
+msgstr "Deutsch"
+
+#: settings.py:302
+msgid "French"
+msgstr "Französisch"
+
+#: settings.py:303
+msgid "Norwegian (bokmål)"
+msgstr "Norwegisch (bokmål)"
+
+#: tables.py:19 templates/core/announcement/list.html:36
+#: templates/core/group/full.html:23 templates/core/person/full.html:22
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: tables.py:21 templates/core/announcement/list.html:22
+msgid "Actions"
+msgstr "Aktionen"
+
+#: tables.py:56 tables.py:57 tables.py:71
+#: templates/core/announcement/list.html:42 templates/core/group/full.html:30
+#: templates/core/pages/delete.html:22 templates/core/person/full.html:29
+msgid "Delete"
+msgstr "Löschen"
+
+#: templates/403.html:14 templates/404.html:10 templates/500.html:10
+msgid "Error"
+msgstr "Fehler"
+
+#: templates/403.html:14
+msgid ""
+"You are not allowed to access the requested page or\n"
+"          object."
+msgstr ""
+"Es ist Ihnen nicht erlaubt, auf die angefragte Seite oder das angefragte\n"
+"             Objekt zuzugreifen."
+
+#: templates/403.html:19 templates/404.html:17
+msgid ""
+"\n"
+"            If you think this is an error in AlekSIS, please contact your site\n"
+"            administrators:\n"
+"          "
+msgstr ""
+"\n"
+"            Wenn Sie der Meinung sind, dass es sich um einen Fehler in AlekSIS handelt, kontaktieren Sie bitte einen Ihrer\n"
+"     Systemadministratoren:\n"
+"          "
+
+#: templates/404.html:10
+msgid ""
+"The requested page or object was not\n"
+"          found."
+msgstr ""
+"Die angefragte Seite oder das angefragte Objekt wurde nicht\n"
+"            gefunden."
+
+#: templates/404.html:13
+msgid ""
+"\n"
+"            If you were redirected by a link on an external page,\n"
+"            it is possible that that link was outdated.\n"
+"          "
+msgstr ""
+"\n"
+"            Wenn Sie über einen Link auf einer externen Seite hierher gelangt sind,\n"
+"      ist es möglich, dass dieser veraltet war.\n"
+"          "
+
+#: templates/500.html:10
+msgid ""
+"An unexpected error has\n"
+"          occured."
+msgstr ""
+"Ein unerwarteter Fehler ist\n"
+"            aufgetreten."
+
+#: templates/500.html:13
+msgid ""
+"\n"
+"            Your site administrators will automatically be notified about this\n"
+"            error. You can also contact them directly:\n"
+"          "
+msgstr ""
+"\n"
+"            Ihre Administratoren werden automatisch über diesen Fehler informiert.\n"
+"      Sie können diese auch direkt kontaktieren:\n"
+"          "
+
+#: templates/503.html:10
+msgid ""
+"The maintenance mode is currently enabled. Please try again\n"
+"          later."
+msgstr ""
+"Der Wartungsmodus ist aktuell aktiviert. Bitte versuchen Sie es\n"
+"            später erneut."
+
+#: templates/503.html:13
+msgid ""
+"\n"
+"            This page is currently unavailable. If this error persists, contact your site administrators:\n"
+"          "
+msgstr ""
+"\n"
+"            Diese Seite ist aktuell nicht erreichbar. Wenn dieser Fehler bestehen bleibt, kontaktieren Sie bitte einen Ihrer Systemadministratoren:\n"
+"          "
+
+#: templates/core/additional_field/edit.html:6
+#: templates/core/additional_field/edit.html:7
+msgid "Edit additional field"
+msgstr "Zusätzliches Feld bearbeiten"
+
+#: templates/core/additional_field/list.html:14
+msgid "Create additional field"
+msgstr "Zusätzliches Feld erstellen"
+
+#: templates/core/announcement/form.html:10
+#: templates/core/announcement/form.html:17
+msgid "Edit announcement"
+msgstr "Ankündigung bearbeiten"
+
+#: templates/core/announcement/form.html:12
+msgid "Publish announcement"
+msgstr "Ankündigung veröffentlichen"
+
+#: templates/core/announcement/form.html:19
+#: templates/core/announcement/list.html:13
+msgid "Publish new announcement"
+msgstr "Neue Ankündigung veröffentlichen"
+
+#: templates/core/announcement/form.html:30
+msgid "Save und publish announcement"
+msgstr "Ankündigung speichern und veröffentlichen"
+
+#: templates/core/announcement/list.html:19
+msgid "Valid from"
+msgstr "Gültig von"
+
+#: templates/core/announcement/list.html:20
+msgid "Valid until"
+msgstr "Gültig bis"
+
+#: templates/core/announcement/list.html:21
+msgid "Recipients"
+msgstr "Empfänger"
+
+#: templates/core/announcement/list.html:50
+msgid "There are no announcements."
+msgstr "Es gibt aktuell keine Ankündigungen."
+
+#: templates/core/base.html:54
+msgid "Logged in as"
+msgstr "Angemeldet als"
+
+#: templates/core/base.html:147
+msgid "About AlekSIS — The Free School Information System"
+msgstr "Über AlekSIS — The Free School Information System"
+
+#: templates/core/base.html:155
+msgid "Impress"
+msgstr "Impressum"
+
+#: templates/core/base.html:163
+msgid "Privacy Policy"
+msgstr "Datenschutzerklärung"
+
+#: templates/core/base_print.html:64
+msgid "Powered by AlekSIS"
+msgstr "Betrieben mit AlekSIS"
+
+#: templates/core/group/child_groups.html:18
+msgid ""
+"\n"
+"          You can use this to assign child groups to groups. Please use the filters below to select groups you want to\n"
+"          change and click \"Next\".\n"
+"        "
+msgstr ""
+"\n"
+"          Sie können diese Seite verwenden, um Kindgruppen zu Gruppen zuzuordnen. Bitte nutzen Sie die folgenden Filter, um die Gruppen auszuwählen, die Sie \n"
+"          ändern möchten und klicken auf \"Weiter\".\n"
+"        "
+
+#: templates/core/group/child_groups.html:31
+msgid "Update selection"
+msgstr "Auswahl aktualisieren"
+
+#: templates/core/group/child_groups.html:35
+msgid "Clear all filters"
+msgstr "Alle Filter leeren"
+
+#: templates/core/group/child_groups.html:39
+msgid "Currently selected groups"
+msgstr "Aktuell ausgewählte Gruppen"
+
+#: templates/core/group/child_groups.html:52
+msgid "Start assigning child groups for this groups"
+msgstr "Zuordnung von Kindgruppen zu Gruppen starten"
+
+#: templates/core/group/child_groups.html:61
+msgid ""
+"\n"
+"            Please select some groups in order to go on with assigning.\n"
+"          "
+msgstr ""
+"\n"
+"            Bitte wählen Sie Gruppen aus, um Gruppen zuzuordnen.\n"
+"          "
+
+#: templates/core/group/child_groups.html:72
+msgid "Current group:"
+msgstr "Aktuelle Gruppe:"
+
+#: templates/core/group/child_groups.html:78
+msgid "Please be careful!"
+msgstr "Bitte seien Sie vorsichtig!"
+
+#: templates/core/group/child_groups.html:79
+msgid ""
+"\n"
+"            If you click \"Back\" or \"Next\" the current group assignments are not saved.\n"
+"            If you click \"Save\", you will overwrite all existing child group relations for this group with what you\n"
+"            selected on this page.\n"
+"          "
+msgstr ""
+"\n"
+"            Wenn Sie auf \"Zurück\" oder \"Weiter\" klicken, werden die aktuellen Gruppenzuordnungen nicht gespeichert.\n"
+"Wenn Sie auf \"Speichern\" klicken, werden alle existierenden Zuordnungen von Kindgruppen für diese Gruppe\n"
+"mit dem überschrieben, was Sie auf dieser Seite ausgewählt haben.\n"
+"          "
+
+#: templates/core/group/child_groups.html:93
+#: templates/core/group/child_groups.html:128
+#: templates/two_factor/_wizard_actions.html:15
+#: templates/two_factor/_wizard_actions.html:20
+msgid "Back"
+msgstr "Zurück"
+
+#: templates/core/group/child_groups.html:99
+#: templates/core/group/child_groups.html:134
+#: templates/two_factor/_wizard_actions.html:26
+msgid "Next"
+msgstr "Weiter"
+
+#: templates/core/group/child_groups.html:106
+#: templates/core/group/child_groups.html:141
+#: templates/core/partials/save_button.html:3
+msgid "Save"
+msgstr "Speichern"
+
+#: templates/core/group/child_groups.html:112
+#: templates/core/group/child_groups.html:147
+msgid "Save and next"
+msgstr "Speichern und weiter"
+
+#: templates/core/group/edit.html:6 templates/core/group/edit.html:7
+msgid "Edit group"
+msgstr "Gruppe editieren"
+
+#: templates/core/group/full.html:37 templates/core/person/full.html:36
+msgid "Change preferences"
+msgstr "Einstellungen ändern"
+
+#: templates/core/group/list.html:14
+msgid "Create group"
+msgstr "Gruppe erstellen"
+
+#: templates/core/group/list.html:17
+msgid "Filter groups"
+msgstr "Gruppen filtern"
+
+#: templates/core/group/list.html:24 templates/core/person/list.html:28
+msgid "Clear"
+msgstr "Zurücksetzen"
+
+#: templates/core/group/list.html:28
+msgid "Selected groups"
+msgstr "Ausgewählte Gruppen"
+
+#: templates/core/group_type/edit.html:6 templates/core/group_type/edit.html:7
+msgid "Edit group type"
+msgstr "Gruppentyp editieren"
+
+#: templates/core/group_type/list.html:14
+msgid "Create group type"
+msgstr "Gruppentyp erstellen"
+
+#: templates/core/index.html:4
+msgid "Home"
+msgstr "Startseite"
+
+#: templates/core/index.html:42
+msgid "Last activities"
+msgstr "Letzte Aktivitäten"
+
+#: templates/core/index.html:60
+msgid "No activities available yet."
+msgstr "Aktuell keine Aktivitäten verfügbar."
+
+#: templates/core/index.html:65
+msgid "Recent notifications"
+msgstr "Letzte Benachrichtigungen"
+
+#: templates/core/index.html:81
+msgid "More information →"
+msgstr "Mehr Informationen →"
+
+#: templates/core/index.html:88
+msgid "No notifications available yet."
+msgstr "Aktuell keine Benachrichtigungen verfügbar."
+
+#: templates/core/pages/about.html:6 templates/core/pages/about.html:15
+msgid "About AlekSIS"
+msgstr "Über AlekSIS"
+
+#: templates/core/pages/about.html:7
+msgid "AlekSIS – The Free School Information System"
+msgstr "AlekSIS – The Free School Information System"
+
+#: templates/core/pages/about.html:17
+msgid ""
+"\n"
+"              This platform is powered by AlekSIS, a web-based school information system (SIS) which can be used\n"
+"              to manage and/or publish organisational artifacts of educational institutions. AlekSIS is free software and\n"
+"              can be used by anyone.\n"
+"            "
+msgstr ""
+"\n"
+"              Diese Plattform wird mit AlekSIS, einem webbasierten Schulinformationssystem (SIS), \n"
+"welches für die Verwaltung und/oder Veröffentlichung von Bildungseinrichtungen verwendet werden kann.\n"
+"AlekSIS ist freie Software und kann von jedem benutzt werden.\n"
+"            "
+
+#: templates/core/pages/about.html:25
+msgid "Website of AlekSIS"
+msgstr "Website von AlekSIS"
+
+#: templates/core/pages/about.html:26
+msgid "Source code"
+msgstr "Quellcode"
+
+#: templates/core/pages/about.html:35
+msgid "Licence information"
+msgstr "Lizenzinformationen"
+
+#: templates/core/pages/about.html:37
+msgid ""
+"\n"
+"              The core and the official apps of AlekSIS are licenced under the EUPL, version 1.2 or later. For licence\n"
+"              information from third-party apps, if installed, refer to the respective components below. The\n"
+"              licences are marked like this:\n"
+"            "
+msgstr ""
+"\n"
+"              Der Core und die offiziellen Apps von AlekSIS sind unter der EUPL, Version 1.2 oder später, lizenziert. Für Lizenzinformationen\n"
+"zu Apps von Drittanbietern, wenn installiert, siehe direkt bei der jeweiligen App weiter unten auf dieser Seite. Die Lizenzen\n"
+"sind wie folgt markiert:\n"
+"            "
+
+#: templates/core/pages/about.html:45
+msgid "Free/Open Source Licence"
+msgstr "Freie/Open Source Lizenz"
+
+#: templates/core/pages/about.html:46
+msgid "Other Licence"
+msgstr "Andere Lizenz"
+
+#: templates/core/pages/about.html:50
+msgid "Full licence text"
+msgstr "Kompletter Lizenztext"
+
+#: templates/core/pages/about.html:51
+msgid "More information about the EUPL"
+msgstr "Weitere Informationen über die EUPL"
+
+#: templates/core/pages/about.html:90
+#, python-format
+msgid ""
+"\n"
+"                    This app is licenced under %(licence)s.\n"
+"                  "
+msgstr ""
+"\n"
+"                    Diese App ist unter %(licence)s lizenziert.\n"
+"                  "
+
+#: templates/core/pages/delete.html:6
+#, python-format
+msgid "Delete %(object_name)s"
+msgstr "%(object_name)s löschen"
+
+#: templates/core/pages/delete.html:13
+#, python-format
+msgid ""
+"\n"
+"      Do you really want to delete the %(object_name)s \"%(object)s\"?\n"
+"    "
+msgstr ""
+"\n"
+"      Möchten Sie wirklich %(object_name)s \"%(object)s\" löschen?\n"
+"    "
+
+#: templates/core/pages/offline.html:6
+msgid ""
+"No internet\n"
+"    connection."
+msgstr ""
+"Keine\n"
+"    Internetverbindung."
+
+#: templates/core/pages/offline.html:10
+msgid ""
+"\n"
+"      There was an error accessing this page. You probably don't have an internet connection. Check to see if your WiFi\n"
+"      or mobile data is turned on and try again. If you think you are connected, please contact the system\n"
+"      administrators:\n"
+"    "
+msgstr ""
+"\n"
+"      Es ist ein Fehler beim Aufrufen der Seite aufgetreten. Eventuell haben Sie keine Internetverbindung. Bitte prüfen Sie, ob WLAN oder mobile Daten aktiv sind, \n"
+"      und probieren Sie es erneut. Wenn Sie der Meinung sind, dass Sie mit dem Internet verbunden sind, kontaktieren Sie bitte einen Ihrer \n"
+"      Systemadministratoren:\n"
+"    "
+
+#: templates/core/pages/progress.html:27
+msgid ""
+"\n"
+"              Without activated JavaScript the progress status can't be updated.\n"
+"            "
+msgstr ""
+"\n"
+"              Ohne aktiviertes JavaScript kann der Fortschritt leider nicht "
+"aktualisiert werden.\n"
+"            "
+
+#: templates/core/pages/progress.html:47
+#: templates/two_factor/core/otp_required.html:19
+msgid "Go back"
+msgstr "Zurück"
+
+#: templates/core/pages/system_status.html:12
+msgid "System checks"
+msgstr "Systemprüfungen"
+
+#: templates/core/pages/system_status.html:21
+msgid "Maintenance mode enabled"
+msgstr "Wartungsmodus aktiviert"
+
+#: templates/core/pages/system_status.html:23
+msgid ""
+"\n"
+"                Only admin and visitors from internal IPs can access thesite.\n"
+"              "
+msgstr ""
+"\n"
+"                Nur Administratoren und Besucher von internen IP-Adressen können die Seite aufrufen.\n"
+"              "
+
+#: templates/core/pages/system_status.html:34
+msgid "Maintenance mode disabled"
+msgstr "Wartungsmodus deaktiviert"
+
+#: templates/core/pages/system_status.html:35
+msgid "Everyone can access the site."
+msgstr "Jeder kann die Seite aufrufen."
+
+#: templates/core/pages/system_status.html:45
+msgid "Debug mode enabled"
+msgstr "Debug-Modus aktiviert"
+
+#: templates/core/pages/system_status.html:47
+msgid ""
+"\n"
+"                The web server throws back debug information on errors. Do not use in production!\n"
+"              "
+msgstr ""
+"\n"
+"                Der Server gibt Debug-Informationen bei Fehlern zurück. Nicht im Produktivbetrieb nutzen!\n"
+"              "
+
+#: templates/core/pages/system_status.html:54
+msgid "Debug mode disabled"
+msgstr "Debug-Modus deaktivert"
+
+#: templates/core/pages/system_status.html:56
+msgid ""
+"\n"
+"                Debug mode is disabled. Default error pages are displayed on errors.\n"
+"              "
+msgstr ""
+"\n"
+"                Debug-Modus ist deaktiviert. Standard-Fehlerseiten werden bei Fehlern angezeigt.\n"
+"              "
+
+#: templates/core/pages/system_status.html:69
+msgid "System health checks"
+msgstr "Systemprüfungen"
+
+#: templates/core/pages/system_status.html:75
+msgid "Service"
+msgstr "Dienst"
+
+#: templates/core/pages/system_status.html:76
+#: templates/core/pages/system_status.html:115
+msgid "Status"
+msgstr "Status"
+
+#: templates/core/pages/system_status.html:77
+msgid "Time taken"
+msgstr "Dauer"
+
+#: templates/core/pages/system_status.html:96
+msgid "seconds"
+msgstr "Sekunden"
+
+#: templates/core/pages/system_status.html:107
+msgid "Celery task results"
+msgstr "Celery Task-Ergebnisse"
+
+#: templates/core/pages/system_status.html:112
+msgid "Task"
+msgstr "Task"
+
+#: templates/core/pages/system_status.html:113
+msgid "ID"
+msgstr "ID"
+
+#: templates/core/pages/system_status.html:114
+msgid "Date done"
+msgstr "Erledigungszeitpunkt"
+
+#: templates/core/partials/announcements.html:9
+#: templates/core/partials/announcements.html:36
+#, python-format
+msgid ""
+"\n"
+"              Valid for %(from)s\n"
+"            "
+msgstr ""
+"\n"
+"              Gültig für %(from)s\n"
+"            "
+
+#: templates/core/partials/announcements.html:13
+#, python-format
+msgid ""
+"\n"
+"              Valid from %(from)s until %(until)s\n"
+"            "
+msgstr ""
+"\n"
+"              Gültig von %(from)s bis %(until)s\n"
+"            "
+
+#: templates/core/partials/announcements.html:40
+#, python-format
+msgid ""
+"\n"
+"              Valid for %(from)s – %(until)s\n"
+"            "
+msgstr ""
+"\n"
+"              Gültig von %(from)s – %(until)s\n"
+"            "
+
+#: templates/core/partials/crud_events.html:10
+#, python-format
+msgid ""
+"\n"
+"              Created by %(person)s\n"
+"            "
+msgstr ""
+"\n"
+"              Erstellt von %(person)s\n"
+"            "
+
+#: templates/core/partials/crud_events.html:14
+#: templates/core/partials/crud_events.html:22
+#: templates/core/partials/crud_events.html:26
+#, python-format
+msgid ""
+"\n"
+"              Updated by %(person)s\n"
+"            "
+msgstr ""
+"\n"
+"              Aktualisiert von %(person)s\n"
+"            "
+
+#: templates/core/partials/crud_events.html:18
+#, python-format
+msgid ""
+"\n"
+"              Deleted by %(person)s\n"
+"            "
+msgstr ""
+"\n"
+"              Gelöscht von %(person)s\n"
+"            "
+
+#: templates/core/partials/language_form.html:16
+msgid "Language"
+msgstr "Sprache"
+
+#: templates/core/partials/language_form.html:28
+msgid "Select language"
+msgstr "Sprache auswählen"
+
+#: templates/core/partials/no_person.html:12
+msgid ""
+"\n"
+"            Your administrator account is not linked to any person. Therefore,\n"
+"            a dummy person has been linked to your account.\n"
+"          "
+msgstr ""
+"\n"
+"            Ihr Administratorenkonto ist mit keiner Person verknüpft. Deshalb\n"
+"            wurde Ihr Konto mit einer Dummyperson verknüpft.\n"
+"          "
+
+#: templates/core/partials/no_person.html:19
+msgid ""
+"\n"
+"            Your user account is not linked to a person. This means you\n"
+"            cannot access any school-related information. Please contact\n"
+"            the managers of AlekSIS at your school.\n"
+"          "
+msgstr ""
+"\n"
+"            Ihr Benutzerkonto ist nicht mit einer Person verknüpft. Das bedeutet, dass Sie\n"
+"        keine schulbezogenen Informationen aufrufen können. Bitte wenden Sie sich an\n"
+"        die Verwaltenden von AlekSIS an Ihrer Schule.\n"
+"          "
+
+#: templates/core/person/accounts.html:7 templates/core/person/accounts.html:9
+msgid "Link persons to accounts"
+msgstr "Personen mit Benutzerkonten verknüpfen"
+
+#: templates/core/person/accounts.html:16
+msgid ""
+"\n"
+"        You can use this form to assign user accounts to persons. Use the\n"
+"        dropdowns to select existing accounts; use the text fields to create new\n"
+"        accounts on-the-fly. The latter will create a new account with the\n"
+"        entered username and copy all other details from the person.\n"
+"      "
+msgstr ""
+"\n"
+"        Sie können dieses Formular nutzen, um Benutzerkonten Personen zuzuweisen. Nutzen Sie das\n"
+"    Auswahlfeld um ein existierendes Benutzerkonto auszuwählen; nutzen Sie das Textfeld, um einen neuen Benutzer zu\n"
+"    erstellen. Letzteres erstellt ein neues Benutzerkonto mit dem\n"
+"    eingegebenen Benutzernamen und kopiert alle anderen Daten der Person.\n"
+"      "
+
+#: templates/core/person/accounts.html:31
+#: templates/core/person/accounts.html:55
+msgid "Update"
+msgstr "Aktualisieren"
+
+#: templates/core/person/accounts.html:37
+msgid "Existing account"
+msgstr "Existierendes Konto"
+
+#: templates/core/person/accounts.html:38
+msgid "New account"
+msgstr "Neues Konto"
+
+#: templates/core/person/edit.html:11 templates/core/person/edit.html:12
+msgid "Edit person"
+msgstr "Person editieren"
+
+#: templates/core/person/full.html:42
+msgid "Contact details"
+msgstr "Kontaktdetails"
+
+#: templates/core/person/full.html:122
+msgid "Children"
+msgstr "Kinder"
+
+#: templates/core/person/list.html:17
+msgid "Create person"
+msgstr "Person erstellen"
+
+#: templates/core/person/list.html:21
+msgid "Filter persons"
+msgstr "Personen filtern"
+
+#: templates/core/person/list.html:32
+msgid "Selected persons"
+msgstr "Ausgewählte Personen"
+
+#: templates/core/school_term/create.html:6
+#: templates/core/school_term/create.html:7
+#: templates/core/school_term/list.html:14
+msgid "Create school term"
+msgstr "Schuljahr erstellen"
+
+#: templates/core/school_term/edit.html:6
+#: templates/core/school_term/edit.html:7
+msgid "Edit school term"
+msgstr "Schuljahr bearbeiten"
+
+#: templates/dynamic_preferences/form.html:9
+msgid "Site preferences"
+msgstr "Seiteneinstellungen ändern"
+
+#: templates/dynamic_preferences/form.html:11
+msgid "My preferences"
+msgstr "Meine Einstellungen"
+
+#: templates/dynamic_preferences/form.html:13
+#, python-format
+msgid "Preferences for %(instance)s"
+msgstr "Einstellungen für %(instance)s"
+
+#: templates/dynamic_preferences/form.html:25
+msgid "Save preferences"
+msgstr "Einstellungen speichern"
+
+#: templates/dynamic_preferences/sections.html:7
+msgid "All"
+msgstr "Alle"
+
+#: templates/impersonate/list_users.html:8
+msgid "Impersonate user"
+msgstr "Als Benutzer verkleiden"
+
+#: templates/search/search.html:8
+msgid "Global Search"
+msgstr "Globale Suche"
+
+#: templates/search/search.html:15
+msgid "Search Term"
+msgstr "Suchausdruck"
+
+#: templates/search/search.html:26
+msgid "Results"
+msgstr "Ergebnisse"
+
+#: templates/search/search.html:38
+msgid "No search results could be found to your search."
+msgstr "Es konnten keine Suchergebnisse zu Ihrem Suchausdruck gefunden werden."
+
+#: templates/search/search.html:87
+msgid "Please enter a search term above."
+msgstr "Bitte geben Sie einen Suchausdruck ein."
+
+#: templates/templated_email/notification.email:3
+msgid "New notification for"
+msgstr "Neue Benachrichtigung für"
+
+#: templates/templated_email/notification.email:6
+#: templates/templated_email/notification.email:27
+#, python-format
+msgid "Dear %(notification_user)s,"
+msgstr "Liebe(r) %(notification_user)s,"
+
+#: templates/templated_email/notification.email:8
+#: templates/templated_email/notification.email:29
+msgid "we got a new notification for you:"
+msgstr "wir haben eine neue Benachrichtigung für Sie:"
+
+#: templates/templated_email/notification.email:15
+#: templates/templated_email/notification.email:35
+msgid "More information"
+msgstr "Mehr Informationen"
+
+#: templates/templated_email/notification.email:18
+#, python-format
+msgid ""
+"\n"
+"        Sent by %(trans_sender)s at %(trans_created_at)s\n"
+"    "
+msgstr ""
+"\n"
+"        Von %(trans_sender)s am %(trans_created_at)s\n"
+"    "
+
+#: templates/templated_email/notification.email:22
+#: templates/templated_email/notification.email:46
+msgid "Your AlekSIS team"
+msgstr "Ihr AlekSIS-Team"
+
+#: templates/templated_email/notification.email:40
+#, python-format
+msgid ""
+"\n"
+"            Sent by %(trans_sender)s at %(trans_created_at)s\n"
+"        "
+msgstr ""
+"\n"
+"            Von %(trans_sender)s um %(trans_created_at)s\n"
+"        "
+
+#: templates/two_factor/_base_focus.html:6
+#: templates/two_factor/core/otp_required.html:22
+#: templates/two_factor/core/setup.html:5
+#: templates/two_factor/profile/profile.html:87
+msgid "Enable Two-Factor Authentication"
+msgstr "Zwei-Faktor-Authentifizierung aktivieren"
+
+#: templates/two_factor/_wizard_actions.html:6
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: templates/two_factor/core/backup_tokens.html:5
+#: templates/two_factor/core/backup_tokens.html:9
+#: templates/two_factor/profile/profile.html:46
+msgid "Backup Tokens"
+msgstr "Backup-Token"
+
+#: templates/two_factor/core/backup_tokens.html:14
+msgid ""
+"\n"
+"        Backup tokens can be used when your primary and backup\n"
+"        phone numbers aren't available. The backup tokens below can be used\n"
+"        for login verification. If you've used up all your backup tokens, you\n"
+"        can generate a new set of backup tokens. Only the backup tokens shown\n"
+"        below will be valid.\n"
+"      "
+msgstr ""
+"\n"
+"        Backup-Token können genutzt werden, wenn Ihre primären und Backup-\n"
+"        Telefonnummern nicht verfügbar sind. Die Backup-Tokens unten können für\n"
+"        die Anmeldungsverifizierung genutzt werden. Wenn Sie alle Backup-Tokens genutzt haben,\n"
+"        müssen Sie neue generieren. Nur gültige Backup-Tokens werden angezeigt.\n"
+"      "
+
+#: templates/two_factor/core/backup_tokens.html:33
+msgid ""
+"\n"
+"          Print these tokens and keep them somewhere safe.\n"
+"        "
+msgstr ""
+"\n"
+"          Drucken Sie diese Tokens aus und bewahren Sie sie gut auf.\n"
+"        "
+
+#: templates/two_factor/core/backup_tokens.html:39
+msgid "You don't have any backup codes yet."
+msgstr "Sie haben aktuell keine Backup-Codes."
+
+#: templates/two_factor/core/backup_tokens.html:45
+msgid "Back to Account Security"
+msgstr "Zurück zur Kontosicherheit"
+
+#: templates/two_factor/core/backup_tokens.html:49
+msgid "Generate Tokens"
+msgstr "Tokens generieren"
+
+#: templates/two_factor/core/login.html:16
+msgid "You have no permission to view this page. Please login with an other account."
+msgstr "Sie haben nicht die nötigen Berechtigungen, um diese Seite aufzurufen. Bitte loggen Sie sich mit einem anderen Account ein."
+
+#: templates/two_factor/core/login.html:24
+msgid "Please login to see this page."
+msgstr "Bitte melden Sie sich an, um diese Seite zu sehen."
+
+#: templates/two_factor/core/login.html:30
+msgid "Login with username and password"
+msgstr "Anmeldung mit Nutzername und Passwort"
+
+#: templates/two_factor/core/login.html:40
+msgid ""
+"We are calling your phone right now, please enter the\n"
+"              digits you hear."
+msgstr ""
+"Wir rufen Ihr Telefon jetzt an, bitte geben Sie die\n"
+"                Zahlen ein, die Sie hören."
+
+#: templates/two_factor/core/login.html:43
+msgid ""
+"We sent you a text message, please enter the tokens we\n"
+"              sent."
+msgstr ""
+"Wir haben Ihnen eine Textnachricht geschickt. Bitte geben Sie die Tokens ein,\n"
+"              die wir Ihnen geschickt haben."
+
+#: templates/two_factor/core/login.html:46
+msgid ""
+"Please enter the tokens generated by your token\n"
+"              generator."
+msgstr ""
+"Bitte geben Sie den von Ihrem Token-Generator\n"
+"              generierten Token ein."
+
+#: templates/two_factor/core/login.html:50
+msgid ""
+"Use this form for entering backup tokens for logging in.\n"
+"            These tokens have been generated for you to print and keep safe. Please\n"
+"            enter one of these backup tokens to login to your account."
+msgstr ""
+"Nutzen Sie dieses Formular um Ihre Backup-Tokens zum Anmelden einzugeben.\n"
+"                Diese Tokens wurden für Sie generiert, um diese gut aufzubewahren. Bitte\n"
+"                geben Sie einen dieser Tokens ein, um sich einzuloggen."
+
+#: templates/two_factor/core/login.html:68
+msgid "Or, alternatively, use one of your backup phones:"
+msgstr "Oder, alternativ, nutzen Sie eins Ihrer Backup-Telefone:"
+
+#: templates/two_factor/core/login.html:78
+msgid "As a last resort, you can use a backup token:"
+msgstr "Als letzte Möglichkeit können Sie einen Backup-Token nutzen:"
+
+#: templates/two_factor/core/login.html:81
+msgid "Use Backup Token"
+msgstr "Backup-Token nutzen"
+
+#: templates/two_factor/core/login.html:93
+msgid "Use alternative login options"
+msgstr "Alternative Anmeldemöglichkeiten nutzen"
+
+#: templates/two_factor/core/otp_required.html:9
+msgid "Permission Denied"
+msgstr "Zugriff verwehrt"
+
+#: templates/two_factor/core/otp_required.html:10
+msgid ""
+"The page you requested, enforces users to verify using\n"
+"          two-factor authentication for security reasons. You need to enable these\n"
+"          security features in order to access this page."
+msgstr ""
+"Die von Ihnen gewünschte Seite erfordert aus Sicherheitsgründen\n"
+"          eine Verifizierung durch Zwei-Faktor-Authentifizierung. Sie müssen diese\n"
+"          Sicherheitsfunktion aktivieren, um diese Seite aufzurufen."
+
+#: templates/two_factor/core/otp_required.html:14
+msgid ""
+"Two-factor authentication is not enabled for your\n"
+"          account. Enable two-factor authentication for enhanced account\n"
+"          security."
+msgstr ""
+"Die Zwei-Faktor-Authentifizierung ist nicht für Ihren Account aktiviert.\n"
+"          Aktivieren Sie Zwei-Faktor-Authentifizierung für eine verbesserte\n"
+"          Accountsicherheit."
+
+#: templates/two_factor/core/phone_register.html:5
+#: templates/two_factor/core/phone_register.html:9
+msgid "Add Backup Phone"
+msgstr "Backup-Telefon hinzufügen"
+
+#: templates/two_factor/core/phone_register.html:12
+msgid ""
+"You'll be adding a backup phone number to your\n"
+"      account. This number will be used if your primary method of\n"
+"      registration is not available."
+msgstr ""
+"Sie werden eine Backup-Telefonnummer zu Ihrem\n"
+"      Account hinzufügen. Diese Nummer wird genutzt, wenn Ihre primäre\n"
+"      Authentifikationsmethode nicht verfügbar ist."
+
+#: templates/two_factor/core/phone_register.html:16
+msgid ""
+"We've sent a token to your phone number. Please\n"
+"      enter the token you've received."
+msgstr ""
+"Wir haben Ihnen einen Token an Ihre Telefonnummer gesendet.\n"
+"      Bitte geben Sie diesen Token ein."
+
+#: templates/two_factor/core/setup.html:9
+msgid ""
+"\n"
+"        You are about to take your account security to the\n"
+"        next level. Follow the steps in this wizard to enable two-factor\n"
+"        authentication.\n"
+"      "
+msgstr ""
+"\n"
+"        Sie sind dabei, Ihre Accountsicherheit auf das\n"
+"       nächste Level zu erhöhen. Bitte folgen Sie den Schritten im Wizard um die\n"
+"       Zwei-Faktor-Authentifizierug zu aktivieren.\n"
+"      "
+
+#: templates/two_factor/core/setup.html:17
+msgid ""
+"\n"
+"        Please select which authentication method you would like to use:\n"
+"      "
+msgstr ""
+"\n"
+"        Bitte wählen Sie aus, welche Authentifikationsmethode Sie nutzen wollen:\n"
+"      "
+
+#: templates/two_factor/core/setup.html:23
+msgid ""
+"\n"
+"        To start using a token generator, please use your\n"
+"        smartphone to scan the QR code below. For example, use Google\n"
+"        Authenticator. Then, enter the token generated by the app.\n"
+"      "
+msgstr ""
+"\n"
+"        Um mit dem Codegenerator zu starten, benutzen Sie bitte Ihr Smartphone,\n"
+"um diesen QR-Code zu scannen (z. B. den Google Authenticator). Dann geben Sie \n"
+"den in der App angezeigten Code an:\n"
+"      "
+
+#: templates/two_factor/core/setup.html:34
+msgid ""
+"\n"
+"        Please enter the phone number you wish to receive the\n"
+"        text messages on. This number will be validated in the next step.\n"
+"      "
+msgstr ""
+"\n"
+"        Bitte geben Sie die Telefonnummer des Gerätes an,\n"
+"        an die die SMS-Nachrichten geschickt werden sollen. Diese Nummer wird im nächsten Schritt überprüft.\n"
+"      "
+
+#: templates/two_factor/core/setup.html:41
+msgid ""
+"\n"
+"        Please enter the phone number you wish to be called on.\n"
+"        This number will be validated in the next step.\n"
+"      "
+msgstr ""
+"\n"
+"        Bitte geben Sie die Telefonnummer an, die wir anrufen sollen.\n"
+"Diese Nummer wird im nächsten Schritt überprüft.\n"
+"      "
+
+#: templates/two_factor/core/setup.html:50
+msgid ""
+"\n"
+"            We are calling your phone right now, please enter the digits you hear.\n"
+"          "
+msgstr ""
+"\n"
+"            Wir rufen Ihr Telefon jetzt an, bitte geben Sie die Zahlen ein, die Sie hören.\n"
+"          "
+
+#: templates/two_factor/core/setup.html:56
+msgid ""
+"\n"
+"            We sent you a text message, please enter the tokens we sent.\n"
+"          "
+msgstr ""
+"\n"
+"            Wir haben Ihnen per SMS einen Token geschickt, bitte geben Sie diesen ein.\n"
+"          "
+
+#: templates/two_factor/core/setup.html:63
+msgid ""
+"\n"
+"          We've encountered an issue with the selected authentication method. Please\n"
+"          go back and verify that you entered your information correctly, try\n"
+"          again, or use a different authentication method instead. If the issue\n"
+"          persists, contact the site administrator.\n"
+"        "
+msgstr ""
+"\n"
+"          Mit der ausgewählten Authentifizierungsmethode ist ein Fehler aufgetreten. \n"
+"Bitte gehen Sie zurück und überprüfen, dass Sie die Informationen korrekt eingegeben haben, versuchen Sie es erneut,\n"
+"oder benutzen Sie stattdessen eine andere Authentifizierungsmethode. \n"
+"Wenn der Fehler bestehen bleibt, kontaktieren Sie bitte einen der Administratoren.\n"
+"        "
+
+#: templates/two_factor/core/setup.html:73
+msgid ""
+"\n"
+"        To identify and verify your YubiKey, please insert a\n"
+"        token in the field below. Your YubiKey will be linked to your\n"
+"        account.\n"
+"      "
+msgstr ""
+"\n"
+"        Um Ihren YubiKey zu identifizieren und verifizieren, \n"
+"geben Sie bitte ein Token ein. \n"
+"Dann wird Ihr YubiKey mit Ihrem Konto verknüpft.\n"
+"      "
+
+#: templates/two_factor/core/setup_complete.html:5
+#: templates/two_factor/core/setup_complete.html:9
+msgid "Two-Factor Authentication successfully enabled"
+msgstr "Zwei-Faktor-Authentifizierung erfolgreich aktiviert"
+
+#: templates/two_factor/core/setup_complete.html:14
+msgid ""
+"\n"
+"        Congratulations, you've successfully enabled two-factor authentication.\n"
+"      "
+msgstr ""
+"\n"
+"        Gratulation, Sie haben die Zwei-Faktor-Authentifizierung erfolgreich aktiviert.\n"
+"      "
+
+#: templates/two_factor/core/setup_complete.html:24
+#: templates/two_factor/core/setup_complete.html:44
+msgid "Back to Profile"
+msgstr "Zurück zum Profil"
+
+#: templates/two_factor/core/setup_complete.html:28
+#: templates/two_factor/core/setup_complete.html:48
+msgid "Generate backup codes"
+msgstr "Backup-Codes generieren"
+
+#: templates/two_factor/core/setup_complete.html:34
+msgid ""
+"\n"
+"          However, it might happen that you don't have access to\n"
+"          your primary token device. To enable account recovery, generate backup codes\n"
+"          or add a phone number.\n"
+"        "
+msgstr ""
+"\n"
+"          Es kann passieren, dass Sie keinen Zugriff auf Ihren Tokengenerator haben. \n"
+"Um die Wiederherstellung zu aktivieren,\n"
+"generieren Sie Backupcodes oder fügen eine Telefonnummer hinzu.\n"
+"        "
+
+#: templates/two_factor/core/setup_complete.html:52
+#: templates/two_factor/profile/profile.html:41
+msgid "Add Phone Number"
+msgstr "Telefonnummer hinzufügen"
+
+#: templates/two_factor/profile/disable.html:5
+#: templates/two_factor/profile/disable.html:9
+#: templates/two_factor/profile/profile.html:63
+#: templates/two_factor/profile/profile.html:73
+msgid "Disable Two-Factor Authentication"
+msgstr "Zwei-Faktor-Authentifizierung deaktiveren"
+
+#: templates/two_factor/profile/disable.html:12
+msgid "You are about to disable two-factor authentication. This weakens your account security, are you sure?"
+msgstr "Sie sind dabei, Zwei-Faktor-Authentifizierung zu deaktivieren. Das verschlechtert Ihre Kontosicherheit. Sind Sie sicher?"
+
+#: templates/two_factor/profile/disable.html:26
+msgid "Disable"
+msgstr "Deaktivieren"
+
+#: templates/two_factor/profile/profile.html:5
+#: templates/two_factor/profile/profile.html:10
+msgid "Account Security"
+msgstr "Kontosicherheit"
+
+#: templates/two_factor/profile/profile.html:15
+msgid "Tokens will be generated by your token generator."
+msgstr "Tokens werden von Ihrem Token-Generator generiert."
+
+#: templates/two_factor/profile/profile.html:17
+#, python-format
+msgid "Primary method: %(primary)s"
+msgstr "Primäre Methode: %(primary)s"
+
+#: templates/two_factor/profile/profile.html:19
+msgid "Tokens will be generated by your YubiKey."
+msgstr "Tokens werden von Ihrem YubiKey generiert."
+
+#: templates/two_factor/profile/profile.html:23
+msgid "Backup Phone Numbers"
+msgstr "Backup-Telefonnummern"
+
+#: templates/two_factor/profile/profile.html:24
+msgid ""
+"If your primary method is not available, we are able to\n"
+"        send backup tokens to the phone numbers listed below."
+msgstr ""
+"Wenn Ihre primäre Methode nicht verfügbar ist, sind wir in der Lage,\n"
+"        Backup-Tokens zu den unten aufgelisteten Telefonnummern zu schicken."
+
+#: templates/two_factor/profile/profile.html:33
+msgid "Unregister"
+msgstr "Abmelden"
+
+#: templates/two_factor/profile/profile.html:48
+msgid ""
+"If you don't have any device with you, you can access\n"
+"        your account using backup tokens."
+msgstr ""
+"Wenn Sie keines Ihrer Geräte dabei haben, können Sie sich\n"
+"      mit Backup-Tokens einloggen."
+
+#: templates/two_factor/profile/profile.html:50
+#, python-format
+msgid ""
+"\n"
+"        You have only one backup token remaining.\n"
+"      "
+msgid_plural ""
+"\n"
+"        You have %(counter)s backup tokens remaining.\n"
+"      "
+msgstr[0] ""
+"\n"
+"        Sie haben keinen Backup-Token übrig.\n"
+"      "
+msgstr[1] ""
+"\n"
+"        Sie haben %(counter)s Backup-Tokens übrig.\n"
+"      "
+
+#: templates/two_factor/profile/profile.html:59
+msgid "Show Codes"
+msgstr "Codes anzeigen"
+
+#: templates/two_factor/profile/profile.html:65
+msgid ""
+"\n"
+"        However we strongly discourage you to do so, you can\n"
+"        also disable two-factor authentication for your account.\n"
+"      "
+msgstr ""
+"\n"
+"        Wir raten Ihnen jedoch dringend davon ab.\n"
+"        Sie können jedoch auch die Zwei-Faktor-Authentifizierung für Ihr Konto deaktivieren.\n"
+"      "
+
+#: templates/two_factor/profile/profile.html:78
+msgid ""
+"\n"
+"        Two-factor authentication is not enabled for your\n"
+"        account. Enable two-factor authentication for enhanced account\n"
+"        security.\n"
+"      "
+msgstr ""
+"\n"
+"        Die Zwei-Faktor-Authentifizierung ist nicht für Ihren Account aktiviert.\n"
+"          Aktivieren Sie Zwei-Faktor-Authentifizierung für eine verbesserte\n"
+"          Accountsicherheit.\n"
+"      "
+
+#: util/notifications.py:65
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#: util/notifications.py:66
+msgid "SMS"
+msgstr "SMS"
+
+#: views.py:122
+msgid "The school term has been created."
+msgstr "Das Schuljahr wurde erstellt."
+
+#: views.py:133
+msgid "The school term has been saved."
+msgstr "Das Schuljahr wurde gespeichert."
+
+#: views.py:273
+msgid "The child groups were successfully saved."
+msgstr "Die Untergruppen wurden gespeichert."
+
+#: views.py:309
+msgid "The person has been saved."
+msgstr "Die Person wurde gespeichert."
+
+#: views.py:346
+msgid "The group has been saved."
+msgstr "Die Gruppe wurde gespeichert."
+
+#: views.py:434
+msgid "The announcement has been saved."
+msgstr "Die Ankündigung wurde gespeichert."
+
+#: views.py:450
+msgid "The announcement has been deleted."
+msgstr "Ankündigung wurde gelöscht."
+
+#: views.py:521
+msgid "The preferences have been saved successfully."
+msgstr "Die Einstellungen wurde gespeichert."
+
+#: views.py:544
+msgid "The person has been deleted."
+msgstr "Die Person wurde gelöscht."
+
+#: views.py:557
+msgid "The group has been deleted."
+msgstr "Die Gruppe wurde gelöscht."
+
+#: views.py:588
+msgid "The additional_field has been saved."
+msgstr "Das zusätzliche Feld wurde gespeichert."
+
+#: views.py:622
+msgid "The additional field has been deleted."
+msgstr "Das zusätzliche Feld wurde gelöscht."
+
+#: views.py:646
+msgid "The group type has been saved."
+msgstr "Der Gruppentyp wurde gespeichert."
+
+#: views.py:676
+msgid "The group type has been deleted."
+msgstr "Der Gruppentyp wurde gelöscht."
+
+#~ msgid "Dear"
+#~ msgstr "Sehr geehrter"
+
+#~ msgid "Two factor auth"
+#~ msgstr "Zwei-Faktor-Authentifizierung"
+
+#~ msgid "Manage school"
+#~ msgstr "Schulverwaltung"
+
+#~ msgid "Edit school information"
+#~ msgstr "Schulinformationen bearbeiten"
+
+#~ msgid "Addtitional field"
+#~ msgstr "Zusätzliches Feld"
+
+#~ msgid "Short name of group"
+#~ msgstr "Kurzer Name der Gruppe"
+
+#~ msgid "Menu name"
+#~ msgstr "Menü-Name"
+
+#~ msgid ""
+#~ "\n"
+#~ "      If you think this is an error in AlekSIS, please contact your site\n"
+#~ "     administrators:\n"
+#~ "     "
+#~ msgstr ""
+#~ "\n"
+#~ "      Wenn Sie der Meinung sind, dass es sich um einen Fehler in AlekSIS handelt, kontaktieren Sie bitte einen Ihrer\n"
+#~ "     Systemadministratoren:\n"
+#~ "     "
+
+#~ msgid "AlekSIS (School Information System)"
+#~ msgstr "AlekSIS (Schulinformationssystem)"
+
+#~ msgid "Uploading... please wait..."
+#~ msgstr "Lädt hoch… bitte warten…"
+
+#~ msgid "Nothing to preview"
+#~ msgstr "Keine Vorschau"
+
+#~ msgid "Select Emoji to Insert"
+#~ msgstr "Wählen Sie ein Emoji zum Einfügen aus"
+
+#~ msgid "Preparing emojis..."
+#~ msgstr "Bereite Emoji vor…"
+
+#~ msgid "Markdown Guide"
+#~ msgstr "Markdown-Anleitung"
+
+#~ msgid ""
+#~ "This site is powered by Markdown. For full\n"
+#~ "            documentation,\n"
+#~ "            <a href=\"%(doc_url)s\" target=\"_blank\">click here</a>"
+#~ msgstr ""
+#~ "Diese Seite wird mit Markdown betrieben. Für komplette\n"
+#~ "            Dokumentation,\n"
+#~ "            <a href=\"%(doc_url)s\" target=\"_blank\">hier klicken</a>"
+
+#~ msgid "Code"
+#~ msgstr "Code"
+
+#~ msgid "Or"
+#~ msgstr "oder"
+
+#~ msgid "Bold"
+#~ msgstr "Fett"
+
+#~ msgid "Italic"
+#~ msgstr "kursiv"
+
+#~ msgid "Horizontal Line"
+#~ msgstr "horizontale Linie"
+
+#~ msgid "Heading"
+#~ msgstr "Überschrift"
+
+#~ msgid "H"
+#~ msgstr "H"
+
+#~ msgid "Pre or Code"
+#~ msgstr "Pre oder Code"
+
+#~ msgid "Pre"
+#~ msgstr "Pre"
+
+#~ msgid "Quote"
+#~ msgstr "Zitat"
+
+#~ msgid "Unordered List"
+#~ msgstr "Unsortierte Liste"
+
+#~ msgid "Ordered List"
+#~ msgstr "Sortierte Liste"
+
+#~ msgid "Full Screen"
+#~ msgstr "Vollbild"
+
+#~ msgid "Markdown Guide (Help)"
+#~ msgstr "Markdown-Anleitung (Hilfe)"
+
+#~ msgid "You are not allowed to mark notifications from other users as read!"
+#~ msgstr "Es ist Ihnen nicht erlaubt, Benachrichtigungen von anderen Benutzern als gelesen zu markieren!"
+
+#, fuzzy
+#~| msgid "School management"
+#~ msgid "School name"
+#~ msgstr "Schulverwaltung"
+
+#~ msgid "School logo"
+#~ msgstr "Schullogo"
+
+#~ msgid "Official name"
+#~ msgstr "Offizieller Name"
+
+#~ msgid "School"
+#~ msgstr "Schule"
+
+#~ msgid "Schools"
+#~ msgstr "Schulen"
+
+#~ msgid "Visible caption of the term"
+#~ msgstr "Sichtbare Beschriftung des Schuljahres"
+
+#~ msgid "Effective start date of term"
+#~ msgstr "Startdatum des Schuljahres"
+
+#~ msgid "Effective end date of term"
+#~ msgstr "Enddatum des Schuljahres"
+
+#~ msgid "Edit school"
+#~ msgstr "Schule bearbeiten"
+
+#~ msgid "School management"
+#~ msgstr "Schulverwaltung"
+
+#~ msgid "Reference ID of import source"
+#~ msgstr "Referenz-ID der Import-Quelle"
+
+#~ msgid "Enter your credentials."
+#~ msgstr "Geben Sie Ihre Zugangsdaten ein."
+
+#~ msgid "Website"
+#~ msgstr "Website"
+
+#~ msgid "Default school"
+#~ msgstr "Standardschule"
+
+#~ msgid "Default term"
+#~ msgstr "Standardschuljahr"
+
+#~ msgid "Forbidden"
+#~ msgstr "Verboten"
+
+#~ msgid "Not found"
+#~ msgstr "Nicht gefunden"
+
+#~ msgid "Internal Server Error"
+#~ msgstr "Interner Serverfehler"
+
+#~ msgid "Maintenance mode"
+#~ msgstr "Wartungsmodus"
+
+#~ msgid ""
+#~ "\n"
+#~ "     The maintenance mode is currently enabled. Please try again later.\n"
+#~ "    "
+#~ msgstr ""
+#~ "\n"
+#~ "     Der Wartungsmodus ist aktuell aktiviert. Bitte versuchen Sie es später erneut.\n"
+#~ "    "
+
+#~ msgid "Details"
+#~ msgstr "Details"
+
+#~ msgid "Group not found"
+#~ msgstr "Gruppe nicht gefunden"
+
+#~ msgid "Person not found"
+#~ msgstr "Person nicht gefunden"
+
+#~ msgid ""
+#~ "\n"
+#~ "          There is no person with this id.\n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "          Es existiert keine Person mit dieser ID.\n"
+#~ "        "
+
+#~ msgid "Recent backup cron jobs"
+#~ msgstr "Letzte Backup-Cron-Jobs"
+
+#~ msgid "AlekSIS Software"
+#~ msgstr "AlekSIS-Software"
+
+#~ msgid "Support"
+#~ msgstr "Unterstützung"
+
+#~ msgid "Get support"
+#~ msgstr "Unterstützung erhalten"
+
+#~ msgid ""
+#~ "\n"
+#~ "   The message was successfully submitted.\n"
+#~ "  "
+#~ msgstr ""
+#~ "\n"
+#~ "   Die Nachricht wurde erfolgreich übermittelt.\n"
+#~ "  "
+
+#~ msgid "Assorted"
+#~ msgstr "Unsortiert"
+
+#~ msgid "Administration"
+#~ msgstr "Verwaltung"
+
+#~ msgid "List of all groups"
+#~ msgstr "Liste aller Gruppen"
+
+#~ msgid "List of all persons"
+#~ msgstr "Liste aller Personen"
