@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: attune
+Version: 0.4.0
+Summary: Tools for tuning optical parametric amplifiers and multidimensional spectrometers.
+Home-page: https://github.com/wright-group/attune
+Author: Blaise Thompson
+Author-email: blaise@untzag.com
+License: MIT
+Keywords: spectroscopy science multidimensional visualization
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Scientific/Engineering
+Requires-Python: >=3.6
+Requires-Dist: WrightTools (>=3.2.5)
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: matplotlib
+Requires-Dist: tidy-headers
+Requires-Dist: appdirs
+Requires-Dist: maya
+Provides-Extra: dev
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: pre-commit ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: sphinx-gallery (>0.3.0) ; extra == 'docs'
+Requires-Dist: sphinx ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme ; extra == 'docs'
+
+attune
+------
+
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :target: https://github.com/psf/black
+
+Tools for tuning optical parametric amplifiers and multidimensional spectrometers.
+
+
