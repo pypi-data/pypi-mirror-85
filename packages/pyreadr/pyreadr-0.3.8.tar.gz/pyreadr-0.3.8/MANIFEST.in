@@ -1,0 +1,10 @@
+include *.h
+recursive-include pyreadr/libs *.h
+include *.pyx
+recursive-include pyreadr *.pyx
+include *.pxd
+recursive-include pyreadr *.pxd
+include *.c
+recursive-include pyreadr/libs *.c
+recursive-include win_libs/64bit *.dll
+recursive-include win_libs/64bit *.lib
