@@ -1,0 +1,92 @@
+Metadata-Version: 2.1
+Name: traversy
+Version: 0.1.2
+Summary: Fast data traversal & manipulation tools.
+Home-page: https://github.com/tensortom/traversy
+License: MIT
+Keywords: python,python3,traversal,traverse,recursive,iteration,generator,dict,dictionary,data,mo-dots,dotty_dict,iterate,iterator
+Author: Tom A.
+Author-email: 14287229+TensorTom@users.noreply.github.com
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: dotty-dict (>=1.3.0,<2.0.0)
+Requires-Dist: mo-dots (>=3.135.20303)
+Project-URL: Repository, https://github.com/tensortom/traversy
+Description-Content-Type: text/markdown
+
+# traversy
+
+Fast data traversal & manipulation tools for Python.
+
+`traverse()`: 
+Traverse deep data structures such as dict, mo-dots, and
+dotty_dict. Supports nested lists & data.
+
+```python
+from traversy import traverse
+import json
+
+
+jo = json.loads("""{
+  "2019": {
+    "uat": {
+      "pkey": true,
+      "user": "testval",
+      "testkey": true,
+      "mylist": [
+      {
+        "foo": "bar",
+        "foo2": "bar2"
+      },
+      {
+        "baz": "milk",
+        "bar": "foo"
+      }
+      ]
+    },
+    "dev": {
+      "pkey": true,
+      "testval": "testval",
+      "testval2": true
+    },
+    "test1": [1, 2, "testval"],
+    "test2": [{"one": "foo", "two": "bar", "three": "testval"}]
+  }
+}""")
+
+def is_eq(key, val, opath, query):
+    return val == query
+
+
+for node in traverse(jo, is_eq, query="milk"):
+    print("Found", node.key, ':', node.value)  # baz : milk
+    print("Full path access:", jo[node.path_str])  # "2019.uat.mylist.1.baz"
+```
+
+For each iteration, traverse() returns a dict or data object of...
+
+```
+{'key', 'value', 'node_path', 'path_str', 'filter_func',
+'filter_args': (data, kwargs), 'parent_node', 'output_formatter'}
+```
+
+For more information on these non-built-in data structure (Which are optional
+to use), check out [mo-dots](https://pypi.org/project/mo-dots/) and
+[dotty_dict](https://pypi.org/project/dotty-dict/).
+
+License: MIT
+
+
+### Changelog
+
+- **11/13/2020 - 0.1.2** : Doc correction.
+
+- **11/13/2020 - 0.1.1** : Deprecated `set_output_format()` and made package compatible with both Python 2 and Python 3.
