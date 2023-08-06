@@ -1,0 +1,174 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                            ixa-pipe-dep-eu
+			         v2.0.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[http://ixa2.si.ehu.es/ixakat/ixa-pipe-dep-eu.php?lang=en]
+
+
+ixa-pipe-dep-eu is a dependency parser for Basque written
+documents. It is based on the combination of the analyses obtained by
+different parsers. More precisely, Mate
+[https://code.google.com/archive/p/mate-tools/] and MaltParser
+[http://maltparser.org/] parsers are used to
+obtain the analyses, and MaltBlender tool is used to choose the best
+combination of those analyses. It is implemented in Java programming
+language. It is a tool of the ixaKat modular chain. More info about
+ixaKat modular chain: http://ixa2.si.ehu.es/ixakat/index.php?lang=en
+
+The tool takes a document in NAF format
+[http://wordpress.let.vupr.nl/naf/]. This input document should
+contain lemmas, PoS tags and morphological annotations. The input NAF
+document containing the necessary linguistic information could be
+obtained from the output of ixa-pipe-pos-eu
+[http://ixa2.si.ehu.es/ixakat/ixa-pipe-pos-eu.php?lang=en].
+
+
+---------------------------
+ Download
+---------------------------
+
+You can download the package that contains the executable file for
+this stable version from the following link:
+http://ixa2.si.ehu.es/ixakat/downloads/ixa-pipe-dep-eu-v2.0.0.tgz
+
+
+ Linguistic resources
+------------------------
+
+This tool needs some other linguistic tools and resources and you can
+download them from the following link:
+http://ixa2.si.ehu.es/ixakat/downloads/dep-eu-resources-2.0.0.tgz
+
+
+---------------------------
+ Source code
+---------------------------
+
+Source code for the latest development version can be downloaded or
+cloned from this Github page:
+https://github.com/ixa-ehu/ixa-pipe-dep-eu
+
+
+---------------------------
+ License
+---------------------------
+
+All the original code produced for ixa-pipe-dep-eu is licensed under
+GPL v3 free license [http://www.gnu.org/licenses/gpl-3.0.en.html].
+
+This software uses some external tools, and they are distributed with
+the source code and the resources. These tools have their own
+copyright owner and license:
+
+ - mate-tools anna [http://code.google.com/p/mate-tools/]: GNU General
+   Public License v2
+
+ - MaltParser [http://code.google.com/p/mate-tools/]: Copyright (C)
+   2007-2017, Johan Hall, Jens Nilsson and Joakin
+   Nivre. Redistribution and use in source and binary forms, with or
+   without modification, are permitted.
+
+ - MaltOptimizer [http://nil.fdi.ucm.es/maltoptimizer/index.html]:
+   Copyright (C) 2011, Miguel Ballesteros and Joakin
+   Nivre. Redistribution and use in source and binary forms, with or
+   without modification, are permitted.
+
+These tools also use some other libraries. See the NOTICE file of
+these tools.
+
+
+---------------------------
+ How to cite
+---------------------------
+
+If you use ixa-pipe-dep-eu tool, please cite the following paper in
+your academic work:
+
+  Iakes Goenaga, Koldo Gojenola, Nerea Ezeiza. Combining Clustering
+  Approaches for Semi-Supervised Parsing: the BASQUE TEAM system in
+  the SPRML 2014 Shared Task. Workshop on Statistical Parsing of
+  Morphologically Rich Languages SPRML 2014 Shared Task, Dublin,
+  COLING Workshop. 2014
+
+
+---------------------------
+ Installation
+---------------------------
+
+Once you download the package that contains the executable file,
+decompress the file. The executable will be ready to use, without any
+installation, but you have to follow the next steps in order to make
+the required resources usable:
+
+ - Download the package of the resources from the following link:
+   http://ixa2.si.ehu.es/ixakat/downloads/dep-eu-resources-2.0.0.tgz
+
+ - Decompress the package and update the "run.sh" executable file
+   changing the "baliabideak" variable to specify the path of the
+   "dep-eu-resources" directory you just got.
+
+Besides, Java should be installed in your computer. Also Perl in order
+to be able to use MaltBlender.
+
+
+---------------------------
+ How to use
+---------------------------
+
+The "ixa-pipe-dep-eu-2.0.0-exec.jar" executable is used to run the
+ixa-pipe-dep-eu tool. The only required argument ("-b") is the path of
+the resources directory available on the download section. The full
+command syntax of "ixa-pipe-dep-eu-2.0.0-exec.jar" is
+
+  > java -jar ixa-pipe-dep-eu-2.0.0-exec.jar [-h] -b RESOURCES_DIR [-c CONLL_FILE]
+
+  arguments:
+    -h     show this help message and exit
+    -b RESOURCES_DIR [Required] Specify the path of the downloaded
+     resource directory.
+    -c CONLL_FILE [Optional] If you want to save the output also in
+     CONLL format, specify the path of the output file.
+
+
+A executable script "run.sh" is provided to run the tool (this script
+calls to the ixa-pipe-dep-eu-2.0.0-exec.jar executable with all the needed
+arguments explained above). You can use it, but before running it,
+update the "rootDir" and "baliabideak" variables on this script as
+specified on the installation section.
+
+This tool reads from standard input. It should be UTF-8 encoded NAF
+format, containing lemmas, PoS tags and morphological annotations
+("text" and "terms" elements of NAF). The input NAF document
+containing the necessary linguistic information could be obtained from
+the output of ixa-pipe-pos-eu
+[http://ixa2.si.ehu.es/ixakat/ixa-pipe-pos-eu.php?lang=en].
+
+Therefore, we can obtain syntactic dependencies of a plain text file
+using the following comand (in a single command-line):
+
+  > cat test.txt | sh ixa-pipe-pos-eu/ixa-pipe-pos-eu.sh | sh
+    ixa-pipe-dep-eu/run.sh
+
+The output is written to standard output and it is in UTF-8 encoding
+and NAF format. In the NAF output document the syntactic dependencies
+will be marked by "deps" elements as it is shown in the example below:
+
+  <deps>
+    <!--ncsubj(da, Zinemaldiko)-->
+    <dep from="t6" to="t2" rfunc="ncsubj" />
+    <!--ncmod(lehiatuko, sail)-->
+    <dep from="t5" to="t3" rfunc="ncmod" />
+    <!--ncmod(sail, ofizialean)-->
+    <dep from="t3" to="t4" rfunc="ncmod" />
+    <!--xpred(da, lehiatuko)-->
+    <dep from="t6" to="t5" rfunc="xpred" />
+  </deps>
+
+
+---------------------------
+ Contact
+---------------------------
+
+Arantxa Otegi, arantza.otegi@ehu.eus
+Iakes Goenaga, iakes.goenaga@ehu.eus

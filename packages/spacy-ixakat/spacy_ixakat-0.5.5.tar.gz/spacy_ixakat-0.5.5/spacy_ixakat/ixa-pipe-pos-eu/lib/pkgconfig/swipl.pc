@@ -1,0 +1,18 @@
+prefix=/gscratch/users/sisfetek/eustagger_prefix
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+PLBASE=${libdir}/swipl-5.10.5
+PLARCH=x86_64-linux
+PLLIBS=-lswipl
+PLLIB=-lswipl
+PLCFLAGS= -pthread -fPIC 
+PLLDFLAGS=-rdynamic -O2 -pthread -Wl,-rpath=${exec_prefix}/lib/swipl-5.10.5/lib/x86_64-linux
+PLSOEXT=so
+
+Name: pl
+Description: ISO/Edinburgh-style Prolog compiler
+Version: 5.10.5
+Libs: -L${libdir}/swipl-5.10.5/lib/x86_64-linux -lswipl
+Cflags: -I${includedir}

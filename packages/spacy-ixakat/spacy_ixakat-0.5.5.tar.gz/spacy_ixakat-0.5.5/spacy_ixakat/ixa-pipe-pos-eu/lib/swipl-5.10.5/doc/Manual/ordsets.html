@@ -1,0 +1,337 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<HTML>
+<HEAD>
+<TITLE>SWI-Prolog 5.10.5 Reference Manual: Section A.17</TITLE><LINK REL=home HREF="index.html">
+<LINK REL=contents HREF="Contents.html">
+<LINK REL=index HREF="DocIndex.html">
+<LINK REL=summary HREF="summary.html">
+<LINK REL=previous HREF="optparse.html">
+<LINK REL=next HREF="pairs.html">
+<STYLE type="text/css">
+/* Style sheet for SWI-Prolog latex2html
+*/
+
+dd.defbody
+{ margin-bottom: 1em;
+}
+
+dt.pubdef
+{ background-color: #c5e1ff;
+}
+
+dt.multidef
+{ background-color: #c8ffc7;
+}
+
+.bib dd
+{ margin-bottom: 1em;
+}
+
+.bib dt
+{ float: left;
+margin-right: 1.3ex;
+}
+
+pre.code
+{ margin-left: 1.5em;
+margin-right: 1.5em;
+border: 1px dotted;
+padding-top: 5px;
+padding-left: 5px;
+padding-bottom: 5px;
+background-color: #f8f8f8;
+}
+
+div.navigate
+{ text-align: center;
+background-color: #f0f0f0;
+border: 1px dotted;
+padding: 5px;
+}
+
+div.title
+{ text-align: center;
+padding-bottom: 1em;
+font-size: 200%;
+font-weight: bold;
+}
+
+div.author
+{ text-align: center;
+font-style: italic;
+}
+
+div.abstract
+{ margin-top: 2em;
+background-color: #f0f0f0;
+border: 1px dotted;
+padding: 5px;
+margin-left: 10%; margin-right:10%;
+}
+
+div.abstract-title
+{ text-align: center;
+padding: 5px;
+font-size: 120%;
+font-weight: bold;
+}
+
+div.toc-h1
+{ font-size: 200%;
+font-weight: bold;
+}
+
+div.toc-h2
+{ font-size: 120%;
+font-weight: bold;
+margin-left: 2em;
+}
+
+div.toc-h3
+{ font-size: 100%;
+font-weight: bold;
+margin-left: 4em;
+}
+
+div.toc-h4
+{ font-size: 100%;
+margin-left: 6em;
+}
+
+span.sec-nr
+{
+}
+
+span.sec-title
+{
+}
+
+span.pred-ext
+{ font-weight: bold;
+}
+
+span.pred-tag
+{ float: right;
+padding-top: 0.2em;
+font-size: 80%;
+font-style: italic;
+color: #202020;
+}
+
+/* Footnotes */
+
+sup.fn { color: blue; text-decoration: underline; }
+span.fn-text { display: none; }
+sup.fn span {display: none;}
+sup:hover span
+{ display: block !important;
+position: absolute; top: auto; left: auto; width: 80%;
+color: #000; background: white;
+border: 2px solid;
+padding: 5px; margin: 10px; z-index: 100;
+font-size: smaller;
+}
+</STYLE>
+</HEAD>
+<BODY BGCOLOR="white">
+<DIV class="navigate"><A class="nav" href="index.html"><IMG SRC="home.gif" BORDER=0 ALT="Home"></A>
+<A class="nav" href="Contents.html"><IMG SRC="index.gif" BORDER=0 ALT="Contents"></A>
+<A class="nav" href="DocIndex.html"><IMG SRC="yellow_pages.gif" BORDER=0 ALT="Index"></A>
+<A class="nav" href="summary.html"><IMG SRC="info.gif" BORDER=0 ALT="Summary"></A>
+<A class="nav" href="optparse.html"><IMG SRC="prev.gif" BORDER=0 ALT="Previous"></A>
+<A class="nav" href="pairs.html"><IMG SRC="next.gif" BORDER=0 ALT="Next"></A>
+</DIV>
+
+<H2><A NAME="sec:A.17"><SPAN class="sec-nr">A.17</SPAN> <SPAN class="sec-title">library(ordsets): 
+Ordered set manipulation</SPAN></A></H2>
+
+<P><A NAME="sec:ordsets"></A>
+
+<P>Ordered sets are lists with unique elements sorted to the standard 
+order of terms (see <A class="pred" href="builtinlist.html#sort/2">sort/2</A>). 
+Exploiting ordering, many of the set operations can be expressed in 
+order N rather than N<CODE>^</CODE>2 when dealing with unordered sets 
+that may contain duplicates. The library(ordsets) is available in a 
+number of Prolog implementations. Our predicates are designed to be 
+compatible with common practice in the Prolog community. The 
+implementation is incomplete and relies partly on library(oset), an 
+older ordered set library distributed with SWI-Prolog. New applications 
+are advices to use library(ordsets).
+
+<P>Some of these predicates match directly to corresponding list 
+operations. It is adviced to use the versions from this library to make 
+clear you are operating on ordered sets.
+
+<DL class="latex">
+<DT class="pubdef"><span class="pred-tag">[semidet]</span><A NAME="is_ordset/1"><STRONG>is_ordset</STRONG>(<VAR>@Term</VAR>)</A></DT>
+<DD class="defbody">
+True if <VAR>Term</VAR> is an ordered set. All predicates in this 
+library expect ordered sets as input arguments. Failing to fullfil this 
+assumption results in undefined behaviour. Typically, ordered sets are 
+created by predicates from this library, <A class="pred" href="builtinlist.html#sort/2">sort/2</A> 
+or
+<A class="pred" href="allsolutions.html#setof/3">setof/3</A>.</DD>
+<DT class="pubdef"><span class="pred-tag">[semidet]</span><A NAME="ord_empty/1"><STRONG>ord_empty</STRONG>(<VAR>?List</VAR>)</A></DT>
+<DD class="defbody">
+True when <VAR>List</VAR> is the empty ordered set. Simply unifies list 
+with the empty list. Not part of Quintus.</DD>
+<DT class="pubdef"><span class="pred-tag">[semidet]</span><A NAME="ord_seteq/2"><STRONG>ord_seteq</STRONG>(<VAR>+Set1, 
++Set2</VAR>)</A></DT>
+<DD class="defbody">
+True if <VAR>Set1</VAR> and <VAR>Set2</VAR> have the same elements. As 
+both are canonical sorted lists, this is the same as <A class="pred" href="compare.html#==/2">==/2</A>.
+
+<DL>
+<DT><B>Compatibility</B><DD> sicstus
+</DL>
+
+</DD>
+<DT class="pubdef"><span class="pred-tag">[det]</span><A NAME="list_to_ord_set/2"><STRONG>list_to_ord_set</STRONG>(<VAR>+List, 
+-OrdSet</VAR>)</A></DT>
+<DD class="defbody">
+Transform a list into an ordered set. This is the same as sorting the 
+list.</DD>
+<DT class="pubdef"><span class="pred-tag">[semidet]</span><A NAME="ord_intersect/2"><STRONG>ord_intersect</STRONG>(<VAR>+Set1, 
++Set2</VAR>)</A></DT>
+<DD class="defbody">
+True if both ordered sets have a non-empty intersection.</DD>
+<DT class="pubdef"><span class="pred-tag">[semidet]</span><A NAME="ord_disjoint/2"><STRONG>ord_disjoint</STRONG>(<VAR>+Set1, 
++Set2</VAR>)</A></DT>
+<DD class="defbody">
+True if <VAR>Set1</VAR> and <VAR>Set2</VAR> have no common elements. 
+This is the negation of <A class="pred" href="ordsets.html#ord_intersect/2">ord_intersect/2</A>.</DD>
+<DT class="pubdef"><A NAME="ord_intersect/3"><STRONG>ord_intersect</STRONG>(<VAR>+Set1, 
++Set2, -Intersection</VAR>)</A></DT>
+<DD class="defbody">
+<VAR>Intersection</VAR> holds the common elements of <VAR>Set1</VAR> and <VAR>Set2</VAR>.
+
+<DL>
+<DT><B>deprecated</B><DD> Use <A class="pred" href="ordsets.html#ord_intersection/3">ord_intersection/3</A>
+</DL>
+
+</DD>
+<DT class="pubdef"><A NAME="ord_intersection/2"><STRONG>ord_intersection</STRONG>(<VAR>+PowerSet, 
+-Intersection</VAR>)</A></DT>
+<DD class="defbody">
+True if <VAR>Intersection</VAR> is an ordered set holding all elements 
+common to all sets in <VAR>PowerSet</VAR>.
+
+<DL>
+<DT><B>Compatibility</B><DD> sicstus
+</DL>
+
+</DD>
+<DT class="pubdef"><span class="pred-tag">[det]</span><A NAME="ord_intersection/3"><STRONG>ord_intersection</STRONG>(<VAR>+Set1, 
++Set2, -Intersection</VAR>)</A></DT>
+<DD class="defbody">
+<VAR>Intersection</VAR> holds the common elements of <VAR>Set1</VAR> and <VAR>Set2</VAR>.</DD>
+<DT class="pubdef"><span class="pred-tag">[det]</span><A NAME="ord_intersection/4"><STRONG>ord_intersection</STRONG>(<VAR>+Set1, 
++Set2, ?Intersection, ?Difference</VAR>)</A></DT>
+<DD class="defbody">
+<VAR>Intersection</VAR> and difference between two ordered sets.
+<VAR>Intersection</VAR> is the intersection between <VAR>Set1</VAR> and <VAR>Set2</VAR>, 
+while
+<VAR>Difference</VAR> is defined by ord_subtract(<VAR>Set2</VAR>, <VAR>Set1</VAR>, <VAR>Difference</VAR>).
+
+<DL>
+<DT><B>See also</B><DD>
+<A class="pred" href="ordsets.html#ord_intersection/3">ord_intersection/3</A> 
+and <A class="pred" href="ordsets.html#ord_subtract/3">ord_subtract/3</A>.
+</DL>
+
+</DD>
+<DT class="pubdef"><span class="pred-tag">[det]</span><A NAME="ord_add_element/3"><STRONG>ord_add_element</STRONG>(<VAR>+Set1, 
++Element, ?Set2</VAR>)</A></DT>
+<DD class="defbody">
+Insert an element into the set. This is the same as ord_union(<VAR>Set1</VAR>, 
+[<VAR>Element</VAR>], <VAR>Set2</VAR>).</DD>
+<DT class="pubdef"><span class="pred-tag">[det]</span><A NAME="ord_del_element/3"><STRONG>ord_del_element</STRONG>(<VAR>+Set, 
++Element, -NewSet</VAR>)</A></DT>
+<DD class="defbody">
+Delete an element from an ordered set. This is the same as ord_subtract(<VAR>Set</VAR>, 
+[<VAR>Element</VAR>], <VAR>NewSet</VAR>).</DD>
+<DT class="pubdef"><span class="pred-tag">[semidet]</span><A NAME="ord_memberchk/2"><STRONG>ord_memberchk</STRONG>(<VAR>+Element, 
++Set</VAR>)</A></DT>
+<DD class="defbody">
+Check membership. This could stop comparing we have passed the right 
+value, saving scanning (on average) half the list if
+<VAR>Element</VAR> is not in <VAR>Set</VAR>. Probably the built-in <A class="pred" href="builtinlist.html#memberchk/2">memberchk/2</A> 
+will be faster.
+
+<DL>
+<DT><B>Compatibility</B><DD> Not part of original Quintus library
+</DL>
+
+</DD>
+<DT class="pubdef"><span class="pred-tag">[nondet]</span><A NAME="ord_member/2"><STRONG>ord_member</STRONG>(<VAR>?Element, 
++Set</VAR>)</A></DT>
+<DD class="defbody">
+True if <VAR>Element</VAR> is a member of <VAR>Set</VAR>. Stops if 
+further elements are behind <VAR>Element</VAR> in the standard order of 
+terms.
+
+<DL>
+<DT><B>Compatibility</B><DD> sicstus
+</DL>
+
+</DD>
+<DT class="pubdef"><span class="pred-tag">[semidet]</span><A NAME="ord_subset/2"><STRONG>ord_subset</STRONG>(<VAR>+Sub, 
++Super</VAR>)</A></DT>
+<DD class="defbody">
+Is true if all element of <VAR>Sub</VAR> are in <VAR>Super</VAR></DD>
+<DT class="pubdef"><span class="pred-tag">[det]</span><A NAME="ord_subtract/3"><STRONG>ord_subtract</STRONG>(<VAR>+InOSet, 
++NotInOSet, -Diff</VAR>)</A></DT>
+<DD class="defbody">
+<VAR>Diff</VAR> is the set holding all elements of <VAR>InOSet</VAR> 
+that are not in
+<VAR>NotInOSet</VAR>.</DD>
+<DT class="pubdef"><span class="pred-tag">[det]</span><A NAME="ord_union/2"><STRONG>ord_union</STRONG>(<VAR>+SetOfSets, 
+-Union</VAR>)</A></DT>
+<DD class="defbody">
+True if <VAR>Union</VAR> is the union of all elements in the superset
+<VAR>SetOfSets</VAR>. Each member of <VAR>SetOfSets</VAR> must be an 
+ordered set, the sets need not be ordered in any way.
+
+<DL>
+<DT><B>author</B><DD> Copied from YAP, probably originally by Richard 
+O'Keefe.
+</DL>
+
+</DD>
+<DT class="pubdef"><span class="pred-tag">[det]</span><A NAME="ord_union/3"><STRONG>ord_union</STRONG>(<VAR>+Set1, 
++Set2, ?Union</VAR>)</A></DT>
+<DD class="defbody">
+<VAR>Union</VAR> is the union of <VAR>Set1</VAR> and <VAR>Set2</VAR></DD>
+<DT class="pubdef"><span class="pred-tag">[det]</span><A NAME="ord_union/4"><STRONG>ord_union</STRONG>(<VAR>+Set1, 
++Set2, -Union, -New</VAR>)</A></DT>
+<DD class="defbody">
+True if <VAR>Union</VAR> iff ord_union(<VAR>Set1</VAR>, <VAR>Set2</VAR>, <VAR>Union</VAR>) 
+and ord_subtract(<VAR>Set2</VAR>, <VAR>Set1</VAR>, <VAR>New</VAR>).</DD>
+<DT class="pubdef"><span class="pred-tag">[det]</span><A NAME="ord_symdiff/3"><STRONG>ord_symdiff</STRONG>(<VAR>+Set1, 
++Set2, ?Difference</VAR>)</A></DT>
+<DD class="defbody">
+Is true when <VAR>Difference</VAR> is the symmetric difference of <VAR>Set1</VAR> 
+and
+<VAR>Set2</VAR>. I.e., <VAR>Difference</VAR> contains all elements that 
+are not in the intersection of <VAR>Set1</VAR> and <VAR>Set2</VAR>. The 
+semantics is the same as the sequence below (but the actual 
+implementation requires only a single scan).
+
+<PRE class="code">
+      ord_union(Set1, Set2, Union),
+      ord_intersection(Set1, Set2, Intersection),
+      ord_subtract(Union, Intersection, Difference).
+</PRE>
+
+<P>For example:
+
+<PRE class="code">
+?- ord_symdiff([1,2], [2,3], X).
+X = [1,3].
+</PRE>
+
+<P></DD>
+</DL>
+
+<P></BODY></HTML>

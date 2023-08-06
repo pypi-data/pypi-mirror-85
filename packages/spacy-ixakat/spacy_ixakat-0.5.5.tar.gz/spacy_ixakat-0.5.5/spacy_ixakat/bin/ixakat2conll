@@ -1,0 +1,52 @@
+#! /bin/sh
+# "ixacat2conll" for Linux (64bit), which requires:
+#   default-jre libncursesw5
+
+TMP=/tmp/ixakat$$
+trap "rm -f $TMP ; exit 2" 1 2 3 15
+
+D=`dirname $0`
+case $D in
+*/bin) D=`dirname $D` ;;
+.) D=`/bin/pwd`
+   D=`dirname $D` ;;
+*) D=$D/.. ;;
+esac
+IXA_PREFIX=$D/ixa-pipe-pos-eu
+PATH=$IXA_PREFIX/bin:"$PATH"
+LD_LIBRARY_PATH=$IXA_PREFIX/lib:`echo $IXA_PREFIX/lib/swipl*/lib/* | tr ' \012' ::`"$LD_LIBRARY_PATH"
+export IXA_PREFIX PATH LD_LIBRARY_PATH
+
+( cd $IXA_PREFIX
+  ixa-pipe-pos-eu
+) | java -jar $D/ixa-pipe-dep-eu/ixa-pipe-dep-eu-2.0.0-exec.jar -b $D/dep-eu-resources-v2.0.0 -c $TMP |
+( sed -n -e 's/>/ /g' -e 's/^ *<wf id=/# &/p'
+  cat $TMP
+) | awk '
+BEGIN{
+  m=n=0;
+}
+{
+  if($1=="#"&&$2=="<wf"){
+    for(i=3;i<=NF;i++){
+      if($i~/^offset=/)
+        off[m]=substr($i,9,length($i)-9);
+      else if($i~/^length=/)
+        ln[m]=substr($i,9,length($i)-9);
+    }
+    m++
+  }
+  else if(NF==10&&$1~/^[1-9][0-9]*$/){
+    if(off[n+1]-off[n]-ln[n]==0)
+      misc="SpaceAfter=No";
+    else
+      misc="_";
+    printf("%d\t%s\t%s\t%s\t%s\t%s\t%d\t%s\t%s\t%s\n",$1,$2,$3,$4,$5,$6,$7,$8,$9,misc);
+    n++;
+  }
+  else
+    printf("%s\n",$0);
+}'
+
+rm -f $TMP
+exit 0

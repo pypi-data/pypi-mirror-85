@@ -1,0 +1,13 @@
+
+prefix=/gscratch/users/sisfetek/eustagger_prefix
+exec_prefix=${prefix}/bin
+libdir=${prefix}/lib
+includedir=${prefix}/include/freeling
+
+Name: FreeLing
+Description: Open source library of natural language analyzers
+Version: 3.1
+Requires: 
+Libs: -L${libdir} -lfreeling
+Cflags: -I${includedir} -I/soft_orokorra_linux_x86_64_rhel6/boost-1.53.0/include
+DataDir=${prefix}/share/freeling

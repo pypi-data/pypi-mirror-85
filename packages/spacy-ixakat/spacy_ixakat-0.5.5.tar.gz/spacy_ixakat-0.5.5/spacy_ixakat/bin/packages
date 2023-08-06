@@ -1,0 +1,14 @@
+#! /bin/sh
+D=`dirname $0`
+case $D in
+*/bin) D=`dirname $D` ;;
+.) D=`/bin/pwd`
+   D=`dirname $D` ;;
+*) D=$D/.. ;;
+esac
+cd $D
+find ./bin ./ixa-pipe-dep-eu -type f -print
+find ./dep-eu-resources-* -type f -print
+find -H ./ixa-pipe-pos-eu/bin ./ixa-pipe-pos-eu/etc ./ixa-pipe-pos-eu/lib ./ixa-pipe-pos-eu/var ./ixa-pipe-pos-eu/*.sh -xtype f -print
+find ./ixa-pipes-1.1.1/ud*/eu ./ixa-pipes-1.1.1/ixa-pipe-pos-*.jar -type f -print
+exit 0
