@@ -1,0 +1,640 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Release Notes &#8212; numexpr3 a0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     'a0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="NumExpr API" href="api.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api.html" title="NumExpr API"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">numexpr3 a0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="release-notes">
+<h1>Release Notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="release-notes-for-numexpr-3-0-series">
+<h1>Release notes for NumExpr 3.0 series<a class="headerlink" href="#release-notes-for-numexpr-3-0-series" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="changes-from-3-0-0-to-3-0-1">
+<h2>Changes from 3.0.0 to 3.0.1<a class="headerlink" href="#changes-from-3-0-0-to-3-0-1" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first"><strong>Minimum supported version is now Python 3.4</strong>. 3.3 may work, 2.7 will not.</p>
+</li>
+<li><p class="first">Explicit casting operations are now present, including unsafe casts. E.g.</p>
+<blockquote>
+<div><p>a - np.arange(2**12)                  # int-32
+double - ne3.NumExpr(&#8216;float64(a)&#8217;)()  # Safe
+trunc - ne3.NumExpr(&#8216;int8(a)&#8217;)()      # Unsafe</p>
+</div></blockquote>
+<p>For complex numbers, use the <cite>complex</cite>,`real`, and <cite>imag</cite> machinery.</p>
+</li>
+<li><p class="first">Complex numbers can be reduced to real or imag as if attributes, e.g.</p>
+<blockquote>
+<div><p>imag_num - ne3.NumExpr( &#8216;(2.0*np.pi*sin(complex128(a,b))).imag&#8217; )()</p>
+</div></blockquote>
+</li>
+<li><p class="first">Transcendental functions (such as <cite>sin</cite>) will now automatically upcast
+integers to floating-point, mimicing NumPy except for u/int-8 which is upcast
+to float-32 instead of float-16.</p>
+</li>
+<li><p class="first">Broadcasting is now calculated internally for allocation of magic output.
+This is a step on the route to reimplementing reductions.</p>
+</li>
+<li><p class="first">Re-use of temporaries is more efficient.</p>
+</li>
+<li><p class="first">There is no longer a MAX_THREADS.  All threading resources are now
+dynamically allocated.  The maximum number of arguments in a function is now
+set by the NumPy install (default is 32, unless one recompiles with a different
+macro).</p>
+</li>
+<li><p class="first">Temporaries are now pre-allocated in a block (or arena) rather than being
+individually allocated by the virtual machine at runtime. If the total
+temporary space is too small it will be <cite>realloc`ed to be the appropriate
+size.  This space can be managed by `set_tempsize( new_size_per_thread)</cite>.
+Setting the temporary size to zero will release all temporary memory.</p>
+</li>
+<li><p class="first">Python-side NumExpr and their associated C-extension objects are now
+pickleable.  As an part of this, constants no longer occupy BLOCKSIZE memory
+and are instead singleton arrays with a <cite>numpy.nditer</cite> stride of zero.</p>
+</li>
+<li><p class="first">Complex division with float-32 is now explicitly a fast but lower precision
+implementation compared to NumPy.</p>
+</li>
+<li><p class="first">Benchmark profile points can be set with the macros in <cite>benchmark.hpp</cite></p>
+</li>
+</ul>
+<div class="section" id="todo-list">
+<h3>TODO List:<a class="headerlink" href="#todo-list" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">consider renaming KIND_SCALAR to KIND_CONST</p>
+</li>
+<li><p class="first">Don&#8217;t overwrite PyObject_HEAD in pickling</p>
+</li>
+<li><p class="first">module-level properties for ncores, nthreads (???)</p>
+</li>
+<li><p class="first">documentation and tutorial RSTs</p>
+</li>
+<li><p class="first">optimization
+1. BLOCK_SIZE</p>
+<blockquote>
+<div><ul class="simple">
+<li>Optimize by dtype.itemsize?</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>TASKS_PER_THREAD</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>(optimize to reduce thread barrier encounters?)</li>
+<li>Largish-values seem to work well for larger arrays</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>benchmark keeping the GIL; releasing it doesn&#8217;t serve much purpose.</li>
+<li>Seperate branches for stride-0 operations against scalars.</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>Use a switch-case with a pre-computed mask</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li>Generally MSVC is mediocre at auto-vectorization compared to GCC</li>
+</ol>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="release-notes-for-numexpr-2-4-series">
+<h1>Release notes for Numexpr 2.4 series<a class="headerlink" href="#release-notes-for-numexpr-2-4-series" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="changes-from-2-4-3-to-2-4-4">
+<h2>Changes from 2.4.3 to 2.4.4<a class="headerlink" href="#changes-from-2-4-3-to-2-4-4" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Honor OMP_NUM_THREADS as a fallback in case NUMEXPR_NUM_THREADS is not
+set. Fixes #161.</li>
+</ul>
+</div>
+<div class="section" id="changes-from-2-4-2-to-2-4-3">
+<h2>Changes from 2.4.2 to 2.4.3<a class="headerlink" href="#changes-from-2-4-2-to-2-4-3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Comparisons with empty strings work correctly now.  Fixes #121 and
+PyTables #184.</li>
+</ul>
+</div>
+<div class="section" id="changes-from-2-4-1-to-2-4-2">
+<h2>Changes from 2.4.1 to 2.4.2<a class="headerlink" href="#changes-from-2-4-1-to-2-4-2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Improved setup.py so that pip can query the name and version without
+actually doing the installation.  Thanks to Joris Borgdorff.</li>
+</ul>
+</div>
+<div class="section" id="changes-from-2-4-to-2-4-1">
+<h2>Changes from 2.4 to 2.4.1<a class="headerlink" href="#changes-from-2-4-to-2-4-1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Added more configuration examples for compiling with MKL/VML
+support.  Thanks to Davide Del Vento.</li>
+<li>Symbol MKL_VML changed into MKL_DOMAIN_VML because the former is
+deprecated in newer MKL.  Thanks to Nick Papior Andersen.</li>
+<li>Better determination of methods in <cite>cpuinfo</cite> module.  Thanks to Marc
+Jofre.</li>
+<li>Improved NumPy version determination (handy for 1.10.0).  Thanks
+to Åsmund Hjulstad.</li>
+<li>Benchmarks run now with both Python 2 and Python 3.  Thanks to Zoran
+Plesivčak.</li>
+</ul>
+</div>
+<div class="section" id="changes-from-2-3-1-to-2-4">
+<h2>Changes from 2.3.1 to 2.4<a class="headerlink" href="#changes-from-2-3-1-to-2-4" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>A new <cite>contains()</cite> function has been added for detecting substrings
+in strings.  Only plain strings (bytes) are supported for now.  See
+PR #135 and ticket #142.  Thanks to Marcin Krol.</li>
+<li>New version of setup.py that allows better management of NumPy
+dependency.  See PR #133.  Thanks to Aleks Bunin.</li>
+</ul>
+</div>
+<div class="section" id="changes-from-2-3-to-2-3-1">
+<h2>Changes from 2.3 to 2.3.1<a class="headerlink" href="#changes-from-2-3-to-2-3-1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Added support for shift-left (&lt;&lt;) and shift-right (&gt;&gt;) binary operators.
+See PR #131. Thanks to fish2000!</li>
+<li>Removed the rpath flag for the GCC linker, because it is probably
+not necessary and it chokes to clang.</li>
+</ul>
+</div>
+<div class="section" id="changes-from-2-2-2-to-2-3">
+<h2>Changes from 2.2.2 to 2.3<a class="headerlink" href="#changes-from-2-2-2-to-2-3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Site has been migrated to <a class="reference external" href="https://github.com/pydata/numexpr">https://github.com/pydata/numexpr</a>.  All
+new tickets and PR should be directed there.</li>
+<li>[ENH] A <cite>conj()</cite> function for computing the conjugate of complex
+arrays has been added.  Thanks to David Menéndez.  See PR #125.</li>
+<li>[FIX] Fixed a DeprecationWarning derived of using oa_ndim &#8211; 0 and
+op_axes &#8211; NULL when using NpyIter_AdvancedNew() and NumPy 1.8.
+Thanks to Mark Wiebe for advise on how to fix this properly.</li>
+</ul>
+</div>
+<div class="section" id="changes-from-2-2-1-to-2-2-2">
+<h2>Changes from 2.2.1 to 2.2.2<a class="headerlink" href="#changes-from-2-2-1-to-2-2-2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>The <cite>copy_args</cite> argument of <cite>NumExpr</cite> function has been brought
+lack.  This has been mainly necessary for compatibility with
+<cite>PyTables &lt; 3.0</cite>, which I decided to continue to support.  Fixed
+#115.</li>
+<li>The <cite>__nonzero__</cite> method in <cite>ExpressionNode</cite> class has been
+commented out.  This is also for compatibility with <cite>PyTables &lt;
+3.0</cite>.  See #24 for details.</li>
+<li>Fixed the type of some parameters in the C extension so that s390
+architecture compiles.  Fixes #116.  Thank to Antonio Valentino for
+reporting and the patch.</li>
+</ul>
+</div>
+<div class="section" id="changes-from-2-2-to-2-2-1">
+<h2>Changes from 2.2 to 2.2.1<a class="headerlink" href="#changes-from-2-2-to-2-2-1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Fixes a secondary effect of &#8220;from numpy.testing import <cite>*</cite>&#8221;, where
+division is imported now too, so only then necessary functions from
+there are imported now.  Thanks to Christoph Gohlke for the patch.</li>
+</ul>
+</div>
+<div class="section" id="changes-from-2-1-to-2-2">
+<h2>Changes from 2.1 to 2.2<a class="headerlink" href="#changes-from-2-1-to-2-2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>[LICENSE] Fixed a problem with the license of the
+numexpr/win32/pthread.{c,h} files emulating pthreads on Windows
+platforms.  After persmission from the original authors is granted,
+these files adopt the MIT license and can be redistributed without
+problems.  See issue #109 for details
+(<a class="reference external" href="https://code.google.com/p/numexpr/issues/detail?id-110">https://code.google.com/p/numexpr/issues/detail?id-110</a>).</li>
+<li>[ENH] Improved the algorithm to decide the initial number of threads
+to be used.  This was necessary because by default, numexpr was
+using a number of threads equal to the detected number of cores, and
+this can be just too much for moder systems where this number can be
+too high (and counterporductive for performance in many cases).
+Now, the &#8216;NUMEXPR_NUM_THREADS&#8217; environment variable is honored, and
+in case this is not present, a maximum number of <em>8</em> threads are
+setup initially.  The new algorithm is fully described in the Users
+Guide now in the note of &#8216;General routines&#8217; section:
+<a class="reference external" href="https://code.google.com/p/numexpr/wiki/UsersGuide#General_routines">https://code.google.com/p/numexpr/wiki/UsersGuide#General_routines</a>.
+Closes #110.</li>
+<li>[ENH] numexpr.test() returns <cite>TestResult</cite> instead of None now.
+Closes #111.</li>
+<li>[FIX] Modulus with zero with integers no longer crashes the
+interpreter.  It nows puts a zero in the result.  Fixes #107.</li>
+<li>[API CLEAN] Removed <cite>copy_args</cite> argument of <cite>evaluate</cite>.  This should
+only be used by old versions of PyTables (&lt; 3.0).</li>
+<li>[DOC] Documented the <cite>optimization</cite> and <cite>truediv</cite> flags of
+<cite>evaluate</cite> in Users Guide
+(<a class="reference external" href="https://code.google.com/p/numexpr/wiki/UsersGuide">https://code.google.com/p/numexpr/wiki/UsersGuide</a>).</li>
+</ul>
+</div>
+<div class="section" id="changes-from-2-0-1-to-2-1">
+<h2>Changes from 2.0.1 to 2.1<a class="headerlink" href="#changes-from-2-0-1-to-2-1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Dropped compatibility with Python &lt; 2.6.</li>
+<li>Improve compatibiity with Python 3:<ul>
+<li>switch from PyString to PyBytes API (requires Python &gt;- 2.6).</li>
+<li>fixed incompatibilities regarding the int/long API</li>
+<li>use the Py_TYPE macro</li>
+<li>use the PyVarObject_HEAD_INIT macro instead of PyObject_HEAD_INIT</li>
+</ul>
+</li>
+<li>Fixed several issues with different platforms not supporting
+multithreading or subprocess properly (see tickets #75 and #77).</li>
+<li>Now, when trying to use pure Python boolean operators, &#8216;and&#8217;,
+&#8216;or&#8217; and &#8216;not&#8217;, an error is issued suggesting that &#8216;&amp;&#8217;, &#8216;|&#8217; and
+&#8216;~&#8217; should be used instead (fixes #24).</li>
+</ul>
+</div>
+<div class="section" id="changes-from-2-0-to-2-0-1">
+<h2>Changes from 2.0 to 2.0.1<a class="headerlink" href="#changes-from-2-0-to-2-0-1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Added compatibility with Python 2.5 (2.4 is definitely not supported
+anymore).</li>
+<li><cite>numexpr.evaluate</cite> is fully documented now, in particular the new
+<cite>out</cite>, <cite>order</cite> and <cite>casting</cite> parameters.</li>
+<li>Reduction operations are fully documented now.</li>
+<li>Negative axis in reductions are not supported (they have never been
+actually), and a <cite>ValueError</cite> will be raised if they are used.</li>
+</ul>
+</div>
+<div class="section" id="changes-from-1-x-series-to-2-0">
+<h2>Changes from 1.x series to 2.0<a class="headerlink" href="#changes-from-1-x-series-to-2-0" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Added support for the new iterator object in NumPy 1.6 and later.</p>
+<p>This allows for better performance with operations that implies
+broadcast operations, fortran-ordered or non-native byte orderings.
+Performance for other scenarios is preserved (except for very small
+arrays).</p>
+</li>
+<li><p class="first">Division in numexpr is consistent now with Python/NumPy.  Fixes #22
+and #58.</p>
+</li>
+<li><p class="first">Constants like &#8220;2.&#8221; or &#8220;2.0&#8221; must be evaluated as float, not
+integer.  Fixes #59.</p>
+</li>
+<li><p class="first"><cite>evaluate()</cite> function has received a new parameter <cite>out</cite> for storing
+the result in already allocated arrays.  This is very useful when
+dealing with large arrays, and a allocating new space for keeping
+the result is not acceptable.  Closes #56.</p>
+</li>
+<li><p class="first">Maximum number of threads raised from 256 to 4096.  Machines with a
+higher number of cores will still be able to import numexpr, but
+limited to 4096 (which is an absurdly high number already).</p>
+</li>
+</ul>
+</div>
+<div class="section" id="changes-from-1-4-1-to-1-4-2">
+<h2>Changes from 1.4.1 to 1.4.2<a class="headerlink" href="#changes-from-1-4-1-to-1-4-2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Multithreaded operation is disabled for small arrays (&lt; 32 KB).
+This allows to remove the overhead of multithreading for such a
+small arrays.  Closes #36.</li>
+<li>Dividing int arrays by zero gives a 0 as result now (and not a
+floating point exception anymore.  This behaviour mimics NumPy.
+Thanks to Gaëtan de Menten for the fix.  Closes #37.</li>
+<li>When compiled with VML support, the number of threads is set to 1
+for VML core, and to the number of cores for the native pthreads
+implementation.  This leads to much better performance.  Closes #39.</li>
+<li>Fixed different issues with reduction operations (<cite>sum</cite>, <cite>prod</cite>).
+The problem is that the threaded code does not work well for
+broadcasting or reduction operations.  Now, the serial code is used
+in those cases.  Closes #41.</li>
+<li>Optimization of &#8220;compilation phase&#8221; through a better hash.  This can
+lead up to a 25% of improvement when operating with variable
+expressions over small arrays.  Thanks to Gaëtan de Menten for the
+patch.  Closes #43.</li>
+<li>The <code class="docutils literal"><span class="pre">set_num_threads</span></code> now returns the number of previous thread
+setting, as stated in the docstrings.</li>
+</ul>
+</div>
+<div class="section" id="changes-from-1-4-to-1-4-1">
+<h2>Changes from 1.4 to 1.4.1<a class="headerlink" href="#changes-from-1-4-to-1-4-1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Mingw32 can also work with pthreads compatibility code for win32.
+Fixes #31.</li>
+<li>Fixed a problem that used to happen when running Numexpr with
+threads in subprocesses.  It seems that threads needs to be
+initialized whenever a subprocess is created.  Fixes #33.</li>
+<li>The GIL (Global Interpreter Lock) is released during computations.
+This should allow for better resource usage for multithreaded apps.
+Fixes #35.</li>
+</ul>
+</div>
+<div class="section" id="changes-from-1-3-1-to-1-4">
+<h2>Changes from 1.3.1 to 1.4<a class="headerlink" href="#changes-from-1-3-1-to-1-4" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Added support for multi-threading in pure C.  This is to avoid the
+GIL and allows to squeeze the best performance in both multi-core
+machines.</p>
+</li>
+<li><p class="first">David Cooke contributed a thorough refactorization of the opcode
+machinery for the virtual machine.  With this, it is really easy to
+add more opcodes.  See:</p>
+<p><a class="reference external" href="http://code.google.com/p/numexpr/issues/detail?id-28">http://code.google.com/p/numexpr/issues/detail?id-28</a></p>
+<p>as an example.</p>
+</li>
+<li><p class="first">Added a couple of opcodes to VM: where_bbbb and cast_ib. The first
+allow to get boolean arrays out of the <cite>where</cite> function.  The second
+allows to cast a boolean array into an integer one.  Thanks to
+gdementen for his contribution.</p>
+</li>
+<li><p class="first">Fix negation of <cite>int64</cite> numbers. Closes #25.</p>
+</li>
+<li><p class="first">Using a <cite>npy_intp</cite> datatype (instead of plain <cite>int</cite>) so as to be
+able to manage arrays larger than 2 GB.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="changes-from-1-3-to-1-3-1">
+<h2>Changes from 1.3 to 1.3.1<a class="headerlink" href="#changes-from-1-3-to-1-3-1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Due to an oversight, <code class="docutils literal"><span class="pre">uint32</span></code> types were not properly supported.
+That has been solved.  Fixes #19.</li>
+<li>Function <cite>abs</cite> for computing the absolute value added.  However, it
+does not strictly follow NumPy conventions.  See <code class="docutils literal"><span class="pre">README.txt</span></code> or
+website docs for more info on this.  Thanks to Pauli Virtanen for
+the patch.  Fixes #20.</li>
+</ul>
+</div>
+<div class="section" id="changes-from-1-2-to-1-3">
+<h2>Changes from 1.2 to 1.3<a class="headerlink" href="#changes-from-1-2-to-1-3" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">A new type called internally <cite>float</cite> has been implemented so as to
+be able to work natively with single-precision floating points.
+This prevents the silent upcast to <cite>double</cite> types that was taking
+place in previous versions, so allowing both an improved performance
+and an optimal usage of memory for the single-precision
+computations.  However, the casting rules for floating point types
+slightly differs from those of NumPy.  See:</p>
+<blockquote>
+<div><p><a class="reference external" href="http://code.google.com/p/numexpr/wiki/Overview">http://code.google.com/p/numexpr/wiki/Overview</a></p>
+</div></blockquote>
+<p>or the README.txt file for more info on this issue.</p>
+</li>
+<li><p class="first">Support for Python 2.6 added.</p>
+</li>
+<li><p class="first">When linking with the MKL, added a &#8216;-rpath&#8217; option to the link step
+so that the paths to MKL libraries are automatically included into
+the runtime library search path of the final package (i.e. the user
+won&#8217;t need to update its LD_LIBRARY_PATH or LD_RUN_PATH environment
+variables anymore).  Fixes #16.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="changes-from-1-1-1-to-1-2">
+<h2>Changes from 1.1.1 to 1.2<a class="headerlink" href="#changes-from-1-1-1-to-1-2" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Support for Intel&#8217;s VML (Vector Math Library) added, normally
+included in Intel&#8217;s MKL (Math Kernel Library).  In addition, when
+the VML support is on, several processors can be used in parallel
+(see the new <cite>set_vml_num_threads()</cite> function).  With that, the
+computations of transcendental functions can be accelerated quite a
+few.  For example, typical speed-ups when using one single core for
+contiguous arrays are 3x with peaks of 7.5x (for the pow() function).
+When using 2 cores the speed-ups are around 4x and 14x respectively.
+Closes #9.</p>
+</li>
+<li><p class="first">Some new VML-related functions have been added:</p>
+<ul class="simple">
+<li>set_vml_accuracy_mode(mode):  Set the accuracy for VML operations.</li>
+<li>set_vml_num_threads(nthreads): Suggests a maximum number of
+threads to be used in VML operations.</li>
+<li>get_vml_version():  Get the VML/MKL library version.</li>
+</ul>
+<p>See the README.txt for more info about them.</p>
+</li>
+<li><p class="first">In order to easily allow the detection of the MKL, the setup.py has
+been updated to use the numpy.distutils.  So, if you are already
+used to link NumPy/SciPy with MKL, then you will find that giving
+VML support to numexpr works almost the same.</p>
+</li>
+<li><p class="first">A new <cite>print_versions()</cite> function has been made available.  This
+allows to quickly print the versions on which numexpr is based on.
+Very handy for issue reporting purposes.</p>
+</li>
+<li><p class="first">The <cite>numexpr.numexpr</cite> compiler function has been renamed to
+<cite>numexpr.NumExpr</cite> in order to avoid name collisions with the name of
+the package (!).  This function is mainly for internal use, so you
+should not need to upgrade your existing numexpr scripts.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="changes-from-1-1-to-1-1-1">
+<h2>Changes from 1.1 to 1.1.1<a class="headerlink" href="#changes-from-1-1-to-1-1-1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>The case for multidimensional array operands is properly accelerated
+now.  Added a new benchmark (based on a script provided by Andrew
+Collette, thanks!) for easily testing this case in the future.
+Closes #12.</li>
+<li>Added a fix to avoid the caches in numexpr to grow too much.  The
+dictionary caches are kept now always with less than 256 entries.
+Closes #11.</li>
+<li>The VERSION file is correctly copied now (it was not present for the
+1.1 tar file, I don&#8217;t know exactly why).  Closes #8.</li>
+</ul>
+</div>
+<div class="section" id="changes-from-1-0-to-1-1">
+<h2>Changes from 1.0 to 1.1<a class="headerlink" href="#changes-from-1-0-to-1-1" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Numexpr can work now in threaded environments.  Fixes #2.</p>
+</li>
+<li><p class="first">The test suite can be run programmatically by using
+<code class="docutils literal"><span class="pre">numexpr.test()</span></code>.</p>
+</li>
+<li><p class="first">Support a more complete set of functions for expressions (including
+those that are not supported by MSVC 7.1 compiler, like the inverse
+hyperbolic or log1p and expm1 functions.  The complete list now is:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>where(bool, number1, number2): number</dt>
+<dd>Number1 if the bool condition is true, number2 otherwise.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>{sin,cos,tan}(float|complex): float|complex</dt>
+<dd>Trigonometric sinus, cosinus or tangent.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>{arcsin,arccos,arctan}(float|complex): float|complex</dt>
+<dd>Trigonometric inverse sinus, cosinus or tangent.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>arctan2(float1, float2): float</dt>
+<dd>Trigonometric inverse tangent of float1/float2.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>{sinh,cosh,tanh}(float|complex): float|complex</dt>
+<dd>Hyperbolic sinus, cosinus or tangent.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>{arcsinh,arccosh,arctanh}(float|complex): float|complex</dt>
+<dd>Hyperbolic inverse sinus, cosinus or tangent.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>{log,log10,log1p}(float|complex): float|complex</dt>
+<dd>Natural, base-10 and log(1+x) logarithms.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>{exp,expm1}(float|complex): float|complex</dt>
+<dd>Exponential and exponential minus one.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>sqrt(float|complex): float|complex</dt>
+<dd>Square root.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>{real,imag}(complex): float</dt>
+<dd>Real or imaginary part of complex.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>complex(float, float): complex</dt>
+<dd>Complex from real and imaginary parts.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Release Notes</a></li>
+<li><a class="reference internal" href="#release-notes-for-numexpr-3-0-series">Release notes for NumExpr 3.0 series</a><ul>
+<li><a class="reference internal" href="#changes-from-3-0-0-to-3-0-1">Changes from 3.0.0 to 3.0.1</a><ul>
+<li><a class="reference internal" href="#todo-list">TODO List:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#release-notes-for-numexpr-2-4-series">Release notes for Numexpr 2.4 series</a><ul>
+<li><a class="reference internal" href="#changes-from-2-4-3-to-2-4-4">Changes from 2.4.3 to 2.4.4</a></li>
+<li><a class="reference internal" href="#changes-from-2-4-2-to-2-4-3">Changes from 2.4.2 to 2.4.3</a></li>
+<li><a class="reference internal" href="#changes-from-2-4-1-to-2-4-2">Changes from 2.4.1 to 2.4.2</a></li>
+<li><a class="reference internal" href="#changes-from-2-4-to-2-4-1">Changes from 2.4 to 2.4.1</a></li>
+<li><a class="reference internal" href="#changes-from-2-3-1-to-2-4">Changes from 2.3.1 to 2.4</a></li>
+<li><a class="reference internal" href="#changes-from-2-3-to-2-3-1">Changes from 2.3 to 2.3.1</a></li>
+<li><a class="reference internal" href="#changes-from-2-2-2-to-2-3">Changes from 2.2.2 to 2.3</a></li>
+<li><a class="reference internal" href="#changes-from-2-2-1-to-2-2-2">Changes from 2.2.1 to 2.2.2</a></li>
+<li><a class="reference internal" href="#changes-from-2-2-to-2-2-1">Changes from 2.2 to 2.2.1</a></li>
+<li><a class="reference internal" href="#changes-from-2-1-to-2-2">Changes from 2.1 to 2.2</a></li>
+<li><a class="reference internal" href="#changes-from-2-0-1-to-2-1">Changes from 2.0.1 to 2.1</a></li>
+<li><a class="reference internal" href="#changes-from-2-0-to-2-0-1">Changes from 2.0 to 2.0.1</a></li>
+<li><a class="reference internal" href="#changes-from-1-x-series-to-2-0">Changes from 1.x series to 2.0</a></li>
+<li><a class="reference internal" href="#changes-from-1-4-1-to-1-4-2">Changes from 1.4.1 to 1.4.2</a></li>
+<li><a class="reference internal" href="#changes-from-1-4-to-1-4-1">Changes from 1.4 to 1.4.1</a></li>
+<li><a class="reference internal" href="#changes-from-1-3-1-to-1-4">Changes from 1.3.1 to 1.4</a></li>
+<li><a class="reference internal" href="#changes-from-1-3-to-1-3-1">Changes from 1.3 to 1.3.1</a></li>
+<li><a class="reference internal" href="#changes-from-1-2-to-1-3">Changes from 1.2 to 1.3</a></li>
+<li><a class="reference internal" href="#changes-from-1-1-1-to-1-2">Changes from 1.1.1 to 1.2</a></li>
+<li><a class="reference internal" href="#changes-from-1-1-to-1-1-1">Changes from 1.1 to 1.1.1</a></li>
+<li><a class="reference internal" href="#changes-from-1-0-to-1-1">Changes from 1.0 to 1.1</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="api.html"
+                        title="previous chapter">NumExpr API</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/release_notes.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api.html" title="NumExpr API"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">numexpr3 a0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2006 (various)-2017, Robert A. McLeod, David M. Cooke, Francesc Alted, and others.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.5.
+    </div>
+  </body>
+</html>

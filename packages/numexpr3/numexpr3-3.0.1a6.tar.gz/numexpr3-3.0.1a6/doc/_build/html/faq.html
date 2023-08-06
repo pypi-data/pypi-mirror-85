@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Frequency Asked Questions &#8212; numexpr3 a0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     'a0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Using NumExpr within Cython" href="cython.html" />
+    <link rel="prev" title="Overview of NumExpr" href="overview.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="cython.html" title="Using NumExpr within Cython"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="overview.html" title="Overview of NumExpr"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">numexpr3 a0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="frequency-asked-questions">
+<h1>Frequency Asked Questions<a class="headerlink" href="#frequency-asked-questions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="numexpr-has-a-max-32-arguments">
+<h2>NumExpr has a max 32 arguments<a class="headerlink" href="#numexpr-has-a-max-32-arguments" title="Permalink to this headline">¶</a></h2>
+<p>This is a limitation due to a <cite>#define</cite> in NumPy.  It can be removed by downloading
+the NumPy git repo, and changing <cite>NPY_MAXARGS</cite>, currently (as of NumPy 1.13)
+found in the file <cite>numpy/numpy/core/include/numpy/ndarraytypes.h</cite>:</p>
+<p><a class="reference external" href="https://github.com/numpy/numpy/blob/dc27edb92ec70b5c0ade8ecd1ed78884a0a0a5dc/numpy/core/include/numpy/ndarraytypes.h">https://github.com/numpy/numpy/blob/dc27edb92ec70b5c0ade8ecd1ed78884a0a0a5dc/numpy/core/include/numpy/ndarraytypes.h</a></p>
+<p>Then build and install NumPy with the setup script as follows:</p>
+<blockquote>
+<div>git clone <a class="reference external" href="https://github.com/numpy/numpy.git">https://github.com/numpy/numpy.git</a>
+cd numpy
+nano numpy/core/include/numpy/ndarraytypes.h</div></blockquote>
+<p>&lt;do your changes&gt;</p>
+<blockquote>
+<div>python setup.py build install</div></blockquote>
+<p>The current limit in NumExpr for the maximum number of arguments is 254.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Frequency Asked Questions</a><ul>
+<li><a class="reference internal" href="#numexpr-has-a-max-32-arguments">NumExpr has a max 32 arguments</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="overview.html"
+                        title="previous chapter">Overview of NumExpr</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="cython.html"
+                        title="next chapter">Using NumExpr within Cython</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/faq.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="cython.html" title="Using NumExpr within Cython"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="overview.html" title="Overview of NumExpr"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">numexpr3 a0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2006 (various)-2017, Robert A. McLeod, David M. Cooke, Francesc Alted, and others.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.5.
+    </div>
+  </body>
+</html>

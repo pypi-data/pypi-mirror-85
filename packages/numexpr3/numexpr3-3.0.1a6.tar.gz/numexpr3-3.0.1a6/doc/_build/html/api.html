@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>NumExpr API &#8212; numexpr3 a0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     'a0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Release Notes" href="release_notes.html" />
+    <link rel="prev" title="Developer Guide" href="dev_guide.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="release_notes.html" title="Release Notes"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dev_guide.html" title="Developer Guide"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">numexpr3 a0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="numexpr-api">
+<h1>NumExpr API<a class="headerlink" href="#numexpr-api" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-numexpr3">
+<span id="core-module"></span><h2>Core module<a class="headerlink" href="#module-numexpr3" title="Permalink to this headline">¶</a></h2>
+<p>Numexpr is a fast numerical expression evaluator for NumPy.  With it,
+expressions that operate on arrays (like &#8220;3*a+4*b&#8221;) are accelerated
+and use less memory than doing the same calculation in Python.</p>
+<p>See:</p>
+<p><a class="reference external" href="https://github.com/pydata/numexpr">https://github.com/pydata/numexpr</a></p>
+<p>for more info about it.</p>
+<dl class="function">
+<dt id="numexpr3.evaluate">
+<code class="descclassname">numexpr3.</code><code class="descname">evaluate</code><span class="sig-paren">(</span><em>expr</em>, <em>name=None</em>, <em>lib=0</em>, <em>local_dict=None</em>, <em>global_dict=None</em>, <em>out=None</em>, <em>order='K'</em>, <em>casting=0</em>, <em>optimization=0</em>, <em>library=0</em>, <em>checks=0</em>, <em>stackDepth=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/numexpr3/ne3compiler.html#evaluate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#numexpr3.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate a mutliline expression element-wise, using the a NumPy.iter</p>
+<dl class="docutils">
+<dt>expr is a string forming an expression, like </dt>
+<dd>&#8220;c = 2*a + 3*b&#8221;</dd>
+</dl>
+<p>The values for &#8220;a&#8221; and &#8220;b&#8221; will by default be taken from the calling 
+function&#8217;s frame (through use of sys._getframe()). Alternatively, they 
+can be specifed using the &#8216;local_dict&#8217; argument.</p>
+<p>Multi-line statements, or semi-colon seperated statements, are supported.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>name</strong> : DEPRECATED</p>
+<blockquote>
+<div><p>use wisdom functions instead.</p>
+</div></blockquote>
+<p><strong>local_dict</strong> : dictionary, optional</p>
+<blockquote>
+<div><p>A dictionary that replaces the local operands in current frame. This is 
+generally required in Cython, as Cython does not populate the calling 
+frame variables according to Python standards.</p>
+</div></blockquote>
+<p><strong>global_dict</strong> : DEPRECATED</p>
+<blockquote>
+<div><p>A dictionary that replaces the global operands in current frame.
+Setting to {} can speed operations if you do not call globals.
+global_dict was deprecated as there is little reason for the 
+user to maintain two dictionaries of arrays.</p>
+</div></blockquote>
+<p><strong>out</strong> : DEPRECATED</p>
+<blockquote>
+<div><p>use assignment in expr (i.e. &#8216;out=a*b&#8217;) instead.</p>
+</div></blockquote>
+<p><strong>order</strong> : {&#8216;C&#8217;, &#8216;F&#8217;, &#8216;A&#8217;, or &#8216;K&#8217;}, optional</p>
+<blockquote>
+<div><p>Currently only &#8216;K&#8217; is supported in NumExpr3.</p>
+<p>Controls the iteration order for operands. &#8216;C&#8217; means C order, &#8216;F&#8217;
+means Fortran order, &#8216;A&#8217; means &#8216;F&#8217; order if all the arrays are
+Fortran contiguous, &#8216;C&#8217; order otherwise, and &#8216;K&#8217; means as close to
+the order the array elements appear in memory as possible.  For
+efficient computations, typically &#8216;K&#8217;eep order (the default) is
+desired.</p>
+</div></blockquote>
+<p><strong>casting</strong> : {CAST_SAFE, CAST_NO, CAST_EQUIV, CAST_SAME_KIND, CAST_UNSAFE},</p>
+<blockquote>
+<div><blockquote>
+<div><p>optional 
+(NumPy string repr also accepted)</p>
+</div></blockquote>
+<p>Currently only &#8216;safe&#8217; is supported in NumExpr3.</p>
+<p>Controls what kind of data casting may occur when making a copy or
+buffering.  Setting this to &#8216;unsafe&#8217; is not recommended, as it can
+adversely affect accumulations.</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;no&#8217; means the data types should not be cast at all.</li>
+<li>&#8216;equiv&#8217; means only byte-order changes are allowed.</li>
+<li>&#8216;safe&#8217; means only casts which can preserve values are allowed.</li>
+<li>&#8216;same_kind&#8217; means only safe casts or casts within a kind,
+like float64 to float32, are allowed.</li>
+<li>&#8216;unsafe&#8217; means any data conversions may be done.</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<p><strong>optimization: {OPT_MODERATE}, optional</strong></p>
+<blockquote>
+<div><p>Controls what level of optimization the compiler will attempt to 
+perform on the expression to speed its execution.  This optimization
+is performed both by python.compile and numexpr3</p>
+<blockquote>
+<div><ul class="simple">
+<li>OPT_MODERATE performs simple optimizations, such as minimizing 
+the number of temporary arrays</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<p><strong>library: {LIB_STD}, optional</strong></p>
+<blockquote class="last">
+<div><p>Indicates which library to use for calculations.  The library must 
+have been linked during the C-extension compilation, such that the 
+associated operations are found in the opTable.</p>
+<blockquote>
+<div><ul class="simple">
+<li>LIB_STD is the standard C math.h / cmath.h library</li>
+</ul>
+</div></blockquote>
+<p>Falls-back to LIB_STD if the other library is not available.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="numexpr3.NumExpr">
+<em class="property">class </em><code class="descclassname">numexpr3.</code><code class="descname">NumExpr</code><span class="sig-paren">(</span><em>expr</em>, <em>lib=0</em>, <em>casting=0</em>, <em>local_dict=None</em>, <em>stackDepth=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/numexpr3/ne3compiler.html#NumExpr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#numexpr3.NumExpr" title="Permalink to this definition">¶</a></dt>
+<dd><p>The self.program attribute is a <cite>bytes</cite> object and consists of operations 
+followed by registers with the form,</p>
+<blockquote>
+<div>opcode + return_reg + arg1_reg + arg2_reg + arg3_reg</div></blockquote>
+<p>Currently opcode is a uint16 and the register numbers are uint8.  However,
+note that numpy.iter limits the maximum number of arguments to 32.</p>
+<p>Register tuples have the format:</p>
+<blockquote>
+<div>(regCode, object, dchar, KIND, name, &lt;max_itemsize&gt;)</div></blockquote>
+<dl class="docutils">
+<dt>where</dt>
+<dd><p class="first">regCode: a single byte indicating the register number
+object:   the actual object reference, is <cite>None</cite> for temporaries.
+dchar:    the <cite>object.dtype.char</cite>, or for temporaries the expected value
+KIND:  indicates ndarray, scalar, temporary
+name:     the original name of the array.  It is not required for the</p>
+<blockquote>
+<div>input arguments to run have the same names, just that they
+be in the same order and dtypes.</div></blockquote>
+<p class="last">max_itemsize: the largest dtype used in temporary arrays, optional</p>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<dl class="method">
+<dt id="numexpr3.NumExpr.assemble">
+<code class="descname">assemble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/numexpr3/ne3compiler.html#NumExpr.assemble"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#numexpr3.NumExpr.assemble" title="Permalink to this definition">¶</a></dt>
+<dd><p>NumExpr.assemble() can be used in the context of having a pool of 
+NumExpr objects; it is always called by __init__().</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="numexpr3.NumExpr.run">
+<code class="descname">run</code><span class="sig-paren">(</span><em>stackDepth=None</em>, <em>verify=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/numexpr3/ne3compiler.html#NumExpr.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#numexpr3.NumExpr.run" title="Permalink to this definition">¶</a></dt>
+<dd><p><cite>run()</cite> is called with keyword arguments as the order of 
+args is based on the Abstract Syntax Tree parse and may be 
+non-intuitive.</p>
+<blockquote>
+<div>e.g. self.run( a=a1, b=b1, out=out_new )</div></blockquote>
+<p>where {a,b,out} were the original names in the expression. The 
+<cite>disassemble()</cite> method can be used to see the original expression names.</p>
+<p>Additional keyword arguments are:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>stackDepth {None}: Tells the function how </dt>
+<dd>many stacks up it was called from. Generally not altered unless
+one is using functional programming.</dd>
+<dt>verify {False}: Resamples the calling frame to grab arrays. </dt>
+<dd>There is some overhead associated with grabbing the frames so 
+if inside a loop and using run on the same arrays repeatedly 
+then operate without arguments.</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="numexpr3.__version__">
+<code class="descclassname">numexpr3.</code><code class="descname">__version__</code><a class="headerlink" href="#numexpr3.__version__" title="Permalink to this definition">¶</a></dt>
+<dd><p>The version of NumExpr.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="numexpr3.ncores">
+<code class="descclassname">numexpr3.</code><code class="descname">ncores</code><a class="headerlink" href="#numexpr3.ncores" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of (virtual) cores detected.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="utility-functions">
+<h2>Utility functions<a class="headerlink" href="#utility-functions" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">NumExpr API</a><ul>
+<li><a class="reference internal" href="#module-numexpr3">Core module</a></li>
+<li><a class="reference internal" href="#utility-functions">Utility functions</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dev_guide.html"
+                        title="previous chapter">Developer Guide</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="release_notes.html"
+                        title="next chapter">Release Notes</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/api.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="release_notes.html" title="Release Notes"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dev_guide.html" title="Developer Guide"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">numexpr3 a0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2006 (various)-2017, Robert A. McLeod, David M. Cooke, Francesc Alted, and others.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.5.
+    </div>
+  </body>
+</html>
