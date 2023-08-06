@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: flexpy
+Version: 0.0.5
+Summary: Python API for SIL FieldWorks Language Explorer (FLEx)
+Home-page: https://github.com/Kuhron/flexpy
+Author: Wesley Kuhron Jones
+Author-email: wesleykuhronjones@gmail.com
+License: GPLv3
+Description: # flexpy
+        
+        Python API for working with SIL FieldWorks Language Explorer (FLEx) databases. Some web scraping of Papuan Bible translations is also in here. Better organization and more features to come.
+        
+        Install with:
+        
+            pip install flexpy
+        
+        #### Example usage
+            from flexpy.Corpus import Corpus
+            
+            project_dir = "/home/wesley/.local/share/fieldworks/Projects/"
+            project_name = "Bongu"
+            bongu_corpus = Corpus(project_dir, project_name)
+            contents = bongu_corpus.get_tokenized_contents()  # already tokenized
+            
+            # now you can run statistics on contents
+        
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
