@@ -1,0 +1,74 @@
+Metadata-Version: 2.1
+Name: pymodaq
+Version: 2.2.6
+Summary: Modular Data Acquisition with Python
+Home-page: http://pymodaq.cnrs.fr
+Author: Sébastien Weber
+Author-email: sebastien.weber@cemes.fr
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Other Environment
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Human Machine Interfaces
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Classifier: License :: CeCILL-B Free Software License Agreement (CECILL-B)
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: User Interfaces
+Requires-Python: >=3.6, <3.8
+Requires-Dist: numpy (==1.19.3)
+Requires-Dist: scipy
+Requires-Dist: pyqtgraph (==0.10)
+Requires-Dist: easydict
+Requires-Dist: tables
+Requires-Dist: pymodaq-plugins (>=2.0.1)
+Requires-Dist: pymodaq-pid-models (>=0.0.2)
+Requires-Dist: simple-pid
+Requires-Dist: python-dateutil
+Requires-Dist: packaging
+Requires-Dist: SQLAlchemy-Utils (==0.36.6)
+Requires-Dist: toml
+Requires-Dist: pymodaq-plugin-manager
+
+PyMoDAQ
+#######
+
+.. figure:: http://pymodaq.cnrs.fr/en/latest/_static/splash.png
+   :alt: shortcut
+
+
+PyMoDAQ, Modular Data Acquisition with Python, is a set of **python** modules used to interface any kind of experiments.
+It simplifies the interaction with detector and actuator hardware to go straight to the data acquisition of interest.
+
+It has two purposes:
+
+* First, to provide a complete interface to perform automated measurements or logging data without having to write a user/interface for each
+  new experiment, this is under the *Dashboard_module* environment and its two extensions.
+* Second, to provide various tools (modules) to easily build *custom apps*
+
+It is divided in three main modules:
+
+* **Dashboard_module** : This is the module that will initialize actuators and detectors given the need of your
+  particular experiment. You configure the dashboard using an interface for quick launch of various configurations.
+* **DAQ_Logger_module** : This module lets you log data from one or many detectors defined in the dashboard. You can log data
+  in a binary hierarchical hdf5 file or towards a sql database
+* **DAQ_Scan_module** : This module lets you configure automated data acquisition from one or many detectors defined
+  in the dashboard as a function or one or more actuators defined also in the dashboard.
+
+The detectors and the actuators are represented and manipulated using two control modules:
+
+* **DAQ_Move_module** : used to control/drive an actuator (stand alone and/or automated). Any number of these modules can be instantiated.
+* **DAQ_Viewer_module** : used to control/drive a detector (stand alone and/or automated). Any number of these modules can be instantiated.
+
+and many others to simplify any application development.
+
+
+Published under the CeCILL-B FREE SOFTWARE LICENSE
+
+GitHub repo: https://github.com/CEMES-CNRS
+
+Documentation: http://pymodaq.cnrs.fr/
+
+
