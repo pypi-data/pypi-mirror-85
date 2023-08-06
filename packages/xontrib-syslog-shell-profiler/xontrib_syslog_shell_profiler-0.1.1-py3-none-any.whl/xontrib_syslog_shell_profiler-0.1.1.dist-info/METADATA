@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: xontrib-syslog-shell-profiler
+Version: 0.1.1
+Summary: A Xonsh plugin to profile and log command execution to a syslog file.
+Home-page: https://github.com/grg121/xontrib-syslog-shell-profiler
+Author: Francisco Navarro
+Author-email: navarromoralesdev@gmail.com
+License: MIT
+Project-URL: Documentation, https://github.com/grg121/xontrib-syslog-shell-profiler/blob/master/README.md
+Project-URL: Code, https://github.com/grg121/xontrib-syslog-shell-profiler
+Project-URL: Issue tracker, https://github.com/grg121/xontrib-syslog-shell-profiler/issues
+Platform: any
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: System :: Shells
+Classifier: Topic :: System :: System Shells
+Classifier: Topic :: Terminals
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: xonsh
+
+![alt text](https://github.com/grg121/xontrib-syslog-profiler/blob/master/logo.png?raw=true)
+<p align="center">
+A Xonsh plugin to profile and log command execution to a syslog file.
+</p>
+
+## Installation
+
+Using pip:
+```
+pip install xontrib-syslog-shell-profiler
+```
+## Usage
+
+```bash
+xontrib load syslog-shell-profiler
+```
+
+It will define `$XONSH_HISTORY_BACKEND = JsonSyslogHistory`, if you overwrite this variable the syslog backend will not work. This history backend used the default JSON one as base and any change on that class will affect to the plugin.
+
