@@ -1,0 +1,26 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module="spyboat"
+author="Gregor Mönke"
+author-email="gregor.moenke@embl.de"
+home-page="https://github.com/tensionhead/SpyBOAT"
+requires=[
+    "numpy >=1.18",
+    "matplotlib >=3.1",
+    "scikit-image >=0.14.0",
+    "pyboat >=0.8.22"
+]
+classifiers=[
+	    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+	    "Programming Language :: Python :: 3",
+	    ]
+requires-python=">=3.6"
+description-file="doc/description.md"
+
+# no direct commandline interface
+#[tool.flit.scripts]
+#pyboat="pyboat:main"
+
