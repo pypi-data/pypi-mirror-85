@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: isbnlib-sbn
+Version: 0.0.1
+Summary: A plugin for isbnlib that pulls metadata from the Servizio Bibliotecario Nazionale (https://opac.sbn.it Italy)
+Home-page: https://github.com/arangb/isbnlib-sbn
+Author: arangb
+Author-email: arangbellido@gmail.com
+License: LGPL v3
+Download-URL: https://github.com/arangb/isbnlib-sbn/archive/v0.0.1.zip
+Keywords: ISBN isbnlib sbn bibliographic-references
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Environment :: Console
+Classifier: Topic :: Text Processing :: General
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: isbnlib (<3.11.0,>=3.9.3)
+
+A metadata plugin for ``isbnlib`` (https://pypi.python.org/pypi/isbnlib) using the service from the Servizio Bibliotecario Nazionale (Italy) (https://opac.sbn.it/) for books in Italian.
+
+After install (pip install isbnlib-sbn) a new metadata provider (``sbn``) is available in isbnlib.
+
+For available plugins check_ here.
+
+
+
+.. _check: https://pypi.python.org/pypi?%3Aaction=search&term=isbnlib_&submit=search
+
+
