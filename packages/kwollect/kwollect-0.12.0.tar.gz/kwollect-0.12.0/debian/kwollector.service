@@ -1,0 +1,9 @@
+[Unit]
+Description=Kwollector service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/kwollector /etc/kwollect/kwollector.conf
+
+[Install]
+WantedBy=multi-user.target

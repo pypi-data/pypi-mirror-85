@@ -1,0 +1,21 @@
+#!/usr/bin/make -f
+
+export DH_VIRTUALENV_INSTALL_ROOT=/opt/
+
+.PHONY: override_dh_strip
+
+%:
+	dh $@ --with python-virtualenv
+
+override_dh_virtualenv:
+	dh_virtualenv --python python3 --builtin-venv --preinstall wheel
+
+override_dh_shlibdeps:
+	dh_shlibdeps -X/psycopg2/.libs
+
+
+override_dh_installinit:
+	dh_installinit --name=kwollector
+
+override_dh_systemd_enable:
+	dh_systemd_enable --no-enable

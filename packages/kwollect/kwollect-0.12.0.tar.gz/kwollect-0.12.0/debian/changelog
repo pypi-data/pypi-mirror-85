@@ -1,0 +1,66 @@
+kwollect (0.12.0) unstable; urgency=medium
+
+  * kwollector: Fix promoted_metrics cache
+  * kwollector: Add support for custom prometheus metrics
+  * kwollector: Clear IPMI SDR cache when needed
+  * kwollector: Improve log and exception
+  * kwollector: switch to aiosnmp lib.
+
+ -- Simon Delamare <simon.delamare@ens-lyon.fr>  Fri, 20 Oct 2020 12:00:00 +0200
+
+kwollect (0.11.0) unstable; urgency=medium
+
+  * kwollector: Improve log and exception
+  * kwollector: Add support for metric regexp in promoted_metrics table
+  * db-oar: Add support for regexp in OAR monitor type
+  * kwollect: Add prometheus exporter support
+  * db: Fix for remote insert function
+
+ -- Simon Delamare <simon.delamare@ens-lyon.fr>  Fri, 02 Oct 2020 12:00:00 +0200
+
+kwollect (0.0.10) unstable; urgency=medium
+
+  * db: Performance tweaks
+  * db: Add safeguards against too long requests
+  * kwollector: Add asyncio timeout to snmp requests
+
+ -- Simon Delamare <simon.delamare@ens-lyon.fr>  Mon, 15 Sep 2020 08:00:00 +0200
+
+kwollect (0.0.9) unstable; urgency=medium
+
+  * gitlab-ci: Add git to build environment
+
+ -- Simon Delamare <simon.delamare@ens-lyon.fr>  Mon, 20 Jul 2020 15:30:00 +0200
+
+kwollect (0.0.8) unstable; urgency=medium
+
+  * kwollector: Use PySNMP v5 (unreleased yet) to avoid MIB lookup for better performance
+  * wattmetre: Fix port number mapping
+  * kwollector: Do not crash on startup when a device fails on snmpwalk
+
+ -- Simon Delamare <simon.delamare@ens-lyon.fr>  Mon, 20 Jul 2020 14:30:00 +0200
+
+kwollect (0.0.7) unstable; urgency=medium
+
+  * kwollector: Support more generic SNMP template for OIDs needing dynamic dyscovery
+  * kwollector: Minor fixes
+
+ -- Simon Delamare <simon.delamare@ens-lyon.fr>  Mon, 08 Jun 2020 10:30:00 +0200
+
+kwollect (0.0.6) unstable; urgency=medium
+
+  * Fix for metric labels
+
+ -- Simon Delamare <simon.delamare@ens-lyon.fr>  Mon, 23 May 2020 10:30:00 +0200
+
+kwollect (0.0.5) unstable; urgency=medium
+
+  * Extend support for metric labels (DB breaking change)
+
+ -- Simon Delamare <simon.delamare@ens-lyon.fr>  Mon, 19 May 2020 11:00:00 +0200
+
+kwollect (0.0.4) unstable; urgency=medium
+
+  * New deb release
+
+ -- Simon Delamare <simon.delamare@ens-lyon.fr>  Mon, 04 May 2020 18:00:00 +0200
