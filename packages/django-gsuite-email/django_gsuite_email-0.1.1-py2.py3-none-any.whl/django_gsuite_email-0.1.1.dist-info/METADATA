@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: django-gsuite-email
+Version: 0.1.1
+Summary: Send emails via a GSuite Service-account.
+Home-page: https://github.com/slicefox/django-gsuite-email
+Author: slicefox
+Author-email: adithya.webdev@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.0.0
+Description-Content-Type: text/markdown
+Requires-Dist: google-api-python-client (==1.8.0)
+Requires-Dist: google-auth (==1.11.3)
+
+
+# GSuite Email Backend
+
+[![Downloads](https://static.pepy.tech/personalized-badge/django-gsuite-email?period=total&units=international_system&left_color=grey&right_color=brightgreen&left_text=Downloads)](https://pepy.tech/project/django-gsuite-email)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/slicefox/django-gsuite-email?logoColor=red)
+![GitHub issues](https://img.shields.io/github/issues/slicefox/django-gsuite-email)
+[![Documentation Status](https://readthedocs.org/projects/django-gsuite-email/badge/?version=latest)](https://django-gsuite-email.readthedocs.io/en/latest/?badge=latest)
+
+This package helps send emails through google GSuite serviceaccount credentials
+
+
+## Installation
+```sh
+pip install django-gsuite-email
+```
+
+# Quick start
+
+1. Add it to installed apps in `setings.py`
+```python
+INSTALLED_APPS = [
+    ...
+    'django_gsuite_email',
+    ...
+]
+```
+2. Set the Email EMAIL_BACKEND setting
+```python
+EMAIL_BACKEND = 'django_gsuite_email.GSuiteEmailBackend'
+```
+
