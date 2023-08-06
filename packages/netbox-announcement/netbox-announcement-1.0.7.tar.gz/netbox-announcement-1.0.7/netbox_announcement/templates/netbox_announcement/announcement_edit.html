@@ -1,0 +1,22 @@
+{% extends 'utilities/obj_edit.html' %}
+{% load form_helpers %}
+
+{% block tabs %}
+    {% if not obj.pk %}
+        {% include 'netbox_announcement/inc/announcement_edit_header.html' with active_tab='company' %}
+    {% endif %}
+{% endblock %}
+{% block form %}
+    <div class="panel panel-default">
+        <div class="panel-heading"><strong>Announcement</strong></div>
+        <div class="panel-body">
+            {% render_field form.subject %}
+            {% render_field form.slug %}
+            {% render_field form.status %}
+            {% render_field form.content_preset %}
+            {% render_field form.content %}
+            <input type="hidden" name="type" id="id_type" value="company" />
+            <input type="hidden" id="user" name="user" value="{{ request.user.id }}">
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,29 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>Virtual Machine Announcements</strong>
+    </div>
+    <table class="table table-hover table-headings panel-body component-list">
+        <thead>
+            <tr>
+                <th>Create Time</th>
+                <th>Subject</th>
+                <th>Author</th>
+                <th>Status</th>
+                <th>Last Update Time</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for announcement in announcements %}
+            {% include 'netbox_announcement/vm/announcement_table.html' %}
+        {% empty %}
+            <tr><td colspan="4" class="text-center text-muted">&mdash; No announcements &mdash;</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="panel-footer text-right noprint">
+        <a href="{% url 'plugins:netbox_announcement:announcement_vm_add' %}?related_vm={{ object.id }}" class="btn btn-xs btn-primary">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Announcement
+        </a>
+    </div>
+</div>
+

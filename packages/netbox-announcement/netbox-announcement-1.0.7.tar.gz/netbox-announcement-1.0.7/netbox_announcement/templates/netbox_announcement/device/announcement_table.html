@@ -1,0 +1,12 @@
+<tr>
+    {# Created Time #}
+    <td>{{ announcement.created_at|date:"SHORT_DATETIME_FORMAT"}}</td>
+    {# Subject #}
+    <td><a href="{% url 'plugins:netbox_announcement:announcement' pk=announcement.id%}">{{ announcement.subject }}</a></td>
+    {# Author #}
+    <td>{{ announcement.user }}</td>
+    {# Status #}
+    <td><span class="label label-{{ announcement.status.status_label }}">{{ announcement.status }}</span></td>
+    {# Last updated Time #}
+    <td>{{ announcement.updated_at|date:"SHORT_DATETIME_FORMAT" }}</td>
+</tr>
