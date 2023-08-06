@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: lightmd
+Version: 0.0.1.1
+Summary: This is a light-weighted, purly python made markdown parser and render
+Home-page: https://github.com/andysim3d/markdown
+Author: andysim3d, jinglongwu, VCneverdie, shawn-lo
+License: GPL-3.0 License
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+
+# markdown
+[![Build Status](https://travis-ci.org/andysim3d/markdown.svg?branch=master)](https://travis-ci.org/andysim3d/markdown)
+
+A learn-motivated markdown parser. 
+
+Supports all standard md elements. 
+
+## Sample use case:
+
+Install:
+```
+pip install lightmd
+```
+
+Parse md.
+
+```python
+import lightmd
+
+with open("your.md", "r") as md_file:
+    ## Parse content
+    parsed_content = lightmd.parse_md_to_ast(md_file) 
+    ## Render to HTML
+    rendered_html = lightmd.render_html(parsed_content)
+```
+
+
+
