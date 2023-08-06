@@ -1,0 +1,80 @@
+Metadata-Version: 2.1
+Name: mathicsscript
+Version: 1.1.0
+Summary: A general-purpose computer algebra system.
+Home-page: UNKNOWN
+Author-email: rb@dustyfeet.com
+Maintainer: Rocky Bernstein
+License: GPL
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Topic :: Software Development :: Interpreters
+Description-Content-Type: text/x-rst
+Requires-Dist: Mathics3 (>=1.0)
+Requires-Dist: click
+Requires-Dist: colorama
+Requires-Dist: pygments
+Requires-Dist: term-background (>=1.0.1)
+
+mathicsscript is a command-line interface to Mathics.
+
+|screenshot|
+
+See the `screenshot directory <https://github.com/Mathics3/mathicsscript/tree/master/screenshots>`_ for a description and another example.
+
+
+Features
+--------
+
+* GNU Readline terminal interaction. This includes
+   - saving command history between sessions.
+   - variable completion, even for symbol names like `\\[Sigma]`
+   - limited ESC keyboard input; for example *esc* ``p`` *esc* is π
+* Syntax highlighting using `pygments`.
+* Automatic detection of light or dark terminal background color.
+
+
+Installing
+----------
+
+To install, run
+::
+
+    $ make install
+
+To install from git shources so that you run from the git source tree:
+
+
+::
+
+    $ make develop
+
+
+Why not IPython via Jupyter?
+----------------------------
+
+There will always be a need for simple terminal-like
+interaction. Although there is IPython support via Jupyter all of this
+is pretty heavy-weight. To code to this a developer needs to code
+write a kernel, and use a wire protocol and this adds complexity not
+only for the person developing this package, but also for the user who
+needs to load the extra layers that aren't used. And when something
+goes wrong, it is harder to track down problems.
+
+
+.. |screenshot| image:: https://github.com/Mathics3/mathicsscript/blob/master/screenshots/mathicsscript1.gif
+
+
+
