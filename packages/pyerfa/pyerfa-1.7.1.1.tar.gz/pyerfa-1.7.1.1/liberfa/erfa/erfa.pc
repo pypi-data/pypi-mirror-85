@@ -1,0 +1,11 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: Erfa
+Description: Essential Routines for Fundamental Astronomy
+Version: 1.7.1
+Libs: -L${libdir} -lerfa
+Libs.private: -lm 
+Cflags: -I${includedir}
