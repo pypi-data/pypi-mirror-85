@@ -1,0 +1,31 @@
+[skdecide.domains]
+CostDeterministicGymDomain = skdecide.hub.domain.gym:CostDeterministicGymDomain [domains]
+DeterministicGymDomain = skdecide.hub.domain.gym:DeterministicGymDomain [domains]
+GymDomain = skdecide.hub.domain.gym:GymDomain [domains]
+GymPlanningDomain = skdecide.hub.domain.gym:GymPlanningDomain [domains]
+GymWidthPlanningDomain = skdecide.hub.domain.gym:GymWidthPlanningDomain [domains]
+MasterMind = skdecide.hub.domain.mastermind:MasterMind [domains]
+Maze = skdecide.hub.domain.maze:Maze [domains]
+RockPaperScissors = skdecide.hub.domain.rock_paper_scissors:RockPaperScissors [domains]
+SimpleGridWorld = skdecide.hub.domain.simple_grid_world:SimpleGridWorld [domains]
+
+[skdecide.solvers]
+AOstar = skdecide.hub.solver.aostar:AOstar
+Astar = skdecide.hub.solver.astar:Astar
+AugmentedRandomSearch = skdecide.hub.solver.ars:AugmentedRandomSearch [solvers]
+BFWS = skdecide.hub.solver.bfws:BFWS
+CGP = skdecide.hub.solver.cgp:CGP [solvers]
+ILAOstar = skdecide.hub.solver.ilaostar:ILAOstar
+IW = skdecide.hub.solver.iw:IW
+LRTAstar = skdecide.hub.solver.lrtastar:LRTAstar
+LRTDP = skdecide.hub.solver.lrtdp:LRTDP
+LazyAstar = skdecide.hub.solver.lazy_astar:LazyAstar
+MCTS = skdecide.hub.solver.mcts:MCTS
+MaxentIRL = skdecide.hub.solver.maxent_irl:MaxentIRL [solvers]
+POMCP = skdecide.hub.solver.pomcp:POMCP
+RIW = skdecide.hub.solver.riw:RIW
+RayRLlib = skdecide.hub.solver.ray_rllib:RayRLlib [solvers]
+SimpleGreedy = skdecide.hub.solver.simple_greedy:SimpleGreedy
+StableBaseline = skdecide.hub.solver.stable_baselines:StableBaseline [solvers]
+UCT = skdecide.hub.solver.mcts:UCT
+
