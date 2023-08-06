@@ -1,0 +1,76 @@
+Metadata-Version: 2.1
+Name: modseccfg
+Version: 0.0.9
+Summary: Editor to tame mod_security rulesets
+Home-page: https://fossil.include-once.org/modseccfg/
+License: ASL
+Keywords: config
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: HTTP Servers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Boot :: Init
+Requires-Python: >= 2.7
+Description-Content-Type: text/x-rst
+Requires-Dist: pluginconf
+Requires-Dist: pysimplegui
+
+*WARNING: THIS IS ALPHA STAGE QUALITY AND WILL MOST CERTAINLY DELETE
+   YOUR APACHE CONFIGURATION* (It doesn’t, but: no waranty and such.)
+
+modseccfg
+---------
+
+-  Simple GUI editor for SecRuleDisableById settings
+-  Tries to suggest false positives from error and audit logs
+-  (And a few options to configure mod_security and CRS variables.)
+-  Obviously requires ``ssh -X`` forwarding, or preparing config rules
+   on a local test setup, and ``*.conf`` files to be writable by current
+   user (running as root is not advised).
+
+Usage
+-----
+
+|image0|
+
+You obviously should have Apache(2.x) + mod_security(2.9) + CRS(3.x) set
+up and running already (in DetectionOnly mode initially), to allow for
+log inspection and adapting rules.
+
+1. start modseccfg (``python3 -m modseccfg``)
+2. Select a configuration/vhost file to inspect + work on.
+3. Pick the according error.log
+4. Inspect the rules with a high error count.
+5. [Disable] offending rules (if they’re not essential to CRS, or would
+   likely poke holes into useful protections).
+6. Thenceforth restart Apache after testing changes (``apache2ctl -t``).
+
+Notes
+~~~~~
+
+-  Preferrably do not edit default ``/etc/apache*`` files
+-  Work on separated ``/srv/web/conf.d/*`` configuration, if available
+-  And keep vhost settings in e.g. \ ``vhost.*.dir`` files, rather than
+   multiple ``<VirtualHost>`` in one ``*.conf`` (else only the first
+   section will be augmented).
+
+Missing features
+~~~~~~~~~~~~~~~~
+
+-  Doesn’t process any audit.log yet.
+-  Can’t classify wrapped (``<Location>`` or other directives) rules
+   yet.
+-  No rule information dialog.
+-  No SecOption editor yet.
+-  No CRS settings (setvar:crs…) editor yet.
+-  Recipes are not worth using yet.
+-  No sudo usage.
+-  No support for nginx or mod_sec v3.
+-  No support for Windows setups. (Would work, but no interest in user
+   support.)
+
+.. |image0| image:: https://fossil.include-once.org/modseccfg/raw/59f5daf65f51?m=image/gif
+
+
+
