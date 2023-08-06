@@ -1,0 +1,13 @@
+[Unit]
+Description=RDS-compatible Managed-Postgres Scheduler
+After=network.target
+
+[Service]
+Type=simple
+User=cornac-web
+Group=cornac-web
+Environment=SYSTEMD=1
+ExecStart=/opt/cornac/bin/cornac-shell cornac --verbose periodiq
+
+[Install]
+WantedBy=multi-user.target

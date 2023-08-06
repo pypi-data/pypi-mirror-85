@@ -1,0 +1,16 @@
+#!/bin/bash -eux
+
+identifier=${1-${PGDATABASE-cli0}}
+if [ -n "${1-}" ] ; then shift ; fi
+
+aws rds create-db-instance \
+    --db-instance-identifier "$identifier" \
+    --db-instance-class db.t2.micro \
+    --engine postgres \
+    --engine-version "${PGVERSION-12}" \
+    --allocated-storage 5 \
+    --no-multi-az \
+    --master-username "${PGUSER-postgres}" \
+    --master-user-password "${PGPASSWORD-'C0nfidentiel'}" \
+    "${@}"
+    ${NULL-}

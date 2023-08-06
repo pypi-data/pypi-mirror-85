@@ -1,0 +1,10 @@
+Include ~/.ssh/config
+
+Host *
+    BatchMode yes
+    ConnectTimeout 3
+    # Ignore warnings such as "Warning: Permanently added..."
+    LogLevel error
+    StrictHostKeyChecking no
+    # For now, just accept any key from remote hosts.
+    UserKnownHostsFile /dev/null

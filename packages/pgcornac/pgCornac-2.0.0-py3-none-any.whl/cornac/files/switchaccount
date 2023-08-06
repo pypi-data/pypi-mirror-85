@@ -1,0 +1,12 @@
+#!/bin/bash -eu
+
+printf -v AWS_ACCOUNT_ARN "arn:cornac:iam::%012d:role/CornacExternalDBAs" "$1"
+shift
+echo "Requesting token for ${AWS_ACCOUNT_ARN}." >&2
+data=$(aws --output json sts assume-role --role-session=cli --role-arn="$AWS_ACCOUNT_ARN")
+AWS_ACCESS_KEY_ID="$(jq --raw-output .Credentials.AccessKeyId <<<"$data")"
+AWS_SECRET_ACCESS_KEY="$(jq --raw-output .Credentials.SecretAccessKey <<<"$data")"
+AWS_SESSION_TOKEN="$(jq --raw-output .Credentials.SessionToken <<<"$data")"
+export ${!AWS_*}
+unset ${!DIRENV*}
+exec "${@-bash}"

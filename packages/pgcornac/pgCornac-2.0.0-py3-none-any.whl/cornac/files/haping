@@ -1,0 +1,185 @@
+#!/usr/bin/env python3
+#
+# Configurer avec les variables d'env de libpq.
+#
+# Usage: haping
+#
+
+import logging.config
+import time
+import os.path
+import pdb
+import sys
+from textwrap import dedent, indent
+
+import psycopg2
+
+
+logger = logging.getLogger("ha")
+
+
+TEMPO = 2
+
+
+def main():
+    logging.info("Démarrage de %s.", os.path.dirname(sys.argv[0]))
+    conn = connect()
+
+    with conn:
+        if not has_table(conn):
+            create_table(conn)
+        else:
+            logger.debug("Vider la table app_log.")
+            execute(conn, 'TRUNCATE TABLE "app_log";')
+        insert(conn)
+
+    while True:
+        try:
+            data = update(conn)
+            standby = data.get('standby', ['indéfini']) or ['aucun']
+            slot_name = data.get('slot_name') or 'inconnu'
+            logger.info(
+                "Primaire: %s, Secondaires: %s.",
+                slot_name.replace('_', '-'),
+                ', '.join(standby),
+            )
+            time.sleep(TEMPO)
+        except (KeyboardInterrupt, SystemExit):
+            logger.debug("Fermeture de la connexion.")
+            conn.close()
+            raise
+        except psycopg2.OperationalError:
+            logger.error("Perte de connexion.")
+            conn = connect()
+        except psycopg2.Error as e:
+            logger.error("Impossible d'insérer le message: %s", e)
+            time.sleep(TEMPO)
+            conn = connect()
+
+
+def configure_logging():
+    logging.config.dictConfig({
+        "version": 1,
+        "disable_existing_loggers": False,
+        "formatters": {"default": {
+            "format": "%(asctime)s %(message)s",
+            "datefmt": "%H:%M:%S",
+        }},
+        "handlers": {"console": {
+            "class": f"{__name__}.ColoredStreamHandler",
+            "formatter": "default",
+        }},
+        "root": {
+            "level": "DEBUG",
+            "handlers": ["console"],
+        },
+    })
+
+
+def connect():
+    try:
+        logger.info("Connexion à PostgreSQL...")
+        conn = psycopg2.connect("", connect_timeout=3)
+        return conn
+    except psycopg2.Error as e:
+        logger.error("Erreur de connexion: %s", e)
+        logger.debug("Nouvel essai dans 1 seconde.")
+        time.sleep(1)
+        return connect()
+
+
+def create_table(conn):
+    logger.info("Création de la table app_log.")
+    execute(conn, dedent("""\
+    CREATE TABLE "app_log" (
+        id SERIAL PRIMARY KEY,
+        "timestamp" TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+        data JSONB);
+    """))
+
+
+def execute(conn, *a, **kw):
+    with conn.cursor() as cur:
+        cur.execute(*a, **kw)
+
+
+def has_table(conn):
+    with conn.cursor() as cur:
+        logger.debug("Recherche de la table app_log.")
+        cur.execute(dedent("""\
+        SELECT TRUE FROM information_schema.tables
+        WHERE table_name = 'app_log';
+        """))
+        return bool(cur.fetchall())
+
+
+PAYLOAD = indent("""\
+json_build_object(
+    'id', %s,
+    'slot_name', (
+        SELECT reset_val FROM pg_settings WHERE name = 'primary_slot_name'),
+    'standby', (SELECT jsonb_agg(application_name) FROM pg_stat_replication)
+)
+""", '    ' * 3)
+
+
+def insert(conn):
+    with conn:
+        with conn.cursor() as cur:
+            id = round(time.time() * 1000)
+            logger.debug("Insertion de %s.", id)
+            cur.execute(dedent("""\
+            INSERT INTO "app_log"
+            (data)
+            VALUES (""" + PAYLOAD + """)
+            RETURNING data;
+            """), (id,))
+            data, = cur.fetchone()
+    return data
+
+
+def update(conn):
+    with conn:
+        with conn.cursor() as cur:
+            id = round(time.time() * 1000)
+            logger.debug("Enregistrement de %s.", id)
+            cur.execute(dedent("""\
+            UPDATE "app_log"
+            SET data = """ + PAYLOAD + """
+            RETURNING data;
+            """), (id,))
+            data, = cur.fetchone()
+    return data
+
+
+class ColoredStreamHandler(logging.StreamHandler):
+
+    _color_map = {
+        logging.DEBUG: '37',
+        logging.INFO: '1;39',
+        logging.WARN: '96',
+        logging.ERROR: '91',
+        logging.CRITICAL: '1;91',
+    }
+
+    def format(self, record):
+        lines = logging.StreamHandler.format(self, record)
+        color = self._color_map.get(record.levelno, '39')
+        lines = ''.join([
+            '\033[0;%sm%s\033[0m' % (color, line)
+            for line in lines.splitlines(True)
+        ])
+        return lines
+
+
+if __name__ == '__main__':
+    try:
+        configure_logging()
+        main()
+    except (pdb.bdb.BdbQuit, KeyboardInterrupt):
+        logger.info("Interruption.")
+        sys.exit(1)
+    except Exception:
+        logger.exception("Erreur inconnue:")
+        pdb.post_mortem(sys.exc_info()[2])
+        sys.exit(1)

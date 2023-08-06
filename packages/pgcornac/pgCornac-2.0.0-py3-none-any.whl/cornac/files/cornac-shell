@@ -1,0 +1,40 @@
+#!/bin/bash -eu
+#
+# This script setup execution environment for cornac process.
+#
+
+# Auto-sudo to cornac-worker user if not a cornac user.
+if ! id -un | grep -q cornac- && getent passwd cornac-worker &>/dev/null ; then
+    exec sudo -Eu cornac-worker "$0" "$@"
+fi
+
+cd "${SETPWD-$(readlink -e ~)}"
+
+# SSH setup
+if [ -f ~/.ssh/id_rsa ] ; then
+    if [ -z "${SSH_AUTH_SOCK-}" ] ; then
+	    exec ssh-agent -- "$0" "$@"
+    fi
+
+    if ! ssh-add -L |& grep -q ssh-rsa ; then
+	    ssh-add &>/dev/null
+    fi
+fi
+
+# shell setup
+envrc=~/environment.conf
+if [ -r $envrc ] ; then
+    set -o allexport
+    . $envrc
+    set +o allexport
+fi
+
+if [ -d /opt/cornac/bin ] ; then
+	export PATH=/opt/cornac/bin:$PATH
+fi
+
+if [ -n "${VIRTUAL_ENV-}" ] ; then
+    export PATH="${VIRTUAL_ENV}/bin:$PATH"
+fi
+
+exec "${@-/bin/bash}"

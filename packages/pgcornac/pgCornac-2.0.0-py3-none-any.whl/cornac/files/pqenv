@@ -1,0 +1,31 @@
+#!/bin/bash -eu
+#
+# Setup libpq env vars from AWS rds description.
+#
+# Usage: pqenv mydb [COMMAND ...]
+#
+# Default command is psql.
+#
+
+db_instance_identifier="$1"; shift
+
+echo "Querying AWS for ${db_instance_identifier} endpoint." >&2
+metadata="$(aws --output=json rds describe-db-instances --db-instance-identifier="$db_instance_identifier" | jq ".DBInstances[0]")"
+PGHOST="$(jq --raw-output .Endpoint.Address <<<"$metadata")"
+export PGHOST
+if [ "$PGHOST" = "null" ] || [ -z "${PGHOST}" ]; then
+	echo "No database named ${db_instance_identifier} in current account." >&2
+	exit 1
+fi
+
+PGPORT="$(jq .Endpoint.Port <<<"$metadata")"
+export PGPORT
+PGUSER="$(jq --raw-output .MasterUsername <<<"$metadata")"
+export PGUSER
+PGDATABASE="$PGUSER"
+export PGDATABASE
+
+unset ${!DIRENV*}
+
+echo "Configured libpq for postgres://$PGUSER@$PGHOST:$PGPORT/$PGDATABASE." >&2
+exec "${@-psql}"
