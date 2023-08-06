@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: rgain3
+Version: 1.1.0
+Summary: Multi-format Replay Gain utilities
+Home-page: https://github.com/chaudum/rgain
+Author: Felix Krull
+Author-email: f_krull@gmx.de
+Maintainer: Christian Haudum
+Maintainer-email: christian@christianhaudum.at
+License: GNU General Public License (v2 or later)
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Multimedia :: Sound/Audio :: Analysis
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.5
+Requires-Dist: PyGObject (>=3.34.0)
+Requires-Dist: mutagen (>=1.43.0)
+Provides-Extra: test
+Requires-Dist: pytest-cov (>=2.8) ; extra == 'test'
+Requires-Dist: pytest-flake8 (>=1.0) ; extra == 'test'
+Requires-Dist: pytest-isort (>=0.3) ; extra == 'test'
+Requires-Dist: pytest (<6.0,>=5.3) ; extra == 'test'
+Requires-Dist: tox (<4.0,>=3.14) ; extra == 'test'
+
+A set of Python modules and utility programmes to deal with Replay Gain
+information -- calculate it (with GStreamer), read and write it (with Mutagen).
+It has support for Ogg Vorbis (or probably anything stored in an Ogg
+container), Flac, WavPack, MP4 (aka AAC) and MP3 (in different incarnations).
+There‘s also a command-line programme, ``replaygain``, that works very similar
+to its like-named cousins, most prominently ``vorbisgain`` and ``mp3gain`` --
+only that itworks for all those supported formats alike. ``collectiongain``
+on the other hand is a kind of fire-and-forget tool for big amounts of music
+files.
+
+
