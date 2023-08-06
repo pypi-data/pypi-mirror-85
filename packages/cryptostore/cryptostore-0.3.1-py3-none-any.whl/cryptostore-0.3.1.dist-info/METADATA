@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: cryptostore
+Version: 0.3.1
+Summary: Storage engine for cryptocurrency data
+Home-page: https://github.com/bmoscon/cryptostore
+Author: Bryant Moscon
+Author-email: bmoscon@gmail.com
+License: XFree86
+Keywords: cryptocurrency,bitcoin,btc,market data,data storage,redis,database,kafka
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/x-rst
+Requires-Dist: pandas
+Requires-Dist: cryptofeed (>=1.3.1)
+Requires-Dist: pyyaml
+Requires-Dist: pyarrow
+Requires-Dist: aiohttp (>=3.7.1)
+Provides-Extra: arctic
+Requires-Dist: arctic ; extra == 'arctic'
+Provides-Extra: aws
+Requires-Dist: boto3 ; extra == 'aws'
+Provides-Extra: drive
+Requires-Dist: google-auth ; extra == 'drive'
+Requires-Dist: google-api-python-client ; extra == 'drive'
+Provides-Extra: gcs
+Requires-Dist: google-cloud-storage ; extra == 'gcs'
+Provides-Extra: kafka
+Requires-Dist: aiokafka ; extra == 'kafka'
+Requires-Dist: confluent-kafka ; extra == 'kafka'
+Provides-Extra: redis
+Requires-Dist: redis ; extra == 'redis'
+Requires-Dist: aioredis ; extra == 'redis'
+Provides-Extra: zmq
+Requires-Dist: pyzmq ; extra == 'zmq'
+
+UNKNOWN
+
+
