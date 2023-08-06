@@ -1,0 +1,33 @@
+#!python
+from __future__ import absolute_import
+import click
+import pkg_resources
+from browsercmd.common.config import Selenium
+from Client import Client
+VERSION = pkg_resources.require("browsercmdhbt2")[0].version
+
+@click.group()
+@click.version_option(version=VERSION, prog_name='browsercmdhbt2')
+def browsercmdhbt2():  # pragma: no cover
+    pass
+
+@click.command()
+@click.option('--number_thread', help='number_thread')
+@click.option('--browser_server', help='browser_server')
+def run(number_thread, firefox_bin, gecko_path, browser_server=None):
+    lst_clients = []
+    Selenium.FIREFOX_BIN = firefox_bin
+    Selenium.GEKO_EXECUTE_PATH = gecko_path
+    if not browser_server:
+        browser_server="http://browsercmd.singerchart.com/job/get"
+    for i in range(number_thread):
+        client = Client(browser_server)
+        client.start()
+        lst_clients.append(client)
+    for client in lst_clients:
+        client.join()
+    print("dones")
+
+browsercmdhbt2.add_command(run)
+if __name__ == '__main__':  # pragma: no cover
+    browsercmdhbt2()
