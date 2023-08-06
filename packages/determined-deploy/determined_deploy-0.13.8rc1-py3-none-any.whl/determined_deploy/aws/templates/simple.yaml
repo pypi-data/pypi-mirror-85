@@ -1,0 +1,555 @@
+---
+AWSTemplateFormatVersion: 2010-09-09
+Description: Determined Template
+Mappings:
+  RegionMap:
+    ap-northeast-1:
+      Master: ami-0b8cd500f483d09ee
+      Agent: ami-01094af1846f7e057
+    # TODO(DET-4258) Uncomment these when we fully support all P3 regions.
+    # ap-northeast-2:
+    #   Master: ami-07b7be0099924913e
+    #   Agent: ami-068b19daf956a4ca5
+    # ap-southeast-1:
+    #   Master: ami-028a5cff2f5a0f6c3
+    #   Agent: ami-01b7af9433b415dac
+    # ap-southeast-2:
+    #   Master: ami-041e1cc8f4c429789
+    #   Agent: ami-07fc663f38164369e
+    eu-central-1:
+      Master: ami-0d971d62e4d019dcc
+      Agent: ami-00c716e5005603cb0
+    eu-west-1:
+      Master: ami-09b9e380df60300c8
+      Agent: ami-0da48b82961b59fba
+    # eu-west-2:
+    #   Master: ami-071884cefc7e770ba
+    #   Agent: ami-0d49b45685428fda1
+    us-east-1:
+      Master: ami-0739f8cdb239fe9ae
+      Agent: ami-0fa3c95101db75a3c
+    us-east-2:
+      Master: ami-0ebc8f6f580a04647
+      Agent: ami-0d7b699aa2315ee2d
+    us-west-2:
+      Master: ami-008b09448b998a562
+      Agent: ami-0888d917ee7cc9be9
+
+Parameters:
+  Keypair:
+    Type: AWS::EC2::KeyPair::KeyName
+    Description: Keypair to SSH
+
+  MasterInstanceType:
+    Type: String
+    Description: Instance Type of Master
+    Default: m5.large
+
+  AgentInstanceType:
+    Type: String
+    Description: Instance Type of Agent
+    Default: p2.8xlarge
+
+  InboundCIDRRange:
+    Type: String
+    Description: Ip range for Inbound
+    Default: 0.0.0.0/0
+
+  SubnetId:
+    Type: String
+    Description: The subnet to deploy instances into. Optional.
+    Default: ''
+
+  Version:
+    Type: String
+    Description: Determined version or commit for master docker image
+    Default: 0.13.8rc1
+
+  DBPassword:
+    Type: String
+    Description: Password for database (eg. "postgres")
+    NoEcho: true
+
+  MaxIdleAgentPeriod:
+    Type: String
+    Description: How long before idle agents are shutdown
+    Default: 10m
+
+  MaxAgentStartingPeriod:
+    Type: String
+    Description: How long for agent starting before retrying
+    Default: 20m
+
+  MinDynamicAgents:
+    Type: Number
+    Description: Minimum number of agents to keep running
+    Default: 0
+
+  MaxDynamicAgents:
+    Type: Number
+    Description: Maximum number of agents to launch simultaneously
+    Default: 5
+
+  EnableCORS:
+    Type: String
+    Description: Whether to allow CORS requests or not
+    Default: false
+
+  SpotEnabled:
+    Type: String
+    Description: Whether to use spot instances or not
+    Default: false
+
+  SpotMaxPrice:
+    Type: String
+    Description: |
+                 The maximum hourly price you are willing to pay for the spot instance.
+                 Should be a number without a currency option, e.g. "5.00"
+    Default: ''
+
+Resources:
+  CheckpointBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub det-${AWS::StackName}-${AWS::Region}-${AWS::AccountId}
+
+  MasterSecurityGroupEgress:
+    Type: AWS::EC2::SecurityGroupEgress
+    Properties:
+      GroupId: !GetAtt MasterSecurityGroup.GroupId
+      DestinationSecurityGroupId: !GetAtt AgentSecurityGroup.GroupId
+      FromPort: 0
+      ToPort: 65535
+      IpProtocol: tcp
+
+  MasterSecurityGroupInternet:
+    Type: AWS::EC2::SecurityGroupEgress
+    Properties:
+      GroupId: !GetAtt MasterSecurityGroup.GroupId
+      CidrIp: 0.0.0.0/0
+      FromPort: 0
+      ToPort: 65535
+      IpProtocol: tcp
+
+  MasterSecurityGroupIngress:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !GetAtt MasterSecurityGroup.GroupId
+      FromPort: 8080
+      ToPort: 8080
+      IpProtocol: tcp
+      SourceSecurityGroupId: !GetAtt AgentSecurityGroup.GroupId
+
+  MasterSecurityGroupIngressUI:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !GetAtt MasterSecurityGroup.GroupId
+      FromPort: 8080
+      ToPort: 8080
+      IpProtocol: tcp
+      CidrIp: !Ref InboundCIDRRange
+
+  MasterSSHIngress:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !GetAtt MasterSecurityGroup.GroupId
+      IpProtocol: tcp
+      FromPort: 22
+      ToPort: 22
+      CidrIp: !Ref InboundCIDRRange
+
+  AgentSecurityGroupEgress:
+    Type: AWS::EC2::SecurityGroupEgress
+    Properties:
+      GroupId: !GetAtt AgentSecurityGroup.GroupId
+      CidrIp: 0.0.0.0/0
+      FromPort: 0
+      ToPort: 65535
+      IpProtocol: tcp
+
+  AgentSecurityGroupIngressMaster:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !GetAtt AgentSecurityGroup.GroupId
+      FromPort: 0
+      ToPort: 65535
+      IpProtocol: tcp
+      SourceSecurityGroupId: !GetAtt MasterSecurityGroup.GroupId
+
+  AgentSecurityGroupIngressAgent:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !GetAtt AgentSecurityGroup.GroupId
+      FromPort: 0
+      ToPort: 65535
+      IpProtocol: tcp
+      SourceSecurityGroupId: !GetAtt AgentSecurityGroup.GroupId
+
+  AgentSSHIngress:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !GetAtt AgentSecurityGroup.GroupId
+      IpProtocol: tcp
+      FromPort: 22
+      ToPort: 22
+      CidrIp: !Ref InboundCIDRRange
+
+  DatabaseEgress:
+    Type: AWS::EC2::SecurityGroupEgress
+    Properties:
+      GroupId: !GetAtt DatabaseSecurityGroup.GroupId
+      CidrIp: 0.0.0.0/0
+      FromPort: 0
+      ToPort: 65535
+      IpProtocol: -1
+
+  DatabaseIngress:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !GetAtt DatabaseSecurityGroup.GroupId
+      IpProtocol: tcp
+      FromPort: 5432
+      ToPort: 5432
+      SourceSecurityGroupId: !GetAtt MasterSecurityGroup.GroupId
+
+  MasterSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Security Group For Master
+      Tags:
+        - Key: user
+          Value: !Ref AWS::StackName
+
+  AgentSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Security Group For Agent
+      Tags:
+        - Key: user
+          Value: !Ref AWS::StackName
+
+  DatabaseSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Security Group For Database
+      Tags:
+        - Key: user
+          Value: !Ref AWS::StackName
+
+  Database:
+    Type: AWS::RDS::DBCluster
+    DeletionPolicy: Delete
+    Properties:
+      Engine: aurora-postgresql
+      EngineMode: serverless
+      DatabaseName: determined
+      DBClusterParameterGroupName: 'default.aurora-postgresql10'
+      MasterUsername: postgres
+      MasterUserPassword: !Ref DBPassword
+      Tags:
+        - Key: user
+          Value: !Ref AWS::StackName
+      VpcSecurityGroupIds:
+        - !GetAtt DatabaseSecurityGroup.GroupId
+      ScalingConfiguration:
+        AutoPause: true
+        SecondsUntilAutoPause: 3600
+        MinCapacity: 2
+        MaxCapacity: 8
+
+  LogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub /determined/${AWS::StackName}
+
+  LogPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      Roles:
+        - !Ref AgentRole
+        - !Ref MasterRole
+      PolicyName: agent-log-policy
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action:
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+              - logs:DescribeLogStreams
+            Resource:
+              - !Sub arn:aws:logs:*:*:log-group:${LogGroup},
+              - !Sub arn:aws:logs:*:*:log-group:${LogGroup}:log-stream:*
+
+  MetricPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      Roles:
+        - !Ref AgentRole
+        - !Ref MasterRole
+      PolicyName: agent-metric-policy
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Action:
+              - cloudwatch:PutMetricData
+            Effect: Allow
+            Resource: "*"
+
+  AgentRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - ec2.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Policies:
+        - PolicyName: agent-s3-policy
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action: "s3:*"
+                Resource: "*"
+        - PolicyName: determined-ec2
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - ec2:DescribeInstances
+                Resource: "*"
+
+  AgentInstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Roles:
+        - !Ref AgentRole
+
+  MasterRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - ec2.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Policies:
+        - PolicyName: determined-agent-policy
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - ec2:DescribeInstances
+                  - ec2:TerminateInstances
+                  - ec2:CreateTags
+                  - ec2:RunInstances
+                  - ec2:CancelSpotInstanceRequests
+                  - ec2:RequestSpotInstances
+                  - ec2:DescribeSpotInstanceRequests
+                Resource: "*"
+        - PolicyName: pass-role
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action: iam:PassRole
+                Resource: !GetAtt AgentRole.Arn
+      Tags:
+        - Key: user
+          Value: !Ref AWS::StackName
+
+  MasterInstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Roles:
+        - !Ref MasterRole
+
+  MasterInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: !Ref MasterInstanceType
+      ImageId: !FindInMap
+        - RegionMap
+        - !Ref AWS::Region
+        - Master
+      KeyName: !Ref Keypair
+      IamInstanceProfile: !Ref MasterInstanceProfile
+      SecurityGroupIds:
+        - !Ref MasterSecurityGroup
+      BlockDeviceMappings:
+        - DeviceName: /dev/sda1
+          Ebs:
+            VolumeSize: 200
+            VolumeType: gp2
+      UserData:
+        Fn::Base64: !Sub
+          - |
+            Content-Type: multipart/mixed; boundary="//"
+            MIME-Version: 1.0
+
+            --//
+            Content-Type: text/cloud-config; charset="us-ascii"
+            MIME-Version: 1.0
+            Content-Transfer-Encoding: 7bit
+            Content-Disposition: attachment; filename="cloud-config.txt"
+
+            #cloud-config
+            cloud_final_modules:
+            - [scripts-user, always]
+
+            --//
+            Content-Type: text/x-shellscript; charset="us-ascii"
+            MIME-Version: 1.0
+            Content-Transfer-Encoding: 7bit
+            Content-Disposition: attachment; filename="userdata.txt"
+
+            #!/bin/bash
+            mkdir -p /usr/local/determined/etc
+            cat << EOF > /usr/local/determined/etc/master.yaml
+            checkpoint_storage:
+              type: s3
+              bucket: ${CheckpointBucket}
+              save_experiment_best: 0
+              save_trial_best: 1
+              save_trial_latest: 1
+
+            db:
+              user: postgres
+              password: "${DBPassword}"
+              host: "${Database.Endpoint.Address}"
+              port: 5432
+              name: determined
+              ssl_mode: verify-ca
+              ssl_root_cert: /etc/determined/etc/db_ssl_root_cert.pem
+
+            enable_cors: ${EnableCORS}
+
+            provisioner:
+              iam_instance_profile_arn: ${AgentInstanceProfile.Arn}
+              image_id: ${AgentAmi}
+              agent_docker_image: determinedai/determined-agent:${Version}
+              instance_name: determined-agent-${AWS::StackName}
+              instance_type: ${AgentInstanceType}
+              log_group: ${LogGroup}
+              log_stream: determined-agent
+              master_url: http://local-ipv4:8080
+              max_idle_agent_period: ${MaxIdleAgentPeriod}
+              max_agent_starting_period: ${MaxAgentStartingPeriod}
+              min_instances: ${MinDynamicAgents}
+              max_instances: ${MaxDynamicAgents}
+              spot: ${SpotEnabled}
+              spot_max_price: "${SpotMaxPrice}"
+              network_interface:
+                public_ip: true
+                security_group_id: ${AgentSecurityGroup.GroupId}
+                subnet_id: ${SubnetId}
+              provider: aws
+              root_volume_size: 200
+              ssh_key_name: ${Keypair}
+              tag_key: det-${AWS::StackName}
+              tag_value: det-agent-${AWS::StackName}
+            EOF
+
+            apt-get remove docker docker-engine docker.io containerd runc
+            apt-get update
+            apt-get install -y \
+                apt-transport-https \
+                ca-certificates \
+                curl \
+                gnupg-agent \
+                software-properties-common
+            curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+            add-apt-repository \
+               "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+               $(lsb_release -cs) \
+               stable"
+            apt-get update
+            apt-get install -y docker-ce docker-ce-cli containerd.io
+
+            curl -fsSL https://www.amazontrust.com/repository/AmazonRootCA1.pem > \
+              /usr/local/determined/etc/AmazonRootCA1.pem
+
+            docker network create determined
+
+            docker stop $(docker ps -a -q)
+            docker rm $(docker ps -a -q)
+
+            docker run \
+                --name determined-master \
+                --network determined \
+                --restart unless-stopped \
+                --log-driver=awslogs \
+                --log-opt awslogs-group=${LogGroup} \
+                --log-opt awslogs-stream=determined-master \
+                -p 8080:8080 \
+                -v /usr/local/determined/etc/master.yaml:/etc/determined/master.yaml \
+                -v /usr/local/determined/etc/AmazonRootCA1.pem:/etc/determined/etc/db_ssl_root_cert.pem \
+                determinedai/determined-master:${Version}
+            --//
+          -  AgentAmi: !FindInMap [RegionMap, !Ref "AWS::Region", Agent]
+
+      Tags:
+        - Key: user
+          Value: !Ref AWS::StackName
+        - Key: Name
+          Value: !Sub det-master-${AWS::StackName}
+
+  DeterminedAddress:
+    Type: AWS::EC2::EIP
+    Properties:
+      InstanceId: !Ref MasterInstance
+      Tags:
+          - Key: user
+            Value: !Ref AWS::StackName
+
+Outputs:
+  MasterId:
+    Description: Id of Master Agent
+    Value: !Ref MasterInstance
+
+  MasterSecurityGroupId:
+    Description: Id of Master Security Group
+    Value: !GetAtt MasterSecurityGroup.GroupId
+
+  AgentSecurityGroupId:
+    Description: Id of Agent Security Group
+    Value: !GetAtt AgentSecurityGroup.GroupId
+
+  AgentInstanceProfile:
+    Description: Instance Profile for Agent
+    Value: !GetAtt AgentInstanceProfile.Arn
+
+  CheckpointBucket:
+    Description: S3 Bucket for checkpoints
+    Value: !Ref CheckpointBucket
+
+  Version:
+    Description: Determined version or commit
+    Value: !Ref Version
+
+  DeterminedAddress:
+    Description: Ip address of Determined Master
+    Value: !GetAtt MasterInstance.PublicDnsName
+
+  AgentTagName:
+    Description: Tag Name for the agents
+    Value: !Sub determined-agent-${AWS::StackName}
+
+  LogGroup:
+    Description: The Log Group for Determined Logs
+    Value: !Ref LogGroup
+
+  Region:
+    Description: The AWS Region the stack is deployed in
+    Value: !Ref AWS::Region
