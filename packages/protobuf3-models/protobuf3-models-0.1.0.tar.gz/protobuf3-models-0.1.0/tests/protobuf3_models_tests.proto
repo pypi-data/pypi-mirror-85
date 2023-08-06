@@ -1,0 +1,180 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+
+package schematics_proto3.tests;
+
+/*
+ * Messages for nested tests.
+ */
+message Nested {
+  message Inner {
+    string value = 1;
+  }
+
+  Inner inner = 1;
+  string other = 2;
+}
+
+
+/*
+ * Messages for wrappers tests.
+ * https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/unittest_well_known_types.proto
+ */
+message WrappedDouble {
+  google.protobuf.DoubleValue wrapped = 1;
+}
+
+message WrappedFloat {
+  google.protobuf.FloatValue wrapped = 1;
+}
+
+message WrappedInt64 {
+  google.protobuf.Int64Value wrapped = 1;
+}
+
+message WrappedUInt64 {
+  google.protobuf.UInt64Value wrapped = 1;
+}
+
+message WrappedInt32 {
+  google.protobuf.Int32Value wrapped = 1;
+}
+
+message WrappedUInt32 {
+  google.protobuf.UInt32Value wrapped = 1;
+}
+
+message WrappedBool {
+  google.protobuf.BoolValue wrapped = 1;
+}
+
+message WrappedString {
+  google.protobuf.StringValue wrapped = 1;
+}
+
+message WrappedBytes {
+  google.protobuf.BytesValue wrapped = 1;
+}
+
+/*
+ * Messages for timestamp tests.
+ */
+message Timestamp {
+  google.protobuf.Timestamp value = 1;
+}
+
+message RepeatedTimestamp {
+  repeated google.protobuf.Timestamp value = 1;
+}
+
+message OneOfTimestamp {
+  oneof inner {
+    google.protobuf.StringValue value1 = 1;
+    google.protobuf.Timestamp value2 = 2;
+  }
+}
+
+/*
+ * Messages for primitives tests.
+ */
+message Double {
+  double value = 1;
+}
+
+message Float {
+  float value = 1;
+}
+
+message Int64 {
+  int64 value = 1;
+}
+
+message UInt64 {
+  uint64 value = 1;
+}
+
+message Int32 {
+  int32 value = 1;
+}
+
+message UInt32 {
+  uint32 value = 1;
+}
+
+message Bool {
+  bool value = 1;
+}
+
+message String {
+  string value = 1;
+}
+
+message Bytes {
+  bytes value = 1;
+}
+
+/*
+ * Messages for repeated tests.
+ */
+message RepeatedPrimitive {
+  repeated string value = 1;
+}
+
+message RepeatedNested {
+  message Inner {
+    string value = 1;
+  }
+
+  repeated Inner inner = 1;
+}
+
+message RepeatedWrapped {
+  repeated google.protobuf.Int32Value value = 1;
+}
+
+/*
+ * Messages for oneof tests.
+ */
+message OneOfPrimitive {
+  oneof inner {
+    uint64 value1 = 1;
+    string value2 = 2;
+  }
+}
+
+message OneOfNested {
+  message Inner {
+    string value = 1;
+  }
+
+  oneof inner {
+    Inner value1 = 1;
+    google.protobuf.StringValue value2 = 2;
+  }
+}
+
+/*
+ * Messages for enum test.
+ */
+enum Enum {
+  UNKNOWN = 0;
+  FIRST = 1;
+  SECOND = 2;
+}
+
+message SimpleEnum {
+  Enum value = 1;
+}
+
+message RepeatedEnum {
+  repeated Enum value = 1;
+}
+
+message OneOfEnum {
+  oneof inner {
+    google.protobuf.StringValue value1 = 1;
+    Enum value2 = 2;
+  }
+}
