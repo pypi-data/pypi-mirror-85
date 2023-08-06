@@ -1,0 +1,213 @@
+Metadata-Version: 2.1
+Name: pyreal
+Version: 0.1.0
+Summary: Library for evaluating and deploying machine learning explanations.
+Home-page: https://github.com/DAI-Lab/pyreal
+Author: MIT Data To AI Lab
+Author-email: dailabmit@gmail.com
+License: UNKNOWN
+Keywords: pyreal Pyreal
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.4
+Description-Content-Type: text/markdown
+Requires-Dist: numpy (>=1.8)
+Requires-Dist: pandas (>=1.0.3)
+Requires-Dist: scikit-learn (>=0.22)
+Requires-Dist: shap (>=0.36.0)
+Requires-Dist: eli5 (>=0.10)
+Requires-Dist: matplotlib (>=3.2.1)
+Provides-Extra: dev
+Requires-Dist: bumpversion (>=0.5.3) ; extra == 'dev'
+Requires-Dist: pip (>=9.0.1) ; extra == 'dev'
+Requires-Dist: watchdog (>=0.8.3) ; extra == 'dev'
+Requires-Dist: m2r2 (<0.3,>=0.2.5) ; extra == 'dev'
+Requires-Dist: nbsphinx (<0.7,>=0.5.0) ; extra == 'dev'
+Requires-Dist: Sphinx (<4,>=3) ; extra == 'dev'
+Requires-Dist: pydata-sphinx-theme ; extra == 'dev'
+Requires-Dist: autodocsumm (>=0.1.10) ; extra == 'dev'
+Requires-Dist: PyYaml (<6,>=5.3.1) ; extra == 'dev'
+Requires-Dist: argh (<1,>=0.26.2) ; extra == 'dev'
+Requires-Dist: ipython (>7.18.0) ; extra == 'dev'
+Requires-Dist: flake8 (>=3.7.7) ; extra == 'dev'
+Requires-Dist: isort (>=4.3.4) ; extra == 'dev'
+Requires-Dist: autoflake (>=1.2) ; extra == 'dev'
+Requires-Dist: autopep8 (>=1.4.3) ; extra == 'dev'
+Requires-Dist: twine (>=1.10.0) ; extra == 'dev'
+Requires-Dist: wheel (>=0.30.0) ; extra == 'dev'
+Requires-Dist: coverage (>=4.5.1) ; extra == 'dev'
+Requires-Dist: tox (>=2.9.1) ; extra == 'dev'
+Requires-Dist: pytest (>=3.4.2) ; extra == 'dev'
+Requires-Dist: pytest-cov (>=2.6.0) ; extra == 'dev'
+Requires-Dist: jupyter (<2,>=1.0.0) ; extra == 'dev'
+Provides-Extra: examples
+Requires-Dist: keras (>=2.4.3) ; extra == 'examples'
+Requires-Dist: tensorflow (>=2.2) ; extra == 'examples'
+Provides-Extra: test
+Requires-Dist: pytest (>=3.4.2) ; extra == 'test'
+Requires-Dist: pytest-cov (>=2.6.0) ; extra == 'test'
+Requires-Dist: jupyter (<2,>=1.0.0) ; extra == 'test'
+
+<p align="left">
+<img width=15% src="https://dai.lids.mit.edu/wp-content/uploads/2018/06/Logo_DAI_highres.png" alt=“DAI-Lab” />
+<i>An open source project from Data to AI Lab at MIT.</i>
+</p>
+
+<!-- Uncomment these lines after releasing the package to PyPI for version and downloads badges -->
+<!--[![PyPI Shield](https://img.shields.io/pypi/v/pyreal.svg)](https://pypi.python.org/pypi/pyreal)-->
+<!--[![Downloads](https://pepy.tech/badge/pyreal)](https://pepy.tech/project/pyreal)-->
+<!--[![Travis CI Shield](https://travis-ci.org/DAI-Lab/pyreal.svg?branch=master)](https://travis-ci.org/DAI-Lab/pyreal)-->
+[![Coverage Status](https://codecov.io/gh/DAI-Lab/pyreal/branch/master/graph/badge.svg)](https://codecov.io/gh/DAI-Lab/pyreal)
+[![Build Action Status](https://github.com/DAI-Lab/pyreal/workflows/Test%20CI/badge.svg)](https://github.com/DAI-Lab/pyreal/actions)
+# Pyreal
+
+Library for evaluating and deploying machine learning explanations.
+
+- Free software: Not open source
+- Documentation: https://DAI-Lab.github.io/pyreal
+- Homepage: https://github.com/DAI-Lab/pyreal
+
+# Overview
+
+**Pyreal** wraps the complete machine learning explainability pipeline into Explainer objects. Explainer objects
+handle all the transforming logic, in order to provide a human-interpretable explanation from any original
+data form.
+
+# Install
+
+## Requirements
+
+**Pyreal** has been developed and tested on [Python 3.5, 3.6, 3.7, and 3.8](https://www.python.org/downloads/)
+
+Also, although it is not strictly required, the usage of a [virtualenv](https://virtualenv.pypa.io/en/latest/)
+is highly recommended in order to avoid interfering with other software installed in the system
+in which **Pyreal** is run.
+
+These are the minimum commands needed to create a virtualenv using python3.6 for **Pyreal**:
+
+```bash
+pip install virtualenv
+virtualenv -p $(which python3.6) pyreal-venv
+```
+
+Afterwards, you have to execute this command to activate the virtualenv:
+
+```bash
+source pyreal-venv/bin/activate
+```
+
+Remember to execute it every time you start a new console to work on **Pyreal**!
+
+<!-- Uncomment this section after releasing the package to PyPI for installation instructions
+## Install from PyPI
+
+After creating the virtualenv and activating it, we recommend using
+[pip](https://pip.pypa.io/en/stable/) in order to install **Pyreal**:
+
+```bash
+pip install pyreal
+```
+
+This will pull and install the latest stable release from [PyPI](https://pypi.org/).
+-->
+
+## Install from source
+
+With your virtualenv activated, you can clone the repository and install it from
+source by running `make install` on the `stable` branch:
+
+```bash
+git clone git@github.com:DAI-Lab/pyreal.git
+cd pyreal
+git checkout stable
+make install
+```
+
+<!--## Install for Development
+
+If you want to contribute to the project, a few more steps are required to make the project ready
+for development.
+
+Please head to the [Contributing Guide](https://DAI-Lab.github.io/pyreal/contributing.html#get-started)
+for more details about this process.-->
+
+# Quickstart
+
+In this short tutorial we will guide you through a series of steps that will help you
+getting started with **Pyreal**. We will get an explanation for a prediction on whether a
+passenger on the Titanic would have survived.
+
+ For a more detailed version of this tutorial, see
+`examples.titanic.titanic_lfc.ipynb`
+
+#### Load in demo dataset, pre-fit model, and transformers
+```python3
+import pyreal.applications.titanic as titanic
+from pyreal.utils.transformer import ColumnDropTransformer, MultiTypeImputer
+
+# Load in data
+x_orig, y = titanic.load_titanic_data()
+
+# Load in feature descriptions -> dict(feature_name: feature_description, ...)
+feature_descriptions = titanic.load_feature_descriptions()
+
+# Load in model
+model = titanic.load_titanic_model()
+
+# Load in list of transformers
+transformers = titanic.load_titanic_transformers()
+```
+
+#### Create and fit LocalFeatureContribution Explainer object
+```python3
+from pyreal.explainers import LocalFeatureContribution
+lfc = LocalFeatureContribution(model=model, x_orig=x_orig,
+                               m_transforms=transformers, e_transforms=transformers,
+                               contribution_transforms=transformers,
+                               feature_descriptions=feature_descriptions)
+lfc.fit()
+```
+
+#### Make predictions on an input
+```python3
+input_to_explain = x_orig.iloc[0]
+prediction = lfc.model_predict(input_to_explain) # Prediction: [0]
+```
+
+#### Explain an input
+```python3
+contributions = lfc.produce(input_to_explain)
+```
+
+#### Visualize the explanation
+```python3
+from pyreal.utils import visualize
+x_interpret = lfc.convert_data_to_interpretable(input_to_explain)
+
+# Plot a bar plot of top contributing features, by asbolute value
+visualize.plot_top_contributors(contributions, select_by="absolute", values=x_interpret)
+```
+The output will be a bar plot showing the most contributing features, by absolute value.
+
+![Quickstart](docs/images/quickstart.png)
+
+We can see here that the input passenger's predicted chance of survival was greatly reduced
+because of their sex (male) and ticket class (3rd class).
+
+# What's next?
+
+For more details about **Pyreal** and all its possibilities
+and features, please check the [documentation site](
+https://DAI-Lab.github.io/pyreal/).
+
+
+# History
+
+
