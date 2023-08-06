@@ -1,0 +1,21 @@
+# Hold ourselves to a high bar
+coverage:
+  range: 85..100
+  round: down
+  precision: 2
+  status:
+    project:
+      default:
+        # please stop failing on diff targets
+        target: auto
+        threshold: 80%
+
+# Tests aren't important for coverage
+ignore:
+  - "tests"
+  - "src/pyo.rs"
+
+# Make less noisy comments
+comment:
+  layout: "files"
+  require_changes: yes
