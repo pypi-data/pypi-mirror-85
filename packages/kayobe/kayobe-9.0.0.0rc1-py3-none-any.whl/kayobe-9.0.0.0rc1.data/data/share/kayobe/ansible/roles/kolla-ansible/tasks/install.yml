@@ -1,0 +1,75 @@
+---
+- name: Include OS family-specific variables
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: Ensure EPEL repo is installed
+  package:
+    name: epel-release
+    state: present
+  become: True
+  when:
+    - ansible_os_family == 'RedHat'
+    - kolla_ansible_install_epel | bool
+
+- name: Ensure required packages are installed
+  package:
+    # NOTE(mgoddard): select non-empty packages.
+    name: "{{ kolla_ansible_package_dependencies | select | list }}"
+    state: present
+  become: True
+
+- name: Ensure source code checkout parent directory exists
+  file:
+    path: "{{ kolla_ansible_source_path | dirname }}"
+    state: directory
+    owner: "{{ ansible_user_uid }}"
+    group: "{{ ansible_user_gid }}"
+  become: True
+  when: kolla_ansible_ctl_install_type == 'source'
+
+- name: Ensure Kolla Ansible source code checkout exists
+  git:
+    repo: "{{ kolla_ansible_source_url }}"
+    dest: "{{ kolla_ansible_source_path }}"
+    version: "{{ kolla_ansible_source_version }}"
+  when: kolla_ansible_ctl_install_type == 'source'
+
+- name: Ensure virtualenv parent directory exists
+  file:
+    path: "{{ kolla_ansible_venv | dirname }}"
+    state: directory
+    owner: "{{ ansible_user_uid }}"
+    group: "{{ ansible_user_gid }}"
+  become: True
+  when: kolla_ansible_venv is not none
+
+- name: Ensure the latest version of pip is installed
+  pip:
+    name: "{{ item.name }}"
+    state: latest
+    virtualenv: "{{ kolla_ansible_venv }}"
+    virtualenv_python: "{{ kolla_ansible_venv_python }}"
+  with_items:
+    - { name: pip }
+
+- name: Ensure required Python packages are installed
+  vars:
+    kolla_ansible_packages:
+      # Install Kolla Ansible from source or PyPI.
+      - >-
+        {% if kolla_ansible_ctl_install_type == 'source' %}
+        {{ kolla_ansible_source_path }}
+        {% else %}
+        kolla-ansible=={{ kolla_openstack_release }}
+        {% endif %}
+      # Limit the version of ansible used by kolla-ansible to avoid new
+      # releases from breaking tested code. Changes to this limit should be
+      # tested.
+      - ansible>=2.8,<2.10,!=2.8.9,!=2.9.8,!=2.9.12
+      - selinux
+  pip:
+    name: "{{ (kolla_ansible_packages + kolla_ansible_venv_extra_requirements) | select | list }}"
+    state: latest
+    extra_args: "{% if kolla_upper_constraints_file %}-c {{ kolla_upper_constraints_file }}{% endif %}"
+    virtualenv: "{{ kolla_ansible_venv }}"
+    virtualenv_python: "{{ kolla_ansible_venv_python }}"

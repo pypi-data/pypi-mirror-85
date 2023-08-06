@@ -1,0 +1,8 @@
+---
+- name: Ensure timezone is configured
+  hosts: seed-hypervisor:seed:overcloud
+  tags:
+    - timezone
+  roles:
+    - role: yatesr.timezone
+      become: True
