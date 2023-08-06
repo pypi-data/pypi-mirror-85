@@ -1,0 +1,2 @@
+class PromiseException(Exception):
+    pass
