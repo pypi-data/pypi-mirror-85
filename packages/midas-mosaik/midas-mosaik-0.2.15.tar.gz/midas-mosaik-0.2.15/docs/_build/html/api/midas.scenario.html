@@ -1,0 +1,343 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>midas.scenario package &#8212; MIDAS  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="midas.scenario.modules package" href="midas.scenario.modules.html" />
+    <link rel="prev" title="midas.core.weather package" href="midas.core.weather.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="midas-scenario-package">
+<h1>midas.scenario package<a class="headerlink" href="#midas-scenario-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="midas.scenario.modules.html">midas.scenario.modules package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="midas.scenario.modules.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="midas.scenario.modules.html#module-midas.scenario.modules.base">midas.scenario.modules.base module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="midas.scenario.modules.html#module-midas.scenario.modules.database">midas.scenario.modules.database module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="midas.scenario.modules.html#module-midas.scenario.modules.powergrid">midas.scenario.modules.powergrid module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="midas.scenario.modules.html#module-midas.scenario.modules.sbdata">midas.scenario.modules.sbdata module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="midas.scenario.modules.html#module-midas.scenario.modules.sndata">midas.scenario.modules.sndata module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="midas.scenario.modules.html#module-midas.scenario.modules">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-midas.scenario.configurator">
+<span id="midas-scenario-configurator-module"></span><h2>midas.scenario.configurator module<a class="headerlink" href="#module-midas.scenario.configurator" title="Permalink to this headline">¶</a></h2>
+<p>This module contains the configurator for midas scenarios.</p>
+<dl class="py class">
+<dt id="midas.scenario.configurator.Configurator">
+<em class="property">class </em><code class="sig-prename descclassname">midas.scenario.configurator.</code><code class="sig-name descname">Configurator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scenario_name</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">custom_cfg</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ini_path</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.configurator.Configurator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This is the main configurator for midas scenarios.</p>
+<p>The configurator takes at least a scenario name to create a fully-
+configured mosaik scenario.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scenario_name</strong> (<em>str</em>) – A <em>str</em> containing the name of the scenario_name which should
+be run.</p></li>
+<li><p><strong>params</strong> (<em>dict</em>) – A <em>dict</em> with the pre-configuration for the scenario.
+Can be empty.</p></li>
+<li><p><strong>config</strong> (<em>str</em>) – A <em>string</em> containing the path to a custom config file.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="midas.scenario.configurator.Configurator.custom_cfg">
+<code class="sig-name descname">custom_cfg</code><a class="headerlink" href="#midas.scenario.configurator.Configurator.custom_cfg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stores the path to the custom configuration if provided</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="midas.scenario.configurator.Configurator.params">
+<code class="sig-name descname">params</code><a class="headerlink" href="#midas.scenario.configurator.Configurator.params" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <em>dict</em> containing the configuration of the scenario. The dict
+is extended during the configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="midas.scenario.configurator.Configurator.scenario">
+<code class="sig-name descname">scenario</code><a class="headerlink" href="#midas.scenario.configurator.Configurator.scenario" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <em>dict</em> containing references to everything that is created
+during the configuration of the senario.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="midas.scenario.configurator.Configurator.scenario_name">
+<code class="sig-name descname">scenario_name</code><a class="headerlink" href="#midas.scenario.configurator.Configurator.scenario_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the scenario created</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.configurator.Configurator._apply_modules">
+<code class="sig-name descname">_apply_modules</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scenario</span></em>, <em class="sig-param"><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.configurator.Configurator._apply_modules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply all required modules in the correct order.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.configurator.Configurator._load_configs">
+<code class="sig-name descname">_load_configs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dirpath</span></em>, <em class="sig-param"><span class="n">files</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.configurator.Configurator._load_configs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the config files with yaml.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.configurator.Configurator._normalize">
+<code class="sig-name descname">_normalize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.configurator.Configurator._normalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply some auto corrections for the parameter dictionary.</p>
+<p>Corrects, e.g., the end definition ‘15*60’ to 900.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.configurator.Configurator._organize_params">
+<code class="sig-name descname">_organize_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.configurator.Configurator._organize_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sort params in correct order.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.configurator.Configurator._save_config">
+<code class="sig-name descname">_save_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.configurator.Configurator._save_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save a copy of the current config.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.configurator.Configurator.configure">
+<code class="sig-name descname">configure</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ini_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">data_path</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.configurator.Configurator.configure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configure the midas scenario.</p>
+<p>Will use the information provided during initialization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A <em>dict</em> containing everything that was defined during
+configuration.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.configurator.Configurator.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.configurator.Configurator.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the scenario configured before.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-midas.scenario.upgrade_module">
+<span id="midas-scenario-upgrade-module-module"></span><h2>midas.scenario.upgrade_module module<a class="headerlink" href="#module-midas.scenario.upgrade_module" title="Permalink to this headline">¶</a></h2>
+<p>This module contains the abstract base class for all upgrade
+modules. Provides a basic workflow for the definition of new
+upgrades.</p>
+<dl class="py class">
+<dt id="midas.scenario.upgrade_module.UpgradeModule">
+<em class="property">class </em><code class="sig-prename descclassname">midas.scenario.upgrade_module.</code><code class="sig-name descname">UpgradeModule</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">log</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.upgrade_module.UpgradeModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Base class for upgrade modules.</p>
+<dl class="py method">
+<dt id="midas.scenario.upgrade_module.UpgradeModule._start_simulator">
+<code class="sig-name descname">_start_simulator</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.upgrade_module.UpgradeModule._start_simulator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start a certain simulator instance.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.upgrade_module.UpgradeModule.check_module_params">
+<em class="property">abstract </em><code class="sig-name descname">check_module_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.upgrade_module.UpgradeModule.check_module_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is called from within the upgrade method.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.upgrade_module.UpgradeModule.check_sim_params">
+<em class="property">abstract </em><code class="sig-name descname">check_sim_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">module_params</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.upgrade_module.UpgradeModule.check_sim_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is called from within the upgrade method.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.upgrade_module.UpgradeModule.connect">
+<em class="property">abstract </em><code class="sig-name descname">connect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.upgrade_module.UpgradeModule.connect" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.upgrade_module.UpgradeModule.connect_entities">
+<code class="sig-name descname">connect_entities</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">from_entity</span></em>, <em class="sig-param"><span class="n">to_entity</span></em>, <em class="sig-param"><span class="n">attrs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.upgrade_module.UpgradeModule.connect_entities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connect the <em>attrs</em> of two entities.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.upgrade_module.UpgradeModule.connect_to_db">
+<em class="property">abstract </em><code class="sig-name descname">connect_to_db</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.upgrade_module.UpgradeModule.connect_to_db" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.upgrade_module.UpgradeModule.start_model">
+<code class="sig-name descname">start_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mod_key</span></em>, <em class="sig-param"><span class="n">mod_name</span></em>, <em class="sig-param"><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.upgrade_module.UpgradeModule.start_model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.upgrade_module.UpgradeModule.start_models">
+<em class="property">abstract </em><code class="sig-name descname">start_models</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.upgrade_module.UpgradeModule.start_models" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="midas.scenario.upgrade_module.UpgradeModule.upgrade">
+<code class="sig-name descname">upgrade</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scenario</span></em>, <em class="sig-param"><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.scenario.upgrade_module.UpgradeModule.upgrade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Upgrade the scenario with this module.</p>
+<p>Adds the functionality provided by this upgrade to the
+scenario, i.e., define and start a simulator in the mosaik
+world, instantiate models, and add connections to other
+existing models.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scenario</strong> (<em>dict</em>) – The scenario <em>dict</em> containing reference to everything
+created in former upgrades.</p></li>
+<li><p><strong>params</strong> (<em>dict</em>) – A <em>dict</em> containing the content of the config files and
+additional information generated during other upgrades.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-midas.scenario">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-midas.scenario" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">MIDAS</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../next_steps.html">Next steps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">midas</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="midas.html">midas package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">midas</a><ul>
+  <li><a href="midas.html">midas package</a><ul>
+      <li>Previous: <a href="midas.core.weather.html" title="previous chapter">midas.core.weather package</a></li>
+      <li>Next: <a href="midas.scenario.modules.html" title="next chapter">midas.scenario.modules package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Stephan Balduin.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/api/midas.scenario.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,130 @@
+myconfig:
+    actuators: []
+    comdata_params:
+        cmd: python
+        cos_phi: 0.9
+        data_path: /home/stephan/.midas/midas_data
+        import_str: midas.core:CommercialDataSimulator
+        interpolate: false
+        midasmv:
+            cmd: python
+            cos_phi: 0.9
+            data_path: /home/stephan/.midas/midas_data
+            filename: CommercialsRefTMY3.hdf5
+            import_str: midas.core:CommercialDataSimulator
+            interpolate: true
+            load_mapping: {}
+            mapping:
+                13:
+                   -  [SuperMarket, 0.089]
+                14:
+                   -  [SmallHotel, 0.022]
+            randomize_cos_phi: true
+            randomize_data: true
+            seed: 489459
+            seed_max: 1000000
+            sgen_mapping: {}
+            sim_name: CommercialData
+            start_date: 2017-01-01 00:00:00+0100
+            step_size: 900
+        randomize_cos_phi: false
+        randomize_data: false
+        sim_name: CommercialData
+        start_date: 2017-01-01 00:00:00+0100
+        step_size: 900
+    cos_phi: 0.9
+    data_path: /home/stephan/.midas/midas_data
+    deny_rng: false
+    end: 86400
+    modules: [powergrid, sndata, comdata]
+    mosaik_params: {addr: "('127.0.0.1', 5555)"}
+    mosaikdb_params: {cmd: python, filename: _outputs/midasmv.hdf5, import_str: mosaik_hdf5:MosaikHdf5,
+        sim_name: MosaikDB, step_size: 900}
+    parent: None
+    powergrid_params:
+        cmd: python
+        import_str: midas.core:PandapowerSimulator
+        midasmv: {cmd: python, gridfile: midasmv, import_str: midas.core:PandapowerSimulator,
+            sim_name: Powergrid, step_size: 900, with_ts: false}
+        sim_name: Powergrid
+        step_size: 900
+    sensors: []
+    silent: false
+    sndata_params:
+        cmd: python
+        cos_phi: 0.9
+        data_path: /home/stephan/.midas/midas_data
+        import_str: midas.core:SmartNordDataSimulator
+        interpolate: false
+        midasmv:
+            cmd: python
+            cos_phi: 0.9
+            data_path: /home/stephan/.midas/midas_data
+            filename: SmartNordProfiles.hdf5
+            household_mapping: {}
+            import_str: midas.core:SmartNordDataSimulator
+            interpolate: false
+            land_mapping:
+                1:
+                   -  [0, 1.0]
+                   -  [2, 1.0]
+                   -  [3, 3.0]
+                   -  [6, 2.0]
+                   -  [7, 1.0]
+                3:
+                   -  [0, 1.0]
+                   -  [2, 1.0]
+                   -  [3, 1.0]
+                   -  [6, 1.0]
+                   -  [7, 1.0]
+                4:
+                   -  [0, 3.0]
+                   -  [3, 2.0]
+                   -  [7, 1.0]
+                5:
+                   -  [3, 2.0]
+                   -  [7, 1.0]
+                6:
+                   -  [0, 1.0]
+                   -  [3, 2.0]
+                7:
+                   -  [0, 3.0]
+                   -  [2, 1.0]
+                   -  [3, 2.0]
+                   -  [7, 1.0]
+                8:
+                   -  [0, 2.0]
+                   -  [3, 1.0]
+                   -  [6, 1.0]
+                9:
+                   -  [2, 1.0]
+                   -  [3, 2.0]
+                   -  [6, 2.0]
+                   -  [7, 1.0]
+                10:
+                   -  [0, 2.0]
+                   -  [2, 1.0]
+                   -  [3, 2.0]
+                   -  [6, 2.0]
+                   -  [7, 1.0]
+                11:
+                   -  [0, 2.0]
+                   -  [2, 1.0]
+                   -  [3, 2.0]
+                   -  [6, 2.0]
+                   -  [7, 1.0]
+            randomize_cos_phi: true
+            randomize_data: true
+            seed: 127732
+            seed_max: 1000000
+            sim_name: SmartNordData
+            start_date: 2017-01-01 00:00:00+0100
+            step_size: 900
+        randomize_cos_phi: false
+        randomize_data: false
+        sim_name: SmartNordData
+        start_date: 2017-01-01 00:00:00+0100
+        step_size: 900
+    start_date: 2017-01-01 00:00:00+0100
+    step_size: 900
+    with_db: true

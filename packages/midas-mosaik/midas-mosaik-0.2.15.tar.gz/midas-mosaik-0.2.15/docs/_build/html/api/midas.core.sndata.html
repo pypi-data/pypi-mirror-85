@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>midas.core.sndata package &#8212; MIDAS  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="midas.core.weather package" href="midas.core.weather.html" />
+    <link rel="prev" title="midas.core.sbdata package" href="midas.core.sbdata.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="midas-core-sndata-package">
+<h1>midas.core.sndata package<a class="headerlink" href="#midas-core-sndata-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-midas.core.sndata.meta">
+<span id="midas-core-sndata-meta-module"></span><h2>midas.core.sndata.meta module<a class="headerlink" href="#module-midas.core.sndata.meta" title="Permalink to this headline">¶</a></h2>
+<p>This module contains the meta for the household data simulator.</p>
+<p>Eight ‘low voltage lands’ are present in the data with different
+number of households. They are distributed as following:</p>
+<blockquote>
+<div><p>#name   #num        #house ids      #annual con #avg con
+Land 0:  41 houses (hids   0 -  40) (130 MWh/a) (0.36 kW)
+Land 1: 139 houses (hids  41 - 179) (661 MWh/a) (0.54 kW)
+Land 2:  67 houses (hids 180 - 246) (323 MWh/a) (0.55 kW)
+Land 3:  57 houses (hids 247 - 303) (223 MWh/a) (0.45 kW)
+Land 4: 169 houses (hids 304 - 472) (741 MWh/a) (0.5 kW)
+Land 5: 299 houses (hids 473 - 771) (1377 MWh/a) (0.53 kW)
+Land 6:  66 houses (hids 772 - 837) (309 MWh/a) (0.54 kW)
+Land 7: 103 houses (hids 838 - 940) (421 MWh/a) (0.47 kW)</p>
+</div></blockquote>
+<p>Resulting in 941 households or 8 lands in total.</p>
+</div>
+<div class="section" id="module-midas.core.sndata.simulator">
+<span id="midas-core-sndata-simulator-module"></span><h2>midas.core.sndata.simulator module<a class="headerlink" href="#module-midas.core.sndata.simulator" title="Permalink to this headline">¶</a></h2>
+<p>This module contains a simulator for converted Smart Nord data.</p>
+<p>The models itself are simple data provider.</p>
+<dl class="py class">
+<dt id="midas.core.sndata.simulator.SmartNordDataSimulator">
+<em class="property">class </em><code class="sig-prename descclassname">midas.core.sndata.simulator.</code><code class="sig-name descname">SmartNordDataSimulator</code><a class="headerlink" href="#midas.core.sndata.simulator.SmartNordDataSimulator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="midas.util.html#midas.util.base_data_simulator.BaseDataSimulator" title="midas.util.base_data_simulator.BaseDataSimulator"><code class="xref py py-class docutils literal notranslate"><span class="pre">midas.util.base_data_simulator.BaseDataSimulator</span></code></a></p>
+<p>A simulator for Smart Nord data.</p>
+<dl class="py method">
+<dt id="midas.core.sndata.simulator.SmartNordDataSimulator.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num</span></em>, <em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">model_params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.core.sndata.simulator.SmartNordDataSimulator.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the simulation model instance (entity)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a list with information on the created entity</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.core.sndata.simulator.SmartNordDataSimulator.get_data">
+<code class="sig-name descname">get_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">outputs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.core.sndata.simulator.SmartNordDataSimulator.get_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the requested outputs (if feasible).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.core.sndata.simulator.SmartNordDataSimulator.get_data_info">
+<code class="sig-name descname">get_data_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">eid</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.core.sndata.simulator.SmartNordDataSimulator.get_data_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="midas.core.sndata.simulator.SmartNordDataSimulator.init">
+<code class="sig-name descname">init</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sid</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">sim_params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.core.sndata.simulator.SmartNordDataSimulator.init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called exactly ones after the simulator has been started.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the meta dict (set by mosaik_api.Simulator)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="midas.core.sndata.simulator.SmartNordDataSimulator.step">
+<code class="sig-name descname">step</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time</span></em>, <em class="sig-param"><span class="n">inputs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#midas.core.sndata.simulator.SmartNordDataSimulator.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a simulation step.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-midas.core.sndata">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-midas.core.sndata" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">MIDAS</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../next_steps.html">Next steps</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">midas</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="midas.html">midas package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">midas</a><ul>
+  <li><a href="midas.html">midas package</a><ul>
+  <li><a href="midas.core.html">midas.core package</a><ul>
+      <li>Previous: <a href="midas.core.sbdata.html" title="previous chapter">midas.core.sbdata package</a></li>
+      <li>Next: <a href="midas.core.weather.html" title="next chapter">midas.core.weather package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Stephan Balduin.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/api/midas.core.sndata.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

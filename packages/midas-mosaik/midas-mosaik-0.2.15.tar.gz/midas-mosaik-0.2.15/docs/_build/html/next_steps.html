@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Next steps &#8212; MIDAS  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Configuration" href="configuration.html" />
+    <link rel="prev" title="Getting started" href="getting_started.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="next-steps">
+<h1>Next steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h1>
+<p>In this part, you will learn about scenario configuration files and
+the command line interface.</p>
+<div class="section" id="scenario-configuration">
+<h2>Scenario configuration<a class="headerlink" href="#scenario-configuration" title="Permalink to this headline">¶</a></h2>
+<p>If you have followed this guide from the beginning, you should by
+now have run your first simulation with <em>midas</em>.</p>
+<p>Inspect your current directory and you will find a new directory
+<em>_output</em> and inside that directory a file called <em>midasmv_cfg.yml</em>
+that contains the full configuration of the scenario you ran before.
+Note, since the file is created automatically, it is kind of unordered
+(actually, the keys are ordered alphabetically). If you plan to tinker
+around with that file, you should rename it. Otherwise, it will be
+overwritten when you start the <em>midasmv</em> scenario again.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">myconfig</span><span class="p">:</span>
+  <span class="nt">start_date</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2017-01-01 00:00:00+0100</span>
+  <span class="nt">end</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1*24*60*60</span>
+</pre></div>
+</div>
+<p>On the top level you find a key called <em>myconfig</em>. You can rename this
+as you like (as long as it is unique). This name is to be provided if
+you want to start your custom scenario (see CLI). On the second level,
+global settings for the scenario are defined. With <em>start_date</em> you
+can define the start date for the simulation. Most of the data cover
+one year. Therefore, the year is not that important, but month and day
+will be considered. On the other side, you can freely define an hour as
+start time. Minutes and seconds will probably work as well, but since
+the data’s resolution is 15 minutes to 1 hour, you should make sure to
+use interpolation (see <a class="reference internal" href="configuration.html"><span class="doc">Configuration</span></a>…) and
+adapt the step size accordingly.</p>
+<p>The <em>end</em> key specifies how many simulation steps (one step is defined
+as one second) will be performed. You can define the value like above,
+consisting of several multiplications for better readability, or
+directly set the number you like.</p>
+</div>
+<div class="section" id="command-line-interface">
+<h2>Command line interface<a class="headerlink" href="#command-line-interface" title="Permalink to this headline">¶</a></h2>
+<p>(Coming soon)</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">MIDAS</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Next steps</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#scenario-configuration">Scenario configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#command-line-interface">Command line interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/modules.html">midas</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="getting_started.html" title="previous chapter">Getting started</a></li>
+      <li>Next: <a href="configuration.html" title="next chapter">Configuration</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Stephan Balduin.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/next_steps.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
