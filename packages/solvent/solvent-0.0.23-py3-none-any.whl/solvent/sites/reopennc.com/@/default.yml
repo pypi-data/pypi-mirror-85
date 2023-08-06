@@ -1,0 +1,65 @@
+active_locators:
+  - mode: ''
+    value: ''
+    index: 0
+    score: 0.0
+inactive_locators:
+  - mode: ''
+    value: ''
+    index: 0
+    score: 0.0
+actions:
+  - verb: fill
+    name: name
+    locators:
+      - mode: id
+        value: input20
+        index: 0
+        score: 1.0
+      - mode: css
+        value: '[data-aid="CONTACT_FORM_NAME"]'
+        index: 0
+        score: 0.5
+  - verb: fill
+    name: email
+    locators:
+      - mode: id
+        value: input49
+        index: 0
+        score: 0.0
+      - mode: css
+        value: '[data-aid="CONTACT_FORM_EMAIL"]'
+        index: 1
+        score: 0.5
+  - verb: fill
+    name: message
+    locators:
+      - mode: tag
+        value: textarea
+        index: 0
+        score: 1.0
+  - verb: click
+    name: send
+    locators:
+      - mode: text
+        value: Send
+        index: 0
+        score: 1.0
+  - verb: click
+    name: home
+    locators:
+      - mode: text
+        value: Home
+        index: 0
+        score: 1.0
+  - verb: click
+    name: contact_us
+    locators:
+      - mode: text
+        value: Contact Us
+        index: 0
+        score: 0.0
+      - mode: css
+        value: '[data-aid="CONTENT_CTA_BTN_RENDERED"]'
+        index: 0
+        score: 0.5
