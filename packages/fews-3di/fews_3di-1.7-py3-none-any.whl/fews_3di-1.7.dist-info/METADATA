@@ -1,0 +1,357 @@
+Metadata-Version: 2.1
+Name: fews-3di
+Version: 1.7
+Summary: FEWS-3di coupling
+Home-page: https://github.com/nens/fews-3di
+Author: Reinout van Rees
+Author-email: reinout.vanrees@nelen-schuurmans.nl
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Framework :: Django
+Requires-Dist: netCDF4
+Requires-Dist: threedi-api-client
+Requires-Dist: threedigrid
+Requires-Dist: pandas
+Provides-Extra: test
+Requires-Dist: data-science-types ; extra == 'test'
+Requires-Dist: mock ; extra == 'test'
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: pytest-black ; extra == 'test'
+Requires-Dist: pytest-cov ; extra == 'test'
+Requires-Dist: pytest-flakes ; extra == 'test'
+Requires-Dist: pytest-mypy ; extra == 'test'
+
+fews-3di
+==========================================
+
+Program to start `3Di <https://3diwatermanagement.com/>`_ simulations from FEWS.
+
+
+Installation and usage
+----------------------
+
+We can be installed using python 3.6+ with::
+
+  $ pip install fews-3di
+
+The script is called ``run-fews-3di``, you can pass ``--help`` to get usage
+instructions and ``--verbose`` to get more verbose output in case of
+problems.
+
+``run-fews-3di`` looks for a ``run_info.xml`` in the current directory by
+default, but you can pass a different file in a different location with
+``--settings``::
+
+  $ run-fews-3di
+  $ run-fews-3di --help
+  $ run-fews-3di --settings /some/directory/run_info.xml
+
+
+Configuration and input/output files
+------------------------------------
+
+The expected information in run_info.xml is::
+
+  <?xml version="1.0" encoding="UTF-8"?>
+  <Run xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.wldelft.nl/fews/PI"
+       xsi:schemaLocation="http://www.wldelft.nl/fews/PI
+			   http://fews.wldelft.nl/schemas/version1.0/pi-schemas/pi_run.xsd"
+			   version="1.5">
+      <startDateTime date="2020-01-26" time="10:00:00"/>
+      <endDateTime date="2020-01-30" time="12:00:00"/>
+      <properties>
+	  <string key="username" value="pietje"/>
+	  <string key="password" value="onder-de-deurmat"/>
+	  <string key="organisation" value="12345678abcd"/>
+	  <string key="modelrevision" value="abcd123456787"/>
+	  <string key="simulationname" value="Simulation name"/>
+	  <string key="save_state" value="True"/>
+	  <string key="saved_state_expiry_days" value="5"/>
+      </properties>
+  </Run>
+
+**Note:** ``saved_state_expiry_days`` used to be spelled as
+``save_state_expiry_days``, without a "d".
+
+Several input files are needed, they should be in the ``input`` directory
+**relative** to the ``run_info.xml``:
+
+- ``run_info.xml``
+
+- ``input/lateral.csv``
+
+- ``input/precipitation.nc``
+
+- ``input/evaporation.nc``
+
+- ``input/ow.nc``
+
+- ``model/gridadmin.h5``
+
+Output is stored in the ``output`` directory relative to the
+``run_info.xml``:
+
+- ``output/simulation.log`` (unavailable, but included in the zip)
+
+- ``output/flow_summary.log`` (idem)
+
+- ``output/log_files_sim_ID.zip``
+
+- ``output/results_3di.nc``
+
+- ``output/dischages.csv``
+
+- ``output/ow.nc``
+
+
+Development
+-----------
+
+Development happens on github. See ``DEVELOPMENT.rst`` for more information.
+
+
+Changelog of fews-3di
+===================================================
+
+
+1.7 (2020-11-13)
+----------------
+
+- Checks for crashed status and queue's model. 
+
+
+1.6 (2020-10-19)
+----------------
+
+- Using a "streaming" download of large files to prevent partial downloads.
+
+
+1.5 (2020-09-21)
+----------------
+
+- Added more resilience to local network errors. The loop that waits for
+  results to be ready checks the state every 30 seconds and is thus the most
+  vulnerable to wifi issues, a flaky VPN and local network hickups. We now
+  detect such a ``socket.gaierror`` there and simply try again in 30 seconds.
+
+
+1.4 (2020-07-21)
+----------------
+
+- A minor bugfix in the result files which are downloaded after the simulation
+
+
+1.3 (2020-07-16)
+----------------
+
+- A minor bugfix in the location where the script searches for the saved-state
+  file
+
+
+1.2 (2020-07-09)
+----------------
+
+- The code has been set-up to look for specific filenames in predefined
+  folders.
+
+- All inputs (rain, evaporation etc.) have now become optional, if one is
+  absent a logging message is returned but the code will run. This allows for
+  flexibility in the usage of the code with different kinds of input.
+
+- Two new optional parameters have been added: lizard_results_scenario_uuid and
+  lizard_results_scenario_name. If a Lizard results   scenario name is provided,
+  results will be processed in Lizard. If it is not provided, the simulation
+  runs as usual without processing.
+
+
+1.1 (2020-05-04)
+----------------
+
+- When an existing saved state isn't found, it can be because it is the first
+  time the script is run. Or the previous saved data has expired. The error
+  message now points at the ``--allow-missing-saved-state`` possibility. This
+  can be used to allow the missing of the saved state: a new one will be
+  created.
+
+- Fixed bug: two lines were accidentally swapped, leading to an early crash.
+
+
+1.0 (2020-05-04)
+----------------
+
+- Code cleanup + more coverage.
+
+- Improved the documentation, including a separate ``DEVELOPMENT.rst`` to keep
+  those details out of the generic readme.
+
+
+0.4 (2020-04-30)
+----------------
+
+- Reading and storing saved states added.
+
+
+0.3 (2020-04-23)
+----------------
+
+- Release mechanism fix.
+
+
+0.2 (2020-04-23)
+----------------
+
+- Added lateral upload.
+
+- Added rain upload.
+
+- Added evaporation upload.
+
+- Simulation is actually being run now.
+
+- Added processing of the results.
+
+- Added usage instructions.
+
+
+0.1 (2020-04-09)
+----------------
+
+- Started copying code from the old project.
+
+- Got 3Di api connection to work, including creating an (empty) simulation.
+
+- Initial project structure created with cookiecutter and
+  https://github.com/nens/cookiecutter-python-template
+
+
+Development instructions
+========================
+
+
+Development installation
+------------------------
+
+We use python's build-in "virtualenv" to get a nice isolated directory. You
+only need to run this once::
+
+  $ python3 -m venv .
+
+A virtualenv puts its commands in the ``bin`` directory. So ``bin/pip``,
+``bin/pytest``, etc. Set up the dependencies like this::
+
+  $ bin/pip install -r requirements.txt
+
+There will be a script you can run like this::
+
+  $ bin/run-fews-3di
+
+It runs the ``main()`` function in ``fews-3di/scripts.py``, adjust that if
+necessary. The script is configured in ``setup.py`` (see ``entry_points``).
+
+If you need a new dependency (like ``requests``), add it in ``setup.py`` in
+``install_requires``. Local development tools, like "black", can be added to
+the ``requirements.txt`` file. In both cases, run install again to actuall
+install your dependency::
+
+  $ bin/pip install -r requirements.txt
+
+
+Code structure
+--------------
+
+- ``fews_3di/scripts.py``: the ``run-fews-3di`` code. Should only handle the
+  commandline stuff and logging setup.
+
+- ``fews_3di/simulation.py``: the main ``ThreediSimulation`` class. The
+  various steps like "add rain" and "start simulation" are separate methods on
+  that class: this way you can ceep the overview of what's happening. It is a
+  class to make it easier to share common data like "simulation id".
+
+- ``fews_3di/utils.py``: reading the settings plus some helper functions like
+  ``timestamps_from_netcdf()``.
+
+- ``fews_3di/tests/*``: the tests, including sample data.
+
+
+Error handling and logging
+--------------------------
+
+Try/excepts are only used when strictly necessary. Unexpected errors will
+simply be shown as a traceback.
+
+Some errors are expected, like a missing setting or a missing netcdf file. For
+these, there's an explicit error class like ``MissingSettingException``. These
+are caught in ``scripts.py`` and shown as a neat error message. With
+``--verbose``, you also get the traceback.
+
+Debug logging is used to make it easy to figure out what the program is doing
+in case of a problem or an unexpected result.
+
+Info level logging is for feedback to the user. Don't log too much on this
+level.
+
+Warning/error are the usual. An error when something is wrong and we're
+stopping the script. A warning for when something *seems* wrong, but when
+we'll continue execution anyway.
+
+
+
+Neatness and tests
+------------------
+
+In order to get nicely formatted python files without having to spend manual
+work on it, run the following command periodically::
+
+  $ make beautiful
+
+If you don't have "make" installed, look in the Makefile for the commands it
+runs (black, flake8, isort).
+
+Run the tests regularly. This also checks with pyflakes, black and it reports
+coverage. Pure luxury::
+
+  $ bin/pytest --disable-warnings
+
+The tests are also run automatically `on "github actions"
+<https://github.com/nens/fews-3di/actions>`_ for
+"master" and for pull requests. So don't just make a branch, but turn it into
+a pull request right away:
+
+- **Important**: it is easy to give feedback on pull requests. Little comments
+  on the individual lines, for instance. So use it to get early feedback, if
+  you think that's useful.
+
+- On your pull request page, you also automatically get the feedback from the
+  automated tests.
+
+There's also
+`coverage reporting <https://coveralls.io/github/nens/fews-3di>`_
+on coveralls.io.
+
+As an **experiment**, python type hints are sprinkled throughout the
+code. When running the tests, errors are often found. The reason for the
+experiment was some confusion in the original version of fews-3di:
+
+- A string "True" from the settings instead of a proper boolean True/False
+  value.
+
+- Timestamps that were sometimes datetime objects and sometimes iso-formatted
+  datetime strings.
+
+With type hints, it is perfectly clear what something is supposed to be.
+
+
+Releases
+--------
+
+Before releasing, make sure the changelog is up to date, otherwise
+zest.releaser complains :-) Then run fullrelease::
+
+  $ bin/fullrelease
+
+Github detects the new tag and automatically uploads a new release to
+https://pypi.org/project/fews-3di/
+
+
