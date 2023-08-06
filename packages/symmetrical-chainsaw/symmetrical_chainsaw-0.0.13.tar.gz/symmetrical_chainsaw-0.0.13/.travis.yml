@@ -1,0 +1,70 @@
+language: python
+dist: xenial
+cache: false
+env:
+  global:
+  - LD_PRELOAD=/lib/x86_64-linux-gnu/libSegFault.so
+  - SEGFAULT_SIGNALS=all
+  - secure: xr1ogCRHAzAvNoSPrZB6+v9B6HlZGfLFG9czJaPWVGsw2Fo3LTazAWPZjqHyVMlKr4ejLU1wEWeq8NgykTso5rnWeKnHh9KQNakMxp9s5+ax6gIUAMybNiaRlFjz9h0Hq6+ouqDWHj/oOmQ5ARgYZzK6SIN8FRkxC5q0RpMdzo4xGZY01nBl6L+2wmEmmu05JEBjwMGZigralL+4W5T+mJE21SheS1zgQO3zwl0kJZ24vmcjxUkFGyQSa11KKKmHWrXNjUFPfRxpxS0aqpoaoGH3HdRD//Fdw7InOTusZyEKhFCDsKHFdOcAskszotETX0Tk7bAi2MtxKPWzgOj0IFzNq/vHKDun1QT/cvU6I9o4LozD5vzVztTRv0+MaAxYTASnX34vCC5CSSS27dt8xscBwQ77QKFmoaHG/7qYhbKCvj8/XVtcElDF1iR2TnOxdmsVeEVNfcv3CAoEh9sTKv7+a+YGqO/wj5y6Abi2q8DXR8Tefyh+SwZuQdelTc+AS1LllTM4D6aHTrF+fom45/goCbwJLCOGJWY2LDmFMzq9fdvJ8Nf2e/Irf3UP0650NbhvZB/uSxMb6tMfH9n8poHXTZStj9ZCh36gpJzmZ4N9yaf8JVBPSuNIt+sQ7xmolVi+kIzNF48YPqljGlx3Wtsr2L2xcVMe2PRQ0Zy6xsM=
+  - secure: uBEB/ry6rHmeMuuzIgZ9x5bdM8kMJiuqBnWYNNyUm1cUvNgubqxYbsffQ2Lix/hVGTIWz9992KSZbTjYXvdJ+ON7DH4wiwZfb+Q18FiXSq5gaDjmjNImUyym0qW4Ij3YkTnQnpSBnREgcoEfKVwEYOMnRp6J21CbZTO6GLjGjBFKx4Xnr4N9GRDzYgga77i1nShYlrxDSjZSbkTA4D4VNRfNTsam3IpyvDffZmzB1qLEgN33Y5VHzzL1jBdRLCaS8Nb/+ej0BcimSQnyOyuGw4NF1wjC1cjas8UT93vV2btSomzBT8aZKZjW5gnYsjh64sHhK779PBqRcS8KafMSAOqPfsHUVpJOBJYa1LREjhWmkB7a3wjnMvftYlQ9+oag7IRGBN9gzAeaWZaVmJ8gmTLYNyagaQeR8XCu2ixl6Fo//LvEmhg6SMnuk42BfpzXfZGKLS/bUSwcWEPJECnkei+oEbLRVzp9ok10XYHVPAAtyflI188HygoYJHJ33EkAMsyx1STGHerwEoW0JpFOjghxi974zocrF2opcjyFuqrOh/8QWTAD5WIE13BgStwe6hYCFBpTiOpKeK7IQ8jDF+uDLFR4XDXic1hegFcbIcPx/7DZrG9xBruWRxlJN8RBgAJ/iXVsx05iCQLVhc5mPsZ7r6fk7nGIOT0Zc8lnUi8=
+matrix:
+  include:
+  - python: '3.6'
+    env:
+    - TOXENV=docs
+  - env:
+    - TOXENV=py35
+    python: '3.5'
+  - env:
+    - TOXENV=py36 DEPLOY=true
+    python: '3.6'
+  - env:
+    - TOXENV=py37
+    python: '3.7'
+  - env:
+    - TOXENV=py38
+    python: '3.8'
+before_install:
+- python --version
+- uname -a
+- lsb_release -a || true
+install:
+- python -mpip install --progress-bar=off tox -rci/requirements.txt
+- virtualenv --version
+- easy_install --version
+- pip --version
+- tox --version
+script:
+- tox -v
+after_failure:
+- more .tox/log/* | cat
+- more .tox/*/log/* | cat
+notifications:
+  email:
+    on_success: never
+    on_failure: always
+before_deploy:
+- python setup.py sdist
+- python setup.py bdist_wheel
+- echo $TRAVIS_TAG
+deploy:
+- provider: releases
+  skip_cleanup: true
+  file: dist/*
+  file_glob: true
+  api_key:
+    secure: LgXjzxDSTA6kG6+MOuGK9KkPLspDfi/bQauJ7ztxnGg58eWWukQ0Uz3WdWlC4pEzR7XpDNm6tkSRrYP1F/ERfgpwX+onzELEvwFes/n7mbL0891InrUl5gfBI3+3TTSzGyy3pyISW3PtVbNMx4TIsmxr2PcwmOmBbcM76s2lQpV3Vo9eYRaVHvO41oCNgGrM7TfKi5HuZEEbvlFVXseEVLGiyihjHFhsnGULH3dvh58LAxDAsC4tqpL3hrkdIe4rVJQbwe1aupJuPOH9U8n5GHLJNJKjCHnD0wmiXK80n7vLeDIRZVoNiPaCbjHMKaegRDTIHIwHJJpu7HhBr7yQZDox8f0znemEkHiUKbymrpfPI/Gdb+v0ihQt4Inrg12ArYb/siDPmfoRD1AJEzuzgWsi+91geAKUJpp41STf+AlZ5kHiIw9RVHkL3gH6gjWn3LA2XQA9pK1Vc6Zqze2teLQBX8+nKsIir2MnOoBR3i6YYPppjMTYl/YAuvdFmXnCn0gtyz+O31j9Zoy4t1ewIjxEoM5eUuYo4PvdUnntlevjJF5y/6caA/CBL+eeC6AX8OzEqnecTeUXmN9J/71SIllWYNqP9uqRazQQKYr6dJiCbZwLBAbyfBdF1WgH4gK0BvnYxE+rfX91vr2I3JxG6NUrCH5oNLHP3Datz2yQHLk=
+  on:
+    repo: yangchoo/symmetrical_chainsaw
+    tags: true
+    python: '3.6'
+    condition: '$TRAVIS_TAG =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ && $DEPLOY = true'
+- provider: pypi
+  skip_cleanup: true
+  username: __token__
+  edge: true
+  on:
+    tags: true
+    python: '3.6'
+    condition: '$TRAVIS_TAG =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ && $DEPLOY = true'
+  password: "$SECRET1$SECRET2"
