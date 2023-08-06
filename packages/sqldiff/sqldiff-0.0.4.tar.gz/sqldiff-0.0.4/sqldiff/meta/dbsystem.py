@@ -1,0 +1,2 @@
+POSTGRES = 'postgres'
+TERADATA = 'teradata'
