@@ -1,0 +1,8 @@
+include *.rst
+include pyproject.toml
+
+graft docs
+graft plone
+
+global-include *.mo
+global-exclude *.py[co]
