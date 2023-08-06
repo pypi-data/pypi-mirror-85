@@ -1,0 +1,1 @@
+from pandemic.surrogate import surrogate as run
