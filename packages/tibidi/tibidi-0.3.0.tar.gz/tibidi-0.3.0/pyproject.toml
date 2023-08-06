@@ -1,0 +1,45 @@
+[tool.poetry]
+name = "tibidi"
+version = "0.3.0"
+description = "Dump your traceback into a file."
+authors = ["Grzegorz Krasoń <grzegorz.krason@gmail.com>"]
+homepage = "https://gergelyk.github.io/python-tibidi"
+documentation = "https://gergelyk.github.io/python-tibidi"
+repository = "https://github.com/gergelyk/python-tibidi"
+license = "MIT"
+readme = "README.md"
+keywords = ["debug", "dump", "traceback"]
+packages = [
+    { include = "tibidi" },
+    { include = "tbdump" },
+    { include = "tbdebug" },
+    { include = "tbpeep" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+peepshow = "^0.2.3"
+cloudpickle = "^1.6.0"
+
+[tool.poetry.dev-dependencies]
+mkdocs-material = "^4.6.0"
+pytest = "^5.3.5"
+bs4 = "^0.0.1"
+mkdocs-plugin-mermaid = "^0.1.1"
+mdx_include = "^1.3.3"
+mkdocs-htmlproofer-plugin = "^0.0.3"
+mkdocs-plugin-progress = "^1.1.4"
+mkdocs-macros-plugin = "0.4.4"
+pytest-cov = "^2.8.1"
+pytest-html = "^2.1.1"
+lxml = "^4.5.0"
+yapf = "^0.29.0"
+docformatter = "^1.3.1"
+flake8 = "^3.7.9"
+isort = "^4.3.21"
+mkdocs = "^1.1"
+mkdocstrings = "^0.10.1"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
