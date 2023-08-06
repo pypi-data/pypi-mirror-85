@@ -1,0 +1,35 @@
+#content .listingBar, .listingBar,
+#content .pagination, .pagination {
+
+  ul {
+    @include ul('inline');
+  }
+
+  margin: 0.5em 0;
+
+  .previous {
+    float: left;
+  }
+
+  .next {
+    float: right;
+  }
+
+  a {
+    @include button();
+  }
+
+  a, span {
+    line-height: normal;
+  }
+
+  .active {
+    @include button($disabled: true); 
+    color: black;
+  }
+
+  .label {
+    font-weight: normal;
+    padding-bottom: 0;
+  }
+}

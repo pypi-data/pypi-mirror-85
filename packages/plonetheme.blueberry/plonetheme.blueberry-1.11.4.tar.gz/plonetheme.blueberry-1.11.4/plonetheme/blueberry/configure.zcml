@@ -1,0 +1,68 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:upgrade-step="http://namespaces.zope.org/ftw.upgrade"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="plonetheme.blueberry">
+
+    <i18n:registerTranslations directory="locales"/>
+
+    <include package="ftw.upgrade" file="meta.zcml" />
+    <include package="plone.app.theming" />
+
+    <include file="resources.zcml" />
+    <configure zcml:condition="have plone-5">
+        <include file="plone5-resources.zcml" />
+    </configure>
+    <include file="permissions.zcml" />
+    <include file="lawgiver.zcml" zcml:condition="installed ftw.lawgiver" />
+
+    <include package=".browser" />
+    <include package=".viewlets" />
+    <include package=".baserules" />
+    <include package=".standard" />
+    <include package=".marketing" />
+    <include package=".government" />
+    <include package=".publisher" zcml:condition="installed ftw.publisher.core" />
+
+    <browser:resourceDirectory
+        name="plonetheme.blueberry"
+        directory="resources"
+        />
+
+    <genericsetup:registerProfile
+        zcml:condition="not-have plone-5"
+        name="base"
+        title="plonetheme.blueberry (base Plone 4)"
+        directory="profiles/plone4"
+        description="Blueberry Theme Plone 4 Base"
+        for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <genericsetup:registerProfile
+        zcml:condition="have plone-5"
+        name="base"
+        title="plonetheme.blueberry (base Plone 5)"
+        directory="profiles/plone5"
+        description="Blueberry Theme Plone 5 Base"
+        for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <genericsetup:registerProfile
+        name="default"
+        title="plonetheme.blueberry (base)"
+        directory="profiles/default"
+        description="Blueberry Theme"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <upgrade-step:directory
+        profile="plonetheme.blueberry:default"
+        directory="upgrades"
+        />
+
+</configure>

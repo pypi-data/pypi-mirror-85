@@ -1,0 +1,61 @@
+#edit-bar {
+  @include clearfix();
+  background-color: $color-edit;
+  margin-bottom: $margin-vertical;
+}
+
+.contentActions {
+  float: right;
+}
+
+.arrowDownAlternative {
+  display: none;
+}
+
+#contentActionMenus {
+  @include list-horizontal($direction: rtl);
+
+  .actionMenuHeader a {
+    @extend .fa-icon-right;
+    @include auto-text-color($color-edit);
+
+    padding-right: 0;
+
+    &:after {
+      font-family: FontAwesome;
+      content: "\f107";
+      height: 0;
+    }
+  }
+
+}
+
+#content-views {
+  @include tab-list();
+  float: left;
+}
+
+
+// Plone 5 toolbar
+.plone-toolbar-left-default #edit-zone {
+  margin-left: -60px;
+}
+
+.plone-toolbar-left-expanded #edit-zone {
+  margin-left: -120px;
+}
+
+body[class*="plone-toolbar"] #edit-bar {
+  position: absolute;
+  display: none;
+
+  @include screen-small {
+    display: block;
+  }
+}
+
+.plone-toolbar-left #edit-zone {
+  nav > ul#personal-bar-container ul {
+    left: 0;
+  }
+}
