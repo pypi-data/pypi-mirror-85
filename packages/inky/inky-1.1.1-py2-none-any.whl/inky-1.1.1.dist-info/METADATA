@@ -1,0 +1,250 @@
+Metadata-Version: 2.1
+Name: inky
+Version: 1.1.1
+Summary: Inky pHAT Driver
+Home-page: http://www.pimoroni.com
+Author: Philip Howard
+Author-email: phil@pimoroni.com
+License: MIT
+Project-URL: GitHub, https://www.github.com/pimoroni/inky
+Keywords: Raspberry Pi e-paper display driver
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Operating System :: POSIX :: Linux
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development
+Classifier: Topic :: System :: Hardware
+Requires-Dist: numpy
+Requires-Dist: smbus2
+Requires-Dist: spidev
+Provides-Extra: example-depends
+Requires-Dist: beautifulsoup4 ; extra == 'example-depends'
+Requires-Dist: geocoder ; extra == 'example-depends'
+Requires-Dist: requests ; extra == 'example-depends'
+Provides-Extra: fonts
+Requires-Dist: font-fredoka-one ; extra == 'fonts'
+Requires-Dist: font-hanken-grotesk ; extra == 'fonts'
+Requires-Dist: font-intuitive ; extra == 'fonts'
+Requires-Dist: font-source-serif-pro ; extra == 'fonts'
+Provides-Extra: rpi
+Requires-Dist: RPi.GPIO ; extra == 'rpi'
+Provides-Extra: rpi-gpio-output
+Requires-Dist: RPi.GPIO ; extra == 'rpi-gpio-output'
+
+Inky
+====
+
+`Build Status <https://travis-ci.com/pimoroni/inky>`__ `Coverage
+Status <https://coveralls.io/github/pimoroni/inky?branch=master>`__
+`PyPi Package <https://pypi.python.org/pypi/inky>`__ `Python
+Versions <https://pypi.python.org/pypi/inky>`__
+
+Python library for the `Inky
+pHAT <https://shop.pimoroni.com/products/inky-phat>`__ and `Inky
+wHAT <https://shop.pimoroni.com/products/inky-what>`__ e-paper displays.
+
+Inky pHAT
+---------
+
+`Inky pHAT <https://shop.pimoroni.com/products/inky-phat>`__ is a
+212x104 pixel e-paper display, available in red/black/white,
+yellow/black/white and black/white. It’s great for nametags and
+displaying very low frequency information such as a daily calendar or
+weather overview.
+
+Inky wHAT
+---------
+
+`Inky wHAT <https://shop.pimoroni.com/products/inky-what>`__ is a
+400x300 pixel e-paper display available in red/black/white,
+yellow/black/white and black/white. It’s got tons of resolution for
+detailed daily todo lists, multi-day weather forecasts, bus timetables
+and more.
+
+Installation
+============
+
+The Python pip package is named inky, on the Raspberry Pi install with:
+
+::
+
+   pip3 install inky[rpi,fonts]
+
+This will install Inky along with dependencies for the Raspberry Pi,
+plus fonts used by the examples.
+
+If you want to simulate Inky on your desktop, use:
+
+::
+
+   pip3 install inky
+
+You may need to use ``sudo pip3`` or ``sudo pip`` depending on your
+environment and Python version.
+
+Usage
+=====
+
+Auto Setup
+----------
+
+Inky can try to automatically detect your board and set up accordingly:
+
+.. code:: python
+
+   from inky.auto import auto
+   board = auto()
+
+You can then get the colour and resolution from the board:
+
+.. code:: python
+
+   board.colour
+   board.resolution
+
+Manual Setup
+------------
+
+The Inky library contains modules for both the pHAT and wHAT, load the
+InkyPHAT one as follows:
+
+.. code:: python
+
+   from inky import InkyPHAT
+
+You’ll then need to pick your colour, one of ‘red’, ‘yellow’ or ‘black’
+and instantiate the class:
+
+.. code:: python
+
+   inkyphat = InkyPHAT('red')
+
+If you’re using the wHAT you’ll need to load the InkyWHAT class from the
+Inky library like so:
+
+.. code:: python
+
+   from inky import InkyWHAT
+   inkywhat = InkyWHAT('red')
+
+Once you’ve initialised Inky, there are only three methods you need to
+be concerned with:
+
+Set Image
+---------
+
+Set a PIL image, numpy array or list to Inky’s internal buffer. The
+image dimensions should match the dimensions of the pHAT or wHAT you’re
+using.
+
+.. code:: python
+
+   inkyphat.set_image(image)
+
+You should use ``PIL`` to create an image. ``PIL`` provides an
+``ImageDraw`` module which allow you to draw text, lines and shapes over
+your image. See:
+https://pillow.readthedocs.io/en/stable/reference/ImageDraw.html
+
+Set Border
+----------
+
+Set the border colour of you pHAT or wHAT.
+
+.. code:: python
+
+   inkyphat.set_border(colour)
+
+``colour`` should be one of ``inky.RED``, ``inky.YELLOW``,
+``inky.WHITE`` or ``inky.BLACK`` with available colours depending on
+your display type.
+
+Update The Display
+------------------
+
+Once you’ve prepared and set your image, and chosen a border colour, you
+can update your e-ink display with:
+
+.. code:: python
+
+   inkyphat.show()
+
+Migrating
+=========
+
+If you’re migrating code from the ``inkyphat`` library you’ll find that
+much of the drawing and image manipulation functions have been removed
+from Inky. These functions were always supplied by PIL, and the
+recommended approach is to use PIL to create and prepare your image
+before setting it to Inky with ``set_image()``.
+
+1.1.1
+-----
+
+* Enhancement: drive UC81559 CS with GPIO to avoid conflict with Grow workaround
+* Add 7-colour/UC8159 specifics to EEPROM
+* BugFix: define UC8159 colour and size constants in class
+* BugFix: fix auto to grab args properly, support UC8159 and fallback gracefully
+
+1.1.0
+-----
+
+* New: Support for UC8159-based 7-colour 600x448 display
+* Enhancement: auto now includes options for fallback
+* Enhancement: EEPROM can now give text string for display variant
+
+1.0.2
+-----
+
+* Enhancement: Always install Pi dependencies
+
+1.0.1
+-----
+
+* Enhancement: Tweak setup.py extras for easier dependency install
+
+1.0.0
+-----
+
+* New: Support for SSD1608-based displays
+* New: Mock Inky pHAT and wHAT displays
+* New: Automatic Inky detection and class constructor
+* Enhancement: Support for alternate i2c_bus when reading eeprom
+* Enhancement: Support for alternate spi_bus
+* Enhancement: Support for alternate GPIO driver
+* Enhancement: Replaced sys.exit calls with ImportError
+* Enhancement: Improved docstrings
+
+0.0.5
+-----
+
+* Enhancement: Added support for red/b/w high-temp Inky wHAT
+
+0.0.4
+-----
+
+* BugFix: Reverted normal red LUTs to correct values
+
+0.0.3
+-----
+
+* Enhancement: Added support for display variant detection
+* Enhancement: Added DocStrings
+* BugFix: Fixed set_border for all colours
+
+0.0.2
+-----
+
+* BugFix: Yellow Inky pHAT now yellow instead of brown/black
+* Enhancement: Performance tweak for set_image
+
+0.0.1
+-----
+
+* Initial Release
+
+
