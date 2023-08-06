@@ -1,0 +1,62 @@
+Metadata-Version: 2.1
+Name: sorm-location-asn1
+Version: 0.7.1
+Summary: Asn.1 representation for sorm645 location field
+Home-page: https://github.com/chabErch/sorm_location_asn1
+Author: chabErch
+Author-email: chabErch@yandex.ru
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: Russian
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+Requires-Dist: pyderasn (>=8.1)
+
+# sorm_location_asn1
+
+`sorm_location_asn1` — модуль, содержащий набор классов, для формирования местоположения в соответствии с требованиями Приказа Минкомсвязи № 645.
+
+# Установка
+
+Установка через `pip` :
+
+```
+pip install sorm_location_asn1
+```
+
+# Использование
+
+Модуль `sorm_location_asn1` содержит 2 класса для кодирования местоположения: `SormGsmLocation` для местоположения СПРС стандартов GSM и UMTS, и `SormLteLocation` для местоположения СПРС стандарта LTE. Оба класса наследуются от абстрактного класса `BaseLocation`.
+
+Для получение кодированного местоположения достаточно создать объект нужного класса и вызвать его метод `.encode()`
+
+```python
+from sorm_location_asn1 import SormGsmLocation, SormLteLocation
+
+sorm_gsm_location = SormGsmLocation(
+    mcc=250,
+    mnc=1,
+    lac=1111,
+    cell_id=2222,
+    sector=1,
+    ta=1,
+    time_delta=12300
+)
+raw_gsm_location = sorm_gsm_location.encode()
+print(raw_gsm_location.hex())
+
+sorm_lte_location = SormLteLocation(
+    mcc=250,
+    mnc=1,
+    e_utran_cell_id=2892309,
+    ta=1282,
+    time_delta=12300
+)
+raw_lte_location = sorm_lte_location.encode()
+print(raw_lte_location.hex())
+```
+
+
+
