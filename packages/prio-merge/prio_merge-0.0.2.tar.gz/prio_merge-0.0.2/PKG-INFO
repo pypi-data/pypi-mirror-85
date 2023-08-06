@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: prio_merge
+Version: 0.0.2
+Summary: Merge nested dicts according to a few specific rules
+Home-page: https://github.com/ztime/prio-merge
+Author: Jonas Wedin
+Author-email: jonas@lechuck.se
+License: UNKNOWN
+Description: # Prio merge
+        
+        Merge two dictionaries on a deep level with one taking precedent over another,
+        and by using a few rules:
+        
+        If keys exist in just one of the dictionaries, it will be merged in the final dictionary
+        
+        If two keys exist in the same nested depth, one of these things will happen
+        * if the values have different types, prioritized dict value will take remain
+        * if both values are lists, they will be combined according by appending the non-prioritized list to the other and then removing duplicates by casting to a list. *This means that list order can not be guaranteed* _It also means that any list will end the recursive nature of the merge_
+        * if both values are dicts, the keys will be combined recursively using these rules
+        * otherwise take the value from the prioritized dictionary
+        
+        ## Usage
+        ```python
+        from prio_merge import prio_merge
+        
+        prio_dict = {}
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
