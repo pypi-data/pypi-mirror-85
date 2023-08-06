@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: pymap2d
+Version: 0.1
+Summary: Tools for 2D maps
+Home-page: https://github.com/danieldugas/pymap2d
+Author: Daniel Dugas
+License: UNKNOWN
+Description: # pymap2d
+        
+        Map2D is a simple python 2D gridmap class,
+        able to load 2d maps from ROS .yaml/.pgm maps.
+        
+        Map2D provides:
+        - simple xy <-> ij coordinate conversions,
+        - implementation of the dijkstra algorithm.
+        - 2D ESDF calculation
+        
+        CMap2D is a Cython-based performance optimized version of Map2D,
+        providing fast 2D ESDF calculation from occupancy grids.
+        
+        ## Dependency: Cython
+        ```
+        $ pip install Cython
+        ```
+        
+        ## Installation:
+        Inside this project root folder:
+        ```
+        $ pip install .
+        ```
+        
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
