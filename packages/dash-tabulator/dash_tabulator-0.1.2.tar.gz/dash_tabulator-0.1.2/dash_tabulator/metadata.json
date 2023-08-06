@@ -1,0 +1,139 @@
+{
+  "src/lib/components/DashTabulator.react.js": {
+    "description": "DashTabulator is an implementation of the React Tabulator from \nhttps://github.com/ngduc/react-tabulator/ and https://github.com/olifolkerd/tabulator.\nIt takes a property, `column`, and `data`\ndisplays it in tabulator.\nThe `options` property is passed to Tabulator to perform regular options\ndownloading as xlsx is enabled by default.",
+    "displayName": "DashTabulator",
+    "methods": [
+      {
+        "name": "rowClick",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "e",
+            "type": null
+          },
+          {
+            "name": "row",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "downloadData",
+        "docblock": null,
+        "modifiers": [],
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "clearFilters",
+        "docblock": null,
+        "modifiers": [],
+        "params": [],
+        "returns": null
+      }
+    ],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID used to identify this component in Dash callbacks."
+      },
+      "columns": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": "A label that will be printed when this component is rendered.",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
+      },
+      "data": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": "The value displayed in the input.",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes\nto Dash, to make them available for callbacks."
+      },
+      "options": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Tabulator Options"
+      },
+      "rowClicked": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "rowClick captures the row that was clicked on"
+      },
+      "cellEdited": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "cellEdited captures the cell that was clicked on"
+      },
+      "dataChanged": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": "dataChanged captures the cell that was clicked on"
+      },
+      "downloadButtonType": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "downloadButtonType, takes a css style, text to display on button, type is file type to download\ne.g.\n downloadButtonType = {\"css\": \"btn btn-primary\", \"text\":\"Export\", \"type\":\"xlsx\"}"
+      },
+      "clearFilterButtonType": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "clearFilterButtonType, takes a css style, text to display on button\ne.g.\n clearFilterButtonType = {\"css\": \"btn btn-primary\", \"text\":\"Export\"}"
+      },
+      "initialHeaderFilter": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": "initialHeaderFilter based on http://tabulator.info/docs/4.8/filter#header\ncan take array of filters"
+      },
+      "dataFiltering": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": "dataFiltering based on http://tabulator.info/docs/4.8/callbacks#filter\nThe dataFiltering callback is triggered whenever a filter event occurs, before the filter happens."
+      },
+      "dataFiltered": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "dataFiltered based on http://tabulator.info/docs/4.8/callbacks#filter\nThe dataFiltered callback is triggered after the table dataset is filtered"
+      }
+    }
+  }
+}
