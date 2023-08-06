@@ -1,0 +1,77 @@
+Metadata-Version: 2.1
+Name: openeo
+Version: 0.4.8
+Summary: Client API for openEO
+Home-page: https://github.com/Open-EO/openeo-python-client
+Author: Jeroen Dries
+Author-email: jeroen.dries@vito.be
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Requires-Dist: requests-mock
+Requires-Dist: shapely (>=1.6.4)
+Requires-Dist: numpy (>=1.17.0)
+Requires-Dist: deprecated
+Requires-Dist: pandas (<0.25.0) ; python_version < "3.5.3"
+Requires-Dist: pandas (>0.20.0) ; python_version >= "3.5.3"
+Provides-Extra: dev
+Requires-Dist: pytest (>=4.5.0) ; extra == 'dev'
+Requires-Dist: mock ; extra == 'dev'
+Requires-Dist: requests-mock ; extra == 'dev'
+Requires-Dist: xarray (==0.12.3) ; extra == 'dev'
+Requires-Dist: h5netcdf ; extra == 'dev'
+Requires-Dist: openeo-udf (>=1.0.0rc2) ; extra == 'dev'
+Requires-Dist: matplotlib ; extra == 'dev'
+Requires-Dist: sphinx ; extra == 'dev'
+Requires-Dist: sphinx-autodoc-annotation ; extra == 'dev'
+Requires-Dist: sphinx-autodoc-typehints ; extra == 'dev'
+Requires-Dist: flake8 ; extra == 'dev'
+
+
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/openeo)
+![Status](https://img.shields.io/pypi/status/openeo)
+[![Build Status](https://travis-ci.org/Open-EO/openeo-python-client.svg?branch=master)](https://travis-ci.org/Open-EO/openeo-python-client)
+[![PyPI](https://img.shields.io/pypi/v/openeo)](https://pypi.org/project/openeo/)
+
+# openEO Python Client
+
+Python Client Library for the [openEO API](https://github.com/Open-EO/openeo-api). 
+Allows you to interact with openEO backends from your own (local) Python environment. 
+[Read more on usage in the documentation.](https://open-eo.github.io/openeo-python-client/)
+
+[Quick Start Guide](https://openeo.org/documentation/1.0/python/#installation)
+
+
+## Requirements and installation
+
+* Requirement: a **Python 3.6 (or higher) environment** 
+    where some dependencies can be installed 
+    (including usual suspects like `numpy` and `pandas`)
+
+    Note for Windows users: it is recommended to work with 
+    [Anaconda Python](https://www.anaconda.com/products/individual) 
+    as the `shapely` dependency may need to be installed separately
+    (e.g. using the Anaconda Navigator).
+
+* Basic installation procedure (in a `pip` powered environment):
+
+        pip install openeo
+
+## Usage
+
+[Python client documentation](https://open-eo.github.io/openeo-python-client/)
+
+[Some example scripts](https://github.com/Open-EO/openeo-python-client/blob/master/examples)
+
+[General OpenEO background](https://open-eo.github.io/openeo-api/)
+
+
+
+
