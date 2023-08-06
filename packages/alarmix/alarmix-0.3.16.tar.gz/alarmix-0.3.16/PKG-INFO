@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: alarmix
+Version: 0.3.16
+Summary: Alarm manager server and client
+Home-page: https://github.com/s3rius/alarmix
+Keywords: Poetry,Alarm,Unix sockets
+Author: Pavel Kirilin
+Author-email: win10@list.ru
+Requires-Python: >=3.8,<4.0
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Utilities
+Requires-Dist: loguru (>=0.5.3,<0.6.0)
+Requires-Dist: prettytable (>=1.0.1,<2.0.0)
+Requires-Dist: pydantic (>=1.7.2,<2.0.0)
+Project-URL: Repository, https://github.com/s3rius/alarmix
+Description-Content-Type: text/x-rst
+
+.. image:: ./logo.png
+    :alt: logo
+    :align: center
+
+===============
+Installation
+===============
+
+.. code-block:: bash
+
+    python -m pip install alarmix
+
+⚠️ `MPV <https://mpv.io/>`_ must be installed and accessible ⚠️
+
+At first, you need to start alarmd daemon:
+
+.. code-block:: bash
+
+    alarmd --sound "path/to/sound"
+
+Then you can manage your alarms with `alarmc` command.
+
+.. code-block:: bash
+
+    alarmc # Show scheduled alarms
+    alarmc stop # Stop buzzing alarm
+    alarmc add 20:00 19:30 14:00 # Add alarms
+    alarmc add 20:00 --delete # delete TODO: make other command
+    alarmc
+
+    alarmc -h # Show help
