@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: able_recipe
+Version: 1.0
+Summary: Bluetooth Low Energy for Android
+Home-page: https://github.com/b3b/able
+Author: b3b
+Author-email: ash.b3b@gmail.com
+License: MIT
+Description: Android Bluetooth Low Energy
+        ============================
+        
+        `Python <https://github.com/kivy/python-for-android>`_ interface to Android Bluetooth Low Energy API.
+        
+        Generated documentation: http://able.readthedocs.org
+        
+        
+        Build
+        -----
+        
+        The following instructions are for building app with `buildozer <https://github.com/kivy/buildozer/>`_ tool.
+        
+        Download the `able` recipes directory: https://github.com/b3b/able/tree/master/recipes .
+        
+        Path to recipes directory should be set in buildozer.spec::
+        
+           p4a.local_recipes = /path/to/downloaded/recipes
+        
+        
+        `able` recipe should be added to buildozer.spec requirements::
+        
+           requirements = python3,kivy,android,able
+        
+        
+        Bluetooth permissions should be requested in buildozer.spec::
+        
+            android.permissions = BLUETOOTH, BLUETOOTH_ADMIN, ACCESS_COARSE_LOCATION
+        
+        
+        App configuration example: `buildozer.spec <https://github.com/b3b/able/tree/master/examples/alert/buildozer.spec>`_
+        
+Keywords: android ble bluetooth kivy
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Android
+Classifier: Topic :: System :: Networking
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Description-Content-Type: text/x-rst
