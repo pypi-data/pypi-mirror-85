@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: pymc3020
+Version: 1.0.4
+Summary: Python executor for MC-3020
+Home-page: https://github.com/xtuml/mc
+Author: Levi Starrett
+Author-email: levi@roxsoftware.com
+License: Apache 2.0
+Download-URL: https://github.com/xtuml/mc/releases/download/1.0.4/pymc3020-1.0.4.tar.gz
+Description: # pymc3020
+        
+        ### Install
+        
+        ```
+        pip install pymc3020
+        ```
+        
+        ### Usage
+        
+        ```
+        Usage
+        =====
+          python -m mc3020 [options] <model_path> [another_model_path..]
+        
+        Options
+        =======
+        --help, -h                                        show this help message and exit
+        --pwd=WORKING_DIRECTORY, -d WORKING_DIRECTORY     code generation base folder          default: $PWD
+        --gendir=GEN_WORKSPACE, -g GEN_WORKSPACE          code generation workspace folder     default: $PWD/code_generation
+        --outdir=OUTPUT_DIRECTORY, -o OUTPUT_DIRECTORY    source output folder                 default: $PWD
+        --variant=VARIANT, -t VARIANT                     code generation dialect              default: c
+        ```
+        
+        Example:
+        
+        ```
+        python -m mc3020 -o ../src ../models                               # from gen folder of project
+        python -m mc3020 -t sysc -d ~/git/myproject/gen -o src ../models   # from a folder outside the project
+        ```
+        
+        ### Package for release
+        
+        ```
+        python setup.py sdist
+        twine upload dist/*
+        ```
+        
+Keywords: xtuml bridgepoint
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
