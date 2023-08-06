@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: outline-cli
+Version: 1.0.0
+Summary: UNKNOWN
+Home-page: UNKNOWN
+Author: Jimmy Chen
+Author-email: jimmychen260@gmail.com
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/JMCFTW/outline-cli/issues
+Project-URL: Source Code, https://github.com/JMCFTW/outline-cli/
+Platform: UNKNOWN
+Requires-Python: >3.6
+Description-Content-Type: text/markdown
+Requires-Dist: certifi (==2020.6.20)
+Requires-Dist: chardet (==3.0.4)
+Requires-Dist: idna (==2.10)
+Requires-Dist: requests (==2.24.0)
+Requires-Dist: requests-toolbelt (==0.9.1)
+Requires-Dist: urllib3 (==1.25.11)
+Requires-Dist: PyInquirer (==1.0.3)
+
+
+![Run tests](https://github.com/JMCFTW/outline-cli/workflows/Run%20tests/badge.svg?branch=main)
+![Publish to Pypi](https://github.com/JMCFTW/outline-cli/workflows/Publish%20to%20Pypi/badge.svg?branch=main)
+
+# outline-cli
+A command line tool that can help you manage your Outline VPN server more easily.
+It support all the API in [this.](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/Jigsaw-Code/outline-server/master/src/shadowbox/server/api.yml)
+
+And more:
+1. Create access key by email.
+2. Batch create access key by email list.
+
+and it will send VPN information to the user(s) by Gmail.
+
+# How to use?
+1.
+```
+pip install outline-cli
+```
+
+2. Put your gmail and Outline VPN credential information to app.ini.
+
+	[Example](example-app.ini)
+
+
+3. Run outline cli with following command:
+```
+outline-cli
+```
+
+
