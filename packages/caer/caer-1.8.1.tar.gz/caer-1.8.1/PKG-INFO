@@ -1,0 +1,81 @@
+Metadata-Version: 2.1
+Name: caer
+Version: 1.8.1
+Summary: Modern Computer Vision on the Fly. Caer simplifies the training and visualization of Computer Vision models using modern best practices
+Home-page: https://github.com/jasmcaus/caer
+Author: Jason Dsouza
+Author-email: jasmcaus@gmail.com
+Maintainer: Jason Dsouza
+License: MIT License
+Download-URL: https://pypi.org/project/caer
+Project-URL: Bug Tracker, https://github.com/jasmcaus/caer/issues
+Project-URL: Documentation, https://github.com/jasmcaus/caer/blob/master/docs/README.md
+Project-URL: Source Code, https://github.com/jasmcaus/caer
+Description: # Caer: Computer Vision on the Fly
+        
+        A Computer Vision library in Python with powerful image and video processing operations.
+        Caer is a set of utility functions designed to help speed up your Computer Vision workflow. Functions inside `caer` will help reduce the number of calculation calls your code makes, ultimately making it neat, concise and readable.
+        
+        [![Downloads](https://pepy.tech/badge/caer)](https://pepy.tech/project/caer)
+        [![license](https://img.shields.io/github/license/jasmcaus/caer?label=license)][license]
+        
+        
+        ## Installation
+        See [Installation][install] for detailed installation instructions. 
+        
+        Currently, `caer` supports releases of Python 3.6 onwards; Python 2 is not supported (nor recommended). 
+        To install the current release:
+        
+        ```shell
+        $ pip install caer
+        ```
+        
+        Optionally, Caer can also install [canaro](https://github.com/jasmcaus/canaro) if you install it with `pip install caer[canaro]`
+        
+        ### From Source
+        If you plan to develop `caer` yourself, or want to be on the cutting edge, you can use an editable install:
+        
+        ```shell
+        git clone https://github.com/jasmcaus/caer.git
+        cd caer
+        pip install -e . # Do this once to add the package to the Python Path
+        ```
+        
+        You can run the following to verify things installed correctly:
+        
+        ```python
+        >> import caer
+        >> print(f'Caer version: {caer.__version__}')
+        ```
+        
+        
+        ## Resources
+        
+        - [**Homepage**](https://github.com/jasmcaus/caer)
+        - [**Documentation**](https://github.com/jasmcaus/caer/blob/master/docs/README.md)
+        - [**Issue tracking**](https://github.com/jasmcaus/caer/issues)
+        
+        
+        All Caer wheels on PyPi are MIT-licensed
+        
+        
+        [install]: https://github.com/jasmcaus/caer/blob/master/INSTALL.md
+        [license]: https://github.com/jasmcaus/caer/blob/master/LICENSE
+Keywords: caer,computer vision,toolkit,opencv,image processing,video processing,deep learning,machine learning
+Platform: Any
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
