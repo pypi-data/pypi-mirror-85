@@ -1,0 +1,69 @@
+Metadata-Version: 2.1
+Name: dockingFormatter
+Version: 1.1.0
+Summary: A docking logs formatter
+Home-page: https://github.com/LSWarss/dockingFormatter
+Author: Łukasz Stachnik
+Author-email: ls.warss98@gmail.com
+License: MIT License
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: openpyxl
+Requires-Dist: Click
+
+# dockingFormatter
+
+## Description
+
+Simple formatter for docking of the compound logs. That takes docking log and returns interesting findings in format of xlsx file.
+
+## Installation
+
+You can install the **dockingFormatter** from [PyPI](https://pypi.org/):
+
+```
+pip install dockingFormatter
+```
+
+or
+
+```
+pip3 install dockingFormatter
+```
+
+The formatter is supported on Python3 and should be working fine on Python2.
+
+## What it does
+
+The dockingFormatter is a simple command line application, it takes docking log and then finds lowest affinity for the given compound. Afterwards returns the inforamtion in form of xmls file looking like that:
+
+![Formatter output sample](images/xmls-formatter.png)
+
+## How to use
+
+```
+
+$ dockingFormatter [DOCKING LOG FILE NAME] 
+
+```
+
+or with custom output file name
+
+```
+
+$ dockingFormatter [DOCKING LOG FILE NAME] --outputfile [CUSTOM NAME with or without xmls extension on the end]
+
+```
+
+to see all options and description you can use 
+
+```
+
+$ docking Formatter --help
+
+```
+
+
