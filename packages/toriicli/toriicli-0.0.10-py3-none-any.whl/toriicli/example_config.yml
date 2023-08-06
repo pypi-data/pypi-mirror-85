@@ -1,0 +1,64 @@
+# unity_executable_path (str, optional): the path to the Unity executable to use
+# to build the project. If not given, an attempt will be made to auto detect
+# the Unity installation.
+#
+# unity_executable_path: "C:/Unity/Editor/Unity.exe"
+
+# unity_preferred_version (str, optional): the preferred version of Unity to get
+# when using Unity installation auto detection. If not given, it will use the
+# first one it finds.
+#
+# unity_preferred_version: "2017.4.30f1"
+
+# unity_build_execute_method (str, optional): the method to execute when running
+# Unity for a build. Of format 'NamespaceName.ClassName.MethodName'. As in
+# the docs https://docs.unity3d.com/Manual/CommandLineArguments.html, the
+# method should be in an 'Editor' folder and should be static.
+# Defaults to "Torii.Build.BuildScript.Build"
+#
+# unity_build_execute_method: "Torii.Build.BuildScript.Build"
+
+# unity_dotnet_framework_version (str, optional): the .NET framework version to
+# use when determining which targets of NuGet packages to use. It defaults to
+# .NET 4.6.2, as that's a nice compatible version.
+#
+# unity_dotnet_framework_version: "462"
+
+# nuget_package_install_path (str, optional): the folder within the 'Assets'
+# folder of your project to install NuGet packages in.
+# Defaults to "NuGetPackages"
+#
+# nuget_package_install_path: NuGetPackages
+
+# actual_project_dir (str, optional): the actual project directory (where the
+# Unity project is) - by default toriicli will use the directory that this
+# config file is in as the Unity project folder but use this if you want to
+# override it
+#
+# actual_project_dir: unityproj
+
+# build_output_folder (str, optional): the folder to put builds in. Builds will
+# be in this folder in subdirectories based on their 'target' value, for
+# example, with 'build_output_folder: builds' and 'target: StandaloneWindows',
+# the build would be in './builds/StandaloneWindows/executable.exe'.
+# this will default to 'builds' if not specified.
+#
+# build_output_folder: builds
+
+# build_defs (array): the list of builds we should be making. Cannot be empty.
+# Each build should have 'target (str)', which is one of https://docs.unity3d.com/ScriptReference/BuildTarget.html
+# As well as 'executable_name (str)', which is the name of the executable to build.
+#
+build_defs:
+  - target: StandaloneWindows
+    executable_name: Game.exe
+
+# build_post_steps (array): the list of steps to run for each build after it's
+# completed. Please see the README for information on steps.
+#
+build_post_steps: []
+
+# release_steps (array): the list of steps to run for each build def when a
+# version is released. Please see the README for information on releases.
+#
+release_steps: []
