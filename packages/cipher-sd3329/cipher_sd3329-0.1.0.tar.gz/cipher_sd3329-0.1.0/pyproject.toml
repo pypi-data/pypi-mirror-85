@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "cipher_sd3329"
+version = "0.1.0"
+description = "The package is used to encrypt or decrypt text via Caesar's cipher."
+authors = ["Siyu <sd3329@columbia.edu>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.1.2"
+pytest-cov = "^2.10.1"
+codecov = "^2.1.10"
+python-semantic-release = "^7.3.0"
+flake8 = "^3.8.4"
+sphinx = "^3.3.1"
+sphinxcontrib-napoleon = "^0.7"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
