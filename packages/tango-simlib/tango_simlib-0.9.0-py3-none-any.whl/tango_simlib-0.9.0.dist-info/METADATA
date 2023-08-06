@@ -1,0 +1,318 @@
+Metadata-Version: 2.1
+Name: tango-simlib
+Version: 0.9.0
+Summary: Generic library for creating simulated TANGO devices.
+Home-page: https://github.com/ska-sa/tango-simlib
+Author: MeerKAT CAM Team
+Author-email: cam@ska.ac.za
+License: BSD
+Download-URL: https://pypi.python.org/pypi/tango-simlib
+Platform: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*
+Description-Content-Type: text/x-rst
+Requires-Dist: future
+Requires-Dist: jsonschema
+Requires-Dist: numpy
+Requires-Dist: PyTango (>=9.2.2)
+Requires-Dist: pathlib
+Requires-Dist: pyyaml
+Requires-Dist: futures ; python_version < "3"
+Requires-Dist: pyrsistent (==0.16.0) ; python_version < "3"
+Requires-Dist: pyrsistent ; python_version >= "3"
+Provides-Extra: docs
+Requires-Dist: sphinx-pypi-upload ; extra == 'docs'
+Requires-Dist: numpydoc ; extra == 'docs'
+Requires-Dist: Sphinx ; extra == 'docs'
+Requires-Dist: mock ; extra == 'docs'
+
+
+=======================================================
+tango-simlib: Easily generate *TANGO* device simulators
+=======================================================
+
+|Doc Status|
+|Pypi Version|
+|Python Versions|
+
+Main website: http://tango-simlib.readthedocs.io
+
+============
+Introduction
+============
+
+``tango-simlib`` is a library that aids the data-driven development of TANGO_ device
+simulators. It aims to make it easy to develop basic simulators while making it
+possible to implement more complex simulators. In addition to the simulated
+device interface, a separate *TANGO* simulation-control interface is generated,
+allowing the simulator to be manipulated via a back-channel to simulate
+e.g. failure conditions on the simulated device interface.
+
+Using only the basic *TANGO* interface description captured via a POGO_ generated
+XMI file, a basic simulator with randomly varying attributes and no-op command
+handlers can be generated with no further coding. Attribute simulation
+parameters and simple command behaviour can be specified using a *Simulator
+Description Datafile* (SimDD_). The format of this file is currently a working
+proposal and subject to change. A more formal format specification is being
+worked on.
+
+Note that ``tango-simlib`` does not generate simulator code. Rather, the
+simulator's behaviour is driven by the description data at run-time using *Python*'s
+dynamic programming features. If the description files (XMI or SimDD) are
+modified, the simulator device server only needs to be restarted for the changes
+to take effect.
+
+.. |Doc Status| image:: https://readthedocs.org/projects/tango-simlib/badge/?version=latest
+                :target: http://tango-simlib.readthedocs.io/en/latest
+                :alt:
+
+.. |Pypi Version| image:: https://img.shields.io/pypi/v/tango-simlib.svg
+                  :target: https://pypi.python.org/pypi/tango-simlib
+                  :alt:
+
+.. |Python Versions| image:: https://img.shields.io/pypi/pyversions/tango-simlib.svg
+                     :target: https://pypi.python.org/pypi/tango-simlib/
+                     :alt:
+
+.. _TANGO: http://www.tango-controls.org/
+.. _POGO: http://www.esrf.eu/computing/cs/tango/tango_doc/tools_doc/pogo_doc/
+.. _SimDD: https://docs.google.com/document/d/1tkRGnKu5g8AHxVjK7UkEiukvqtqgZDzptphVCHemcIs/edit?usp=sharing
+.. _CAM_Style_guide: https://docs.google.com/document/d/1aZoIyR9tz5rCWr2qJKuMTmKp2IzHlFjrCFrpDDHFypM/edit?usp=sharing
+.. _PyTango: https://pypi.python.org/pypi/PyTango
+.. _source: https://github.com/ska-sa/tango-simlib
+.. _documentation: http://tango-simlib.rtfd.io
+.. _license: https://github.com/ska-sa/tango-simlib/blob/master/LICENSE.txt
+.. _TANGOBINARY: https://tango-controls.readthedocs.io/en/latest/installation/binary_package.html
+
+===========
+Basic Usage
+===========
+
+Installation
+------------
+
+**Please Note**
+
+- tango-simlib is compatible with Python2.7 and Python>=3.5.
+
+- Installation requires the TANGOBINARY_ prerequisites to be installed.
+
+
+.. code-block:: bash
+
+    $ sudo apt-get install -y --no-install-recommends $(grep -vE "^\s*#" apt-build-requirements.txt | tr "\n" " ")
+
+
+If you cannot install the PyTango_ package you will not be able to
+install ``tango-simlib``. For more, documentation_.
+
+Installation from source_, working directory where source is checked out
+
+.. code-block:: bash
+
+    $ pythonX -m pip install . # Where 'x' is the version of Python
+
+This package is available on *PYPI*, allowing
+
+.. code-block:: bash
+
+    $ pip install tango-simlib
+
+Tango-YAML
+----------
+
+After installing tango_simlib, the ``tango-yaml`` script will be available to use
+
+.. code-block:: bash
+
+    $ tango-yaml -h
+
+    usage: tango_yaml [-h] {xmi,fandango,tango_device,validate} ...
+
+    This program translates various file formats that describe Tango devices to
+    YAML. Or validates the conformance of a device against a specification.
+
+    positional arguments:
+    {xmi,fandango,tango_device,validate}
+                            sub command help
+        xmi                 Build YAML from a XMI file
+        fandango            Build YAML from a fandango file
+        tango_device        Build YAML from a running Tango device
+        validate            Check conformance of a Tango device against a
+                            specification in YAML format
+
+    optional arguments:
+    -h, --help            show this help message and exit
+
+
+Documentation
+-------------
+
+Check out the documentation_ for more information.
+Download Manual: https://media.readthedocs.org/pdf/tango-simlib/latest/tango-simlib.pdf
+
+=======
+License
+=======
+
+This project is licensed under the BSD 3-Clause License - see license_ for details.
+
+==========
+Contribute
+==========
+
+Contributions are always welcome! Please ensure that you adhere to our coding standards CAM_Style_guide_.
+
+
+
+=========
+Changelog
+=========
+
+.. _fandango: https://github.com/tango-controls/fandango
+.. _79: https://github.com/ska-sa/tango-simlib/issues/79
+.. _56: https://github.com/ska-sa/tango-simlib/issues/56
+.. _91: https://github.com/ska-sa/tango-simlib/pull/91
+.. _black: https://github.com/psf/black
+.. _110: https://github.com/ska-sa/tango-simlib/pull/110
+.. _101: https://github.com/ska-sa/tango-simlib/pull/101
+.. _115: https://github.com/ska-sa/tango-simlib/pull/115
+.. _116: https://github.com/ska-sa/tango-simlib/pull/116
+.. _117: https://github.com/ska-sa/tango-simlib/pull/117
+.. _118: https://github.com/ska-sa/tango-simlib/pull/118
+.. _119: https://github.com/ska-sa/tango-simlib/pull/119
+.. _121: https://github.com/ska-sa/tango-simlib/pull/121
+.. _122: https://github.com/ska-sa/tango-simlib/pull/122
+.. _123: https://github.com/ska-sa/tango-simlib/pull/123
+.. _126: https://github.com/ska-sa/tango-simlib/pull/126
+.. _127: https://github.com/ska-sa/tango-simlib/pull/127
+.. _128: https://github.com/ska-sa/tango-simlib/pull/128
+.. _129: https://github.com/ska-sa/tango-simlib/pull/129
+.. _131: https://github.com/ska-sa/tango-simlib/pull/131
+.. _132: https://github.com/ska-sa/tango-simlib/pull/132
+.. _133: https://github.com/ska-sa/tango-simlib/pull/133
+
+0.9.0
+-----
+- Flattened the dict structure generated by the fandango parser for the device attributes 132_.
+- Configured all the default properties of the TANGO device's attributes 133_.
+
+0.8.0
+-----
+- Updated DishMaster.yaml 126_.
+- Pinned last known compatible Py2 version of `pyrsistent` 127_.
+- Added ability to override min_update_period 128_.
+- Added the ability to pass a custom logger to model 129_.
+- Reduced logging verbosity 131_.
+
+0.7.1
+-----
+- Include enum labels in YAML spec document and sort labels 123_.
+- Arranged the `- name` as the top value and have the keys sorted alphabetically 123_.
+
+0.7.0
+-----
+- Updated CHANGELOG in 122_
+- Added `validate` option to `tango-yaml` tool in 121_
+    - This sub command enables conformance verification of a running Tango
+      device against a specification file.
+
+0.6.0
+-----
+- Updated CHANGELOG in 118_
+- Added `tango-yaml` tool in 119_
+    - This tool translates fandango (fgo), XMI (xmi) or a running Tango device to YAML.
+    - Once installed, run `tango-yaml -h` for details.
+
+0.5.0
+-----
+- Added Weather.xmi to MANIFEST.in 117_
+- Refactor the code base 116_
+- Update compat function docstrings 115_
+
+0.4.0
+-----
+- Added Python2.7 and Python>=3.5 Compatibility Pull Request 110_.
+- Formatted code with black_
+- Added some missing XMI parser types Pull Request 101_.
+
+0.3.0
+-----
+- Support multiple device and control interfaces per server process (Enhancement)
+    - Addressing issue raised in 56_
+- Adding a log when writing to the attributes
+- Reduced the unnecessary logging of the TANGO device
+- Handle non scalar value
+    - Linked to the Pull Request 91_
+
+0.2.1
+-----
+- Supporting more tango data types.
+    - DevUChar
+    - DevShort
+    - DevUShort
+    - DevLong64
+    - DevULong64
+    - DevState
+    - DevEncoded
+- Updating documentation. Addresses issue 79_.
+
+0.2.0
+-----
+- Adding support to register and run a TANGO device using a file as a database.
+- Initialising the model quantity values with the default values specified in the simulator data description files.
+- Parsing simulator data description files in a pre-determined precendence order.
+- Removing unmaintained python-devicetest dependency.
+- Added a fandango json parser
+    - This parser is used to process the TANGO device data file generated by the fandango_ library.
+- Making use of the PyTango v9.2.2 feature to create dynamic commands.
+
+0.1.6
+-----
+- Force all unicode attributes in XMI files to byte strings.
+
+0.1.5
+-----
+- Updates to the SimDD
+    - Added a new type of behaviour in the side-effect actions suite for long-running
+      commands.
+- Handle vector data type from pogo
+- Populate tango-db with device properties
+
+0.1.4
+-----
+- Package release documentation
+- Updated console script names
+    - tango-simlib-tango-launcher -> tango-simlib-launcher
+    - tango-simlib-tango-simulator-generator -> tango-simlib-generator
+
+0.1.3
+-----
+- DISH config files included in examples of device simulators
+- JSON Schema for SimDD configuration file validation
+
+0.1.2
+-----
+- Modified the update method of the Model class to invoke the override pre-update
+  and post-update method, respectively.
+
+0.1.1
+-----
+- Handle DevEnum data type TANGO attributes
+- Handle Spectrum data format TANGO attributes
+
+
+
+
+
