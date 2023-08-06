@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<import-steps>
+
+ <import-step 
+    id="MeetingMons-Update-RoleMappings"
+    handler="Products.MeetingMons.setuphandlers.updateRoleMappings"
+    title="Update Workflow role mappings for MeetingMons"
+    version="2016-02-01T09:23:16.516092">
+   <dependency step="MeetingMons-QI-dependencies"/>
+   updates the workflow role mappings for MeetingMons
+ </import-step>
+
+ <import-step 
+    id="MeetingMons-postInstall"
+    handler="Products.MeetingMons.setuphandlers.postInstall"
+    title="manual coded post-install for MeetingMons"
+    version="2016-02-01T09:23:16.516092">
+   <dependency step="MeetingMons-QI-dependencies"/>
+   manual coded post-install for MeetingMons
+ </import-step>
+
+</import-steps>
+ 
