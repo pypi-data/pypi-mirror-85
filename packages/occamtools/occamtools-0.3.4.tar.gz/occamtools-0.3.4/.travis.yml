@@ -1,0 +1,38 @@
+sudo: false
+dist: xenial
+language: python
+
+env:
+  global:
+    - COV=false
+
+matrix:
+  include:
+    - python: 3.6
+    - python: 3.7
+    - python: 3.8
+      env: COV=true
+
+install:
+  - if [ $COV == 'true' ]; then pip3 install codecov; fi
+  - if [ $COV == 'true' ]; then pip3 install codacy-coverage; fi
+  - pip3 install -e .
+
+script:
+  - if [ $COV == 'true' ];
+    then pytest -v -s --cov=./;
+    else pytest -v -s;
+    fi
+
+after_success:
+  - if [ $COV == 'true' ]; then codecov; fi
+  - if [ $COV == 'true' ]; then coverage xml; fi
+  - if [ $COV == 'true' ]; then python-codacy-coverage -r coverage.xml; fi
+
+deploy:
+  provider: pypi
+  user: mortele
+  password: $PYPI_PASSWORD
+  on:
+    tags: true
+    python: 3.8

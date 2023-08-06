@@ -1,0 +1,49 @@
+title:
+example_2_fort.1
+atoms:
+2500
+cutoff:
+8.5
+nl_cutoff:
+9.5
+nl_size:
+500000
+time_step:
+0.03
+number_of_steps:
+90
+velocity_read:
+yes
+simulated_ensemble: #NVT_Andersen
+NVT_Andersen
+target_temperature:
+85.0 0.0
+collision_frequen:
+1.0
+angle_function:
+2
+SCF_lattice_update:
+1
+mean_field:
+SCMF
+intra_nonbonded:
+1
+adaptive_mdhpf: # MD region start (x coordinate), MD region end, size of transition region
+50.0 75.0 25.0
+num_config_acc:
+1
+pot_calc_freq:
+100
+temperature_coupl:
+0.1
+target_pressure:
+1.00
+pressure_coupling:
+20.00
+trj_print:
+10
+out_print:
+1
+pbc_traj:
+0
+endinput:
