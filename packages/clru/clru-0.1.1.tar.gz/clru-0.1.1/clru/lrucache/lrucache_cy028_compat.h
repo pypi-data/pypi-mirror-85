@@ -1,0 +1,2 @@
+#define __pyx_obj_8lrucache__node __pyx_obj_4clru_8lrucache_10cylrucache__node
+
