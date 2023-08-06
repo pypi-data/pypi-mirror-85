@@ -1,0 +1,122 @@
+Metadata-Version: 1.2
+Name: raytraverse
+Version: 1.0.4
+Summary: adaptive sampling for CBDM
+Home-page: https://github.com/stephanwaz/raytraverse
+Author: Stephen Wasilewski
+Author-email: stephanwaz@gmail.com
+License: Mozilla Public License 2.0 (MPL 2.0)
+Description: ===================
+        raytraverse (1.0.4)
+        ===================
+        
+        .. image:: https://img.shields.io/pypi/v/raytraverse?style=flat-square
+            :target: https://pypi.org/project/raytraverse
+            :alt: PyPI
+        
+        .. image:: https://img.shields.io/pypi/l/raytraverse?style=flat-square
+            :target: https://www.mozilla.org/en-US/MPL/2.0/
+            :alt: PyPI - License
+        
+        .. image:: https://img.shields.io/readthedocs/raytraverse/stable?style=flat-square
+            :target: https://raytraverse.readthedocs.io/en/stable/
+            :alt: Read the Docs (version)
+        
+        .. image:: https://img.shields.io/travis/stephanwaz/raytraverse?style=flat-square
+            :target: https://travis-ci.org/github/stephanwaz/raytraverse/builds
+            :alt: Travis (.org)
+        
+        .. image:: https://img.shields.io/coveralls/github/stephanwaz/raytraverse?style=flat-square
+            :target: https://coveralls.io/github/stephanwaz/raytraverse
+            :alt: Coveralls github
+        
+        .. image:: https://zenodo.org/badge/doi/10.5281/zenodo.4091318.svg
+           :target: https://zenodo.org/badge/latestdoi/296295567
+        
+        raytraverse is a complete workflow for climate based daylight modelling,
+        simulation, and evaluation of architectural spaces. Built around a wavelet
+        guided adaptive sampling strategy, raytraverse can fully explore the daylight
+        conditions throughout a space with efficient use of processing power and
+        storage space.
+        
+        * Free software: Mozilla Public License 2.0 (MPL 2.0)
+        * Documentation: https://raytraverse.readthedocs.io/en/stable/.
+        
+        
+        Installation
+        ------------
+        The easiest way to install raytraverse is with pip::
+        
+            pip install --upgrade pip setuptools wheel
+            pip install raytraverse
+        
+        or if you have cloned this repository::
+        
+            cd path/to/this/file
+            pip install .
+        
+        
+        note that on first run the skycalc module may download some auxilary
+        data which could take a minute, after that first run start-up is much faster.
+        
+        Usage
+        -----
+        raytraverse includes a complete command line interface with all commands
+        nested under the `raytraverse` parent command enter::
+        
+            raytraverse --help
+        
+        raytraverse also exposes an object oriented API written primarily in python.
+        calls to Radiance are made through Renderer objects that wrap the radiance
+        c source code in c++ classes, which are made available in python with pybind11.
+        see the src/ directory for more.
+        
+        For complete documentation of the API and the command line interface either
+        use the Documentation link included above or::
+        
+            pip install -r docs/requirements.txt
+            make docs
+        
+        to generate local documentation.
+        
+        
+        =======
+        History
+        =======
+        
+        1.0.4
+        -----
+        * create and manage log file (attribute of Scene) for run directories
+        * possible fix for bug in interpolate_kd resulting in index range errors
+        * protect imports in cli.py so documentation can be built without installing
+        
+        1.0.3
+        -----
+        * new module for calculating position based on retinal features
+        * view specifications for directview plotting
+        * options for samples/weight visibility on directview plotting
+        
+        0.2.0 (2020-09-25)
+        ------------------
+        
+        * Build now includes all radiance dependencies to setup multi-platform testing
+        * In the absence of craytraverse, sampler falls back to SPRenderer
+        * install process streamlined for developer mode
+        * travis ci deploys linux and mac wheels directly to pypi
+        * release.sh should be run after updating this file, tests past locally and
+            docs build.
+        
+        0.1.0 (2020-05-19)
+        ------------------
+        
+        * First release on PyPI.
+        
+Keywords: raytraverse
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.6
