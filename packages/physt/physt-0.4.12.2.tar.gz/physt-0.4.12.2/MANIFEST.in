@@ -1,0 +1,11 @@
+include HISTORY.txt
+include LICENSE
+include MANIFEST.in
+include README.md
+include requirements.txt
+
+recursive-include physt/examples *.csv
+recursive-include tests/data *.*
+recursive-exclude physt *.pyc
+recursive-exclude tests *.pyc
+
