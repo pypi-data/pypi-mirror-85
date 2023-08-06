@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: pygpso
+Version: 0.6
+Summary: Bayesian optimisation method leveraging Gaussian Processes surrogate
+Home-page: https://github.com/jajcayn/pygpso
+Author: Nikola Jajcay
+Author-email: nikola.jajcay@protonmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: Topic :: Scientific/Engineering :: Medical Science Apps.
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: anytree
+Requires-Dist: black
+Requires-Dist: dill
+Requires-Dist: flake8
+Requires-Dist: gpflow (>=2.0.0)
+Requires-Dist: json5
+Requires-Dist: matplotlib
+Requires-Dist: numpy
+Requires-Dist: pathos
+Requires-Dist: pytest
+Requires-Dist: scikit-learn
+Requires-Dist: scipy
+Provides-Extra: plotting-extras
+Requires-Dist: python-igraph ; extra == 'plotting-extras'
+Provides-Extra: saving-helper
+Requires-Dist: pandas ; extra == 'saving-helper'
+
+# pyGPSO
+
+Visit the project's [github page](https://github.com/jajcayn/pygpso).
+
+`pyGPSO` is a python package for Gaussian-Processes Surrogate Optimisation. GPSO is a Bayesian optimisation method designed to cope with costly, high-dimensional, non-convex problems by switching between exploration of the parameter space (using partition tree) and exploitation of the gathered knowledge (by training the surrogate function using Gaussian Processes regression). The motivation for this method stems from the optimisation of large-scale biophysical models in neuroscience when the modelled data should match the experimental one. This package leverages [`GPFlow`](https://github.com/GPflow/GPflow) for training and predicting the Gaussian Processes surrogate.
+
+This is port of original [Matlab implementation](https://github.com/jhadida/gpso) by the paper's author.
+
+**Reference**: Hadida, J., Sotiropoulos, S. N., Abeysuriya, R. G., Woolrich, M. W., & Jbabdi, S. (2018). Bayesian Optimisation of Large-Scale Biophysical Networks. NeuroImage, 174, 219-236.
+
+
