@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: beancount2ledger
+Version: 1.3
+Summary: Beancount to Ledger converter
+Home-page: https://beancount2ledger.readthedocs.io/
+Author: Martin Blais
+Author-email: blais@furius.ca
+Maintainer: Martin Michlmayr
+Maintainer-email: tbm@cyrius.com
+License: GPL-2.0-or-later
+Project-URL: Bug Tracker, https://github.com/beancount/beancount2ledger/issues
+Project-URL: Changelog, https://github.com/beancount/beancount2ledger/blob/master/docs/changelog.md
+Project-URL: Documentation, https://beancount2ledger.readthedocs.io/
+Keywords: beancount ledger hledger accounting converter conversion
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Financial and Insurance Industry
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Office/Business :: Financial :: Accounting
+Classifier: Topic :: Text Processing :: General
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: beancount (>=2.0.0)
+
+[![Build Status](https://travis-ci.org/beancount/beancount2ledger.svg?branch=master)](https://travis-ci.org/beancount/beancount2ledger)
+
+# Beancount2ledger
+
+Beancount2ledger converts files in the [beancount](https://beancount.github.io/) format to either [ledger](https://ledger-cli.org/) or [hledger](https://hledger.org/) output.
+
+# Installation
+
+You can install beancount2ledger with pip:
+
+    pip3 install beancount2ledger
+
+## Usage
+
+Beancount2ledger takes a file argument, loads the file into beancount data structures, and converts the data to ledger output.
+
+You can use the `--format` (`-f`) option to toggle between `ledger` and `hledger` output.
+
+## Documentation
+
+You can [read the documentation online](https://beancount2ledger.readthedocs.io/) thanks to Read the Docs.
+
+
+
