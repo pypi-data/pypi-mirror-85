@@ -1,0 +1,23 @@
+exclude *.cfg
+exclude *.ini
+exclude RELEASE_PROCESS.txt
+exclude bootstrap.py
+exclude docs/*.py
+exclude docs/Makefile
+include *.sh
+include *.txt
+include *.rst
+include docs/*.txt
+prune pylonsapp
+recursive-include docs *.pdf
+recursive-include docs *.png
+recursive-include docs *.txt
+recursive-include formalchemy *.py
+recursive-include formalchemy *css
+recursive-include formalchemy *mako
+recursive-include formalchemy *png
+recursive-include formalchemy *pt
+recursive-include formalchemy *tmpl
+recursive-include formalchemy/i18n_resources *
+recursive-include formalchemy/tests/data *
+
