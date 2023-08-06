@@ -1,0 +1,99 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2020-09-21T12:26:35",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\"tags\": [], \"service_period_from\": \"2019-12-01\", \"date\": \"2018-09-17\", \"currency\": \"EUR\", \"service_period_to\": \"2019-12-31\", \"status\": \"created\", \"tax\": 8.0, \"recipient_address\": \"Mein Kunde\\nHauptstrasse 1\\n8000 Z\\u00fcrich\", \"title\": \"invoice\", \"due_date\": \"2018-10-16\", \"items\": [{\"title\": \"Hours\", \"type\": \"title\"}, {\"type\": \"description\", \"description\": \"Listing of all hours\"}, {\"unit\": \"hours\", \"title\": \"Service\", \"unit_price\": 65, \"quantity\": 2, \"type\": \"item\", \"net_total\": 130}], \"change_address\": \"invoice\", \"customer_id\": 760863079}"
+        },
+        "headers": {
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Authorization": [
+            "Token token=<TOKEN>"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "546"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "User-Agent": [
+            "python-requests/2.23.0"
+          ]
+        },
+        "method": "POST",
+        "uri": "https://<DOMAIN>.mocoapp.com/api/v1/invoices"
+      },
+      "response": {
+        "body": {
+          "base64_string": "H4sIAAAAAAAA/6xTTY/TMBD9K9Gc3cVOtmnrO9JKwGWBy7KryGtPW0NiB3tcUaH+M278MeSkH1kqLRduzrznmZf3xj/BGpBCLOqqFAx0iuQ7DE2uLmq+rCu+WDHog/+KmoayS23LwBp0ZNcWA0i4LznnQgADowhBQsnFcsZXM7HItYTNtC74TNTAIGLYWY1Nj8F6AxJE+abkYnUFNevgu/H2aibKGRfXFPITQjUQSFGKIEEHVIQGGATcYYiqBblWbUQGZKnNuqzbeatxoGjbW3TUKGMCxtzgA1pXvEvO4KO7U6mnSEHFiIV4dEvOefHw+1ewegvZwBDQ6T1IePv5Hhg4pIY85Zmi4jecAakfIJf5tAk+xjN6y29uGRgbtU+OQA5kreK2ea3WGLWPR8Dgs6XGpe45pzLmpAOaq2Lr9Tc0FxfUJoL88sROVjWKBjdLnkMsxSdRyrKWVfUADFJvXuPMM+fUx7sXnMntaySqNpEiOyDAYO09DdsFDCxhlyWO6zqvb1eiqhnQvs/pjSle0rzzKcS8eBh1sP3Ycvzz70k5srQ/OpacpROUz00f8hqM4CQ6fsMPbDp8cR4+HXKWMHZ8MR/e20jWbQq/LlTbFtujyP+laHlWlM2auPFxfCj/8qO8TIeTtqmAev6XgmGdD08MerXv0NFxhQJ21hkMw+fhTwAAAP//CrCgJGAEAAA=",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Cache-Control": [
+            "max-age=0, private, must-revalidate"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Content-Length": [
+            "527"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Date": [
+            "Mon, 21 Sep 2020 12:26:35 GMT"
+          ],
+          "Etag": [
+            "W/\"266a8b7b5eccbf644fe26675877cfca9\""
+          ],
+          "Referrer-Policy": [
+            "strict-origin-when-cross-origin"
+          ],
+          "Vary": [
+            "Origin",
+            "Accept-Encoding"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Download-Options": [
+            "noopen"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Permitted-Cross-Domain-Policies": [
+            "none"
+          ],
+          "X-Request-Id": [
+            "be8578ac-8982-42ae-8dbb-d0529a123eb5"
+          ],
+          "X-Runtime": [
+            "1.397087"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ]
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://<DOMAIN>.mocoapp.com/api/v1/invoices"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.1"
+}

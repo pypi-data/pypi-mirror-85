@@ -1,0 +1,99 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2020-09-21T12:26:49",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\"project_id\": 945314886, \"cash_discount_days\": 200, \"service_period_from\": \"2019-12-01\", \"date\": \"2018-09-17\", \"currency\": \"EUR\", \"service_period_to\": \"2019-12-31\", \"status\": \"sent\", \"tax\": 8.0, \"recipient_address\": \"Mein Kunde\\nHauptstrasse 1\\n8000 Z\\u00fcrich\", \"title\": \"invoice\", \"tags\": [\"Hosting\", \"Europe\"], \"cash_discount\": 10.2, \"due_date\": \"2018-10-16\", \"items\": [{\"title\": \"Hours\", \"type\": \"title\"}, {\"type\": \"description\", \"description\": \"Listing of all hours\"}, {\"unit\": \"hours\", \"title\": \"Service\", \"unit_price\": 65, \"quantity\": 2, \"type\": \"item\", \"net_total\": 130}], \"change_address\": \"customer\", \"customer_id\": 760863079, \"salutation\": \"salut\", \"footer\": \"this is the footer\"}"
+        },
+        "headers": {
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Authorization": [
+            "Token token=<TOKEN>"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "693"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "User-Agent": [
+            "python-requests/2.23.0"
+          ]
+        },
+        "method": "POST",
+        "uri": "https://<DOMAIN>.mocoapp.com/api/v1/invoices"
+      },
+      "response": {
+        "body": {
+          "base64_string": "H4sIAAAAAAAA/6xTwW7bOhD8FWHPtB9Jy7LMe4AAr72k7SVNIDDiOmYrkSq5DGoU+bPe+mMFpdhWYqC99EbODrnDmeUPsAaUEJtqJUsGbYrkewxNRjcVr6sV32wZDMF/wZZGeFuuV6Ks64qBNejI7iwGUHAjOediBQyMJgQFkot6wbcLsclYwmaOC74QFTCIGJ5si82AwXoDCoT8T3KxvSg1u+D76fR2IeSCi0sK+RlhNRJIU4qgoA2oCQ0wCPiEIeoO1E53ERmQpS7rsu7J2xZHSmsHi44abUzAmC94j9YV/ydn8M5d6zRQpKBjxELcuZpzXtz++hlsu4fsYgjo2gMouPp0AwwcUkOeck+x4kvOgPR3UHVePQYf46la8mXJwNjY+uQI1Ehuddw3Z0zwpXwDNkYfIijJR77BB0uNS/1DDsalrmP5/eYC7Hz7Fc3ZCP0YQX2GqxT8kH249pGse4R7dvSv0TRaLHlOVoqPQipZqXJzCwzSYP7EqTPneI93rziz05eVqLtEmuxYGTfAYOc9jXNHexsLGwvaY/ECMrCEfX7LNN/rqtyKdbb9MOSkp8TPyV/7FGIeUoxtsMPUabLoW9KOLB1eokjO0rGU180Q8shMxVnMfMmf2by5ODWfNzlJmG581R/e2dH9wu8K3XXF/kXkv1IkT4qyWTM3Pkyf6m9+yHN3OGqbC6jWbxSMo/98z2DQhx4d5Xzu82frrTMYxu3z7wAAAP//hEN46ZEEAAA=",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Cache-Control": [
+            "max-age=0, private, must-revalidate"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Content-Length": [
+            "563"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Date": [
+            "Mon, 21 Sep 2020 12:26:48 GMT"
+          ],
+          "Etag": [
+            "W/\"8f9f0931202c5af41f1cb91048ada3cf\""
+          ],
+          "Referrer-Policy": [
+            "strict-origin-when-cross-origin"
+          ],
+          "Vary": [
+            "Origin",
+            "Accept-Encoding"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Download-Options": [
+            "noopen"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Permitted-Cross-Domain-Policies": [
+            "none"
+          ],
+          "X-Request-Id": [
+            "bc9f14ba-09c2-40c3-81a6-b170f4f279fb"
+          ],
+          "X-Runtime": [
+            "1.392444"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ]
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://<DOMAIN>.mocoapp.com/api/v1/invoices"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.1"
+}

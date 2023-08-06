@@ -1,0 +1,99 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2020-09-21T12:30:42",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\"name\": \"dummy project, test expense\", \"currency\": \"EUR\", \"fixed_price\": false, \"finish_date\": \"2020-01-01\", \"leader_id\": 933636529, \"customer_id\": 760863088}"
+        },
+        "headers": {
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Authorization": [
+            "Token token=<TOKEN>"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "159"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "User-Agent": [
+            "python-requests/2.23.0"
+          ]
+        },
+        "method": "POST",
+        "uri": "https://<DOMAIN>.mocoapp.com/api/v1/projects"
+      },
+      "response": {
+        "body": {
+          "base64_string": "H4sIAAAAAAAA/6xTQW7bMBD8irFnOqAkS7F4N3oNivTSoiBocu2wpiiBXKYxAv+9oCwrjnsoiuQmjpYzszPSK1gDol3VVbFqi5qBNejJ7iwGEPBQcl4XwMCrDkGASV13XAyh/4Wa2IIw0gJfBvQRgYHSZJ8RBIWEDLbWObV183lnX9DIIViNIHbKxRHzNj5Joyizl7zkS14seVbUKQT0+ggCNt++wpnP+r18VsEqTyBg8nH1ThkTMEYQcAVip6yT1IPwyblbXOtb3PeE8QJGJMqg9dolg5JshzLg0Aeat9gms0eaacaTnGKJIPgdZ/DUp+COMoybjoj1u/5slNQ+gvjxk4FTW3TTs06R+k4OoR8wkM1MrycGDpXJ3UzFVVVTNXXZ5ixDpKmnXAxkuhlRW23gdGF9I7hv+Lqp+Ho9d/yIkR7OyW6mak/ZYzxkY+dbzX3ZNm013xnnD+TQUvJ7+Lv8m0/jXWDvoik4v+Mndi2zmmU2nn5bfXCfr1HPGl+C2tnDx+lzg72noDS95bZqiroty6ZhkCIG+f8VfoYvg8pdJnRARWikovkHbJdl8ViUouJiVX4HBmkw/5g5/QkAAP//NQ/w20cEAAA=",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Cache-Control": [
+            "max-age=0, private, must-revalidate"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Content-Length": [
+            "458"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Date": [
+            "Mon, 21 Sep 2020 12:30:42 GMT"
+          ],
+          "Etag": [
+            "W/\"16669aa24d4f64e85ba0f5f3b6ef5b87\""
+          ],
+          "Referrer-Policy": [
+            "strict-origin-when-cross-origin"
+          ],
+          "Vary": [
+            "Origin",
+            "Accept-Encoding"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Download-Options": [
+            "noopen"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Permitted-Cross-Domain-Policies": [
+            "none"
+          ],
+          "X-Request-Id": [
+            "f92d209c-ad3e-4950-a7e6-f06ca1cc8cce"
+          ],
+          "X-Runtime": [
+            "0.145970"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ]
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://<DOMAIN>.mocoapp.com/api/v1/projects"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.1"
+}
