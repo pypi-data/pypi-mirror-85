@@ -1,0 +1,103 @@
+Metadata-Version: 2.1
+Name: spacy-alpino
+Version: 0.5.0
+Summary: Alpino wrapper for spaCy
+Home-page: https://github.com/KoichiYasuoka/spaCy-Alpino
+Author: Koichi Yasuoka
+Author-email: yasuoka@kanji.zinbun.kyoto-u.ac.jp
+License: MIT
+Project-URL: Alpino, http://www.let.rug.nl/vannoord/alp/Alpino/
+Project-URL: lassy2ud, https://github.com/gossebouma/lassy2ud
+Project-URL: Source, https://github.com/KoichiYasuoka/spaCy-Alpino
+Project-URL: Tracker, https://github.com/KoichiYasuoka/spaCy-Alpino/issues
+Keywords: spacy nlp
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Text Processing :: Linguistic
+Classifier: Natural Language :: Dutch
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: spacy (>=2.2.2)
+Requires-Dist: deplacy (>=1.8.1)
+
+[![Current PyPI packages](https://badge.fury.io/py/spacy-alpino.svg)](https://pypi.org/project/spacy-alpino/)
+
+# spaCy-Alpino
+
+[Alpino](http://www.let.rug.nl/vannoord/alp/Alpino/) wrapper for [spaCy](https://spacy.io)
+
+## Basic Usage
+
+```py
+>>> import spacy_alpino
+>>> nlp=spacy_alpino.load()
+>>> doc=nlp("Zorg dat daar geen zwarte hond tussen komt.")
+>>> for t in doc:
+...   print("\t".join([str(t.i+1),t.orth_,t.lemma_,t.pos_,t.tag_,"_",str(0 if t.head==t else t.head.i+1),t.dep_,"_","_" if t.whitespace_ else "SpaceAfter=No"]))
+...
+1	Zorg	zorgen	VERB	WW|pv|tgw|ev	_	0	ROOT	_	_
+2	dat	dat	SCONJ	VG|onder	_	8	mark	_	_
+3	daar	daar	ADV	VNW|aanw|adv-pron|obl|vol|3o|getal	_	8	obl	_	_
+4	geen	geen	DET	VNW|onbep|det|stan|prenom|zonder|agr	_	6	det	_	_
+5	zwarte	zwart	ADJ	ADJ|prenom|basis|met-e|stan	_	6	amod	_	_
+6	hond	hond	NOUN	N|soort|ev|basis|zijd|stan	_	8	nsubj	_	_
+7	tussen	tussen	ADP	VZ|fin	_	3	case	_	_
+8	komt	komen	VERB	WW|pv|tgw|met-t	_	1	ccomp	_	SpaceAfter=No
+9	.	.	PUNCT	LET	_	1	punct	_	SpaceAfter=No
+>>> import deplacy
+>>> deplacy.render(doc)
+Zorg   VERB  ═════════════╗═╗ ROOT
+dat    SCONJ <══════════╗ ║ ║ mark
+daar   ADV   ═════╗<══╗ ║ ║ ║ obl
+geen   DET   <══╗ ║   ║ ║ ║ ║ det
+zwarte ADJ   <╗ ║ ║   ║ ║ ║ ║ amod
+hond   NOUN  ═╝═╝ ║<╗ ║ ║ ║ ║ nsubj
+tussen ADP   <════╝ ║ ║ ║ ║ ║ case
+komt   VERB  ═══════╝═╝═╝<╝ ║ ccomp
+.      PUNCT <══════════════╝ punct
+```
+
+`spacy_alpino.load()` invokes Alpino with [lassy2ud](https://github.com/gossebouma/lassy2ud).
+
+## Installation for Linux (Debian, Ubuntu, Kali) with Alpino
+
+First, install [xqilla](http://xqilla.sourceforge.net/) and necessary packages:
+
+```sh
+sudo apt update
+sudo apt install xqilla libxss1 python3-pip python3-dev g++ curl
+```
+
+Second, install Alpino:
+
+```sh
+cd /tmp
+curl -L https://www.let.rug.nl/vannoord/alp/Alpino/versions/binary/latest.tar.gz | tar xzf -
+sudo mkdir -p /usr/local/bin
+sudo mv Alpino /usr/local/Alpino
+( echo '#! /bin/sh' ; echo 'exec /usr/local/Alpino/bin/Alpino "$@"' ) > Alpino
+sudo install Alpino /usr/local/bin
+```
+
+And at last, install spaCy-Alpino:
+
+```sh
+pip3 install spacy_alpino --user
+```
+
+## Installation for Google Colaboratory
+
+Try [notebook](https://colab.research.google.com/github/KoichiYasuoka/spaCy-Alpino/blob/main/spacy_alpino.ipynb).
+
+## Installation without Alpino
+
+```sh
+pip3 install spacy_alpino --user
+```
+
+`spacy_alpino.load()` invokes [Alpino WebAPI](https://urd2.let.rug.nl/~vannoord/bin/alpino) unless Alpino is installed.
+
+
+
