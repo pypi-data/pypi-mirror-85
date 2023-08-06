@@ -1,0 +1,279 @@
+#!/usr/bin/env ipython_wrapper
+# -*- coding: utf-8 -*-
+from __future__ import print_function, division, absolute_import, unicode_literals
+import argparse, textwrap, os
+import multiprocessing
+from os import path
+import numpy as np
+
+
+if __name__ == '__main__':
+    import script_utils # Append mripy to Python path
+    from mripy import afni, utils, io, surface
+    timer = script_utils.ScriptTimer()
+
+    parser = argparse.ArgumentParser(description='Compute cortical depth for each voxel.',
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=textwrap.dedent('''
+        Cortical depth
+        --------------
+        Depth values are normalized by cortical thickness, with white/gray border at 0 
+        and gray/CSF border at 1. Negative depth means at least half of the voxel locates
+        in the white matter, whereas depth greater than 1 means at least half of the voxel
+        locates in the CSF.
+
+        Depth flavors
+        -------------
+        There are two definitions or flavors of normalized cortical depth:
+        1. "equivolume" (this is the default flavor)
+
+        2. "equidistance"
+
+        Estimation methods
+        ------------------
+        1. "volume_weighted"
+           This is the default method, providing not only a depth value for each voxel
+           but also a weight vector that estimates the contribution (volume fraction)
+           of each sublaminae. There are 14 laminae linearly spanning from -0.2 to 1.2.
+        
+        2. "center_weighted"
+           This is the fastest method and less hunger for memeory, although it cannot 
+           provide weight estiamtion. 
+
+        3. "3dSurfMask"
+           This method is provided for comparison purpose only. It is much slower than 
+           previous methods, and only support equidistance flavor.
+
+        Examples
+        --------
+        1) Compute equivolume depth and weight for each voxel in mean_epi+orig, assuming
+        SUMA and SurfVol can be found at their default locations. 
+        $ mripy_compute_depth.ipy -b mean_epi+orig
+
+        There will be two outputs, naming after the base image: 
+        mean_epi.depth+orig for depth and mean_epi.weight+orig for weight. 
+        4 parallal jobs are spawned by default, and significant memory usage are expected 
+        for hires base image (e.g., 0.4 mm iso). If you run out of physical memory, 
+        consider reducing the number of simultaneous jobs, or try the "center_weighted" method.
+
+        2) Compute equivolume depth for hires base image, using high density surface mesh
+        and "center_weighted" method, with 14 simultaneous jobs.
+        $ mripy_compute_depth.ipy -b mean_epi_resam+orig -s ../SUMA.hd -m center_weighted -j 14
+
+        3) Delineate the cortex into only 5 laminae: {WM, deep, middle, superficial, CSF}.
+        With 12 jobs and standard density mesh, the compuation should be done in a few minutes. 
+        However, there may be holes in the resulting depth map.
+        $ mripy_compute_depth.ipy -b mean_epi_resam+orig -s ../SUMA -m volume_weighted -l L5 -j 12
+        '''))
+    parser.add_argument('-b', '--base', required=True, help='grid parent')
+    parser.add_argument('-s', '--suma', default='../SUMA', help='SUMA directory (default ../SUMA)')
+    parser.add_argument('-v', '--surf_vol', default=None, help='SurfVol (default SurfVol_Alnd_Exp.nii)')
+    parser.add_argument('-m', '--method', default='volume_weighted', help='method for depth estimation ([volume_weighted]|center_weighted|3dSurfMask)')
+    parser.add_argument('-f', '--flavor', default='equivolume', help='flavor of depth estimation ([equivolume]|equidistance)')
+    parser.add_argument('-l', '--layers', nargs='+', default=['L14'], help='sub-laminae division schema ([L14]|L5)')
+    parser.add_argument('-o', '-prefix', '--prefix', default=None, help='output prefix (default <base>.depth)')
+    parser.add_argument('-j', '--jobs', type=int, default=4, help='number of parallel processes: [4]|8|12|...')
+    parser.add_argument('--identity', action='store_true', help='use identity matrix for S2E_mat')
+    args = parser.parse_args()
+    spec = afni.get_suma_info(args.suma)['spec']
+    hemis = ['lh', 'rh']
+    if args.surf_vol is None:
+        if path.exists('SurfVol_Alnd_Exp.nii'):
+            args.surf_vol = 'SurfVol_Alnd_Exp.nii'
+        elif path.exists('SurfVol_Alnd_Exp+orig.HEAD'):
+            args.surf_vol = 'SurfVol_Alnd_Exp+orig.HEAD'
+        else:
+            raise ValueError('>> Please specify --surf_vol')
+    # prefix = afni.get_prefix(args.base) if args.prefix is None else args.prefix
+    if args.prefix is None:
+        prefix, ext = afni.split_out_file(args.base)
+    else:
+        prefix, ext = afni.split_out_file(args.prefix)
+    depth_out = prefix + '.depth'
+    depth_out_file = depth_out + ext
+    weight_out = prefix + '.weight'
+    weight_out_file = weight_out + ext
+    temp_folder = utils.temp_prefix(suffix='')
+    os.makedirs(temp_folder)
+    pc = utils.PooledCaller(pool_size=args.jobs)
+
+    # Determine surf mesh and surf vol file format
+    suma_subj = afni.get_suma_subj(args.suma)
+    surf_ext = afni.get_surf_type(args.suma)
+
+    # Calculate relative depth (equidistance) for current args.base, if necessary (could take hours...)
+    if not utils.exists(depth_out_file): # Prevent unexpected overwrite
+        if args.method.lower() == '3dsurfmask':
+            pc = utils.PooledCaller(pool_size=4)
+            for hemi in hemis:
+                for surface in ['smoothwm', 'pial']:
+                    print('>> Computing tmp.{0}.{1}.{2}+orig'.format(depth_out, hemi, surface))
+                    n_chunks = max(1, args.jobs//4)
+                    # The specific algorithm used by ``3dSurfMask`` requires us to divide the volume
+                    # only along the slice dimension, so that the surface remain "closed" within the subvolume.
+                    pc.run(utils.parallel_3D, ['3dSurfMask',
+                        '-spec', spec[hemi],
+                        '-surf', surface,
+                        '-sv', args.surf_vol,
+                        '-grid_parent', '{in_file}',
+                        '-fill_method', 'FAST',
+                        '-prefix', '{prefix}', '-overwrite'], 
+                        in_file=args.base, prefix=path.join(temp_folder, '.'.join(('tmp', depth_out, hemi, surface))), 
+                        n_jobs=n_chunks, schema=[1,1,n_chunks], fname_mapper={'_out': '_out.d'}, 
+                        _error_pattern='error', _suppress_warning=True)
+            pc.wait()
+            for hemi in hemis:
+                # Calculate relative depth for the whole volume
+                !3dcalc -a {temp_folder}/tmp.{depth_out}.{hemi}.smoothwm+orig -b {temp_folder}/tmp.{depth_out}.{hemi}.pial+orig \
+                    -expr '-a/(b-a)' -prefix {temp_folder}/tmp.{depth_out}.{hemi} -overwrite
+                # Keep only near-surface voxels
+                !3dcalc -a {temp_folder}/tmp.{depth_out}.{hemi}+orig -b {temp_folder}/tmp.{depth_out}.{hemi}.pial+orig \
+                    -expr 'a*step(a+0.5)*step(1.5-a)*step(5-b)*step(b+1)' \
+                    -prefix {temp_folder}/tmp.{depth_out}.{hemi} -overwrite
+        elif args.method.lower() == 'volume_weighted':
+            if args.layers[0] == 'L14':
+                depths = np.r_[np.linspace(-0.2, 1.1, 14)+0.05]
+                alphas = np.r_[np.linspace(-0.2, 1.2, 15)] # Native jobs = 14~15 (so jobs=8 is good)
+            elif args.layers[0] == 'L5':
+                depths = np.r_[-0.1, 1/6, 1/2, 5/6, 1.1]
+                alphas = np.r_[-0.2, 0, 1/3, 2/3, 1, 1.2] # Native jobs = 5~6 (so jobs=6 is good)
+            n_laminae = len(depths)
+            lamina_names = {}
+            lamina_files = {}
+            inner = {}
+            outer = {}
+            for hemi in hemis:
+                lamina_names[hemi] = []
+                lamina_files[hemi] = []
+                inner[hemi] = io.read_surf_mesh(path.join(args.suma, f'{hemi}.smoothwm{surf_ext}'))
+                outer[hemi] = io.read_surf_mesh(path.join(args.suma, f'{hemi}.pial{surf_ext}'))
+                for k, alpha in enumerate(alphas):
+                    lamina_names[hemi].append(f'{hemi}.L{k:02d}{surf_ext}')
+                    lamina_files[hemi].append(path.join(temp_folder, lamina_names[hemi][k]))
+                    pc.run(surface.create_lamina_mesh, lamina_files[hemi][k], inner[hemi], outer[hemi], alpha, method=args.flavor)
+            pc.wait()
+            # Generate spec files
+            lamina_spec = {hemi: path.join(temp_folder, 'lamina_{0}.spec'.format(hemi)) for hemi in hemis}
+            for hemi in hemis:
+                afni.generate_spec(lamina_spec[hemi], lamina_names[hemi], anat='Y', ext=surf_ext)
+            # Project surface to volume
+            weight1_files = {}
+            for hemi in hemis:
+                weight1_files[hemi] = []
+                for k in range(n_laminae):
+                    weight1_files[hemi].append(path.join(temp_folder, '{0}.w{1:02d}+orig.HEAD'.format(hemi, k)))
+                    pc.run(['3dSurf2Vol',
+                        '-spec', lamina_spec[hemi],
+                        '-surf_A', lamina_names[hemi][k],
+                        '-surf_B', lamina_names[hemi][k+1],
+                        '-sv', args.surf_vol,
+                        '-grid_parent', args.base,
+                        '-map_func', 'count',
+                        '-f_steps', '20',
+                        '-f_index', 'nodes',
+                        '-prefix', weight1_files[hemi][k], 
+                        '-overwrite'], _retry=3, _error_pattern='error', _suppress_warning=True)
+            pc.wait()
+            if True:
+                # Project lamina thickness to volume
+                def compute_thickness(fname, inner, outer):
+                    vin, fin = io.read_surf_mesh(inner)
+                    vout, fout = io.read_surf_mesh(outer)
+                    d = np.linalg.norm(vout - vin, axis=-1)
+                    io.write_1D_nodes(fname, None, d)
+                thick_1Ds = {}
+                for hemi in hemis:
+                    thick_1Ds[hemi] = []
+                    for k in range(n_laminae):
+                        thick_1Ds[hemi].append(path.join(temp_folder, '{0}.t{1:02d}.1D'.format(hemi, k)))
+                        pc.run(compute_thickness, thick_1Ds[hemi][k], lamina_files[hemi][k], lamina_files[hemi][k+1])
+                pc.wait()
+                thick_files = {}
+                for hemi in hemis:
+                    thick_files[hemi] = []
+                    for k in range(n_laminae):
+                        thick_files[hemi].append(path.join(temp_folder, '{0}.T{1:02d}+orig.HEAD'.format(hemi, k)))
+                        pc.run(['3dSurf2Vol',
+                            '-spec', lamina_spec[hemi],
+                            '-surf_A', lamina_names[hemi][k],
+                            '-surf_B', lamina_names[hemi][k+1],
+                            '-sv', args.surf_vol,
+                            '-grid_parent', args.base,
+                            '-sdata_1D', thick_1Ds[hemi][k],
+                            '-map_func', 'ave',
+                            '-f_steps', '20',
+                            '-f_index', 'nodes',
+                            '-prefix', thick_files[hemi][k], 
+                            '-overwrite'], _retry=3, _error_pattern='error', _suppress_warning=True)
+                pc.wait()
+                # Weighted sum
+                weight_files = {}
+                for hemi in hemis:
+                    weight_files[hemi] = []
+                    for k in range(n_laminae):
+                        weight_files[hemi].append(path.join(temp_folder, '{0}.W{1:02d}+orig.HEAD'.format(hemi, k)))
+                        pc.run("3dcalc -a {0} -b {1} -expr 'a*b' -prefix {2} -overwrite".format(
+                            weight1_files[hemi][k], thick_files[hemi][k], weight_files[hemi][k]), shell=True)
+                pc.wait()
+            else: # volume_weighted2: No thickness multiplication, worse performance 
+                weight_files = weight1_files
+            wsum_files = {}
+            for hemi in hemis:
+                wsum_files[hemi] = path.join(temp_folder, '{0}.WSum+orig.HEAD'.format(hemi))
+                pc.run(['3dTstat', '-sum', '-prefix', wsum_files[hemi], '-overwrite',
+                    '"{0}"'.format(' '.join(weight_files[hemi]))], shell=True)
+            pc.wait()
+            depth_files = {}
+            for hemi in hemis:
+                depth_files[hemi] = []
+                for k in range(n_laminae):
+                    depth_files[hemi].append(path.join(temp_folder, '{0}.D{1:02d}+orig.HEAD'.format(hemi, k)))
+                    pc.run([
+                        '3dcalc', '-a', weight_files[hemi][k], '-b', wsum_files[hemi],
+                            '-expr', "'a/b'", '-prefix', weight_files[hemi][k], '-overwrite;',
+                        '3dcalc', '-a', weight_files[hemi][k],
+                            '-expr', "'a*{0:.3f}'".format(depths[k]), '-prefix', depth_files[hemi][k], '-overwrite;'
+                        ], shell=True)
+            pc.wait()
+            for hemi in hemis:
+                pc.run([
+                    '3dTstat', '-sum', '-prefix', '{0}/tmp.{1}.{2}'.format(temp_folder, depth_out, hemi), '-overwrite',
+                        '"{0}"'.format(' '.join(depth_files[hemi])), ';',
+                    '3dTcat', '-prefix', '{0}/tmp.{1}.{2}'.format(temp_folder, weight_out, hemi), '-overwrite',
+                        '"{0}"'.format(' '.join(weight_files[hemi])), ';'
+                    ], shell=True)
+            pc.wait()
+            # Combine left and right hemisphere for weight
+            !3dcalc -l {temp_folder}/tmp.{weight_out}.lh+orig -r {temp_folder}/tmp.{weight_out}.rh+orig \
+                -expr 'max(l,r)' -prefix {weight_out_file} -overwrite
+        elif args.method.lower() == 'center_weighted':
+            if args.layers[0] != 'L14':
+                raise RuntimeError('>> Sorry, but "center_weighted" method only support "L14" at present...')
+            lock = multiprocessing.Lock()
+            mask = io.Mask(args.base, kind='full')
+            def compute_depth(prefix, inner, outer):
+                S2E_mat = np.c_[np.eye(3), np.zeros(3)] if args.identity else args.surf_vol
+                d = surface.compute_voxel_depth(mask.xyz, inner, outer, S2E_mat, method=args.flavor, n_jobs=args.jobs, lock=lock)
+                # d = np.zeros(mask.xyz.shape[0]) # For quick test or debugging
+                d[(d<=-0.2)|(d>=1.2)] = 0
+                mask.undump(prefix, d)
+            for hemi in hemis:
+                pc.run(compute_depth, path.join(temp_folder, 'tmp.{0}.{1}'.format(depth_out, hemi)), 
+                    path.join(args.suma, f'{hemi}.smoothwm{surf_ext}'),
+                    path.join(args.suma, f'{hemi}.pial{surf_ext}'))
+            pc.wait()
+
+        # Combine left and right hemisphere
+        !3dcalc -l {temp_folder}/tmp.{depth_out}.lh+orig -r {temp_folder}/tmp.{depth_out}.rh+orig \
+            -expr 'l+r' -prefix {depth_out_file} -overwrite
+
+    # Check successful
+    if pc.all_successful():
+        print('>> Depth estimation was done successfully.')
+        # Remove temp files
+        !rm -r {temp_folder}
+    else:
+        print('>> Sorry, but something went wrong in the middle...')
+        # Print entire log
+        print(pc._log)
+    
