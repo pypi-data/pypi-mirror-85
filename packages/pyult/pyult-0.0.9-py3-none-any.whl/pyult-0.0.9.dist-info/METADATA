@@ -1,0 +1,59 @@
+Metadata-Version: 2.1
+Name: pyult
+Version: 0.0.9
+Summary: Preprocessing ultrasound images from AAA in Python
+Home-page: https://github.com/msaito8623/pyult
+Author: Motoki Saito
+Author-email: motoki.saito@uni-tuebingen.de
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Scientific/Engineering
+Requires-Dist: joblib
+Requires-Dist: numpy
+Requires-Dist: opencv-python
+Requires-Dist: pandas
+Requires-Dist: python-dateutil
+Requires-Dist: pytz
+Requires-Dist: scikit-learn
+Requires-Dist: scipy
+Requires-Dist: six
+Requires-Dist: threadpoolctl
+Requires-Dist: tqdm
+Provides-Extra: docs
+Requires-Dist: sphinx ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme ; extra == 'docs'
+Provides-Extra: tests
+Requires-Dist: pytest ; extra == 'tests'
+
+=============================================================
+pyult - Preprocessing utilities for ultrasound data in Python
+=============================================================
+
+*pyult* helps to preprocess ultrasound data exported by Articulate Assistant Advanced (AAA). With *pyult*, you can produce images, videos, and dataframes in the long format.
+
+
+Installation
+============
+
+.. code:: bash
+
+    pip install --user pyult
+
+
+
+Authors and Contributers
+========================
+
+*pyult* is being developed and maintained by `Motoki Saito <https://github.com/msaito8623>`_, with help by `Konstantin Sering <https://github.com/derNarr>`_.
+
+
+
