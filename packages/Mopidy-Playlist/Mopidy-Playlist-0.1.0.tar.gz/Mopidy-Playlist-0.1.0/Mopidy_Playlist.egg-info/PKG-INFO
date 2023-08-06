@@ -1,0 +1,81 @@
+Metadata-Version: 2.1
+Name: Mopidy-Playlist
+Version: 0.1.0
+Summary: Mopidy extension for remote playlist expansion
+Home-page: https://github.com/peterlisak/mopidy-playlist
+Author: Peter Lisák
+Author-email: peter.lisak@gmail.com
+License: Apache License, Version 2.0
+Description: ****************************
+        Mopidy-Playlist
+        ****************************
+        
+        .. image:: https://img.shields.io/pypi/v/Mopidy-Playlist
+            :target: https://pypi.org/project/Mopidy-Playlist/
+            :alt: Latest PyPI version
+        
+        .. image:: https://img.shields.io/circleci/build/gh/peterlisak/mopidy-playlist
+            :target: https://circleci.com/gh/peterlisak/mopidy-playlist
+            :alt: CircleCI build status
+        
+        .. image:: https://img.shields.io/codecov/c/gh/peterlisak/mopidy-playlist
+            :target: https://codecov.io/gh/peterlisak/mopidy-playlist
+            :alt: Test coverage
+        
+        Mopidy extension for remote playlist expansion. Extension uses Mopidy's built-in
+        playlist parsers to extract tracks from a remote playlist. Unlike Mopify-Stream,
+        Mopidy-Playlist extract and add all tracks into playback queue.
+        
+        
+        Installation
+        ============
+        
+        Install by running::
+        
+            python3 -m pip install Mopidy-Playlist
+        
+        See https://mopidy.com/ext/playlist/ for alternative installation methods.
+        
+        
+        Configuration
+        =============
+        
+        Before starting Mopidy, you must add configuration for
+        Mopidy-Playlist to your Mopidy configuration file::
+        
+            [playlist]
+            enabled = true
+            timeout = 1000
+            max_lookups = 100
+        
+        
+        Project resources
+        =================
+        
+        - `Source code <https://github.com/peterlisak/mopidy-playlist>`_
+        - `Issue tracker <https://github.com/peterlisak/mopidy-playlist/issues>`_
+        - `Changelog <https://github.com/peterlisak/mopidy-playlist/blob/master/CHANGELOG.rst>`_
+        
+        
+        Credits
+        =======
+        
+        - Original author: `Peter Lisák <https://github.com/peterlisak>`__
+        - Current maintainer: `Peter Lisák <https://github.com/peterlisak>`__
+        - `Contributors <https://github.com/peterlisak/mopidy-playlist/graphs/contributors>`_
+        
+Platform: UNKNOWN
+Classifier: Environment :: No Input/Output (Daemon)
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Multimedia :: Sound/Audio :: Players
+Requires-Python: >= 3.7
+Provides-Extra: release
+Provides-Extra: test
+Provides-Extra: lint
+Provides-Extra: dev
