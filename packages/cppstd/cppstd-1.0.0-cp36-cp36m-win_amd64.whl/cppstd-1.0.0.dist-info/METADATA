@@ -1,0 +1,138 @@
+Metadata-Version: 2.1
+Name: cppstd
+Version: 1.0.0
+Summary: Partial port of C++ standard library.
+Home-page: https://github.com/lycantropos/cppstd/
+Author: Azat Ibrakov
+Author-email: azatibrakov@gmail.com
+License: MIT License
+Download-URL: https://github.com/lycantropos/cppstd/archive/master.zip
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+Requires-Dist: reprit (>=0.3.0)
+Requires-Dist: typing-extensions (>=3.7.4.2) ; python_version < "3.8"
+
+cppstd
+======
+
+[![](https://travis-ci.com/lycantropos/cppstd.svg?branch=master)](https://travis-ci.com/lycantropos/cppstd "Travis CI")
+[![](https://dev.azure.com/lycantropos/cppstd/_apis/build/status/lycantropos.cppstd?branchName=master)](https://dev.azure.com/lycantropos/cppstd/_build/latest?definitionId=30&branchName=master "Azure Pipelines")
+[![](https://codecov.io/gh/lycantropos/cppstd/branch/master/graph/badge.svg)](https://codecov.io/gh/lycantropos/cppstd "Codecov")
+[![](https://img.shields.io/github/license/lycantropos/cppstd.svg)](https://github.com/lycantropos/cppstd/blob/master/LICENSE "License")
+[![](https://badge.fury.io/py/cppstd.svg)](https://badge.fury.io/py/cppstd "PyPI")
+
+In what follows `python` is an alias for `python3.5` or any later
+version (`python3.6` and so on).
+
+Installation
+------------
+
+Install the latest `pip` & `setuptools` packages versions:
+```bash
+python -m pip install --upgrade pip setuptools
+```
+
+### User
+
+Download and install the latest stable version from `PyPI` repository:
+```bash
+python -m pip install --upgrade cppstd
+```
+
+### Developer
+
+Download the latest version from `GitHub` repository
+```bash
+git clone https://github.com/lycantropos/cppstd.git
+cd cppstd
+```
+
+Install dependencies:
+```bash
+python -m pip install --force-reinstall -r requirements.txt
+```
+
+Install:
+```bash
+python setup.py install
+```
+
+Development
+-----------
+
+### Bumping version
+
+#### Preparation
+
+Install
+[bump2version](https://github.com/c4urself/bump2version#installation).
+
+#### Pre-release
+
+Choose which version number category to bump following [semver
+specification](http://semver.org/).
+
+Test bumping version
+```bash
+bump2version --dry-run --verbose $CATEGORY
+```
+
+where `$CATEGORY` is the target version number category name, possible
+values are `patch`/`minor`/`major`.
+
+Bump version
+```bash
+bump2version --verbose $CATEGORY
+```
+
+This will set version to `major.minor.patch-alpha`. 
+
+#### Release
+
+Test bumping version
+```bash
+bump2version --dry-run --verbose release
+```
+
+Bump version
+```bash
+bump2version --verbose release
+```
+
+This will set version to `major.minor.patch`.
+
+### Running tests
+
+Install dependencies:
+```bash
+python -m pip install --force-reinstall -r requirements-tests.txt
+```
+
+Plain
+```bash
+pytest
+```
+
+Inside `Docker` container:
+```bash
+docker-compose up
+```
+
+`Bash` script (e.g. can be used in `Git` hooks):
+```bash
+./run-tests.sh
+```
+
+`PowerShell` script (e.g. can be used in `Git` hooks):
+```powershell
+.\run-tests.ps1
+```
+
+
