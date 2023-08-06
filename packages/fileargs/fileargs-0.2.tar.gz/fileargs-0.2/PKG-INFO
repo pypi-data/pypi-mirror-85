@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: fileargs
+Version: 0.2
+Summary: UNKNOWN
+Home-page: https://github.com/AlessioM/fileargs
+Author: AlessioM
+Author-email: none@example.com
+License: UNKNOWN
+Description: ## fileargs
+        
+        small CLI tool for executing commands and passing arguments based on config files
+        
+        ### example use
+        ```
+            fileargs -p params.yaml -- python some_file.py --some-param={{ path.to.value }}
+        ```
+        
+        Can be usefule when running stages in [DVC](https://dvc.org/) based on parameters in its `params.yaml`
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
