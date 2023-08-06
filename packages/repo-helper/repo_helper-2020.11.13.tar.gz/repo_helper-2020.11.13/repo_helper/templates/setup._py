@@ -1,0 +1,19 @@
+#!/usr/bin/env python
+# {{ managed_message }}
+
+# stdlib
+import sys
+
+# 3rd party
+from setuptools import setup
+
+sys.path.append('.')
+
+# this package
+from __pkginfo__ import *  # pylint: disable=wildcard-import
+
+{{ "\n".join(setup_pre) }}
+
+setup(
+{{ additional_setup_args }}
+		)
