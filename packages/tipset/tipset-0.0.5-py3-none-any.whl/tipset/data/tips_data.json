@@ -1,0 +1,923 @@
+{
+    "tip_1": {
+        "subject": "Upgrade/update Fedora26 to 27",
+        "demo_steps": [
+            {"step": "dnf upgrade --refresh", "out": ""},
+            {"step": "dnf install dnf-plugin-system-upgrade", "out": ""},
+            {"step": "dnf system-upgrade download --refresh --releasever=32 --nogpgcheck", "out": ""},
+            {"step": "dnf system-upgrade reboot", "out": ""},
+            {"step": "dnf --releasever 27 downgrade xen (downgrade xen pkg only)", "out": ""},
+            {"step": "dnf distro-sync --allowerasing --refresh", "out": ""},
+            {"step": "dnf erase xxx(if distro-sync failed, try to erase the conflict packages)", "out": ""}
+        ],
+        "tags": "fedora, upgrade, update, dnf",
+        "comments": "",
+        "link": ""
+    },
+    "tip_2": {
+        "subject": "Switch system edition",
+        "demo_steps": [
+            {"step": "dnf grouplist -v", "out": ""},
+            {"step": "dnf install @kde-desktop-environment", "out": ""},
+            {"step": "dnf -y group install 'Fedora Workstation'", "out": ""},
+            {"step": "systemctl set-default graphical.target", "out": ""}
+        ],
+        "tags": "fedora, server, dnf, yum",
+        "comments": "",
+        "link": ""
+    },
+    "tip_3": {
+        "subject": "Look for which pkg provides the cmd or file(belong to which pkg)",
+        "demo_steps": [
+            {"step": "dnf provides *stubs-32.h", "out": ""},
+            {"step": "dnf provides isoinfo", "out": ""}
+        ],
+        "tags": "dnf, yum",
+        "comments": "",
+        "link": ""
+    },
+    "tip_4": {
+        "subject": "Repair broken pkgs",
+        "demo_steps": [
+            {"step": "dnf reinstall \\*", "out": ""}
+        ],
+        "tags": "dnf, yum",
+        "comments": "remove one slash when run cmd",
+        "link": ""
+    },
+    "tip_5": {
+        "subject": "Grubby to update boot index and parameters",
+        "demo_steps": [
+            {"step": "grubby --info=ALL" , "out": ""},
+            {"step": "grubby --set-default-index=1", "out": ""},
+            {"step": "grubby --default-index", "out": ""},
+            {"step": "grubby --default-kernel", "out": ""},
+            {"step": "grubby --update-kernel=ALL --args='initcall_blacklist=arm_smmu_driver_init'", "out": ""},
+            {"step": "grubby --update-kernel=ALL --remove-args='initcall_blacklist=arm_smmu_driver_init'", "out": ""},
+            {"step": "grubby --update-kernel=ALL --args='irqchip.gicv3_pseudo_nmi=1'", "out": ""},
+            {"step": "grubby --update-kernel=ALL  --remove-args='emergency'", "out": ""},
+            {"step": "grubby --update-kernel=ALL  --remove-args='xen_emul_unplug=unnecessary'", "out": ""},
+            {"step": "grubby --update-kernel=ALL --args='xen_emul_unplug=unnecessary'", "out": ""},
+            {"step": "grubby --update-kernel=ALL --args='xen_emul_unplug=never'", "out": ""},
+            {"step": "grubby --update-kernel=ALL --args='no_console_suspend'", "out": ""},
+            {"step": "grubby --update-kernel=ALL --args='kmemleak=on'", "out": ""},
+            {"step": "grubby --update-kernel=ALL  --remove-args='kmemleak=on'", "out": ""},
+            {"step": "grubby --update-kernel=ALL --args='intel_iommu=on pci=realloc'", "out": ""}
+        ],
+        "tags": "grubby, boot",
+        "comments": "",
+        "link": "https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/sec-making_persistent_changes_to_a_grub_2_menu_using_the_grubby_tool"
+    },
+    "tip_6": {
+        "subject": "Boot from grub manually",
+        "demo_steps": [
+            {"step": "insmod lvm", "out": ""},
+            {"step": "linux16 (hd0,msdos1)/vmlinuz-5.0.3-300.fc30.x86_64 root=/dev/mapper/fedora_wasa-root ro rd.lvm.lv=fedora_wasa/root", "out": ""},
+            {"step": "initrd16 (hd0,msdos1)/initramfs-5.0.3-300.fc30.x86_64.img", "out": ""},
+            {"step": "set root=(lvm,fedora_wasa-root)/", "out": ""},
+            {"step": "boot", "out": ""}
+        ],
+        "tags": "grub, boot",
+        "comments": "useful when boot menu was broken",
+        "link": ""
+    },
+    "tip_7": {
+        "subject": "Check memory leak",
+        "demo_steps": [
+            {"step": "mount -t debugfs nodev /sys/kernel/debug/", "out": ""},
+            {"step": "echo scan > /sys/kernel/debug/kmemleak", "out": ""},
+            {"step": "cat /sys/kernel/debug/kmemleak", "out": ""}
+        ],
+        "tags": "debug, memleaks",
+        "comments": "debug kernel boot required",
+        "link": ""
+    },
+    "tip_8": {
+        "subject": "Setup nfs, export nfs",
+        "demo_steps": [
+            {"step": "yum install -y nfs-utils", "out": ""},
+            {"step": "systemctl enable --now rpcbind nfs-server", "out": ""},
+            {"step": "systemctl  start rpcbind nfs-server", "out": ""},
+            {"step": "exportfs -o ro,insecure_locks,all_squash,fsid=1 *:/", "out": ""},
+            {"step": "echo \"$nfs_ip:/$dir /$target_dir nfs    defaults    0 0\" >>/etc/fstab (automount)", "out": ""}
+        ],
+        "tags": "nfs, systemd",
+        "comments": "",
+        "link": ""
+    },
+    "tip_9": {
+        "subject": "insights-client generate archive only without uploading",
+        "demo_steps": [
+            {"step": "insights-client --no-upload --keep-archive", "out": ""}
+        ],
+        "tags": "insights, insights-client",
+        "comments": "",
+        "link": ""
+    },
+    "tip_10": {
+        "subject": "tcpdump dump traffic on a network",
+        "demo_steps": [
+            {"step": "tcpdump -n -i eth0 esp and udp port 500 and udp port 4500", "out": ""},
+            {"step": "tcpdump -nni ens4 -e icmp[icmptype] == 8", "out": ""},
+            {"step": "tcpdump -nni eth0 icmp", "out": ""}
+        ],
+        "tags": "network, tcpdump, debug",
+        "comments": "",
+        "link": ""
+    },
+    "tip_11": {
+        "subject": "OS shortcuts",
+        "demo_steps": [
+            {"step": "Ctrl+L: Clear the screen. This is similar to running the “clear” command.", "out": ""},
+            {"step": "Ctrl+S: Stop all output to the screen. This is particularly useful when running commands with a lot of long, verbose output, but you don’t want to stop the command itself with Ctrl+C.", "out": ""},
+            {"step": "Ctrl+Q: Resume output to the screen after stopping it with Ctrl+S.", "out": ""},
+            {"step": "Ctrl+A or Home: Go to the beginning of the line.", "out": ""},
+            {"step": "Ctrl+E or End: Go to the end of the line.", "out": ""},
+            {"step": "Alt+B: Go left (back) one word.", "out": ""},
+            {"step": "Ctrl+B: Go left (back) one character.", "out": ""},
+            {"step": "Alt+F: Go right (forward) one word.", "out": ""},
+            {"step": "Ctrl+F: Go right (forward) one character.", "out": ""},
+            {"step": "Ctrl+W: Cut the word before the cursor, adding it to the clipboard.", "out": ""},
+            {"step": "Ctrl+K: Cut the part of the line after the cursor, adding it to the clipboard.", "out": ""},
+            {"step": "Ctrl+U: Cut the part of the line before the cursor, adding it to the clipboard.", "out": ""},
+            {"step": "Ctrl+Y: Paste the last thing you cut from the clipboard. The y here stands for “yank”.", "out": ""},
+            {"step": "Ctrl+R: Recall the last command matching the characters you provide. Press this shortcut and start typing to search your bash history for a command.", "out": ""},
+            {"step": "Ctrl+O: Run a command you found with Ctrl+R.", "out": ""},
+            {"step": "Ctrl+G: Leave history searching mode without running a command.", "out": ""}
+        ],
+        "tags": "cli, shortcut, terminal",
+        "comments": "",
+        "link": ""
+    },
+    "tip_12": {
+        "subject": "Customize qcow2 image",
+        "demo_steps": [
+            {"step": "yum install -y virt-install libvirt-daemon-config-network libvirt libguestfs-tools", "out": ""},
+            {"step": "virsh net-start default", "out": ""},
+            {"step": "virt-install --name vmname --memory 2048 --vcpus 2 --disk size=8,bus=virtio --location rhel-7.0-x86_64-dvd.iso --os-variant=rhel7.0", "out": ""},
+            {"step": "sed -i 's/^#spice_listen = \"0.0.0.0\"/spice_listen = \"0.0.0.0\"/g' /etc/libvirt/qemu.conf", "out": ""},
+            {"step": "sed -i 's/^#vnc_listen = \"0.0.0.0\"/vnc_listen = \"0.0.0.0\"/g' /etc/libvirt/qemu.conf (default vnc port 5900)", "out": ""},
+            {"step": "export LIBGUESTFS_BACKEND=direct", "out": ""},
+            {"step": "virt-customize -a rhel-guest-image-8.2-290.x86_64.raw --run-command \"echo 'add_drivers+=\\\" xen-netfront xen-blkfront \\\"' > /etc/dracut.conf.d/xen.conf\"", "out": ""},
+            {"step": "virt-customize -a rhel-guest-image-8.2-290.x86_64.raw --run-command \"dracut -f /boot/initramfs-$(rpm -q kernel --qf '%{V}-%{R}.%{arch}\n').img $(rpm -q kernel --qf '%{V}-%{R}.%{arch}\n')\"", "out": ""},
+            {"step": "virt-edit -a rhel-guest-image-8.2-290.x86_64.raw /etc/dracut.conf.d/xen.conf", "out": ""},
+            {"step": "virt-customize -a rhel-guest-image-7.7-261.x86_64.qcow2 --root-password password:redhat --uninstall cloud-init", "out": ""},
+            {"step": "qemu-img info rhel8.AWS", "out": ""},
+            {"step": "qemu-img resize rhel8.AWS 9G", "out": ""}
+        ],
+        "tags": "virt-install, libguestfs, libvirt, iso",
+        "comments": "",
+        "link": ""
+    },
+    "tip_13": {
+        "subject": "register rhel AMI from local image to aws ec2",
+        "demo_steps": [
+            {"step": "qemu-img convert -f qcow2 -O raw rhel-server-7.7-1-x86_64-kvm.qcow2 rhel-server-7.7-1-x86_64-kvm.raw", "out": ""},
+            {"step": "aws s3 cp rhel-server-7.7.1-x86_64-kvm.raw s3://s3-bucket-name", "out": ""},
+            {"step": "aws ec2 import-image --platform Linux --license-type BYOL --no-encrypted --description 'xiliang_7.9gadoc' --architecture x86_64 --disk-containers Format=Raw,UserBucket=\"{S3Bucket=virtqes1,S3Key=rhel-server-ec2-7.9-30.x86_64.raw}\" --region us-east-1", "out": ""}
+        ],
+        "tags": "AMI, ec2, rhel",
+        "comments": "pls check doc for rhel8",
+        "link": "https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/deploying_red_hat_enterprise_linux_7_on_public_cloud_platforms/index?#deploying-a-virtual-machine-on-aws_cloud-content"
+    },
+    "tip_14": {
+        "subject": "find command usage examples",
+        "demo_steps": [
+            {"step": "find -L . -name '*raw' -exec ls -l {} \\;", "out": ""},
+            {"step": "find . -type -f |xargs grep 'wget'", "out": ""},
+            {"step": "find . -name *results.xml* -exec readlink -f  {} \\;", "out": ""},
+            {"step": "find . -mtime +7 -type d -exec ls {} \\;", "out": ""},
+            {"step": "find /dirname -mtime +7 -exec rm -rf {} \\;", "out": ""},
+            {"step": "find /dirname -mtime +7 -exec ls {} \\;", "out": ""},
+            {"step": "find /dirname* -mtime +30 -exec rm -rf {} \\;", "out": ""},
+            {"step": "find /sys/kernel/iommu_groups/ -type l", "out": ""},
+            {"step": "find /path/to/search/ -type f -iname \"*.mp4\" -printf '%s %p\\n'| sort -nr | head -10 (top 10 size file)", "out": ""},
+            {"step": "find -maxdepth 1 -type f -perm /200 -exec ls -l {} \\; (writable by current user)", "out": ""},
+            {"step": "find -maxdepth 1 -type f -perm /222 -exec ls -l {} \\; (writable by all user)", "out": ""},
+            {"step": "find . -type f -writable", "out": ""}
+        ],
+        "tags": "command, find",
+        "comments": "",
+        "link": ""
+    },
+    "tip_15": {
+        "subject": "ansible examples",
+        "demo_steps": [
+            {"step": "ansible all -m ping -u root", "out": ""},
+            {"step": "ansible all -a \"/bin/echo hellow\"", "out": ""},
+            {"step": "ansible-playbook ans_xen_xl.yml --syntax-check", "out": ""},
+            {"step": "ansible-playbook ans_xen_xl.yml -u root", "out": ""},
+            {"step": "system facts: {{ ansible_default_ipv4.interface }}", "out": ""}
+        ],
+        "tags": "deploy, ansible",
+        "comments": "",
+        "link": "https://github.com/liangxiao1/mini_utils/blob/master/playbooks/ans_xen_xl_f28.yml"
+    },
+    "tip_16": {
+        "subject": "forgot password and reset it",
+        "demo_steps": [
+            {"step": "\"rw init=/bin/bash\" (complete initramfs and start bash on the disk)", "out": ""},
+            {"step": "mount -n -o remount,rw /", "out": ""},
+            {"step": "passwd root", "out": ""},
+            {"step": "/usr/sbin/reboot -f", "out": ""},
+            {"step": "\"rdinit=/bin/sh\" (start shell in initramfs)", "out": ""},
+            {"step": "'rd.break enforcing=0' (fedora)", "out": ""},
+            {"step": "#mount –o remount,rw /sysroot", "out": ""}
+        ],
+        "tags": "password, boot",
+        "comments": "",
+        "link": ""
+    },
+    "tip_17": {
+        "subject": "insights collect data without upload",
+        "demo_steps": [
+            {"step": "insights-client --no-upload --keep-archive", "out": ""}
+        ],
+        "tags": "insights, insights-client",
+        "comments": "",
+        "link": ""
+    },
+    "tip_18": {
+        "subject": "IRC command",
+        "demo_steps": [
+            {"step": "/join #channel", "out": ""},
+            {"step": "/list [#channel] [-MIN #] [-MAX #] \n/list\n/list -min 5 -max 20 \n/list #mirc\n/list *mirc*", "out": ""},
+            {"step": "/nick nickname Changes your nickname to a new nickname.", "out": ""},
+            {"step": "/part #channel Leaves a channel that you are on.", "out": ""},
+            {"step": "/query nickname (find nickname in global)", "out": ""}
+        ],
+        "tags": "IRC, command",
+        "comments": "",
+        "link": "https://www.mirc.com/help/html/index.html?basic_irc_commands.html"
+    },
+    "tip_19": {
+        "subject": "podman quick start",
+        "demo_steps": [
+            {"step": "yum module install container-tools", "out": ""},
+            {"step": "yum install podman", "out": ""},
+            {"step": "podman pull fedora", "out": ""},
+            {"step": "podman images|ps", "out": ""},
+            {"step": "podman run --rm fedora /bin/echo \"Computing for Geeks\" ", "out": ""},
+            {"step": "podman run --rm -it fedora:28 echo \"Hello world!\"", "out": ""},
+            {"step": "podman run -it fedora bash", "out": ""},
+            {"step": "podman rm 7036f575514d", "out": ""}
+        ],
+        "tags": "podman, container",
+        "comments": "",
+        "link": ""
+    },
+    "tip_20": {
+        "subject": "clean journal log over 10days",
+        "demo_steps": [
+            {"step": "journalctl --vacuum-time=10d", "out": ""},
+            {"step": "journalctl --vacuum-size=2G", "out": ""},
+            {"step": "du -hs /var/log/journal", "out": ""}
+        ],
+        "tags": "journal, admin, journalctl",
+        "comments": "journal log size too big in desktop or longterm run server",
+        "link": ""
+    },
+    "tip_21": {
+        "subject": "enable a module, install pkg from av",
+        "demo_steps": [
+            {"step": "yum module list", "out": ""},
+            {"step": "yum module -y reset virt", "out": ""},
+            {"step": "yum module enable virt:8.3 -y", "out": ""}
+        ],
+        "tags": "RHEL, AV, yum, dnf",
+        "comments": "you can not install repo if only add av repo",
+        "link": ""
+    },
+    "tip_22": {
+        "subject": "vi/vim quick reference",
+        "demo_steps": [
+            {"step": "x   - delete current character", "out": ""},
+            {"step": "3x   - delete 3 characters from current place", "out": ""},
+            {"step": "dw  - delete current word", "out": ""},
+            {"step": "3dw  - delete 3 words from currents word", "out": ""},
+            {"step": "dd  - delete current line", "out": ""},
+            {"step": "5dd - delete five lines", "out": ""},
+            {"step": "d0  - delete to beginning of line", "out": ""},
+            {"step": "d$  - delete to end of line", "out": ""},
+            {"step": ":1,.d  - delete to beginning of file", "out": ""},
+            {"step": ":.,$d  - delete to end of file", "out": ""},
+            {"step": ":g/^/m0  - reverse the line", "out": ""},
+            {"step": "Esc;Ctrl+V(moving up and down);Shift+i(input text);Esc (vim insert content to multiline)", "out": ""}
+        ],
+        "tags": "vi, vim, shortcuts",
+        "comments": "",
+        "link": ""
+    },
+    "tip_23": {
+        "subject": "ssh login without password",
+        "demo_steps": [
+            {"step": "ssh-keygen", "out": ""},
+            {"step": "ssh-copy-id remoteuser@remoteserver", "out": ""},
+            {"step": "ssh-keyscan remote_servers >> ~/.ssh/known_hosts (option)", "out": ""}
+        ],
+        "tags": "ssh",
+        "comments": "",
+        "link": ""
+    },
+    "tip_24": {
+        "subject": "ausearch check audit log, selinux",
+        "demo_steps": [
+            {"step": "ausearch -m AVC", "out": ""},
+            {"step": "ausearch -m avc -ts today", "out": ""},
+            {"step": "ausearch -m avc -ts recent (last 10 mins)", "out": ""},
+            {"step": "ausearch -m avc -c httpd", "out": ""}
+        ],
+        "tags": "ausearch, selinux",
+        "comments": "",
+        "link": ""
+    },
+    "tip_25": {
+        "subject": "lspci utils",
+        "demo_steps": [
+            {"step": "lspci -nn (display vendor id and names)", "out": ""},
+            {"step": "lspci -n (display vendor id only)", "out": ""}
+        ],
+        "tags": "lspci, pciutils",
+        "comments": "",
+        "link": ""
+    },
+    "tip_26": {
+        "subject": "dmi info from sysfs",
+        "demo_steps": [
+            {"step": "cat /sys/devices/virtual/dmi/id/bios_vendor", "out": "Xen"},
+            {"step": "cat /sys/devices/virtual/dmi/id/product_name", "out": "HVM domU"}
+        ],
+        "tags": "dmi, sysfs",
+        "comments": "",
+        "link": ""
+    },
+    "tip_27": {
+        "subject": "fio command examples",
+        "demo_steps": [
+            {"step": "apt-get update (ubuntu)", "out": ""},
+            {"step": "apt-get install fio (ubuntu)", "out": ""},
+            {"step": "fio --bs=4k --ioengine=libaio --iodepth=16 --filename=/dev/nvme2n1:/dev/nvme1n1 --direct=1 --runtime=300 --numjobs=16 --rw=randread --name=test --group_reporting --gtod_reduce=1", "out": ""},
+            {"step": "taskset -c 1,2 fio --direct=1 --size=90G --bsrange=4k-4k --runtime=600 --numjobs=8 --iodepth_batch_submit=1 --iodepth_batch_complete_min=1  --ioengine=libaio --iodepth=64 --group_reporting=1 --filename=/dev/nvme1n1 --name=test-randread --rw=randread", "out": ""}
+        ],
+        "tags": "fio, storage, performance",
+        "comments": "",
+        "link": ""
+    },
+    "tip_28": {
+        "subject": "pip command examples",
+        "demo_steps": [
+            {"step": "pip freeze > requirements.txt", "out": ""},
+            {"step": "pip install -r requirements.txt", "out": ""},
+            {"step": "pip3 install textblob -i https://pypi.tuna.tsinghua.edu.cn/simple", "out": ""},
+            {"step": "pip --default-timeout=100 install numpy", "out": ""},
+            {"step": "python3 -m pip install --user --upgrade pip==19.2.3 (install specific version)", "out": ""},
+            {"step": "pip3 install -U os-tests --no-cache-dir", "out": ""},
+            {"step": "cn mirro: 阿里云 http://mirrors.aliyun.com/pypi/simple/", "out": ""},
+            {"step": "cn mirro: 清华大学 https://pypi.tuna.tsinghua.edu.cn/simple/", "out": ""},
+            {"step": "cn mirro: 中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/ ", "out": ""}
+        ],
+        "tags": "pip, pip3, command, python",
+        "comments": "",
+        "link": ""
+    },
+    "tip_29": {
+        "subject": "kernel dynamic debug examples",
+        "demo_steps": [
+            {"step": "echo 8 > /proc/sys/kernel/printk", "out": ""},
+            {"step": "echo 'file drivers/dma/dw/core.c function  dev_vprintk_emit +p' > /sys/kernel/debug/dynamic_debug/control", "out": ""},
+            {"step": "echo 'file tools/perf/tests/code-reading.c func  do_test_code_reading +p' > /sys/kernel/debug/dynamic_debug/control", "out": ""},
+            {"step": "echo 'file tools/perf/tests/* +p' > /sys/kernel/debug/dynamic_debug/control", "out": ""},
+            {"step": "echo 'file drivers/net/ethernet/amazon/ena* +p' > /sys/kernel/debug/dynamic_debug/control", "out": ""},
+            {"step": "echo 'file drivers/net/ethernet/amazon/ena/ena_ethtool.c +p' > /sys/kernel/debug/dynamic_debug/control", "out": ""}
+        ],
+        "tags": "kernel, debug",
+        "comments": "",
+        "link": "https://www.kernel.org/doc/html/v4.11/admin-guide/dynamic-debug-howto.html"
+    },
+    "tip_30": {
+        "subject": "efi boot in current os",
+        "demo_steps": [
+            {"step": "ls -la /sys/firmware/efi", "out": "config_table  efivars  esrt  fw_platform_size  systab  vars"}
+        ],
+        "tags": "efi, boot",
+        "comments": "judge boot method, it is efi boot if dir is not empty",
+        "link": ""
+    },
+    "tip_31": {
+        "subject": "firewall setup, disable selinux if all looks good but not work",
+        "demo_steps": [
+            {"step": "firewall-cmd --zone=public --add-port=80/tcp --permanent", "out": ""},
+            {"step": "firewall-cmd --reload", "out": ""},
+            {"step": "iptables-save |grep 80", "out": ""}
+        ],
+        "tags": "firewall, security",
+        "comments": "",
+        "link": ""
+    },
+    "tip_32": {
+        "subject": "mount, remount with big size",
+        "demo_steps": [
+            {"step": "mount -t tmpfs tmpfs /run -o remount,size=40G", "out": ""},
+            {"step": "mount -t tmpfs tmpfs /tmp -o remount,size=40G", "out": ""},
+            {"step": "echo 'none     /run       tmpfs   defaults,size=60G        0 0' >> /etc/fstab", "out": ""}
+        ],
+        "tags": "mount, command",
+        "comments": "",
+        "link": ""
+    },
+    "tip_33": {
+        "subject": "Deploy xen under fedora",
+        "demo_steps": [
+            {"step": "yum install xen", "out": ""},
+            {"step": "grub2-mkconfig -o /boot/grub2/grub.cfg (do not run it in f32 or above)", "out": ""},
+            {"step": "grep ^menuentry /boot/grub2/grub.cfg | cut -d \"'\" -f2", "out": ""},
+            {"step": "grub2-set-default 'Fedora, with Xen hypervisor'", "out": ""},
+            {"step": "grub2-editenv list", "out": ""},
+            {"step": "grub2-mkconfig -o /boot/grub2/grub.cfg", "out": ""},
+            {"step": "nmcli con show (for Fedora32+, ip will change after set xenbr0)", "out": ""},
+            {"step": "nmcli con add type bridge ifname xenbr0", "out": ""},
+            {"step": "nmcli con add type bridge-slave ifname eno1 master xenbr0", "out": ""},
+            {"step": "nmcli con up xenbr0", "out": ""},
+            {"step": "nmcli conn delete type ethernet slave-type bridge con-name bridge-xenbr0 ifname enp4s0f0 master xenbr0 (delete)", "out": ""}
+        ],
+        "tags": "xen, fedora",
+        "comments": "",
+        "link": "https://github.com/liangxiao1/mini_utils/blob/master/playbooks/ans_xen_xl_f28.yml"
+    },
+    "tip_34": {
+        "subject": "Check available loop devices",
+        "demo_steps": [
+            {"step": "losetup -f", "out": ""},
+            {"step": "losetup -a", "out": ""},
+            {"step": "losetup -d /dev/loopn", "out": ""}
+        ],
+        "tags": "loop, losetup",
+        "comments": "",
+        "link": ""
+    },
+    "tip_35": {
+        "subject": "perf command example",
+        "demo_steps": [
+            {"step": "perf top", "out": ""},
+            {"step": "perf record -a -g", "out": ""},
+            {"step": "perf annotate", "out": ""},
+            {"step": "perf report perf.data", "out": ""},
+            {"step": "perf list | grep xfs", "out": ""},
+            {"step": "perf record -a -e kernel:arm_smmu_cmdq_issue_cmdlist sleep 1", "out": ""}
+        ],
+        "tags": "perf, debug",
+        "comments": "know which symbol occupy cpu",
+        "link": ""
+    },
+    "tip_36": {
+        "subject": "fastboot",
+        "demo_steps": [
+            {"step": "yum --showduplicates list kernel", "out": ""},
+            {"step": "yum install -y kernel-4.18.0-80.7.2.el8_0.x86_64 kernel-4.18.0-80.1.2.el8_0.x86_64 kernel-4.18.0-80.4.2.el8_0.x86_64", "out": ""},
+            {"step": "kexec -l /boot/vmlinuz-4.18.0-80.11.2.el8_0.x86_64 --initrd=/boot/initramfs-4.18.0-80.11.2.el8_0.x86_64.img --reuse-cmdline", "out": ""},
+            {"step": "systemctl kexec", "out": ""},
+            {"step": "kexec -e", "out": ""}
+        ],
+        "tags": "boot, fastboot",
+        "comments": "",
+        "link": ""
+    },
+    "tip_37": {
+        "subject": "yum repo file template",
+        "demo_steps": [
+            {"step": "[rhel7]\nname=rhel7.5\nbaseurl = xxxx(url or file:///xxxx/BaseOS)\nenabled=1\ngpgcheck=0\nproxy=http://127.0.0.1:8080 (option)\n", "out": ""}
+        ],
+        "tags": "yum, repo, install",
+        "comments": "/etc/yum.repos.d/xxx.repo",
+        "link": ""
+    },
+    "tip_38": {
+        "subject": "cron jobs",
+        "demo_steps": [
+            {"step": "minute(0~59) hour(0~23) day(month1~31) month(1~12) day(week0~6)", "out": ""},
+            {"step": "*:any value", "out": ""},
+            {"step": ",:value list separator", "out": ""},
+            {"step": "-:range of values", "out": ""},
+            {"step": "/:step values", "out": ""},
+            {"step": "@yearly @annually @monthly @weekly @daily @hourly @reboot", "out": ""},
+            {"step": "0 0 * * * cp /app.db /back/app.db_$(date +\\%Y\\%m\\%d)", "out": ""}
+        ],
+        "tags": "cron, command, crontab",
+        "comments": "",
+        "link": "https://crontab.guru/#*_*_*_*"
+    },
+    "tip_39": {
+        "subject": "python struct write sysfs",
+        "demo_steps": [
+            {"step": "python3 -c 'import os,struct;os.write(os.open(\"/proc/xen/xenbus\", os.O_RDWR), struct.pack(\"<IIII\", 7, 2, 1234, 0))'", "out": ""}
+        ],
+        "tags": "python, struct, sysfs",
+        "comments": "",
+        "link": ""
+    },
+    "tip_40": {
+        "subject": "python pylint code check",
+        "demo_steps": [
+            {"step": "pylint --list-msgs", "out": ""},
+            {"step": "pylint xxx.py --msg-template='{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}'", "out": ""},
+            {"step": "pylint --help-msg=C0325", "out": ""}
+        ],
+        "tags": "python, pylint",
+        "comments": "",
+        "link": ""
+    },
+    "tip_41": {
+        "subject": "git tag examples",
+        "demo_steps": [
+            {"step": "git log -S'ret_status=False,' -- utils_lib.py (find keywords from which commit)", "out": ""},
+            {"step": "git diff tag1 tag2", "out": ""},
+            {"step": "git log tag1 tag2", "out": ""},
+            {"step": "git checkout tags/1.1.4", "out": ""},
+            {"step": "git push origin --tags (push all local tags to remote)", "out": ""},
+            {"step": "git push origin v0.0.15 (push only one tag to remote)", "out": ""},
+            {"step": "git tag -l (list all tags)", "out": ""},
+            {"step": "git tag v0.0.15 (add a new tag)", "out": ""},
+            {"step": "git checkout tags/v0.0.15 -b $newbranch", "out": ""},
+            {"step": "git config --global credential.helper store (save https pass in ~/.git-credentials)", "out": ""}
+        ],
+        "tags": "git, github, tag",
+        "comments": "",
+        "link": "https://www.tecmint.com/fix-git-user-credentials-for-https/"
+    },
+    "tip_42": {
+        "subject": "kerberos",
+        "demo_steps": [
+            {"step": "kinit", "out": ""},
+            {"step": "klist", "out": ""},
+            {"step": "kdestroy", "out": ""}
+        ],
+        "tags": "kerberos, kinit",
+        "comments": "/etc/krb5.conf",
+        "link": "https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system-level_authentication_guide/using_kerberos"
+    },
+    "tip_43": {
+        "subject": "hibernate setup to swap file",
+        "demo_steps": [
+            {"step": "swapoff -a", "out": ""},
+            {"step": "dd if=/dev/zero of=/swap bs=1024 count=2000000", "out": ""},
+            {"step": "chmod 0600 /swap", "out": ""},
+            {"step": "swapon /swap", "out": ""},
+            {"step": "offset= $(filefrag -v /swap| awk '{if($1==\"0:\"){print $4}}')", "out": ""},
+            {"step": "grubby --update-kernel=ALL  --args=\"resume_offset=$offset resume=/dev/nvme0n1p2\"", "out": ""},
+            {"step": "\"/newswap    swap    swap   defaults 0 0\" >> \"/etc/fstab\"", "out": ""},
+            {"step": "systemctl hibernate|suspend", "out": ""}
+        ],
+        "tags": "hibernate, linux",
+        "comments": "",
+        "link": "https://www.kernel.org/doc/html/latest/power/basic-pm-debugging.html\nhttps://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/managing_storage_devices/getting-started-with-swap_managing-storage-devices"
+    },
+    "tip_44": {
+        "subject": "python virtualenv or venv",
+        "demo_steps": [
+            {"step": "pip install virtualenv", "out": ""},
+            {"step": "virtualenv my_venv", "out": ""},
+            {"step": "virtualenv -p python3 my_venv (for python3)", "out": ""},
+            {"step": "python3 -m venv my_venv", "out": ""},
+            {"step": "source my_env/bin/activate", "out": ""},
+            {"step": "deactivate", "out": ""}
+        ],
+        "tags": "python, virtualenv, venv",
+        "comments": "create a standalone python environment",
+        "link": "https://docs.python.org/3/tutorial/venv.html"
+    },
+    "tip_45": {
+        "subject": "shell script code check",
+        "demo_steps": [
+            {"step": "yum install -y shellcheck", "out": ""},
+            {"step": "shellcheck -x -e SC2119 -f gcc check new common/* tests/*/rc tests/*/[0-9]*[0-9]", "out": ""}
+        ],
+        "tags": "shell, bash",
+        "comments": "not all repo has shellcheck rpm by default",
+        "link": "http://rpmfind.net/linux/fedora/linux/releases/32/Everything/x86_64/os/Packages/s/ShellCheck-0.7.0-3.fc32.x86_64.rpm"
+    },
+    "tip_46": {
+        "subject": "sqlite examples",
+        "demo_steps": [
+            {"step": "sqlite3 app.db -cmd \".header on\" \".mode csv\" \".output test.csv\" \"select * from bugs\" (sqlite save data to csv)", "out": ""},
+            {"step": "sqlite3 app.db -cmd \"pragma table_info('bugs')\" \".quit\" (show table structure)", "out": ""},
+            {"step": "sqlite> DROP TABLE bugs; (delete the table named bugs)", "out": ""},
+            {"step": "sqlite> attach 'report_data.db' as d; (copy data from another db)", "out": ""},
+            {"step": "sqlite> INSERT INTO report SELECT * FROM d.report_info;", "out": ""},
+            {"step": "sqlite> UPDATE report SET Comments='' WHERE Comments  IS NULL;", "out": ""},
+            {"step": "sqlite> UPDATE report SET bug_id=NULL where length(bug_id)=0;", "out": ""},
+            {"step": "sqlite> UPDATE report SET pass_rate=CAST(pass_rate as INTEGER);", "out": ""},
+            {"step": "sqlite> update e_c2__report set instance_available_date='' where instance_available_date==\"None\";", "out": ""},
+            {"step": "sqlite> ALTER TABLE bugs RENAME TO temp_bugs; (add or delete column requires alter table in sqlite)", "out": ""},
+            {"step": "sqlite> INSERT INTO bugs(id, item1, item2) SELECT id,item1, item2 FROM temp_bugs;", "out": ""},
+            {"step": "sqlite> PRAGMA foreign_keys=off;", "out": ""},
+            {"step": "sqlite> BEGIN TRANSACTION;", "out": ""},
+            {"step": "sqlite> CREATE TABLE table1 (column1 datatype [ NULL | NOT NULL ],column2 datatype [ NULL | NOT NULL ]);", "out": ""},
+            {"step": "sqlite> COMMIT;", "out": ""},
+            {"step": "sqlite> PRAGMA foreign_keys=on;", "out": ""},
+            {"step": "sqlite> .read create.sql", "out": ""},
+            {"step": "sqlite> .mode csv", "out": ""},
+            {"step": "sqlite> .import /home/test.csv testtable", "out": ""}
+        ],
+        "tags": "sqlite, sql, database",
+        "comments": "",
+        "link": "https://sqlite.org/cli.html"
+    },
+    "tip_47": {
+        "subject": "ping command examples",
+        "demo_steps": [
+            {"step": "ping -6 fe80::6e0b:84ff:fedf:xxxx%eth0", "out": ""},
+            {"step": "ping -6 2620:52:0:49c4:1213:54ff:fe35:xxxx -I eth0", "out": ""},
+            {"step": "ping 10.xx.xx.xx -c 20 -i .1", "out": ""}
+        ],
+        "tags": "ping, network",
+        "comments": "",
+        "link": ""
+    },
+    "tip_48": {
+        "subject": "iperf command examples",
+        "demo_steps": [
+            {"step": "iperf3 -c 2620:52:0:49c4:1213:54ff:fe35:xxxx -l 1m -P 10", "out": ""},
+            {"step": "iperf3 -c 10.xx.xx.xxx -l 1m -P 10", "out": ""},
+            {"step": "iperf -c xxxx -l 1m -i 2 -P 30 (iperf2 for speed over 25G)", "out": ""}
+        ],
+        "tags": "iperf, network, performance",
+        "comments": "",
+        "link": ""
+    },
+    "tip_49": {
+        "subject": "ip command examples",
+        "demo_steps": [
+            {"step": "ip link set dev eth0 mtu 1500", "out": ""}
+        ],
+        "tags": "ip, network",
+        "comments": "",
+        "link": ""
+    },
+    "tip_50": {
+        "subject": "get cloud-init metadata",
+        "demo_steps": [
+            {"step": "curl http://169.254.169.254/latest/meta-data/", "out": ""},
+            {"step": "curl http://169.254.169.254/latest/dynamic/instance-identity/document", "out": ""},
+            {"step": "curl http://169.254.169.254/latest/meta-data/local-ipv4", "out": ""}
+        ],
+        "tags": "cloud-init, cloud",
+        "comments": "metadata has lots of instance information, eg. ami, instance type, public ip",
+        "link": ""
+    },
+    "tip_51": {
+        "subject": "mdadm Linux Software RAID",
+        "demo_steps": [
+            {"step": "mdadm --examine /dev/nvme1n1 /dev/nvme2n1", "out": ""},
+            {"step": "mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/nvme1n1 /dev/nvme2n1", "out": ""},
+            {"step": "cat /proc/mdstat", "out": ""},
+            {"step": "watch -n1 cat /proc/mdstat", "out": ""},
+            {"step": "mdadm --detail /dev/md0", "out": ""},
+            {"step": "mkfs.ext4 /dev/md0", "out": ""},
+            {"step": "mdadm --stop /dev/md0", "out": ""},
+            {"step": "mdadm --assemble --scan (reactive raid)", "out": ""}
+        ],
+        "tags": "mdadm, disk, raid",
+        "comments": "",
+        "link": ""
+    },
+    "tip_52": {
+        "subject": "contribute to linux kernel",
+        "demo_steps": [
+            {"step": "git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git", "out": ""},
+            {"step": "git checkout -b upstream/xiliang master", "out": ""},
+            {"step": "scripts/get_maintainer.pl -f arch/x86/events/amd/power.c", "out": ""},
+            {"step": "git format-patch -1 b1c599b8ff80ea79b9f8277a3f9f36a7b0cfedce", "out": ""},
+            {"step": "git send-email --cc linux-kernel@vger.kernel.org --to hpa@zytor.com --cc x86@kernel.org 0001-perf-x86-amd-power-do-not-load-amd-power-module-in-i.patch", "out": ""},
+            {"step": "patch -p1  < file.patch", "out": ""}
+        ],
+        "tags": "kernel, upstream, patch",
+        "comments": "",
+        "link": ""
+    },
+    "tip_53": {
+        "subject": "Compare 2 directories",
+        "demo_steps": [
+            {"step": "diff -rq dir1 dir2", "out": ""}
+        ],
+        "tags": "compare, diff",
+        "comments": "",
+        "link": ""
+    },
+    "tip_54": {
+        "subject": "nmcli examples",
+        "demo_steps": [
+            {"step": "yum install -y nm-connection-editor", "out": ""},
+            {"step": "nmcli connection show eth0", "out": ""},
+            {"step": "nmcli connection modify eth0 connection.autoconnect yes", "out": ""},
+            {"step": "nmcli con add type bond ifname bond0 mode active-backup (mode:802.3ad/balance-alb/balance-tlb/broadcast/active-backup/balance-rr/balance-xor)", "out": ""},
+            {"step": "nmcli connection modify bond0 ipv4.addresses <ip-address>", "out": ""},
+            {"step": "nmcli connection modify bond0 ipv4.method manual", "out": ""},
+            {"step": "nmcli con add type bond-slave ifname eth0 master bond0", "out": ""},
+            {"step": "nmcli con add type bond-slave ifname eth1 master bond0", "out": ""},
+            {"step": "nmcli connection show", "out": ""}
+        ],
+        "tags": "nmcli, command, bond, network",
+        "comments": "https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/sec-network_bonding_using_the_networkmanager_command_line_tool_nmcli",
+        "link": ""
+    },
+    "tip_55": {
+        "subject": "systemd-analyze usage example",
+        "demo_steps": [
+            {"step": "systemd-analyze", "out": ""},
+            {"step": "systemd-analyze blame", "out": ""},
+            {"step": "systemd-analyze security --no-pager choose_repo.service", "out": ""},
+            {"step": "systemd-analyze plot > plot.svg", "out": ""},
+            {"step": "systemd-analyze critical-chain var-lib-nfs-rpc_pipefs.mount", "out": ""}
+        ],
+        "tags": "systemd-analyze, boot, command",
+        "comments": "",
+        "link": "https://wiki.archlinux.org/index.php/Improving_performance/Boot_process"
+    },
+    "tip_56": {
+        "subject": "Soft RoCE",
+        "demo_steps": [
+            {"step": "yum install libibverbs-utils", "out": ""},
+            {"step": "rxe_cfg start", "out": ""},
+            {"step": "rxe_cfg status", "out": ""},
+            {"step": "rxe_cfg add eth0", "out": ""},
+            {"step": "rxe_cfg", "out": ""},
+            {"step": "ibv_devices", "out": ""},
+            {"step": "ibv_rc_pingpong -d rxe0 -g 0 (server)", "out": ""},
+            {"step": "ibv_rc_pingpong -d rxe0 -g 0 <server_management_ip> (client)", "out": ""},
+            {"step": "ibv_devinfo", "out": ""}
+        ],
+        "tags": "InfiniBand, command, IB",
+        "comments": "",
+        "link": ""
+    },
+    "tip_57": {
+        "subject": "awscli usage example",
+        "demo_steps": [
+            {"step": "pip install awscli", "out": ""},
+            {"step": "aws configure", "out": ""},
+            {"step": "aws ec2 run-instances --region=us-west-2 --image-id=ami-9fa343e7 --key-name xiliangc5 --instance-type c5.2xlarge  --subnet-id subnet-b4591eef --associate-public-ip-address --placement {\"AvailabilityZone\":\"us-west-2c\"}", "out": ""},
+            {"step": "aws ec2 describe-instances --instance-ids i-xxxxxxxx", "out": ""},
+            {"step": "aws ec2 create-tags --resources i-xxxxxxx --tags Key=Name,Value=xxxxxxx", "out": ""},
+            {"step": "aws ec2 get-console-output --output text --latest --instance-id i-xxxxxx", "out": ""},
+            {"step": "aws ec2 stop-instances --instance-ids i-xxxxxxx --force", "out": ""},
+            {"step": "aws ec2 describe-instances --instance-ids i-0fda302413ef93ad1", "out": ""},
+            {"step": "aws ec2 describe-instances --filters \"Name=instance-type,Values=c5.4xlarge\"", "out": ""},
+            {"step": "aws ec2 create-volume --size 80 --region ap-northeast-1 --availability-zone ap-northeast-1a --volume-type gp2", "out": ""},
+            {"step": "aws ec2 attach-volume --volume-id vol-xxxxxxxx --instance-id i-xxxxxxx--device /dev/xvdb", "out": ""},
+            {"step": "https://signin.aws.amazon.com/switchrole?roleName=xxxx&account=xxxx (switch role from web)", "out": ""},
+            {"step": "aws ec2 describe-images --image-id ami-xxxxxx --query 'Images[].EnaSupport'", "out": ""},
+            {"step": "aws ec2 describe-images --query 'Images[*].{ID:ImageId,Name:Name,Public:Public}' --filters 'Name=name,Values=*JBEAP-7.2.0*'  --region us-west-1", "out": ""},
+            {"step": "aws ec2 describe-images --owners xxxxxx|self --query 'sort_by(Images, &CreationDate)", "out": ""},
+            {"step": "aws ec2 describe-images --owners xxxxxx|self --query 'sort_by(Images, &CreationDate)[*].[CreationDate,Name,ImageId]' --filters \"Name=name,Values=RHEL-7.?*GA*\" --region us-east-1 --output table", "out": ""},
+            {"step": "aws sts assume-role --profile redhat-test --role-arn \"arn:aws:iam::xxxx:role/xxxx\" --role-session-name session-xiliang (siwtch role from cli)", "out": "credentia: aws_access_key_id, aws_secret_access_key, aws_session_token"}
+        ],
+        "tags": "awscli, command, amazon, ec2",
+        "comments": "",
+        "link": ""
+    },
+    "tip_58": {
+        "subject": "rpm find the binary belong to which pkg",
+        "demo_steps": [
+            {"step": "which ls", "out": ""},
+            {"step": "rpm -qf /usr/bin/ls", "out": "coreutils-8.22-24.el7.x86_64"},
+            {"step": "rpm -qi coreutils (query the information of pkg)", "out": ""},
+            {"step": "rpm -qlp *.rpm (list rpm pkg content)", "out": ""},
+            {"step": "rpm -q --changelog kernel (query the changelog of a pkg)", "out": ""}
+        ],
+        "tags": "rpm, query, command",
+        "comments": "",
+        "link": ""
+    },
+    "tip_59": {
+        "subject": "JMS Message selector expressions",
+        "demo_steps": [
+            {"step": "Comparison operators: =, >, >=, <, <=, <> (not equal). ", "out": ""},
+            {"step": "Logical operators in precedence order: NOT, AND, OR.", "out":""},
+            {"step": "Age NOT BETWEEN 15 and 19 is equivalent to age < 15 OR age > 19.", "out":""},
+            {"step": "Country NOT IN ('UK', 'US', 'France') ", "out": ""},
+            {"step": "phone NOT LIKE '12%3'", "out": ""},
+            {"step": "prop_name IS NOT NULL.", "out": ""},
+            {"step": "compose_id NOT LIKE  \\'RHEL-8.3.1-%.dt.%\\'", "out": ""}
+        ],
+        "tags": "jms, message, ci",
+        "comments": "",
+        "link": "https://www.ibm.com/support/knowledgecenter/SSFKSJ_7.5.0/com.ibm.mq.dev.doc/q031980_.htm"
+    },
+    "tip_60": {
+        "subject": "Bash tips: Colors and formatting (ANSI/VT100 Control sequences)",
+        "demo_steps": [
+            {"step": "echo -e \"\\033[31m Hello World\\e[0m\" (red)", "out": ""},
+            {"step": "30-37 sets foreground color, 40-47 sets background color", "out":""},
+            {"step": "echo -e \"Default \\e[32mGreen\\e[0m\"", "out":""},
+            {"step": "echo -e \"Default \\e[33mYellow\\e[0m\"", "out": ""},
+            {"step": "echo -e \"Default \\e[41mRed\\e[0m\"", "out": ""},
+            {"step": "echo -e \"Default \\e[42mGreen\\e[0m\"", "out": ""},
+            {"step": "echo -e \"Default \\e[43mYellow\\e[0m\"", "out": ""}
+        ],
+        "tags": "color, bash, format",
+        "comments": "",
+        "link": "https://misc.flogisoft.com/bash/tip_colors_and_formatting"
+    },
+    "tip_61": {
+        "subject": "sed examples",
+        "demo_steps": [
+            {"step": "sed -i \"97d;98d\" /tmp/1 (delete line 97, 98)" , "out": ""},
+            {"step": "sed -n '22,30p' /tmp/2 (display 22~30 line)", "out": ""},
+            {"step": "sed -i \"/foos/d\" /tmp/1 (find and delete the match line)", "out":""},
+            {"step": "sed -i '1s/^/add to new top line\\n/' /tmp/1 (add new line at top)", "out":""},
+            {"step": "sed -i 's/\\(^.*100.*$\\)/\/\/\\1/' /tmp/1 (insert \\\\ at the head of matched line)", "out": ""},
+            {"step": "sed -i 's/^foo/#comment out as bug 1464851\\n&/g' /tmp/1 (add one line before matched)", "out": ""},
+            {"step": "sed -e 's/^foo.*/report/g' /tmp/1 (replace entire line with other)", "out": ""},
+            {"step": "sed '1!G;h;$!d' /tmp/2 (revers file line, move top to down)", "out": ""}
+        ],
+        "tags": "bash, sed",
+        "comments": "",
+        "link": ""
+    },
+    "tip_62": {
+        "subject": "awk examples",
+        "demo_steps": [
+            {"step": "awk 'NR==6' /tmp/1 (display line 6)" , "out": ""},
+            {"step": "awk 'FNR>=20 && FNR<=30' /tmp/1 (display 22~30 line)", "out": ""},
+            {"step": "awk 'BEGIN{FS=\":\"; OFS=\"~\";}{print $3,$4; }' /etc/passwd", "out":""},
+            {"step": "echo abcdefg|awk 'BEGIN {FS=\"\"}{for(a=NF;a>0;a--) printf(\"%s\",a==1?$a\"\\n\":$a)}' (revert a string)", "out":""},
+            {"step": "echo abcdefg|awk 'BEGIN {FS=\"\"}{for(a=NF;a>0;a--) printf(\"%c\", $a)} END{print\"\\n\"}' (revert a string)", "out": ""},
+            {"step": "echo abcdefg|awk 'BEGIN {FS=\"\"}{for(a=NF;a>0;a--) {if(a>3) printf(\"%c\", $a)}} END{print\"\\n\"}' (revert a string)", "out": ""},
+            {"step": "ss=abcdefg; echo ${ss: -5} (revert one string)", "out": ""},
+            {"step": "echo abcdefg|rev (revert one string)", "out": ""},
+            {"step": "echo \"100 1 100 1 100\"| awk 'BEGIN{FS=\" \"}{for(i=1;i<=NF;i++) arr[$i]++}END{for(i in arr) print arr[i],i}' (count repeat words)", "out": "2 1\n3 100"},
+            {"step": "echo \"sdsf sdsdfsad.amazonaws.com\"||awk -F\" \" '/amazonaws.com/{for (i=1;i<=NF;i++) if($i~/amazonaws.com/) print $i}'", "out": "sdsdfsad.amazonaws.com"},
+            {"step": "ss=abcdefg; echo ${ss//abc/xyz} (replace words in string)", "out": "xyzdefg"},
+            {"step": "awk 'BEGIN{FS=\"[^0-9]\";} /[0-9]$/ {print $NF}' /tmp/2 (search num)", "out": ""},
+            {"step": "awk '{print $NF}' /tmp/1 (print last column)", "out": ""},
+            {"step": "echo \"a b c\"|awk '{print NR,\"~\",NF}' (print line num and clumn count)", "out": "1 ~ 3"},
+            {"step": "IFS=\":\";export IFS;while read w y; do echo \"test $w\"; done </etc/passwd", "out": ""},
+            {"step": "awk '{if ($0~/^$/) print NR}' /tmp/1 (print line num of empty line)", "out": ""},
+            {"step": "echo $nvr | awk -F'.' '{print NF-1}'", "out": ""},
+            {"step": "echo $nvr|grep -o -e \"-[0-9]\\{1,3\\}.[0-9]\"", "out": ""}
+        ],
+        "tags": "bash, awk",
+        "comments": "",
+        "link": ""
+    },
+    "tip_63": {
+        "subject": "passwd change in one line",
+        "demo_steps": [
+            {"step": "echo $newpass|passwd $user --stdin" , "out": ""}
+        ],
+        "tags": "bash, passwd, password",
+        "comments": "",
+        "link": ""
+    },
+    "tip_64": {
+        "subject": "Linux installation boot options",
+        "demo_steps": [
+            {"step": "inst.ks=http://10.32.5.1/mnt/archive/RHEL-7/7.x/Server/x86_64/kickstarts/ks.cfg" , "out": ""},
+            {"step": "inst.repo=http://host/path" , "out": ""},
+            {"step": "inst.repo=cdrom" , "out": ""},
+            {"step": "inst.vnc" , "out": ""},
+            {"step": "inst.vncpassword=xxxxxx" , "out": ""}
+        ],
+        "tags": "boot, install, ks",
+        "comments": "",
+        "link": "https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/installation_guide/chap-anaconda-boot-options"
+    },
+    "tip_65": {
+        "subject": "Linux cockpit web console",
+        "demo_steps": [
+            {"step": "yum install -y cockpit cockpit-machines" , "out": ""},
+            {"step": "systemctl disable --now firewalld" , "out": ""},
+            {"step": "systemctl enable --now cockpit" , "out": ""},
+            {"step": "vist https://hostname:9090/" , "out": ""}
+        ],
+        "tags": "cockpit, management",
+        "comments": "",
+        "link": ""
+    },
+    "tip_66": {
+        "subject": "Python programming",
+        "demo_steps": [
+            {"step": "b=lambda x,y: x*y; b(4,5); equal to def <lambda>(parameters):\n    return expression" , "out": "20"},
+            {"step": "[x*2 for x in ['b','c']]" , "out": "['bb', 'cc']"},
+            {"step": "x=[('a',2),('b',1)];sorted(x,key=lambda x: x[0]);sorted(x,key=lambda x: x[1])" , "out": ""},
+            {"step": "d=[{'a':5,'b':8},{'a':6,'b':7}];sorted(d,key=lambda x: (x['a']), reverse=True);sorted(d,key=lambda x: (x['b']))" , "out": ""}
+        ],
+        "tags": "python, launguage, program",
+        "comments": "",
+        "link": "https://docs.python.org/3/"
+    },
+    "tip_67": {
+        "subject": "xen cfg example, xen configuration file",
+        "demo_steps": [
+            {"step": "boot=\"cdn\" (c: disk, d: cdrom, n: network)" , "out": ""},
+            {"step": "disk = [ 'DISKSPEC', 'DISKSPEC', ... ]" , "out": ""},
+            {"step": "disk = [ '/dev/vg/guest-volume,raw,hda,rw', '/root/image.iso,,hdc,cdrom' ]" , "out": ""},
+            {"step": "vif = [ \"mac=00:16:3d:fb:78:34,bridge=xenbr0,script=vif-bridge\" ]" , "out": ""},
+            {"step": "name = 'rhelx'\nmemory = 2048\nvcpus = 4\non_poweroff = 'destroy'\non_reboot = 'restart'\non_crash = 'restart'\nvnc = 1\nvnclisten = '0.0.0.0'\nvif = [ 'mac=00:16:3d:fb:78:24,bridge=xenbr0,script=vif-bridge' ]\nserial = 'pty'\nbuilder = 'hvm'\nboot = 'dc'\ndisk = [ 'format=raw,vdev=hda,access=rw,backendtype=qdisk,target=/home/rhel/RHEL-xxx.raw','/home/rhel/RHEL-xxx.iso,,hdc,cdrom' ]" , "out": ""},
+            {"step": "name = '7.9pv'\nkernel = '/home/rhel/boot/vmlinuz-3.10.0-1160.5.1.el7.x86_64'\nramdisk = '/home/rhel/boot/initramfs-3.10.0-1160.5.1.el7.x86_64.img'\nroot = '/dev/mapper/rhel_bootp--73--226--103-root'" , "out": ""}
+        ],
+        "tags": "xen, xl.cfg",
+        "comments": "",
+        "link": "https://xenbits.xen.org/docs/unstable/man/xl.cfg.5.html"
+    }
+}
