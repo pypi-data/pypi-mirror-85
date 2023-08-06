@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "pypi-client"
+version = "0.1.0"
+description = ""
+authors = ["Andrzej Bogdanowicz <bahdanovich@rtbhouse.com>"]
+
+packages = [
+    { include="pypi_client", from="." },
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+tabulate = "^0.8.7"
+requests = "^2.24.0"
+pypistats = "^0.12.1"
+lxml = "^4.6.1"
+diskcache = "^5.0.3"
+click = "^7.1.2"
+tqdm = "^4.51.0"
+appdirs = "^1.4.4"
+
+[tool.poetry.dev-dependencies]
+mypy = "^0.790"
+pylint = "^2.6.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+pypi-client = 'pypi_client.cli:cli'
