@@ -1,0 +1,85 @@
+Metadata-Version: 2.1
+Name: bhej
+Version: 0.1.6
+Summary: Share files like a dev.
+Home-page: https://bhej.dev
+License: MIT
+Keywords: filesharing,developer tools
+Author: ivraj
+Author-email: iseerha@gmail.com
+Requires-Python: >=3.6,<4.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Communications :: File Sharing
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Dist: python-magic (>=0.4.3,<0.5.0); sys_platform == "linux"
+Requires-Dist: python-magic-bin (==0.4.14); sys_platform == "win32" or sys_platform == "darwin"
+Requires-Dist: requests (>=2.24.0,<3.0.0)
+Requires-Dist: requests-toolbelt (>=0.9.1,<0.10.0)
+Requires-Dist: tqdm (>=4.51.0,<5.0.0)
+Requires-Dist: typer[all] (>=0.3.2,<0.4.0)
+Project-URL: Documentation, https://github.com/bhejdev/bhej-cli
+Project-URL: Repository, https://github.com/bhejdev/bhej-cli
+Description-Content-Type: text/markdown
+
+# bhej
+
+> Share files like a dev.
+
+## Installation
+
+To install this cli to your environment, just run...
+
+```[bash]
+pip install bhej
+```
+
+...and you're good to go!
+
+## Usages
+
+To upload a file, just run the following.
+
+```[bash]
+bhej up <filename>
+# You'll receive a 6 digit code to share.
+# You'll also get a link that you can directly download from.
+```
+
+To download a file, just run the following.
+
+```[bash]
+bhej down <code> # Use the 6 digit code from the upload step.
+```
+
+## Development
+
+Want to contribute? After cloning and `cd`-ing into the project directory,
+you can run the following to get set up.
+
+```[bash]
+poetry shell    # Sets up virtual environment.
+poetry install  # Installs dependencies.
+which bhej      # Should return your local version of the CLI.
+```
+
+### Deploying to PyPi
+
+To deploy to Test PyPi, run `poetry run deploy_staging`. To deploy to the Prod PyPi, run `poetry run deploy_prod`.
+
+To install it from Test PyPi, run the following.
+
+```[bash]
+pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple bhej
+```
+
+To install from Prod PyPi, run `pip install bhej`.
+
