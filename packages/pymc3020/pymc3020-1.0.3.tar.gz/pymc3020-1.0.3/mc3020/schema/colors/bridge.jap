@@ -1,0 +1,57 @@
+.//============================================================================
+.// Description:
+.// ƒhƒ?ƒCƒ“ŠÔ‚ÌƒuƒŠƒbƒW‚É‘Î‚·‚é?F‚Ã‚¯ƒtƒ@ƒCƒ‹‚Å‚·?B
+.//
+.//============================================================================
+.//
+.//============================================================================
+.// Notes:
+.// (1) ?F•t‚¯‚Íarchetype function invocation(s)‚Ìƒtƒ@ƒCƒ‹‚Ì’†‚ÅŽw’è‚³‚ê‚Ü‚·?B
+.//     •K‚¸‚P?s‚É‹L?q‚·‚é‚±‚Æ?BŠeŠÖ?”‚Ì“ü—Íƒpƒ‰ƒ??[ƒ^‚Í‘S‚Ä’è‹`‚·‚é‚±‚Æ?B
+.//     .invoke‚ÅŽn‚Ü‚é?F•t‚¯’è‹`•¶’†‚É‰ü?s‚ð“ü‚ê‚È‚¢‚±‚Æ?B
+.// (2) •¶Žš—ñƒpƒ‰ƒ??[ƒ^‚Í?A‘å•¶Žš?E?¬•¶Žš‚Ìˆá‚¢‚ª‚ ‚é?B
+.// (3) .// ‚ÅŽn‚Ü‚é?s‚ªƒRƒ?ƒ“ƒg‚Æ‚È‚é?B
+.// (4) –{ƒtƒ@ƒCƒ‹’†‚É‚Í‹ó”’?s‚ð“ü‚ê‚È‚¢‚±‚Æ?B
+.//============================================================================
+.//
+.//
+.//============================================================================
+.// “¯ŠúƒT?[ƒrƒXŠÖ?”‚Ì“o˜^:
+.//
+.// ƒ‚ƒfƒ‹?EƒRƒ“ƒpƒCƒ‰?[‚É?AŠ„‚è?ž‚Ýƒnƒ“ƒhƒ‰?[‚ ‚é‚¢‚Í‘¼‚Ì”ñ“¯Šú?ˆ—?‚©‚ç‚Ì
+.// ŽÀŽ{‚ðSynchronous Service‚Å’è‹`‚µ‚Ü‚·?B 
+.// ŠeSynchronous Service–ˆ‚É1‚Â‚Ì’è‹`•¶‚ÅŽw’è‚·‚é?B
+.//
+.// TagSyncServiceSafeForInterrupts( "component", "sync_service" )
+.//
+.// ƒpƒ‰ƒ??[ƒ^“ü—Í‚ÍŽŸ‚Ì’Ê‚è‚Å‚·:
+.//   component = xtUMLƒhƒ?ƒCƒ“–¼(“o˜^–¼)?B
+.//   sync_service = “¯ŠúƒT?[ƒrƒX–¼
+.//
+.// Example:
+.//  .invoke TagSyncServiceSafeForInterrupts( "ILB", "PumpReady" )
+.//============================================================================
+.//
+.//
+.//============================================================================
+.// Mark Message as Safe for Interrupt Execution:
+.//
+.// To indicate to the model compiler that a message may be invoked in a
+.// manner safe for invocation from an interrupt handler or other asynchronous
+.// activation (one for each message):
+.//
+.// MarkMessageSafeForInterrupts( "component", "port", "message" )
+.//
+.// Where the input parameters are:
+.//   component = xtUML component name
+.//   port = name of the port in which message is found
+.//   message = name of message
+.//
+.// Example:
+.//  .invoke MarkMessageSafeForInterrupts( "Tracking", "UI", "StartStopPressed" )
+.//============================================================================
+.//
+.//
+.//============================================================================
+.// Do not add anything at the end of this file!
+.//============================================================================
