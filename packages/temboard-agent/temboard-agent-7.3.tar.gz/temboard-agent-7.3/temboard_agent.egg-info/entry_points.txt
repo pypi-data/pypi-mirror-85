@@ -1,0 +1,15 @@
+[console_scripts]
+temboard-agent = temboardagent.scripts.agent:main
+temboard-agent-adduser = temboardagent.scripts.adduser:main
+temboard-agent-password = temboardagent.scripts.password:main
+temboard-agent-register = temboardagent.scripts.register:main
+
+[temboardagent.plugins]
+activity = temboardagent.plugins.activity:ActivityPlugin
+administration = temboardagent.plugins.administration:AdministrationPlugin
+dashboard = temboardagent.plugins.dashboard:DashboardPlugin
+maintenance = temboardagent.plugins.maintenance:MaintenancePlugin
+monitoring = temboardagent.plugins.monitoring:MonitoringPlugin
+pgconf = temboardagent.plugins.pgconf:PgConfPlugin
+statements = temboardagent.plugins.statements:StatementsPlugin
+
