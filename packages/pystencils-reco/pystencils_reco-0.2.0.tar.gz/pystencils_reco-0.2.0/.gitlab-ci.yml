@@ -1,0 +1,60 @@
+full:
+  stage: test
+  image: i10git.cs.fau.de:5005/pycodegen/pycodegen/full
+  script:
+    - apt install -y ninja-build
+    - python -m pip install -e ".[all]"
+    - python -m pip install git+https://i10git.cs.fau.de/seitz/pystencils.git
+    - pytest
+    - python setup.py doctest
+  tags:
+    - docker
+    - cuda
+  artifacts:
+    when: always
+    paths:
+      - test-report
+      - htmlcov
+
+pytorch_tests:
+  stage: test
+  image: i10git.cs.fau.de:5005/pycodegen/pycodegen/full
+  variables:
+    PYTORCH_TEST: "TRUE"
+  script:
+    - apt install -y ninja-build
+    - python -m pip install -e ".[all]"
+    - python -m pip install git+https://i10git.cs.fau.de/seitz/pystencils.git
+    - pytest tests/test_pytorch.py
+  tags:
+    - docker
+  artifacts:
+    when: always
+    paths:
+      - test-report
+      - htmlcov
+
+# -------------------- Linter & Documentation --------------------------------------------------------------------------
+
+flake8-lint:
+  stage: test
+  except:
+    variables:
+      - $ENABLE_NIGHTLY_BUILDS
+  image: i10git.cs.fau.de:5005/pycodegen/pycodegen/full
+  script:
+    - flake8 src
+  tags:
+    - docker
+
+build-documentation:
+  stage: test
+  image: i10git.cs.fau.de:5005/pycodegen/pycodegen/full
+  script:
+    - python -m pip install -e .
+    - python setup.py docs
+  tags:
+    - docker
+  artifacts:
+    paths:
+      - build/sphinx/html
