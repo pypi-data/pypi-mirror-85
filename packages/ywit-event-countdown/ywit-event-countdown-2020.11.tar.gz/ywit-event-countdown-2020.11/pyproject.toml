@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "ywit-event-countdown"
+version = "2020.11"
+description = "This library and application will tell you how long until NetAp's next YWIT event"
+license = "MIT"
+authors = ["NetApp <ng-ywit-questions@netapp.com>"]
+readme = "README.md"
+
+homepage = "https://github.com/NetApp-YWIT/ywit_2020_ci_cd_workshop"
+repository = "https://github.com/NetApp-YWIT/ywit_2020_ci_cd_workshop"
+documentation = "https://netapp-ywit.github.io/ywit_2020_ci_cd_workshop"
+
+packages = [
+    { include = "ywit_event_countdown" },
+    { include = "tests", format = "sdist" },
+]
+
+[tool.poetry.dependencies]
+python = ">=3.6"
+requests = "^2.25.0"
+
+[tool.poetry.dev-dependencies]
+pylint = "^2.5.2"
+pytest = "^5.4.2"
+pytest-cov = "^2.8.1"
+sphinx = "^3.0.3"
+sphinx-rtd-theme = "^0.4.3"
+sphinxcontrib-apidoc = "^0.3.0"
+
+[tool.poetry.scripts]
+ywit-countdown = "ywit_event_countdown.cli:main"
