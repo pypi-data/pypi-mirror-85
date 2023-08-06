@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: evernote2
+Version: 1.9.1
+Summary: another Evernote SDK for Python
+Home-page: https://github.com/JackonYang/evernote-sdk-python
+Author: Jackon Yang
+Author-email: i@jackon.me
+License: BSD
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: thrift
+Requires-Dist: oauth2
+
+Evernote SDK for Python
+============================================
+
+## Why this fork?
+
+1. there are 2 versions of official evernote sdk for python, neither works well for python3
+
+    - https://github.com/evernote/evernote-sdk-python3: Evernote API version 1.25. declared "This is a test SDK!"
+    - https://github.com/evernote/evernote-sdk-python: Evernote API version 1.28. python2 only
+
+2. no requirements.txt and not released to pypi officially.
+3. the example code and docs on dev.evernote.com / dev.yinxiang.com are out of date
+
+
+the python2 sdk is version 1.28, seems higher than python3(1.2.5).
+
+Goal:
+
+1. evernote SDK for Python3
+2. good example code
+3. release to pypi
+
+
+## Plans
+
+
+#### version 2.0.0 - Work In Progress
+
+- [ ] API: list notebooks
+- [ ] API: get note metadata
+- [ ] API: get note content
+- [ ] add requirements.txt
+- [ ] release to pypi
+
+#### version 1.9.x - env and workflow setup
+
+- [x] import evernote module and run hello world
+- [x] unittest workflow
+- [ ] workflow of release to pypi
+- [x] test coverage
+
+
