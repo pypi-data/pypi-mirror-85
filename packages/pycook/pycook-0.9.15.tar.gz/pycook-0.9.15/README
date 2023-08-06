@@ -1,0 +1,224 @@
+* Introduction     -*- mode: org -*-
+The traditional =Makefile= is replaced by =Cookbook.py=. Use =cook= in place
+of =make=.
+
+This results in a lot of flexibility, because the new "Makefile" is
+scripted in a full-featured language - Python.
+
+- Recipe :: the equivalent of a Makefile's rule
+  - A Python function that takes a single argument called =recipe= and
+    returns a vector of strings - a sequence of commands to run.
+
+* Installing
+Install for user (ensure file:~/.local/bin is in your =PATH=):
+#+begin_src sh
+pip3 install --upgrade pycook
+# or system-wide: sudo pip3 install --upgrade pycook
+#+end_src
+
+To hook up bash completion for =cook=, add to your file:~/.bashrc:
+#+begin_src sh
+. ~/.local/cook/bash-completion.sh
+# or system-wide: . /usr/local/cook/bash-completion.sh
+#+end_src
+
+* Running recipes
+You can run the recipes with =cook <recipe>=.
+
+Minimal =Cookbook.py= example:
+#+begin_src python
+#* Recipes
+def files_in_dir(recipe):
+    return ["ls"]
+
+def files_in_parent_dir(recipe):
+    res = ["cd .."]
+    res += ["find ."]
+    return res
+
+def last_commit(recipe):
+    return ["git rev-parse HEAD"]
+#+end_src
+
+Runing e.g.:
+#+begin_src sh
+cook files_in_dir
+#+end_src
+
+will call:
+#+begin_src python
+from Cookbook import *
+bash(files_in_dir(42))
+#+end_src
+
+* Running global recipes
+You can also run "global" recipes, which are installed together with
+=pycook=.
+
+As example of a recipe without args, this will show you your current
+IP address:
+#+begin_src sh
+cook :net ip
+#+end_src
+
+
+Here's a recipe with args, and the equivalent =sed= command:
+#+begin_src sh
+echo foo:bar:baz | cook :str split :
+echo foo:bar:baz | sed -e 's/:/\n/g'
+#+end_src
+
+Both commands have the same length, but:
+
+- =sed= is more generic, harder to remember, harder to get right off the
+  bat
+- =cook= is less generic, but easy to remember and discoverable
+
+All global recipes start with =cook :=. Pressing ~TAB~ after that should
+show all available recipe modules, like e.g. =str= or =net= or =pip= etc.
+
+After selecting a module, pressing ~TAB~ should show all available
+recipes within the module.
+
+Finally, you enter the arguments to the recipe if it has any.
+
+* Running user recipes
+Users can add to the global recipes list by placing Python files in
+=~/.cook.d/=.
+
+Example, =~/.cook.d/foo.py=:
+
+#+begin_src python
+def bar(recipe):
+    print("Hello, World!")
+#+end_src
+
+You can run it like this:
+#+begin_src sh
+cook :foo bar
+#+end_src
+
+* Automatic logging
+=cook= can automatically log your =stdout= to a file with a
+timestamped name in a location you specify.
+
+To make use of this, create a file =~/.cook.d/__config__.py= with the following contents:
+
+#+begin_src python
+config = {
+    "*": {
+        "tee": {
+            "location": "/tmp/cook"
+        }
+    }
+}
+#+end_src
+
+Here, the inital ="*"= is used to select all books. It's possible to
+customize each book separately by using the file name as a key.
+
+* Elisp completion
+It's actually much more convenient to use =cook= from Emacs.
+
+The main advantage is that Emacs will find the appropriate Cookbook.py from anywhere in
+the project.
+
+The secondary advantages are:
+- better completion for recipe selection
+- the selected recipe is run in =compilation-mode=, which connects any
+  errors or warings to locations in a project.
+- the selected recipe is run in a buffer named after the recipe
+- works with TRAMP, so the recipes from remote cookbooks will be run
+  remotely.
+
+~M-x cook~ will:
+
+- go recursively up from the current directory until a cookbook is
+  found
+- parse the cookbook for recipes
+- offer the list of recipes
+- run the seleted recipe in =compilation-mode=
+
+I'm using this binding:
+#+begin_src elisp
+(global-set-key [f6] 'cook)
+#+end_src
+
+** Elisp completion in =shell=
+Thanks to [[https://github.com/szermatt/emacs-bash-completion][bash-completion.el]], the completion in =M-x shell= works nicely as well.
+
+I especially like completion for:
+#+begin_src sh
+cook :apt install python-
+#+end_src
+
+Thanks to =ivy-mode=, I can easily select from 3805 packages in Ubuntu that with "python-".
+One extra plus of =cook :apt install= over =apt-get install= is that it will not ask for =sudo=
+if it's not required (i.e. when the package is already installed).
+
+* Custom recipe completion
+For recipes can have extra arguments:
+#+begin_src python
+def file_to_package(recipe, fname):
+    return ["dpkg -S " + fname]
+#+end_src
+
+You can call them like this:
+#+begin_src sh
+cook :dpkg file_to_package /usr/bin/python
+#+end_src
+
+While getting completion for the =:dpkg= and =file_to_package= parts is automatic, for the
+third argument it's not, since it could be anything. However, in this case, since the
+argument is named =fname=, an automatic file name completion is provided.
+
+Here's how to implement a manual file name completion:
+#+begin_src python
+def file_to_package(recipe, fname):
+    if type(recipe) is int:
+        return ["dpkg -S " + fname]
+    elif recipe[0] == "complete":
+        return el.sc("compgen -o filenames -A file " + recipe[1])
+#+end_src
+
+The use of =compgen= isn't mandatory: all it does is return a string of the possible
+completions separated by newlines.
+
+* Useful Python tricks for Cookbook.py
+
+** Don't write recipes if you can import them
+For example, here's this repo's Cookbook.py:
+#+begin_src python
+from pycook.recipes.pip import clean, sdist, reinstall, publish
+from pycook.recipes.emacs import byte_compile as emacs_byte_compile
+
+def lint(recipe):
+    return ["pylint pycook/"]
+#+end_src
+
+** Generate recipes using function-writing functions
+#+begin_src python
+import shlex
+
+def open_in_firefox(fname):
+    def result(recipe):
+        return ["firefox " + shlex.quote(fname)]
+    return result
+
+open_README = open_in_firefox("README")
+open_Cookbook = open_in_firefox("Cookbook.py")
+#+end_src
+
+** Remove a recipe temporarily
+Obviously, you can comment it out. But a faster approach is to delete its variable.
+#+begin_src python
+def dont_need_it_this_month(recipe):
+    # ...
+    return
+
+del dont_need_it_this_month
+#+end_src
+
+** Alternatives
+
+- [[https://www.fabfile.org/][Fabric]]/[[https://www.pyinvoke.org/][Invoke]]
