@@ -1,0 +1,60 @@
+
+{% extends "base.html" %}
+{% block title %}BASE{% endblock %}
+
+<!-- CSS Code -->
+{% block style_css %}{% endblock %}
+{% block modulestyle_css %}
+{% endblock %}
+<!-- JavaScript Code -->
+{% block js_code %}
+<script>
+$(document).ready(function(){
+  $('#syncDB').on('click', function (){
+    $.ajax({
+      url: '/pedidos/syncdb/',
+      success: function(data){
+        alert('Sincronización completa')
+        console.log(data);
+      }
+    });
+  });
+});
+</script>
+{% endblock %} 
+{% block selected_module %} Microsip {% endblock %}
+{% block breadcrumb %}
+{{ block.super }}
+<li><a href="/pedidos/">Pedidos</a></li>
+{% endblock %}
+{% block tools-module %}
+
+<!-- <li ><a tabindex="-1" href="/pedidos/lista_pedidos/"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Lista Pedidos</a></li>  -->
+{%if request.user.is_staff %}
+<li class="dropdown">
+    <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-cog"></i> Opciones <b class="caret"></b></a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+      <li ><a tabindex="-1" href="/pedidos/lista_vendedores/"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Lista vendedores</a></li>  
+      <!-- <li ><a tabindex="-1" href="/administrador/usuario_cliente/"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Usuarios Clientes</a></li>   -->
+      <li ><a tabindex="-1" href="/pedidos/preferencias/"><i class="glyphicon glyphicon-wrench"></i>&nbsp;Preferencias</a></li>  
+      <li class="bg-danger"><a id="syncDB" tabindex="-1" href="/pedidos/actualiza_base_datos/"><i class="glyphicon glyphicon-refresh"></i>&nbsp;Sincronizar BD</a></li>   
+    </ul>
+</li>
+<li class="dropdown hidden">
+    <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-cog"></i> REPORTES <b class="caret"></b></a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+      <li ><a tabindex="-1" href="/pedidos/preferencias/"><i class="glyphicon glyphicon-wrench"></i>&nbsp;</a></li>  
+    </ul>
+</li>
+{%endif%}
+<!-- <li class="dropdown">
+    <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-cog"></i> Solicitud <b class="caret"></b></a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+      <li ><a tabindex="-1" href="/pedidos/pedido_solictud/"><i class="glyphicon glyphicon-more"></i>&nbsp;Nueva Soloicitud</a></li>
+      <li ><a tabindex="-1" href="/pedidos/lista_solicitudes/"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Lista solicitudes</a></li>  
+    </ul>
+</li> -->
+{% endblock %}
+{% block content %}
+
+{% endblock %}

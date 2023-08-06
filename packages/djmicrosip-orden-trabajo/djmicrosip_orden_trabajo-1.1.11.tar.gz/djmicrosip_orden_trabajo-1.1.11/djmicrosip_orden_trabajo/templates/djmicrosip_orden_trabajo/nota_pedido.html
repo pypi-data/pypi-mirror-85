@@ -1,0 +1,181 @@
+{% block title %}{% endblock %}
+
+<!-- CSS Code -->
+{% block style_css %}
+<style type="text/css">
+	body{
+		font-family: sans-serif;
+		font-size: 14px;
+	}
+	label{
+		    width: 100%;
+		    font-weight: bold;
+		    color: #000000;
+	}
+	p{
+		margin: 0;
+	}
+	h4{
+		margin: 0;
+	}
+	.hidden{
+		width: 50%;
+	}
+	td{
+		padding: 4.5px;
+  		vertical-align: top;
+	}
+	.table-cliente td{
+		border-top: 1px solid #1f212f;
+	}
+	.table-cliente td{
+		padding: 2.5px;
+		vertical-align: middle;
+	}
+	.table-articulos td{
+		border: 1px solid #1f212f;
+		border-radius: 4px;
+	}
+</style>
+{% endblock %}
+<!-- JavaScript Code -->
+{% block js_code %}
+<script>
+	function change_firma() {
+			
+	}
+</script>
+{% endblock %}
+
+{% block content %}
+<!--     <div class="hidden-print" style="padding-left: 15px;">
+    	<a style="font-size: 2rem;" href="/pedidos/" class="glyphicon glyphicon-home" aria-hidden="true"></a>
+    </div> -->
+<div style="  padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;">
+    <table>
+    	<thead>
+    		<td style="width: 20%;">
+    			<img src="{{logo}}" width="auto" height="auto">
+    		</td>
+    		<td style="width: 60%; text-align: center;">
+    			<h4>{{empresa.nombre}}</h4>
+				<p>{{empresa.calle}}  {{empresa.num_ext}} {{empresa.colonia}}</p>
+				<p><strong>Tel.</strong> {{empresa.telefono1}}  {{empresa.telefono2}} <strong>E-mail</strong> {{empresa.email}}</p>
+				<p>{{empresa.poblacion}}</p>
+    		</td>
+    		<td style="width: 20%;">
+    			
+    		</td>
+    	</thead>
+    </table>
+
+	<br>
+	<div style=" display: flex; height: 2vh; padding-left: 1%; padding-right: 1%;">
+		<p>{{empresa.nombre}} &nbsp;&nbsp;&nbsp;&nbsp;<strong>RFC</strong> {{empresa.rfc}} &nbsp;&nbsp;&nbsp;&nbsp;<strong>CURP</strong> {%if empresa.curp%}{{empresa.curp}}{%endif%}</p>
+	</div>
+
+	<table class="table-cliente">
+		<thead>
+			<tr>
+				<td style="width: 65%; border-left: 1px solid #1f212f;">
+					<label>Cliente</label>
+				</td>
+				<td style="width: 25%;">
+					<label>Fecha</label>
+				</td>
+				<td style="width: 10%; border-right: 1px solid #1f212f;">
+					<label>Folio</label>
+				</td>
+			</tr>
+			<tr>
+				<td style="width: 65%; border-left: 1px solid #1f212f;">
+					{{venta.cliente}}
+				</td>
+				<td style="width: 25%;">
+					{{venta.fecha|date:"d/m/Y"}}
+				</td>
+				<td style="width: 10%; border-right: 1px solid #1f212f;">
+					{{venta.folio}}
+				</td>
+			</tr>
+		</thead>
+	</table>
+	
+	<table class="table-articulos">
+		<thead>
+			<tr>
+				<td style="width: 20%;"><label>Clave</label></td>
+				<td style="width: 40%;"><label>Articulo</label></td>
+				<td style="width: 12%; text-align: right;"><label>Unidades</label></td>
+				<td style="width: 12%; text-align: right;"><label>Precio U.</label></td>
+				<td style="width: 16%; text-align: right;"><label>Precio Neto</label></td>
+			</tr>
+
+		</thead>
+		<tbody>
+			{% for detalle in venta_detalles%}
+			<tr>
+				<td style="width: 20%;">{{detalle.articulo_clave}}</td>
+				<td style="width: 40%;">
+					{{detalle.articulo}}<br>
+					{% if detalle.notas %}<strong>{{detalle.notas}} </strong> {% endif%}
+				</td>	
+				<td style="width: 12%; text-align: right; vertical-align: middle;">{{detalle.unidades|floatformat:0}}</td>	
+				<td style="width: 12%; text-align: right;">{{detalle.precio_unitario|floatformat:2}}</td>	
+				<td style="width: 16%; text-align: right;">{{detalle.precio_total_neto|floatformat:2}}</td>	
+			</tr>
+			{%endfor%}
+		</tbody>
+	</table>
+	<table style="">
+			<tr>
+				<td style="width: 20%; border: 1px solid #000;">
+					<strong>{{pedido.tipo_servicio}}</strong>
+					<div >{{venta.vendedor}}</div>
+				</td>
+				
+				<td style="width: 80%; border: 1px solid #000;">
+					{% if venta.descripcion %}
+					{{venta.descripcion}}
+					{% endif%}
+				</td>
+				
+			</tr>
+			
+	</table>
+	<table>
+		<tr>
+			<td style="width: 25%; text-align: right;">
+				
+			</td>
+			<td style="width: 50%;">
+				<div >					
+					<img id="firma_image" src="{{MEDIA_URL}}\{{pedido.firma}}" width="auto" height="auto" >				
+				</div>
+
+			</td>
+			<td style="width: 25%; text-align: right; padding-bottom: 20px;">
+				<label>Importe</label><br>{{venta.importe_neto}}
+			</td>
+		</tr>
+		<tr id="firma">
+			<td style="width: 25%; text-align: right;">
+			</td>
+			<td  style="width: 50%;">
+				<div style="width: 50%;  text-align: center; border-top: 1px solid #000;">
+					<label id="firma_label" style="width: 100%;">Firma de conformidad</label>
+				</div>
+			</td>
+			<td style="width: 25%; text-align: right;">
+				
+			</td>
+		</tr>
+
+	</table>
+
+</div>
+
+{% endblock %}

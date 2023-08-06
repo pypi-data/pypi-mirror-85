@@ -1,0 +1,332 @@
+{% extends 'djmicrosip_orden_trabajo/base.html' %}
+{% block title %}
+CRM
+{% endblock %}
+{% block style_css %}
+<style type="text/css"> 
+.delete-row {
+    font-size: 2rem;
+    text-align: center;
+    position: relative;
+    float: right;
+}
+.add-row{
+    font-size: 4rem;
+    padding-left: 20px;
+    float: right;
+    font-weight: bold;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 1px 3px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border-radius: 0px;
+}
+.lbl{
+	display: none;
+}
+.fila{
+	 margin: 5px;
+	 padding: 5px;
+	 border-bottom:  1px solid #ccc;
+}
+.hardware ul{
+    list-style: none;
+    padding: 0;
+}
+textarea{
+   width:auto;
+   height: auto;
+}
+@media screen and (max-width: 770px) {
+  a{
+    font-size: 20px;
+  }
+  body{
+    font-size: 20px;
+  }
+  input{
+    font-size: 20px;
+  }
+  .btn{
+    font-size: 20px;
+  }
+  .steps {
+    width: 100%;
+    margin-right: -15px;
+    margin-left: -15px;
+    display: table;
+  }
+  .lbl{
+  	display: block;
+  }
+  .fila{
+  	border:  1px solid #ccc;
+  }
+  .header{
+  	display: none;
+  }
+  .form-control{
+  	padding: 3px 6px;
+    font-size: 20px;
+  }
+  .col-md-8{
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+  .mobile{
+    display: none;
+  }
+  .inf_cliente{
+    display: none;
+  }
+  #detalles_extra{
+    display: none;
+  }
+  .si_llamada{
+    display: none;
+  }
+}
+</style>
+{{ form.media.css }}
+{% endblock %}
+
+<!-- JavaScript Code -->
+{% block js_code %}
+{% include 'autocomplete_light/static.html' %}
+<script src='{{STATIC_URL}}js/jquery.formset.js'></script>
+<script src='{{STATIC_URL}}djmicrosip_orden_trabajo/js/pedido.js?v=1.0.46'></script>
+<script type="text/javascript">
+
+	$(function() {
+		$('.formset_row-{{ formset.prefix }}').formset({
+			addText: '+',
+			deleteText: '',
+			prefix: '{{ formset.prefix }}',
+			added: foco_detalle,
+			removed: total,
+		});
+	});
+	$(function () {
+	  $('[data-toggle="tooltip"]').tooltip();
+      // $('#id_cliente').select2();
+	});
+</script>
+{{ form.media.js }}
+{% endblock %}
+{% block breadcrumb %}
+{{ block.super }}
+<li><a>PEDIDO</a></li>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+        
+    
+<form method="post" class="form" action=""  enctype='multipart/form-data'>
+  {% csrf_token %}    
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        {{ form.errors }}
+    	
+                <div class="col-lg-3 col-md-3 col-sm-2 col-xs-5 hidden">
+                    <label>Clave</label>
+                    {{form.cliente_clave}}{{ form.media.css }}
+                </div>
+        		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            		<label>Cliente</label>
+            		{{form.cliente}}
+                </div>
+
+                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                    <label>Tipo</label>
+                    {{form_crm.tipo_servicio}}
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 si_llamada">
+                    <label>Llamada</label>
+                    <br>
+                    {{form_crm.llamada}}
+                </div>
+                <div id="tipo_llamada" class="col-lg-2 col-md-2 col-sm-6 col-xs-6 hidden">
+                    <label>La llamada quedo </label>
+                    <br>
+                    {{form_crm.tipo_llamada}}
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 si_preprogramado">
+                    <label>Preprogramado</label>
+                    <br>
+                    {{form_crm.preprogramado}}
+                </div>
+                <div id="fecha" class="col-lg-2 col-md-2 col-sm-6 col-xs-6 hidden">
+                    <label>Fecha</label>
+                    <br>
+                    {{form_crm.fecha_registro}}
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden">
+                    <div class="inf_cliente">
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6">
+                            <label>Direcciones</label>
+                            {{form.cliente_direccion}}
+                        </div>          
+                    
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                            <label>Condiciones</label>
+                            {{form.condicion_pago}}                
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5">
+                            <label>Descuento tipo</label>
+                            {{form.descuento_tipo}}
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-7">
+                            <label id="lbl_descuento_porcentaje">Descuento Porcentaje</label>
+                            {{form.descuento_porcentaje}}
+                            <label id="lbl_descuento_importe">Descuento Importe</label>
+                            {{form.descuento_importe}}
+                        </div>
+                    
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <label>Moneda</label>
+                            {{form.moneda}}
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <label>Almacen</label>
+                            {{form.almacen}}
+                        </div>
+                    </div>
+            		{{form.descripcion}}
+            		{{form.tipo_cambio}}
+            		{{form.direccion_consignatario}}
+                </div>
+    </div>
+    <br>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="detalles_extra">
+        {{form_crm.errors}}
+        <div class="col-sm-4">
+            <label>Descripcion</label><textarea class="form-control" cols="40" rows="3" id="descripcion_compra"></textarea>
+        </div>
+        <div class="col-sm-3 hardware">
+            <label>Hardware</label>{{form_crm.hardware}}
+        </div>
+        <div class="col-sm-3">
+            <label id="lblOtros">Otros</label>{{form_crm.descripcion_otros}}
+        </div>
+    	<input class="hidden" type="text" value="{{articulo_id}}" name="" id="articulo_id">
+        
+    </div>
+
+</div>
+<br>
+<div id="listas_detalle"  class="hidden row">
+
+     <div class="row fila header">
+     	<div class="col-lg-1 col-md-1 col-xs-4 col-sm-1"> 
+     		<label class="hidden">Clave</label>
+            <label>Unidades</label>
+     	</div>
+     	<div class="mobile">	
+     	<div class="col-lg-2 col-md-2 col-xs-8 col-sm-2"> 
+     		<label>Articulo</label>
+     	</div>
+		</div>
+		<div class="mobile">
+
+     	<div class="col-lg-1 col-md-1 col-xs-3 col-sm-1"> 
+     		<label>Precio</label>
+     	</div>
+     	<div class="col-lg-1 col-md-1 col-xs-3 col-sm-1"> 
+     		<label>Descuento</label>
+     	</div>
+     	<div class="col-lg-1 col-md-1 col-xs-3 col-sm-1"> 
+     		<label>Importe</label>
+     	</div>
+     	</div>
+		<div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+            <label>Notas</label>
+     	</div>
+     </div>
+	{{ formset.management_form }}
+	{% for form in formset.forms %}
+     <div class="row formset_row-{{ formset.prefix }} fila">
+     	{% for hid in form.hidden_fields %} {{hid}}{% endfor %} 
+           {{ form.errors }}
+     	<div class="steps">	
+        <div class="col-lg-1 col-md-1 col-xs-4 col-sm-1"> 
+            <label class="lbl">Unidades</label>
+            {{ form.unidades }}
+        </div>
+     	<div class="col-lg-1 col-md-1 col-xs-4 col-sm-1 hidden"> 
+     		<label class="lbl">Clave</label>
+     		{{ form.articulo_clave }}
+     	</div>
+     	<div class="col-lg-2 col-md-2 col-xs-8 col-sm-2"> 
+     		<label class="lbl">Articulo</label>
+     		{{ form.articulo }}
+     	</div>
+		</div>
+		<div class="steps mobile">
+
+     	<div class="col-lg-1 col-md-1 col-xs-3 col-sm-1"> 
+     		<label class="lbl">Precio</label>
+     		{{ form.precio_unitario }}
+     	</div>
+     	<div class="col-lg-1 col-md-1 col-xs-3 col-sm-1"> 
+     		<label class="lbl">Descuento</label>
+     		{{ form.descuento_porcentaje }}
+     	</div>
+     	<div class="col-lg-1 col-md-1 col-xs-3 col-sm-1"> 
+     		<label class="lbl">Importe</label>
+     		{{ form.precio_total_neto }}
+     	</div>
+     	</div>		
+		<div class="col-lg-6 col-md-6 col-xs-12 col-sm-12"> 
+			<label class="lbl">Nota</label>
+			<div style="display: flex;">
+			<!-- <input type="checkbox" class="hidden-print si_nota si_{{form.id}}" > -->
+			{{ form.notas }}
+			</div>
+     	</div>
+     	<div>{% if form.instance.pk %}{{ form.DELETE }}{% endif %}</div>
+     </div>
+     {% endfor %}
+</div>
+<br>
+<div id="importes" class="row hidden" >
+	<div class="col-md-2 hidden">
+
+		<label>Importe</label>
+		<input type="text" readonly="" value="0" id="importe_sin_descuento" class="form-control text-right">
+		<br>
+		<br>
+		<label >Descuento Importe</label>
+		<input type="text" readonly="" value="0" id="descuento_importe" class="form-control text-right">
+		<br>
+		<br>
+		<label>Importe Neto</label>
+		{{form.importe_neto}}
+	</div>	
+    <div class="col-md-8">
+        
+    </div>
+	<div class="col-md-2">
+		
+	</div> 
+	<div class="col-md-2">
+		<input style="float: right;" type="submit" class="btn btn-primary" value="Guardar"  id="guardar" />
+        <a style="float: right;" href="/pedidos/" class="btn btn-default" >Regresar<a/>
+	</div>
+</div>
+
+</form>
+</div>
+</div>
+</div>
+{% endblock %}

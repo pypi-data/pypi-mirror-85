@@ -1,0 +1,109 @@
+{% extends 'djmicrosip_orden_trabajo/base.html' %}
+{% block title %}
+CRM
+{% endblock %}
+{% block style_css %}
+<link rel="stylesheet" href="{{STATIC_URL}}djmicrosip_orden_trabajo/css/pedido.css">
+{% endblock %}
+{% block js_code %}
+<script async src='{{STATIC_URL}}djmicrosip_orden_trabajo/js/index.js?v=1.0.65'></script>
+
+{% endblock %}
+{% block content %}
+<div class="banner_carga hidden">
+  <label style="text-align: center;">Enviando correo...</label>
+<div id="contenedor" style="display: flex; justify-content: center; ">
+      <div class="loader" id="loader"></div>  
+</div>
+</div>
+<div class="row all_">
+    <h1>Orden de Trabajo
+    <a href="/pedidos/pedido/0/" class="btn btn-default hidden-print">New</a>
+  </h1>
+  <div class="row">
+    <form method="post" class="form" action=""  enctype='multipart/form-data'>
+      {% csrf_token %}    
+      {{ form_busqueda.errors }}
+      <div class="row">
+      <div class="col-lg-12">
+        <div class="col-lg-12">
+        <div class="steps">
+          <div class="col-lg-3 col-md-3 col-xs-6 col-sm-6"><label>Busqueda</label>{{ form_busqueda.busqueda }}</div>
+          <div class="col-lg-1 col-md-1 col-xs-6 col-sm-6"><label>Llamada</label>{{ form_busqueda.llamada }}</div>
+        </div>
+        <div class="steps">
+          <div class="col-lg-2 col-md-2 col-xs-6 col-sm-6"><label>Tipo</label>{{form_busqueda.tipo_documento}}</div>
+          <div class="col-lg-2 col-md-2 col-xs-6 col-sm-6"><label>Filtro</label>{{form_busqueda.filtro}}</div>
+          <div class="col-lg-1 col-md-1 col-xs-4 col-sm-4"><label>Fecha inicio</label>{{ form_busqueda.inicio }}</div>
+          <div class="col-lg-1 col-md-1 col-xs-4 col-sm-4"><label>Fecha fin</label>{{ form_busqueda.fin }}</div>
+          <div class="col-lg-1 col-md-1 col-xs-4 col-sm-4"><label></label><button class="btn btn-success" value="Buscar"  id="guardar">Buscar</button></div>
+        </div>
+        </div>
+      </div>
+      </div>
+    </form>
+  </div>
+    <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8" align="center">
+      <div class="pagination">
+          <span class="step-links">         
+                            
+          </span>
+      </div>
+
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+<div id="listas_detalle"  class="">
+    <br>
+    <br>
+    <br>
+{% for venta in ventas %}
+<div  class="steps"> <div class="col-lg-1 col-md-1 col-xs-4 col-sm-1"> <label class="lbl">Folio</label> <a style="color: red;" class="glyphicon glyphicon-phone-alt"></a> <a style="color: green;" class="glyphicon glyphicon-phone-alt"></a> <span id="{{venta.id}}" class="glyphicon glyphicon-triangle-right more hidden-print" aria-hidden="true"></span> <a class="hidden-print" href="/pedidos/pedido/{{venta.pedido.id}}/">{{venta.folio}} </a> </div> <div class="col-lg-1 col-md-1 col-xs-4 col-sm-1"> <label class="lbl">Fecha</label> {{venta.pedido.fecha_registro|date:"d/M/Y"}} </div> <div class="col-lg-3 col-md-3 col-xs-4 col-sm-3"> <label class="lbl">Detalles</label> <a id="{{venta.pedido.id}}" class="hidden-print det_progreso" href="#" data-toggle="modal" data-target="#myModal{{venta.pedido.id}}">Mas</a> <div class="modal fade {{venta.pedido.id}}" id="myModal{{venta.pedido.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> <div class="modal-dialog"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> <h4 class="modal-title" id="myModalLabel">Detalles</h4> </div> <div class="modal-body"> <div class="row"> <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12"> <label class="">Descripcion</label> {{venta.descripcion}} </div> <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6"> <br> <label class="">Nota</label> <div style="display: flex;"> <a href="/pedidos/nota_pedido/{{venta.id}}/" target="_blank" class="glyphicon glyphicon-print"></a>&nbsp; <a href="/pedidos/firma/{{venta.pedido.id}}/" target="_blank" class="glyphicon glyphicon-edit">Firma</a> &nbsp;&nbsp;<a style="color: green;" title="Enviar correo" href="#" class="glyphicon glyphicon-send send_correo" id="{{venta.pedido.id}}"></a> &nbsp;&nbsp;<a style="color: red;" title="Enviar correo" href="#" class="glyphicon glyphicon-send send_correo" id="{{venta.pedido.id}}"></a> </div> </div> <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12"> <br> <label class="">Progreso</label> <div class="vendedor_asignado hidden" id="ven{{venta.pedido.id}}"> <a id="{{venta.pedido.id}}" style="position: relative; float: right;" class="hidden-print det_progreso" href="#" data-toggle="modal" data-target="#myModal">Detalles</a> <br> <div id={{venta.pedido.id}} class="progress prog{{venta.pedido.id}}" data-value="{{venta.pedido.progreso}}"> <span id={{venta.pedido.id}} class="progress-item" data-width="{{venta.pedido.progreso}}%" >{{venta.pedido.progreso}}% </span> </div> <div id="change_state{{venta.pedido.id}}" class="hidden" style="display: flex; justify-content: center; align-items: center; margin-bottom: 5px;"> <a id="{{venta.pedido.id}}" class="btn return_state"></a> <a id="{{venta.pedido.id}}" class="btn change_state"></a> <a id="{{venta.pedido.id}}" class="btn fin_state hidden"></a> </div> </div> <div class="vendedor_sinasignar hidden" id="vensin{{venta.pedido.id}}"> No se asigno vendedor aun </div> </div> </div> </div> <div class="modal-footer"> <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> <!-- <button type="button" class="btn btn-primary">OK</button> --> </div> </div> </div> </div> </div> </div> <div class="steps"> <div class="col-lg-3 col-md-3 col-xs-7 col-sm-3"> <label class="lbl">Cliente</label> {{venta.cliente.nombre}} </div> <div class="col-lg-3 col-md-3 col-xs-5 col-sm-3 ss" id="{{venta.pedido.id}}"> <label class="lbl">Vendedor</label> <span class="hidden" name="venta_ven" id="{{venta.pedido.id}}">{{venta.vendedor}}</span> <div class="vendedor_asignado hidden" id="ven{{venta.pedido.id}}"> <a  id="{{venta.pedido.id}}" class="guardar btn{{venta.pedido.id}} glyphicon glyphicon-ok-sign hidden"></a> <a  id="{{venta.pedido.id}}" class="cancelar btncancel{{venta.pedido.id}} glyphicon glyphicon-remove-sign hidden"></a> <a  id="{{venta.pedido.id}}" class="hidden-print asignar asign{{venta.pedido.id}} glyphicon glyphicon-pencil"></a> <span id="{{venta.pedido.id}}" class="vendedor_asign{{venta.pedido.id}}"> {{venta.vendedor.nombre}} </span> </div> <div class="vendedor_sinasignar hidden" id="vensin{{venta.pedido.id}}"> <a  id="{{venta.pedido.id}}" class="guardar btn{{venta.pedido.id}} glyphicon glyphicon-ok-sign hidden"></a> <a  id="{{venta.pedido.id}}" class="cancelar btncancel{{venta.pedido.id}} glyphicon glyphicon-remove-sign hidden"></a> <a  id="{{venta.pedido.id}}" class="asignar asign{{venta.pedido.id}}">Asignar</a> </div> {{form.vendedor}} </div> </div> <div class="steps"> <div class="col-lg-1"> <label class="lbl"><span>R</span><span style="margin-left: 12px;">F</span>  </label> <input type="checkbox" id="r{{venta.id}}" name="remisionado"{% if venta.estado == 'S' %}checked{%endif%} onclick="this.checked=!this.checked;"> <input type="checkbox" id="f{{venta.id}}" name="facturado"{% if venta.id in ligas or venta.estado == 'F' %}checked{%endif%} onclick="this.checked=!this.checked;"> </div> </div> <div class="detalles det{{venta.id}} hidden fila"> <div class="row"> <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4"><strong>Unidades</strong></div> <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4"><strong>Articulo</strong></div> <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4"><strong>Nota</strong></div> </div> <div class="row" id="contenido" data-value="Quiubo"> </div> </div>     
+{%endfor%}
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Detalles de progreso</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <label>Tiempo en espera</label>
+            <br>
+            <span id="tiempo_espera" ></span>
+          </div>
+          
+          <div class="col-md-6">
+            <label>Tiempo en finalizar</label>
+            <br>
+            <span id="tiempo_fin" ></span>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Tiempo en llamar al cliente</label>
+            <br>
+            <span id="tiempo_aviso" ></span>
+          </div>
+
+          <div class="col-md-6">
+            <label>Tiempo en entregar</label>
+            <br>
+            <span id="tiempo_entrega" ></span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <!-- <button type="button" class="btn btn-primary">OK</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

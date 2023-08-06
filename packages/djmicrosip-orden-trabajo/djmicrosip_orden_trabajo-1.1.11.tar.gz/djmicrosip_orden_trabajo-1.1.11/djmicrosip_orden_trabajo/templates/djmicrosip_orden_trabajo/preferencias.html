@@ -1,0 +1,63 @@
+{% extends 'djmicrosip_orden_trabajo/base.html' %}
+{% block title %}
+CRM
+{% endblock %}
+<!-- CSS Code -->
+{% block style_css %}{% endblock %}
+{% block modulestyle_css %}
+{% endblock %}
+<!-- JavaScript Code -->
+{% block js_code %}
+{% include 'autocomplete_light/static.html' %}
+<script type="text/javascript">
+		$(function () {
+      $('#id_articulo').select2();
+	});
+</script>
+{% endblock %}
+{% block selected_module %} Microsip {% endblock %}
+{% block breadcrumb %}
+{{ block.super }}
+<li><a>PREFERENCIAS</a></li>
+{% endblock %}
+{% block content %}
+<div class="row">
+	<br>
+	<br>
+	<div class="col-lg-12">
+	<form method="post" class="form-horizontal" action=""  enctype='multipart/form-data'>
+	  {% csrf_token %}
+	    {{ form.errors }}
+
+	    <div class="row">
+	    	<div class="col-md-3"><label>Articulo</label>{{form.articulo}}</div>
+	    	<div class="col-md-3"><label>Logo</label>{{form.logo}}</div>
+	    	<div class="col-md-3"><label>Imagen</label>{{form.imagen_extra}}</div>
+	    	<div class="col-md-3"><label>Url Notas PDF</label>{{form.url_pdf_destino}}</div>
+	    	
+	    </div>
+	    <br>	
+	    <br>    
+	    <div class="row">
+	    	<div class="col-md-3"><label>Correo</label>{{form.email}}</div>
+	    	<div class="col-md-3"><label>Contraseña</label>{{form.password}}</div>
+	    	<div class="col-md-3"><label>Servidor de Correo</label>{{form.servidor_correo}}</div>
+	    	<div class="col-md-3"><label>Puerto</label>{{form.puerto}}</div>
+	    	
+	    </div>
+	    <br>	
+	    <br>
+	    <div class="row">
+	    	<div class="col-md-3"><label>App Id</label>{{form.app_id}}</div>
+	    	<div class="col-md-3"><label>App Api Key</label>{{form.app_api_key}}</div>
+	    	<div class="col-md-3"><label>Servidor URL</label>{{form.url_servidor}}</div>
+	    	
+	    </div>
+		<br>
+	   <div class="row">
+		<div class="col-md-3"><input type="submit" class="btn btn-primary" value="Guardar"  id="guardar" /></div>
+		</div>
+    </form>
+    </div>
+</div>
+{% endblock %}
