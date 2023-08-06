@@ -1,0 +1,146 @@
+Metadata-Version: 2.1
+Name: casparser
+Version: 0.3.5
+Summary: (Karvy/Kfintech/CAMS) Consolidated Account Statement (CAS) PDF parser
+Home-page: https://github.com/codereverser/casparser
+Author: Sandeep Somasekharan
+Author-email: codereverser@gmail.com
+License: MIT License
+Keywords: pdf,parser,cas,cams,karvy,kfintech
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: click (>=7.1.2)
+Requires-Dist: colorama (>=0.4.4)
+Requires-Dist: pdfminer.six (>=20201018)
+Requires-Dist: python-dateutil (>=2.8.1)
+Requires-Dist: tabulate (>=0.8.7)
+Requires-Dist: wcwidth (>=0.2.5)
+Provides-Extra: mupdf
+Requires-Dist: PyMuPDF (>=1.18.1) ; extra == 'mupdf'
+Provides-Extra: test
+Requires-Dist: pytest-cov (>=2.10.1) ; extra == 'test'
+Requires-Dist: coverage (>=5.3) ; extra == 'test'
+Requires-Dist: pytest (>=6.1.2) ; extra == 'test'
+
+# CASParser
+
+[![code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![GitHub](https://img.shields.io/github/license/codereverser/casparser)](https://github.com/codereverser/casparser/blob/main/LICENSE)
+[![Travis CI](https://img.shields.io/travis/codereverser/casparser)](https://travis-ci.org/github/codereverser/casparser)
+[![Codecov](https://img.shields.io/codecov/c/github/codereverser/casparser)](https://codecov.io/gh/codereverser/casparser)
+[![DeepSource](https://deepsource.io/gh/codereverser/casparser.svg/?label=active+issues)](https://deepsource.io/gh/codereverser/casparser/?ref=repository-badge)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/casparser)
+
+Parse Consolidated Account Statement (CAS) PDF files generated from CAMS/KFINTECH
+
+
+## Installation
+```bash
+pip install casparser
+``` 
+
+### with faster PyMuPDF parser
+```bash
+pip install casparser[mupdf]
+```
+
+**Note:** Enabling this dependency could result in licensing changes. Check the 
+[License](#license) section for more details 
+
+
+## Usage
+
+```
+import casparser
+data = casparser.read_cas_pdf('/path/to/cas/pdf/file.pdf', 'password')
+```
+
+### Data structure
+
+```json
+{
+    "statement_period": {
+        "from": "YYYY-MMM-DD",
+        "to": "YYYY-MMM-DD"
+    },
+    "file_type": "CAMS/KARVY/UNKNOWN",
+    "investor_info": {
+        "email": "string",
+        "name": "string",
+        "mobile": "string",
+        "address": "string"
+    },
+    "folios": [
+        {
+            "folio": "string",
+            "amc": "string",
+            "PAN": "string",
+            "KYC": "OK/NOT OK",
+            "PANKYC": "OK/NOT OK",
+            "schemes": [
+                {
+                    "scheme": "string",
+                    "advisor": "string",
+                    "rta_code": "string",
+                    "rta": "string",
+                    "open": "number",
+                    "close": "number",
+                    "valuation": {
+                      "date": "date",
+                      "nav": "number",
+                      "value": "number"
+                    },
+                    "transactions": [
+                        {
+                            "date": "YYYY-MM-DD",
+                            "description": "string",
+                            "amount": "number",
+                            "units": "number",
+                            "nav": "number",
+                            "balance": "number"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+```
+
+
+### CLI
+
+```bash
+Usage: casparser [-o output_file.json] [-p password] [-s] CAS_PDF_FILE
+
+Options:
+  -o, --output FILE  Output file path (json)
+  -s, --summary      Print Summary of transactions parsed.
+  -p PASSWORD        CAS password
+  --version          Show the version and exit.
+  --help             Show this message and exit.
+``` 
+
+#### Demo
+
+![demo](https://raw.githubusercontent.com/codereverser/casparser/main/assets/demo.jpg)
+
+
+## License
+
+CASParser is distributed under MIT license by default. However enabling the optional dependency
+`mupdf` would imply the use of [PyMuPDF](https://github.com/pymupdf/PyMuPDF) /
+[MuPDF](https://mupdf.com/license.html) and hence the licenses GNU GPL v3 and GNU Affero GPL v3 
+would apply. Copies of all licenses have been included in this repository. - _IANAL_
+
+## Resources
+1. [CAS from CAMS](https://new.camsonline.com/Investors/Statements/Consolidated-Account-Statement)
+2. [CAS from Karvy/Kfintech](https://mfs.kfintech.com/investor/General/ConsolidatedAccountStatement)
+
+PS:- select the detailed statement (including transactions) option
+
