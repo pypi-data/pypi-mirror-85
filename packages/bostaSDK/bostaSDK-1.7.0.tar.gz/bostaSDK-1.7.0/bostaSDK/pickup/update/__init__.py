@@ -1,0 +1,2 @@
+from .UpdatePickupRequest import UpdatePickupRequest
+from .UpdatePickupResponse import UpdatePickupResponse
