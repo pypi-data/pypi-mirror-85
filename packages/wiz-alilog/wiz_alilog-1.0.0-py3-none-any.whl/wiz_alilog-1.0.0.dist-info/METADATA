@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: wiz-alilog
+Version: 1.0.0
+Summary: wiz-alilog
+Home-page: https://chnyangjie.github.io/
+Author: chnyangjie
+Author-email: chnyangjie@gmail.com
+License: UNKNOWN
+Project-URL: Bug Reports, https://github.com/chnyangjie/wiz_alilog/issues
+Project-URL: Say Thanks!, https://github.com/chnyangjie/wiz_alilog/issues
+Project-URL: Source, https://github.com/chnyangjie/wiz_alilog
+Keywords: python ali log sdk wrapper
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3 :: Only
+Requires-Python: >=3.6, <4
+Description-Content-Type: text/markdown
+Requires-Dist: aliyun-log-python-sdk
+
+# wiz_alilog
+
+
+```python
+from wiz_alilog.clent import AliLogClient
+if __name__ == '__main__':
+    with AliLogClient("cn-hongkong.log.aliyuncs.com", "project", "logstore", "keyid", "key") as c:
+        res = c.query(query="query")
+```
+
