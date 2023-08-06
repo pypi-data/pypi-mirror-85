@@ -1,0 +1,53 @@
+# BD103's Personal Coding Package
+A bunch of random developer related functions and modules that I use.
+
+## Usage
+`pip install bd103`
+
+Go to [bd103.repl.co](https://bd103.repl.co/site/package/) for the docs.
+
+## Patch Notes
+### 0.0.7
+Fixed extra `"` in `engine/textdump.py`. Updated `0.0.6` description.
+
+### 0.0.6
+Edited 0.0.3 description of `README.md` to fix recurrent module creation. Created a comment at the top of each module that says it's part of the package. Removed color variables, as they are only handy for local modules. Fixed `engine/textdump.py` trying to save to a non-existant folder.
+
+### 0.0.5
+Edited `README.md` to fix spacing issues. Made the `engine` sub-module. Created `engine/textdump.py`.
+
+### 0.0.4
+Fixed `LICENSE`.
+
+### 0.0.3
+Updated short description. Added `__all__` variable in `__init__.py`. Updated `README.md` to have full module names. Renamed `color()` function to `print()`. Updated 0.0.1 description. Added `load.py` module. Created the `parser.py` module.
+```python
+''' Parser '''
+bd103.parser.grid(path) # Loads a text file and creates a list. Each item is a sepperate line of the file. Returns the list (array)
+bd103.parser.space(text, identifier=" ") # Parses given string and returns an array. Each item is sepperated by spaces. "hi there" would return ["hi", "there"]
+''' Load Bar '''
+bd103.load.load(length=100) # Automatically makes a useless loading bar
+bd103.load.loadbar(value, length=100) # Allows you to manually create a load bar that syncs with data.
+```
+
+### 0.0.2
+Emptied `__init__.py` to fix error. Updated `setup.py` and redid `README.md`.
+
+### 0.0.1
+Initial package. Contains a basic color formatting module.
+```python
+''' Functions '''
+bd103.color.print(text, color) # Prints with text then resets formatting
+bd103.color.paint(color) # Sets color permanently until reset
+
+''' Colors '''
+reset = "reset
+red = "red"
+yellow = "yellow"
+green = "green"
+cyan = "cyan"
+blue = "blue"
+magenta = "magenta"
+black = "black"
+white = "white"
+```
