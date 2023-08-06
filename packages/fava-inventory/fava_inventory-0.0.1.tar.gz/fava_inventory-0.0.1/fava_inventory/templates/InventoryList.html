@@ -1,0 +1,6 @@
+{% import "_query_table.html" as querytable with context %}
+
+<h2>Inventory</h2>
+<br />
+
+{{ querytable.querytable(None, extension.get_types(), extension.get_inventories()) }}
