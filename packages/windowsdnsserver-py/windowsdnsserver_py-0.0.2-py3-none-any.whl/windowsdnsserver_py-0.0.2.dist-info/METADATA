@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: windowsdnsserver-py
+Version: 0.0.2
+Summary: wrapper Python library for Windows Server DnsServer module
+Home-page: https://github.com/bilalekremharmansa/windowsdnsserver-py
+Author: Bilal Ekrem Harmansa
+Author-email: bilalekremharmansa@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+
+## windowsdnsserver-py
+
+windowsdnsserver-py is a wrapper Python library for [DnsServer](https://docs.microsoft.com/en-us/powershell/module/dnsserver/?view=win10-ps) module.
+
+Subprocess module is used to perform process calls to interact with DnsServer module.
+
+## Features
+ - Convenient as a Python library
+ - Supports A and Txt record
+ - Query DNS records
+
+## Installation
+
+```shell
+pip install windowsdnserver-py
+```
+
+## Limitations
+ - Python 3 supported, but Python 2 is not tested 
+ - This library is not able to work remotely, currently, it is merely able to call DnsServer module on localhost. 
+ Since, the remote session feature is not on the table, the software that uses this module
+ must be installed on windows server where Windows Server/Dns Server is located.
+
+
