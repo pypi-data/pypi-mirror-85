@@ -1,0 +1,72 @@
+[build-system]
+requires = ["poetry>=1.0"]
+build-backend = "poetry.masonry.api"
+
+[tool.poetry]
+name = "akimous"
+version = "0.9.0"
+description = "An intelligent Python IDE"
+authors = ["Yu-Ann Chen <red8012@gmail.com>"]
+license = "BSD-3-Clause"
+readme = "README.md"
+homepage = "https://akimous.com"
+repository = "https://github.com/akimous/akimous"
+documentation = "https://akimous.com/start"
+keywords = ["ide", "editor", "akimous"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Web Environment",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Software Development",
+    "Topic :: Text Editors :: Integrated Development Environments (IDE)"
+]
+packages = [
+    { include = "akimous" },
+    { include = "akimous_ui" },
+]
+include = ["akimous_ui/**/*"]
+exclude = ["akimous/demo/**/*", "akimous/scripts/**/*"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+numpy = "^1.17"
+jedi = "^0.17.0"
+sphinx = "^3.0"
+watchdog = "^0.10.0"
+logzero = "^1.5"
+websockets = "^8.0"
+xgboost = "^1.0"
+numpydoc = "^1.0.0"
+fuzzywuzzy = "^0.18.0"
+python-levenshtein = "^0.12.0"
+msgpack = "^1.0"
+wordsegment = "^1.3"
+pylint = "^2.1"
+pyflakes = "^2.0"
+yapf = "^0.30.0"
+pathspec = "^0.8.0"
+cachetools = "^4.0"
+appdirs = "^1.4"
+ptyprocess = "^0.6.0"
+jupyter_client = "^6.0"
+ipykernel = "^5.1"
+toml = "^0.10.0" # required by isort
+Send2Trash = "^1.5"
+gitpython = "^3.1.0"
+
+[tool.poetry.dev-dependencies]
+pandas = "^1.0"
+scipy = "^1.3"
+pytest = "^6.0"
+colorama = "^0.4"
+tqdm = "^4.40"
+# matplotlib = "^3.0" # for test purpose only, not really used
+sympy = "^1.5" # for test purpose only, not really used
+psutil = "^5.6"
+boltons = "^20.0.0"
+
+[tool.poetry.scripts]
+akimous = 'akimous.__main__:start'
