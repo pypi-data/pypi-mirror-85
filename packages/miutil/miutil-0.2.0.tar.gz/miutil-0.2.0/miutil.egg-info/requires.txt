@@ -1,0 +1,22 @@
+
+[:python_version == "2.6"]
+argparse
+
+[dev]
+Pygments
+docutils>=0.3
+flake8
+pytest
+pytest-cov
+pytest-timeout
+pytest-xdist
+
+[dev:python_version >= "3.0"]
+black
+
+[nii]
+nibabel
+numpy
+
+[plot]
+matplotlib
