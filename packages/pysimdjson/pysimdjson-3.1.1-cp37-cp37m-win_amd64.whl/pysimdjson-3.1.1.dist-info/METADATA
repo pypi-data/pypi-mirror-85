@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: pysimdjson
+Version: 3.1.1
+Summary: simdjson bindings for python
+Home-page: http://github.com/TkTech/pysimdjson
+Author: Tyler Kennedy
+Author-email: tk@tkte.ch
+License: UNKNOWN
+Provides-Extra: benchmark
+Requires-Dist: pytest ; extra == 'benchmark'
+Requires-Dist: pytest-benchmark ; extra == 'benchmark'
+Requires-Dist: orjson ; extra == 'benchmark'
+Requires-Dist: python-rapidjson ; extra == 'benchmark'
+Requires-Dist: simplejson ; extra == 'benchmark'
+Requires-Dist: ujson ; extra == 'benchmark'
+Requires-Dist: yyjson ; extra == 'benchmark'
+Requires-Dist: numpy ; extra == 'benchmark'
+Provides-Extra: dev
+Requires-Dist: pybind11 ; extra == 'dev'
+Provides-Extra: release
+Requires-Dist: m2r ; extra == 'release'
+Requires-Dist: sphinx ; extra == 'release'
+Requires-Dist: ghp-import ; extra == 'release'
+Requires-Dist: bumpversion ; extra == 'release'
+Provides-Extra: test
+Requires-Dist: pytest ; extra == 'test'
+
+![PyPI - License](https://img.shields.io/pypi/l/pysimdjson.svg?style=flat-square)
+
+
