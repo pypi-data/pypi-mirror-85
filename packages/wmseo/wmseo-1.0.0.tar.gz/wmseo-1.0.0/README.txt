@@ -1,0 +1,1 @@
+This is a functions library designed to use WMC Datalake tables
