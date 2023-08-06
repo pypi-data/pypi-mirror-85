@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: bellparallel
+Version: 0.0.2
+Summary: Parallel execution utils
+Home-page: https://github.com/FabianBell/Packages/tree/master/bellparallel
+Author: Fabian Bell
+Author-email: fabianx.bell@gmail.com
+License: MIT
+Description: # Bell Parallel
+        This is a collection of usefull tools for parallel data processing.
+        
+        # Usage
+        ```python
+        from bell_parallel import parallel
+        
+        @parallel(tag='Increment', nproz=4)
+        def inc(entry):
+            return entry + 1
+            
+        data = range(10000)
+        out = inc(data)
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
