@@ -1,0 +1,173 @@
+from pathlib import Path
+from tempfile import TemporaryDirectory
+
+from tests import TestCase, ASSETS_PATH
+from ocrd_browser.model import Document, Page
+from datetime import datetime
+
+
+# TODO: Later: from tests.assets import Assets, copy_of_directory
+
+class DocumentTestCase(TestCase):
+
+    def setUp(self):
+        self.path = ASSETS_PATH / 'kant_aufklaerung_1784/data/mets.xml'
+
+    def test_get_page_ids(self):
+        doc = Document.load(self.path)
+        self.assertEqual(['PHYS_0017', 'PHYS_0020'], doc.page_ids)
+
+    def test_get_mime_types(self):
+        doc = Document.load(self.path)
+        self.assertEqual({'application/vnd.prima.page+xml', 'image/tiff', 'application/alto+xml'}, doc.mime_types)
+
+    def test_get_file_groups_and_mimetypes(self):
+        doc = Document.load(self.path)
+        expected = [
+            ('OCR-D-IMG', 'image/tiff'),
+            ('OCR-D-GT-PAGE', 'application/vnd.prima.page+xml'),
+            ('OCR-D-GT-ALTO', 'application/alto+xml')
+        ]
+        self.assertEqual(expected, doc.file_groups_and_mimetypes)
+
+    def test_get_page_index(self):
+        doc = Document.load(self.path)
+        file_index = doc.get_file_index()
+        page17 = [file for file in file_index.values() if file.static_page_id == 'PHYS_0017']
+        alto = [file for file in file_index.values() if file.mimetype == 'application/alto+xml']
+        self.assertEqual(3, len(page17))
+        self.assertEqual(2, len(alto))
+
+    def test_get_image_paths(self):
+        doc = Document.load(self.path)
+        image_paths = doc.get_image_paths('OCR-D-IMG')
+        self.assertEqual(2, len(image_paths))
+        self.assertEqual('INPUT_0017.tif', image_paths['PHYS_0017'].name)
+        self.assertEqual('INPUT_0020.tif', image_paths['PHYS_0020'].name)
+
+    def test_get_default_image_group(self):
+        doc = Document.load(ASSETS_PATH / 'kant_aufklaerung_1784-complex/data/mets.xml')
+        file_group = doc.get_default_image_group(['OCR-D-IMG-BIN', 'OCR-D-IMG.*'])
+        self.assertEqual('OCR-D-IMG-BIN', file_group)
+
+    def test_get_default_image_group_no_preference(self):
+        doc = Document.load(ASSETS_PATH / 'kant_aufklaerung_1784-complex/data/mets.xml')
+        file_group = doc.get_default_image_group()
+        self.assertEqual('OCR-D-IMG', file_group)
+
+    def test_get_default_image_group_with_missing_ocr_d_img(self):
+        doc = Document.load(ASSETS_PATH / '../example/workspaces/no_ocrd_d_img_group/mets.xml')
+        file_group = doc.get_default_image_group()
+        self.assertEqual('OCR-D-IMG-PNG', file_group)
+
+    def test_path_string(self):
+        doc = Document.load(self.path)
+        self.assertEqual(ASSETS_PATH / 'kant_aufklaerung_1784/data/lala.xml', doc.path('lala.xml'))
+
+    def test_path_path(self):
+        doc = Document.load(self.path)
+        self.assertEqual(ASSETS_PATH / 'kant_aufklaerung_1784/data/OCR-D-DIR/lala.xml',
+                         doc.path(Path('OCR-D-DIR/lala.xml')))
+
+    def test_path_ocrd_file(self):
+        doc = Document.load(self.path)
+        image_file = list(doc.workspace.mets.find_files(pageId='PHYS_0017', fileGrp='OCR-D-IMG'))[0]
+        self.assertEqual(ASSETS_PATH / 'kant_aufklaerung_1784/data/OCR-D-IMG/INPUT_0017.tif', doc.path(image_file))
+
+    def test_reorder(self):
+        doc = Document.clone(self.path)
+        doc.reorder(['PHYS_0020', 'PHYS_0017'])
+        self.assertEqual(['PHYS_0020', 'PHYS_0017'], doc.page_ids)
+
+    def test_reorder_with_wrong_ids_raises_value_error(self):
+        doc = Document.clone(self.path)
+        with self.assertRaises(ValueError) as context:
+            doc.reorder(['PHYS_0021', 'PHYS_0017'])
+
+        self.assertIn('page_ids do not match', str(context.exception))
+
+    def test_delete(self):
+        doc = Document.clone(self.path)
+        doc.delete_page('PHYS_0017')
+        self.assertEqual(['PHYS_0020'], doc.page_ids)
+
+    def test_clone(self):
+        doc = Document.clone(self.path)
+        self.assertIn('browse-ocrd-clone-', doc.workspace.directory)
+        self.assertEqual(str(self.path), doc.baseurl_mets)
+
+        original_files = self.path.parent.rglob('*.*')
+        cloned_files = Path(doc.workspace.directory).rglob('*.*')
+        for original, cloned in zip(sorted(original_files), sorted(cloned_files)):
+            self.assertEqual(original.read_bytes(), cloned.read_bytes())
+
+    def test_save(self):
+        doc = Document.clone(self.path)
+        with TemporaryDirectory(prefix='browse-ocrd-tests') as directory:
+            saved_mets = directory + '/mets.xml'
+            doc.save_as(saved_mets)
+            saved = Document.load(saved_mets)
+            self.assertEqual(doc.file_groups, saved.file_groups)
+            self.assertEqual(doc.page_ids, saved.page_ids)
+            self.assertEqual(doc.workspace.mets.unique_identifier, saved.workspace.mets.unique_identifier)
+
+            for page_id in doc.page_ids:
+                for file_group, mime in doc.file_groups_and_mimetypes:
+                    original_file = doc.files_for_page_id(page_id, file_group, mime)[0]
+                    saved_file = saved.files_for_page_id(page_id, file_group, mime)[0]
+                    self.assertEqual(original_file, saved_file)
+
+    def test_derive_backup_directory(self):
+        self.assertEqual(
+            Path('/home/jk/.bak.important_project.20200813-184321'),
+            Document._derive_backup_directory(Path('/home/jk/important_project'), datetime(2020, 8, 13, 18, 43, 21))
+        )
+
+    def test_page_for_id_with_no_images_for_page_and_fileGrp(self):
+        """
+        Issue #4: list index out of range on non-XML fileGrp
+
+        https://github.com/hnesk/browse-ocrd/issues/4
+        """
+        doc = Document.load(ASSETS_PATH / 'kant_aufklaerung_1784-complex/data/mets.xml')
+        with self.assertLogs('ocrd_browser.model.document', level='WARNING') as log_watch:
+            page = doc.page_for_id('PHYS_0020', 'OCR-D-IMG-CLIP')
+        self.assertIsNone(page)
+        self.assertEqual(1, len(log_watch.records))
+        self.assertEqual("No PAGE-XML and no image for page 'PHYS_0020' in fileGrp 'OCR-D-IMG-CLIP'",
+                         log_watch.records[0].msg)
+
+    def test_page_for_id_with_nothing_for_page_and_fileGrp(self):
+        """
+        Issue #4 again: This time for missing PAGE-XMLs
+
+        https://github.com/hnesk/browse-ocrd/issues/4
+        """
+        doc = Document.load(ASSETS_PATH / '../example/workspaces/kant_aufklaerung_1784_missing_xml/mets.xml')
+        with self.assertLogs('ocrd_browser.model.document', level='WARNING') as log_watch:
+            page = doc.page_for_id('PHYS_0020', 'OCR-D-GT-PAGE')
+        self.assertIsNone(page)
+        self.assertEqual(1, len(log_watch.records))
+        self.assertEqual("No PAGE-XML and no image for page 'PHYS_0020' in fileGrp 'OCR-D-GT-PAGE'",
+                         log_watch.records[0].msg)
+
+    def test_page_for_id_with_multiple_images_for_page_and_fileGrp(self):
+        """
+        returns first image and warns
+        """
+        doc = Document.load(ASSETS_PATH / 'kant_aufklaerung_1784-complex/data/mets.xml')
+        with self.assertLogs('ocrd_browser.model.document', level='WARNING') as log_watch:
+            page = doc.page_for_id('PHYS_0017', 'OCR-D-IMG-CLIP')
+        self.assertIsInstance(page, Page)
+        self.assertEqual(1, len(log_watch.records))
+        self.assertEqual("No PAGE-XML but 2 images for page 'PHYS_0017' in fileGrp 'OCR-D-IMG-CLIP'",
+                         log_watch.records[0].msg)
+
+    def test_modify_when_not_editable(self):
+        doc = Document.load(self.path)
+        with self.assertRaises(PermissionError):
+            doc.reorder(['PHYS_0020', 'PHYS_0017'])
+
+    def test_modify_when_editable(self):
+        doc = Document.clone(self.path)
+        doc.reorder(['PHYS_0020', 'PHYS_0017'])
