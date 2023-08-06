@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: aiohttp-parameter-parser
+Version: 0.1.1
+Summary: Declare and validate HTTP query and path parameters in aiohttp
+Home-page: https://github.com/isvinogradov/aiohttp-parameter-parser
+Author: Ivan Vinogradov
+Author-email: isvinogradov@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: pytz
+Requires-Dist: aiohttp
+
+# aiohttp-parameter-parser
+
+Declare and validate HTTP query and path parameters in `aiohttp` views.
+Currently only path and URL query parameter location are supported.
+
+Example usage:
+
+```python
+from aiohttp import web
+
+from aiohttp_parameter_parser import ParameterView
+
+
+class ExampleHandler(ParameterView):
+    async def get(self) -> web.Response:
+        my_array_of_ints: int = self.query_parameter(
+            "parameter_name_in_request",
+            required=True,
+            is_array=True,
+            is_int=True,
+        )
+        # If provided parameter is of wrong type or missing, 
+        # a default HTTP 400 response is returned to client.
+
+        return web.json_response({"received_param": my_array_of_ints})
+```
+
