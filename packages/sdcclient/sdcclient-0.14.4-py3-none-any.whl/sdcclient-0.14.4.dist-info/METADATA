@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: sdcclient
+Version: 0.14.4
+Summary: Python client for Sysdig Platform
+License: MIT
+Author: Sysdig Inc.
+Author-email: info@sysdig.com
+Requires-Python: >=3.6,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: pyaml (>=20.4.0,<21.0.0)
+Requires-Dist: requests (>=2.23,<3.0)
+Requires-Dist: requests-toolbelt (>=0.9.1,<0.10.0)
+Requires-Dist: tatsu (>=4.4.0,<5.0.0); python_version < "3.8"
+Requires-Dist: tatsu (>=5.5.0,<6.0.0); python_version >= "3.8" and python_version < "4.0"
+Requires-Dist: urllib3 (>=1.25.8,<2.0.0)
