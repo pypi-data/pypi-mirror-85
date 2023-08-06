@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: bacolonyzer
+Version: 2.0.2
+Summary: Analyse timeseries of QFA images
+Home-page: https://github.com/judithbergada/bacolonyzer
+Author: Judith Bergada
+Author-email: judithbergada@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: Topic :: Scientific/Engineering :: Image Recognition
+Requires-Python: >3.4, <4
+Requires-Dist: numpy (>=1.13.0)
+Requires-Dist: opencv-python (>=4.0.0.21)
+Requires-Dist: pandas (>=0.21.1)
+Requires-Dist: scipy (>=1.0.0)
+Requires-Dist: tqdm (>=4.28.0)
+Requires-Dist: Pillow (>=6.0.0)
+
+BaColonyzer is a software to quantify the cell density of bacterial cultures
+from timecourse pictures. It uses image analysis tools to determine the fitness
+of spotted cultures of bacteria grown on solid agar.
+
+
