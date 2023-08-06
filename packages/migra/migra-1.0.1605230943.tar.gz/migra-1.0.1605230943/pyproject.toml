@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "migra"
+version = "1.0.1605230943"
+authors = [ "Robert Lechte <robertlechte@gmail.com>",]
+license = "Unlicense"
+readme = "README.md"
+description = "Like `diff` but for PostgreSQL schemas"
+repository = "https://github.com/djrobstep/migra"
+homepage = "https://migra.djrobstep.com/"
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+line_length = 88
+
+[tool.poetry.dependencies]
+python = "*"
+sqlbag = "*"
+six = "*"
+schemainspect = ">=0.1.1603009162"
+psycopg2-binary = { version = "*", optional = true }
+
+[tool.poetry.dev-dependencies]
+sqlbag = "*"
+pytest = "*"
+pytest-cov = "*"
+pytest-clarity = ">=0.3.0-alpha.0"
+psycopg2-binary = "*"
+flake8 = "*"
+isort = "*"
+black = { version = ">=19.10b0", python = ">=3.6" }
+
+[tool.poetry.scripts]
+migra = "migra:do_command"
+
+[tool.poetry.extras]
+pg = [ "psycopg2-binary",]
