@@ -1,0 +1,140 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "Schema for the agent configuration file.",
+  "additionalProperties": false,
+  "type": "object",
+  "required": [
+    "aea_version",
+    "agent_name",
+    "author",
+    "description",
+    "version",
+    "license",
+    "private_key_paths",
+    "default_ledger",
+    "connections",
+    "default_connection",
+    "protocols",
+    "skills"
+  ],
+  "properties": {
+    "aea_version": {
+      "$ref": "definitions.json#/definitions/aea_version"
+    },
+    "agent_name": {
+      "$ref": "definitions.json#/definitions/resource_name"
+    },
+    "author": {
+      "$ref": "definitions.json#/definitions/author"
+    },
+    "version": {
+      "$ref": "definitions.json#/definitions/package_version"
+    },
+    "license": {
+      "$ref": "definitions.json#/definitions/license"
+    },
+    "fingerprint": {
+      "$ref": "definitions.json#/definitions/fingerprint"
+    },
+    "fingerprint_ignore_patterns": {
+      "$ref": "definitions.json#/definitions/fingerprint_ignore_patterns"
+    },
+    "registry_path": {
+      "type": "string"
+    },
+    "private_key_paths": {
+      "type": "object",
+      "uniqueItems": true,
+      "patternProperties": {
+        "^[^\\d\\W]\\w*\\Z": {
+          "$ref": "definitions.json#/definitions/private_key_path"
+        }
+      }
+    },
+    "connection_private_key_paths": {
+      "type": "object",
+      "uniqueItems": true,
+      "patternProperties": {
+        "^[^\\d\\W]\\w*\\Z": {
+          "$ref": "definitions.json#/definitions/private_key_path"
+        }
+      }
+    },
+    "default_ledger": {
+      "$ref": "definitions.json#/definitions/ledger_id"
+    },
+    "currency_denominations": {
+      "type": "object"
+    },
+    "connections": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "definitions.json#/definitions/public_id"
+      }
+    },
+    "contracts": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "definitions.json#/definitions/public_id"
+      }
+    },
+    "default_connection": {
+      "type": "string"
+    },
+    "protocols": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "definitions.json#/definitions/public_id"
+      }
+    },
+    "skills": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "definitions.json#/definitions/public_id"
+      }
+    },
+    "logging_config": {
+      "type": "object"
+    },
+    "description": {
+      "$ref": "definitions.json#/definitions/description"
+    },
+    "period": {
+      "$ref": "definitions.json#/definitions/period"
+    },
+    "execution_timeout": {
+      "$ref": "definitions.json#/definitions/execution_timeout"
+    },
+    "max_reactions": {
+      "$ref": "definitions.json#/definitions/max_reactions"
+    },
+    "decision_maker_handler": {
+      "type": "object"
+    },
+    "skill_exception_policy": {
+      "$ref": "definitions.json#/definitions/skill_exception_policy"
+    },
+    "connection_exception_policy": {
+      "$ref": "definitions.json#/definitions/connection_exception_policy"
+    },
+    "default_routing": {
+      "type": "object",
+      "uniqueItems": true,
+      "patternProperties": {
+        "^[a-zA-Z_][a-zA-Z0-9_]{0, 127}/[a-zA-Z_][a-zA-Z0-9_]{0, 127}:(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$": {
+          "$ref": "definitions.json#/definitions/public_id"
+        }
+      }
+    },
+    "loop_mode": {
+      "$ref": "definitions.json#/definitions/loop_mode"
+    },
+    "runtime_mode": {
+      "$ref": "definitions.json#/definitions/runtime_mode"
+    }
+  }
+}
