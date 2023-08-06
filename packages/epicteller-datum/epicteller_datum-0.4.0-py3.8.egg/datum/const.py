@@ -1,0 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+MAX_DICE_FACE = 10000
+MAX_DICE_COUNT = 1000
+MAX_HIGHEST_COUNT = 1000
+MAX_LOWEST_COUNT = 1000
+MAX_DICELET_SIZE = 100
