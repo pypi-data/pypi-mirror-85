@@ -1,0 +1,71 @@
+import re
+import time
+import logging
+import datetime
+from multiprocessing import Pool
+
+from terminaltables import AsciiTable
+from colored import fg, stylize
+
+from .recipe import get_recipes_list, Recipe
+from . import __version__
+
+logger = logging.getLogger(__name__)
+
+
+def status_one_recipe(cci_path, recipe_name):
+    return Recipe(cci_path, recipe_name).status()
+
+
+def get_status(cci_path, recipes, jobs):
+    logger.info(f"Parsing {len(recipes)} recipes...")
+
+    with Pool(jobs) as p:
+        status_futures = [
+            p.apply_async(status_one_recipe, args=(cci_path, recipe))
+            for recipe in recipes
+        ]
+        return [f.get() for f in status_futures]
+
+
+def print_status_table(cci_path, recipes, print_all, jobs):
+    status = get_status(cci_path, recipes, jobs)
+    table_data = [
+        ["Name", "Recipe version", "New version", "Upstream version", "Pending PR"]
+    ]
+    for s in sorted(status, key=lambda r: r.name):
+        if not s.update_possible() and not print_all:
+            continue
+
+        if s.deprecated:
+            continue
+
+        if s.recipe_version.unknown or s.upstream_version.unknown:
+            name_color = fg("dark_gray")
+        elif s.update_possible():
+            name_color = fg("dark_orange")
+        elif s.up_to_date():
+            name_color = fg("green")
+        else:
+            name_color = fg("red")
+
+        prs = s.prs_opened()
+        pr_text = str(len(prs))
+
+        rv_color = fg("green") if not s.recipe_version.unknown else fg("dark_gray")
+        uv_color = fg("green") if not s.upstream_version.unknown else fg("dark_gray")
+        pr_color = fg("green") if prs else fg("dark_orange")
+
+        table_data.append(
+            [
+                stylize(s.name, name_color),
+                stylize(s.recipe_version, rv_color),
+                stylize(s.upstream_version.fixed, uv_color),
+                stylize(s.upstream_version, uv_color),
+                stylize(pr_text, pr_color),
+            ]
+        )
+
+    table = AsciiTable(table_data)
+    print(table.table)
+    return 0
