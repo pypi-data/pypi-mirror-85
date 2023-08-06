@@ -1,0 +1,72 @@
+Metadata-Version: 2.1
+Name: guillotina_ldap
+Version: 1.0.0a3
+Summary: guillotina ldap auth support
+Home-page: https://pypi.python.org/pypi/guillotina_ldap
+Author: Ramon Navarro Bosch
+Author-email: ramon@plone.org
+License: GPL version 3
+Description: GUILLOTINA_LDAP
+        ===============
+        
+        LDAP Auth backend for guillotina.
+        
+        
+        Example config.json entry:
+        
+        .. code-block:: json
+        
+            ...
+            "applications": ["guillotina_ldap"],
+            "ldap": {
+                "host": "ldap://myldap.example.com",
+                "tls": true,
+                "attribute_users": "uid",
+                "objecttype": "inetOrgPerson",
+                "managerdn": "CM=MANAGER,DC=DOMAIN,DC=ORG",
+                "managerpwd": "secret",
+                "usersdn": "OU=USERS,DC=DOMAIN,DC=ORG",
+                "managers": ["bob"]
+            }
+        
+        
+        
+        Getting started with development
+        --------------------------------
+        
+        Using pip (requires Python > 3.7):
+        
+        .. code-block:: shell
+        
+            python3.7 -m venv .
+            ./bin/pip install -e .[test]
+            pre-commit install
+        
+        CHANGELOG
+        =========
+        
+        1.0.0a3 (2020-11-15)
+        --------------------
+        
+        - Fix LDAP Search.
+          [bloodbare]
+        
+        
+        1.0.0a2 (2020-11-11)
+        --------------------
+        
+        - Nothing changed yet.
+        
+        
+        1.0.0a1 (2020-11-08)
+        --------------------
+        
+        - Initial commit
+          [bloodbare]
+        
+Keywords: guillotina async ldap
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/x-rst
+Provides-Extra: test
