@@ -1,0 +1,257 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+# imports.
+from fir3base.v1.classes.config import *
+
+# the firebase class.
+class Firebase(object):
+	def __init__(self, key=None):
+		
+		# initialize firestore.
+		# (in classes.config)
+		cred = credentials.Certificate(key) # must still be edited through env variables.
+		firebase_admin.initialize_app(cred)
+		self.firestore = FireStore()
+		self.users = Users()
+
+		#
+
+# the users class.
+class Users(object):
+	def __init__(self):
+		a=1
+		#
+	def get(self, 
+		# define one of the following parameters.
+		username=None,
+		email=None,
+		phone_number=None,
+	):
+		user, variable = None, None
+		if username != None:
+			user = auth.get_user(username)
+			variable = str(username)
+		elif email != None:
+			user = auth.get_user_by_email(email)
+			variable = str(email)
+		elif phone_number != None:
+			user = auth.get_user_by_phone_number(phone_number)
+			variable = str(phone_number)
+		else:
+			return r3sponse.error_response("Invalid usage, define one of the following parameters: [username, email, phone_number].")
+
+		# check success.
+		if user == None: 
+			return r3sponse.error_response(f"Failed to retrieve user [{variable}].")
+		else:
+			return r3sponse.error_response(f"Successfully retrieved user [{variable}].", {"user":user})
+
+
+		#
+	def create(self,
+		# required:
+		name=None,
+		email=None,
+		password=None,
+		verify_password=None,
+		# optionals:
+		phone_number=None,
+		photo_url=None,
+	):
+
+		# check parameters.
+		response = r3sponse.check_parameters(empty_value=None, parameters={
+			"name":name,
+			"email":email,
+			"password":password,
+			"verify_password":verify_password,
+		})
+
+		# check password.
+		password = str(password)
+		verify_password = str(verify_password)
+		if len(password) < 8:
+			return r3sponse.error_response("The password must contain at least 8 characters.")
+		elif password.lower() == password:
+			return r3sponse.error_response("The password must regular and capital letters.")
+		elif password != verify_password:
+			return r3sponse.error_response("Passwords do not match.")
+
+		# create.
+		try:
+			user = auth.create_user(
+			    email=email,
+			    email_verified=False,
+			    phone_number=phone_number,
+			    password=password,
+			    display_name=name,
+			    photo_url=photo_url,
+			    disabled=False)
+			success = True
+		except: success = False
+
+		# handle success.
+		if success:
+			return r3sponse.success_response(f"Successfully created user [{email}].", {"user":user})
+		else:
+			return r3sponse.error_response(f"Failed to create user [{email}].")
+
+		#
+	def update(self,
+		# required:
+		uid=None,
+		# optionals:
+		name=None,
+		email=None,
+		password=None,
+		phone_number=None,
+		photo_url=None,
+		email_verified=None,
+	):
+
+		# check parameters.
+		response = r3sponse.check_parameters(empty_value=None, parameters={
+			"uid":uid,
+		})
+
+		# load.
+		response = self.get(uid=uid)
+		if response["error"] != None: return response
+		user = response["user"]
+
+		# set defaults.
+		if name == None: name = user.display_name
+		if email == None: email = user.email
+		if password == None: password = user.password
+		if phone_number == None: phone_number = user.phone_number
+		if photo_url == None: photo_url = user.photo_url
+		if email_verified == None: email_verified = user.email_verified
+
+		# create
+		try:
+			user = auth.update_user(
+				uid,
+				email=email,
+				phone_number=phone_number,
+				email_verified=email_verified,
+				password=password,
+				display_name=name,
+				photo_url=photo_url,
+				disabled=False)
+			success = True
+		except: success = False
+
+		# handle success.
+		if success:
+			return r3sponse.success_response(f"Successfully updated user [{username}].")
+		else:
+			return r3sponse.error_response(f"Failed to update user [{username}].")
+
+		#
+	def delete(self, 
+		# the user's uid.
+		uid=None,
+	):
+		try:
+			auth.delete(uid)
+			success = True
+		except: success = False
+		if success:
+			return r3sponse.success_response(f"Successfully deleted user [{uid}].")
+		else:
+			return r3sponse.error_response(f"Failed to delete user [{uid}].")
+	def iterate(self):
+		return auth.list_users().iterate_all()
+	def verify_id_token(self, id_token):
+		"""
+			Javascript:
+				firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+				  // Send token to your backend via HTTPS
+				  // ...
+				}).catch(function(error) {
+				  // Handle error
+				});
+		"""
+		decoded_token = auth.verify_id_token(id_token)
+		uid = decoded_token['uid']
+		return uid
+
+		#
+
+# the firestore class.
+class FireStore(object):
+	def __init__(self):
+		
+		# initialize firestore.
+		self.db = firestore.client()
+
+		#
+	# system functions.
+	def list(self, reference):
+		doc = self.__get_doc__(reference)
+		try:
+			doc = doc.get()
+			success = True
+		except: success = False
+		if not success:
+			return r3sponse.error_response(f"Failed to load document [{reference}].")
+		if not isinstance(doc, list):
+			return r3sponse.error_response(f"Reference [{reference}] leads to a document, not a collection.")
+		return r3sponse.success_response(f"Successfully listed the content of collection [{reference}].", {"collection":doc})
+	def load(self, reference):
+		doc = self.__get_doc__(reference)
+		try:
+			doc = doc.get()
+			success = True
+		except: success = False
+		if not success:
+			return r3sponse.error_response(f"Failed to load document [{reference}].")
+		if isinstance(doc, list):
+			return r3sponse.error_response(f"Reference [{reference}] leads to a collection, not a document.")
+		if not doc.exists:
+			return r3sponse.error_response(f"Document [{reference}] does not exist.")
+		else:
+		    data = doc.to_dict()
+		    return r3sponse.success_response(f"Successfully loaded document [{reference}].", {"document":data})
+	def save(self, reference, data):
+		doc = self.__get_doc__(reference)
+		try:
+			doc.set(data)
+			success = True
+		except: success = False
+		if success:
+			return r3sponse.success_response(f"Successfully saved document [{reference}].")
+		else:
+			return r3sponse.error_response(f"Failed to save document [{reference}].")
+	def delete(self, reference):
+		doc = self.__get_doc__(reference)
+		try:
+			doc.delete()
+			success = True
+		except: success = False
+		if success:
+			return r3sponse.success_response(f"Successfully deleted document [{reference}].")
+		else:
+			return r3sponse.error_response(f"Failed to delete document [{reference}].")
+	# system functions.
+	def __get_doc__(self, reference):
+		reference = reference.replace("//", "/")
+		if reference[len(reference)-1] == "/": reference = reference[:-1]
+		doc, c = None, 0
+		for r in reference.split("/"):
+			if doc == None:
+				doc = self.db.collection(r)
+				c = 1
+			else:
+				if c == 1:
+					doc = doc.document(r)
+					c = 0
+				else:
+					doc = doc.collection(r)
+					c = 1
+		return doc
+
+		
+
+
