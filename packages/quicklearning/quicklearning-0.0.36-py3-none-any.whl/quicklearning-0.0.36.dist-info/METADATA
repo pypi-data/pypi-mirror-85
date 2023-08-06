@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: quicklearning
+Version: 0.0.36
+Summary: Create Tensorflow models and train them fast and easy
+Home-page: https://github.com/JorgePoblete/quicklearning
+Author: koke
+Author-email: jpobleteriquelme@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: requests (>=2.24.0)
+Requires-Dist: joblib (>=0.16.0)
+Requires-Dist: tqdm (>=4.49.0)
+Requires-Dist: matplotlib (>=3.3.2)
+Requires-Dist: Pillow (>=7.2.0)
+Requires-Dist: DuckDuckGoImages (>=2.0.0)
+Requires-Dist: tensorflow (>=2.1.0)
+Requires-Dist: tensorflow-hub (>=0.9.0)
+Provides-Extra: dev
+Requires-Dist: pytest (>=3.7) ; extra == 'dev'
+
+
+ ## quicklearning
+
+## Instalation
+
+To install run the following:
+
+```python
+pip install quicklearning
+```
+
+## automodel usage
+
+First import
+```python
+from quicklearning.classification.image import quick
+```
+
+then run something like
+```python
+model = quick.fit(10, ['cat', 'dog'], verbose=True)
+```
+
+This will create a dataset of images from the image search results from [DuckDuckGo](https://duckduckgo.com), then create a new model based on a pretained model and lastly it will do the actual training of the model.
+
