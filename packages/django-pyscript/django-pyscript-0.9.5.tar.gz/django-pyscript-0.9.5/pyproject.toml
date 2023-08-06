@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "django-pyscript"
+version = "0.9.5"
+description = "This package aims to provide a django file field that can store .py files and executes them."
+authors = ["Christopher Wittlinger <c.wittlinger@intellineers.com>"]
+
+packages = [
+    { include = "djpyscript" },
+]
+
+[tool.poetry.dependencies]
+python = "3.8.*"
+django = "3.*"
+
+[tool.poetry.dev-dependencies]
+mkdocs = "1.1.*"
+mkdocs-material = "5.4.*"
+markdown-include = "0.5.*"
+pymdown-extensions = "7.1.*"
+black = "19.10b0"
+flake8 = "3.8.*"
+isort = "5.0.4"
+markdown-blockdiag = "0.7.*"
+
+[build-system]
+requires = ["poetry_core>=1.0.0"]
+build-backend = "poetry.masonry.api"
