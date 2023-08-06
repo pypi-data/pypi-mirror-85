@@ -1,0 +1,28 @@
+# Poetry metadata strcture
+# https://python-poetry.org/docs/pyproject/
+[tool.poetry]
+name = "apns_sdk_py"
+version = "0.5.1"
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/QiYuTechDev/apns_sdk_py"
+repository = "https://github.com/QiYuTechDev/apns_sdk_py"
+description = "QiYuTech APNs API Python SDK"
+authors = ["dev <dev@qiyutech.tech>"]
+
+# [[tool.poetry.source]]
+# name = "aliyun"
+# url = "https://mirrors.aliyun.com/pypi/simple"
+# default = true
+
+[tool.poetry.dependencies]
+python = "^3.8"
+requests = ">=2.24,<3"
+aiohttp = ">=3.7,<4.0"
+dataclasses-json = ">=0.5,<0.6"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
