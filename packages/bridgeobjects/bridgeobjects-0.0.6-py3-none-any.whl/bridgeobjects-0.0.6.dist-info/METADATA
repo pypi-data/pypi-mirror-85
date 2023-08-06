@@ -1,0 +1,87 @@
+Metadata-Version: 2.1
+Name: bridgeobjects
+Version: 0.0.6
+Summary: 
+            A collection of modules that allows the user to access objects used in bridge games,
+            for example, a board or a contract.        
+Home-page: https://psionman@bitbucket.org/psionman/bridgeobjects.git
+Author: jeff watkins
+Author-email: support@bidforgame.com
+License: MIT
+Download-URL: https://pypi.org/project/bridgeobjects/
+Keywords: bridge, duplicate bridge, contract bridge, hand, board, suit, auction, contract, card
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+
+# bridgeobjects
+A collection of modules that allows the user to utilise objects used in bridge games, for example, a board or a contract.
+
+The classes form a natural hierarchy:
+
+ event
+    └── board
+        ├── auction
+        │   └── call
+        │       └── denomination
+        ├── contract
+        ├── hand
+        │   └── card
+        │       └── suit
+        └── trick
+
+(However, some classes are natural subsidiaries not represented in this classification, for example, there are four cards in a trick.)
+
+
+The objects can be created using a simple, self explanatory, human readable set of definitions
+by using Portable Bridge Notation (PBN) (http://www.tistis.nl/pbn/) or
+Richard’s Bridge Notation (RBN) (http://www.rpbridge.net/7a12.htm).
+
+## Installation
+```bash
+pip install bridgeobjects
+```
+
+
+Version 0.0.6 - 18 November 2020
+
+Changed return type of Board.build_fourth_hand
+
+---------
+
+Version 0.0.5 - 29 October 2020
+
+Added is_honour to Card
+
+Hand cards by suit can take string or Suit parameter
+
+---------
+
+Version 0.0.4 - 24 October 2020
+
+Bugs in file objects
+
+---------
+
+Version 0.0.3 - 16 October 2020
+
+Expose parse_lin
+
+---------
+
+Version 0.0.2 - 16 October 2020
+
+Expose parse_lin
+
+---------
+Version 0.0.1 - October 2020
+
+Expose parse_pbn
+
+------
+Version 0.0.0 - August 2020
+
+Created and uploaded
+
+---
+
+
