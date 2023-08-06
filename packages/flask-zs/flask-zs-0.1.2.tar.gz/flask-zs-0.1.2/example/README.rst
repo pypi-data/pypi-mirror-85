@@ -1,0 +1,1 @@
+Move to `codeif/flask-zs-template <https://github.com/codeif/flask-zs-template>`_
