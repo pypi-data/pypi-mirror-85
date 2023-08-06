@@ -1,0 +1,1 @@
+from .Adapter_for_MAM import Adapter_For_MAM
