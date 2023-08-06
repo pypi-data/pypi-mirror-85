@@ -1,0 +1,1452 @@
+# -*- coding: utf-8 -*-
+# Copyright 2020, CS GROUP - France, http://www.c-s.fr
+#
+# This file is part of EODAG project
+#     https://www.github.com/CS-SI/EODAG
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+---
+!provider
+  name: usgs
+  priority: 0
+  description: U.S geological survey catalog for Landsat products
+  roles:
+    - host
+  url: https://earthexplorer.usgs.gov/
+  api: !plugin
+    type: UsgsApi
+    google_base_url: 'http://storage.googleapis.com/earthengine-public/landsat/'
+    metadata_mapping:
+      id: '$.entityId'
+      geometry: '$.geometry'
+      productType: '$.productType'
+      title: '$.displayId'
+      abstract: '$.summary'
+      startTimeFromAscendingNode: '$.startTime'
+      completionTimeFromAscendingNode: '$.endTime'
+      quicklook: '$.browseUrl'
+    extract: True
+  products:
+    # datasets list http://kapadia.github.io/usgs/_sources/reference/catalog/ee.txt
+    L8_OLI_TIRS_C1L1:
+      dataset: LANDSAT_8_C1
+      catalog_node: EE  # Possible values: CWIC, EE, HDDS, LPCS
+
+---
+!provider
+  name: aws_eos
+  priority: 0
+  description: EOS search for Amazon public datasets
+  roles:
+    - host
+  url: https://developers.eos.com/datasets_description.html
+  search: !plugin
+    type: PostJsonSearch
+    api_endpoint: 'https://gate.eos.com/api/lms/search/v2/{collection}?api_key={apikey}'
+    pagination:
+      next_page_query_obj: '{{"limit":{items_per_page},"page":{page}}}'
+      total_items_nb_key_path: '$.meta.found'
+    query_params_key: 'search'
+    discover_metadata:
+      auto_discovery: true
+      metadata_pattern: '^[a-zA-Z0-9_]+$'
+      search_param: '{{{{"search":{{{{"{metadata}":"{{{metadata}}}" }}}} }}}}'
+      metadata_path: '$.*'
+    metadata_mapping:
+      # landsat8_downloadLink : 's3://landsat-pds/c{storedInCollection}/L8/{path}/{row}/{productID}'
+      geometry:
+        - |
+          {{"search":{{"shape":{{"coordinates":
+          [[[{geometry.bounds[0]},{geometry.bounds[1]}],
+          [{geometry.bounds[2]},{geometry.bounds[1]}],
+          [{geometry.bounds[2]},{geometry.bounds[3]}],
+          [{geometry.bounds[0]},{geometry.bounds[3]}],
+          [{geometry.bounds[0]},{geometry.bounds[1]}]]], "type": "Polygon"}} }} }}
+        - '$.dataGeometry'
+  products:
+    CBERS4_PAN10M_L2:
+      instrument: PAN10M
+      collection: cbers4
+      processingLevel: 2
+      metadata_mapping:
+        # OpenSearch Parameters for Collection Search (Table 3)
+        productType: '$.null'
+        platformSerialIdentifier:
+          - '{{"search":{{"satelliteName":"{platformSerialIdentifier}" }} }}'
+          - '$.satelliteName'
+        instrument:
+          - '{{"search":{{"sensor":"{instrument}" }} }}'
+          - '$.sensor'
+        processingLevel:
+          - '{{"search":{{"processingLevel":"{processingLevel}" }} }}'
+          - '$.processingLevel'
+        # INSPIRE obligated OpenSearch Parameters for Collection Search (Table 4)
+        title:
+          - '{{"search":{{"sceneID":"{title}" }} }}'
+          - '$.sceneID'
+        # OpenSearch Parameters for Acquistion Parameters Search (Table 6)
+        startTimeFromAscendingNode:
+          - '{{"search":{{"date":{{"from":"{startTimeFromAscendingNode}"}} }} }}'
+          - '$.date'
+        completionTimeFromAscendingNode:
+          - '{{"search":{{"date":{{"to":"{completionTimeFromAscendingNode}"}} }} }}'
+          - '$.date'
+        illuminationAzimuthAngle:
+          - '{{"search":{{"sunAzimuth":"{illuminationAzimuthAngle}" }} }}'
+          - '$.sunAzimuth'
+        illuminationElevationAngle:
+          - '{{"search":{{"sunElevation":"{illuminationElevationAngle}" }} }}'
+          - '$.sunElevation'
+        # Custom parameters (not defined in the base document referenced above)
+        awsPath:
+          - '{{"search":{{"downloadUrl":"{awsPath}" }} }}'
+          - '$.downloadUrl'
+        downloadLink: 's3://cbers-pds/{awsPath}'
+        metaDownloadLink: 's3://cbers-meta-pds/{awsPath}'
+        previewBaseName: '{$.sceneID#replace_str(_L2,)}'
+        thumbnail: 'https://s3.amazonaws.com/cbers-meta-pds/{awsPath}/{previewBaseName}_small.jpeg'
+        quicklook: 'https://s3.amazonaws.com/cbers-meta-pds/{awsPath}/{previewBaseName}.jpg'
+        id:
+          - '{{"search":{{"sceneID":"{id}" }} }}'
+          - '{title}'
+    CBERS4_PAN10M_L4:
+      instrument: PAN10M
+      collection: cbers4
+      processingLevel: 4
+      metadata_mapping_from_product: CBERS4_PAN10M_L2
+      metadata_mapping:
+        # Custom parameters (not defined in the base document referenced above)
+        previewBaseName: '{$.sceneID#replace_str(_L4,)}'
+        thumbnail: 'https://s3.amazonaws.com/cbers-meta-pds/{awsPath}/{previewBaseName}_small.jpeg'
+        quicklook: 'https://s3.amazonaws.com/cbers-meta-pds/{awsPath}/{previewBaseName}.jpg'
+    CBERS4_PAN5M_L2:
+      instrument: PAN5M
+      collection: cbers4
+      processingLevel: 2
+      metadata_mapping_from_product: CBERS4_PAN10M_L2
+    CBERS4_PAN5M_L4:
+      instrument: PAN5M
+      collection: cbers4
+      processingLevel: 4
+      metadata_mapping_from_product: CBERS4_PAN10M_L2
+      metadata_mapping:
+        # Custom parameters (not defined in the base document referenced above)
+        previewBaseName: '{$.sceneID#replace_str(_L4,)}'
+        thumbnail: 'https://s3.amazonaws.com/cbers-meta-pds/{awsPath}/{previewBaseName}_small.jpeg'
+        quicklook: 'https://s3.amazonaws.com/cbers-meta-pds/{awsPath}/{previewBaseName}.jpg'
+    CBERS4_MUX_L2:
+      instrument: MUX
+      collection: cbers4
+      processingLevel: 2
+      metadata_mapping_from_product: CBERS4_PAN10M_L2
+    CBERS4_MUX_L4:
+      instrument: MUX
+      collection: cbers4
+      processingLevel: 4
+      metadata_mapping_from_product: CBERS4_PAN10M_L2
+      metadata_mapping:
+        # Custom parameters (not defined in the base document referenced above)
+        previewBaseName: '{$.sceneID#replace_str(_L4,)}'
+        thumbnail: 'https://s3.amazonaws.com/cbers-meta-pds/{awsPath}/{previewBaseName}_small.jpeg'
+        quicklook: 'https://s3.amazonaws.com/cbers-meta-pds/{awsPath}/{previewBaseName}.jpg'
+    CBERS4_AWFI_L2:
+      instrument: AWFI
+      collection: cbers4
+      processingLevel: 2
+      metadata_mapping_from_product: CBERS4_PAN10M_L2
+    CBERS4_AWFI_L4:
+      instrument: AWFI
+      collection: cbers4
+      processingLevel: 4
+      metadata_mapping_from_product: CBERS4_PAN10M_L2
+      metadata_mapping:
+        # Custom parameters (not defined in the base document referenced above)
+        previewBaseName: '{$.sceneID#replace_str(_L4,)}'
+        thumbnail: 'https://s3.amazonaws.com/cbers-meta-pds/{awsPath}/{previewBaseName}_small.jpeg'
+        quicklook: 'https://s3.amazonaws.com/cbers-meta-pds/{awsPath}/{previewBaseName}.jpg'
+    L8_OLI_TIRS_C1L1:
+      collection: landsat8
+      onAmazon: true
+      metadata_mapping:
+        # OpenSearch Parameters for Collection Search (Table 3)
+        productType: '$.null'
+        platform:
+          - '{{"search":{{"satelliteName":"{platform}" }} }}'
+          - '$.satelliteName'
+        instrument:
+          - '{{"search":{{"sensor":"{instrument}" }} }}'
+          - '$.sensor'
+        # INSPIRE obligated OpenSearch Parameters for Collection Search (Table 4)
+        title:
+          - '{{"search":{{"productID":"{title}" }} }}'
+          - '$.productID'
+        # OpenSearch Parameters for Product Search (Table 5)
+        cloudCover:
+          - '{{"search":{{"cloudCoverage":"{cloudCover}" }} }}'
+          - '$.cloudCoverage'
+        # OpenSearch Parameters for Acquistion Parameters Search (Table 6)
+        availabilityTime:
+          - '{{"search":{{"IndexingTime":{{"from":"{availabilityTime}"}} }} }}'
+          - '$.IndexingTime'
+        acquisitionStation:
+          - '{{"search":{{"receivingStation":{{"from":"{acquisitionStation}"}} }} }}'
+          - '$.receivingStation'
+        startTimeFromAscendingNode:
+          - '{{"search":{{"date":{{"from":"{startTimeFromAscendingNode}"}} }} }}'
+          - '$.sceneStartTime'
+        completionTimeFromAscendingNode:
+          - '{{"search":{{"date":{{"to":"{completionTimeFromAscendingNode}"}} }} }}'
+          - '$.sceneStopTime'
+        illuminationAzimuthAngle:
+          - '{{"search":{{"sunAzimuth":"{illuminationAzimuthAngle}" }} }}'
+          - '$.sunAzimuth'
+        illuminationElevationAngle:
+          - '{{"search":{{"sunElevation":"{illuminationElevationAngle}" }} }}'
+          - '$.sunElevation'
+        # Custom parameters (not defined in the base document referenced above)
+        onAmazon:
+          - '{{"search":{{"onAmazon":"{onAmazon}" }} }}'
+          - '$.onAmazon'
+        path:
+          - '{{"search":{{"path":"{path}" }} }}'
+          - '$.path'
+        row:
+          - '{{"search":{{"row":"{row}" }} }}'
+          - '$.row'
+        downloadLink: 's3://landsat-pds/c1/L8/{path:03.0f}/{row:03.0f}/{title}/'
+        thumbnail: '$.thumbnail'
+        quicklook: 'https://landsat-pds.s3.amazonaws.com/c1/L8/{path:03.0f}/{row:03.0f}/{title}/{title}_thumb_large.jpg'
+        id:
+          - '{{"search":{{"productID":"{id}" }} }}'
+          - '{title}'
+    MODIS_MCD43A4:
+      collection: modis
+      metadata_mapping:
+        # OpenSearch Parameters for Collection Search (Table 3)
+        productType: '$.null'
+        instrument:
+          - '{{"search":{{"satelliteName":"{instrument}" }} }}'
+          - '$.satelliteName'
+        # INSPIRE obligated OpenSearch Parameters for Collection Search (Table 4)
+        title:
+          - '{{"search":{{"sceneID":"{title}" }} }}'
+          - '$.sceneID'
+        # OpenSearch Parameters for Product Search (Table 5)
+        cloudCover:
+          - '{{"search":{{"cloudCoverage":"{cloudCover}" }} }}'
+          - '$.cloudCoverage'
+        # OpenSearch Parameters for Acquistion Parameters Search (Table 6)
+        startTimeFromAscendingNode:
+          - '{{"search":{{"date":{{"from":"{startTimeFromAscendingNode}"}} }} }}'
+          - '$.BeginningDateTime'
+        completionTimeFromAscendingNode:
+          - '{{"search":{{"date":{{"to":"{completionTimeFromAscendingNode}"}} }} }}'
+          - '$.EndingDateTime'
+        # Custom parameters (not defined in the base document referenced above)
+        verticalTileNumber:
+          - '{{"search":{{"verticalTileNumber":"{verticalTileNumber}" }} }}'
+          - '$.verticalTileNumber'
+        horizontalTileNumber:
+          - '{{"search":{{"horizontalTileNumber":"{horizontalTileNumber}" }} }}'
+          - '$.horizontalTileNumber'
+        doyDate: '{$.sceneID#slice_str(9,16,1)}'
+        downloadLink: 's3://modis-pds/MCD43A4.006/{horizontalTileNumber:02.0f}/{verticalTileNumber:02.0f}/{doyDate}/'
+        thumbnail: '$.thumbnail'
+        quicklook: '$.thumbnail'
+        id:
+          - '{{"search":{{"sceneID":"{id}" }} }}'
+          - '{title}'
+    NAIP:
+      collection: naip
+      metadata_mapping:
+        # OpenSearch Parameters for Collection Search (Table 3)
+        productType: '$.null'
+        platformSerialIdentifier:
+          - '{{"search":{{"satelliteName":"{platformSerialIdentifier}" }} }}'
+          - '$.satelliteName'
+        # INSPIRE obligated OpenSearch Parameters for Collection Search (Table 4)
+        title:
+          - '{{"search":{{"sceneID":"{title}" }} }}'
+          - '$.sceneID'
+        # OpenSearch Parameters for Acquistion Parameters Search (Table 6)
+        startTimeFromAscendingNode:
+          - '{{"search":{{"date":{{"from":"{startTimeFromAscendingNode}"}} }} }}'
+          - '$.date'
+        completionTimeFromAscendingNode:
+          - '{{"search":{{"date":{{"to":"{completionTimeFromAscendingNode}"}} }} }}'
+          - '$.date'
+        # Custom parameters (not defined in the base document referenced above)
+        awsPath:
+          - '{{"search":{{"awsPath":"{awsPath}" }} }}'
+          - '$.awsPath'
+        downloadLink: 's3://naip-analytic/{awsPath}'
+        id:
+          - '{{"search":{{"sceneID":"{id}" }} }}'
+          - '{title}'
+    S1_SAR_GRD:
+      product_type: GRD
+      collection: sentinel1
+      metadata_mapping:
+        # OpenSearch Parameters for Collection Search (Table 3)
+        platformSerialIdentifier:
+          - '{{"search":{{"missionId":"{platformSerialIdentifier}" }} }}'
+          - '$.missionId'
+        # INSPIRE obligated OpenSearch Parameters for Collection Search (Table 4)
+        title:
+          - '{{"search":{{"sceneID":"{title}" }} }}'
+          - '$.sceneID'
+        # OpenSearch Parameters for Product Search (Table 5)
+        orbitNumber:
+          - '{{"search":{{"absoluteOrbitNumber":"{orbitNumber}" }} }}'
+          - '$.absoluteOrbitNumber'
+        orbitDirection:
+          - '{{"search":{{"passDirection":"{orbitDirection}" }} }}'
+          - '$.passDirection'
+        sensorMode:
+          - '{{"search":{{"mode":"{sensorMode}" }} }}'
+          - '$.mode'
+        # OpenSearch Parameters for Acquistion Parameters Search (Table 6)
+        startTimeFromAscendingNode:
+          - '{{"search":{{"date":{{"from":"{startTimeFromAscendingNode}"}} }} }}'
+          - '$.date'
+        completionTimeFromAscendingNode:
+          - '{{"search":{{"date":{{"to":"{completionTimeFromAscendingNode}"}} }} }}'
+          - '$.date'
+        polarizationMode:
+          - '{{"search":{{"polarization":"{polarizationMode}" }} }}'
+          - '$.polarization'
+        # Custom parameters (not defined in the base document referenced above)
+        awsPath:
+          - '{{"search":{{"awsPath":"{awsPath}" }} }}'
+          - '$.awsPath'
+        downloadLink: 's3://sentinel-s1-l1c/{awsPath}'
+        thumbnail: 'https://render.eosda.com/S1/thumb/{title}.png'
+        quicklook: 'https://render.eosda.com/S1/thumb/{title}.png'
+        id:
+          - '{{"search":{{"sceneID":"{id}" }} }}'
+          - '{title}'
+    S2_MSI_L1C:
+      collection: sentinel2
+      metadata_mapping:
+        # OpenSearch Parameters for Collection Search (Table 3)
+        productType: '$.null'
+        platformSerialIdentifier:
+          - '{{"search":{{"satelliteName":"{platformSerialIdentifier}" }} }}'
+          - '$.satelliteName'
+        # INSPIRE obligated OpenSearch Parameters for Collection Search (Table 4)
+        title:
+          - '{{"search":{{"productName":"{title}" }} }}'
+          - '$.productName'
+        # OpenSearch Parameters for Product Search (Table 5)
+        cloudCover:
+          - '{{"search":{{"cloudCoverage":"{cloudCover}" }} }}'
+          - '$.cloudCoverage'
+        # OpenSearch Parameters for Acquistion Parameters Search (Table 6)
+        startTimeFromAscendingNode:
+          - '{{"search":{{"date":{{"from":"{startTimeFromAscendingNode}"}} }} }}'
+          - '$.timestamp'
+        completionTimeFromAscendingNode:
+          - '{{"search":{{"date":{{"to":"{completionTimeFromAscendingNode}"}} }} }}'
+          - '$.timestamp'
+        illuminationAzimuthAngle:
+          - '{{"search":{{"azimuthAngle":"{illuminationAzimuthAngle}" }} }}'
+          - '$.azimuthAngle'
+        illuminationZenithAngle:
+          - '{{"search":{{"zenithAngle":"{illuminationZenithAngle}" }} }}'
+          - '$.zenithAngle'
+        # Custom parameters (not defined in the base document referenced above)
+        originalTileMeta: '{$.originalTileMeta#replace_str(sentinel-s2-l1c.s3.amazonaws.com, roda.sentinel-hub.com/sentinel-s2-l1c)}'
+        thumbnail: '{$.thumbnail#replace_str(sentinel-s2-l1c.s3.amazonaws.com, roda.sentinel-hub.com/sentinel-s2-l1c)}'
+        awsPath:
+          - '{{"search":{{"awsPath":"{awsPath}" }} }}'
+          - '$.awsPath'
+        downloadLink: 's3://sentinel-s2-l1c/{awsPath}'
+        productMetaLink: '{$.productMetaLink#replace_str(sentinel-s2-l1c.s3.amazonaws.com, roda.sentinel-hub.com/sentinel-s2-l1c)}'
+        productPath:
+          - '{{"search":{{"productPath":"{productPath}" }} }}'
+          - '$.productPath'
+        id:
+          - '{{"search":{{"productName":"{id}" }} }}'
+          - '{title}'
+        processedL2A: '$.null'
+        awsPathL2A: '$.null'
+    S2_MSI_L2A:
+      collection: sentinel2
+      processedL2A: true
+      # specific QueryStringSearch usage for these parameters (replaces current query)
+      specific_qssearch:
+        parameters:
+          - title
+          - id
+        results_entry: ''
+        collection:
+          - tileInfo
+          - productInfo
+        merge_responses: true
+        metadata_mapping:
+          title:
+            - 'title'
+            - '$.name'
+          id:
+            - 'title'
+            - '{title}'
+          awsPathL2A: '$.tiles[0].path'
+          downloadLink: 's3://sentinel-s2-l2a/{awsPathL2A}'
+          productPath: '$.path'
+          startTimeFromAscendingNode: '$.timestamp'
+          completionTimeFromAscendingNode: '$.timestamp'
+          geometry: '$.tileDataGeometry'
+          productInfo: 'https://roda.sentinel-hub.com/sentinel-s2-l2a/{awsPathL2A}/productInfo.json'
+          originalSceneID: '$.tiles[0].datastrip.id'
+      metadata_mapping:
+        # OpenSearch Parameters for Collection Search (Table 3)
+        productType: '$.null'
+        platformSerialIdentifier:
+          - '{{"search":{{"satelliteName":"{platformSerialIdentifier}" }} }}'
+          - '$.satelliteName'
+        # INSPIRE obligated OpenSearch Parameters for Collection Search (Table 4)
+        title: '{$.productName#fake_l2a_title_from_l1c}'
+        # OpenSearch Parameters for Product Search (Table 5)
+        cloudCover:
+          - '{{"search":{{"cloudCoverage":"{cloudCover}" }} }}'
+          - '$.cloudCoverage'
+        # OpenSearch Parameters for Acquistion Parameters Search (Table 6)
+        startTimeFromAscendingNode:
+          - '{{"search":{{"date":{{"from":"{startTimeFromAscendingNode}"}} }} }}'
+          - '$.timestamp'
+        completionTimeFromAscendingNode:
+          - '{{"search":{{"date":{{"to":"{completionTimeFromAscendingNode}"}} }} }}'
+          - '$.timestamp'
+        illuminationAzimuthAngle:
+          - '{{"search":{{"azimuthAngle":"{illuminationAzimuthAngle}" }} }}'
+          - '$.azimuthAngle'
+        illuminationZenithAngle:
+          - '{{"search":{{"zenithAngle":"{illuminationZenithAngle}" }} }}'
+          - '$.zenithAngle'
+        # Custom parameters (not defined in the base document referenced above)
+        originalTileMeta: '{$.originalTileMeta#replace_str(sentinel-s2-l1c.s3.amazonaws.com, roda.sentinel-hub.com/sentinel-s2-l2a)}'
+        thumbnail: '{$.thumbnail#replace_str(sentinel-s2-l1c.s3.amazonaws.com, roda.sentinel-hub.com/sentinel-s2-l1c)}'
+        quicklook: '{thumbnail}'
+        downloadLink: 's3://sentinel-s2-l2a/{awsPathL2A}'
+        awsPath: '$.null'
+        productMetaLink: '$.null'
+        productPath: '$.null'
+        productInfo: 'https://roda.sentinel-hub.com/sentinel-s2-l2a/{awsPathL2A}/productInfo.json'
+        id:
+          - '{id#s2msil2a_title_to_aws_productinfo}'
+          - '{title}'
+        processedL2A:
+          - '{{"search":{{"processedL2A":"{processedL2A}" }} }}'
+          - '$.processedL2A'
+        awsPathL2A:
+          - '{{"search":{{"awsPathL2A":"{awsPathL2A}" }} }}'
+          - '$.awsPathL2A'
+
+  download: !plugin
+    type: AwsDownload
+    products:
+      CBERS4_MUX_L2:
+        default_bucket: 'cbers-pds'
+        complementary_url_key:
+          - metaDownloadLink
+      CBERS4_AWFI_L2:
+        complementary_url_key:
+          - metaDownloadLink
+      CBERS4_PAN5M_L2:
+        complementary_url_key:
+          - metaDownloadLink
+      CBERS4_PAN10M_L2:
+        complementary_url_key:
+          - metaDownloadLink
+      S1_SAR_GRD:
+        default_bucket: 'sentinel-s1-l1c'
+        build_safe: true
+      S2_MSI_L1C:
+        default_bucket: 'sentinel-s2-l1c'
+        build_safe: true
+        complementary_url_key:
+          - productPath
+      S2_MSI_L2A:
+        default_bucket: 'sentinel-s2-l2a'
+        build_safe: true
+        fetch_metadata:
+          fetch_url: '{productInfo}'
+          fetch_format: json
+          update_metadata:
+            title: '$.name'
+            id: '{title}'
+            productPath: '$.path'
+        complementary_url_key:
+          - productPath
+  auth: !plugin
+    type: OAuth
+
+---
+!provider
+  name: theia
+  priority: 0
+  description: French National Space Agency (CNES) catalog for Sentinel 2 products, Pleiades and Landsat products
+  roles:
+    - host
+  url: https://theia.cnes.fr/atdistrib/rocket/
+  search: !plugin
+    type: QueryStringSearch
+    api_endpoint: 'https://theia.cnes.fr/atdistrib/resto2/api/collections/{collection}/search.json'
+    pagination:
+      next_page_url_tpl: '{url}?{search}&maxRecords={items_per_page}&page={page}'
+      total_items_nb_key_path: '$.properties.totalResults'
+    discover_metadata:
+      auto_discovery: true
+      metadata_pattern: '^[a-zA-Z0-9_]+$'
+      search_param: '{metadata}={{{metadata}}}'
+      metadata_path: '$.properties.*'
+    metadata_mapping:
+      # Opensearch resource identifier within the search engine context (in our case
+      # within the context of the data provider)
+      uid: '$.id'
+      # OpenSearch Parameters for Collection Search (Table 3)
+      productType:
+        - productType
+        - '$.properties.productType'
+      platform:
+        - platform
+        - '$.properties.platform'
+      platformSerialIdentifier:
+        - 'platform={platformSerialIdentifier}'
+        - '$.properties.platform'
+      instrument:
+        - instrument
+        - '$.properties.instrument'
+      processingLevel:
+        - processingLevel
+        - '$.properties.processingLevel'
+
+      # INSPIRE obligated OpenSearch Parameters for Collection Search (Table 4)
+      title: '$.properties.title'
+      keyword: '$.properties.keywords'
+      resolution: '$.properties.resolution'
+      organisationName: '$.properties.organisationName'
+      publicationDate: '$.properties.published'
+      accessConstraint: '$.properties.license'
+
+      # OpenSearch Parameters for Product Search (Table 5)
+      parentIdentifier: '$.properties.parentIdentifier'
+      orbitNumber: '$.properties.orbitNumber'
+      cloudCover:
+        - 'cloudCover=[0,{cloudCover}]'
+        - '$.properties.cloudCover'
+      snowCover: '$.properties.snowCover'
+      productVersion: '$.properties.version'
+      creationDate: '$.properties.productionDate'
+      modificationDate: '$.properties.modificationDate'
+      processingDate: '$.properties.processingDate'
+      sensorMode: '$.properties.sensorMode'
+      archivingCenter: '$.properties.archivingCenter'
+      processingMode: '$.properties.processingMode'
+
+      # OpenSearch Parameters for Acquistion Parameters Search (Table 6)
+      availabilityTime: '$.properties.availabilityTime'
+      acquisitionStation: '$.properties.acquisitionStation'
+      acquisitionSubType: '$.properties.acquisitionSubType'
+      startTimeFromAscendingNode:
+        - 'startDate={startTimeFromAscendingNode#to_iso_date}'
+        - '$.properties.startDate'
+      completionTimeFromAscendingNode:
+        - 'completionDate={completionTimeFromAscendingNode#to_iso_date}'
+        - '$.properties.completionDate'
+      illuminationAzimuthAngle: '$.properties.illuminationAzimuthAngle'
+      illuminationZenithAngle: '$.properties.illuminationZenithAngle'
+      illuminationElevationAngle: '$.properties.illuminationElevationAngle'
+      polarizationMode: '$.properties.polarizationMode'
+      polarisationChannels: '$.properties.polarisationChannels'
+      antennaLookDirection: '$.properties.antennaLookDirection'
+      minimumIncidenceAngle: '$.properties.minimumIncidenceAngle'
+      maximumIncidenceAngle: '$.properties.maximumIncidenceAngle'
+      dopplerFrequency: '$.properties.dopplerFrequency'
+      incidenceAngleVariation: '$.properties.incidenceAngleVariation'
+
+      # Custom parameters (not defined in the base document referenced above)
+      id: '$.properties.productIdentifier'
+      # The geographic extent of the product
+      geometry:
+        - 'geometry={geometry#to_wkt_convex_hull}'
+        - '$.geometry'
+      # The url of the quicklook
+      quicklook: '$.properties.quicklook'
+      # The url to download the product "as is" (literal or as a template to be completed either after the search result
+      # is obtained from the provider or during the eodag download phase)
+      downloadLink: '$.properties.services.download.url'
+
+      # Additional metadata provided by the providers but that don't appear in the reference spec
+      # Or has a different signification for the provider
+      thumbnail: '$.properties.thumbnail'
+
+  products:
+    S2_MSI_L2A_MAJA:
+      processingLevel: LEVEL2A
+      collection: SENTINEL2
+    S2_MSI_L2B_MAJA_SNOW:
+      processingLevel: L2B-SNOW
+      collection: Snow
+    S2_MSI_L2B_MAJA_WATER:
+      processingLevel: L2B-WATER
+      collection: WaterQual
+    S2_MSI_L3A_WASP:
+      processingLevel: LEVEL3A
+      collection: SENTINEL2
+    SPOT_SWH:
+      collection: SPOTWORLDHERITAGE
+      processingLevel: LEVEL1C
+    SPOT_SWH_OLD:
+      collection: SWH1
+      processingLevel: LEVEL1C
+    SPOT5_SPIRIT:
+      collection: Spirit
+      processingLevel: 1A
+    VENUS_L1C:
+      collection: VENUS
+      processingLevel: LEVEL1C
+    VENUS_L2A_MAJA:
+      collection: VENUS
+      processingLevel: LEVEL2A
+    VENUS_L3A_MAJA:
+      collection: VENUS
+      processingLevel: LEVEL3A
+    L8_REFLECTANCE:
+      collection: LANDSAT
+      product_type: REFLECTANCE
+    L57_REFLECTANCE:
+      collection: Landsat57
+      product_type: REFLECTANCE
+    PLD_PAN:
+      collection: Pleiades
+      product_type: Panchromatique (Pan)
+    PLD_XS:
+      collection: Pleiades
+      product_type: Multispectral (XS)
+    PLD_BUNDLE:
+      collection: Pleiades
+      product_type: Bundle (Pan, XS)
+    PLD_PANSHARPENED:
+      collection: Pleiades
+      product_type: Pansharpened (Pan+XS)
+    OSO:
+      collection: OSO
+  download: !plugin
+    type: HTTPDownload
+    base_uri: 'https://theia.cnes.fr/atdistrib/resto2'
+    extract: true
+    order_enabled: true
+    auth_error_code: 403
+    dl_url_params:
+      issuerId: theia
+  auth: !plugin
+    type: TokenAuth
+    auth_uri: 'https://theia.cnes.fr/atdistrib/services/authenticate/'
+
+---
+!provider
+  name: peps
+  priority: 1
+  description: |
+    The PEPS platform, the French "mirror site", redistributes the products of Sentinel satellites,
+    S1A, S1B, S2A and S2B, S3A and S3B from COPERNICUS, the European system for the Earth monitoring.
+  roles:
+    - host
+  url: https://peps.cnes.fr
+  search: !plugin
+    type: QueryStringSearch
+    api_endpoint: 'https://peps.cnes.fr/resto/api/collections/{collection}/search.json'
+    pagination:
+      next_page_url_tpl: '{url}?{search}&maxRecords={items_per_page}&page={page}'
+      total_items_nb_key_path: '$.properties.totalResults'
+    discover_metadata:
+      auto_discovery: true
+      metadata_pattern: '^[a-zA-Z0-9_]+$'
+      search_param: '{metadata}={{{metadata}}}'
+      metadata_path: '$.properties.*'
+    metadata_mapping:
+      # Opensearch resource identifier within the search engine context (in our case
+      # within the context of the data provider)
+      uid: '$.id'
+      # OpenSearch Parameters for Collection Search (Table 3)
+      productType:
+        - productType
+        - '$.properties.productType'
+      platform: '$.properties.collection'
+      platformSerialIdentifier:
+        - platform
+        - '$.properties.platform'
+      instrument:
+        - instrument
+        - '$.properties.instrument'
+      processingLevel:
+        - processingLevel
+        - '$.properties.processingLevel'
+
+      # INSPIRE obligated OpenSearch Parameters for Collection Search (Table 4)
+      title: '$.properties.title'
+      topicCategory: '$.properties.topicCategory'
+      keyword: '$.properties.keywords'
+      abstract: '$.properties.description'
+      resolution:
+        - 'resolution'
+        - '$.properties.resolution'
+      organisationName:
+        - 'organisationName'
+        - '$.properties.organisationName'
+      publicationDate: '$.properties.published'
+      accessConstraint: '$.properties.license'
+
+      # OpenSearch Parameters for Product Search (Table 5)
+      parentIdentifier:
+        - 'parentIdentifier'
+        - '$.properties.parentIdentifier'
+      acquisitionType: '$.properties.acquisitionType'
+      orbitNumber:
+        - 'orbitNumber'
+        - '$.properties.orbitNumber'
+      orbitDirection:
+        - 'orbitDirection'
+        - '$.properties.orbitDirection'
+      swathIdentifier:
+        - 'swath'
+        - '$.properties.swath'
+      cloudCover:
+        - 'cloudCover=[0,{cloudCover}]'
+        - '$.properties.cloudCover'
+      snowCover:
+        - 'snowCover=[0,{snowCover}]'
+        - '$.properties.snowCover'
+      productVersion: '$.properties.version'
+      productQualityStatus: '$.properties.onlineQualityCheck'
+      processorName: '$.properties.processingName'
+      processingCenter: '$.properties.processingCenter'
+      creationDate: '$.properties.dhusIngestDate'
+      modificationDate: '$.properties.updated'
+      sensorMode:
+        - 'sensorMode'
+        - '$.properties.sensorMode'
+
+      # OpenSearch Parameters for Acquistion Parameters Search (Table 6)
+      startTimeFromAscendingNode:
+        - startDate
+        - '$.properties.startDate'
+      completionTimeFromAscendingNode:
+        - completionDate
+        - '$.properties.completionDate'
+      polarizationMode:
+        - 'polarisation'
+        - '$.properties.polarisation'
+
+      # Custom parameters (not defined in the base document referenced above)
+      id:
+        - 'productIdentifier={id#remove_extension}'
+        - '$.properties.productIdentifier'
+      # The geographic extent of the product
+      geometry:
+        - 'geometry={geometry#to_wkt_convex_hull}'
+        - '$.geometry'
+      # The url of the quicklook
+      quicklook: '$.properties.quicklook'
+      # The url to download the product "as is" (literal or as a template to be completed either after the search result
+      # is obtained from the provider or during the eodag download phase)
+      downloadLink: '$.properties.services.download.url'
+      # storageStatus: must be one of ONLINE, STAGING, OFFLINE
+      storageStatus: '{$.properties.storage.mode#get_group_name((?P<ONLINE>disk)|(?P<STAGING>staging)|(?P<OFFLINE>tape))}'
+
+      # Additional metadata provided by the providers but that don't appear in the reference spec
+      thumbnail: '$.properties.thumbnail'
+
+  products:
+    S1_SAR_OCN:
+      product_type: OCN
+      collection: S1
+    S1_SAR_GRD:
+      product_type: GRD
+      collection: S1
+    S1_SAR_SLC:
+      product_type: SLC
+      collection: S1
+    S2_MSI_L1C:
+      collection: S2ST
+      product_type: S2MSI1C
+    S2_MSI_L2A:
+      collection: S2ST
+      product_type: S2MSI2A
+    S3_EFR:
+      product_type: OL_1_EFR___
+      collection: S3
+    S3_ERR:
+      product_type: OL_1_ERR___
+      collection: S3
+    S3_OLCI_L2LFR:
+      product_type: OL_2_LFR___
+      collection: S3
+    S3_OLCI_L2LRR:
+      product_type: OL_2_LRR___
+      collection: S3
+    S3_SLSTR_L1RBT:
+      product_type: SL_1_RBT___
+      collection: S3
+    S3_SLSTR_L2LST:
+      product_type: SL_2_LST___
+      collection: S3
+    S3_LAN:
+      product_type: SR_2_LAN___
+      collection: S3
+  download: !plugin
+    type: HTTPDownload
+    base_uri: 'https://peps.cnes.fr/resto'
+    extract: true
+    archive_depth: 2
+    order_enabled: true
+    auth_error_code: 401
+    dl_url_params:
+      issuerId: peps
+  auth: !plugin
+    type: GenericAuth
+    auth_uri: 'https://peps.cnes.fr/resto/api/users/connect'
+
+---
+!provider
+  name: sobloo
+  priority: 0
+  description: Airbus DIAS
+  roles:
+    - host
+  url: https://sobloo.eu/
+  products:
+    S2_MSI_L1C:
+      product_type: S2MSI1C
+    S2_MSI_L2A:
+      product_type: S2MSI2A
+    S1_SAR_RAW:
+      product_type: RAW
+    S1_SAR_GRD:
+      product_type: GRD
+    S1_SAR_SLC:
+      product_type: SLC
+    S1_SAR_OCN:
+      product_type: OCN
+    # S3_LAN:
+    #   product_type: SR_2_LAN___
+    # S3_SRA:
+    #   product_type: SR_1_SRA___
+    # S3_SRA_BS:
+    #   product_type: SR_1_SRA_BS
+    # S3_SRA_A_BS:
+    #   product_type: SR_1_SRA_A_
+  search: !plugin
+    type: QueryStringSearch
+    api_endpoint: 'https://sobloo.eu/api/v1/services/search'
+    collection: catalog
+    result_type: 'json'
+    pagination:
+      next_page_url_tpl: '{url}?{search}&size={items_per_page}&from={skip}'
+      total_items_nb_key_path: '$.totalnb'
+    results_entry: 'hits'
+    discover_metadata:
+      auto_discovery: true
+      metadata_pattern: '^[a-zA-Z0-9\.%]+$'
+      search_param: 'f={metadata}:eq:{{{metadata}}}'
+      metadata_path: '$.data.*'
+    metadata_mapping:
+      # Opensearch resource identifier within the search engine context (in our case
+      # within the context of the data provider)
+      uid: '$.data.uid'
+      # OpenSearch Parameters for Collection Search (Table 3)
+      productType:
+        - 'f=identification.type:eq:{productType}'
+        - '$.data.identification.type'
+      platform: '$.data.acquisition.mission'
+      platformSerialIdentifier: '$.data.acquisition.missionCode'
+      instrument: '$.data.acquisition.sensorId'
+      processingLevel: '$.data.production.levelCode'
+
+      # INSPIRE obligated OpenSearch Parameters for Collection Search (Table 4)
+      title: '$.data.identification.externalId'
+      publicationDate: '{$.data.timestamp#to_iso_utc_datetime_from_milliseconds}'
+
+      # OpenSearch Parameters for Product Search (Table 5)
+      orbitNumber: '$.data.orbit.number'
+      orbitDirection: '$.data.orbit.direction'
+      cloudCover:
+        - 'f=contentDescription.cloudCoverPercentage:lte:{cloudCover}'
+        - '$.data.contentDescription.cloudCoverPercentage'
+      creationDate: '{$.data.state.insertionDate#to_iso_utc_datetime_from_milliseconds}'
+
+      # OpenSearch Parameters for Acquistion Parameters Search (Table 6)
+      availabilityTime: '$.data.availabilityTime'
+      startTimeFromAscendingNode:
+        - 'f=acquisition.beginViewingDate:gte:{startTimeFromAscendingNode#to_timestamp_milliseconds}'
+        - '{$.data.acquisition.beginViewingDate#to_iso_utc_datetime_from_milliseconds}'
+      completionTimeFromAscendingNode:
+        - 'f=acquisition.endViewingDate:lte:{completionTimeFromAscendingNode#to_timestamp_milliseconds}'
+        - '{$.data.acquisition.endViewingDate#to_iso_utc_datetime_from_milliseconds}'
+      polarisationChannels: '$.data.acquisition.polarization'
+      sensorMode: '$.data.acquisition.sensorMode'
+
+      # Custom parameters (not defined in the base document referenced above)
+      id:
+        - 'f=identification.externalId:eq:{id#remove_extension}'
+        - '$.data.identification.externalId'
+      # The geographic extent of the product
+      geometry:
+        - 'gintersect={geometry#to_wkt_convex_hull}'
+        - '$.md.geometry'
+      # The url of the quicklook
+      quicklook: 'https://sobloo.eu/api/v1/services/quicklook/{uid}'
+      # The url to download the product "as is" (literal or as a template to be completed either after the search result
+      # is obtained from the provider or during the eodag download phase)
+      downloadLink: '%(base_uri)s/{uid}'
+      # storageStatus: must be one of ONLINE, STAGING, OFFLINE
+      storageStatus: '{$.data.state.services.download#get_group_name((?P<ONLINE>internal)|(?P<OFFLINE>external))}'
+
+  download: !plugin
+    type: HTTPDownload
+    base_uri: 'https://sobloo.eu/api/v1/services/download'
+    archive_depth: 2
+    order_enabled: true
+    auth_error_code:
+      - 401
+      - 500
+    extract: true
+  auth: !plugin
+    type: HTTPHeaderAuth
+    headers:
+      Authorization: "Apikey {apikey}"
+
+---
+!provider
+  name: creodias
+  priority: 0
+  description: CloudFerro DIAS
+  roles:
+    - host
+  url: https://creodias.eu/
+  search: !plugin
+    type: QueryStringSearch
+    api_endpoint: 'https://finder.creodias.eu/resto/api/collections/{collection}/search.json'
+    pagination:
+      next_page_url_tpl: '{url}?{search}&maxRecords={items_per_page}&page={page}'
+      total_items_nb_key_path: '$.properties.totalResults'
+    discover_metadata:
+      auto_discovery: true
+      metadata_pattern: '^[a-zA-Z0-9]+$'
+      search_param: '{metadata}={{{metadata}}}'
+      metadata_path: '$.properties.*'
+    metadata_mapping:
+      # Opensearch resource identifier within the search engine context (in our case
+      # within the context of the data provider)
+      uid: '$.id'
+      # OpenSearch Parameters for Collection Search (Table 3)
+      productType:
+        - productType
+        - '$.properties.productType'
+      platform: '$.properties.collection'
+      platformSerialIdentifier: '$.properties.platform'
+      instrument: '$.properties.instrument'
+      processingLevel: '$.properties.processingLevel'
+
+      # INSPIRE obligated OpenSearch Parameters for Collection Search (Table 4)
+      title: '$.properties.title'
+      keyword: '$.properties.keywords'
+      abstract: '$.properties.description'
+      resolution: '$.properties.resolution'
+      organisationName: '$.properties.organisationName'
+      publicationDate: '$.properties.published'
+      accessConstraint: '$.properties.license'
+
+      # OpenSearch Parameters for Product Search (Table 5)
+      parentIdentifier: '$.properties.parentIdentifier'
+      orbitNumber: '$.properties.orbitNumber'
+      orbitDirection: '$.properties.orbitDirection'
+      cloudCover:
+        - 'cloudCover=[0,{cloudCover}]'
+        - '$.properties.cloudCover'
+      snowCover: '$.properties.snowCover'
+      modificationDate: '$.properties.updated'
+      sensorMode: '$.properties.sensorMode'
+
+      # OpenSearch Parameters for Acquistion Parameters Search (Table 6)
+      startTimeFromAscendingNode:
+        - startDate
+        - '$.properties.startDate'
+      completionTimeFromAscendingNode:
+        - completionDate
+        - '$.properties.completionDate'
+
+      # Custom parameters (not defined in the base document referenced above)
+      id:
+        - 'productIdentifier=%{id#remove_extension}%'
+        - '{$.properties.title#remove_extension}'
+      # The geographic extent of the product
+      geometry:
+        - 'geometry={geometry#to_wkt_convex_hull}'
+        - '$.geometry'
+      # The url of the quicklook
+      quicklook: '{thumbnail}'
+      # The url to download the product "as is" (literal or as a template to be completed either after the search result
+      # is obtained from the provider or during the eodag download phase)
+      downloadLink: 'https://zipper.creodias.eu/download/{uid}'
+      # storageStatus: must be one of ONLINE, STAGING, OFFLINE
+      storageStatus: '{$.properties.status#get_group_name((?P<ONLINE>(0|34|37))|(?P<STAGING>32)|(?P<OFFLINE>31))}'
+
+      # Additional metadata provided by the providers but that don't appear in the reference spec
+      thumbnail: '$.properties.thumbnail'
+  download: !plugin
+    type: HTTPDownload
+    base_uri: 'https://zipper.creodias.eu/download/'
+    extract: true
+    order_enabled: false
+  auth: !plugin
+    type: KeycloakOIDCPasswordAuth
+    auth_base_uri: 'https://auth.creodias.eu/auth'
+    realm: 'dias'
+    client_id: 'CLOUDFERRO_PARTNERS'
+    client_secret: 'dc0aca03-2dc6-4798-a5de-fc5aeb6c8ee1'
+    token_provision: qs
+    token_qs_key: 'token'
+    auth_error_code: 401
+  products:
+    S2_MSI_L1C:
+      product_type: L1C
+      collection: Sentinel2
+    S2_MSI_L2A:
+      product_type: L2A
+      collection: Sentinel2
+    S1_SAR_RAW:
+      product_type: RAW
+      collection: Sentinel1
+    S1_SAR_GRD:
+      product_type: GRD
+      collection: Sentinel1
+    S1_SAR_SLC:
+      product_type: SLC
+      collection: Sentinel1
+    S1_SAR_OCN:
+      product_type: OCN
+      collection: Sentinel1
+    S3_LAN:
+      product_type: LAN
+      collection: Sentinel3
+    S3_SRA:
+      product_type: SRA
+      collection: Sentinel3
+    S3_SRA_BS:
+      product_type: SRA_BS
+      collection: Sentinel3
+    S3_SRA_A_BS:
+      product_type: SRA_A
+      collection: Sentinel3
+    S3_EFR:
+      product_type: EFR
+      collection: Sentinel3
+    S3_ERR:
+      product_type: ERR
+      collection: Sentinel3
+    S3_WAT:
+      product_type: WAT
+      collection: Sentinel3
+    S3_SLSTR_L2LST:
+      product_type: LST
+      collection: Sentinel3
+    S3_OLCI_L2LRR:
+      product_type: LRR
+      collection: Sentinel3
+    S3_OLCI_L2LFR:
+      product_type: LFR
+      collection: Sentinel3
+    S3_SLSTR_L1RBT:
+      product_type: RBT
+      collection: Sentinel3
+
+---
+!provider
+  name: mundi
+  priority: 0
+  description: Atos DIAS
+  roles:
+    - host
+  url: https://mundiwebservices.com/
+  search: !plugin
+    type: QueryStringSearch
+    api_endpoint: 'https://mundiwebservices.com/acdc/catalog/proxy/search/{collection}/opensearch'
+    result_type: 'xml'
+    results_entry: '//ns:entry'
+    literal_search_params:
+      format: atom
+      relation: intersects
+    pagination:
+      next_page_url_tpl: '{url}?{search}&maxRecords={items_per_page}&startIndex={page}'
+      total_items_nb_key_path: '//os:totalResults/text()'
+    discover_metadata:
+      auto_discovery: true
+      metadata_pattern: '^[a-zA-Z0-9]+$'
+      search_param: '{metadata}={{{metadata}}}'
+      metadata_path: '*'
+    metadata_mapping:
+      # Opensearch resource identifier within the search engine context (in our case
+      # within the context of the data provider)
+      uid: 'ns:id/text()'
+      # OpenSearch Parameters for Collection Search (Table 3)
+      productType:
+        - 'productType'
+        - 'eo:productType/text()'
+      doi: 'eo:doi/text()'
+      platform: 'eo:platform/text()'
+      platformSerialIdentifier: 'eo:platformSerialIdentifier/text()'
+      instrument:
+        - 'instrument'
+        - 'eo:instrument/text()'
+      sensorType: 'eo:sensorType/text()'
+      compositeType: 'eo:compositeType/text()'
+      processingLevel:
+        - 'processingLevel'
+        - 'eo:processingLevel/text()'
+      orbitType: 'eo:orbitType/text()'
+      spectralRange: 'eo:spectralRange/text()'
+      wavelengths: 'eo:wavelengths/text()'
+      hasSecurityConstraints: 'eo:hasSecurityConstraints/text()'
+      dissemination: 'eo:dissemination/text()'
+
+      # INSPIRE obligated OpenSearch Parameters for Collection Search (Table 4)
+      title: 'ns:title/text()'
+      topicCategory: 'ns:category/text()'
+      keyword: 'eo:keyword/text()'
+      abstract: 'ns:summary/text()'
+      resolution: 'eo:resolution/text()'
+      organisationName: 'dc:creator/text()'
+      organisationRole: 'eo:organisationRole/text()'
+      publicationDate: 'ns:published/text()'
+      lineage: 'eo:lineage/text()'
+      useLimitation: 'eo:useLimitation/text()'
+      accessConstraint: 'eo:accessConstraint/text()'
+      otherConstraint: 'dc:rights/text()'
+      classification: 'DIAS:productConfidentialityLevel/text()'
+      language: 'eo:language/text()'
+      specification: 'eo:specification/text()'
+
+      # OpenSearch Parameters for Product Search (Table 5)
+      parentIdentifier: 'eo:parentIdentifier/text()'
+      acquisitionType: 'eo:acquisitionType/text()'
+      orbitNumber: 'eo:orbitNumber/text()'
+      orbitDirection: 'eo:orbitDirection/text()'
+      track: 'eo:track/text()'
+      frame: 'eo:frame/text()'
+      swathIdentifier: 'eo:swathIdentifier/text()'
+      cloudCover:
+        - 'cloudCover=[0,{cloudCover}]'
+        - 'eo:cloudCover/text()'
+      snowCover: 'eo:snowCover/text()'
+      lowestLocation: 'eo:lowestLocation/text()'
+      highestLocation: 'eo:highestLocation/text()'
+      productVersion: 'DIAS:processingBaseline/text()'
+      productQualityStatus: 'eo:productQualityStatus/text()'
+      productQualityDegradationTag: 'eo:productQualityDegradationTag/text()'
+      processorName: 'eo:processorName/text()'
+      processingCenter: 'eo:processingCenter/text()'
+      creationDate: 'DIAS:onlineDate/text()'
+      modificationDate: 'ns:updated/text()'
+      processingDate: 'eo:processingDate/text()'
+      sensorMode: 'eo:sensorMode/text()'
+      archivingCenter: 'eo:archivingCenter/text()'
+      processingMode: 'eo:processingMode/text()'
+
+      # OpenSearch Parameters for Acquistion Parameters Search (Table 6)
+      availabilityTime: 'DIAS:onlineDate/text()'
+      acquisitionStation: 'eo:acquisitionStation/text()'
+      acquisitionSubType: 'eo:acquisitionSubType/text()'
+      startTimeFromAscendingNode:
+        - 'timeStart={startTimeFromAscendingNode#to_iso_utc_datetime}'
+        - 'DIAS:sensingStartDate/text()'
+      completionTimeFromAscendingNode:
+        - 'timeEnd={completionTimeFromAscendingNode#to_iso_utc_datetime}'
+        - 'DIAS:sensingStopDate/text()'
+      illuminationAzimuthAngle: 'eo:illuminationAzimuthAngle/text()'
+      illuminationZenithAngle: 'eo:illuminationZenithAngle/text()'
+      illuminationElevationAngle: 'eo:illuminationElevationAngle/text()'
+      polarizationMode: 'eo:polarizationMode/text()'
+      polarisationChannels: 'eo:polarisationChannels/text()'
+      antennaLookDirection: 'eo:antennaLookDirection/text()'
+      minimumIncidenceAngle: 'eo:minimumIncidenceAngle/text()'
+      maximumIncidenceAngle: 'eo:maximumIncidenceAngle/text()'
+      dopplerFrequency: 'eo:dopplerFrequency/text()'
+      incidenceAngleVariation: 'eo:incidenceAngleVariation/text()'
+
+      # Custom parameters (not defined in the base document referenced above)
+      id:
+        - 'uid={id#remove_extension}'
+        - 'dc:identifier/text()'
+      # The geographic extent of the product
+      geometry:
+        - 'geometry={geometry#to_wkt_convex_hull}'
+        - 'georss:box/text()'
+      # The url of the quicklook
+      quicklook: 'media:group/media:content[media:category="QUICKLOOK"]/@url'
+      # The url to download the product "as is" (literal or as a template to be completed either after the search result
+      # is obtained from the provider or during the eodag download phase)
+      downloadLink: 'ns:link[@rel="enclosure"]/@href'
+      # storageStatus: must be one of ONLINE, STAGING, OFFLINE
+      storageStatus: 'DIAS:onlineStatus/text()'
+
+      # Additional metadata provided by the providers but that don't appear in the reference spec
+      thumbnail: 'media:group/media:content[media:category="THUMBNAIL"]/@url'
+  download: !plugin
+    type: S3RestDownload
+    base_uri: 'https://mundiwebservices.com/dp'
+    extract: true
+    auth_error_code: 401
+  auth: !plugin
+    type: HTTPHeaderAuth
+    headers:
+      Cookie: "seeedtoken={apikey}"
+  products:
+    S1_SAR_GRD:
+      product_type: GRD
+      processingLevel: L1_
+      collection: Sentinel1
+    S1_SAR_SLC:
+      product_type: SLC
+      processingLevel: L1_
+      collection: Sentinel1
+    S2_MSI_L1C:
+      product_type: IMAGE
+      processingLevel: L1C
+      collection: Sentinel2
+    S2_MSI_L2A:
+      product_type: IMAGE
+      processingLevel: L2A
+      collection: Sentinel2
+    S3_OLCI_L2LFR:
+      product_type: OL_2_LFR___
+      instrument: OLCI
+      collection: Sentinel3
+
+---
+!provider
+  name: wekeo
+  priority: 0
+  description: Wekeo
+  search: !plugin
+    type: CSWSearch
+    api_endpoint: 'https://www.wekeo.eu/elastic-csw/service'
+    metadata_mapping:
+      id: 'dc:identifier/text()'
+      productType: 'dct:alternative/text()'
+      title: 'dc:title/text()'
+      abstract: 'dct:abstract/text()'
+      quicklook: 'https://www.wekeo.eu/sites/default/files/quicklooks/{productType}.jpg'
+      keyword: 'dc:subject[text()]'
+    search_definition:
+      product_type_tags:
+        - name: 'dc:identifier' # any xml tag of the catalogue that can be queryable
+          matching: exact # One of exact (eq. to L1C for ex), prefix (eq. *L1C), postfix (eq. L1C*) or fuzzy (eq. *L1C*)
+  download: !plugin
+    type: HTTPDownload
+    order_enabled: false
+  auth: !plugin
+    type: GenericAuth
+  products:
+    S1_SAR_GRD:
+      product_type: "EO:ESA:DAT:SENTINEL-1:L1_GRD"
+    S1_SAR_SLC:
+      product_type: "EO:ESA:DAT:SENTINEL-1:L1_SLC"
+    S2_MSI_L1C:
+      product_type: "EO:ESA:DAT:SENTINEL-2:MSI1C"
+    S3_LAN:
+      product_type: "EO:ESA:DAT:SENTINEL-3:SR_2_LAN___"
+    S3_SRA:
+      product_type: "EO:EUM:DAT:SENTINEL-3:SR_1_SRA___"
+    S3_SRA_BS:
+      product_type: "EO:EUM:DAT:SENTINEL-3:SR_1_SRA_BS___"
+    S3_EFR:
+      product_type: "EO:EUM:DAT:SENTINEL-3:OL_1_EFR___"
+    S3_ERR:
+      product_type: "EO:EUM:DAT:SENTINEL-3:OL_1_ERR___"
+    S3_WAT:
+      product_type: "EO:EUM:DAT:SENTINEL-3:SR_2_WAT___"
+    S3_SLSTR_L2LST:
+      product_type: "EO:ESA:DAT:SENTINEL-3:SL_2_LST___"
+    S3_OLCI_L2LRR:
+      product_type: "EO:ESA:DAT:SENTINEL-3:OL_2_LRR___"
+    S3_OLCI_L2LFR:
+      product_type: "EO:ESA:DAT:SENTINEL-3:OL_2_LFR___"
+    S3_SLSTR_L1RBT:
+      product_type: "EO:EUM:DAT:SENTINEL-3:SL_1_RBT___"
+
+---
+!provider
+  name: onda
+  priority: 0
+  description: Serco DIAS
+  roles:
+    - host
+  url: https://www.onda-dias.eu/cms/
+  search: !plugin
+    type: ODataV4Search
+    api_endpoint: 'https://catalogue.onda-dias.eu/dias-catalogue/Products'
+    dont_quote:
+      - '['
+      - ']'
+      - '$'
+      - '='
+      - '&'
+      - ':'
+    pagination:
+      count_endpoint: 'https://catalogue.onda-dias.eu/dias-catalogue/Products/$count'
+      next_page_url_tpl: '{url}?{search}&$top={items_per_page}&$skip={skip}'
+    results_entry: 'value'
+    literal_search_params:
+      $format: json
+    free_text_search_operations:
+      $search:
+        union: ' OR '
+        wrapper: '"{}"'
+        operations:
+          AND:
+            - 'footprint:"Intersects({geometry#to_wkt_convex_hull})"'
+            - 'productType:{productType}'
+            - 'platformName:{platform}'
+            - 'cloudCoverPercentage:[0 TO {cloudCover}]'
+            - 'beginPosition:[{startTimeFromAscendingNode#to_iso_utc_datetime} TO *]'
+            - 'endPosition:[* TO {completionTimeFromAscendingNode#to_iso_utc_datetime}]'
+            - '{id#remove_extension}'
+    discover_metadata:
+      auto_discovery: true
+      metadata_pattern: '^[a-zA-Z0-9]+$'
+      search_param:
+        free_text_search_operations:
+          $search:
+            operations:
+              AND:
+                - '{metadata}:{{{metadata}}}'
+      metadata_path: '$.*'
+    metadata_mapping:
+      # Opensearch resource identifier within the search engine context (in our case
+      # within the context of the data provider)
+      uid: '$.id'
+      # OpenSearch Parameters for Collection Search (Table 3)
+      productType: '$.productType'
+      platform:
+        - platform
+        - '$.platformName'
+      platformSerialIdentifier: '$.platformSerialIdentifier'
+      instrument: '$.instrumentName'
+      processingLevel: '$.processingLevel'
+
+      # INSPIRE obligated OpenSearch Parameters for Collection Search (Table 4)
+      title: '$.filename'
+
+      # OpenSearch Parameters for Product Search (Table 5)
+      orbitNumber: '$.orbitNumber'
+      orbitDirection: '$.orbitDirection'
+      cloudCover: '$.cloudCoverPercentage'
+      productVersion: '$.processingBaseline'
+      productQualityStatus: '$.generalQualityFlag'
+      creationDate: '$.creationDate'
+      processingDate: '$.processingDate'
+      sensorMode: '$.sensorOperationalMode'
+
+      # OpenSearch Parameters for Acquistion Parameters Search (Table 6)
+      startTimeFromAscendingNode: '$.beginPosition'
+      completionTimeFromAscendingNode: '$.endPosition'
+
+      # Custom parameters (not defined in the base document referenced above)
+      id: '{$.filename#remove_extension}'
+      # The geographic extent of the product
+      geometry: '$.footprint'
+      # The url of the quicklook
+      quicklook: '$.quicklook'
+      # The url to download the product "as is" (literal or as a template to be completed either after the search result
+      # is obtained from the provider or during the eodag download phase)
+      downloadLink: '%(base_uri)s({uid})/$value'
+      # storageStatus: must be one of ONLINE, STAGING, OFFLINE
+      storageStatus: '{$.offline#get_group_name((?P<ONLINE>False)|(?P<OFFLINE>True))}'
+      # Url used for ordering product if it is offline/archived
+      orderLink: 'https://catalogue.onda-dias.eu/dias-catalogue/Products({uid})/Ens.Order'
+  products:
+    S1_SAR_OCN:
+      product_type: '*OCN*'
+    S1_SAR_GRD:
+      product_type: '*GRD*'
+    S1_SAR_SLC:
+      product_type: '*SLC*'
+    S1_SAR_RAW:
+      product_type: '*RAW*'
+    S2_MSI_L1C:
+      product_type: S2MSI1C
+    S2_MSI_L2A:
+      product_type: S2MSI2A
+    S3_EFR:
+      product_type: OL_1_EFR___
+    S3_ERR:
+      product_type: OL_1_ERR___
+    S3_OLCI_L2LFR:
+      product_type: OL_2_LFR___
+    S3_OLCI_L2LRR:
+      product_type: OL_2_LRR___
+    S3_SLSTR_L1RBT:
+      product_type: SL_1_RBT___
+    S3_SLSTR_L2LST:
+      product_type: SL_2_LST___
+    S3_LAN:
+      product_type: SR_2_LAN___
+    S3_SRA:
+      product_type: SR_1_SRA_A_
+    S3_SRA_BS:
+      product_type: SR_1_SRA_BS
+    S3_SRA_A_BS:
+      product_type: SR_1_SRA___
+    S3_WAT:
+      product_type: SR_2_WAT___
+    L8_OLI_TIRS_C1L1:
+      platform: 'Landsat-*'
+  download: !plugin
+    type: HTTPDownload
+    base_uri: 'https://catalogue.onda-dias.eu/dias-catalogue/Products'
+    extract: true
+    auth_error_code: 401
+    order_enabled: true
+    order_method: 'POST'
+    order_headers:
+      Content-Type: application/json
+  auth: !plugin
+    type: GenericAuth
+
+---
+!provider
+  name: astraea_eod
+  priority: 0
+  url: https://earthondemand.astraea.earth
+  search: !plugin
+    type: StacSearch
+    api_endpoint: https://eod-catalog-svc-prod.astraea.earth/search
+  products:
+    S2_MSI_L1C:
+      product_type: sentinel2_l1c
+    S2_MSI_L2A:
+      product_type: sentinel2_l2a
+    L8_OLI_TIRS_C1L1:
+      product_type: landsat8_l1tp
+    MODIS_MCD43A4:
+      product_type: mcd43a4
+    NAIP:
+      product_type: naip
+  download: !plugin
+    type: AwsDownload
+    base_uri: https://eod-catalog-svc-prod.astraea.earth
+    flatten_top_dirs: True
+  auth: !plugin
+    type: OAuth
