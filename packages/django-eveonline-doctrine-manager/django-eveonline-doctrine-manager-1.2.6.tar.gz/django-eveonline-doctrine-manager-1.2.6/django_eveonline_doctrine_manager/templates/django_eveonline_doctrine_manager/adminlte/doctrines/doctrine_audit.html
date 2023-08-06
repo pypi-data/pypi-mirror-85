@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block header %}
+Audit Doctrine
+{% endblock %}
+
+{% block description %}
+{{object.name}}
+<p id="{{object.pk}}" class="doctrine-id" hidden></p>
+{% endblock %}
+
+
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-danger box-solid">
+            <div class="box-header">
+                <h3 class="box-title">Pilot Check</h3>
+            </div>
+            <div class="box-body">
+                <div class="dataTables_wrapper form-inline dt-bootstrap">
+                    <table class="table table-bordered table-striped dataTable">
+                        <thead>
+                            <th class="col-lg-1 col-md-1 col-xs-1"></th>
+                            <th class="col-lg-3 col-md-3 col-xs-2">Character Name</th>
+                            <th class="col-lg-3 col-md-3 col-xs-2">Corporation</th>
+                            <th class="col-lg-2 col-md-2 hidden-xs">Skill Check</th>
+                            <th class="col-lg-2 col-md-2 hidden-xs">Hangar Check</th>
+                        </thead>
+                        <tbody>
+                            {% for character in object.character_list %}
+                            <tr>
+                                <td class="text-center">
+                                    <img src="https://imageserver.eveonline.com/Character/{{character.external_id}}_64.jpg"
+                                        class="img-circle" alt="Avatar" width="32px"
+                                        title="{{character.character.name}}">
+                                </td>
+                                <td>
+                                    <a href="{% url 'django-eveonline-connector-view-character' character.external_id %}">{{character.name}}</a>
+                                </td>
+                                <td>
+                                    <a href="{% url 'django-eveonline-connector-view-corporation' character.corporation.external_id %}">{{character.corporation.name}}</a>
+                                </td>
+                                <td id="s_{{character.external_id}}" class="skillcheck">
+                                    <i class="fa fa-1x fa-spinner fa-spin" aria-hidden="true"></i>
+
+                                </td>
+                                <td id="h_{{character.external_id}}" class="hangarcheck">
+                                    <i class="fa fa-1x fa-spinner fa-spin" aria-hidden="true"></i>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $.fn.DataTable.ext.pager.numbers_length = 5;
+    $(function () {
+        $('table').DataTable({
+            'paging': true,
+            'lengthChange': true,
+            'searching': true,
+            'ordering': true,
+            'order': [[1, 'asc']],
+            'pageLength': 5,
+            "autoWidth": false,
+        })
+    })
+</script>
+
+<script>
+    var processSkillCheckObject = async function(skillCheckObject, doctrineId) {
+        id = skillCheckObject.id.slice(2);
+        const res = await fetch('/eveonline/api/skillcheck?external_id=' + id + '&doctrine_id=' + doctrineId)
+        if (res.status == 200) {
+            skillCheckObject.innerHTML = '<i title="Character has the required skills" class="fa fa-check text-success"></i>'
+        }
+        else if (res.status == 500) {
+            skillCheckObject.innerHTML = '<i title="Server error when fetching API" class="fa fa-warning text-warning"></i>'
+        }
+        else {
+            const resJSON = await res.json();
+            console.log(resJSON)
+            skillCheckObject.innerHTML = '<i class="fa fa-times text-danger"></i>'
+        }
+    };
+    document.addEventListener("DOMContentLoaded", async function () {
+        var doctrineId = document.querySelectorAll('.doctrine-id')[0].id
+        var skillCheckObjects = document.querySelectorAll('.skillcheck')
+        var hangarCheckObjects = document.querySelectorAll('.hangarcheck')
+
+        skillCheckObjects.forEach(async skillCheckObject => {
+            const id = skillCheckObject.id.slice(2);
+            const res = await fetch('/eveonline/api/skillcheck?external_id=' + id + '&doctrine_id=' + doctrineId)
+            if (res.status == 200) {
+                skillCheckObject.innerHTML = '<i class="fa fa-check text-success"></i>'
+            }
+            else if (res.status == 400) {
+                skillCheckObject.innerHTML = '<i title="Server error when fetching API" class="fa fa-warning text-warning"></i>'
+            }
+            else {
+                skillCheckObject.innerHTML = '<i class="fa fa-times text-danger"></i>'
+            }
+
+        });
+
+        hangarCheckObjects.forEach(async hangarCheckObject => {
+            const id = hangarCheckObject.id.slice(2)
+            const res = await fetch('/eveonline/api/hangarcheck?external_id=' + id + '&doctrine_id=' + doctrineId)
+            if (res.status == 204) {
+                hangarCheckObject.innerHTML = '<i class="fa fa-check text-success"></i>'
+            }
+            else if (res.status == 400) {
+                hangarCheckObject.innerHTML = '<i title="Server error when fetching API" class="fa fa-warning text-warning"></i>'
+            }
+            else {
+                hangarCheckObject.innerHTML = '<i class="fa fa-times text-danger"></i>'
+            }
+        });
+    })
+</script>
+{% endblock %}

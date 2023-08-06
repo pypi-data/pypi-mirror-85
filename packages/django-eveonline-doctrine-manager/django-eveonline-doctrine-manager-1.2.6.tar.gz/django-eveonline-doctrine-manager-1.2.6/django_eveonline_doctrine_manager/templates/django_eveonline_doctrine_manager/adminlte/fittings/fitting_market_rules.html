@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block header %}
+Fittings
+<button class="btn btn-default pull-right" onclick="toggleStocked(this)">Show Stocked</button>
+{% endblock %}
+
+{% block description %}
+View Market Rules
+
+{% endblock %}
+
+{% block content %}
+<div class="box box-primary box-solid">
+    <div class="box-header">
+        <h3 class="box-title">
+            Market Rule Table
+        </h3>
+        
+    </div>
+    <div class="box-body">
+        <div class="dataTables_wrapper form-inline dt-bootstrap">
+
+            <table class="table table-bordered table-striped dataTable">
+                <thead>
+                    <th class="col-lg-1 col-md-1 col-xs-2"></th>
+                    <th class="col-lg-1 col-md-1 col-xs-1">Fitting</th>
+                    <th class="col-lg-1 col-md-1 hidden-xs">Location</th>
+                    <th class="col-lg-1 col-md-1 col-xs-1">Desired Stock</th>
+                    <th class="col-lg-1 col-md-1 col-xs-1">Current Stock</th>
+                    <th class="col-lg-2 col-md-2 col-xs-2">Actions</th>
+
+                </thead>
+                <tbody>
+                    {% for fitting_rule in object_list %}
+                    <tr
+                    {% if fitting_rule.current_stock >=  fitting_rule.requested_stock %}
+                    hidden
+                    class="stocked"
+                    {% endif %}
+                    >
+                        <td class="text-center"><img class="img-circle"
+                                src="https://images.evetech.net/types/{{fitting_rule.fitting.ship_id}}/icon?size=32"
+                                title="{{fitting_rule.fitting.ship_name}}" width="24px"></td>
+                        <td>{{fitting_rule.fitting.name}}</td>
+                        <td>{{fitting_rule.structure.name}}</td>
+                        <td>{{fitting_rule.requested_stock}}</td>
+                        <td>{{fitting_rule.current_stock}}</td>
+                        
+                        <td>
+                            {% if fitting_rule.current_stock < fitting_rule.requested_stock %}
+                            <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#modal_{{fitting_rule.pk}}">
+                                Restock
+                            </button>
+                            {% else %}
+                            <button type="button" class="btn btn-info btn-block" disabled>
+                                Stocked
+                            </button>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="box-footer">
+
+    </div>
+</div>
+<!-- Modal -->
+{% for fitting_rule in object_list %}
+<div class="modal fade" id="modal_{{fitting_rule.pk}}" tabindex="-1" role="dialog" aria-labelledby="#modal_{{fitting_rule.pk}}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Restock {{fitting_rule.fitting.name}}</h4>
+            </div>
+            <div class="modal-body">
+                <ol>
+                    <li>Purchase the the fitting below</li>
+                    <li>Haul the fitting to <input type="text" id="fname" name="fname" value="{{fitting_rule.structure.name}}" disabled></li>
+                    <li>Create a contract with the proper settings</li>
+                    <li>The name <b>MUST</b> be <input type="text" id="fname" name="fname" value="{{fitting_rule.required_name}}" disabled></li>
+                    <li>Click the "Pull Contracts" button below when you have created the contracts</li>
+                </ol>
+                <textarea style="width:100%" onclick="this.select()" rows="15" readonly="readonly">
+                    &#13;&#10;{{fitting_rule.fitting.market_paste}}
+                </textarea>
+            </div>
+            <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-warning" onclick="pullContracts(this)">Pull contracts</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+    async function toggleStocked(button) {
+        if (button.innerHTML === "Show Stocked") {
+            button.innerHTML = "Hide Stocked"
+            button.classList = "btn btn-warning pull-right"
+        }
+        else {
+            button.innerHTML = "Show Stocked"
+            button.classList = "btn btn-default pull-right"
+        }
+        stockedRows = document.querySelectorAll('.stocked')
+        stockedRows.forEach(element => {
+            element.hidden = !(element.hidden)
+        });
+        
+    }
+    async function pullContracts(button) {
+        button.classList = "btn btn-danger pull-right"
+        button.disabled = true 
+        button.innerHTML = '<i class="fa fa-1x fa-spinner fa-spin" aria-hidden="true"></i>'
+        location.href = "{% url 'django-eveonline-doctrine-manager-fittings-stock' %}";
+    }
+    $(function () {
+        $('table').DataTable({
+            'paging': false,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'order': [[1, 'asc']],
+            "autoWidth": false,
+        })
+    })
+</script>
+
+{% endblock %}

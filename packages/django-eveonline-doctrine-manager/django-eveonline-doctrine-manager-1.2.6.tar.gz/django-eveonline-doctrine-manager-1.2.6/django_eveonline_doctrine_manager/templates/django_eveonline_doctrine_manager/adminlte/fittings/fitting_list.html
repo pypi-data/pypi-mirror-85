@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block header %}
+Fittings
+{% endblock %}
+
+{% block description %}
+View Fittings
+
+{% endblock %}
+
+{% block content %}
+<div class="box box-primary box-solid">
+    <div class="box-header">
+        <h3 class="box-title">
+            Fitting Table
+        </h3>
+        {% if perms.django_eveonline_doctrine_manager.add_evefitting %}
+        <a class="btn pull-right" href="{% url 'django-eveonline-doctrine-manager-fittings-create' %}">
+            <i class="fa fa-plus"></i>
+        </a>
+        {% endif %}
+    </div>
+    <div class="box-body">
+        
+        <div class="dataTables_wrapper form-inline dt-bootstrap">
+            
+            <table class="table table-bordered table-striped dataTable">
+                <thead>
+                    <th class="col-lg-1 col-md-1 col-xs-2"></th>
+                    <th class="col-lg-1 col-md-1 hidden-xs">Roles</th>
+                    <th class="col-lg-3 col-md-3 col-xs-2">Fitting Name</th>
+                    
+                    <th class="col-lg-2 col-md-2 col-xs-2">Actions</th>
+                </thead>
+                <tbody>
+                    {% for fitting in object_list %}
+                    <tr>
+                        <td class="text-center"><img class="img-circle" src="https://images.evetech.net/types/{{fitting.ship_id}}/icon?size=32"
+                                title="{{fitting.ship_name}}" width="32px">
+                            </td>
+                        <td class="hidden-xs">
+                            {% for role in fitting.roles.all %}
+                            <span class="label label-{{role.color}}">
+                            {{role}}
+                            </span>
+                            {% endfor %}
+                        </td>
+                        <td>
+                            <h4 class="pull-left">
+                                {{fitting.name}}
+                            </h4>
+                        </td>
+                        
+                        <td >
+                            <div style="display: flex;" class="btn-group btn-group-md">
+                                <a href="{% url 'django-eveonline-doctrine-manager-fittings-detail' fitting.pk %}" style="flex: 1;" class="btn btn-info fa fa-eye"></a>
+                                {% if perms.django_eveonline_doctrine_manager.change_evefitting %}
+                                <a href="{% url 'django-eveonline-doctrine-manager-fittings-update' fitting.pk %}" style="flex: 1;" class="btn btn-warning fa fa-pencil"></a>
+                                {% endif %}
+                                {% if perms.django_eveonline_doctrine_manager.delete_evefitting %}
+                                <a href="{% url 'django-eveonline-doctrine-manager-fittings-delete' fitting.pk %}" style="flex: 1;" class="btn btn-danger fa fa-times"></a>
+                                {% endif %}
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="box-footer">
+        
+    </div>  
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $.fn.DataTable.ext.pager.numbers_length = 5;
+    $(function () {
+        $('table').DataTable({
+            'paging': true,
+            'lengthChange': true,
+            'searching': true,
+            'ordering': true,
+            'order': [[1, 'asc']],
+            'pageLength': 10,
+            "autoWidth": false,
+        })
+    })
+</script>
+
+{% endblock %}

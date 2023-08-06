@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block header %}
+Doctrines
+{% endblock %}
+
+{% block description %}
+Doctrine Form
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="box box-solid box-primary">
+    <div class="box-header ">
+        <h3 class="box-title">
+            Doctrine Form
+        </h3>
+    </div>
+    <div class="box-body pad">
+        <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input class="btn btn-success" type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js' %}"></script>
+<script>
+    $(function () {
+        // Summernote
+        $('.wysihtml5').wysihtml5({
+            toolbar: {
+                "font-styles": true, // Font styling, e.g. h1, h2, etc.
+                "emphasis": true, // Italics, bold, etc.
+                "lists": true, // (Un)ordered lists, e.g. Bullets, Numbers.
+                "html": false, // Button which allows you to edit the generated HTML.
+                "link": true, // Button to insert a link.
+                "image": false, // Button to insert an image.
+                "color": false, // Button to change color of font
+                "blockquote": true, // Blockquote
+            }
+        });
+    })
+</script>
+{% endblock %}

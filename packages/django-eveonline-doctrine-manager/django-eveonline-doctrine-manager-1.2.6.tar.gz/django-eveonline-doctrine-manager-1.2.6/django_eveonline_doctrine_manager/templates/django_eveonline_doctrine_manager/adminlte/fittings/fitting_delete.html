@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block header %}
+Delete Fitting
+{% endblock %}
+
+{% block description %}
+{{object.name}}
+{% endblock %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="box box-solid box-danger">
+        <div class="box-header">
+            <h3>Are you sure?</h3>
+        </div>
+        <div class="box-body">
+                <p>You are about to delete this fitting, this cannot be undone.</p>
+                
+        </div>
+        <div class="box-footer">
+            <button class="btn btn-default" onclick="window.history.back();">Cancel</button>
+            <button class="btn btn-danger" type="submit">Confirm</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

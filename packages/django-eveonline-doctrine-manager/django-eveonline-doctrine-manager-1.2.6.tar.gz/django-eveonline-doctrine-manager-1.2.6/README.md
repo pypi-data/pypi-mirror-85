@@ -1,0 +1,1 @@
+# django-eveonline-doctrine-manager

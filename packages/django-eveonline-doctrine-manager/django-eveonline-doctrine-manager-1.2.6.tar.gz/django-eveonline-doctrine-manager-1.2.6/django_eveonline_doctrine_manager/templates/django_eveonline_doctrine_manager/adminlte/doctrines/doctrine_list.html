@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block header %}
+Doctrines
+{% endblock %}
+
+{% block description %}
+View Doctrines
+{% endblock %}
+
+{% block content %}
+<div class="box box-primary box-solid">
+    <div class="box-header">
+        <h3 class="box-title">Doctrines</h3>
+        {% if perms.django_eveonline_doctrine_manager.add_evedoctrine %}
+        <a class="btn pull-right" href="{% url 'django-eveonline-doctrine-manager-doctrines-create' %}">
+            <i class="fa fa-plus"></i>
+        </a>
+        {% endif %}
+    </div>
+    <div class="box-body">
+        <div class="dataTables_wrapper form-inline dt-bootstrap">
+            
+            <table class="table table-bordered table-striped dataTable">
+                <thead>
+                    <th class="col-lg-2 col-md-2 col-xs-1">Name</th>
+                    <th class="col-lg-1 col-md-1 hidden-xs">Category</th>
+                    <th class="col-lg-4 col-md-4 hidden-xs">Ships</th>
+                    <th class="col-lg-2 col-md-2 col-xs-1">Actions</th>
+                    
+                </thead>
+                <tbody>
+                    {% for doctrine in object_list %}
+                    <tr>
+                        <td>
+                            <h4 class="pull-left">{{doctrine.name}}</h4>
+                            
+                        </td>
+                        <td class="hidden-xs">
+                            {% if doctrine.category %}
+                            <span class="label label-{{doctrine.category.color}}">
+                                {{doctrine.category}}
+                            </span>
+                            {% else %}
+                            {% endif %}
+                            
+                        </td>
+                        <td class="hidden-xs">
+                            {% for fitting in doctrine.fittings.all %}
+                            <img class="img-circle" src="https://images.evetech.net/types/{{fitting.ship_id}}/icon?size=32" title="{{fitting.get_ship_name}}" width="32px">
+                            {% endfor %}
+                        </td>
+                        <td >
+                            <div style="display: flex;" class="btn-group btn">
+                                <a 
+                                    href="{% url 'django-eveonline-doctrine-manager-doctrines-detail' doctrine.pk %}" 
+                                    style="flex: 1;" 
+                                    class="btn btn-info fa fa-eye">
+                                    {% if not perms.django_eveonline_doctrine_manager.view_evedoctrine %}
+                                    disabled
+                                    {% endif %}
+                                </a>
+
+                                {% if perms.django_eveonline_doctrine_manager.change_evedoctrine %}
+                                <a 
+                                    href="{% url 'django-eveonline-doctrine-manager-doctrines-update' doctrine.pk %}" 
+                                    style="flex: 1;" 
+                                    class="btn btn-warning fa fa-pencil">        
+                                </a>
+                                {% endif %}
+
+                                {% if perms.django_eveonline_doctrine_manager.delete_evedoctrine %}
+                                <a href="{% url 'django-eveonline-doctrine-manager-doctrines-delete' doctrine.pk %}" style="flex: 1;" class="btn btn-danger fa fa-times"></a>
+                                {% endif %}
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $.fn.DataTable.ext.pager.numbers_length = 5;
+    $(function () {
+        $('table').DataTable({
+            'paging': true,
+            'lengthChange': true,
+            'searching': true,
+            'ordering': true,
+            'order': [[1, 'desc']],
+            'pageLength': 10,
+            "autoWidth": false,
+        })
+    })
+</script>
+
+{% endblock %}

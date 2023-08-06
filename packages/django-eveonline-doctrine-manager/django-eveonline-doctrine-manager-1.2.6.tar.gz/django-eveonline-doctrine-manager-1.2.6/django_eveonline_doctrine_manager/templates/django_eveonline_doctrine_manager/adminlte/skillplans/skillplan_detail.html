@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block header %}
+View Skill Plan
+{% endblock %}
+
+{% block description %}
+{{object.name}}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="box box-primary box-solid">
+            <div class="box-header">
+                <h3 class="box-title">EFT Format</h3>
+            </div>
+            <div class="box-body">
+                <textarea style="width:100%" onclick="this.select()" class="col-md-12" rows="15" readonly="readonly">
+                                                &#13;&#10;{{object.fitting}}
+                                            </textarea>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="box box-info box-solid">
+            <div class="box-header">
+                <h3 class="box-title">Description</h3>
+            </div>
+            <div class="box-body">
+            <p>
+                {% autoescape off %}
+                {{object.description}}
+                {% endautoescape %}
+            </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-danger box-solid">
+            <div class="box-header">
+                <h3 class="box-title">Potential Refits</h3>
+            </div>
+            <div class="box-body">
+                <div class="dataTables_wrapper form-inline dt-bootstrap">
+                    <table class="table table-bordered table-striped dataTable">
+                        <thead>
+                            <th class="col-lg-1 col-md-1 col-xs-2"></th>
+                            <th class="col-lg-3 col-md-3 col-xs-2">Fitting Name</th>
+                            <th class="col-lg-3 col-md-3 hidden-xs">Tags</th>
+                            <th class="col-lg-3 col-md-3 hidden-xs">Roles</th>
+                            <th class="col-lg-2 col-md-2 col-xs-2">Actions</th>
+
+                        </thead>
+                        <tbody>
+                            {% for fitting in object.refits %}
+                            <tr>
+                                <td class="text-center"><img class="img-circle"
+                                        src="https://images.evetech.net/types/{{fitting.ship_id}}/icon?size=32"
+                                        title="{{fitting.ship_name}}" width="32px"></td>
+                                <td>{{fitting.name}}</td>
+                                <td class="hidden-xs">
+                                    {% for tag in fitting.tags.all %}
+                                    <span class="badge badge-primary">{{tag}}</span>
+                                    {% endfor %}
+                                </td>
+                                <td class="hidden-xs">
+                                    {% for role in fitting.roles.all %}
+                                    <span class="badge badge-primary">{{role}}</span>
+                                    {% endfor %}
+                                </td>
+                                <td>
+                                    <div style="display: flex;" class="btn-group btn-group-md">
+                                        <a href="{% url 'django-eveonline-doctrine-manager-fittings-detail' fitting.pk %}" style="flex: 1;"
+                                            class="btn btn-info fa fa-eye"></a>
+                                        <a href="{% url 'django-eveonline-doctrine-manager-fittings-update' fitting.pk %}" style="flex: 1;"
+                                            class="btn btn-warning fa fa-pencil"></a>
+                                        <a href="{% url 'django-eveonline-doctrine-manager-fittings-delete' fitting.pk %}" style="flex: 1;"
+                                            class="btn btn-danger fa fa-times"></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $.fn.DataTable.ext.pager.numbers_length = 5;
+    $(function () {
+        $('table').DataTable({
+            'paging': true,
+            'lengthChange': true,
+            'searching': true,
+            'ordering': true,
+            'order': [[1, 'asc']],
+            'pageLength': 5,
+            "autoWidth": false,
+        })
+    })
+</script>
+
+{% endblock %}
