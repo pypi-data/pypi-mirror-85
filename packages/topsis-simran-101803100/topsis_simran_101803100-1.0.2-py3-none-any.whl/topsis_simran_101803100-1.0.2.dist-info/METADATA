@@ -1,0 +1,57 @@
+Metadata-Version: 2.1
+Name: topsis-simran-101803100
+Version: 1.0.2
+Summary: Compare different models using performance score
+Home-page: UNKNOWN
+Author: Simran Jot Kaur
+Author-email: simranjotkaur82@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+TOPSIS
+===================
+
+Use it to compare results or parameters of different models and rank them accordingly
+
+
+
+Documentation
+-------------
+
+Commands:
+
+1.   import topsis_simran_101803100 as tp
+2.  tp.topsis("filename","weights array","impacts array","resultfilename")
+
+> **Note:**
+
+>-  File should be of CSV type containing all the parameter for different files.
+>- All the data should be of numeric type.
+>- TOPSIS score will be stored in the resultfilename.csv
+>- Provdie weights and impact array in form of list
+>- wts => [1,1,1,1], impacts => ['-','+','+','+']
+
+Eg.
+
+| Model | Corr | Rseq | Rmse | Accuracy |
+|-------|------|------|------|----------|
+| M1    | 0.79 | 0.62 | 1.25 | 60.89    |
+| M2    | 0.66 | 0.44 | 2.89 | 63.07    |
+| M3    | 0.56 | 0.31 | 1.57 | 62.87    |
+
+tp.topsis('data.csv',[1,1,1,1],['-','+','+','+'],'result.csv')
+
+RESULT
+------
+
+| Model | Corr | Rseq | Rmse | Accuracy |  p_score | rank |
+|-------|------|------|------|----------|----------|------|
+| M1    | 0.79 | 0.62 | 1.25 | 60.89    | 0.624385 |  1   |
+| M2    | 0.66 | 0.44 | 2.89 | 63.07    | 0.289848 |  3   |
+| M3    | 0.56 | 0.31 | 1.57 | 62.87    | 0.398557 |  2   |
+
+
