@@ -1,0 +1,513 @@
+Metadata-Version: 2.1
+Name: scrud-django
+Version: 0.1
+Summary: A Django app for Semantic CRUD.
+Home-page: https://github.com/openteamsinc/scrud-django
+Author: David Charboneau
+Author-email: dcharbon@openteams.com
+License: BSD-3-Clause
+Description: # scrud-django
+        A Django application for SCRUD REST services. Semantic REST API generation.
+        
+        ## Get Started
+        
+        ### Get prepared to run tests and the demo application
+        
+        ```bash
+        cd docker
+        conda env create -f environment-dev.yml
+        conda activate scrud-django
+        cd ..
+        make develop
+        make migrate
+        ```
+        ### Confirm setup
+        
+        ```bash
+        make run_tests
+        ```
+        
+        ### Start the demo application
+        
+        ```bash
+        cd demo
+        python manage.py runserver
+        ```
+        
+        
+        
+Platform: UNKNOWN
+Classifier: 
+
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier: E
+Classifier: n
+Classifier: v
+Classifier: i
+Classifier: r
+Classifier: o
+Classifier: n
+Classifier: m
+Classifier: e
+Classifier: n
+Classifier: t
+Classifier:  
+Classifier: :
+Classifier: :
+Classifier:  
+Classifier: W
+Classifier: e
+Classifier: b
+Classifier:  
+Classifier: E
+Classifier: n
+Classifier: v
+Classifier: i
+Classifier: r
+Classifier: o
+Classifier: n
+Classifier: m
+Classifier: e
+Classifier: n
+Classifier: t
+Classifier: 
+
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier: F
+Classifier: r
+Classifier: a
+Classifier: m
+Classifier: e
+Classifier: w
+Classifier: o
+Classifier: r
+Classifier: k
+Classifier:  
+Classifier: :
+Classifier: :
+Classifier:  
+Classifier: D
+Classifier: j
+Classifier: a
+Classifier: n
+Classifier: g
+Classifier: o
+Classifier: 
+
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier: F
+Classifier: r
+Classifier: a
+Classifier: m
+Classifier: e
+Classifier: w
+Classifier: o
+Classifier: r
+Classifier: k
+Classifier:  
+Classifier: :
+Classifier: :
+Classifier:  
+Classifier: D
+Classifier: j
+Classifier: a
+Classifier: n
+Classifier: g
+Classifier: o
+Classifier:  
+Classifier: :
+Classifier: :
+Classifier:  
+Classifier: 3
+Classifier: .
+Classifier: *
+Classifier: 
+
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier: I
+Classifier: n
+Classifier: t
+Classifier: e
+Classifier: n
+Classifier: d
+Classifier: e
+Classifier: d
+Classifier:  
+Classifier: A
+Classifier: u
+Classifier: d
+Classifier: i
+Classifier: e
+Classifier: n
+Classifier: c
+Classifier: e
+Classifier:  
+Classifier: :
+Classifier: :
+Classifier:  
+Classifier: D
+Classifier: e
+Classifier: v
+Classifier: e
+Classifier: l
+Classifier: o
+Classifier: p
+Classifier: e
+Classifier: r
+Classifier: s
+Classifier: 
+
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier: L
+Classifier: i
+Classifier: c
+Classifier: e
+Classifier: n
+Classifier: s
+Classifier: e
+Classifier:  
+Classifier: :
+Classifier: :
+Classifier:  
+Classifier: O
+Classifier: S
+Classifier: I
+Classifier:  
+Classifier: A
+Classifier: p
+Classifier: p
+Classifier: r
+Classifier: o
+Classifier: v
+Classifier: e
+Classifier: d
+Classifier:  
+Classifier: :
+Classifier: :
+Classifier:  
+Classifier: B
+Classifier: S
+Classifier: D
+Classifier:  
+Classifier: L
+Classifier: i
+Classifier: c
+Classifier: e
+Classifier: n
+Classifier: s
+Classifier: e
+Classifier: 
+
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier: O
+Classifier: p
+Classifier: e
+Classifier: r
+Classifier: a
+Classifier: t
+Classifier: i
+Classifier: n
+Classifier: g
+Classifier:  
+Classifier: S
+Classifier: y
+Classifier: s
+Classifier: t
+Classifier: e
+Classifier: m
+Classifier:  
+Classifier: :
+Classifier: :
+Classifier:  
+Classifier: O
+Classifier: S
+Classifier:  
+Classifier: I
+Classifier: n
+Classifier: d
+Classifier: e
+Classifier: p
+Classifier: e
+Classifier: n
+Classifier: d
+Classifier: e
+Classifier: n
+Classifier: t
+Classifier: 
+
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier: P
+Classifier: r
+Classifier: o
+Classifier: g
+Classifier: r
+Classifier: a
+Classifier: m
+Classifier: m
+Classifier: i
+Classifier: n
+Classifier: g
+Classifier:  
+Classifier: L
+Classifier: a
+Classifier: n
+Classifier: g
+Classifier: u
+Classifier: a
+Classifier: g
+Classifier: e
+Classifier:  
+Classifier: :
+Classifier: :
+Classifier:  
+Classifier: P
+Classifier: y
+Classifier: t
+Classifier: h
+Classifier: o
+Classifier: n
+Classifier: 
+
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier: P
+Classifier: r
+Classifier: o
+Classifier: g
+Classifier: r
+Classifier: a
+Classifier: m
+Classifier: m
+Classifier: i
+Classifier: n
+Classifier: g
+Classifier:  
+Classifier: L
+Classifier: a
+Classifier: n
+Classifier: g
+Classifier: u
+Classifier: a
+Classifier: g
+Classifier: e
+Classifier:  
+Classifier: :
+Classifier: :
+Classifier:  
+Classifier: P
+Classifier: y
+Classifier: t
+Classifier: h
+Classifier: o
+Classifier: n
+Classifier:  
+Classifier: :
+Classifier: :
+Classifier:  
+Classifier: 3
+Classifier: 
+
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier: P
+Classifier: r
+Classifier: o
+Classifier: g
+Classifier: r
+Classifier: a
+Classifier: m
+Classifier: m
+Classifier: i
+Classifier: n
+Classifier: g
+Classifier:  
+Classifier: L
+Classifier: a
+Classifier: n
+Classifier: g
+Classifier: u
+Classifier: a
+Classifier: g
+Classifier: e
+Classifier:  
+Classifier: :
+Classifier: :
+Classifier:  
+Classifier: P
+Classifier: y
+Classifier: t
+Classifier: h
+Classifier: o
+Classifier: n
+Classifier:  
+Classifier: :
+Classifier: :
+Classifier:  
+Classifier: 3
+Classifier: .
+Classifier: 7
+Classifier: 
+
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier: T
+Classifier: o
+Classifier: p
+Classifier: i
+Classifier: c
+Classifier:  
+Classifier: :
+Classifier: :
+Classifier:  
+Classifier: I
+Classifier: n
+Classifier: t
+Classifier: e
+Classifier: r
+Classifier: n
+Classifier: e
+Classifier: t
+Classifier:  
+Classifier: :
+Classifier: :
+Classifier:  
+Classifier: W
+Classifier: W
+Classifier: W
+Classifier: /
+Classifier: H
+Classifier: T
+Classifier: T
+Classifier: P
+Classifier: 
+
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier: T
+Classifier: o
+Classifier: p
+Classifier: i
+Classifier: c
+Classifier:  
+Classifier: :
+Classifier: :
+Classifier:  
+Classifier: I
+Classifier: n
+Classifier: t
+Classifier: e
+Classifier: r
+Classifier: n
+Classifier: e
+Classifier: t
+Classifier:  
+Classifier: :
+Classifier: :
+Classifier:  
+Classifier: W
+Classifier: W
+Classifier: W
+Classifier: /
+Classifier: H
+Classifier: T
+Classifier: T
+Classifier: P
+Classifier:  
+Classifier: :
+Classifier: :
+Classifier:  
+Classifier: D
+Classifier: y
+Classifier: n
+Classifier: a
+Classifier: m
+Classifier: i
+Classifier: c
+Classifier:  
+Classifier: C
+Classifier: o
+Classifier: n
+Classifier: t
+Classifier: e
+Classifier: n
+Classifier: t
+Classifier: 
+
+Classifier:  
+Classifier:  
+Classifier:  
+Classifier:  
+Provides-Extra: dev
