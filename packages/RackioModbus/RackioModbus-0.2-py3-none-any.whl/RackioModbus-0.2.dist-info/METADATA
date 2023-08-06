@@ -1,0 +1,56 @@
+Metadata-Version: 2.1
+Name: RackioModbus
+Version: 0.2
+Summary: A Rackio extension to enable Modbus TCP Server/Client integration
+Home-page: https://github.com/rack-io/rackio-modbus
+Author: Nelson Carrasquel
+Author-email: rackio.framework@outlook.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: umodbus
+
+# rackio-modbus
+
+A Rackio extension to enable Modbus TCP Server/Client integration
+
+## Installation
+
+```
+pip install RackioModbus
+```
+
+## Usage
+
+```python
+from rackio import Rackio, TagEngine
+from rackio_modbus import RackioModbus
+
+app = Rackio()
+
+driver = RackioSocket(app, mode="server")
+```
+
+## Defining Tags and Modbus bindings
+
+```python
+tag_egine = TagEngine()
+
+# Tags definitions
+
+tag_egine.set_tag("T1", "float")
+tag_egine.set_tag("T2", "float")
+tag_egine.set_tag("T3", "float")
+
+# Modbus mapping
+
+driver.define_mapping("T1", "write", 0, 60) # Tag, mode, lower limit, upper limit
+driver.define_mapping("T2", "write", 0, 50)
+driver.define_mapping("T3", "read", 0, 110)
+```
+
+
+
