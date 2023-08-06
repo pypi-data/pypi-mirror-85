@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: infracheck
+Version: 1.9.2.dev8
+Summary: KISS healthcheck implemented in Python and Bash
+Home-page: https://github.com/riotkit-org/infracheck
+Author: RiotKit Collective
+Author-email: riotkit@riseup.net
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Utilities
+Classifier: Topic :: System :: Systems Administration
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown; charset=UTF-8
+Requires-Dist: ovh (<0.6,>=0.5.0)
+Requires-Dist: psutil (<6,>=5.7.2)
+Requires-Dist: psycopg2-binary (<3,>=2.8.4)
+Requires-Dist: python-dateutil (<3,>=2.8.1)
+Requires-Dist: pytz (>=2019.3)
+Requires-Dist: six (<2,>=1.15.0)
+Requires-Dist: tornado (<6,>=5.1.1)
+Requires-Dist: whois (<1,>=0.9.4)
+Requires-Dist: influxdb (<6,>=5.3.1)
+Requires-Dist: rkd (<3,>=2.2)
+Requires-Dist: rkd-python (<3,>=2.2)
+
+InfraCheck
+==========
+
+Health check system designed to be easy to extend by not enforcing the programming language.
+A single health check unit (let we call it later just 'check') can be written even in BASH.
+
+Read more in the documentation at: https://readthedocs.org/projects/infracheck/badge/?version=latest
+
+
+
