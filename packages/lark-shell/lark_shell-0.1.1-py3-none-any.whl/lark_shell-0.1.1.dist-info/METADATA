@@ -1,0 +1,83 @@
+Metadata-Version: 2.1
+Name: lark-shell
+Version: 0.1.1
+Summary: A terminal Lark IDE
+Home-page: https://github.com/ThatXliner/lark_shell/
+License: GPL-3.0-or-later
+Keywords: lark,lark-parser,urwid,tool,terminal
+Author: Bryan Hu
+Author-email: bryan.hu.2020@gmail.com
+Requires-Python: >=3.6,<4.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Utilities
+Classifier: Typing :: Typed
+Requires-Dist: lark-parser (>=0.8.0,<1.0.0)
+Requires-Dist: urwid (>=2.1.2,<3.0.0)
+Project-URL: Bug Tracker, https://github.com/ThatXliner/lark_shell/issues
+Project-URL: Source Code, https://github.com/ThatXliner/lark_shell
+Project-URL: Say Thanks! , https://saythanks.io/to/bryan.hu.2020@gmail.com
+Description-Content-Type: text/markdown
+
+# Lark-shell
+<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [Lark_shell](#larkshell)
+	- [Background](#background)
+	- [How to use](#how-to-use)
+
+<!-- /TOC -->
+<p align="center">
+    <a href="https://saythanks.io/to/bryan.hu.2020@gmail.com">
+        <img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg" alt="Say Thanks!">
+    </a>
+    <a href="https://github.com/psf/black">
+        <img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="Code style: black">
+    </a>
+    <a href="https://gitmoji.carloscuesta.me">
+        <img src="https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat-square" alt="Gitmoji">
+    </a>
+</p>
+
+A terminal version of the [online IDE][1].
+
+## Background
+
+I love using the online IDE for playing with Lark (and experimenting with grammars) but it's really minimal
+and it's not offline. So I decided to bring those features right into my terminal.
+
+## How to use
+
+Install it via pip:
+
+```bash
+$ python3 -m pip install lark-shell
+🍰✨
+```
+and invoke the command
+```bash
+$ lark-shell
+```
+and start hacking away!
+
+## Credits
+
+Credits to [**@erezsh**][2] for his wonderful [Lark][3] parsing library.
+
+
+[1]: https://lark-parser.github.io/lark/ide/app.html
+[2]: https://github.com/erezsh
+[3]: https://github.com/lark-parser/lark
+
