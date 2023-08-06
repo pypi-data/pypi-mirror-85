@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: WatchUI
+Version: 1.0.6
+Summary: RobotFramework library package for automated visual testing.
+Home-page: https://github.com/Tesena-smart-testing/WatchUI
+Author: Jan Egermaier
+Author-email: jan.egermaier@tesena.com
+License: UNKNOWN
+Description: # WatchUI
+        
+        ## [Documentation](https://procesor2017.github.io/WatchUI/) | [Tesena](https://pypi.org/project/WatchUI/) | [Pypi](https://pypi.org/project/WatchUI/)
+        
+        
+        ### Basic Info
+        
+        Custom library for comparing images with use in Robot Framework.
+        
+        ### Folder structure
+        
+        ```
+        Testing-api
+        â””â”€â”€ .github/workflows           # Folder with CI for github actions
+        â””â”€â”€ Img                         # Folder with test data
+        â””â”€â”€ test                        # Folder with example how to write rf test.
+        â”‚    â””â”€â”€ keywords               # Keywords and variables
+        â”‚    â””â”€â”€ unit_test.robot        # File with TC
+        â””â”€â”€ WatchUI                     # Folder with WatchUI library
+        â”‚    â””â”€â”€ WatchUI.py             # File with custom library
+        â””â”€â”€ README.MD                   # Here you are :-)
+        â””â”€â”€ setup.py                    # File for easy setup use with pip install .
+        ```
+        
+        ### Install
+        You can find detail in [Documentation](https://procesor2017.github.io/WatchUI/) but basically use pip:
+        ```
+        pip install WatchUI
+        ```
+        
+        
+        ### Sample results
+        
+        _Image where the differences are stored + You can see two black box in left corner. These black box are ignored during comparison._
+        
+        <img src="/Img/logscreen.png" width="850" height="300">
+        
+        _The red rectangles outlining missing elements on compared screens_
+        
+        <img src="/Img/img_inlog.png" width="850" height="300">
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
