@@ -1,0 +1,73 @@
+# English translations for PROJECT.
+# Copyright (C) 2020 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2020-09-22 10:21-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+#: http/errors.py:24
+msgid "http.errors.HttpErrorTimeout"
+msgstr "HTTP request timed out."
+
+#: http/errors.py:33
+msgid "http.errors.HttpErrorInvalidUrl"
+msgstr "Invalid URL. Please supply a valid URL, starting with http:// or https://."
+
+#: http/errors.py:43
+msgid "http.errors.HttpErrorTooManyRedirects"
+msgstr "HTTP server(s) redirected us too many times. Please try a different URL."
+
+#: http/errors.py:56
+msgid "http.errors.HttpErrorNotSuccess"
+msgstr "Error from server: HTTP {status_code} {reason}"
+
+#: http/errors.py:73
+msgid "http.errors.HttpErrorGeneric"
+msgstr "Error during HTTP request: {type}"
+
+#: util/colnames.py:398
+msgid "util.colnames.warnings.ascii_cleaned"
+msgstr ""
+"Removed special characters from {n_columns, plural, other{# column names "
+"(see “{first_colname}”)} one{column name “{first_colname}”}}"
+
+#: util/colnames.py:410
+msgid "util.colnames.warnings.default"
+msgstr ""
+"{n_columns, plural, other{Renamed # column names because values were "
+"empty (see “{first_colname}”)} one{Renamed column name “{first_colname}” "
+"because value was empty}}"
+
+#: util/colnames.py:421
+msgid "util.colnames.warnings.truncated"
+msgstr ""
+"{n_columns, plural, other{Truncated # column names to {n_bytes} bytes "
+"each (see “{first_colname}”)} one{Truncated column name “{first_colname}”"
+" to {n_bytes} bytes}}"
+
+#: util/colnames.py:436
+msgid "util.colnames.warnings.numbered"
+msgstr ""
+"{n_columns, plural, other{Renamed # duplicate column names (see "
+"“{first_colname}”)} one{Renamed duplicate column name “{first_colname}”}}"
+
+#: util/colnames.py:447
+msgid "util.colnames.warnings.unicode_fixed"
+msgstr ""
+"{n_columns, plural, other{Fixed # column names with invalid Unicode (see "
+"“{first_colname}”)} one{Fixed Unicode in column name “{first_colname}”}}"
+
