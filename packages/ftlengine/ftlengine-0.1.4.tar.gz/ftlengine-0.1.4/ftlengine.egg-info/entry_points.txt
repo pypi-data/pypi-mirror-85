@@ -1,0 +1,36 @@
+
+        [console_scripts]
+        ftl = src.cli:cli
+
+        [ftlengine.plugins]
+        attach = src.plugins.attach:AttachPlugin
+        boot = src.plugins.boot:BootPlugin
+        build = src.plugins.build:BuildPlugin
+        build_scripts = src.plugins.build_scripts:BuildScriptsPlugin
+        chart = src.plugins.chart:ChartPlugin
+        container = src.plugins.container:ContainerPlugin
+        create = src.plugins.create:CreatePlugin
+        doctor = src.plugins.doctor:DoctorPlugin
+        domain_name = src.plugins.domain_name:DomainNamePlugin
+        gc = src.plugins.gc:GcPlugin
+        help = src.plugins.help:HelpPlugin
+        hosts = src.plugins.hosts:HostsPlugin
+        images = src.plugins.images:ImagesPlugin
+        jump = src.plugins.jump:JumpPlugin
+        legacy_env = src.plugins.legacy_env:LegacyEnvPlugin
+        mounts = src.plugins.mounts:DevModesPlugin
+        profile = src.plugins.profile:ProfilesPlugin
+        ps = src.plugins.ps:PsPlugin
+        registry = src.plugins.registry:RegistryPlugin
+        aws = src.plugins.aws:AwsPlugin
+        run = src.plugins.run:RunPlugin
+        system = src.plugins.system:SystemContainerBuildPlugin
+        tail = src.plugins.tail:TailPlugin
+        volume = src.plugins.volume:VolumePlugin
+        waits = src.plugins.waits:WaitsPlugin
+        upgrade = src.plugins.upgrade:UpgradePlugin
+
+        doctor_time = src.exams.doctor_time:DoctorTimePlugin
+        doctor_connectivity = src.exams.doctor_connectivity:DoctorConnectivityPlugin
+        doctor_docker_mac = src.exams.doctor_docker_mac:DoctorDockerMacPlugin
+    
