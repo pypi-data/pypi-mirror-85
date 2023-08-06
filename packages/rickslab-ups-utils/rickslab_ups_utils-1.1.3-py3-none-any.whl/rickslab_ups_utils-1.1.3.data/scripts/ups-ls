@@ -1,0 +1,133 @@
+#!python
+""" ups-ls  -  Displays details about installed compatible UPSs
+
+    This utility displays most relevant parameters for installed and compatible UPSs
+    listed in the config.json file.  By default, all available parameters are displayed.
+    The --input and --output options can be used to get relevant UPS input and output
+    parameters.
+
+    Copyright (C) 2019  RicksLab
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+"""
+__author__ = 'RueiKe'
+__copyright__ = 'Copyright (C) 2019 RicksLab'
+__credits__ = []
+__license__ = 'GNU General Public License'
+__program_name__ = 'ups-ls'
+__maintainer__ = 'RueiKe'
+__docformat__ = 'reStructuredText'
+# pylint: disable=multiple-statements
+# pylint: disable=line-too-long
+# pylint: disable=bad-continuation
+
+import argparse
+import sys
+import logging
+from UPSmodules import UPSmodule as UPS
+from UPSmodules import env
+from UPSmodules import __version__, __status__
+
+LOGGER = logging.getLogger('ups-utils')
+
+
+def main() -> None:
+    """
+    Main function
+
+    :return: None
+    """
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--about', help='README',
+                        action='store_true', default=False)
+    parser.add_argument('--input', help='Display UPS input parameters',
+                        action='store_true', default=False)
+    parser.add_argument('--output', help='Display UPS output parameters',
+                        action='store_true', default=False)
+    parser.add_argument('-d', '--debug', help='Debug output',
+                        action='store_true', default=False)
+    args = parser.parse_args()
+
+    # About me
+    if args.about:
+        print(__doc__)
+        print('Author: ', __author__)
+        print('Copyright: ', __copyright__)
+        print('Credits: ', __credits__)
+        print('License: ', __license__)
+        print('Version: ', __version__)
+        print('Maintainer: ', __maintainer__)
+        print('Status: ', __status__)
+        sys.exit(0)
+
+    env.UT_CONST.set_env_args(args, __program_name__)
+    LOGGER.debug('########## %s %s', __program_name__, __version__)
+
+    if not env.UT_CONST.check_env():
+        env.UT_CONST.log_print('Error in environment. Exiting...')
+        sys.exit(-1)
+
+    ups = UPS.UPSsnmp()
+    num_ups = ups.get_num_ups_tuple()
+
+    if env.UT_CONST.fatal:
+        env.UT_CONST.log_print('Fatal Error. Exiting...')
+        sys.exit(-1)
+
+    if num_ups[0] == 0:
+        env.UT_CONST.log_print('No UPSs specified in {}'.format(env.UtConst.UPS_JSON_FILE))
+        print('    For more information: `man {0}`, exiting...'.format(env.UtConst.UPS_JSON_FILE))
+        sys.exit(-1)
+    print('{} UPSs listed in {}.'.format(num_ups[0], env.UtConst.UPS_JSON_FILE))
+    print('    {} are compatible, {} are accessible, {} are responsive\n'.format(num_ups[1], num_ups[2], num_ups[3]))
+
+    for ups_item in ups.ups_list.values():
+        ups.set_active_ups(ups_item)
+        if not ups.is_compatible(ups_item):
+            print('ERROR: {} is not compatible type: {}'.format(ups.ups_name(), ups.ups_type()))
+            print('       Check the config file: [{}]\n'.format(env.UT_CONST.ups_json_file))
+            continue
+        if not ups.is_accessible(ups_item):
+            print('ERROR: {} is not an accessible IP: {}'.format(ups.ups_name(), ups.ups_ip()))
+            print('       Check the config file: [{}]\n'.format(env.UT_CONST.ups_json_file))
+            continue
+        if not ups.is_responsive(ups_item):
+            print('ERROR: {} is not responsive to snmp IP: {}'.format(ups.ups_name(), ups.ups_ip()))
+            print('       Check the config file: [{}]\n'.format(env.UT_CONST.ups_json_file))
+            continue
+        print('UPS Name: {}'.format(ups.ups_name()))
+        print('UPS IP: {}'.format(ups.ups_ip()))
+        if args.input or args.output:
+            if args.input:
+                for oc in ups.input_mib_cmds:
+                    if ups.send_snmp_command(oc, display=True) == 'UPS Not Responding':
+                        print('Giving up on {}'.format(ups.ups_name()))
+                        break
+            if args.output:
+                for oc in ups.output_mib_cmds:
+                    if ups.send_snmp_command(oc, display=True) == 'UPS Not Responding':
+                        print('Giving up on {}'.format(ups.ups_name()))
+                        break
+        else:
+            for mib_name in ups.get_mib_commands(ups_item).keys():
+                if ups.send_snmp_command(mib_name, display=True) == 'UPS Not Responding':
+                    print('Giving up on {}'.format(ups.ups_name()))
+                    break
+        print('')
+
+    sys.exit(0)
+
+
+if __name__ == '__main__':
+    main()
