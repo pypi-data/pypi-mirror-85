@@ -1,0 +1,21 @@
+[run]
+source = persontitles
+omit = tests/*
+
+[paths]
+source = persontitles/
+
+[report]
+omit =
+    *site-packages*
+    *tests*
+    *.tox*
+exclude_lines =
+    pragma: no cover
+    if __name__ == .__main__.:
+show_missing = True
+
+[tool:pytest]
+# type of report cannot be specified in .coveragerc
+# https://stackoverflow.com/a/30754081/6597765
+addopts = --cov=persontitles --cov-append --cov-report=term-missing

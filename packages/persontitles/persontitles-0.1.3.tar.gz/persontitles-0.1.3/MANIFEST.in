@@ -1,0 +1,37 @@
+include AUTHORS.rst
+include CONTRIBUTING.rst
+include HISTORY.rst
+include LICENSE
+include README.rst
+
+recursive-include tests *
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+recursive-exclude * codacy-coverage-reporter
+
+recursive-include docs *.rst conf.py Makefile make.bat *.jpg *.png *.gif
+
+# added by check_manifest.py
+include *.py
+includ *.json
+include *.txt
+include *.yml
+include Makefile
+include pytest.ini
+include tox.ini
+include *.html
+include *.yaml
+include .coveragerc
+include *.lock
+include *.sh
+include Pipfile
+recursive-include reports *.css
+recursive-include reports *.html
+recursive-include reports *.js
+recursive-include reports *.json
+recursive-include reports *.png
+recursive-include docs *.odt
+recursive-include docs *.txt
+recursive-include persontitles *py
+recursive-include persontitles *.txt
+recursive-include persontitles *.json
