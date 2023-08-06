@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "pyhstr"
+version = "0.2.1"
+description = "History suggest box for the standard Python shell, IPython, and bpython"
+authors = ["adder46 <dedmauz69@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = ">=3.6"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.1.2"
+poetry = "^1.1.4"
+mypy = "^0.790"
+tox = "^3.20.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
