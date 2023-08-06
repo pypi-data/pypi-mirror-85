@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+import "common.proto";
+import "integration_source.proto";
+
+option java_package = "io.calixa.domain.id";
+option java_multiple_files = true;
+option optimize_for = SPEED;
+
+package calixa.domain.id;
+
+message ExternalId {
+    calixa.domain.integration.IntegrationSource integration = 1;
+    string key = 2;
+    string value = 3;
+}
+
+message AutoMappedId {
+    AutoMappedFieldType type = 1;
+    string value = 2;
+}
+
+enum AutoMappedFieldType {
+    AUTO_MAP_TYPE_UNSPECIFIED = 0;
+    EMAIL = 1;
+    DOMAIN = 2;
+}
+
+message IntegrationOriginatedId {
+    oneof id {
+        AutoMappedId auto_map_id = 1;
+        ExternalId external_id = 2;
+    }
+}
+
+message Mapper {
+    string rule_name = 1;
+    oneof mapping_id {
+        ExternalId external = 2;
+        AutoMappedId auto_mapped = 3;
+    }
+}
+
+message MappingRule {
+    string rule_name = 1;
+    oneof type {
+        calixa.domain.integration.IntegrationSource source = 2;
+        calixa.domain.common.EntityType entity = 3;
+    }
+}
+
+message EntityAssociation {
+    string canonical_id = 1;
+    string external_id = 2;
+    calixa.domain.integration.IntegrationSource source = 3;
+    calixa.domain.common.EntityType type = 4;
+    Mapper mapper = 5;
+}
