@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: retry_helper
+Version: 0.0.1
+Summary: Helper for retrying code when exception occur
+Home-page: https://github.com/lancondrej/retry-helper
+Author: Ondřej Lanč
+Author-email: ondrej.lanc@gmail.com
+License: UNKNOWN
+Description: # Retry Helper 
+        
+        Helper tool fro retrying code when soem exceptions occur
+        
+        ## Usage
+        
+        ### RetryManager
+        Retry manager is context manager for retrying block of code. In fact its double layer context manager in first context you will create context manager and use while retry object is true. And the run you code in context of retry.attempt.
+        
+         * max_attempts - maximum count of attempts, default 1
+         * wait_seconds - How many second it should wait before next retry, default 0
+         * exceptions - exception class or tuple of exceptions classes which cause retry, if None all exceptions cause retry default None
+         
+        ```
+        with RetryManager(max_attempts=20, wait_seconds=1, exceptions=(TypeError,KeyError)) as retry:
+        while retry:
+            with retry.attempt:
+                # code raising exception if fail
+        ```
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
