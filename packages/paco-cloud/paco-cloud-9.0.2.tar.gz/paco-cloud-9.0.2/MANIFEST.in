@@ -1,0 +1,10 @@
+global-exclude *.py[co]
+global-exclude *.egg-info
+
+graft src/paco
+recursive-exclude src __pycache__/*
+
+include README.md CHANGELOG.md version.txt
+
+exclude *.ini *.cfg *.lock Pipfile
+
