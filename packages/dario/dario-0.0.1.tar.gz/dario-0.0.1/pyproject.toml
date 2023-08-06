@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "dario"
+version = "0.0.1"
+description = ""
+repository = "https://github.com/lukaskubis/dario"
+authors = [
+    "Lukáš Kubiš <contact@lukaskubis.com>"
+]
+
+
+packages = [
+    { include = "dario" },
+]
+
+
+[tool.poetry.scripts]
+dario = "dario.cli:main"
+
+
+[tool.poetry.dev-dependencies]
+
+
+[tool.poetry.dependencies]
+python = "^3.7"
+click = "^7.1.2"
+
+uvloop = { version = "^0.14.0", optional = true }
+
+
+[tool.poetry.extras]
+uvloop = [
+    "uvloop"
+]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
