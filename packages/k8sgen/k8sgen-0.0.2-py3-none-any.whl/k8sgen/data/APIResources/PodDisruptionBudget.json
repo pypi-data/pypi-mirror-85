@@ -1,0 +1,13 @@
+{
+    "description": "PodDisruptionBudget is an object to define the max disruption that can be caused to a collection of pods",
+    "json": {
+        "apiVersion": "policy/v1beta1",
+        "kind": "PodDisruptionBudget",
+        "metadata": "<COMPONENT.Metadata>",
+        "spec": {
+            "maxUnavailable": "<string>",
+            "minAvailable": "<string>",
+            "selector": "<COMPONENT.Selector>"
+        }
+    }
+}

@@ -1,0 +1,71 @@
+{
+    "description": "EndpointSlice represents a subset of the endpoints that implement a service. For a given service there may be multiple EndpointSlice objects, selected by labels, which must be joined to produce the full set of endpoints.",
+    "json": {
+        "addressType": "<string>",
+        "apiVersion": "discovery.k8s.io/v1beta1",
+        "endpoints": [
+            {
+                "addresses": "<[]string>",
+                "conditions": {
+                    "ready": "<boolean>"
+                },
+                "hostname": "<string>",
+                "targetRef": {
+                    "apiVersion": "<string>",
+                    "fieldPath": "<string>",
+                    "kind": "<string>",
+                    "name": "<string>",
+                    "namespace": "<string>",
+                    "resourceVersion": "<string>",
+                    "uid": "<string>"
+                },
+                "topology": "<map[string]string>"
+            }
+        ],
+        "kind": "EndpointSlice",
+        "metadata": {
+            "annotations": "<map[string]string>",
+            "clusterName": "<string>",
+            "creationTimestamp": "<string>",
+            "deletionGracePeriodSeconds": "<integer>",
+            "deletionTimestamp": "<string>",
+            "finalizers": "<[]string>",
+            "generateName": "<string>",
+            "generation": "<integer>",
+            "labels": "<map[string]string>",
+            "managedFields": [
+                {
+                    "apiVersion": "<string>",
+                    "fieldsType": "<string>",
+                    "fieldsV1": "<map[string]>",
+                    "manager": "<string>",
+                    "operation": "<string>",
+                    "time": "<string>"
+                }
+            ],
+            "name": "<string>",
+            "namespace": "<string>",
+            "ownerReferences": [
+                {
+                    "apiVersion": "<string>",
+                    "blockOwnerDeletion": "<boolean>",
+                    "controller": "<boolean>",
+                    "kind": "<string>",
+                    "name": "<string>",
+                    "uid": "<string>"
+                }
+            ],
+            "resourceVersion": "<string>",
+            "selfLink": "<string>",
+            "uid": "<string>"
+        },
+        "ports": [
+            {
+                "appProtocol": "<string>",
+                "name": "<string>",
+                "port": "<integer>",
+                "protocol": "<string>"
+            }
+        ]
+    }
+}

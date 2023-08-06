@@ -1,0 +1,23 @@
+{
+    "description": "DaemonSet represents the configuration of a daemon set.",
+    "json": {
+        "apiVersion": "apps/v1",
+        "kind": "DaemonSet",
+        "metadata": "<COMPONENT.Metadata>",
+        "spec": {
+            "minReadySeconds": "<integer>",
+            "revisionHistoryLimit": "<integer>",
+            "selector": "<COMPONENT.Selector>",
+            "template": {
+                "metadata": "<COMPONENT.Metadata>",
+                "spec": "<COMPONENT.ContainerSpec>"
+            },
+            "updateStrategy": {
+                "rollingUpdate": {
+                    "maxUnavailable": "<string>"
+                },
+                "type": "<string>"
+            }
+        }
+    }
+}

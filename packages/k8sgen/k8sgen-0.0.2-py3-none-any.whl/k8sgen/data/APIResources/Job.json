@@ -1,0 +1,21 @@
+{
+    "description": "Job represents the configuration of a single job.",
+    "json": {
+        "apiVersion": "batch/v1",
+        "kind": "Job",
+        "metadata": "<COMPONENT.Metadata>",
+        "spec": {
+            "activeDeadlineSeconds": "<integer>",
+            "backoffLimit": "<integer>",
+            "completions": "<integer>",
+            "manualSelector": "<boolean>",
+            "parallelism": "<integer>",
+            "selector": "<COMPONENT.Selector>",
+            "template": {
+                "metadata": "<COMPONENT.Metadata>",
+                "spec": "<COMPONENT.ContainerSpec>"
+            },
+            "ttlSecondsAfterFinished": "<integer>"
+        }
+    }
+}

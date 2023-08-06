@@ -1,0 +1,27 @@
+{
+    "description": "Deployment enables declarative updates for Pods and ReplicaSets.",
+    "json": {
+        "apiVersion": "apps/v1",
+        "kind": "Deployment",
+        "metadata": "<COMPONENT.Metadata>",
+        "spec": {
+            "minReadySeconds": "<integer>",
+            "paused": "<boolean>",
+            "progressDeadlineSeconds": "<integer>",
+            "replicas": "<integer>",
+            "revisionHistoryLimit": "<integer>",
+            "selector": "<COMPONENT.Selector>",
+            "strategy": {
+                "rollingUpdate": {
+                    "maxSurge": "<string>",
+                    "maxUnavailable": "<string>"
+                },
+                "type": "<string>"
+            },
+            "template": {
+                "metadata": "<COMPONENT.Metadata>",
+                "spec": "<COMPONENT.ContainerSpec>"
+            }
+        }
+    }
+}

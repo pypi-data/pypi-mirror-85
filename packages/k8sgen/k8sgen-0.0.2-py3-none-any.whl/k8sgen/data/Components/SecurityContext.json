@@ -1,0 +1,20 @@
+{
+    "fsGroup": "<COMPONENT.UserGroup>",
+    "fsGroupChangePolicy": "<string>",
+    "runAsGroup": "<COMPONENT.UserGroup>",
+    "runAsNonRoot": "<boolean>",
+    "runAsUser": "<COMPONENT.UserGroup>",
+    "seLinuxOptions": {
+        "level": "<string>",
+        "role": "<string>",
+        "type": "<string>",
+        "user": "<string>"
+    },
+    "supplementalGroups": "<COMPONENT.UserGroup>",
+    "sysctls": "<[]COMPONENTS.Sysctl>",
+    "windowsOptions": {
+        "gmsaCredentialSpec": "<string>",
+        "gmsaCredentialSpecName": "<string>",
+        "runAsUserName": "<string>"
+    }
+}

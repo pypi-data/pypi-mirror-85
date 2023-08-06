@@ -1,0 +1,12 @@
+{
+    "description": "ClusterRole is a cluster level, logical grouping of PolicyRules that can be referenced as a unit by a RoleBinding or ClusterRoleBinding.",
+    "json": {
+        "aggregationRule": {
+            "clusterRoleSelectors": "<[]COMPONENT.ClusterRoleSelector>"
+        },
+        "apiVersion": "rbac.authorization.k8s.io/v1",
+        "kind": "ClusterRole",
+        "metadata": "<COMPONENT.Metadata>",
+        "rules": "<[]COMPONENT.ClusterRule>"
+    }
+}

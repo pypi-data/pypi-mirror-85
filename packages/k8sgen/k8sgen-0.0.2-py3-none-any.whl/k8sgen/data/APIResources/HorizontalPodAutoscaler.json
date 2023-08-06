@@ -1,0 +1,18 @@
+{
+    "description": "configuration of a horizontal pod autoscaler.",
+    "json": {
+        "apiVersion": "autoscaling/v1",
+        "kind": "HorizontalPodAutoscaler",
+        "metadata": "<COMPONENT.Metadata>",
+        "spec": {
+            "maxReplicas": "<integer>",
+            "minReplicas": "<integer>",
+            "scaleTargetRef": {
+                "apiVersion": "<string>",
+                "kind": "<string>",
+                "name": "<string>"
+            },
+            "targetCPUUtilizationPercentage": "<integer>"
+        }
+    }
+}

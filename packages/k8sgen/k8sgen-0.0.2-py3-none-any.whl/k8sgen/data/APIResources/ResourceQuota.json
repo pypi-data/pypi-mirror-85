@@ -1,0 +1,15 @@
+{
+    "description": "ResourceQuota sets aggregate quota restrictions enforced per namespace",
+    "json": {
+        "apiVersion": "v1",
+        "kind": "ResourceQuota",
+        "metadata": "<COMPONENT.Metadata>",
+        "spec": {
+            "hard": "<map[string]string>",
+            "scopeSelector": {
+                "matchExpressions": "<[]COMPONENT.ScopeSelector>"
+            },
+            "scopes": "<[]string>"
+        }
+    }
+}
