@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: wechatrobot
+Version: 1.0.1
+Summary: send message to wechat robot
+Home-page: https://github.com/x-hezhang/wechat-robot
+Author: zhanghe
+Author-email: x_hezhang@126.com
+License: GNU GPLv3
+Keywords: wechat,robot,wechatrobot,wechat-robot,wechat-webhook
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+
+# 功能
+* 发送消息到企业微信机器人。
+* 支持所有企业微信机器人消息类型。
+* [企业微信机器人](https://work.weixin.qq.com/api/doc/90000/90136/91770)
+
+# 安装
+```bash
+1. 安装该模块
+pip install wechatrobot
+```
+
+# 使用
+```
+key = 'xxxxxxx...xxx' # 创建机器人时，返回的webhook中的key
+
+import wechatrobot
+wx_robot = wechatrobot.WechatRobot(key)
+wx_robot.send_text(text='测试消息', at_all=True)
+```
+
+
