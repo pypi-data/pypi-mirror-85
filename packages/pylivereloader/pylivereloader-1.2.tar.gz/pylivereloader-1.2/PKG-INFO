@@ -1,0 +1,56 @@
+Metadata-Version: 1.1
+Name: pylivereloader
+Version: 1.2
+Summary: Script live reloader for production environment
+Home-page: http://github.com/Z3R0xLEGEND/pylivereloader
+Author: Z3R0xLEGEND
+Author-email: legend.z3r00.pro@gmail.com
+License: MIT
+Description: Flask
+        =====
+        
+        pylivereloader is a lightweight script reloader.
+        It's designed to maintain a running script at it's live version.
+        For example if you're coding the script to maintain live with LiveReloader the script you're coding will always run at it's latest version based on his last modification time.
+        
+        Installing
+        ----------
+        
+        Install and update using `pip`_ :
+        
+        .. code-block:: text
+        
+            pip install -U pylivereloader
+        
+        
+        A Simple Example
+        ----------------
+        
+        .. code-block:: python
+        
+            from pylivereloader import LiveReloader
+        
+            maintainer = LiveReloader("myscript",
+                                        safe_reload = True,
+                                        logging = True)
+        
+            def do () :
+              myscript.function()
+        
+            maintainer.keep_live(do)
+        
+        Links
+        -----
+        
+        * Website: https://github.com/Z3R0xLEGEND
+        * Official chat: https://discord.gg/VeeZnVY
+        * Releases: https://pypi.org/project/pylivereloader/
+        
+        .. _pip: https://pip.pypa.io/en/stable/quickstart/
+        
+Platform: ALL
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Testing
