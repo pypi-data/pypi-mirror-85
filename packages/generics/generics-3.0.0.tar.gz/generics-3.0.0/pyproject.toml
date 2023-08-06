@@ -1,0 +1,25 @@
+[build-system]
+build-backend = "poetry.masonry.api"
+requires = ["poetry"]
+
+[tool.poetry]
+authors = ["Artem Malyshev <proofit404@gmail.com>"]
+description = "A classy toolkit designed with OOP in mind."
+documentation = "https://proofit404.github.io/generics/"
+homepage = "https://pypi.org/project/generics/"
+license = "BSD-2-Clause"
+name = "generics"
+packages = [
+    { include = "_generics", from = "src" },
+    { include = "generics", from = "src" },
+]
+readme = "docs/index.md"
+repository = "https://github.com/proofit404/generics/"
+version = "3.0.0"
+
+[tool.poetry.dependencies]
+python = "~3.7 || ~3.8 || ~3.9"
+
+[tool.poetry.urls]
+Changelog = "https://proofit404.github.io/generics/"
+Issues = "https://github.com/proofit404/generics/issues"
