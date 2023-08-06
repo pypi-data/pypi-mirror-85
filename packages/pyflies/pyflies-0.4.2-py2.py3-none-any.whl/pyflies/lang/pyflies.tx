@@ -1,0 +1,149 @@
+/*
+  This is a textX specification of pyFlies DSL for cognitive test
+  experiments definition.
+  Author: Igor R. Dejanovic <igor DOT dejanovic AT gmail DOT com>
+  Copyright: (c) 2014-2020 Igor R. Dejanovic <igor DOT dejanovic AT gmail DOT com>
+  License: GPLv3 License
+*/
+
+import common
+import components
+
+PyFliesModel:
+  (description=Description)?
+  vars*=VariableAssignment
+  routine_types+=RoutineType
+  (flow=Flow)?
+  targets*=Target
+;
+
+RoutineType:
+  TestType | ScreenType
+;
+
+VariableAssignment:
+    name=VariableName '=' value=Expression
+;
+
+/*
+    Test specification
+*/
+
+TestType:
+  "test" name=ID "{"
+      table_spec=ConditionsTable
+
+      vars*=VariableAssignment
+      components_cond*=ComponentsCondition
+
+  "}"
+;
+
+ConditionsTable[noskipws]:
+    // Condition table is given in orgmode table format. Various editor plugins
+    // exists to support convenient editing of this table format.
+
+    (/\s*/ Comment? /\s*/)*
+    // Variable names are in the first line of condition specification
+    '|' variables+=TableVarName['|'] WSNoNL '|' WSWithNL
+    WSNoNL /\|\s?(:?-*:?\s?(\||\+)\s?)*:?-+:?\s?\|/ WSWithNL
+
+    // The rest of the description are condition specifications, one per line
+    // The order of condition values match the param name positions.
+    cond_specs+=Condition
+;
+
+WSWithNL: /[ \t]*\r?\n/;
+WSNoNL: /[ \t]*/;
+
+TableVarName: WSNoNL- WORD WSNoNL-;
+TableExpression[ws=' \t']: exp=Expression;
+
+Condition[noskipws]:
+    WSNoNL '|' WSNoNL var_exps+=TableExpression[/[ \t]*\|[ \t]*/] WSNoNL '|' WSWithNL
+;
+
+
+ComponentsCondition:
+  // Condition components is given in the form of
+  // condition match expression : components definitions
+  condition=Expression '->' comp_times+=ComponentTime
+;
+
+
+/*
+    Components instance time specifications
+*/
+
+TimeReference: (relative_to=[ComponentTime|ID|...comp_times] ':')?
+               start_relative?='.'
+               (relative_op=SignOperator)? time=AdditiveExpression;
+
+ComponentTime:
+    ('at' at=TimeReference)? (name=ID ':')? component=Component ('for' duration=Expression)?;
+
+Component: type=[ComponentType|ID|+m:comp_types] '(' params*=ComponentParam[',']  ')';
+ComponentParam: type=[ParamType|ID|+m:..~type.~extends*.param_types] value=Expression;
+
+WORD:
+    INT|/[-\w]*\b/
+;
+
+
+Flow:
+  'flow' block=Block
+;
+
+Block:
+    random?='random' '{'
+        statements*=Statement
+    '}'
+;
+
+Statement:
+    Repeat | Show
+;
+
+Argument: name=ID value=Expression;
+
+Repeat:
+    // Repeating for the given count of times
+    'repeat' times=Expression ('times' | 'time')? what=Repeatable
+    |
+    // execute is just an alias for repeating 1 time
+    'execute' what=Repeatable
+    |
+    // Repeating with the condition table
+    'repeat' what=Repeatable
+    'with' with_random?='random' _with=ConditionsTable
+;
+
+Repeatable: Block | Routine;
+Routine: Test | Screen;
+
+Test: type=[TestType] ('(' args*=Argument[','] ')')?;
+
+
+Show: 'show' screen=Screen ('for' duration=Expression)?;
+Screen: type=[ScreenType] ('(' args*=Argument[','] ')')?;
+
+
+Target:
+  'target' name=ID '{'
+    settings*=Setting
+  '}'
+;
+
+Setting:
+  name=ID '=' value=BASETYPE
+;
+
+
+ScreenType:
+    'screen' name=ID "{"
+    /*    content=/(.|\n)*?(?=})/  */
+    // Everything until closing curly brackets but also
+    // collect string interpolation {{...}} and jinja statements {% %}
+    content=/(\}\}|%\}|[^\}])*/
+    '}'
+;

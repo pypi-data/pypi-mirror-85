@@ -1,0 +1,11 @@
+component rectangle extends visual
+"""
+Visual stimuli in the form of rectangle
+"""
+{
+    param size:[symbol, point] = (20, 20)
+    """
+    Override `size` to be of point type representing width and height.
+    0 for height means 'keep aspect ratio'.
+    """
+}
