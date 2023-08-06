@@ -1,0 +1,192 @@
+<html><head><title>Internal CM/ECF Live Database</title>
+<link rel="stylesheet" type="text/css" href="/css/default.css"><script type="text/javascript" src="/lib/core.js"></script><script type="text/javascript">if (top!=self) {top.location.replace(location.href);}</script></head><body BGCOLOR=FFFFF0 TEXT=000000 onLoad='SetFocus()'><div class="noprint"><img id="cmecfLogo" class="cmecfLogo" src="/graphics/cmecf-logo.gif" alt="CM/ECF" title=""  /><img src="/graphics/menubar-help.gif" alt="?" title="" class="helpImage" id="helpImage" onClick="CMECF.MainMenu.showHelpPage(''); return false" onMouseOver="CMECF.MainMenu.helpImageOn()" onMouseOut="CMECF.MainMenu.helpImageOff()" /><div id="topmenu" class="yuimenubar"><div class="bd"><ul class="first-of-type"><li class="yuimenubaritem" style="width:9%"><a class="yuimenubaritemlabel" href='/cgi-bin/iquery.pl'>Q</u>uery</a></li><li class="yuimenubaritem" style="width:11%"><a class="yuimenubaritemlabel" href='/cgi-bin/DisplayMenu.pl?Reports&id=-1'>R</u>eports</a></li><li class="yuimenubaritem" style="width:11%"><a class="yuimenubaritemlabel" href='/cgi-bin/DisplayMenu.pl?Utilities&id=-1'>U</u>tilities</a></li><li class="yuimenubaritem" style="width:10%"><a class="yuimenubaritemlabel" href='/cgi-bin/login.pl?logout'>Logout</a></li></ul></div></div></div><script type="text/javascript">if (navigator.appVersion.indexOf("MSIE")==-1){window.setTimeout( function(){ CMECF.MainMenu.renderSimpleMenu(); }, 0);}else{CMECF.util.Event.addListener(window, "load", CMECF.MainMenu.renderSimpleMenu);}</script><div id="cmecfMainContent"><input type="hidden" id="cmecfMainContentScroll" value="0"><SCRIPT LANGUAGE="JavaScript">
+		var IsForm = false;
+		var FirstField;
+		function SetFocus() {
+			if(IsForm) {
+				if(FirstField) {
+					var ind = FirstField.indexOf('document.',0);
+					if(ind == 0)
+					{
+						eval(FirstField);
+					}
+					else
+					{
+						var Code = "document.forms[0]."+FirstField+".focus();";
+						eval(Code);
+					}
+				} else {
+					var Cnt = 0;
+					while(document.forms[0].elements[Cnt] != null) {
+						if(document.forms[0].elements[Cnt].type != "hidden") {
+							document.forms[0].elements[Cnt].focus();
+							break;
+						}
+						Cnt += 1;
+					}
+				}
+			}
+			return(true);
+		}
+		</SCRIPT>
+<script type='text/JavaScript'>
+document.cookie="PDFHeaderReferer=247725076280486; path=/";
+</script>
+		<script type="text/javascript" src="/lib/widgits.js"></script>
+		<script>
+		var debtorPanel = null;
+
+		function create_panel(clid, message) {
+		    if (!debtorPanel) {
+		        debtorPanel = new CMECF.widget.Panel('debtorPanel', {
+				close:true,
+				draggable:false,
+				context:[clid, 'tl', 'br'],
+				width: "250" + "px",
+				height: "110" + "px",
+				constraintoviewport:true
+			});
+			debtorPanel.setHeader("Barred Debtor Information");
+			debtorPanel.setBody(message);
+			debtorPanel.body.style.height = "8em";
+			debtorPanel.render(document.body);
+		    } else {
+		        debtorPanel.show();
+		    }
+		}
+
+		function close_panel() {
+		    if (debtorPanel) {
+		        debtorPanel.destroy();
+		        debtorPanel = null;
+		    }
+		}
+		</script>
+		<TABLE width="100%" align=right BORDER=0 CELLSPACING=5><TR><TD ALIGN=right><h2> <FONT SIZE="3">MEGA, LEAD, CONFIRMED, MTRUNADV, CLOSED</FONT></h2></TD></TR></TABLE><BR><BR><BR><CENTER><B><FONT SIZE="+1">U.S. Bankruptcy Court<BR>District of Delaware (Delaware)<BR>Bankruptcy Petition #: 09-10690-KJC</FONT></B></CENTER><TABLE width="100%" BORDER=0 CELLSPACING=1><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><BR><I>Assigned to:</I>       Kevin J. Carey<BR>Chapter          11<BR>Voluntary<BR>Asset <br><div class="noprint"><A HREF='/cgi-bin/qryAscCases.pl?116481'>Show Associated Cases</A></div> <div class="noprint"><a href='/cgi-bin/SearchClaims.pl?caseid=116481;sc'>Claims Register</a></div><BR><BR><BR><I>Debtor disposition:</I>&nbsp;&nbsp;Discharge Not Applicable	</FONT></TD>
+	<TD VALIGN=top  WIDTH="50%" ALIGN=right><FONT SIZE="+0"><TABLE border=0 cellspacing=0 cellpadding=0 align=center><TR><td align="right" valign="top"><I>Date filed:</I></td><td align="left" valign="top">&nbsp;&nbsp;03/01/2009</td></TR><TR><td align="right" valign="top"><I>Date terminated:</I></td><td align="left" valign="top">&nbsp;&nbsp;07/17/2014</td></TR><TR><td align="right" valign="top"><I>Plan confirmed:</I></td><td align="left" valign="top">&nbsp;&nbsp;04/16/2010</td></TR></TABLE>	</FONT></TD>
+</TR>
+</TABLE><BR><FONT SIZE="5"><B></B>
+		</FONT><TABLE width="100%" BORDER=0 CELLSPACING=1><TR><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Debtor</B></I><BR><B>Spansion Inc.,  <I>et al.</I></B>
+<BR>915 DeGuigne Drive
+<BR>Sunnyvale, CA 94085
+<BR>OUTSIDE HOME STATE
+<BR>Tax ID / EIN: 20-3898239     <BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>M. Blake Cleary</B>
+<BR>Young, Conaway, Stargatt & Taylor
+<BR>1000 North King Street
+<BR>Wilmington, DE 19801
+<BR>302-571-6600
+<BR>Fax  : 302-571-1253
+<BR>Email:&nbsp;<a href='mailto:bankfilings@ycst.com'>bankfilings@ycst.com</a><BR><BR><B>Christopher R. Harris</B>
+<BR>Latham & Watkins LLP
+<BR>885 Third Avenue
+<BR>New York, NY 10022
+<BR>212-906-1200
+<BR>Fax  : 212-751-4864
+<BR>Email:&nbsp;<a href='mailto:christopher.harris@lw.com'>christopher.harris@lw.com</a><BR><BR><B>Jarret P. Hitchings</B>
+<BR>Duane Morris LLP
+<BR>222 Delaware Avenue
+<BR>Suite 1600
+<BR>Wilmington, DE 19801
+<BR>302-657-4952
+<BR>Fax  : 302-397-2740
+<BR>Email:&nbsp;<a href='mailto:jphitchings@duanemorris.com'>jphitchings@duanemorris.com</a><BR><BR><B>Michael R. Lastowski</B>
+<BR>Duane Morris LLP
+<BR>222 Delaware Avenue
+<BR>Suite 1600
+<BR>Wilmington, DE 19801-1246
+<BR>302-657-4900
+<BR>Fax  : 302-657-4901
+<BR>Email:&nbsp;<a href='mailto:mlastowski@duanemorris.com'>mlastowski@duanemorris.com</a><BR><BR><B>Richard W. Riley</B>
+<BR>Duane Morris LLP
+<BR>222 Delaware Avenue
+<BR>Suite 1600
+<BR>Wilmington, DE 19801
+<BR>302-657-4900
+<BR>Fax  : 302-657-4901
+<BR>Email:&nbsp;<a href='mailto:rwriley@duanemorris.com'>rwriley@duanemorris.com</a><BR><BR><B>Sommer Leigh Ross</B>
+<BR>Duane Morris, LLP
+<BR>222 Delaware Avenue
+<BR>Suite 1600
+<BR>Wilmington, DE 19801-1659
+<BR>302.657.4951
+<BR>Fax  : 215-979-1020
+<BR>Email:&nbsp;<a href='mailto:slross@duanemorris.com'>slross@duanemorris.com</a><BR><BR><B>Christopher Martin Winter</B>
+<BR>Duane Morris LLP
+<BR>222 Delaware Avenue
+<BR>Suite 1600
+<BR>Wilmington, DE 19801-1246
+<BR>302-657-4904
+<BR>Fax  : 302-397-2455
+<BR>Email:&nbsp;<a href='mailto:cmwinter@duanemorris.com'>cmwinter@duanemorris.com</a><BR><BR><B>Davis Lee Wright</B>
+<BR>Montgomery McCracken Walker & Rhoads LLP
+<BR>1105 North Market Street
+<BR>Suite 1500
+<BR>Wilmington, DE 19801
+<BR>302-504-7800
+<BR>Fax  : 302-504-7820
+<BR>Email:&nbsp;<a href='mailto:dwright@mmwr.com'>dwright@mmwr.com</a>
+<BR><I> TERMINATED: 10/28/2011</I><BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>U.S. Trustee</B></I><BR><B>U.S. Trustee</B>
+<BR>Office of United States Trustee
+<BR>J. Caleb Boggs Federal Building
+<BR>844 King Street, Suite 2207
+<BR>Lockbox 35
+<BR>Wilmington, DE 19899-0035
+<BR>302-573-6491<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Juliet M. Sarkessian</B>
+<BR>U.S. Trustee&#039;s Office
+<BR>844 King Street
+<BR>Room 2207
+<BR>Lockbox &#035;35
+<BR>Wilmington, DE 19899-0035
+<BR>302-573-6491
+<BR>Fax  : 302-573-6497
+<BR>Email:&nbsp;<a href='mailto:juliet.m.sarkessian@usdoj.gov'>juliet.m.sarkessian@usdoj.gov</a><BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>U.S. Trustee</B></I><BR><B>Thomas Patrick Tinker</B>
+<BR>Office of the U.S. Trustee
+<BR>844 King Street Suite 2207
+<BR>Wilmington, DE 19801
+<BR>302-573-6493
+<BR>SSN / ITIN: xxx-xx-1604
+<BR><I> TERMINATED: 02/26/2014</I><BR><BR>	</FONT></TD>
+	<TD VALIGN=top  WIDTH="20%" ALIGN=right><FONT SIZE="+0">&nbsp;	</FONT></TD>
+<TD valign="top" WIDTH="40%" NOWRAP>
+  	                    <font size="+0">&nbsp;</font></TD></TR><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Claims Agent</B></I><BR><B>Epiq Bankruptcy Solutions LLC</B>
+<BR>www.epiqsystems.com
+<BR>777 Third Avenue, 12th Floor
+<BR>New York, NY 10017
+<BR>646-282-2500
+<BR><I> TERMINATED: 07/11/2014</I>	</FONT></TD>
+	<TD VALIGN=top  WIDTH="20%" ALIGN=right><FONT SIZE="+0">&nbsp;	</FONT></TD>
+	<TD VALIGN=top  WIDTH="40%"><FONT SIZE="+0">&nbsp;	</FONT></TD>
+</TR></TABLE><BR><TABLE BORDER=1 CELLPADDING=10 CELLSPACING=0><TR><TH width='94' nowrap>Filing Date</TH>
+<TH colspan=2 align='center'>#</TH><TH align=center>Docket Text</TH></TR>
+<TR><TD width="94" nowrap valign=bottom>06/05/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208491540' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208491540"'>600</a></nobr></TD><TD valign=bottom>  Notice of Continued Perfection of Mechanic's Lien. Filed by Kinetic Systems, Inc.. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218491541'>1</a> Certificate of Service <a href='https://ecf.deb.uscourts.gov/doc1/04218491542'>2</a> Exhibit <a href='https://ecf.deb.uscourts.gov/doc1/04218491543'>3</a> Affidavit) (LMD) (Entered: 06/08/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>06/08/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208491620' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208491620"'>601</a></nobr></TD><TD valign=bottom>  Notice of Appearance <i>and Request for Service of Papers.</i> Filed by Philip Mathers. (LMD) (Entered: 06/08/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>06/08/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208491643' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208491643"'>602</a></nobr></TD><TD valign=bottom>  Motion to Allow <i>Motion for the Appointment of an Equity Security Holders Committee.</i> Filed by Philip Mathers. The case judge is Kevin J. Carey. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218491644'>1</a> Exhibit &quot;A&quot;<a href='https://ecf.deb.uscourts.gov/doc1/04218491645'>2</a> Exhibit &quot;B&quot;<a href='https://ecf.deb.uscourts.gov/doc1/04218491646'>3</a> Exhibit &quot;C&quot;) (LMD) (Entered: 06/08/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>06/08/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208495132' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208495132"'>603</a></nobr></TD><TD valign=bottom>  Motion for Relief from Stay <i>Motion of Samsung Electronics Co., Ltd. for Entry of an Order Granting Relief from the Automatic Stay with Respect to Patent Litigation</i>. Fee Amount $150. Filed by Samsung Electronics Co., Ltd.. Hearing scheduled for 6/23/2009 at 02:00 PM at US Bankruptcy Court, 824 Market St., 5th Fl., Courtroom #5, Wilmington, Delaware. Objections due by 6/16/2009. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218495133'>1</a> Notice <a href='https://ecf.deb.uscourts.gov/doc1/04218495134'>2</a> Exhibit A<a href='https://ecf.deb.uscourts.gov/doc1/04218495135'>3</a> Exhibit B-Part I<a href='https://ecf.deb.uscourts.gov/doc1/04218495136'>4</a> Exhibit B-Part 2<a href='https://ecf.deb.uscourts.gov/doc1/04218495137'>5</a> Exhibit C-Part 1<a href='https://ecf.deb.uscourts.gov/doc1/04218495138'>6</a> Exhibit C-Part 2<a href='https://ecf.deb.uscourts.gov/doc1/04218495139'>7</a> Proposed Form of Order <a href='https://ecf.deb.uscourts.gov/doc1/04218495140'>8</a> Certificate of Service) (Veghte, Sally) (Entered: 06/08/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>06/08/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'>604</nobr></TD><TD valign=bottom>  Receipt of filing fee for Motion for Relief From Stay (B)(09-10690-KJC) [motion,mrlfsty] ( 150.00). Receipt Number 3970349, amount $ 150.00. (U.S. Treasury) (Entered: 06/08/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>06/09/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208498735' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208498735"'>605</a></nobr></TD><TD valign=bottom>  Transcript regarding Hearing Held 4/7/2009 Remote electronic access to the transcript is restricted until 9/8/2009. The transcript may be viewed at the Bankruptcy Court Clerk's Office. [For information about how to contact the transcriber, call the Clerk's Office] or [Contact the Court Reporter/Transcriber Veritext, Telephone number (516)608-2438.] (RE: related document(s) <a href='https://ecf.deb.uscourts.gov/doc1/04208266638'>233</a>). Notice of Intent to Request Redaction Deadline Due By 6/16/2009. Redaction Request Due By 6/30/2009. Redacted Transcript Submission Due By 7/10/2009. Transcript access will be restricted through 9/8/2009. (BJM) (Entered: 06/09/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>06/09/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208498911' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208498911"'>606</a></nobr></TD><TD valign=bottom>  Transcript regarding Hearing Held 04/23/09 Remote electronic access to the transcript is restricted until 9/8/2009. The transcript may be viewed at the Bankruptcy Court Clerk's Office. [For information about how to contact the transcriber, call the Clerk's Office] or [Contact the Court Reporter/Transcriber Veritext, Telephone number (516)608-2438.] . Notice of Intent to Request Redaction Deadline Due By 6/16/2009. Redaction Request Due By 6/30/2009. Redacted Transcript Submission Due By 7/10/2009. Transcript access will be restricted through 9/8/2009. (AJL) Modified on 6/10/2009 to correct date hearing held (NAL). Modified on 6/26/2009 (AJL). (Entered: 06/09/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>06/09/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208502236' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208502236"'>607</a></nobr></TD><TD valign=bottom>  Certificate of No Objection regarding First Monthly Application and amended First Monthly Application of Latham& Watkins LLP (related document(s)<a href='https://ecf.deb.uscourts.gov/doc1/04208383047'>396</a>, <a href='https://ecf.deb.uscourts.gov/doc1/04208411437'>479</a>) Filed by Duane Morris LLP. (Lastowski, Michael) Modified on 6/10/2009 to add text of related documents (NAL). (Entered: 06/09/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>06/10/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208506875' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208506875"'>608</a></nobr></TD><TD valign=bottom>  Certification of Counsel <i> Concerning Order Granting In Part The Debtors Third Omnibus Motion For An Order Pursuant To 11 U.S.C. &#167; 365 And Fed. R. Bankr. P. 6006 Authorizing Rejection Of Certain Unexpired Equipment Leases With Macquarie Electronics USA Inc. Nunc Pro Tunc To April 3, 2009</i> (related document(s)<a href='https://ecf.deb.uscourts.gov/doc1/04208263121'>226</a>, <a href='https://ecf.deb.uscourts.gov/doc1/04208299972'>276</a>) Filed by Spansion Inc.. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218506876'>1</a> Exhibit A (Proposed Order)) (Lastowski, Michael) (Entered: 06/10/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>06/10/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208507927' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208507927"'>609</a></nobr></TD><TD valign=bottom>  Affidavit of Mailing <i>of Konstantina Haidopoulos</i>. Filed by Epiq Bankruptcy Solutions, LLC. (related document(s)<a href='https://ecf.deb.uscourts.gov/doc1/04208485283'>582</a>, <a href='https://ecf.deb.uscourts.gov/doc1/04208485295'>583</a>, <a href='https://ecf.deb.uscourts.gov/doc1/04208487370'>584</a>, <a href='https://ecf.deb.uscourts.gov/doc1/04208487408'>585</a>, <a href='https://ecf.deb.uscourts.gov/doc1/04208487645'>586</a>, <a href='https://ecf.deb.uscourts.gov/doc1/04208487745'>587</a>, <a href='https://ecf.deb.uscourts.gov/doc1/04208488399'>592</a>, <a href='https://ecf.deb.uscourts.gov/doc1/04208488777'>595</a>, <a href='https://ecf.deb.uscourts.gov/doc1/04208490508'>598</a>, <a href='https://ecf.deb.uscourts.gov/doc1/04208490514'>599</a>) (Malo, David) Modified on 6/11/2009 (NAL). (Entered: 06/10/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>06/11/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208508671' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208508671"'>610</a></nobr></TD><TD valign=bottom>  Certificate of No Objection Regarding Second Monthly Fee Application Of Baker & McKenzie LLP (related document(s)<a href='https://ecf.deb.uscourts.gov/doc1/04208437911'>525</a>) Filed by Spansion Inc.. (Ross, Sommer) Modified on 6/15/2009 to add text of related document (NAL). (Entered: 06/11/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>06/11/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208508685' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208508685"'>611</a></nobr></TD><TD valign=bottom>  Certificate of No Objection Regarding Second Monthly Fee Application Of KPMG LLP As Financial Advisors (related document(s)<a href='https://ecf.deb.uscourts.gov/doc1/04208438348'>527</a>) Filed by Spansion Inc.. (Ross, Sommer) Modified on 6/15/2009 to add text of related document (NAL). (Entered: 06/11/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>06/11/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208508691' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208508691"'>612</a></nobr></TD><TD valign=bottom>  Certificate of No Objection Regarding Second Monthly Application Of Sitrick And Company Inc (related document(s)<a href='https://ecf.deb.uscourts.gov/doc1/04208439250'>535</a>) Filed by Spansion Inc.. (Ross, Sommer) Modified on 6/15/2009 to add text of related document (NAL). (Entered: 06/11/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>06/11/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208508694' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208508694"'>613</a></nobr></TD><TD valign=bottom>  Certificate of No Objection Regarding Second Monthly Application Of Latham & Watkins LLP (related document(s)<a href='https://ecf.deb.uscourts.gov/doc1/04208439286'>536</a>) Filed by Spansion Inc.. (Ross, Sommer) Modified on 6/15/2009 to add text of related document (NAL). (Entered: 06/11/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>06/11/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208510258' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208510258"'>614</a></nobr></TD><TD valign=bottom>  Order Granting Motion for Admission pro hac vice of Eric H. Gibbs, Esquire (Related Doc # <a href='https://ecf.deb.uscourts.gov/doc1/04208488319'>588</a>) Order Signed on 6/11/2009. (DJG) (Entered: 06/11/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>06/11/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208510272' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208510272"'>615</a></nobr></TD><TD valign=bottom>  Order Granting Motion for Admission pro hac vice of Dylan Hughes, Esquire (Related Doc # <a href='https://ecf.deb.uscourts.gov/doc1/04208488331'>589</a>) Order Signed on 6/11/2009. (DJG) (Entered: 06/11/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>06/11/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208510294' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208510294"'>616</a></nobr></TD><TD valign=bottom>  Order Granting Motion for Admission pro hac vice of Matthew B. George, Esquire(Related Doc # <a href='https://ecf.deb.uscourts.gov/doc1/04208488351'>590</a>) Order Signed on 6/11/2009. (DJG) (Entered: 06/11/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>06/11/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208510306' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208510306"'>617</a></nobr></TD><TD valign=bottom>  Order Granting Motion for Admission pro hac vice Kenneth J. Sugarman, Esquire (Related Doc # <a href='https://ecf.deb.uscourts.gov/doc1/04208488378'>591</a>) Order Signed on 6/11/2009. (DJG) (Entered: 06/11/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>06/11/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208510328' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208510328"'>618</a></nobr></TD><TD valign=bottom>  Order Granting Motion for Admission pro hac vice of Richard M. Paul, III, Esquire (Related Doc # <a href='https://ecf.deb.uscourts.gov/doc1/04208488421'>594</a>) Order Signed on 6/11/2009. (DJG) (Entered: 06/11/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>06/11/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208510337' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208510337"'>619</a></nobr></TD><TD valign=bottom>  Order Granting Motion for Admission pro hac vice of Ashlea G. Schwarz, Esquire(Related Doc # <a href='https://ecf.deb.uscourts.gov/doc1/04208488408'>593</a>) Order Signed on 6/11/2009. (DJG) (Entered: 06/11/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>06/11/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208510664' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208510664"'>620</a></nobr></TD><TD valign=bottom>  Order Granting in Part the Debtors' Third Omnibus Motion for and Order Authorizing Rejection of Certain Unexpired Equipment Leases with Macquarie Electronics USA, Inc. Nunc Pro Tunc to April 3, 2009. (related document(s)<a href='https://ecf.deb.uscourts.gov/doc1/04208263121'>226</a>, <a href='https://ecf.deb.uscourts.gov/doc1/04208299972'>276</a>) Order Signed on 6/11/2009. (LMD) (Entered: 06/11/2009)</TD></TR>
+</TABLE><BR><BR><BR><BR>
+			<script type='text/javascript'>
+				document.cookie = 'RECENT_CASES=' + "116481^115824^119835^119343^117129^105698^120629^118752^117911;";
+			</script>
+		<HR><CENTER><TABLE BORDER=1 BGCOLOR=white width="400"><TR><TH COLSPAN=4><FONT SIZE=+1 COLOR=DARKRED>PACER Service Center </FONT></TH></TR><TR><TH COLSPAN=4><FONT COLOR=DARKBLUE>Transaction Receipt </FONT></TH></TR><TR></TR><TR></TR><TR><TD COLSPAN=4 ALIGN=CENTER><FONT SIZE=-1 COLOR=DARKBLUE>06/30/2017 13:30:41</FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> PACER Login: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> [ LOGIN REMOVED ] </FONT></TH></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Client Code: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE>  </FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Description: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Docket Report </FONT></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Search Criteria: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 09-10690-KJC Fil or Ent: filed From: 5/1/2000 To: 6/30/2017 Doc From: 600 Doc To: 620 Term: included  Headers: included  Format: html  </FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Billable Pages: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 4 </FONT></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Cost: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 0.40 </FONT></TD></TR><TR></TR><TR></TR></TABLE></CENTER></HR><BR></BR></div></body></html>

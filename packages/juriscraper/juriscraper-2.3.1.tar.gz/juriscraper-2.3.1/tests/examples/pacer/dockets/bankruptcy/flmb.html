@@ -1,0 +1,301 @@
+<html><head><title>Middle District of Florida Live Database</title>
+<link rel="stylesheet" type="text/css" href="/css/default.css"><script type="text/javascript" src="/lib/core.js"></script><script type="text/javascript">if (top!=self) {top.location.replace(location.href);}</script></head><body  onLoad='SetFocus()'><div class="noprint"><img id="cmecfLogo" class="cmecfLogo" src="/graphics/cmecf-logo.gif" alt="CM/ECF" title=""  /><img src="/graphics/menubar-help.gif" alt="?" title="" class="helpImage" id="helpImage" onClick="CMECF.MainMenu.showHelpPage(''); return false" onMouseOver="CMECF.MainMenu.helpImageOn()" onMouseOut="CMECF.MainMenu.helpImageOff()" /><div id="topmenu" class="yuimenubar"><div class="bd"><ul class="first-of-type"><li class="yuimenubaritem" style="width:9%"><a class="yuimenubaritemlabel" href='/cgi-bin/iquery.pl'>Q</u>uery</a></li><li class="yuimenubaritem" style="width:11%"><a class="yuimenubaritemlabel" href='/cgi-bin/DisplayMenu.pl?Reports&id=-1'>R</u>eports</a></li><li class="yuimenubaritem" style="width:11%"><a class="yuimenubaritemlabel" href='/cgi-bin/DisplayMenu.pl?Utilities&id=-1'>U</u>tilities</a></li><li class="yuimenubaritem" style="width:10%"><a class="yuimenubaritemlabel" href='/cgi-bin/login.pl?logout'>Logout</a></li></ul></div></div></div><script type="text/javascript">if (navigator.appVersion.indexOf("MSIE")==-1){window.setTimeout( function(){ CMECF.MainMenu.renderSimpleMenu(); }, 0);}else{CMECF.util.Event.addListener(window, "load", CMECF.MainMenu.renderSimpleMenu);}</script><div id="cmecfMainContent"><input type="hidden" id="cmecfMainContentScroll" value="0"><SCRIPT LANGUAGE="JavaScript">
+		var IsForm = false;
+		var FirstField;
+		function SetFocus() {
+			if(IsForm) {
+				if(FirstField) {
+					var ind = FirstField.indexOf('document.',0);
+					if(ind == 0)
+					{
+						eval(FirstField);
+					}
+					else
+					{
+						var Code = "document.forms[0]."+FirstField+".focus();";
+						eval(Code);
+					}
+				} else {
+					var Cnt = 0;
+					while(document.forms[0].elements[Cnt] != null) {
+						if(document.forms[0].elements[Cnt].type != "hidden") {
+							document.forms[0].elements[Cnt].focus();
+							break;
+						}
+						Cnt += 1;
+					}
+				}
+			}
+			return(true);
+		}
+		</SCRIPT>
+<script type='text/JavaScript'>
+document.cookie="PDFHeaderReferer=662077480669216; path=/";
+</script>
+		<script type="text/javascript" src="/lib/widgits.js"></script>
+		<script>
+		var debtorPanel = null;
+
+		function create_panel(clid, message) {
+		    if (!debtorPanel) {
+		        debtorPanel = new CMECF.widget.Panel('debtorPanel', {
+				close:true,
+				draggable:false,
+				context:[clid, 'tl', 'br'],
+				width: "250" + "px",
+				height: "110" + "px",
+				constraintoviewport:true
+			});
+			debtorPanel.setHeader("Barred Debtor Information");
+			debtorPanel.setBody(message);
+			debtorPanel.body.style.height = "8em";
+			debtorPanel.render(document.body);
+		    } else {
+		        debtorPanel.show();
+		    }
+		}
+
+		function close_panel() {
+		    if (debtorPanel) {
+		        debtorPanel.destroy();
+		        debtorPanel = null;
+		    }
+		}
+		</script>
+		<TABLE width="100%" align=right BORDER=0 CELLSPACING=5><TR><TD ALIGN=right><h2> <FONT SIZE="3">LEAD, ADV, CONFIRMED, FeeDeferred, NoticingAgent</FONT></h2></TD></TR></TABLE><BR><BR><BR><CENTER><B><FONT SIZE="+1">U.S. Bankruptcy Court<BR>Middle District of Florida (Jacksonville)<BR>Bankruptcy Petition #: 3:09-bk-07047-JAF</FONT></B></CENTER><TABLE width="100%" BORDER=0 CELLSPACING=1><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><BR><I>Assigned to:</I>       Jerry A. Funk<BR>Chapter          11<BR>Voluntary<BR>Asset <br><div class="noprint"><A HREF='/cgi-bin/qryAscCases.pl?893304'>Show Associated Cases</A></div> <div class="noprint"><a href='/cgi-bin/SearchClaims.pl?caseid=893304;sc'>Claims Register</a></div><BR><BR>	</FONT></TD>
+	<TD VALIGN=top  WIDTH="50%" ALIGN=right><FONT SIZE="+0"><TABLE border=0 cellspacing=0 cellpadding=0 align=center><TR><td align="right" valign="top"><I>Date filed:</I></td><td align="left" valign="top">&nbsp;&nbsp;08/24/2009</td></TR><TR><td align="right" valign="top"><I>Plan confirmed:</I></td><td align="left" valign="top">&nbsp;&nbsp;07/21/2011</td></TR><TR><td align="right" valign="top"><I>341 meeting:</I></td><td align="left" valign="top">&nbsp;&nbsp;10/27/2009</td></TR><TR><td align="right" valign="top"><I>Deadline for filing claims:</I></td><td align="left" valign="top">&nbsp;&nbsp;06/15/2010  </td></TR></TABLE>	</FONT></TD>
+</TR>
+</TABLE><BR><FONT SIZE="5"><B></B>
+		</FONT><TABLE width="100%" BORDER=0 CELLSPACING=1><TR><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Debtor</B></I><BR><B>Taylor, Bean & Whitaker Mortgage Corp.</B>
+<BR>4901 Vineland Road, Ste 120
+<BR>Orlando, FL 32811
+<BR>MARION-FL
+<BR>Tax ID / EIN: 59-3069391     <BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Edward J. Peterson, III</B>
+<BR>Stichter, Riedel, Blain & Postler, P.A.
+<BR>110 East Madison Street, Suite 200
+<BR>Tampa, FL 33602
+<BR>(813) 229- 0144
+<BR>Fax  : (813) 229-1811
+<BR>Email:&nbsp;<a href='mailto:epeterson@srbp.com'>epeterson@srbp.com</a><BR><BR><B>Amy Denton Harris</B>
+<BR>Stichter Riedel Blain & Postler, P.A.
+<BR>110 E Madison Street
+<BR>Suite 200
+<BR>Tampa, FL 33602-4700
+<BR>(813) 229-0144
+<BR>Fax  : (813) 229-1811
+<BR>Email:&nbsp;<a href='mailto:aharris.ecf@srbp.com'>aharris.ecf@srbp.com</a><BR><BR><B>Russell M Blain</B>
+<BR>Stichter, Riedel, Blain & Postler, P.A.
+<BR>110 East Madison Street, Suite 200
+<BR>Tampa, FL 33602
+<BR>813-229-0144
+<BR>Fax  : 813-229-1811
+<BR>Email:&nbsp;<a href='mailto:rblain.ecf@srbp.com'>rblain.ecf@srbp.com</a><BR><BR><B>Edward J. Peterson, III</B>
+<BR>(See above for address)<BR><BR><B>Jeffrey W Kelley</B>
+<BR>Troutman Sanders LLP
+<BR>600 Peachtree Street
+<BR>Suite 5200
+<BR>Atlanta, GA 30308-2216
+<BR>(404) 885-3383
+<BR>Fax  : (404) 962-6847
+<BR>Email:&nbsp;<a href='mailto:jeffrey.kelley@troutmansanders.com'>jeffrey.kelley@troutmansanders.com</a><BR><BR><B>James D Dantzler, Jr</B>
+<BR>Troutman Sanders LLP
+<BR>600 Peachtree Street Northeast
+<BR>Suite 5200
+<BR>Atlanta, GA 30308
+<BR>(404) 885-3314
+<BR><I> TERMINATED: 01/08/2013</I><BR><BR><B>James D. Gassenheimer</B>
+<BR>Berger Singerman. P.A.
+<BR>1450 Brickell Avenue
+<BR>Suite 1900
+<BR>Miami, FL 33131
+<BR>305-755-9500
+<BR>Fax  : 305-714-4340
+<BR>Email:&nbsp;<a href='mailto:jgassenheimer@bergersingerman.com'>jgassenheimer@bergersingerman.com</a><BR><BR><B>Alisa Paige Mason</B>
+<BR>Berger Singerman PA
+<BR>1450 Brickell Avenue, Suite 1900
+<BR>Miami, FL 33131
+<BR>305-755-9500
+<BR><I>SELF- TERMINATED: 09/10/2015</I><BR><BR><B>Daniel C Consuegra</B>
+<BR>9204 King Palm Drive
+<BR>Tampa, FL 33619
+<BR>813-915-8660
+<BR>Email:&nbsp;<a href='mailto:bkfiling@consuegralaw.com'>bkfiling@consuegralaw.com</a><BR><BR><B>Debi Evans Galler</B>
+<BR>Berger Singerman PA
+<BR>1450 Brickell Ave, Ste 1900
+<BR>Miami, FL 33131
+<BR>850-561-3010
+<BR>Fax  : 850-561-3013
+<BR>Email:&nbsp;<a href='mailto:dgaller@bergersingerman.com'>dgaller@bergersingerman.com</a><BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Liquidating Trustee</B></I><BR><B>Taylor, Bean & Whitaker Plan Trust</B>
+<BR>Bank of America Plaza
+<BR>600 Peachtree Street, N.E.
+<BR>Suite 5200
+<BR>Atlanta, GA 30308-2216<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Jeffrey W Kelley</B>
+<BR>(See above for address)<BR><BR><B>James D Dantzler, Jr</B>
+<BR>(See above for address)<BR><BR><B>James D. Gassenheimer</B>
+<BR>(See above for address)<BR><BR><B>Edward J. Peterson, III</B>
+<BR>(See above for address)<BR><BR><B>Michael J Hooi</B>
+<BR>Stichter, Riedel, Blain & Postler, P.A.
+<BR>110 E. Madison St. Ste. 200
+<BR>Tampa, FL 33602
+<BR>813.229.0144
+<BR>Email:&nbsp;<a href='mailto:mhooi.ecf@srbp.com'>mhooi.ecf@srbp.com</a><BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Trustee</B></I><BR><B>Neil F. Luria</B><BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Paul Steven Singerman</B>
+<BR>Berger Singerman, PA
+<BR>1450 Brickell Avenue, 19th Floor
+<BR>Miami, FL 33131
+<BR>305-714-4341
+<BR>Fax  : 305-714-4340
+<BR>Email:&nbsp;<a href='mailto:singerman@bergersingerman.com'>singerman@bergersingerman.com</a><BR><BR><B>James D. Gassenheimer</B>
+<BR>(See above for address)<BR><BR><B>Edward J. Peterson, III</B>
+<BR>(See above for address)<BR><BR><B>James D. Gassenheimer</B>
+<BR>(See above for address)<BR><BR><B>Alisa Paige Mason</B>
+<BR>Berger Singerman PA
+<BR>1450 Brickell Avenue, Suite 1900
+<BR>Miami, FL 33131
+<BR>305-755-9500
+<BR><I>SELF- TERMINATED: 09/10/2015</I><BR><BR><B>Arthur J Spector</B>
+<BR>Berger Singerman PA
+<BR>2650 North Military Trail
+<BR>Suite 240
+<BR>Boca Raton, FL 33431-7391
+<BR>561-241-9500
+<BR><I>SELF- TERMINATED: 03/13/2015</I><BR><BR><B>Debi Evans Galler</B>
+<BR>(See above for address)<BR><BR><B>Ilyse M Homer</B>
+<BR>Berger Singerman, PA
+<BR>1450 Brickell Avenue, 19th Floor
+<BR>Miami, FL 33131
+<BR>305-714-4355
+<BR>Fax  : 305-714-4340
+<BR>Email:&nbsp;<a href='mailto:ihomer@bergersingerman.com'>ihomer@bergersingerman.com</a><BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Trustee</B></I><BR><B>Plan Trustee for Taylor, Bean and Whitaker</B><BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Arthur J Spector</B>
+<BR>Berger Singerman PA
+<BR>2650 North Military Trail
+<BR>Suite 240
+<BR>Boca Raton, FL 33431-7391
+<BR>561-241-9500
+<BR><I>SELF- TERMINATED: 03/13/2015</I><BR><BR><B>Alisa Paige Mason</B>
+<BR>(See above for address)<BR><BR><B>Jeffrey W Kelley</B>
+<BR>(See above for address)<BR><BR><B>James D. Gassenheimer</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Trustee</B></I><BR><B>Neil F. Luria, Plan Trustee</B><BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Arthur J Spector</B>
+<BR>Berger Singerman PA
+<BR>2650 North Military Trail
+<BR>Suite 240
+<BR>Boca Raton, FL 33431-7391
+<BR>561-241-9500
+<BR><I>SELF- TERMINATED: 03/13/2015</I><BR><BR><B>Paul Steven Singerman</B>
+<BR>(See above for address)<BR><BR><B>Edward J. Peterson, III</B>
+<BR>(See above for address)<BR><BR><B>Alisa Paige Mason</B>
+<BR>Berger Singerman PA
+<BR>1450 Brickell Avenue, Suite 1900
+<BR>Miami, FL 33131
+<BR>305-755-9500
+<BR><I>SELF- TERMINATED: 09/10/2015</I><BR><BR><B>James D. Gassenheimer</B>
+<BR>(See above for address)<BR><BR><B>James D. Gassenheimer</B>
+<BR>(See above for address)<BR><BR><B>Debi Evans Galler</B>
+<BR>(See above for address)<BR><BR><B>Russell M Blain</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>U.S. Trustee</B></I><BR><B>United States Trustee - JAX 11, 11</B>
+<BR>Office of the United States Trustee
+<BR>George C Young Federal Building
+<BR>400 West Washington Street, Suite 1100
+<BR>Orlando, FL 32801
+<BR>407-648-6301<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Elena L Escamilla</B>
+<BR>Office of the United States Trustee
+<BR>400 W. Washington Street
+<BR>Suite 1100
+<BR>Orlando, FL 32801
+<BR>(407) 648-6301 Ext. 127
+<BR>Fax  : (407) 648-6323
+<BR>Email:&nbsp;<a href='mailto:elena.l.escamilla@usdoj.gov'>elena.l.escamilla@usdoj.gov</a><BR><BR><B>Elena L Escamilla</B>
+<BR>(See above for address)<BR><BR></font></TD></TR><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Creditor Committee</B></I><BR><B>Creditors Committee</B>
+<BR><I> TERMINATED: 07/21/2011</I>	</FONT></TD>
+	<TD VALIGN=top  WIDTH="20%" ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+	<TD VALIGN=top  WIDTH="40%"><FONT SIZE="+0"><B>Paul Steven Singerman</B>
+<BR>(See above for address)<BR><BR><B>Arthur J Spector</B>
+<BR>Berger Singerman PA
+<BR>2650 North Military Trail
+<BR>Suite 240
+<BR>Boca Raton, FL 33431-7391
+<BR>561-241-9500
+<BR><I> TERMINATED: 03/31/2015</I><BR><BR><B>James D. Gassenheimer</B>
+<BR>(See above for address)<BR><BR><B>David L Gay</B>
+<BR>Berger Singerman, PA
+<BR>200 South Biscayne Blvd 10th Floor
+<BR>Miami, FL 33131
+<BR>305-755-9500
+<BR>Fax  : 305-714-4340
+<BR>Email:&nbsp;<a href='mailto:dgay@bergersingerman.com'>dgay@bergersingerman.com</a><BR><BR><B>Alisa Paige Mason</B>
+<BR>(See above for address)<BR><BR><B>Debi Evans Galler</B>
+<BR>(See above for address)	</FONT></TD>
+</TR></TABLE><BR><TABLE BORDER=1 CELLPADDING=10 CELLSPACING=0><TR><TH width='94' nowrap>Filing Date</TH>
+<TH colspan=2 align='center'>#</TH><TH align=center>Docket Text</TH></TR>
+<TR><TD width="94" nowrap valign=bottom>08/24/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028792841' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028792841"'>1</a></nobr></TD><TD valign=bottom>  Voluntary Petition under Chapter 11. (paid) <i></i> Schedules and Statements Incomplete, Statement of Financial Affairs Not Filed or Incomplete, Disclosure of Compensation of Attorney Not Filed or Not Required, <i></i> Filed by Edward J. Peterson III on behalf of Taylor, Bean & Whitaker Mortgage Corp.. Chapter 11 Plan due by 12/22/2009 Disclosure Statement due by 12/22/2009 (Peterson, Edward) Modified on 8/25/2009 (Nancy). (Entered: 08/24/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/24/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'>2</nobr></TD><TD valign=bottom>  Complaint by Nicholas A. Callahan ; Julie Whiteaker ; Eric E. Anderson ; Chris Escandon ; Charles Van Hartsell III ; Debra Orlando ; Dezi Teiann Jessop ; William P. Hickey III ; Tanjanika Carter against Taylor Bean & Whitaker Mortgage Corp. <A HREF=/cgi-bin/DktRpt.pl&#63;893368>3:09-ap-00439-JAF</A>; Nature of Suit(s): 02 (Other (e.g. other actions that would have been brought in state court if unrelated to bankruptcy)). (Haughey, R) (Entered: 08/24/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/24/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028801589' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028801589"'>3</a></nobr></TD><TD valign=bottom>  Notice of Appearance and Request for Notice <i></i> Filed by Robert A. Soriano on behalf of Creditor Sovereign Bank. (Soriano, Robert) (Entered: 08/24/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/24/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028803761' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028803761"'>4</a></nobr></TD><TD valign=bottom>  Chapter 11 Case Management Summary <i></i> Filed by Edward J. Peterson III on behalf of Debtor Taylor, Bean & Whitaker Mortgage Corp.. (Peterson, Edward) (Entered: 08/24/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/24/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028805432' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028805432"'>5</a></nobr></TD><TD valign=bottom>  Emergency Motion to Use Cash Collateral <i>and Granting Replacement Liens Pursuant to 11 USC Sections 105(a), 361, 363, 541 and 552 and Bankruptcy Rule 4001</i> Filed by Edward J. Peterson III on behalf of Debtor Taylor, Bean & Whitaker Mortgage Corp. (Peterson, Edward) (Entered: 08/24/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/24/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028806372' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028806372"'>6</a></nobr></TD><TD valign=bottom>  Emergency Motion <i>for Extension of Section 366 Stay as to Adequate Assurance for the Payment of Utility Service and Motion for Restraining Order</i> Filed by Edward J. Peterson III on behalf of Debtor Taylor, Bean & Whitaker Mortgage Corp. (Peterson, Edward) (Entered: 08/24/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/24/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028806397' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028806397"'>7</a></nobr></TD><TD valign=bottom>  Application to Employ Stichter, Riedel, Blain & Prosser, P.A. as General Bankruptcy Counsel <i></i> Filed by Edward J. Peterson III on behalf of Debtor Taylor, Bean & Whitaker Mortgage Corp. (Peterson, Edward) (Entered: 08/24/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/24/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028806424' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028806424"'>8</a></nobr></TD><TD valign=bottom>  Application to Employ Troutman Sanders LLP as Special Counsel <i></i> Filed by Edward J. Peterson III on behalf of Debtor Taylor, Bean & Whitaker Mortgage Corp. (Peterson, Edward) (Entered: 08/24/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/24/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028806465' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028806465"'>9</a></nobr></TD><TD valign=bottom>  Application <i>for Approval of Agreement with BMC Group, Inc. and Appointment of BMC Group, Inc. as Claims, Noticing and Balloting Agent for the Debtor</i> Filed by Edward J. Peterson III on behalf of Debtor Taylor, Bean & Whitaker Mortgage Corp. (Peterson, Edward) (Entered: 08/24/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/24/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028806519' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028806519"'>10</a></nobr></TD><TD valign=bottom>  Certificate of Necessity <i>for Emergency Hearing - Motion to Use Cash Collateral</i> Filed by Edward J. Peterson III on behalf of Debtor Taylor, Bean & Whitaker Mortgage Corp. (related document(s)<a href='https://ecf.flmb.uscourts.gov/doc1/046028805432'>5</a>). (Peterson, Edward) (Entered: 08/24/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/24/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028806542' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028806542"'>11</a></nobr></TD><TD valign=bottom>  Certificate of Necessity <i>for Emergency Hearing - Motion for Extensiion of Section 366 Stay</i> Filed by Edward J. Peterson III on behalf of Debtor Taylor, Bean & Whitaker Mortgage Corp. (related document(s)<a href='https://ecf.flmb.uscourts.gov/doc1/046028806372'>6</a>). (Peterson, Edward) (Entered: 08/24/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/24/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028806909' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028806909"'>12</a></nobr></TD><TD valign=bottom>  List of 20 Largest Unsecured Creditors <i></i> Filed by Edward J. Peterson III on behalf of Debtor Taylor, Bean & Whitaker Mortgage Corp.. (Peterson, Edward) (Entered: 08/24/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/24/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028807136' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028807136"'>13</a></nobr></TD><TD valign=bottom>  Emergency Application <i>for Approval of Agreement with Navigant Capital Advisors, LLC to Provide the Services of Neil F. Luria as Chief Restructuring Officer and Other Support Personnel</i> Filed by Edward J. Peterson III on behalf of Debtor Taylor, Bean & Whitaker Mortgage Corp. (Peterson, Edward) (Entered: 08/24/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/24/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028807162' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028807162"'>14</a></nobr></TD><TD valign=bottom>  Certificate of Necessity <i>for Emergency Hearing - Application for Approval of Agreement with Navigant Capital Advisors, LLC</i> Filed by Edward J. Peterson III on behalf of Debtor Taylor, Bean & Whitaker Mortgage Corp. (related document(s)<a href='https://ecf.flmb.uscourts.gov/doc1/046028807136'>13</a>). (Peterson, Edward) (Entered: 08/24/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028808592' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028808592"'>15</a></nobr></TD><TD valign=bottom>  Order of Retention of Debtor-In-Possession. Signed on 8/25/2009 (Nancy) (Entered: 08/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028808690' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028808690"'>16</a></nobr></TD><TD valign=bottom>  Order Authorizing Debtor-In-Possession to Operate Business. Signed on 8/25/2009 (Nancy) (Entered: 08/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028813586' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028813586"'>17</a></nobr></TD><TD valign=bottom>  Notice of Appearance and Request for Notice <i></i> Filed by Philip V Martino on behalf of Creditor Federal Deposit Insurance Corporation, as Receiver for Colonial Bank, N.A.. (Martino, Philip) (Entered: 08/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028822471' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028822471"'>18</a></nobr></TD><TD valign=bottom>  Notice of Filing <i>Certificate of Mailing</i> Filed by Amy Denton Harris on behalf of Debtor Taylor, Bean & Whitaker Mortgage Corp. (related document(s)<a href='https://ecf.flmb.uscourts.gov/doc1/046028806465'>9</a>, <a href='https://ecf.flmb.uscourts.gov/doc1/046028806372'>6</a>, <a href='https://ecf.flmb.uscourts.gov/doc1/046028805432'>5</a>, <a href='https://ecf.flmb.uscourts.gov/doc1/046028806424'>8</a>, <a href='https://ecf.flmb.uscourts.gov/doc1/046028806397'>7</a>). (Harris, Amy) (Entered: 08/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028822784' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028822784"'>19</a></nobr></TD><TD valign=bottom>  Notice of <i></i> Hearing <i></i> Filed by Russell M Blain on behalf of Debtor Taylor, Bean & Whitaker Mortgage Corp. (related document(s)<a href='https://ecf.flmb.uscourts.gov/doc1/046028806465'>9</a>, <a href='https://ecf.flmb.uscourts.gov/doc1/046028806372'>6</a>, <a href='https://ecf.flmb.uscourts.gov/doc1/046028805432'>5</a>, <a href='https://ecf.flmb.uscourts.gov/doc1/046028807136'>13</a>, <a href='https://ecf.flmb.uscourts.gov/doc1/046028806424'>8</a>). Hearing scheduled for 8/27/2009 at 01:00 PM at Jacksonville, FL - 300 North Hogan St. 4th Floor Courtroom 4D. (Blain, Russell) (Entered: 08/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028827828' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028827828"'>20</a></nobr></TD><TD valign=bottom>  Emergency Motion <i></i> for Relief from Stay. (Fee Paid.) Re: personal property and money. <i></i> Filed by Jason Ward Johnson on behalf of Creditor Federal Home Loan Mortgage Corporation (Attachments: <a href='https://ecf.flmb.uscourts.gov/doc1/046128827829'>1</a> Exhibit A<a href='https://ecf.flmb.uscourts.gov/doc1/046128827830'>2</a> Exhibit B<a href='https://ecf.flmb.uscourts.gov/doc1/046128827831'>3</a> Exhibit C <a href='https://ecf.flmb.uscourts.gov/doc1/046128827832'>4</a> Exhibit D part 1a<a href='https://ecf.flmb.uscourts.gov/doc1/046128827833'>5</a> Exhibit D part 1b<a href='https://ecf.flmb.uscourts.gov/doc1/046128827834'>6</a> Exhibit D part 2<a href='https://ecf.flmb.uscourts.gov/doc1/046128827835'>7</a> Exhibit D part 3<a href='https://ecf.flmb.uscourts.gov/doc1/046128827836'>8</a> Exhibit D part 4<a href='https://ecf.flmb.uscourts.gov/doc1/046128827837'>9</a> Exhibit D part 5<a href='https://ecf.flmb.uscourts.gov/doc1/046128827838'>10</a> Exhibit D part 6<a href='https://ecf.flmb.uscourts.gov/doc1/046128827839'>11</a> Exhibit D part 7<a href='https://ecf.flmb.uscourts.gov/doc1/046128827840'>12</a> Exhibit D part 8<a href='https://ecf.flmb.uscourts.gov/doc1/046128827841'>13</a> Exhibit D part 9<a href='https://ecf.flmb.uscourts.gov/doc1/046128827842'>14</a> Exhibit D part 10<a href='https://ecf.flmb.uscourts.gov/doc1/046128827843'>15</a> Exhibit D part 11<a href='https://ecf.flmb.uscourts.gov/doc1/046128827844'>16</a> Exhibit D part 12<a href='https://ecf.flmb.uscourts.gov/doc1/046128827845'>17</a> Exhibit D part 13) (Johnson, Jason) (Entered: 08/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028827899' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028827899"'>21</a></nobr></TD><TD valign=bottom>  Certificate of Necessity <i>of Request for Emergency Hearing</i> Filed by Jason Ward Johnson on behalf of Creditor Federal Home Loan Mortgage Corporation (related document(s)<a href='https://ecf.flmb.uscourts.gov/doc1/046028827845'>20</a>). (Johnson, Jason) (Entered: 08/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028834700' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028834700"'>22</a></nobr></TD><TD valign=bottom>  Declaration re: <i>Declaration of Pam C. Williams in Support of Emergency Motion for Relief from Stay of Federal Home Loan Mortgage Corporation</i> Filed by Jason Ward Johnson on behalf of Creditor Federal Home Loan Mortgage Corporation. (Johnson, Jason) Modified on 8/26/2009 (Cathy)<b>(See Corrective Entry Dated 8/26/09 -Pleading entered in error - See Document #23 as Correct Entry)</b> Additional attachment(s) added on 8/26/2009 (Perkins, Cathy). (Entered: 08/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028828014' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028828014"'>23</a></nobr></TD><TD valign=bottom>  Declaration re: <i>Declaration of Pam C. Williams in Support of Emergency Motion for Relief from Stay of Federal Home Loan Mortgage Corporation</i> Filed by Jason Ward Johnson on behalf of Creditor Federal Home Loan Mortgage Corporation. (Johnson, Jason) (Entered: 08/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028828041' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028828041"'>24</a></nobr></TD><TD valign=bottom>  Notice of Filing <i>Declaration of Pam C. Williams in Support of Emergency Motion for Relief from Stay</i> Filed by Jason Ward Johnson on behalf of Creditor Federal Home Loan Mortgage Corporation (related document(s)<a href='https://ecf.flmb.uscourts.gov/doc1/046028828014'>23</a>, <a href='https://ecf.flmb.uscourts.gov/doc1/046028827845'>20</a>). (Johnson, Jason) (Entered: 08/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028828057' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028828057"'>25</a></nobr></TD><TD valign=bottom>  Declaration re: <i>Declaration of Chip W. Pearson in Support of Emergency Motion for Relief from Stay of Federal Home Loan Mortgage Corporation</i> Filed by Jason Ward Johnson on behalf of Creditor Federal Home Loan Mortgage Corporation. (Johnson, Jason) (Entered: 08/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028828084' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028828084"'>26</a></nobr></TD><TD valign=bottom>  Notice of Filing <i>Declaration of Chip W. Pearson in Support of Emergency Motion for Relief from Stay</i> Filed by Jason Ward Johnson on behalf of Creditor Federal Home Loan Mortgage Corporation (related document(s)<a href='https://ecf.flmb.uscourts.gov/doc1/046028828057'>25</a>, <a href='https://ecf.flmb.uscourts.gov/doc1/046028827845'>20</a>). (Johnson, Jason) (Entered: 08/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028828151' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028828151"'>27</a></nobr></TD><TD valign=bottom>  Objection to <i>Emergency Motion to Use Cash Collateral</i> Filed by Jason Ward Johnson on behalf of Creditor Federal Home Loan Mortgage Corporation (related document(s)<a href='https://ecf.flmb.uscourts.gov/doc1/046028805432'>5</a>). (Johnson, Jason) (Entered: 08/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/26/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028833799' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028833799"'>28</a></nobr></TD><TD valign=bottom>  Notice of Deficient Filing. Summary, Schedules, Statement of Affairs, Exhibit A to Petition and Corporate Ownership <i></i> (related document(s)<a href='https://ecf.flmb.uscourts.gov/doc1/046028792841'>1</a>). (Cathy P.) (Entered: 08/26/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/26/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028834318' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028834318"'>29</a></nobr></TD><TD valign=bottom>  Notice of Deficient Filing. Corporate Ownership <i></i>. (Cathy P.) (Entered: 08/26/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/26/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028837919' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028837919"'>30</a></nobr></TD><TD valign=bottom>  Notice of Appearance and Request for Notice <i></i> Filed by Frank F McGinn on behalf of Creditor Iron Mountain Information Management, Inc.. (Attachments: <a href='https://ecf.flmb.uscourts.gov/doc1/046128837920'>1</a> Certificate of Service) (McGinn, Frank) (Entered: 08/26/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/26/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028842509' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028842509"'>31</a></nobr></TD><TD valign=bottom>  Amended Certificate of Service Re: <i>Motion of Federal Home Loan Mortgage Corporation for Relief from The Automatic Stay and Request for Emergency Hearing</i> Filed by Jason Ward Johnson on behalf of Creditor Federal Home Loan Mortgage Corporation (related document(s)<a href='https://ecf.flmb.uscourts.gov/doc1/046028827845'>20</a>). (Johnson, Jason) (Entered: 08/26/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/26/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028843325' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028843325"'>32</a></nobr></TD><TD valign=bottom>  Certificate of Service Re: <i>Service of Documents Upon Party Not Electronically Served</i> Filed by Jason Ward Johnson on behalf of Creditor Federal Home Loan Mortgage Corporation (related document(s)<a href='https://ecf.flmb.uscourts.gov/doc1/046028828084'>26</a>, <a href='https://ecf.flmb.uscourts.gov/doc1/046028828057'>25</a>, <a href='https://ecf.flmb.uscourts.gov/doc1/046028828014'>23</a>, <a href='https://ecf.flmb.uscourts.gov/doc1/046028828151'>27</a>, <a href='https://ecf.flmb.uscourts.gov/doc1/046028828041'>24</a>, <a href='https://ecf.flmb.uscourts.gov/doc1/046028827845'>20</a>, <a href='https://ecf.flmb.uscourts.gov/doc1/046028827899'>21</a>). (Johnson, Jason) (Entered: 08/26/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/26/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028846188' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028846188"'>33</a></nobr></TD><TD valign=bottom>  Motion <i>of Sovereign Bank, as Agent,</i> for Relief from Stay. (Fee Paid.) Re: mortgage loan servicing fees. <i>and for Adequate Protection</i> Filed by Robert A. Soriano on behalf of Creditor Sovereign Bank (Attachments: <a href='https://ecf.flmb.uscourts.gov/doc1/046128846190'>1</a> Exhibit A<a href='https://ecf.flmb.uscourts.gov/doc1/046128846191'>2</a> E xhibit B<a href='https://ecf.flmb.uscourts.gov/doc1/046128846193'>3</a> Mailing Matrix) (Soriano, Robert) (Entered: 08/26/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/26/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028846528' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028846528"'>34</a></nobr></TD><TD valign=bottom>  Response to <i>Debtor's Emergency Motion for Entry of Interim and Final Orders Authorizing Use of Cash Collateral and Granting Replacement Liens</i> Filed by Robert A. Soriano on behalf of Creditor Sovereign Bank (related document(s)<a href='https://ecf.flmb.uscourts.gov/doc1/046028805432'>5</a>). (Attachments: <a href='https://ecf.flmb.uscourts.gov/doc1/046128846529'>1</a> Mailing Matrix) (Soriano, Robert) (Entered: 08/26/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/26/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028848953' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028848953"'>35</a></nobr></TD><TD valign=bottom>  Notice of Appearance and Request for Notice <i></i> Filed by Gill R Geldreich on behalf of Creditor Tennessee Dept. of Financial Institutions. (Geldreich, Gill) (Entered: 08/26/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/26/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028849403' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028849403"'>36</a></nobr></TD><TD valign=bottom>  Notice of Appearance and Request for Notice <i> of Appearance</i> Filed by James W Carpenter on behalf of Creditor RBC Bank (USA), Successor By Merger to Florida Choice Bank. (Carpenter, James) (Entered: 08/26/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/26/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028851162' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028851162"'>37</a></nobr></TD><TD valign=bottom>  Objection to <i>Debtor's Emergency Motion for Entry of Interim and Final Orders Autorizing Use of Cash Collateral and Granting Replacement Liens</i> Filed by Kevin M Eckhardt on behalf of unknown Bank of America, National Association, as successor in interest through merger to LaSalle Bank, National Association and LaSalle Global Trust Services, and in its capacity as Collateral Agent (related document(s)<a href='https://ecf.flmb.uscourts.gov/doc1/046028805432'>5</a>). (Attachments: <a href='https://ecf.flmb.uscourts.gov/doc1/046128851163'>1</a> Exhibit A part I<a href='https://ecf.flmb.uscourts.gov/doc1/046128851164'>2</a> Exhibit A PART II<a href='https://ecf.flmb.uscourts.gov/doc1/046128851165'>3</a> Exhibit B PART 1 (COMPOSITE)<a href='https://ecf.flmb.uscourts.gov/doc1/046128851166'>4</a> Exhibit B PART II (COMPOSITE)<a href='https://ecf.flmb.uscourts.gov/doc1/046128851167'>5</a> Exhibit B PART III (COMPOSITE)<a href='https://ecf.flmb.uscourts.gov/doc1/046128851168'>6</a> Exhibit C<a href='https://ecf.flmb.uscourts.gov/doc1/046128851169'>7</a> Exhibit D<a href='https://ecf.flmb.uscourts.gov/doc1/046128851170'>8</a> Exhibit E<a href='https://ecf.flmb.uscourts.gov/doc1/046128851171'>9</a> Exhibit F<a href='https://ecf.flmb.uscourts.gov/doc1/046128851172'>10</a> Exhibit G<a href='https://ecf.flmb.uscourts.gov/doc1/046128851173'>11</a> Exhibit H<a href='https://ecf.flmb.uscourts.gov/doc1/046128851174'>12</a> Exhibit I) (Eckhardt, Kevin) (Entered: 08/26/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/26/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028852164' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028852164"'>38</a></nobr></TD><TD valign=bottom>  Limited Objection to <i>Debtor's Motion for Orders Authorizing Use of Cash Collateral</i> Filed by Philip V Martino on behalf of Creditor Federal Deposit Insurance Corporation, as Receiver for Colonial Bank, Montgomery, Alabama (related document(s)<a href='https://ecf.flmb.uscourts.gov/doc1/046028805432'>5</a>). (Martino, Philip) (Entered: 08/26/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/26/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028852179' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028852179"'>39</a></nobr></TD><TD valign=bottom>  Motion to Appear pro hac vice <i>of Thomas R. Califano</i> Filed by Philip V Martino on behalf of Creditor Federal Deposit Insurance Corporation, as Receiver for Colonial Bank, Montgomery, Alabama (Martino, Philip) (Entered: 08/26/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/26/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028852270' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028852270"'>40</a></nobr></TD><TD valign=bottom>  Amended Notice of Appearance and Request for Notice <i> (amends Docket No. 17)</i> Filed by Philip V Martino on behalf of Creditor Federal Deposit Insurance Corporation, as Receiver for Colonial Bank, Montgomery, Alabama. (Martino, Philip) (Entered: 08/26/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/26/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028852579' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028852579"'>41</a></nobr></TD><TD valign=bottom>  Certificate of Service Re: <i>(a) Limited Objection of Federal Deposit Insurance Corporation, as Receiver for Colonial Bank, to Debtor's Motion for Orders Authorizing Use of Cash Collateral; (b) Amended Notice of Appearance and Request for Service of Papers; and (c) Motion of Thomas R. Califano to Appear Pro Hac Vice</i> Filed by Philip V Martino on behalf of Creditor Federal Deposit Insurance Corporation, as Receiver for Colonial Bank, Montgomery, Alabama (related document(s)<a href='https://ecf.flmb.uscourts.gov/doc1/046028852179'>39</a>, <a href='https://ecf.flmb.uscourts.gov/doc1/046028852164'>38</a>, <a href='https://ecf.flmb.uscourts.gov/doc1/046028852270'>40</a>). (Martino, Philip) (Entered: 08/26/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/27/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028859418' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028859418"'>42</a></nobr></TD><TD valign=bottom>  Request for Notice <i></i> Filed by Creditor Manatee County Tax Collector. (Manatee County Tax Collector (SP)) (Entered: 08/27/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/27/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028861533' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028861533"'>43</a></nobr></TD><TD valign=bottom>  Notice <i>of Appearance for Purposes of CM/ECF</i> Filed by United States Trustee - JAX. (Escamilla TB, Elena) (Entered: 08/27/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/27/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028865332' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028865332"'>44</a></nobr></TD><TD valign=bottom>  Emergency Motion <i></i> for Relief from Stay. (Paid) <i>to Compel Post Termination Transfer of those Residential Consumer Loan Mortgage Portfolios Previously Serviced by the Debtor</i> Filed by Roy S Kobert on behalf of Bayview Loan Servicing, LLC, Manufacturers and Traders Trust Co., US BANK NATIONAL ASSOCIATION AS TRUSTEE (Kobert, Roy) Modified on 8/27/2009 (Cathy). (Entered: 08/27/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/27/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028865590' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028865590"'>45</a></nobr></TD><TD valign=bottom>  Certificate of Necessity <i>for Emergency Hearing on the Joint Motion of U.S. Bank National Association as Trustee Manufacturers and Traders Trust Co., and Bayview Loan Servicing, LLC to Compel Post Termination Transfer of Those Residential Consumer Loan Mortgage Portfolios Previously Serviced by the Debtor</i> Filed by Roy S Kobert on behalf of Bayview Loan Servicing, LLC, Manufacturers and Traders Trust Co., US BANK NATIONAL ASSOCIATION AS TRUSTEE. (Kobert, Roy) (Entered: 08/27/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/27/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028866324' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028866324"'>46</a></nobr></TD><TD valign=bottom>  Notice of Filing <i>Exhibits</i> Filed by Roy S Kobert on behalf of Bayview Loan Servicing, LLC, Manufacturers and Traders Trust Co., US BANK NATIONAL ASSOCIATION AS TRUSTEE (related document(s)<a href='https://ecf.flmb.uscourts.gov/doc1/046028865332'>44</a>). (Attachments: <a href='https://ecf.flmb.uscourts.gov/doc1/046128866326'>1</a> Exhibit Part I<a href='https://ecf.flmb.uscourts.gov/doc1/046128866329'>2</a> Exhibit Part II<a href='https://ecf.flmb.uscourts.gov/doc1/046128866330'>3</a> Exhibit Part III<a href='https://ecf.flmb.uscourts.gov/doc1/046128866331'>4</a> Exhibit Part IV) (Kobert, Roy) (Entered: 08/27/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/27/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'>47</nobr></TD><TD valign=bottom>  Complaint by Sharon Leforce ; Charles Leforce against Taylor, Bean & Whitaker Mortgage Corp. <A HREF=/cgi-bin/DktRpt.pl&#63;894076>3:09-ap-00448-JAF</A>; Nature of Suit(s): 02 (Other (e.g. other actions that would have been brought in state court if unrelated to bankruptcy)). (Vickie) (Entered: 08/27/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/27/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028869155' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028869155"'>48</a></nobr></TD><TD valign=bottom>  Objection to <i>Debtor's Emergency Motion for Authority to Use Cash Collateral</i> Filed by John W Kozyak on behalf of Creditor MBIA Insurance Corporation (related document(s)<a href='https://ecf.flmb.uscourts.gov/doc1/046028805432'>5</a>). (Kozyak, John) (Entered: 08/27/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/27/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028869258' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028869258"'>49</a></nobr></TD><TD valign=bottom>  Objection to <i>Debtor's Emergency Motion for Entry of Interim and Final Orders Authorizing Use of Cash Collateral and Granting Replacement Liens</i> Filed by James W Carpenter on behalf of Creditor RBC Bank (USA), Successor By Merger to Florida Choice Bank (related document(s)<a href='https://ecf.flmb.uscourts.gov/doc1/046028805432'>5</a>). (Attachments: <a href='https://ecf.flmb.uscourts.gov/doc1/046128869259'>1</a> Exhibit A<a href='https://ecf.flmb.uscourts.gov/doc1/046128869260'>2</a> Exhibit B<a href='https://ecf.flmb.uscourts.gov/doc1/046128869261'>3</a> Exhibit C<a href='https://ecf.flmb.uscourts.gov/doc1/046128869262'>4</a> Exhibit D<a href='https://ecf.flmb.uscourts.gov/doc1/046128869263'>5</a> Exhibit E) (Carpenter, James) (Entered: 08/27/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>08/27/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/046028873391' onContextMenu='this.href="https://ecf.flmb.uscourts.gov/doc1/046028873391"'>50</a></nobr></TD><TD valign=bottom>  (Not Processed - Court's Own Order) Proposed Order <i>Granting Motion of Thomas R. Califano to Appear Pro Hac Vice</i> Filed by Philip V Martino on behalf of Creditor Federal Deposit Insurance Corporation, as Receiver for Colonial Bank, N.A. (related document(s)<a href='https://ecf.flmb.uscourts.gov/doc1/046028852179'>39</a>). (Martino, Philip) Modified on 8/28/2009 (Cathy). (Entered: 08/27/2009)</TD></TR>
+</TABLE><BR><BR><BR><BR>
+			<script type='text/javascript'>
+				document.cookie = 'RECENT_CASES=' + "893304^923870^918175^915190;";
+			</script>
+		<HR><CENTER><TABLE BORDER=1 BGCOLOR=white width="400"><TR><TH COLSPAN=4><FONT SIZE=+1 COLOR=DARKRED>PACER Service Center </FONT></TH></TR><TR><TH COLSPAN=4><FONT COLOR=DARKBLUE>Transaction Receipt </FONT></TH></TR><TR></TR><TR></TR><TR><TD COLSPAN=4 ALIGN=CENTER><FONT SIZE=-1 COLOR=DARKBLUE>06/30/2017 13:59:39</FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> PACER Login: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> [ LOGIN REMOVED ] </FONT></TH></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Client Code: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE>  </FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Description: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Docket Report </FONT></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Search Criteria: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 3:09-bk-07047-JAF Fil or Ent: filed   Doc From: 1 Doc To: 50 Term: included  Headers: included  Format: html  </FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Billable Pages: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 9 </FONT></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Cost: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 0.90 </FONT></TD></TR><TR></TR><TR></TR></TABLE></CENTER></HR><BR></BR></div></body></html>

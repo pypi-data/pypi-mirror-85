@@ -1,0 +1,285 @@
+<html>
+<head>
+<title>Opinions Response</title>
+<style>
+ body,td,th {font-family:Arial,Helvetica,sans-serif; font-size:14px;}</style>
+<script language='JavaScript'>
+<!--
+// Desc: Client-Only JavaScript Table Sort & Filter:
+//       -- Sort forward/reverse by clicking on column label.
+//       -- Reduce table using multiple & consecutive searches.
+//       -- Refresh page to restore original table.
+// Author:  David Swink
+// Ref 1 -- http://www.romankoch.ch/capslock/tablesort.htm
+// Ref 2 -- http://www.kryogenix.org/code/browser/sorttable/
+// Ref 3 -- https://secure.codeproject.com/jscript/tablefilter.asp
+// NOTE: -- Sorting logic works on both IE and Netscape, but differently.
+//       -- Multi-column sorting order preserved on IE, not on Netscape.
+//       -- TR & TD attributes stay with content on Netscape, not on IE.
+var IE  = (document.all) ? true:false;                      // ie4+
+var DOM = ((document.getElementById)&&(!IE)) ? true:false;  // ns6 etc.
+var prevCol = -1;
+var thisCol =  0;
+var thisArr =  0;
+var myHead, myRows, myTyps;         // Current table header and contents
+var table, numRows, numCols;
+var rarr = new Array('&nbsp;&raquo;','&nbsp;&darr;','&nbsp;&uarr;'); // Arrows
+
+function compare_caseless(a,b) {
+  aa = a[thisCol].toLowerCase();
+  bb = b[thisCol].toLowerCase();
+  return ((aa<bb) ? -1 : ((aa>bb) ? 1 : 0));
+}
+function compare_numeric(a,b) {
+  aa = parseFloat(a[thisCol]);
+  bb = parseFloat(b[thisCol]);
+  if (isNaN(aa)) return 0;
+  if (isNaN(bb)) return 0;
+  return aa-bb;
+}
+function compare_date(a,b) {
+  // Works with date formats conforming to Javascript spec, e.g. m/d/yyyy
+  // Also works with 'm/d/yy' date formats that are in the same century
+  aa = new Date(a[thisCol]);
+  bb = new Date(b[thisCol]);
+  return ((aa<bb) ? -1 : ((aa>bb) ? 1 : 0));
+}
+function compare_dateEuro(a,b) {
+  // Works with European date formats, e.g. d.m.yyyy
+  strA = a[thisCol].split(".");
+  strB = b[thisCol].split(".");
+  aa = new Date(strA[2],strA[1],strA[0]);
+  bb = new Date(strB[2],strB[1],strB[0]);
+  return ((aa<bb) ? -1 : ((aa>bb) ? 1 : 0));
+}
+function compare_currency(a,b) {
+  aa = a[thisCol].replace(/[^0-9.]/g,'');
+  bb = b[thisCol].replace(/[^0-9.]/g,'');
+  return parseFloat(aa)-parseFloat(bb);
+}
+
+function TableLoad() {
+  // Create a two-dimensional array and fill it with the table's content.
+  table   = document.getElementById("ts");
+  numRows = table.rows.length;
+  numCols = table.rows[0].cells.length;
+  if (numRows <= 1) return;
+
+  myHead = new Array();             // Read header contents, add sort markers
+  myTyps = new Array();             // and determine column sort functions.
+  for (j=0; j<numCols; j++) {
+    myHead[j] = table.rows[0].cells[j].innerHTML;
+    table.rows[0].cells[j].innerHTML = myHead[j]+rarr[0];
+    itm = table.rows[1].cells[j].innerHTML.replace(/\s*<.*?>\s*/g,'');
+    myTyps[j] = compare_caseless;
+    if (itm.match(/^[$£¥]/)) myTyps[j] = compare_currency;
+    if (itm.match(/^[\d\.]+$/)) myTyps[j] = compare_numeric;
+    if (itm.match(/^\d{1,2}\.\d{1,2}\.\d{4}$/)) myTyps[j] = compare_dateEuro;
+    if (itm.match(/^\d{1,2}\/\d{1,2}\/\d{2,4}$/)) myTyps[j] = compare_date;
+  }
+  myRows = new Array();
+  for (i=1; i<numRows; i++) {       // Read original row data, incl attributes.
+    myRows[i-1] = new Array();
+    for (j=0; j<numCols; j++) {
+      myRows[i-1][j+numCols] = table.rows[i].cells[j].innerHTML;
+      myRows[i-1][j] = myRows[i-1][j+numCols].replace(/\s*<.*?>\s*/g,'');
+    }
+    myRows[i-1][numCols*2] = table.rows[i].innerHTML;  // (NS: no outerHTML!)
+//  alert("Row "+i+" = "+myRows[i-1]);
+  }
+  window.status = "Number of rows = "+(numRows-1);     // Initial row count.
+  return 0;
+}
+
+function TableSort(myCol) {
+  // Sort current table forward/reverse by selected column.
+  thisCol = myCol;
+
+  if (thisCol == prevCol) {         // If clicked same column as previously,
+    myRows.reverse();               //   simply reverse current sort order.
+    thisArr = (thisArr==1) ? 2:1;   //   Reverse the header arrow.
+  }
+  else {                            // Else clicked on a new column, so
+    myRows.sort(myTyps[thisCol]);   //   new sort by appropriate function.
+    thisArr = 1;                    //   Reset the header arrow.
+  }
+  for (i=1; i<numRows; i++) {       // Rewrite the table contents for display.
+    for (j=0; j<numCols; j++) {     //   Insure the text displays reordered.
+      table.rows[i].cells[j].innerHTML = myRows[i-1][j+numCols];
+    }                               //   For NS, also copy the TD attributes.
+    if (!IE) table.rows[i].innerHTML = myRows[i-1][numCols*2]; // (Not for IE)
+//  alert("Fm sorted = "+myRows[i-1][numCols]+
+//      "\nTo display = "+table.rows[i].innerHTML);
+  }
+  for (j=0; j<numCols; j++) {       // Rewrite the header for display.
+    table.rows[0].cells[j].innerHTML = myHead[j]+rarr[0];
+  }
+  table.rows[0].cells[thisCol].innerHTML = myHead[thisCol]+rarr[thisArr];
+  prevCol = thisCol;                // Remember curr sort column for next pass.
+  return 0;
+}
+
+function TableGrep(terms) {
+  // Egrep the table's current content.
+  var reg = new RegExp(terms.value, "i");
+  for (i=numRows-1; i>0; i--) {     // Remove non-matching rows from the array.
+    if (!myRows[i-1][numCols*2].match(reg)) {
+      myRows.splice(i-1,1);
+      table.deleteRow(i);
+      numRows--;
+    }
+  }
+  window.status = "Number of rows = "+(numRows-1);     // Updated row count.
+  return 0;
+}
+//-->
+</script>
+
+</head>
+<body style='background:url(../graphics/background.gif) top right repeat-x;' onload='TableLoad()' bgcolor=#ffffff>
+<table border='0' cellpadding='0' cellspacing='0' style='margin-bottom:10px;'>
+<tr><td valign='top' width='154'><img src='../graphics/search_seal.gif' width='156' height='148' title='U.S. District Court for D.C.' alt='U.S. District Court for D.C.' /></td>
+<td width='10'></td><td style='color:#1e354d;' valign='top' width='334'><form name='f1' onsubmit='TableGrep(f1.t1); return false'>
+<input type='text' name='t1' size='25'> (Press Enter)<br />
+<div style='background:url(../graphics/box-background.gif) repeat-y bottom left;position:relative;height:105px;'>
+<img src='../graphics/box-top.gif' style='position:absolute;top:0;' border='0' />
+<p style='display:block;color:#1e354d;font-size:12px;padding:10px 0;margin:15px 10px;line-height:18px;'>
+ - Sort forward/reverse by clicking on 'Date Filed' or 'Case'<br />
+ - Narrow results by searching for a keyword or number<br />
+ - For two or more results use'|' e.g. 'NEAL|ALPINE'<br />
+ - Refresh page to restore original results
+</p><img src='../graphics/box-bottom.gif' style='position:absolute;bottom:0;' border='0' /></div></form></td>
+
+</tr>
+</table><br /><font size='4'><b>Opinions &#8212; 2014</b></font>
+
+<!-- main-content -->
+<table id='ts' border='1' cellpadding='2' cellspacing='0'>
+<thead align='left'>
+<tr bgcolor=#ffffff>
+ <th onclick='TableSort(0)' width='13%'> <a href='#'>Date Filed</a></th>
+ <th onclick='TableSort(1)' width='50%'> <a href='#'>Case</a></th>
+ <th width='37%'> Opinion</th>
+</tr>
+</thead>
+<tbody valign='top'>
+<tr><td>02/26/2014<!-- dm=3921285,cs=25638 --></td><td>Criminal No. 1981-0306<br />USA v. HINCKLEY</td><td>Doc No. <a href='show_public_doc?1981cr0306-455' target='_blank'>455</a> (order)<br />Doc No. <a href='show_public_doc?1981cr0306-456' target='_blank'>456</a> (memorandum opinion and order)<br />&#160; by Judge Paul L. Friedman</td></tr>
+<tr><td>02/26/2014<!-- dm=3921470,cs=162421 --></td><td>Civil Action No. 2013-1550<br />LOPES v. JETSETDC, LLC et al</td><td>Doc No. <a href='show_public_doc?2013cv1550-36' target='_blank'>36</a> (memorandum and opinion)<br />Doc No. <a href='show_public_doc?2013cv1550-38' target='_blank'>38</a> (memorandum and opinion)<br />&#160; by Judge Royce C. Lamberth</td></tr>
+<tr><td>02/26/2014<!-- dm=3921352,cs=158931 --></td><td>Civil Action No. 2013-0367<br />MALLORY v. UNITED STATES DEPARTMENT OF HOUSING AND URBAN DEVELOPMENT</td><td>Doc No. <a href='show_public_doc?2013cv0367-11' target='_blank'>11</a> (memorandum opinion)<br />&#160; by Judge Colleen Kollar-Kotelly</td></tr>
+<tr><td>02/26/2014<!-- dm=3919914,cs=155458 --></td><td>Civil Action No. 2012-1249<br />MATTIACCIO v. DHA GROUP, INC. et al</td><td>Doc No. <a href='show_public_doc?2012cv1249-84' target='_blank'>84</a> (memorandum and opinion)<br />Doc No. <a href='show_public_doc?2012cv1249-86' target='_blank'>86</a> (memorandum and opinion)<br />&#160; by Judge Colleen Kollar-Kotelly</td></tr>
+<tr><td>02/26/2014<!-- dm=3921361,cs=147845 --></td><td>Criminal No. 2011-0129<br />USA v. EDWARDS</td><td>Doc No. <a href='show_public_doc?2011cr0129-864' target='_blank'>864</a> (memorandum opinion)<br />Doc No. <a href='show_public_doc?2011cr0129-866' target='_blank'>866</a> (memorandum opinion)<br />&#160; by Judge Colleen Kollar-Kotelly</td></tr>
+<tr><td>02/26/2014<!-- dm=3920353,cs=139336 --></td><td>Civil Action No. 2009-2111<br />KOCH v. SCHAPIRO</td><td>Doc No. <a href='show_public_doc?2009cv2111-40' target='_blank'>40</a> (memorandum opinion and order)<br />&#160; by Judge Paul L. Friedman</td></tr>
+<tr><td>02/25/2014<!-- dm=3920463,cs=164857 --></td><td>Civil Action No. 2014-0305<br />BROSTEN v. GEORGE WASHINGTON UNIVERSITY</td><td>Doc No. <a href='show_public_doc?2014cv0305-3' target='_blank'>3</a> (memorandum and opinion)<br />&#160; by Judge Ellen S. Huvelle</td></tr>
+<tr><td>02/25/2014<!-- dm=3920377,cs=164853 --></td><td>Civil Action No. 2014-0304<br />ROWLAND v. UNITED STATES ATTORNEY'S OFFICE</td><td>Doc No. <a href='show_public_doc?2014cv0304-3' target='_blank'>3</a> (memorandum and opinion)<br />&#160; by Judge Ellen S. Huvelle</td></tr>
+<tr><td>02/25/2014<!-- dm=3918733,cs=163777 --></td><td>Civil Action No. 2013-2002<br />DEMISSIE v. STARBUCKS CORPORATE OFFICE AND HEADQUARTERS</td><td>Doc No. <a href='show_public_doc?2013cv2002-12' target='_blank'>12</a> (memorandum order and opinion)<br />&#160; by Judge Ellen S. Huvelle</td></tr>
+<tr><td>02/25/2014<!-- dm=3919702,cs=160139 --></td><td>Civil Action No. 2013-0749<br />GUMPAD et al v. COMMISSIONER OF SOCIAL SECURITY ADMINISTRATION</td><td>Doc No. <a href='show_public_doc?2013cv0749-18' target='_blank'>18</a> (memorandum opinion)<br />&#160; by Judge Beryl A. Howell</td></tr>
+<tr><td>02/25/2014<!-- dm=3919186,cs=157775 --></td><td>Civil Action No. 2013-0025<br />ITPE PENSION FUND et al v. STRONGHOLD SECURITY, LLC</td><td>Doc No. <a href='show_public_doc?2013cv0025-17' target='_blank'>17</a> (order adopting report and recommendation)<br />&#160; by Judge Amy Berman Jackson</td></tr>
+<tr><td>02/25/2014<!-- dm=3919147,cs=152756 --></td><td>Civil Action No. 2012-0264<br />HAWKINS v. POTOMAC LIGHTHOUSE PUBLIC CHARTER SCHOOL</td><td>Doc No. <a href='show_public_doc?2012cv0264-36' target='_blank'>36</a> (memorandum opinion)<br />&#160; by Judge Gladys Kessler</td></tr>
+<tr><td>02/25/2014<!-- dm=3918973,cs=145223 --></td><td>Civil Action No. 2010-2021<br />FLYTHE v. DISTRICT OF COLUMBIA et al</td><td>Doc No. <a href='show_public_doc?2010cv2021-86' target='_blank'>86</a> (memorandum opinion & order)<br />&#160; by Judge Rudolph Contreras</td></tr>
+<tr><td>02/24/2014<!-- dm=3917938,cs=155484 --></td><td>Civil Action No. 2012-1281<br />MARTIN v. U.S. EQUAL EMPLOYMENT OPPORTUNITY COMMISSION et al</td><td>Doc No. <a href='show_public_doc?2012cv1281-52' target='_blank'>52</a> (memorandum opinion)<br />&#160; by Judge Ketanji Brown Jackson</td></tr>
+<tr><td>02/24/2014<!-- dm=3917417,cs=155413 --></td><td>Civil Action No. 2012-1245<br />STOUT v. NAPOLITANO</td><td>Doc No. <a href='show_public_doc?2012cv1245-27' target='_blank'>27</a> (memorandum opinion)<br />&#160; by Judge Emmet G. Sullivan</td></tr>
+<tr><td>02/24/2014<!-- dm=3917517,cs=146921 --></td><td>Civil Action No. 2011-0456<br />LANDMARK HEALTH SOLUTIONS LLC v. NOT FOR PROFIT HOSPITAL CORPORATION</td><td>Doc No. <a href='show_public_doc?2011cv0456-34' target='_blank'>34</a> (memorandum opinion and order)<br />&#160; by Judge Rudolph Contreras</td></tr>
+<tr><td>02/24/2014<!-- dm=3918424,cs=146716 --></td><td>Civil Action No. 2011-0391<br />UZOUKWU v. METROPOLITAN WASHINGTON COUNCIL OF GOVERNMENTS et al</td><td>Doc No. <a href='show_public_doc?2011cv0391-69' target='_blank'>69</a> (memorandum opinion and order)<br />&#160; by Judge Robert L. Wilkins</td></tr>
+<tr><td>02/21/2014<!-- dm=3921393,cs=164927 --></td><td>Civil Action No. 2014-0283<br />SHAH v. HOLDER</td><td>Doc No. <a href='show_public_doc?2014cv0283-4' target='_blank'>4</a> (memorandum and opinion)<br />&#160; by Judge Reggie B. Walton</td></tr>
+<tr><td>02/21/2014<!-- dm=3921349,cs=164923 --></td><td>Civil Action No. 2014-0282<br />ELWOOD v. OBAMA</td><td>Doc No. <a href='show_public_doc?2014cv0282-3' target='_blank'>3</a> (memorandum and opinion)<br />&#160; by Judge Ellen S. Huvelle</td></tr>
+<tr><td>02/21/2014<!-- dm=3919039,cs=164785 --></td><td>Civil Action No. 2014-0280<br />WELLS v. HOLDER</td><td>Doc No. <a href='show_public_doc?2014cv0280-3' target='_blank'>3</a> (memorandum and opinion)<br />&#160; by Judge Reggie B. Walton</td></tr>
+<tr><td>02/21/2014<!-- dm=3916603,cs=163588 --></td><td>Civil Action No. 2013-1936<br />JACKSON v. UNITED STATES PAROLE COMMISSION</td><td>Doc No. <a href='show_public_doc?2013cv1936-11' target='_blank'>11</a> (memorandum opinion)<br />&#160; by Judge James E. Boasberg</td></tr>
+<tr><td>02/21/2014<!-- dm=3916178,cs=159267 --></td><td>Civil Action No. 2013-0447<br />FLETCHER v. U.S. DEPARTMENT OF JUSTICE</td><td>Doc No. <a href='show_public_doc?2013cv0447-19' target='_blank'>19</a> (memorandum opinion)<br />&#160; by Judge Rudolph Contreras</td></tr>
+<tr><td>02/21/2014<!-- dm=3915548,cs=153063 --></td><td>Civil Action No. 2012-0335<br />HENOK v. CHASE HOME FINANCE, LLC et al</td><td>Doc No. <a href='show_public_doc?2012cv0335-55' target='_blank'>55</a> (memorandum opinion and order)<br />&#160; by Judge Paul L. Friedman</td></tr>
+<tr><td>02/21/2014<!-- dm=3916878,cs=151827 --></td><td>Civil Action No. 2011-2220<br />BILAL-EDWARDS v. UNITED PLANNING ORGANIZATION et al</td><td>Doc No. <a href='show_public_doc?2011cv2220-63' target='_blank'>63</a> (memorandum opinion)<br />&#160; by Judge Reggie B. Walton</td></tr>
+<tr><td>02/21/2014<!-- dm=3915999,cs=132150 --></td><td>Criminal No. 2008-0213<br />USA v. KOUMBAIRIA</td><td>Doc No. <a href='show_public_doc?2008cr0213-304' target='_blank'>304</a> (memorandum opinion)<br />&#160; by Judge John D. Bates</td></tr>
+<tr><td>02/21/2014<!-- dm=3915722,cs=115705 --></td><td>Civil Action No. 2005-1276<br />BARKO v. HALLIBURTON COMPANY et al</td><td>Doc No. <a href='show_public_doc?2005cv1276-145' target='_blank'>145</a> (opinion and order)<br />&#160; by Judge James S. Gwin</td></tr>
+<tr><td>02/21/2014<!-- dm=3915863,cs=109874 --></td><td>Civil Action No. 2004-1173<br />ESTATE OF ESTHER KLIEMAN et al v. PALESTINIAN AUTHORITY et al</td><td>Doc No. <a href='show_public_doc?2004cv1173-238' target='_blank'>238</a> (memorandum opinion and order)<br />&#160; by Judge Paul L. Friedman</td></tr>
+<tr><td>02/20/2014<!-- dm=3914692,cs=157323 --></td><td>Civil Action No. 2012-1974<br />HIMEX COMPANY, INC. v. U.S. CUSTOMS AND BORDER PROTECTION</td><td>Doc No. <a href='show_public_doc?2012cv1974-16' target='_blank'>16</a> (memorandum and opinion)<br />&#160; by Judge Richard J. Leon</td></tr>
+<tr><td>02/20/2014<!-- dm=3914974,cs=143664 --></td><td>Civil Action No. 2010-1424<br />LYLES v. DISTRICT OF COLUMBIA GOVERNMENT et al</td><td>Doc No. <a href='show_public_doc?2010cv1424-53' target='_blank'>53</a> (memorandum opinion)<br />&#160; by Judge Rudolph Contreras</td></tr>
+<tr><td>02/20/2014<!-- dm=3914239,cs=138682 --></td><td>Civil Action No. 2009-1832<br />LEE v. GOVERNMENT OF THE DISTRICT OF COLUMBIA</td><td>Doc No. <a href='show_public_doc?2009cv1832-95' target='_blank'>95</a> (memorandum opinion)<br />&#160; by Judge Rudolph Contreras</td></tr>
+<tr><td>02/20/2014<!-- dm=3914391,cs=113306 --></td><td>Civil Action No. 2005-0280<br />AL-ADAHI et al v. BUSH et al</td><td>Doc No. <a href='show_public_doc?2005cv0280-643' target='_blank'>643</a> (order)<br />&#160; by Judge Gladys Kessler</td></tr>
+<tr><td>02/19/2014<!-- dm=3914162,cs=164616 --></td><td>Civil Action No. 2014-0256<br />JACKSON v. WELLS FARGO et al</td><td>Doc No. <a href='show_public_doc?2014cv0256-4' target='_blank'>4</a> (memorandum and opinion)<br />&#160; by Judge Ellen S. Huvelle</td></tr>
+<tr><td>02/19/2014<!-- dm=3913243,cs=158535 --></td><td>Civil Action No. 2013-0252<br />DELTA SIGMA THETA SORORITY, INC. v. BIVINS et al</td><td>Doc No. <a href='show_public_doc?2013cv0252-57' target='_blank'>57</a> (memorandum opinion)<br />&#160; by Judge Beryl A. Howell</td></tr>
+<tr><td>02/19/2014<!-- dm=3913586,cs=147437 --></td><td>Civil Action No. 2011-0660<br />FLAHERTY et al v. LOCKE et al</td><td>Doc No. <a href='show_public_doc?2011cv0660-87' target='_blank'>87</a> (memorandum opinion)<br />&#160; by Judge Gladys Kessler</td></tr>
+<tr><td>02/19/2014<!-- dm=3913273,cs=121586 --></td><td>Civil Action No. 2006-1255<br />MARINO v. DRUG ENFORCEMENT ADMINISTRATION</td><td>Doc No. <a href='show_public_doc?2006cv1255-95' target='_blank'>95</a> (memorandum opinion)<br />&#160; by Judge Gladys Kessler</td></tr>
+<tr><td>02/19/2014<!-- dm=3913365,cs=108004 --></td><td>Criminal No. 2004-0128<br />USA v. UNKNOWN</td><td>Doc No. <a href='show_public_doc?2004cr0128-1239' target='_blank'>1239</a> (memorandum and opinion)<br />&#160; by Judge Rosemary M. Collyer</td></tr>
+<tr><td>02/18/2014<!-- dm=3912321,cs=61776 --></td><td>Civil Action No. 1997-1629<br />BLACKMAN, et al v. DC, et al</td><td>Doc No. <a href='show_public_doc?1997cv1629-2438' target='_blank'>2438</a> (memorandum opinion and order)<br />&#160; by Judge Paul L. Friedman</td></tr>
+<tr><td>02/18/2014<!-- dm=3916219,cs=164718 --></td><td>Civil Action No. 2014-0245<br />STEWART v. UNITED STATES OF AMERICA</td><td>Doc No. <a href='show_public_doc?2014cv0245-4' target='_blank'>4</a> (memorandum and opinion)<br />&#160; by Judge Reggie B. Walton</td></tr>
+<tr><td>02/18/2014<!-- dm=3916104,cs=164717 --></td><td>Civil Action No. 2014-0248<br />MATTHEWS v. PAUZE</td><td>Doc No. <a href='show_public_doc?2014cv0248-4' target='_blank'>4</a> (memorandum and opinion)<br />&#160; by Judge Ellen S. Huvelle</td></tr>
+<tr><td>02/18/2014<!-- dm=3915907,cs=164711 --></td><td>Civil Action No. 2014-0233<br />NICKERSON v. UNITED STATES OF AMERICA et al</td><td>Doc No. <a href='show_public_doc?2014cv0233-3' target='_blank'>3</a> (memorandum and opinion)<br />&#160; by Judge Reggie B. Walton</td></tr>
+<tr><td>02/18/2014<!-- dm=3915813,cs=164709 --></td><td>Civil Action No. 2014-0241<br />GASAWAY v. OFFICE OF DISPUTE RESOLUTION</td><td>Doc No. <a href='show_public_doc?2014cv0241-4' target='_blank'>4</a> (memorandum and opinion)<br />&#160; by Judge Reggie B. Walton</td></tr>
+<tr><td>02/18/2014<!-- dm=3914257,cs=164620 --></td><td>Civil Action No. 2014-0249<br />WELLS v. GRAY</td><td>Doc No. <a href='show_public_doc?2014cv0249-3' target='_blank'>3</a> (memorandum and opinion)<br />&#160; by Judge Reggie B. Walton</td></tr>
+<tr><td>02/18/2014<!-- dm=3914224,cs=164617 --></td><td>Civil Action No. 2014-0244<br />TAITE v. UNITED STATES PARDON ATTORNEY et al</td><td>Doc No. <a href='show_public_doc?2014cv0244-3' target='_blank'>3</a> (memorandum and opinion)<br />&#160; by Judge Reggie B. Walton</td></tr>
+<tr><td>02/18/2014<!-- dm=3912445,cs=164589 --></td><td>Civil Action No. 2014-0239<br />FLORES v. GEORGE WASHINGTON UNIVERSITY</td><td>Doc No. <a href='show_public_doc?2014cv0239-3' target='_blank'>3</a> (memorandum and opinion)<br />&#160; by Judge Reggie B. Walton</td></tr>
+<tr><td>02/18/2014<!-- dm=3911017,cs=164549 --></td><td>Civil Action No. 2014-0225<br />KEMPO v. UNITED STATES OF AMERICA</td><td>Doc No. <a href='show_public_doc?2014cv0225-3' target='_blank'>3</a> (memorandum and opinion)<br />&#160; by Judge Ellen S. Huvelle</td></tr>
+<tr><td>02/18/2014<!-- dm=3911817,cs=160168 --></td><td>Civil Action No. 2013-0774<br />HARROD v. UNITED STATES PAROLE COMMISSION</td><td>Doc No. <a href='show_public_doc?2013cv0774-16' target='_blank'>16</a> (memorandum and opinion)<br />&#160; by Judge Rosemary M. Collyer</td></tr>
+<tr><td>02/18/2014<!-- dm=3912226,cs=160158 --></td><td>Civil Action No. 2013-0770<br />OCEANA, INC. v. BLANK et al</td><td>Doc No. <a href='show_public_doc?2013cv0770-37' target='_blank'>37</a> (memorandum opinion)<br />&#160; by Judge James E. Boasberg</td></tr>
+<tr><td>02/18/2014<!-- dm=3911342,cs=155758 --></td><td>Civil Action No. 2012-1389<br />AFRAM v. UNITED FOOD AND COMMERCIAL WORKERS UNIONS AND PARTICIPATING EMPLOYERS HEALTH AND WELFARE FUND, et al</td><td>Doc No. <a href='show_public_doc?2012cv1389-33' target='_blank'>33</a> (memorandum order)<br />&#160; by Chief Judge Richard W. Roberts</td></tr>
+<tr><td>02/18/2014<!-- dm=3911064,cs=150215 --></td><td>Criminal No. 2011-0275<br />USA v. CARDOZA</td><td>Doc No. <a href='show_public_doc?2011cr0275-60' target='_blank'>60</a> (memorandum opinion and order)<br />&#160; by Judge Amy Berman Jackson</td></tr>
+<tr><td>02/18/2014<!-- dm=3912310,cs=134230 --></td><td>Criminal No. 2008-0360<br />USA v. SLATTEN</td><td>Doc No. <a href='show_public_doc?2008cr0360-388' target='_blank'>388</a> (memorandum opinion)<br />&#160; by Judge Royce C. Lamberth</td></tr>
+<tr><td>02/18/2014<!-- dm=3911372,cs=113306 --></td><td>Civil Action No. 2005-0280<br />AL-ADAHI et al v. BUSH et al</td><td>Doc No. <a href='show_public_doc?2005cv0280-641' target='_blank'>641</a> (order)<br />&#160; by Judge Gladys Kessler</td></tr>
+<tr><td>02/14/2014<!-- dm=3909769,cs=160134 --></td><td>Civil Action No. 2013-0757<br />CIENFUEGOS v. OFFICE OF THE ARCHITECT OF THE CAPITOL</td><td>Doc No. <a href='show_public_doc?2013cv0757-19' target='_blank'>19</a> (amended memorandum opinion and order)<br />&#160; by Judge James E. Boasberg</td></tr>
+<tr><td>02/14/2014<!-- dm=3910519,cs=159558 --></td><td>Civil Action No. 2013-0572<br />CONANT v. WELLS FARGO BANK, N.A. et al</td><td>Doc No. <a href='show_public_doc?2013cv0572-45' target='_blank'>45</a> (memorandum and opinion)<br />&#160; by Judge Colleen Kollar-Kotelly</td></tr>
+<tr><td>02/14/2014<!-- dm=3910702,cs=158653 --></td><td>Civil Action No. 2013-0288<br />DORSEN v. SECURITIES AND EXCHANGE COMMISSION</td><td>Doc No. <a href='show_public_doc?2013cv0288-10' target='_blank'>10</a> (memorandum opinion)<br />&#160; by Judge Beryl A. Howell</td></tr>
+<tr><td>02/14/2014<!-- dm=3910761,cs=154925 --></td><td>Civil Action No. 2012-1036<br />SABA v. U.S. DEPARTMENT OF AGRICULTURE</td><td>Doc No. <a href='show_public_doc?2012cv1036-29' target='_blank'>29</a> (memorandum and opinion)<br />&#160; by Judge Royce C. Lamberth</td></tr>
+<tr><td>02/12/2014<!-- dm=3907986,cs=157686 --></td><td>Civil Action No. 2012-2065<br />JACKSON et al v. TEAMSTERS LOCAL UNION 922 et al</td><td>Doc No. <a href='show_public_doc?2012cv2065-54' target='_blank'>54</a> (memorandum opinion)<br />&#160; by Judge James E. Boasberg</td></tr>
+<tr><td>02/12/2014<!-- dm=3908093,cs=147547 --></td><td>Civil Action No. 2011-0701<br />MORRIS v. JACKSON</td><td>Doc No. <a href='show_public_doc?2011cv0701-41' target='_blank'>41</a> (memorandum and opinion)<br />&#160; by Judge Rosemary M. Collyer</td></tr>
+<tr><td>02/12/2014<!-- dm=3908323,cs=146875 --></td><td>Civil Action No. 2011-0442<br />NATIONAL SECURITY COUNSELORS v. CENTRAL INTELLIGENCE AGENCY et al</td><td>Doc No. <a href='show_public_doc?2011cv0442-67' target='_blank'>67</a> (memorandum and opinion)<br />&#160; by Judge Rosemary M. Collyer</td></tr>
+<tr><td>02/12/2014<!-- dm=3908942,cs=146164 --></td><td>Civil Action No. 2011-0123<br />AJISEFINNI v. KPMG LLP</td><td>Doc No. <a href='show_public_doc?2011cv0123-56' target='_blank'>56</a> (memorandum opinion)<br />&#160; by Judge Rudolph Contreras</td></tr>
+<tr><td>02/12/2014<!-- dm=3908611,cs=109766 --></td><td>Civil Action No. 2004-1161<br />HOULAHAN v. WORLD WIDE ASSOCIATION OF SPECIALTY PROGRAMS AND SCHOOLS et al</td><td>Doc No. <a href='show_public_doc?2004cv1161-178' target='_blank'>178</a> (memorandum)<br />&#160; by Judge Frederick J. Scullin, Jr</td></tr>
+<tr><td>02/11/2014<!-- dm=3906619,cs=163483 --></td><td>Civil Action No. 2013-1961<br />ELECTRONIC PRIVACY INFORMATION CENTER v. DEPARTMENT OF JUSTICE</td><td>Doc No. <a href='show_public_doc?2013cv1961-15' target='_blank'>15</a> (memorandum opinion)<br />&#160; by Judge Ketanji Brown Jackson</td></tr>
+<tr><td>02/11/2014<!-- dm=3907539,cs=161988 --></td><td>Civil Action No. 2013-1392<br />LIEBMAN et al v. DEUTSCHE BANK NATIONAL TRUST COMPANY et al</td><td>Doc No. <a href='show_public_doc?2013cv1392-45' target='_blank'>45</a> (memorandum and opinion)<br />&#160; by Judge Colleen Kollar-Kotelly</td></tr>
+<tr><td>02/11/2014<!-- dm=3907633,cs=160134 --></td><td>Civil Action No. 2013-0757<br />CIENFUEGOS v. OFFICE OF THE ARCHITECT OF THE CAPITOL</td><td>Doc No. <a href='show_public_doc?2013cv0757-18' target='_blank'>18</a> (entered in error)<br />&#160; by Judge James E. Boasberg</td></tr>
+<tr><td>02/11/2014<!-- dm=3907741,cs=149293 --></td><td>Civil Action No. 2011-1331<br />DANIELS v. DISTRICT OF COLUMBIA et al</td><td>Doc No. <a href='show_public_doc?2011cv1331-41' target='_blank'>41</a> (memorandum opinion)<br />&#160; by Judge Beryl A. Howell</td></tr>
+<tr><td>02/11/2014<!-- dm=3907792,cs=146955 --></td><td>Criminal No. 2011-0059<br />USA v. NELSON</td><td>Doc No. <a href='show_public_doc?2011cr0059-68' target='_blank'>68</a> (memorandum opinion and order)<br />&#160; by Chief Judge Richard W. Roberts</td></tr>
+<tr><td>02/10/2014<!-- dm=3905640,cs=68866 --></td><td>Civil Action No. 1998-2088<br />PURCELL, et al v. MWI CORPORATION, et al</td><td>Doc No. <a href='show_public_doc?1998cv2088-472' target='_blank'>472</a> (memorandum opinion)<br />&#160; by Judge Gladys Kessler</td></tr>
+<tr><td>02/10/2014<!-- dm=3906074,cs=158705 --></td><td>Civil Action No. 2013-0315<br />INFORMATION STRATEGIES, INC. v. DUMOSCH</td><td>Doc No. <a href='show_public_doc?2013cv0315-34' target='_blank'>34</a> (memorandum opinion)<br />&#160; by Judge Rudolph Contreras</td></tr>
+<tr><td>02/10/2014<!-- dm=3906245,cs=155245 --></td><td>Civil Action No. 2012-1177<br />DOAK v. NAPOLITANO</td><td>Doc No. <a href='show_public_doc?2012cv1177-20' target='_blank'>20</a> (memorandum opinion)<br />&#160; by Judge Rudolph Contreras</td></tr>
+<tr><td>02/10/2014<!-- dm=3905237,cs=155108 --></td><td>Civil Action No. 2012-1123<br />K-N et al v. DISTRICT OF COLUMBIA</td><td>Doc No. <a href='show_public_doc?2012cv1123-35' target='_blank'>35</a> (order adopting amended report and recommendation)<br />Doc No. <a href='show_public_doc?2012cv1123-36' target='_blank'>36</a> (memorandum and opinion)<br />&#160; by Judge Amy Berman Jackson</td></tr>
+<tr><td>02/10/2014<!-- dm=3905535,cs=135418 --></td><td>Civil Action No. 2009-0394<br />BLAND-COLLINS v. HOWARD UNIVERSITY</td><td>Doc No. <a href='show_public_doc?2009cv0394-100' target='_blank'>100</a> (memorandum and opinion)<br />&#160; by Judge Richard J. Leon</td></tr>
+<tr><td>02/07/2014<!-- dm=3904902,cs=160288 --></td><td>Civil Action No. 2013-0818<br />LOPEZ CASTRO et al v. FIDELITY AND DEPOSIT COMPANY OF MARYLAND et al</td><td>Doc No. <a href='show_public_doc?2013cv0818-21' target='_blank'>21</a> (memorandum opinion)<br />&#160; by Judge James E. Boasberg</td></tr>
+<tr><td>02/06/2014<!-- dm=3903016,cs=162637 --></td><td>Civil Action No. 2013-1603<br />AYALA et al v. TITO CONTRACTORS, INC. et al</td><td>Doc No. <a href='show_public_doc?2013cv1603-26' target='_blank'>26</a> (memorandum opinion)<br />&#160; by Judge James E. Boasberg</td></tr>
+<tr><td>02/06/2014<!-- dm=3902440,cs=158974 --></td><td>Civil Action No. 2013-0391<br />BANNEKER VENTURES LLC v. GRAHAM et al</td><td>Doc No. <a href='show_public_doc?2013cv0391-39' target='_blank'>39</a> (memorandum and opinion)<br />&#160; by Judge Rosemary M. Collyer</td></tr>
+<tr><td>02/06/2014<!-- dm=3903022,cs=153884 --></td><td>Civil Action No. 2012-0625<br />SIMS v. DISTRICT OF COLUMBIA</td><td>Doc No. <a href='show_public_doc?2012cv0625-32' target='_blank'>32</a> (memorandum opinion)<br />Doc No. <a href='show_public_doc?2012cv0625-33' target='_blank'>33</a> (order)<br />&#160; by Judge Ellen S. Huvelle</td></tr>
+<tr><td>02/05/2014<!-- dm=3901389,cs=160418 --></td><td>Civil Action No. 2013-0873<br />ATKINSON v. GRINDSTONE CAPITAL LLC et al</td><td>Doc No. <a href='show_public_doc?2013cv0873-21' target='_blank'>21</a> (memorandum and opinion)<br />&#160; by Judge Amy Berman Jackson</td></tr>
+<tr><td>02/05/2014<!-- dm=3901431,cs=158052 --></td><td>Civil Action No. 2013-0109<br />VALIDUS REINSURANCE, LTD. v. UNITED STATES OF AMERICA</td><td>Doc No. <a href='show_public_doc?2013cv0109-29' target='_blank'>29</a> (memorandum and opinion)<br />&#160; by Judge Amy Berman Jackson</td></tr>
+<tr><td>02/05/2014<!-- dm=3901685,cs=152961 --></td><td>Civil Action No. 2012-0327<br />ELECTRONIC PRIVACY INFORMATION CENTER et al v. U.S. DEPARTMENT OF EDUCATION</td><td>Doc No. <a href='show_public_doc?2012cv0327-31' target='_blank'>31</a> (amended memorandum opinion)<br />&#160; by Judge Amy Berman Jackson</td></tr>
+<tr><td>02/04/2014<!-- dm=3901004,cs=162647 --></td><td>Criminal No. 2013-0285<br />USA v. MURPHY</td><td>Doc No. <a href='show_public_doc?2013cr0285-9' target='_blank'>9</a> (memorandum opinion and order)<br />&#160; by Judge Ketanji Brown Jackson</td></tr>
+<tr><td>02/04/2014<!-- dm=3899771,cs=160341 --></td><td>Civil Action No. 2013-0830<br />HALL AND ASSOCIATES v. UNITED STATES ENVIRONMENTAL PROTECTION AGENCY</td><td>Doc No. <a href='show_public_doc?2013cv0830-21' target='_blank'>21</a> (memorandum opinion)<br />&#160; by Judge James E. Boasberg</td></tr>
+<tr><td>02/04/2014<!-- dm=3900444,cs=159840 --></td><td>Civil Action No. 2013-0675<br />RODRIGUEZ v. LABORATORY CORPORATION OF AMERICA HOLDINGS</td><td>Doc No. <a href='show_public_doc?2013cv0675-21' target='_blank'>21</a> (memorandum opinion)<br />&#160; by Judge Gladys Kessler</td></tr>
+<tr><td>02/04/2014<!-- dm=3900800,cs=154039 --></td><td>Civil Action No. 2012-0696<br />BROWNE v. DONOVAN</td><td>Doc No. <a href='show_public_doc?2012cv0696-40' target='_blank'>40</a> (memorandum and opinion)<br />&#160; by Judge Colleen Kollar-Kotelly</td></tr>
+<tr><td>02/03/2014<!-- dm=3898930,cs=159559 --></td><td>Civil Action No. 2013-0573<br />MURPHY v. EXECUTIVE OFFICE FOR THE U.S. ATTORNEYS</td><td>Doc No. <a href='show_public_doc?2013cv0573-32' target='_blank'>32</a> (memorandum and opinion)<br />&#160; by Judge Ellen S. Huvelle</td></tr>
+<tr><td>02/03/2014<!-- dm=3898986,cs=154399 --></td><td>Civil Action No. 2012-0833<br />JONES v. LISTENVISION STUDIOS et al</td><td>Doc No. <a href='show_public_doc?2012cv0833-34' target='_blank'>34</a> (memorandum opinion)<br />&#160; by Judge Ketanji Brown Jackson</td></tr>
+<tr><td>02/03/2014<!-- dm=3899319,cs=153450 --></td><td>Civil Action No. 2012-0452<br />ROSENBERG v. UNITED STATES DEPARTMENT OF IMMIGRATION AND CUSTOMS ENFORCEMENT et al</td><td>Doc No. <a href='show_public_doc?2012cv0452-80' target='_blank'>80</a> (memorandum and opinion)<br />&#160; by Judge Colleen Kollar-Kotelly</td></tr>
+<tr><td>02/03/2014<!-- dm=3898431,cs=109776 --></td><td>Civil Action No. 2004-1166<br />BOUMEDIENE et al v. BUSH et al</td><td>Doc No. <a href='show_public_doc?2004cv1166-323' target='_blank'>323</a> (memorandum order)<br />&#160; by Judge Richard J. Leon</td></tr>
+<tr><td>01/31/2014<!-- dm=3902811,cs=164434 --></td><td>Civil Action No. 2014-0162<br />GRENADIER v. HECKMAN et al</td><td>Doc No. <a href='show_public_doc?2014cv0162-7' target='_blank'>7</a> (memorandum and opinion)<br />&#160; by Judge Reggie B. Walton</td></tr>
+<tr><td>01/31/2014<!-- dm=3896459,cs=163106 --></td><td>Civil Action No. 2013-1756<br />BRODT v. COUNTY OF HARFORD et al</td><td>Doc No. <a href='show_public_doc?2013cv1756-4' target='_blank'>4</a> (memorandum opinion)<br />&#160; by Judge John D. Bates</td></tr>
+<tr><td>01/31/2014<!-- dm=3897413,cs=162047 --></td><td>Civil Action No. 2013-1416<br />TAYLOR v. VETERANS AFFAIRS ADMINISTRATION</td><td>Doc No. <a href='show_public_doc?2013cv1416-34' target='_blank'>34</a> (memorandum opinion)<br />&#160; by Judge John D. Bates</td></tr>
+<tr><td>01/31/2014<!-- dm=3897242,cs=160914 --></td><td>Civil Action No. 2013-1055<br />TEFERA v. ONEWEST BANK, FSB</td><td>Doc No. <a href='show_public_doc?2013cv1055-8' target='_blank'>8</a> (memorandum opinion)<br />&#160; by Judge Ketanji Brown Jackson</td></tr>
+<tr><td>01/31/2014<!-- dm=3897323,cs=160827 --></td><td>Civil Action No. 2013-0998<br />TEFERA v. WELLS FARGO BANK, N.A.</td><td>Doc No. <a href='show_public_doc?2013cv0998-10' target='_blank'>10</a> (memorandum opinion)<br />&#160; by Judge Ketanji Brown Jackson</td></tr>
+<tr><td>01/31/2014<!-- dm=3896903,cs=159026 --></td><td>Civil Action No. 2013-0395<br />JAWORSKI v. UNITED STATES TREASURY</td><td>Doc No. <a href='show_public_doc?2013cv0395-32' target='_blank'>32</a> (memorandum and opinion)<br />&#160; by Judge Colleen Kollar-Kotelly</td></tr>
+<tr><td>01/31/2014<!-- dm=3897440,cs=158842 --></td><td>Civil Action No. 2013-0350<br />JARVIS et al., v. PARKER et al.,</td><td>Doc No. <a href='show_public_doc?2013cv0350-46' target='_blank'>46</a> (memorandum and opinion)<br />&#160; by Judge Colleen Kollar-Kotelly</td></tr>
+<tr><td>01/31/2014<!-- dm=3896967,cs=153574 --></td><td>Civil Action No. 2012-0503<br />DELEON v. U.S. AIRWAYS, INC. et al</td><td>Doc No. <a href='show_public_doc?2012cv0503-85' target='_blank'>85</a> (memorandum opinion)<br />&#160; by Judge Robert L. Wilkins</td></tr>
+<tr><td>01/31/2014<!-- dm=3897326,cs=143314 --></td><td>Civil Action No. 2010-1283<br />A.B. et al v. DISTRICT OF COLUMBIA et al</td><td>Doc No. <a href='show_public_doc?2010cv1283-65' target='_blank'>65</a> (order adopting in part report and recommendation)<br />Doc No. <a href='show_public_doc?2010cv1283-66' target='_blank'>66</a> (memorandum and opinion)<br />&#160; by Judge Amy Berman Jackson</td></tr>
+<tr><td>01/31/2014<!-- dm=3897537,cs=127550 --></td><td>Civil Action No. 2007-1718<br />PARR v. EBRAHIMIAN et al</td><td>Doc No. <a href='show_public_doc?2007cv1718-125' target='_blank'>125</a> (memorandum opinion and order)<br />&#160; by Judge Paul L. Friedman</td></tr>
+<tr><td>01/30/2014<!-- dm=3895983,cs=61776 --></td><td>Civil Action No. 1997-1629<br />BLACKMAN, et al v. DC, et al</td><td>Doc No. <a href='show_public_doc?1997cv1629-2424' target='_blank'>2424</a> (opinion)<br />&#160; by Judge Paul L. Friedman</td></tr>
+<tr><td>01/30/2014<!-- dm=3895857,cs=37950 --></td><td>Civil Action No. 1993-0452<br />SALAZAR, et al v. DC, et al</td><td>Doc No. <a href='show_public_doc?1993cv0452-1922' target='_blank'>1922</a> (amended memorandum opinion)<br />&#160; by Judge Gladys Kessler</td></tr>
+<tr><td>01/30/2014<!-- dm=3914741,cs=164650 --></td><td>Civil Action No. 2014-0193<br />MORTON v. FULWOOD et al</td><td>Doc No. <a href='show_public_doc?2014cv0193-4' target='_blank'>4</a> (memorandum and opinion)<br />&#160; by Judge Reggie B. Walton</td></tr>
+<tr><td>01/30/2014<!-- dm=3903850,cs=164449 --></td><td>Civil Action No. 2014-0137<br />BAMDAD v. DRUG ENFORCEMENT ADMINISTRATION et al</td><td>Doc No. <a href='show_public_doc?2014cv0137-4' target='_blank'>4</a> (memorandum and opinion)<br />&#160; by Judge Reggie B. Walton</td></tr>
+<tr><td>01/30/2014<!-- dm=3902633,cs=164433 --></td><td>Civil Action No. 2014-0136<br />GLOVER v. URBINA et al</td><td>Doc No. <a href='show_public_doc?2014cv0136-3' target='_blank'>3</a> (memorandum and opinion)<br />&#160; by Judge Reggie B. Walton</td></tr>
+<tr><td>01/30/2014<!-- dm=3900343,cs=164391 --></td><td>Civil Action No. 2014-0135<br />BELL-BOSTON v. UNITED STATES OF AMERICA et al</td><td>Doc No. <a href='show_public_doc?2014cv0135-3' target='_blank'>3</a> (memorandum and opinion)<br />&#160; by Judge Reggie B. Walton</td></tr>
+<tr><td>01/30/2014<!-- dm=3900311,cs=164390 --></td><td>Civil Action No. 2014-0141<br />SMITH v. US DEPARTMENT OF JUSTICE et al</td><td>Doc No. <a href='show_public_doc?2014cv0141-4' target='_blank'>4</a> (memorandum and opinion)<br />&#160; by Judge Reggie B. Walton</td></tr>
+<tr><td>01/30/2014<!-- dm=3900171,cs=164389 --></td><td>Civil Action No. 2014-0134<br />WOODS v. UNITED STATES DEPARTMENT OF JUSTICE</td><td>Doc No. <a href='show_public_doc?2014cv0134-4' target='_blank'>4</a> (memorandum and opinion)<br />&#160; by Judge Reggie B. Walton</td></tr>
+<tr><td>01/30/2014<!-- dm=3900128,cs=164388 --></td><td>Civil Action No. 2014-0131<br />SMITH v. HOLDER et al</td><td>Doc No. <a href='show_public_doc?2014cv0131-3' target='_blank'>3</a> (memorandum and opinion)<br />&#160; by Judge Reggie B. Walton</td></tr>
+<tr><td>01/30/2014<!-- dm=3899898,cs=164380 --></td><td>Civil Action No. 2014-0142<br />JARVIS v. DISTRICT OF COLUMBIA et al</td><td>Doc No. <a href='show_public_doc?2014cv0142-4' target='_blank'>4</a> (memorandum and opinion)<br />&#160; by Judge Reggie B. Walton</td></tr>
+<tr><td>01/30/2014<!-- dm=3899669,cs=164373 --></td><td>Civil Action No. 2014-0145<br />DUNLAP v. DEPARTMENT REVIEW BOARD APPEAL BRANCH et al</td><td>Doc No. <a href='show_public_doc?2014cv0145-3' target='_blank'>3</a> (memorandum and opinion)<br />&#160; by Judge Reggie B. Walton</td></tr>
+<tr><td>01/30/2014<!-- dm=3896989,cs=164337 --></td><td>Civil Action No. 2014-0144<br />HILL v. W.H.H. TRICE AND COMPANY</td><td>Doc No. <a href='show_public_doc?2014cv0144-3' target='_blank'>3</a> (memorandum and opinion)<br />&#160; by Judge Reggie B. Walton</td></tr>
+<tr><td>01/30/2014<!-- dm=3897396,cs=164336 --></td><td>Civil Action No. 2014-0147<br />WRIGHT v. U.S. LABOR WORKFORCE/NATIONAL SECURITY</td><td>Doc No. <a href='show_public_doc?2014cv0147-3' target='_blank'>3</a> (memorandum and opinion)<br />&#160; by Judge Reggie B. Walton</td></tr>
+<tr><td>01/30/2014<!-- dm=3896958,cs=164335 --></td><td>Civil Action No. 2014-0138<br />ROWLAND v. UNITED STATES SUPERIOR COURT</td><td>Doc No. <a href='show_public_doc?2014cv0138-3' target='_blank'>3</a> (memorandum and opinion)<br />&#160; by Judge Reggie B. Walton</td></tr>
+<tr><td>01/30/2014<!-- dm=3896918,cs=164334 --></td><td>Civil Action No. 2014-0140<br />BROWN v. HILL et al</td><td>Doc No. <a href='show_public_doc?2014cv0140-3' target='_blank'>3</a> (memorandum and opinion)<br />&#160; by Judge Reggie B. Walton</td></tr>
+<tr><td>01/30/2014<!-- dm=3896485,cs=162913 --></td><td>Civil Action No. 2013-1665<br />HAMES v. UNITED STATES OF AMERICA</td><td>Doc No. <a href='show_public_doc?2013cv1665-5' target='_blank'>5</a> (memorandum and opinion)<br />&#160; by Judge Reggie B. Walton</td></tr>
+<tr><td>01/30/2014<!-- dm=3896283,cs=162110 --></td><td>Civil Action No. 2013-1418<br />MCCAIN v. BANK OF AMERICA, NA et al</td><td>Doc No. <a href='show_public_doc?2013cv1418-33' target='_blank'>33</a> (memorandum opinion)<br />&#160; by Judge Beryl A. Howell</td></tr>
+<tr><td>01/30/2014<!-- dm=3895954,cs=160845 --></td><td>Civil Action No. 2013-1008<br />DISTRICT OF COLUMBIA v. MASUCCI et al</td><td>Doc No. <a href='show_public_doc?2013cv1008-28' target='_blank'>28</a> (order)<br />Doc No. <a href='show_public_doc?2013cv1008-29' target='_blank'>29</a> (opinion)<br />Doc No. <a href='show_public_doc?2013cv1008-30' target='_blank'>30</a> (memorandum opinion and order)<br />&#160; by Judge Paul L. Friedman</td></tr>
+</tbody>
+</table>
+<!-- /main-content -->
+
+</body>
+</html>
+

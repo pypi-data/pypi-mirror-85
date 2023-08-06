@@ -1,0 +1,366 @@
+<html><head><title>LIVE ECF</title>
+<link rel="stylesheet" type="text/css" href="/css/default.css"><script type="text/javascript" src="/lib/core.js"></script><script type="text/javascript">if (top!=self) {top.location.replace(location.href);}</script></head><body BGCOLOR=FFFFF0 TEXT=000000 onLoad='SetFocus()'><div class="noprint"><img id="cmecfLogo" class="cmecfLogo" src="/graphics/cmecf-logo.gif" alt="CM/ECF" title=""  /><img src="/graphics/menubar-help.gif" alt="?" title="" class="helpImage" id="helpImage" onClick="CMECF.MainMenu.showHelpPage(''); return false" onMouseOver="CMECF.MainMenu.helpImageOn()" onMouseOut="CMECF.MainMenu.helpImageOff()" /><div id="topmenu" class="yuimenubar"><div class="bd"><ul class="first-of-type"><li class="yuimenubaritem" style="width:9%"><a class="yuimenubaritemlabel" href='/cgi-bin/iquery.pl'>Q</u>uery</a></li><li class="yuimenubaritem" style="width:11%"><a class="yuimenubaritemlabel" href='/cgi-bin/DisplayMenu.pl?Reports&id=-1'>R</u>eports</a></li><li class="yuimenubaritem" style="width:11%"><a class="yuimenubaritemlabel" href='/cgi-bin/DisplayMenu.pl?Utilities&id=-1'>U</u>tilities</a></li><li class="yuimenubaritem" style="width:10%"><a class="yuimenubaritemlabel" href='/cgi-bin/login.pl?logout'>Logout</a></li></ul></div></div></div><script type="text/javascript">if (navigator.appVersion.indexOf("MSIE")==-1){window.setTimeout( function(){ CMECF.MainMenu.renderSimpleMenu(); }, 0);}else{CMECF.util.Event.addListener(window, "load", CMECF.MainMenu.renderSimpleMenu);}</script><div id="cmecfMainContent"><input type="hidden" id="cmecfMainContentScroll" value="0"><SCRIPT LANGUAGE="JavaScript">
+		var IsForm = false;
+		var FirstField;
+		function SetFocus() {
+			if(IsForm) {
+				if(FirstField) {
+					var ind = FirstField.indexOf('document.',0);
+					if(ind == 0)
+					{
+						eval(FirstField);
+					}
+					else
+					{
+						var Code = "document.forms[0]."+FirstField+".focus();";
+						eval(Code);
+					}
+				} else {
+					var Cnt = 0;
+					while(document.forms[0].elements[Cnt] != null) {
+						if(document.forms[0].elements[Cnt].type != "hidden") {
+							document.forms[0].elements[Cnt].focus();
+							break;
+						}
+						Cnt += 1;
+					}
+				}
+			}
+			return(true);
+		}
+		</SCRIPT>
+<script type='text/JavaScript'>
+document.cookie="PDFNoHeaderReferer=602319298973511; path=/";
+</script>
+		<script type="text/javascript" src="/lib/widgits.js"></script>
+		<script>
+		var debtorPanel = null;
+
+		function create_panel(clid, message) {
+		    if (!debtorPanel) {
+		        debtorPanel = new CMECF.widget.Panel('debtorPanel', {
+				close:true,
+				draggable:false,
+				context:[clid, 'tl', 'br'],
+				width: "250" + "px",
+				height: "110" + "px",
+				constraintoviewport:true
+			});
+			debtorPanel.setHeader("Barred Debtor Information");
+			debtorPanel.setBody(message);
+			debtorPanel.body.style.height = "8em";
+			debtorPanel.render(document.body);
+		    } else {
+		        debtorPanel.show();
+		    }
+		}
+
+		function close_panel() {
+		    if (debtorPanel) {
+		        debtorPanel.destroy();
+		        debtorPanel = null;
+		    }
+		}
+		</script>
+		<TABLE width="100%" align=right BORDER=0 CELLSPACING=5><TR><TD ALIGN=right><h2> <FONT SIZE="3">JNTADMN, LEAD, BAPCPA, CLMAGT, CLOSED</FONT></h2></TD></TR></TABLE><BR><BR><BR><CENTER><B><FONT SIZE="+1">U.S. Bankruptcy Court<BR>District of Nevada (Las Vegas)<BR>Bankruptcy Petition #: 09-14814-gwz</FONT></B></CENTER><TABLE width="100%" BORDER=0 CELLSPACING=1><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><BR><I>Assigned to:</I>       GREGG W ZIVE<BR>Chapter          11<BR>Voluntary<BR>Asset <br><div class="noprint"><A HREF='/cgi-bin/qryAscCases.pl?222497'>Show Associated Cases</A></div> <div class="noprint"><a href='/cgi-bin/SearchClaims.pl?caseid=222497;sc'>Claims Register</a></div><BR><BR><BR><I>Debtor disposition:</I>&nbsp;&nbsp;Discharge Not Applicable	</FONT></TD>
+	<TD VALIGN=top  WIDTH="50%" ALIGN=right><FONT SIZE="+0"><TABLE border=0 cellspacing=0 cellpadding=0 align=center><TR><td align="right" valign="top"><I>Date filed:</I></td><td align="left" valign="top">&nbsp;&nbsp;03/31/2009</td></TR><TR><td align="right" valign="top"><I>Date terminated:</I></td><td align="left" valign="top">&nbsp;&nbsp;02/10/2017</td></TR><TR><td align="right" valign="top"><I>Plan confirmed:</I></td><td align="left" valign="top">&nbsp;&nbsp;03/12/2010</td></TR><TR><td align="right" valign="top"><I>341 meeting:</I></td><td align="left" valign="top">&nbsp;&nbsp;05/07/2009</td></TR></TABLE>	</FONT></TD>
+</TR>
+</TABLE><BR><FONT SIZE="5"><B></B>
+		</FONT><TABLE width="100%" BORDER=0 CELLSPACING=1><TR><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Debtor</B></I><BR><B>THE RHODES COMPANIES, LLC</B>
+<BR>C/O DUNHILL HOMES
+<BR>ATTN:  JULIE OWEN
+<BR>4835 LBJ FREEWAY, SUITE 700
+<BR>DALLAS, TX 75244
+<BR>CLARK-NV
+<BR>Tax ID / EIN: 20-3613060     <BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>SHIRLEY S. CHO</B>
+<BR>PACHULSKI STANG ZIEHL & JONES LLP
+<BR>10100 SANTA MONICA BLVD, 13TH FLR
+<BR>LOS ANGELES, CA 90067
+<BR>(310) 277-6910
+<BR>Fax  : (310) 201 0760
+<BR>Email:&nbsp;<a href='mailto:scho@pszjlaw.com'>scho@pszjlaw.com</a><BR><BR><B>ZACHARIAH LARSON</B>
+<BR>LARSON & ZIRZOW
+<BR>850 E. BONNEVILLE AVE.
+<BR>LAS VEGAS, NV 89101
+<BR>(702) 382-1170
+<BR>Fax  : (702) 382-1169
+<BR>Email:&nbsp;<a href='mailto:carey@lzlawnv.com'>carey@lzlawnv.com</a><BR><BR><B>DAVID S. LEE</B>
+<BR>7575 VEGAS DR., &#035;150
+<BR>LAS VEGAS, NV 89128
+<BR>(702) 880-9750
+<BR>Email:&nbsp;<a href='mailto:dlee@lee-lawfirm.com'>dlee@lee-lawfirm.com</a>
+<BR><I> TERMINATED: 06/15/2009</I><BR><BR><B>JAMES I STANG</B>
+<BR>10100 SANTA MONICA BLVD &#035;1100
+<BR>LOS ANGELES, CA 90067<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>HERITAGE LAND COMPANY, LLC</B>
+<BR>4730 S. FORT APACHE &#035;300
+<BR>LAS VEGAS, NV 89147
+<BR>Tax ID / EIN: 20-3612918<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>TRIBES HOLDINGS, LLC</B>
+<BR>4730 S. FT. APACHE &#035;300
+<BR>LAS VEGAS, NV 89147
+<BR>Tax ID / EIN: 75-3184347<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>APACHE FRAMING, LLC</B>
+<BR>4730 S. FT. APACHE &#035;300
+<BR>LAS VEGAS, NV 89147
+<BR>Tax ID / EIN: 20-8776352<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>GERONIMO PLUMBING, LLC</B>
+<BR>4730 S. FT. APACHE &#035;300
+<BR>LAS VEGAS, NV 89147
+<BR>Tax ID / EIN: 20-1786897<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>GUNG-HO CONCRETE, LLC</B>
+<BR>4730 S. FT. APACHE &#035;300
+<BR>LAS VEGAS, NV 89147
+<BR>Tax ID / EIN: 20-0606966<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>BRAVO, INC.</B>
+<BR>4730 S. FT. APACHE &#035;300
+<BR>LAS VEGAS, NV 89147
+<BR>Tax ID / EIN: 88-0282642<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>ELKHORN PARTNERS</B>
+<BR>4730 S. FT. APACHE &#035;300
+<BR>LAS VEGAS, NV 89147
+<BR>Tax ID / EIN: 88-0349654<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>SIX FEATHERS HOLDINGS, LLC</B>
+<BR>313 SOUTH AZTEC ROAD
+<BR>GOLDEN VALLEY, AZ 86413
+<BR>Tax ID / EIN: 20-4448451<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>ELKHORN INVESTMENTS, INC.</B>
+<BR>4730 SOUTH FORT APACHE, SUITE 300
+<BR>LAS VEGAS, NV 89147
+<BR>Tax ID / EIN: 88-0346673<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>JARUPA, LLC</B>
+<BR>4730 SOUTH FORT APACHE, SUITE 300
+<BR>LAS VEGAS, NV 89147
+<BR>Tax ID / EIN: 20-4514090<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>RHODES REALTY, INC.</B>
+<BR>4730 S. FORT APACHE
+<BR>SUITE 300
+<BR>LAS VEGAS, NV 89147
+<BR>Tax ID / EIN: 88-0280716<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>C & J HOLDINGS, INC.</B>
+<BR>133 RHODES RANCH PARKWAY
+<BR>LAS VEGAS, NV 89148
+<BR>Tax ID / EIN: 88-0351315<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>RHODES RANCH GENERAL PARTNERSHIP</B>
+<BR>4730 SOUTH FORT APACHE, SUITE 300
+<BR>LAS VEGAS, NV 89147
+<BR>Tax ID / EIN: 88-0391760<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>RHODES DESIGN AND DEVELOPMENT CORPORATION</B>
+<BR>4730 SOUTH FORT APACHE, SUITE 300
+<BR>LAS VEGAS, NV 89147
+<BR>Tax ID / EIN: 88-0241963<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>PARCEL 20, LLC</B>
+<BR>4730 SOUTH FORT APACHE, SUITE 300
+<BR>LAS VEGAS, NV 89147
+<BR>Tax ID / EIN: 20-4975534<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>TUSCANY ACQUISITIONS IV, LLC</B>
+<BR>4730 SOUTH FORT APACHE, SUITE 300
+<BR>LAS VEGAS, NV 89147
+<BR>Tax ID / EIN: 26-1290509<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>TUSCANY ACQUISITIONS III, LLC</B>
+<BR>4730 SOUTH FORT APACHE, SUITE 300
+<BR>LAS VEGAS, NV 89147
+<BR>Tax ID / EIN: 20-4459777<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>TUSCANY ACQUISITIONS II, LLC</B>
+<BR>4730 SOUTH FORT APACHE, SUITE 300
+<BR>LAS VEGAS, NV 89147
+<BR>Tax ID / EIN: 20-2958693<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>TUSCANY ACQUISITIONS, LLC</B>
+<BR>4730 SOUTH FORT APACHE, SUITE 300
+<BR>LAS VEGAS, NV 89147
+<BR>Tax ID / EIN: 20-2700206<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>RHODES RANCH GOLF AND COUNTRY CLUB</B>
+<BR>20 RHODES RANCH PARKWAY
+<BR>LAS VEGAS, NV 89147
+<BR>Tax ID / EIN: 88-0389730<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>OVERFLOW, LP</B>
+<BR>4730 SOUTH FORT APACHE, SUITE 300
+<BR>LAS VEGAS, NV 89147
+<BR>Tax ID / EIN: 37-1489349<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>WALLBOARD, LP</B>
+<BR>4730 SOUTH FORT APACHE, SUITE 300
+<BR>LAS VEGAS, NV 89147
+<BR>Tax ID / EIN: 38-3701467<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>JACKKNIFE, LP</B>
+<BR>4730 SOUTH FORT APACHE, SUITE 300
+<BR>LAS VEGAS, NV 89147
+<BR>Tax ID / EIN: 41-2136189<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>BATCAVE, LP</B>
+<BR>4730 SOUTH FORT APACHE, SUITE 300
+<BR>LAS VEGAS, NV 89147
+<BR>Tax ID / EIN: 30-0246837<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>CHALKLINE, LP</B>
+<BR>4730 SOUTH FORT APACHE, SUITE 300
+<BR>LAS VEGAS, NV 89147
+<BR>Tax ID / EIN: 35-2230281<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>GLYNDA, LP</B>
+<BR>4730 SOUTH FORT APACHE, SUITE 300
+<BR>LAS VEGAS, NV 89147
+<BR>Tax ID / EIN: 32-0115569<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>TICK, LP</B>
+<BR>4730 SOUTH FORT APACHE, SUITE 300
+<BR>LAS VEGAS, NV 89147
+<BR>Tax ID / EIN: 41-2140707<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>RHODES ARIZONA PROPERTIES, LLC</B>
+<BR>313 SOUTH AZTEC ROAD
+<BR>GOLDEN VALLEY, AZ 86413
+<BR>Tax ID / EIN: 20-4328738<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>RHODES HOMES ARIZONA, LLC</B>
+<BR>313 SOUTH AZTEC ROAD
+<BR>GOLDEN VALLEY, AZ 86413
+<BR>Tax ID / EIN: 20-2517248<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>TUSCANY GOLF COUNTRY CLUB, LLC</B>
+<BR>901 OLIVIA PARKWAY
+<BR>HENDERSON, NV 89015
+<BR>Tax ID / EIN: 30-0247132<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Jnt Admin Debtor</B></I><BR><B>PINNACLE GRADING, LLC</B>
+<BR>4730 SOUTH FORT APACHE, SUITE 300
+<BR>LAS VEGAS, NV 89147
+<BR>Tax ID / EIN: 20-3484838<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ZACHARIAH LARSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Claims Agent</B></I><BR><B>OMNI MANAGEMENT GROUP, LLC (bo)</B>
+<BR>OMNI MANAGEMENT GROUP, LLC
+<BR>16501 VENTURA BLVD, STE 440
+<BR>ENCINO, CA 91436
+<BR>(818) 906-8300<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  WIDTH="20%" ALIGN=right><FONT SIZE="+0">&nbsp;	</FONT></TD>
+<TD valign="top" WIDTH="40%" NOWRAP>
+  	                    <font size="+0">&nbsp;</font></TD></TR><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>U.S. Trustee</B></I><BR><B>U.S. TRUSTEE - LV - 11, 11</B>
+<BR>300 LAS VEGAS BOULEVARD S.
+<BR>SUITE 4300
+<BR>LAS VEGAS, NV 89101	</FONT></TD>
+	<TD VALIGN=top  WIDTH="20%" ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+	<TD VALIGN=top  WIDTH="40%"><FONT SIZE="+0"><B>EDWARD M. MCDONALD</B>
+<BR>OFFICE OF U.S. TRUSTEE
+<BR>300 LAS VEGAS BLVD., SO., STE 4300
+<BR>LAS VEGAS, NV 89101
+<BR>(702) 388-6600
+<BR>Email:&nbsp;<a href='mailto:edward.m.mcdonald@usdoj.gov'>edward.m.mcdonald@usdoj.gov</a>	</FONT></TD>
+</TR></TABLE><BR><TABLE BORDER=1 CELLPADDING=10 CELLSPACING=0><TR><TH width='94' nowrap>Filing Date</TH>
+<TH colspan=2 align='center'>#</TH><TH align=center>Docket Text</TH></TR>
+<TR><TD width="94" nowrap valign=bottom>02/11/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'>996</nobr></TD><TD valign=bottom>  <b>Virtual Minute Entry in reference to hearing On: 02/11/2010 </b><br><b> Subject: </b> CONFIRMATION HEARING RE: SECOND AMENDED MODIFIED PLAN FILED BY NILE LEATHAM ON BEHALF OF STEERING COMMITTEE OF SENIOR SECURED LENDERS. <br><b> Appearances: </b> ALL APPEARANCES PLACED ON RECORD. <br><b> Proceedings: </b> CONTINUED TO 2-12-10 &#064; 9:00 AM. <br> (vCal Hearing ID (365608)).(related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114013654082'>797</a>) Confirmation hearing to be held on 02/12/2010 at 09:00 AM at LBR-Courtroom 1, Foley Federal Bldg..(dls) (Entered: 02/11/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/09/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014296892' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014296892"'>995</a></nobr></TD><TD valign=bottom>  Certificate of Service <i></i> Filed by ZACHARIAH LARSON on behalf of THE RHODES COMPANIES, LLC (Related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114014296858'>994</a> Certificate of Service filed by Debtor THE RHODES COMPANIES, LLC) (LARSON, ZACHARIAH) (Entered: 02/09/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/09/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014296858' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014296858"'>994</a></nobr></TD><TD valign=bottom>  Certificate of Service <i></i> Filed by ZACHARIAH LARSON on behalf of THE RHODES COMPANIES, LLC (Related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114014290773'>993</a> Document filed by Debtor THE RHODES COMPANIES, LLC) (LARSON, ZACHARIAH) (Entered: 02/09/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/09/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014290773' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014290773"'>993</a></nobr></TD><TD valign=bottom>  <i>Status and Agenda for February 11, 2010 Hearing at 9:30 a.m.</i> Filed by ZACHARIAH LARSON on behalf of THE RHODES COMPANIES, LLC (Related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114013654082'>797</a> Amended Chapter 11 Plan filed by Creditor STEERING COMMITTEE OF SENIOR SECURED LENDERS) (LARSON, ZACHARIAH) (Entered: 02/09/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/09/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014290247' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014290247"'>992</a></nobr></TD><TD valign=bottom>  <i>Proposed Findings of Fact, Conclusions of Law, and Order Confirming the First Lien Steering Committee's Second Amended Modified Plan of Reorganization Pursuant to Chapter 11 of the Bankruptcy Code for the Rhodes Companies, LLC, et al.</i> Filed by NILE LEATHAM on behalf of STEERING COMMITTEE OF SENIOR SECURED LENDERS (Related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114013654082'>797</a> Amended Chapter 11 Plan filed by Creditor STEERING COMMITTEE OF SENIOR SECURED LENDERS) (Attachments: <a href='https://ecf.nvb.uscourts.gov/doc1/114114290248'>1</a> Redlined Copy of Proposed Findings of Fact, Conclusions of Law, and Order Confirming the First Lien Steering Committees Second Amended Modified Plan of Reorganization Pursuant to Chapter 11 of the Bankruptcy Code for the Rhodes Companies, LLC, et al.) (LEATHAM, NILE) (Entered: 02/09/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/08/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014286546' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014286546"'>991</a></nobr></TD><TD valign=bottom>  Certificate of Service <i></i> Filed by NILE LEATHAM on behalf of STEERING COMMITTEE OF SENIOR SECURED LENDERS (Related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114014286457'>990</a> Document filed by Creditor STEERING COMMITTEE OF SENIOR SECURED LENDERS) (LEATHAM, NILE) (Entered: 02/08/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/08/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014286457' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014286457"'>990</a></nobr></TD><TD valign=bottom>  <i>First Lien Steering Committee's Reply to Stanley Consultants, Inc.'s Opposition to First Lien Steering Committee's Supplemental Memorandum of Law in Support of Confirmation of the Second Amended Modified Plan</i> Filed by NILE LEATHAM on behalf of STEERING COMMITTEE OF SENIOR SECURED LENDERS (Related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114014233164'>975</a> Objection to Confirmation of the Plan filed by Creditor STANLEY CONSULTANTS, INC.) (LEATHAM, NILE) (Entered: 02/08/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/08/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014285214' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014285214"'>989</a></nobr></TD><TD valign=bottom>  Declaration Of: Paul D. Huygens <i>in Response to Stanley Consultant Inc.'s Opposition to First Lien Steering Committee's Supplemental Memorandum of Law in Support of Confirmation of Second Amended Modified Plan</i> Filed by ZACHARIAH LARSON on behalf of THE RHODES COMPANIES, LLC (Related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114014233164'>975</a> Objection to Confirmation of the Plan filed by Creditor STANLEY CONSULTANTS, INC.) (LARSON, ZACHARIAH) (Entered: 02/08/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/07/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014274416' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014274416"'>988</a></nobr></TD><TD valign=bottom>  BNC Certificate of Mailing. (Related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114014260490'>987</a> Notice of Filing Official Transcript (BNC-BK)) No. of Notices: 13677. Service Date 02/07/2010. (Admin.) (Entered: 02/07/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/05/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014260490' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014260490"'>987</a></nobr></TD><TD valign=bottom>  Notice of Filing Official Transcript. (Related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114014255535'>986</a> Transcript) (vap) (Entered: 02/05/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/04/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014255535' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014255535"'>986</a></nobr></TD><TD valign=bottom>  Transcript regarding Hearing Held on 01/21/10. The transcript may be viewed at the Bankruptcy Court Clerk's Office. For additional information, you may contact the Transcriber Cline Transcription Services, Inc., Telephone number (702) 644-1123. Purchasing Party: Zachariah Larson, Esq.. <i></i> Redaction Request Due By 02/25/2010. Redacted Transcript Submission Due By 03/8/2010. Transcript access will be restricted through 05/5/2010. (CLINE TRANSCRIPTION SERVICES) (Entered: 02/04/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/03/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014243595' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014243595"'>985</a></nobr></TD><TD valign=bottom>  Notice of Entry of Order <i></i> Filed by ZACHARIAH LARSON on behalf of THE RHODES COMPANIES, LLC (Related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114014239047'>977</a> Order on Motion For Relief From Stay) (LARSON, ZACHARIAH) (Entered: 02/03/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/03/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014243564' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014243564"'>984</a></nobr></TD><TD valign=bottom>  Notice of Entry of Order <i></i> Filed by ZACHARIAH LARSON on behalf of THE RHODES COMPANIES, LLC (Related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114014239493'>978</a> Order on Motion to Extend Time) (LARSON, ZACHARIAH) (Entered: 02/03/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/03/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014241993' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014241993"'>983</a></nobr></TD><TD valign=bottom>  Certificate of Service <i></i> Filed by ZACHARIAH LARSON on behalf of THE RHODES COMPANIES, LLC (Related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114014186201'>968</a> Notice of Entry of Order filed by Debtor THE RHODES COMPANIES, LLC) (LARSON, ZACHARIAH) (Entered: 02/03/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/03/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014241944' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014241944"'>982</a></nobr></TD><TD valign=bottom>  Certificate of Service <i></i> Filed by ZACHARIAH LARSON on behalf of THE RHODES COMPANIES, LLC (Related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114014186181'>967</a> Notice of Entry of Order filed by Debtor THE RHODES COMPANIES, LLC) (LARSON, ZACHARIAH) (Entered: 02/03/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/03/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014241901' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014241901"'>981</a></nobr></TD><TD valign=bottom>  Certificate of Service <i></i> Filed by ZACHARIAH LARSON on behalf of THE RHODES COMPANIES, LLC (Related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114014186154'>966</a> Notice of Entry of Order filed by Debtor THE RHODES COMPANIES, LLC) (LARSON, ZACHARIAH) (Entered: 02/03/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/03/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014241838' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014241838"'>980</a></nobr></TD><TD valign=bottom>  Certificate of Service <i></i> Filed by ZACHARIAH LARSON on behalf of THE RHODES COMPANIES, LLC (Related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114014220842'>973</a> Document filed by Debtor THE RHODES COMPANIES, LLC) (LARSON, ZACHARIAH) (Entered: 02/03/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/03/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014241806' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014241806"'>979</a></nobr></TD><TD valign=bottom>  Certificate of Service <i></i> Filed by ZACHARIAH LARSON on behalf of THE RHODES COMPANIES, LLC (Related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114014199942'>969</a> Notice filed by Debtor THE RHODES COMPANIES, LLC, <a href='https://ecf.nvb.uscourts.gov/doc1/114014200100'>970</a> Notice filed by Debtor THE RHODES COMPANIES, LLC, <a href='https://ecf.nvb.uscourts.gov/doc1/114014200346'>971</a> Notice filed by Debtor THE RHODES COMPANIES, LLC) (LARSON, ZACHARIAH) (Entered: 02/03/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/03/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014239493' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014239493"'>978</a></nobr></TD><TD valign=bottom>  Order Approving Motion of Debtors for Entry of an Order Under Bankruptcy Code Section 365(d)(4) Extending Time Within Which Debtors May Assume or Reject Unexpired Leases of Nonresidential Real Property [Docket No. 858] (Related document(s) <a href='https://ecf.nvb.uscourts.gov/doc1/114013831715'>858</a>) (vap) (Entered: 02/03/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/03/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014239047' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014239047"'>977</a></nobr></TD><TD valign=bottom>  Order Granting Motion of Debtors for Order to Lift the Automatic Stay toEffectuate Prepetition Settlement [Docket No. 860] (Related document(s) <a href='https://ecf.nvb.uscourts.gov/doc1/114013831860'>860</a>) (vap) (Entered: 02/03/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/02/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014234020' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014234020"'>976</a></nobr></TD><TD valign=bottom>  Response <i>Unsecured Creditors Committee's Statement in Support of Confirmation</i> Filed by J. THOMAS BECKETT on behalf of CREDITORS COMMITTEE (Related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114013654082'>797</a> Amended Chapter 11 Plan filed by Creditor STEERING COMMITTEE OF SENIOR SECURED LENDERS, <a href='https://ecf.nvb.uscourts.gov/doc1/114014172185'>962</a> Document filed by Creditor STEERING COMMITTEE OF SENIOR SECURED LENDERS.) (BECKETT, J.) (Entered: 02/02/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/02/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014233161' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014233161"'>975</a></nobr></TD><TD valign=bottom>  Objection to Confirmation of Plan with Certificate of Service <i>STANLEY CONSULTANT INC.'S OPPOSITION TO FIRST LIEN STEERING COMMITTEE'S SUPPLEMENTAL MEMORANDUM OF LAW IN SUPPORT OF CONFIRMATION OF SECOND AMENDED MODIFIED PLAN (DOC #962)</i> Filed by JANIECE S MARSHALL on behalf of STANLEY CONSULTANTS, INC. (Related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114013654082'>797</a> Amended Chapter 11 Plan filed by Creditor STEERING COMMITTEE OF SENIOR SECURED LENDERS, <a href='https://ecf.nvb.uscourts.gov/doc1/114013654232'>798</a> Disclosure Statement filed by Creditor STEERING COMMITTEE OF SENIOR SECURED LENDERS.) (Attachments: <a href='https://ecf.nvb.uscourts.gov/doc1/114114233162'>1</a> Exhibit Exhibit 1<a href='https://ecf.nvb.uscourts.gov/doc1/114114233163'>2</a> Exhibit Exhibit 2<a href='https://ecf.nvb.uscourts.gov/doc1/114114233164'>3</a> Exhibit Exhibit 3)(MARSHALL, JANIECE) (Entered: 02/02/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/02/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'>974</nobr></TD><TD valign=bottom>  <b>Virtual Minute Entry in reference to hearing On: 02/11/2010 </b><br><b> Subject: </b> MOTION FOR RELIEF FROM STAY PROPERTY: GLOBAL SETTLEMENT ; DECLARATION OF PAUL D. HUYGENS IN SUPPORT THEREOF WITH PROPOSED ORDER. FILED BY ZACHARIAH LARSON ON BEHALF OF THE RHODES COMPANIES, LLC. <br><b> Appearances: </b> NONE. <br><b> Proceedings: </b> VACATED: previously granted. <br> (vCal Hearing ID (365619)).(related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114013831860'>860</a>)(dls) (Entered: 02/02/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/01/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014220842' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014220842"'>973</a></nobr></TD><TD valign=bottom>  <i>Debtor's Statement in Support of Confirmation of the Second Amended Modified Plan of Reorganization Pursuant to Chapter 11 of the Bankruptcy Code for The Rhodes Companies, LLC, et al.; Declaration of Paul D. Huygens in Support Thereof</i> Filed by ZACHARIAH LARSON on behalf of THE RHODES COMPANIES, LLC (Related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114013654082'>797</a> Amended Chapter 11 Plan filed by Creditor STEERING COMMITTEE OF SENIOR SECURED LENDERS) (LARSON, ZACHARIAH) (Entered: 02/01/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>01/29/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014202724' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014202724"'>972</a></nobr></TD><TD valign=bottom>  BNC Certificate of Mailing. (Related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114014168168'>961</a> Notice of Filing Official Transcript (BNC-BK)) No. of Notices: 13677. Service Date 01/29/2010. (Admin.) (Entered: 01/29/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>01/29/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014200346' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014200346"'>971</a></nobr></TD><TD valign=bottom>  Notice <i>Pursuant to Paragraph 3(F) of the Final Stipulated Order (I) Authorizing Use of Cash Collateral, etc. for Authorization to Pay Pre-Petition Amounts Re City of Flagstaff Project (Second Installment)</i> with Certificate of Service Filed by ZACHARIAH LARSON on behalf of THE RHODES COMPANIES, LLC (Related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114011569087'>126</a> Order on Miscellaneous Application, Order on Motion to Use Cash Collateral) (LARSON, ZACHARIAH) (Entered: 01/29/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>01/29/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014200100' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014200100"'>970</a></nobr></TD><TD valign=bottom>  Notice <i>to Sell Non-Core Asset (CAT 345)</i> with Certificate of Service Filed by ZACHARIAH LARSON on behalf of THE RHODES COMPANIES, LLC (Related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114012799111'>462</a> Order on Motion To Sell) (LARSON, ZACHARIAH) (Entered: 01/29/2010)</TD></TR>
+</TABLE><BR><BR><BR><BR>
+			<script type='text/javascript'>
+				document.cookie = 'RECENT_CASES=' + "222497^207025^225095;";
+			</script>
+		<HR><CENTER><TABLE BORDER=1 BGCOLOR=white width="400"><TR><TH COLSPAN=4><FONT SIZE=+1 COLOR=DARKRED>PACER Service Center </FONT></TH></TR><TR><TH COLSPAN=4><FONT COLOR=DARKBLUE>Transaction Receipt </FONT></TH></TR><TR></TR><TR></TR><TR><TD COLSPAN=4 ALIGN=CENTER><FONT SIZE=-1 COLOR=DARKBLUE>06/30/2017 11:19:26</FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> PACER Login: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> [ LOGIN REMOVED ] </FONT></TH></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Client Code: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE>  </FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Description: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Docket Report </FONT></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Search Criteria: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 09-14814-gwz Fil or Ent: filed   Doc From: 970 Doc To: 996 Term: included    Format: html  </FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Billable Pages: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 6 </FONT></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Cost: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 0.60 </FONT></TD></TR><TR></TR><TR></TR></TABLE></CENTER></HR><BR></BR></div></body></html>

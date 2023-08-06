@@ -1,0 +1,271 @@
+<html><head><title>LIVE ECF</title>
+<link rel="stylesheet" type="text/css" href="/css/default.css"><script type="text/javascript" src="/lib/core.js"></script><script type="text/javascript">if (top!=self) {top.location.replace(location.href);}</script></head><body BGCOLOR=FFFFF0 TEXT=000000 onLoad='SetFocus()'><div class="noprint"><img id="cmecfLogo" class="cmecfLogo" src="/graphics/cmecf-logo.gif" alt="CM/ECF" title=""  /><img src="/graphics/menubar-help.gif" alt="?" title="" class="helpImage" id="helpImage" onClick="CMECF.MainMenu.showHelpPage(''); return false" onMouseOver="CMECF.MainMenu.helpImageOn()" onMouseOut="CMECF.MainMenu.helpImageOff()" /><div id="topmenu" class="yuimenubar"><div class="bd"><ul class="first-of-type"><li class="yuimenubaritem" style="width:9%"><a class="yuimenubaritemlabel" href='/cgi-bin/iquery.pl'>Q</u>uery</a></li><li class="yuimenubaritem" style="width:11%"><a class="yuimenubaritemlabel" href='/cgi-bin/DisplayMenu.pl?Reports&id=-1'>R</u>eports</a></li><li class="yuimenubaritem" style="width:11%"><a class="yuimenubaritemlabel" href='/cgi-bin/DisplayMenu.pl?Utilities&id=-1'>U</u>tilities</a></li><li class="yuimenubaritem" style="width:10%"><a class="yuimenubaritemlabel" href='/cgi-bin/login.pl?logout'>Logout</a></li></ul></div></div></div><script type="text/javascript">if (navigator.appVersion.indexOf("MSIE")==-1){window.setTimeout( function(){ CMECF.MainMenu.renderSimpleMenu(); }, 0);}else{CMECF.util.Event.addListener(window, "load", CMECF.MainMenu.renderSimpleMenu);}</script><div id="cmecfMainContent"><input type="hidden" id="cmecfMainContentScroll" value="0"><SCRIPT LANGUAGE="JavaScript">
+		var IsForm = false;
+		var FirstField;
+		function SetFocus() {
+			if(IsForm) {
+				if(FirstField) {
+					var ind = FirstField.indexOf('document.',0);
+					if(ind == 0)
+					{
+						eval(FirstField);
+					}
+					else
+					{
+						var Code = "document.forms[0]."+FirstField+".focus();";
+						eval(Code);
+					}
+				} else {
+					var Cnt = 0;
+					while(document.forms[0].elements[Cnt] != null) {
+						if(document.forms[0].elements[Cnt].type != "hidden") {
+							document.forms[0].elements[Cnt].focus();
+							break;
+						}
+						Cnt += 1;
+					}
+				}
+			}
+			return(true);
+		}
+		</SCRIPT>
+<script type='text/JavaScript'>
+document.cookie="PDFNoHeaderReferer=602319298973511; path=/";
+</script>
+		<script type="text/javascript" src="/lib/widgits.js"></script>
+		<script>
+		var debtorPanel = null;
+
+		function create_panel(clid, message) {
+		    if (!debtorPanel) {
+		        debtorPanel = new CMECF.widget.Panel('debtorPanel', {
+				close:true,
+				draggable:false,
+				context:[clid, 'tl', 'br'],
+				width: "250" + "px",
+				height: "110" + "px",
+				constraintoviewport:true
+			});
+			debtorPanel.setHeader("Barred Debtor Information");
+			debtorPanel.setBody(message);
+			debtorPanel.body.style.height = "8em";
+			debtorPanel.render(document.body);
+		    } else {
+		        debtorPanel.show();
+		    }
+		}
+
+		function close_panel() {
+		    if (debtorPanel) {
+		        debtorPanel.destroy();
+		        debtorPanel = null;
+		    }
+		}
+		</script>
+		<TABLE width="100%" align=right BORDER=0 CELLSPACING=5><TR><TD ALIGN=right><h2> <FONT SIZE="3">EXHS, BAPCPA, JNTADMN, LEAD, CLMAGT, APPEAL</FONT></h2></TD></TR></TABLE><BR><BR><BR><CENTER><B><FONT SIZE="+1">U.S. Bankruptcy Court<BR>District of Nevada (Las Vegas)<BR>Bankruptcy Petition #: 08-17814-mkn</FONT></B></CENTER><TABLE width="100%" BORDER=0 CELLSPACING=1><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><BR><I>Assigned to:</I>       MIKE K. NAKAGAWA<BR>Chapter          11<BR>Voluntary<BR>Asset <br><div class="noprint"><A HREF='/cgi-bin/qryAscCases.pl?207025'>Show Associated Cases</A></div> <div class="noprint"><a href='/cgi-bin/SearchClaims.pl?caseid=207025;sc'>Claims Register</a></div><BR><BR>	</FONT></TD>
+	<TD VALIGN=top  WIDTH="50%" ALIGN=right><FONT SIZE="+0"><TABLE border=0 cellspacing=0 cellpadding=0 align=center><TR><td align="right" valign="top"><I>Date filed:</I></td><td align="left" valign="top">&nbsp;&nbsp;07/17/2008</td></TR><TR><td align="right" valign="top"><I>Plan confirmed:</I></td><td align="left" valign="top">&nbsp;&nbsp;07/01/2010</td></TR><TR><td align="right" valign="top"><I>341 meeting:</I></td><td align="left" valign="top">&nbsp;&nbsp;08/22/2008</td></TR><TR><td align="right" valign="top"><I>Deadline for filing claims:</I></td><td align="left" valign="top">&nbsp;&nbsp;11/20/2008  </td></TR></TABLE>	</FONT></TD>
+</TR>
+</TABLE><BR><FONT SIZE="5"><B></B>
+		</FONT><TABLE width="100%" BORDER=0 CELLSPACING=1><TR><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Debtor</B></I><BR><B>LAKE AT LAS VEGAS JOINT VENTURE, LLC</B>
+<BR>1605 LAKE LAS VEGAS PKWY
+<BR>HENDERSON, NV 89011
+<BR>CLARK-NV
+<BR>Tax ID / EIN: 77-0171899     <BR><I><B>dba </B></I><B>Las Vegas Development Co.</B><BR><I><B>dba </B></I><B>Lake Las Vegas Operating Co.</B><BR><I><B>dba </B></I><B>Lake Las Vegas Joint Venture</B><BR><I><B>dba </B></I><B>The Club at Lake Las Vegas</B><BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>MARTIN R BARASH</B>
+<BR>KLEE, TUCHIN, BOGDANOFF & STERN LLP
+<BR>1999 AVENUE OF THE STARS, 39RD FLR
+<BR>LOS ANGELES, CA 90025
+<BR>(310) 407-4005
+<BR>Fax  : (310) 407-9090
+<BR>Email:&nbsp;<a href='mailto:mbarash@ktbslaw.com'>mbarash@ktbslaw.com</a><BR><BR><B>SHEMILLY A. BRISCOE</B>
+<BR>400 S. FOURTH STREET, 3RD FLR
+<BR>LAS VEGAS, NV 89101
+<BR>702-791-0308
+<BR>Email:&nbsp;<a href='mailto:sbriscoe@nevadafirm.com'>sbriscoe@nevadafirm.com</a><BR><BR><B>OGONNA M. BROWN</B>
+<BR>400 S. 4TH STREET, 3RD FLOOR
+<BR>LAS VEGAS, NV 89101
+<BR>(702) 791-0308
+<BR>Fax  : (702) 791-1912
+<BR>Email:&nbsp;<a href='mailto:obrown@nevadafirm.com'>obrown@nevadafirm.com</a><BR><BR><B>DALE A. COOTER</B>
+<BR>COOTER, MANGOLD, DECKELBAUM, & KARAS
+<BR>5301 WISCONSIN AVE, NW
+<BR>SUITE 500
+<BR>WASHINGTON, DC 20015
+<BR>(202) 537-0700<BR><BR><B>GARY CRUCIANI</B>
+<BR>MCKOOL SMITH
+<BR>300 CRESCENT COURT &#035;1500
+<BR>DALLAS, TX 75201
+<BR>214-978-4000
+<BR>Email:&nbsp;<a href='mailto:gcruciani@mckoolsmith.com'>gcruciani@mckoolsmith.com</a><BR><BR><B>DAVID MATTHEW GUESS</B>
+<BR>KLEE, TUCHIN, BOGDANOFF & STERN LLP
+<BR>1999 AVENUE OF THE STARS, 39TH FLR
+<BR>LOS ANGELES, CA 90067
+<BR>(310) 407-4028
+<BR>Fax  : (310) 407-9090
+<BR>Email:&nbsp;<a href='mailto:dguess@ktbslaw.com'>dguess@ktbslaw.com</a><BR><BR><B>MATTHEW C. HEYN</B>
+<BR>OFFICE OF THE ATTORNEY GENERAL / CA
+<BR>300 S SPRING ST, STE 1702
+<BR>LOS ANGELES, CA 90013
+<BR>(213) 897-2700
+<BR>Fax  : (213) 897-5775
+<BR>Email:&nbsp;<a href='mailto:Matthew.Heyn@doj.ca.gov'>Matthew.Heyn@doj.ca.gov</a><BR><BR><B>LEWIS T. LECLAIR</B>
+<BR>MCKOOL SMITH
+<BR>300 CRESCENT COURT, STE 1500
+<BR>DALLAS, TX 75201
+<BR>(214) 978-4000
+<BR>Fax  : (214)
+<BR>Email:&nbsp;<a href='mailto:LLECLAIR@MCKOOLSMITH.COM'>LLECLAIR@MCKOOLSMITH.COM</a><BR><BR><B>ROBERT MANLEY</B>
+<BR>300 CRESCENT COURT &#035;1500
+<BR>DALLAS, TX 75201
+<BR>214-978-4226
+<BR>Email:&nbsp;<a href='mailto:rmanley@mckoolsmith.com'>rmanley@mckoolsmith.com</a><BR><BR><B>JEANETTE E. MCPHERSON</B>
+<BR>2850 S. JONES BLVD., &#035;1
+<BR>LAS VEGAS, NV 89146
+<BR>(702) 228-7590
+<BR>Email:&nbsp;<a href='mailto:bkfilings@s-mlaw.com'>bkfilings@s-mlaw.com</a><BR><BR><B>ROBERT J. PFISTER</B>
+<BR>KLEE, TUCHIN, BOGDANOFF & STERN LLP
+<BR>1999 AVENUE OF THE STARS, 39TH FLR
+<BR>LOS ANGELES, CA 90067
+<BR>(310) 407 4000
+<BR>Fax  : (310) 407-9090
+<BR>Email:&nbsp;<a href='mailto:rpfister@ktbslaw.com'>rpfister@ktbslaw.com</a><BR><BR><B>COURTNEY E. POZMANTIER</B>
+<BR>GREENBERG GLUSKER
+<BR>1900 AVENUE OF THE STARS, 21ST FLR
+<BR>LOS ANGELES, CA 90067
+<BR>(310) 553 3610
+<BR>Fax  : (310) 553 0607
+<BR>Email:&nbsp;<a href='mailto:cpozmantier@greenbergglusker.com'>cpozmantier@greenbergglusker.com</a><BR><BR><B>LENARD E. SCHWARTZER</B>
+<BR>SCHWARTZER & MCPHERSON LAW FIRM
+<BR>2850 S. JONES BOULEVARD, SUITE 1
+<BR>LAS VEGAS, NV 89146
+<BR>702-228-7590
+<BR>Fax  : 702-892-0122
+<BR>Email:&nbsp;<a href='mailto:bkfilings@s-mlaw.com'>bkfilings@s-mlaw.com</a><BR><BR><B>JASON D. SMITH</B>
+<BR>400 S. FOURTH ST., THIRD FLOOR
+<BR>LAS VEGAS, NV 89101
+<BR>(702) 791-0308
+<BR>Fax  : (702) 791-0308
+<BR>Email:&nbsp;<a href='mailto:jdsmith@nevadafirm.com'>jdsmith@nevadafirm.com</a><BR><BR><B>TIMOTHY P. THOMAS</B>
+<BR>LAW OFFICES OF TIMOTHY P. THOMAS, LLC
+<BR>1771 E. FLAMINGO RD, STE B-212
+<BR>LAS VEGAS, NV 89119
+<BR>(702) 227-0011
+<BR>Fax  : (702) 227-0334
+<BR>Email:&nbsp;<a href='mailto:tthomas@tthomaslaw.com'>tthomas@tthomaslaw.com</a><BR><BR><B>RICHARD VILKIN</B>
+<BR>1286 CRIMSON SAGE AVE
+<BR>HENDERSON, NV 89012
+<BR>(702) 476-3211<BR><BR><B>JOHN P. YEAGER</B>
+<BR>HEWITT & O&#039;NEIL LLP
+<BR>19900 MACARTHUR BOULEVARD, SUITE 1050
+<BR>IRVINE, CA 92612<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Claims Agent</B></I><BR><B>KURTZMAN CARSON CONSULTANTS LLC</B>
+<BR>2335 ALASKA AVENUE
+<BR>EL SEGUNDO, CA 90245
+<BR>(310) 751 1507<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  WIDTH="20%" ALIGN=right><FONT SIZE="+0">&nbsp;	</FONT></TD>
+<TD valign="top" WIDTH="40%" NOWRAP>
+  	                    <font size="+0">&nbsp;</font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Trustee</B></I><BR><B>LLV CREDITOR TRUST</B>
+<BR>ATTN: LARRY H LATTIG / MESIROW FINANCIAL
+<BR>2828 ROUTH ST., STE 650
+<BR>DALLAS, TX 75201<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>ROBERT M. CHARLES, JR.</B>
+<BR>LEWIS ROCA ROTHGERBER CHRISTIE LLP
+<BR>3993 HOWARD HUGHES PKWY, STE 600
+<BR>LAS VEGAS, NV 89169
+<BR>(702) 949-8320
+<BR>Fax  : (702) 949-8321
+<BR>Email:&nbsp;<a href='mailto:rcharles@lrrc.com'>rcharles@lrrc.com</a><BR><BR><B>DAVID MATTHEW GUESS</B>
+<BR>(See above for address)<BR><BR><B>LEWIS T. LECLAIR</B>
+<BR>(See above for address)<BR><BR><B>JEANETTE E. MCPHERSON</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>U.S. Trustee</B></I><BR><B>U.S. TRUSTEE - LV - 11, 11</B>
+<BR>300 LAS VEGAS BOULEVARD S.
+<BR>SUITE 4300
+<BR>LAS VEGAS, NV 89101<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  WIDTH="20%" ALIGN=right><FONT SIZE="+0">&nbsp;	</FONT></TD>
+<TD valign="top" WIDTH="40%" NOWRAP>
+  	                    <font size="+0">&nbsp;</font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Creditor Committee</B></I><BR><B>THE OFFICIAL COMMITTEE OF UNSECURED CREDITORS</B>
+<BR>C/O KAARAN E THOMAS/ MCDONALD CARANO
+<BR>PO BOX 2670
+<BR>RENO, NV 89505<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>DAVID J. STOFT</B>
+<BR>THE SIEGEL GROUP
+<BR>3790 PARADISE RD., STE 250
+<BR>LAS VEGAS, NV 89169
+<BR>(702) 952-1939
+<BR>Fax  : (702) 947-8317
+<BR>Email:&nbsp;<a href='mailto:dstoft@siegelcompanies.com'>dstoft@siegelcompanies.com</a>
+<BR><I> TERMINATED: 05/06/2010</I><BR><BR><B>KAARAN E. THOMAS</B>
+<BR>MCDONALD CARANO WILSON LLP
+<BR>100 W LIBERTY ST, 10TH FLR
+<BR>RENO, NV 89505
+<BR>(775) 788 2000
+<BR>Email:&nbsp;<a href='mailto:kthomas@mcdonaldcarano.com'>kthomas@mcdonaldcarano.com</a><BR><BR><B>LISA M. WILTSHIRE ALSTEAD</B>
+<BR>MCDONALD CARANO WILSON LLP
+<BR>100 WEST LIBERTY STREET, 10TH FL.
+<BR>P.O. BOX 2670
+<BR>RENO, NV 89505
+<BR>775-788-2000
+<BR>Fax  : 775-788-2020
+<BR>Email:&nbsp;<a href='mailto:lwiltshire@mcdonaldcarano.com'>lwiltshire@mcdonaldcarano.com</a><BR><BR><B>RYAN J. WORKS</B>
+<BR>MCDONALD CARANO WILSON LLP
+<BR>2300 W. SAHARA AVE., SUITE 1200
+<BR>LAS VEGAS, NV 89102
+<BR>(702) 873-4100
+<BR>Fax  : (702) 873-9966
+<BR>Email:&nbsp;<a href='mailto:rworks@mcdonaldcarano.com'>rworks@mcdonaldcarano.com</a><BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Creditor Committee</B></I><BR><B>UNSECURED CREDITORS&#039; COMMITTEE</B>
+<BR>2300 W. SAHARA AVENUE, STE 1000
+<BR>LAS VEGAS, NV 89102<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>BRETT A. AXELROD</B>
+<BR>FOX ROTHSCHILD LLP
+<BR>1980 FESTIVAL PLAZA DRIVE STE 700
+<BR>LAS VEGAS, NV 89135
+<BR>(702) 262-6899
+<BR>Fax  : (702) 597-5503
+<BR>Email:&nbsp;<a href='mailto:baxelrod@foxrothschild.com'>baxelrod@foxrothschild.com</a>
+<BR><I> TERMINATED: 07/30/2010</I><BR><BR><B>MCDONALD CARANO WILSON LLP</B>
+<BR>100 W. LIBERTY ST., 10TH FLR
+<BR>RENO, NV 89501
+<BR>(775) 788-2000<BR><BR><B>MILBANK TWEED HADLEY & MCCLOY</B>
+<BR>601 S FIGUEROA ST 30TH FLR
+<BR>LOS ANGELES, CA 90017
+<BR>(213) 892-4000<BR><BR><B>RYAN J. WORKS</B>
+<BR>(See above for address)
+<BR><I> TERMINATED: 12/14/2010</I><BR><BR></font></TD></TR><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Creditor Committee</B></I><BR><B>THE OFFICIAL COMMITTEE OF UNSECURED CREDITORS</B>	</FONT></TD>
+	<TD VALIGN=top  WIDTH="20%" ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+	<TD VALIGN=top  WIDTH="40%"><FONT SIZE="+0"><B>RYAN J. WORKS</B>
+<BR>(See above for address)	</FONT></TD>
+</TR></TABLE><BR><TABLE BORDER=1 CELLPADDING=10 CELLSPACING=0><TR><TH width='94' nowrap>Filing Date</TH>
+<TH colspan=2 align='center'>#</TH><TH align=center>Docket Text</TH></TR>
+<TR><TD width="94" nowrap valign=bottom>02/11/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014321026' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014321026"'>2000</a></nobr></TD><TD valign=bottom>  Monthly Operating Report for Filing Period Ending DECEMBER 2009 <i>(08-17817)</i> Filed by JEANETTE E. MCPHERSON on behalf of LAKE AT LAS VEGAS JOINT VENTURE, LLC (MCPHERSON, JEANETTE) (Entered: 02/11/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/11/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014321037' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014321037"'>2001</a></nobr></TD><TD valign=bottom>  Monthly Operating Report for Filing Period Ending DECEMBER 2009 <i>(08-17820)</i> Filed by JEANETTE E. MCPHERSON on behalf of LAKE AT LAS VEGAS JOINT VENTURE, LLC (MCPHERSON, JEANETTE) (Entered: 02/11/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/11/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014321045' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014321045"'>2002</a></nobr></TD><TD valign=bottom>  Monthly Operating Report for Filing Period Ending DECEMBER 2009 <i>(08-17822)</i> Filed by JEANETTE E. MCPHERSON on behalf of LAKE AT LAS VEGAS JOINT VENTURE, LLC (MCPHERSON, JEANETTE) (Entered: 02/11/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/11/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014321057' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014321057"'>2003</a></nobr></TD><TD valign=bottom>  Monthly Operating Report for Filing Period Ending DECEMBER 2009 <i>(08-17825)</i> Filed by JEANETTE E. MCPHERSON on behalf of LAKE AT LAS VEGAS JOINT VENTURE, LLC (MCPHERSON, JEANETTE) (Entered: 02/11/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/11/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014321066' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014321066"'>2004</a></nobr></TD><TD valign=bottom>  Monthly Operating Report for Filing Period Ending DECEMBER 2009 <i>(08-17827)</i> Filed by JEANETTE E. MCPHERSON on behalf of LAKE AT LAS VEGAS JOINT VENTURE, LLC (MCPHERSON, JEANETTE) (Entered: 02/11/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/11/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014321072' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014321072"'>2005</a></nobr></TD><TD valign=bottom>  Monthly Operating Report for Filing Period Ending DECEMBER 2009 <i>(08-17830)</i> Filed by JEANETTE E. MCPHERSON on behalf of LAKE AT LAS VEGAS JOINT VENTURE, LLC (MCPHERSON, JEANETTE) (Entered: 02/11/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/11/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014321078' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014321078"'>2006</a></nobr></TD><TD valign=bottom>  Monthly Operating Report for Filing Period Ending DECEMBER 2009 <i>(08-17832)</i> Filed by JEANETTE E. MCPHERSON on behalf of LAKE AT LAS VEGAS JOINT VENTURE, LLC (MCPHERSON, JEANETTE) (Entered: 02/11/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/11/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014321084' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014321084"'>2007</a></nobr></TD><TD valign=bottom>  Monthly Operating Report for Filing Period Ending DECEMBER 2009 <i>(08-17835)</i> Filed by JEANETTE E. MCPHERSON on behalf of LAKE AT LAS VEGAS JOINT VENTURE, LLC (MCPHERSON, JEANETTE) (Entered: 02/11/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/11/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014321090' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014321090"'>2008</a></nobr></TD><TD valign=bottom>  Monthly Operating Report for Filing Period Ending DECEMBER 2009 <i>(08-17837)</i> Filed by JEANETTE E. MCPHERSON on behalf of LAKE AT LAS VEGAS JOINT VENTURE, LLC (MCPHERSON, JEANETTE) (Entered: 02/11/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/11/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014321096' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014321096"'>2009</a></nobr></TD><TD valign=bottom>  Monthly Operating Report for Filing Period Ending DECEMBER 2009 <i>(08-17841)</i> Filed by JEANETTE E. MCPHERSON on behalf of LAKE AT LAS VEGAS JOINT VENTURE, LLC (MCPHERSON, JEANETTE) (Entered: 02/11/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/11/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014321108' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014321108"'>2010</a></nobr></TD><TD valign=bottom>  Monthly Operating Report for Filing Period Ending DECEMBER 2009 <i>(08-17842)</i> Filed by JEANETTE E. MCPHERSON on behalf of LAKE AT LAS VEGAS JOINT VENTURE, LLC (MCPHERSON, JEANETTE) (Entered: 02/11/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/11/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014321114' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014321114"'>2011</a></nobr></TD><TD valign=bottom>  Monthly Operating Report for Filing Period Ending DECEMBER 2009 <i>(08-17844)</i> Filed by JEANETTE E. MCPHERSON on behalf of LAKE AT LAS VEGAS JOINT VENTURE, LLC (MCPHERSON, JEANETTE) (Entered: 02/11/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/11/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014321120' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014321120"'>2012</a></nobr></TD><TD valign=bottom>  Monthly Operating Report for Filing Period Ending DECEMBER 2009 <i>(08-17845)</i> Filed by JEANETTE E. MCPHERSON on behalf of LAKE AT LAS VEGAS JOINT VENTURE, LLC (MCPHERSON, JEANETTE) (Entered: 02/11/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/12/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014326917' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014326917"'>2013</a></nobr></TD><TD valign=bottom>  Stipulation Setting Further Hearing on &quot;First Amended Disclosure Statement Describing Chapter 11 Plan of Reorganization Proposed by Lake at Las Vegas Joint Venture, LLC and its Jointly-Administered Chapter 11 Affiliates and the Official Committee of Creditors Holding Unsecured Claims (Dated January 11, 2010)&quot; and Certain Related Requests for Relief; and Order Thereon. Hearing scheduled 3/19/2010 at 10:30 AM at LBR-Courtroom 1, Foley Federal Bldg (Related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114014318726'>1997</a> Stipulation filed by Debtor LAKE AT LAS VEGAS JOINT VENTURE, LLC.) (vap) (Entered: 02/12/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/12/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'>2014</nobr></TD><TD valign=bottom>  <b>Virtual Minute Entry in reference to hearing On: 02/16/2010 </b><br><b> Subject: </b> MOTION FOR DETERMINATION / MOTION FOR ENTRY OF ORDER APPROVING ADEQUACY OF THE &quot;FIRST AMENDED DISCLOSURE STATEMENT DESCRIBING CHAPTER 11 PLAN OF REORGANIZATION PROPOSED BY LAKE AT LAS VEGAS JOINT VENTURE, LLC AND ITS JOINTLY-ADMINISTERED CHAPTER 11 AFFILIATES AND THE OFFICIAL COMMITTEE OF CREDITORS HOLDING UNSECURED CLAIMS (DATED JANUARY 11, 2010)&quot; FILED BY DAVID MATTHEW GUESS ON BEHALF OF LAKE AT LAS VEGAS JOINT VENTURE, LLC. <br><b> Appearances: </b> NONE. <br><b> Proceedings: </b> VACATED: Per Stip to cont. hearing to 3/19/10 &#064; 10:30am, dkt #2013, filed 2/12/10. <br> (vCal Hearing ID (364360)).(related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114014018208'>1948</a>)Hearing scheduled 03/19/2010 at 10:30 AM at LBR-Courtroom 1, Foley Federal Bldg..(cas) (Entered: 02/12/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/12/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'>2015</nobr></TD><TD valign=bottom>  <b>Virtual Minute Entry in reference to hearing On: 02/16/2010 </b><br><b> Subject: </b> FIRST AMENDED DISCLOSURE STATEMENT DESCRIBING CHAPTER 11 PLAN OF REORGANIZATION PROPOSED BY LAKE AT LAS VEGAS JOINT VENTURE, LLC AND ITS JOINTLY-ADMINISTERED CHAPTER 11 AFFILIATES AND THE OFFICIAL COMMITTEE OF CREDITORS HOLDING UNSECURED CLAIMS (DATED JANUARY 11, 2010) FILED BY DAVID MATTHEW GUESS ON BEHALF OF LAKE AT LAS VEGAS JOINT VENTURE, LLC. <br><b> Appearances: </b> NONE. <br><b> Proceedings: </b> VACATED: Per Stip to cont. hearing to 3/19/10 &#064; 10:30am, dkt #2013, filed 2/12/10. <br> (vCal Hearing ID (364359)).(related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114014018196'>1947</a>)Hearing scheduled 03/19/2010 at 10:30 AM at LBR-Courtroom 1, Foley Federal Bldg..(cas) (Entered: 02/12/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/12/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'>2016</nobr></TD><TD valign=bottom>  <b>Virtual Minute Entry in reference to hearing On: 02/16/2010 </b><br><b> Subject: </b> MOTION FOR APPROVAL OF PROCEDURES / MOTION FOR ENTRY OF ORDER (I) APPROVING (A) THE FORM, SCOPE, AND NATURE OF SOLICITATION, BALLOTING, TABULATION, AND NOTICES WITH RESPECT TO THE &quot;FIRST AMENDED CHAPTER 11 PLAN OF REORGANIZATION PROPOSED BY LAKE AT LAS VEGAS JOINT VENTURE, LLC AND ITS JOINTLY-ADMINISTERED CHAPTER 11 AFFILIATES AND THE OFFICIAL COMMITTEE OF CREDITORS HOLDING UNSECURED CLAIMS (DATED JANUARY 11, 2010),&quot; AND (B) RELATED CONFIRMATION PROCEDURES, DEADLINES AND NOTICES;AND (II) SETTING BAR DATE FOR CERTAIN ADMINISTRATIVE CLAIMS FILED BY DAVID MATTHEW GUESS ON BEHALF OF LAKE AT LAS VEGAS JOINT VENTURE, LLC. <br><b> Appearances: </b> NONE. <br><b> Proceedings: </b> VACATED: Per Stip to cont. hearing to 3/19/10 &#064; 10:30am, dkt #2013, filed 2/12/10. <br> (vCal Hearing ID (374748)).(related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114014131379'>1960</a>)Hearing scheduled 03/19/2010 at 10:30 AM at LBR-Courtroom 1, Foley Federal Bldg..(cas) (Entered: 02/12/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/12/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014329800' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014329800"'>2017</a></nobr></TD><TD valign=bottom>  <i>Status and Agenda for February 16, 2010 Hearings</i> Filed by JEANETTE E. MCPHERSON on behalf of SCHWARTZER & MCPHERSON LAW FIRM (Related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114014018208'>1948</a> Motion for Determination filed by Debtor LAKE AT LAS VEGAS JOINT VENTURE, LLC, <a href='https://ecf.nvb.uscourts.gov/doc1/114014131379'>1960</a> Motion for Approval of Procedures filed by Debtor LAKE AT LAS VEGAS JOINT VENTURE, LLC) (MCPHERSON, JEANETTE) (Entered: 02/12/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/12/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'>2018</nobr></TD><TD valign=bottom>  Hearing Scheduled/Rescheduled.Hearing scheduled 2/16/2010 at 01:30 PM at LBR-Courtroom 1, Foley Federal Bldg.. (Related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114014018196'>1947</a> Disclosure Statement filed by Debtor LAKE AT LAS VEGAS JOINT VENTURE, LLC, <a href='https://ecf.nvb.uscourts.gov/doc1/114014018208'>1948</a> Motion for Determination filed by Debtor LAKE AT LAS VEGAS JOINT VENTURE, LLC, <a href='https://ecf.nvb.uscourts.gov/doc1/114014131379'>1960</a> Motion for Approval of Procedures filed by Debtor LAKE AT LAS VEGAS JOINT VENTURE, LLC) (cas) (Entered: 02/12/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/15/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014346487' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014346487"'>2019</a></nobr></TD><TD valign=bottom>  Declaration Of: Service of Monika Parel (Supplemental) <i></i> Filed by DAVID MATTHEW GUESS on behalf of LAKE AT LAS VEGAS JOINT VENTURE, LLC (Related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114014018211'>1949</a> Notice of Hearing filed by Debtor LAKE AT LAS VEGAS JOINT VENTURE, LLC) (GUESS, DAVID) (Entered: 02/15/2010)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>02/18/2010</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/114014375848' onContextMenu='this.href="https://ecf.nvb.uscourts.gov/doc1/114014375848"'>2020</a></nobr></TD><TD valign=bottom>  Notice of Entry of Order <i>Extending The Time Within Which The Debtors May File Notices Of Removal Of Certain Specified Civil Proceedings</i> Filed by JEANETTE E. MCPHERSON on behalf of LAKE AT LAS VEGAS JOINT VENTURE, LLC (Related document(s)<a href='https://ecf.nvb.uscourts.gov/doc1/114014173577'>1974</a> Order on Motion to Extend Time) (MCPHERSON, JEANETTE) (Entered: 02/18/2010)</TD></TR>
+</TABLE><BR><BR><BR><BR>
+			<script type='text/javascript'>
+				document.cookie = 'RECENT_CASES=' + "207025^225095;";
+			</script>
+		<HR><CENTER><TABLE BORDER=1 BGCOLOR=white width="400"><TR><TH COLSPAN=4><FONT SIZE=+1 COLOR=DARKRED>PACER Service Center </FONT></TH></TR><TR><TH COLSPAN=4><FONT COLOR=DARKBLUE>Transaction Receipt </FONT></TH></TR><TR></TR><TR></TR><TR><TD COLSPAN=4 ALIGN=CENTER><FONT SIZE=-1 COLOR=DARKBLUE>06/30/2017 11:14:09</FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> PACER Login: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> [ LOGIN REMOVED ] </FONT></TH></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Client Code: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE>  </FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Description: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Docket Report </FONT></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Search Criteria: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 08-17814-mkn Fil or Ent: filed   Doc From: 2000 Doc To: 2020 Term: included    Format: html  </FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Billable Pages: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 5 </FONT></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Cost: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 0.50 </FONT></TD></TR><TR></TR><TR></TR></TABLE></CENTER></HR><BR></BR></div></body></html>

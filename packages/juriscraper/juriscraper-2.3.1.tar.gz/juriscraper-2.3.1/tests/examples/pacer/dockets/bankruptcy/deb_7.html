@@ -1,0 +1,186 @@
+<html><head><title>Internal CM/ECF Live Database</title>
+<link rel="stylesheet" type="text/css" href="/css/default.css"><script type="text/javascript" src="/lib/core.js"></script><script type="text/javascript">if (top!=self) {top.location.replace(location.href);}</script></head><body BGCOLOR=FFFFF0 TEXT=000000 onLoad='SetFocus()'><div class="noprint"><img id="cmecfLogo" class="cmecfLogo" src="/graphics/cmecf-logo.gif" alt="CM/ECF" title=""  /><img src="/graphics/menubar-help.gif" alt="?" title="" class="helpImage" id="helpImage" onClick="CMECF.MainMenu.showHelpPage(''); return false" onMouseOver="CMECF.MainMenu.helpImageOn()" onMouseOut="CMECF.MainMenu.helpImageOff()" /><div id="topmenu" class="yuimenubar"><div class="bd"><ul class="first-of-type"><li class="yuimenubaritem" style="width:9%"><a class="yuimenubaritemlabel" href='/cgi-bin/iquery.pl'>Q</u>uery</a></li><li class="yuimenubaritem" style="width:11%"><a class="yuimenubaritemlabel" href='/cgi-bin/DisplayMenu.pl?Reports&id=-1'>R</u>eports</a></li><li class="yuimenubaritem" style="width:11%"><a class="yuimenubaritemlabel" href='/cgi-bin/DisplayMenu.pl?Utilities&id=-1'>U</u>tilities</a></li><li class="yuimenubaritem" style="width:10%"><a class="yuimenubaritemlabel" href='/cgi-bin/login.pl?logout'>Logout</a></li></ul></div></div></div><script type="text/javascript">if (navigator.appVersion.indexOf("MSIE")==-1){window.setTimeout( function(){ CMECF.MainMenu.renderSimpleMenu(); }, 0);}else{CMECF.util.Event.addListener(window, "load", CMECF.MainMenu.renderSimpleMenu);}</script><div id="cmecfMainContent"><input type="hidden" id="cmecfMainContentScroll" value="0"><SCRIPT LANGUAGE="JavaScript">
+		var IsForm = false;
+		var FirstField;
+		function SetFocus() {
+			if(IsForm) {
+				if(FirstField) {
+					var ind = FirstField.indexOf('document.',0);
+					if(ind == 0)
+					{
+						eval(FirstField);
+					}
+					else
+					{
+						var Code = "document.forms[0]."+FirstField+".focus();";
+						eval(Code);
+					}
+				} else {
+					var Cnt = 0;
+					while(document.forms[0].elements[Cnt] != null) {
+						if(document.forms[0].elements[Cnt].type != "hidden") {
+							document.forms[0].elements[Cnt].focus();
+							break;
+						}
+						Cnt += 1;
+					}
+				}
+			}
+			return(true);
+		}
+		</SCRIPT>
+<script type='text/JavaScript'>
+document.cookie="PDFHeaderReferer=247725076280486; path=/";
+</script>
+		<script type="text/javascript" src="/lib/widgits.js"></script>
+		<script>
+		var debtorPanel = null;
+
+		function create_panel(clid, message) {
+		    if (!debtorPanel) {
+		        debtorPanel = new CMECF.widget.Panel('debtorPanel', {
+				close:true,
+				draggable:false,
+				context:[clid, 'tl', 'br'],
+				width: "250" + "px",
+				height: "110" + "px",
+				constraintoviewport:true
+			});
+			debtorPanel.setHeader("Barred Debtor Information");
+			debtorPanel.setBody(message);
+			debtorPanel.body.style.height = "8em";
+			debtorPanel.render(document.body);
+		    } else {
+		        debtorPanel.show();
+		    }
+		}
+
+		function close_panel() {
+		    if (debtorPanel) {
+		        debtorPanel.destroy();
+		        debtorPanel = null;
+		    }
+		}
+		</script>
+		<TABLE width="100%" align=right BORDER=0 CELLSPACING=5><TR><TD ALIGN=right><h2> <FONT SIZE="3">LEAD, CLMSAGNT, MEGA, SealedDoc(s), CONFIRMED</FONT></h2></TD></TR></TABLE><BR><BR><BR><CENTER><B><FONT SIZE="+1">U.S. Bankruptcy Court<BR>District of Delaware (Delaware)<BR>Bankruptcy Petition #: 09-10235-BLS</FONT></B></CENTER><TABLE width="100%" BORDER=0 CELLSPACING=1><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><BR><I>Assigned to:</I>       Brendan Linehan Shannon<BR>Chapter          11<BR>Voluntary<BR>Asset <br><div class="noprint"><A HREF='/cgi-bin/qryAscCases.pl?115824'>Show Associated Cases</A></div> <BR><BR>	</FONT></TD>
+	<TD VALIGN=top  WIDTH="50%" ALIGN=right><FONT SIZE="+0"><TABLE border=0 cellspacing=0 cellpadding=0 align=center><TR><td align="right" valign="top"><I>Date filed:</I></td><td align="left" valign="top">&nbsp;&nbsp;01/26/2009</td></TR><TR><td align="right" valign="top"><I>Plan confirmed:</I></td><td align="left" valign="top">&nbsp;&nbsp;06/30/2010</td></TR></TABLE>	</FONT></TD>
+</TR>
+</TABLE><BR><FONT SIZE="5"><B></B>
+		</FONT><TABLE width="100%" BORDER=0 CELLSPACING=1><TR><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Debtor</B></I><BR><B>Smurfit-Stone Container Corporation</B>
+<BR>150 North Michigan Avenue
+<BR>Chicago, IL 60601
+<BR>OUTSIDE HOME STATE
+<BR>Tax ID / EIN: 43-1531401     <BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Robert S. Brady</B>
+<BR>Young, Conaway, Stargatt & Taylor, LLP
+<BR>1000 North King Street
+<BR>Wilmington, DE 19801
+<BR>302-571-6600
+<BR>Fax  : 302-571-1253
+<BR>Email:&nbsp;<a href='mailto:bankfilings@ycst.com'>bankfilings@ycst.com</a><BR><BR><B>Linda H. Cho</B>
+<BR>Sidley Austin LLP
+<BR>787 Seventh Avenue
+<BR>New York, NY 10019
+<BR>212-839-5300
+<BR>Fax  : 212-839-5599<BR><BR><B>Kenneth J. Enos</B>
+<BR>Young, Conaway, Stargatt & Taylor
+<BR>Rodney Square
+<BR>1000 North King Street
+<BR>Wilmington, DE 19801
+<BR>302-571-6600
+<BR>Email:&nbsp;<a href='mailto:bankfilings@ycst.com'>bankfilings@ycst.com</a><BR><BR><B>Edwin J. Harron</B>
+<BR>Young, Conaway, Stargatt & Taylor
+<BR>The Brandywine Building
+<BR>1000 West Street, 17th Floor
+<BR>PO Box 391
+<BR>Wilmington, DE 19899-0391
+<BR>302 571-6600
+<BR>Fax  : 302-571-1253
+<BR>Email:&nbsp;<a href='mailto:bankfilings@ycst.com'>bankfilings@ycst.com</a><BR><BR><B>Matthew Barry Lunn</B>
+<BR>Young, Conaway, Stargatt & Taylor LLP
+<BR>1000 North King Street
+<BR>Wilmington, DE 19801
+<BR>302-571-6600
+<BR>Email:&nbsp;<a href='mailto:bankfilings@ycst.com'>bankfilings@ycst.com</a><BR><BR><B>Andrew L Magaziner</B>
+<BR>Young Conaway Stargatt & Taylor, LLP
+<BR>Rodney Square
+<BR>1000 North King Street
+<BR>Wilmington, DE 19801
+<BR>302-571-6600
+<BR>Email:&nbsp;<a href='mailto:bankfilings@ycst.com'>bankfilings@ycst.com</a><BR><BR><B>Matthew G. Martinez</B>
+<BR>Sidley Austin LLP
+<BR>One South Dearborn Street
+<BR>Chicago, IL 60603
+<BR>312-853-7000
+<BR>Fax  : 312-853-7036
+<BR>Email:&nbsp;<a href='mailto:matthew.martinez@sidley.com'>matthew.martinez@sidley.com</a><BR><BR><B>Edmon L. Morton</B>
+<BR>Young, Conaway, Stargatt & Taylor
+<BR>The Brandywine Bldg.
+<BR>1000 West Street, 17th Floor
+<BR>P.O. Box 391
+<BR>Wilmington, DE 19899<BR>usa
+<BR>302 571-6600
+<BR>Fax  : 302-571-1253
+<BR>Email:&nbsp;<a href='mailto:bankfilings@ycst.com'>bankfilings@ycst.com</a><BR><BR><B>Benjamin K. Phipps</B>
+<BR>Phipps & Howell
+<BR>P.O. Box 1351
+<BR>Tallahassee, FL 32301
+<BR>850 222-7000<BR><BR><B>Robert F. Poppiti, Jr.</B>
+<BR>Young, Conaway, Stargatt & Taylor, LLP
+<BR>1000 North King Street
+<BR>Wilmington, DE 19801
+<BR>302-571-6600
+<BR>Email:&nbsp;<a href='mailto:bankfilings@ycst.com'>bankfilings@ycst.com</a><BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>U.S. Trustee</B></I><BR><B>U.S. Trustee</B>
+<BR>Office of United States Trustee
+<BR>J. Caleb Boggs Federal Building
+<BR>844 King Street, Suite 2207
+<BR>Lockbox 35
+<BR>Wilmington, DE 19899-0035
+<BR>302-573-6491<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Richard L. Schepacarter</B>
+<BR>Office of the United States Trustee
+<BR>U. S. Department of Justice
+<BR>844 King Street, Suite 2207
+<BR>Lockbox &#035;35
+<BR>Wilmington, DE 19801<BR>usa
+<BR>302-573-6491
+<BR>Fax  : 302-573-6497
+<BR>Email:&nbsp;<a href='mailto:richard.schepacarter@usdoj.gov'>richard.schepacarter@usdoj.gov</a><BR><BR></font></TD></TR><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Claims Agent</B></I><BR><B>Epiq Bankruptcy Solutions LLC</B>
+<BR>www.epiqsystems.com
+<BR>777 Third Avenue, 12th Floor
+<BR>New York, NY 10017
+<BR>646-282-2500	</FONT></TD>
+	<TD VALIGN=top  WIDTH="20%" ALIGN=right><FONT SIZE="+0">&nbsp;	</FONT></TD>
+	<TD VALIGN=top  WIDTH="40%"><FONT SIZE="+0">&nbsp;	</FONT></TD>
+</TR></TABLE><BR><TABLE BORDER=1 CELLPADDING=10 CELLSPACING=0><TR><TH width='94' nowrap>Filing Date</TH>
+<TH colspan=2 align='center'>#</TH><TH align=center>Docket Text</TH></TR>
+<TR><TD width="94" nowrap valign=bottom>03/20/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208223011' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208223011"'>607</a></nobr></TD><TD valign=bottom>  Notice of Appearance <i>and Demand for Service of Papers.</i> Filed by Triangle, Inc.. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218223012'>1</a> Service List) (MML) (Entered: 03/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>03/20/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208223217' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208223217"'>608</a></nobr></TD><TD valign=bottom>  Notice of Appearance <i>, Request for a Matrix Entry and Request for Service of Notices and Documents.</i> Filed by 3M Company. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218223218'>1</a> Certificate of Service) (MML) (Entered: 03/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>03/20/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208223340' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208223340"'>609</a></nobr></TD><TD valign=bottom>  Notice of Appearance <i>and Request for Service of Papers.</i> Filed by Marsh Supermarkets, LLC. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218223341'>1</a> Certificate of Service) (MML) (Entered: 03/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>03/20/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208223575' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208223575"'>610</a></nobr></TD><TD valign=bottom>  Motion for Payment of Administrative Expenses/Claims <i></i> Filed by 3M Company. The case judge is Brendan Linehan Shannon. (MML) (Entered: 03/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>03/24/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208223783' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208223783"'>612</a></nobr></TD><TD valign=bottom>  Notice of Appearance <i>and Request for Service of Papers.</i> Filed by Broward County. (MML) (Entered: 03/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>03/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208221720' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208221720"'>600</a></nobr></TD><TD valign=bottom>  Affidavit/Declaration of Service <i>of Epiq Bankruptcy Solutions, LLC Regarding Motion for an Order Granting the Debtors a Second Extension of Time to File Schedules and Statements of Financial Affairs</i> (related document(s)<a href='https://ecf.deb.uscourts.gov/doc1/04208199644'>539</a>) Filed by Smurfit-Stone Container Corporation. (Lunn, Matthew) (Entered: 03/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>03/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208221746' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208221746"'>601</a></nobr></TD><TD valign=bottom>  Affidavit/Declaration of Service <i>of Epiq Bankruptcy Solutions, LLC Regarding (i) Supplemental Affidavit Of Robert S. Brady in Support of Application for an Order Authorizing the Debtors to Retain and Employ Young, Conaway, Stargatt & Taylor, LLP as Attorneys for the Debtors Nunc Pro Tunc to the Petition Date; (ii) Motion to Extend Time to File Reports of Financial Information Pursuant to Federal Rule of Bankruptcy Procedure 2015.3(a) or to Seek a Modification of Such Reporting Requirements Pursuant to Federal Rule of Bankruptcy Procedure 2015.3(d); (iii) Supplemental List of Ordinary Course Professionals; (iv) Motion to Authorize, But Not Direct, the Debtors to Implement their Short-Term and Long-Term Incentive Compensation Plans; (v) Motion to File Under Seal an Exhibit to Motion of the Debtors for Entry of an Order Authorizing, But Not Directing, the Debtors to Implement Their Short-Term and Long-Term Incentive Compensation Plans; and (vi) Application to Employ State Tax Solutions, LLC, d/b/A John C. Blase, Attorney & CPA as Special Counsel for the Recovery and Recoupment of Excessive Tax Payments Pursuant To Sections 327(e) and 330 of the Bankruptcy Code, Nunc Pro Tunc to the Petition Date</i> (related document(s)<a href='https://ecf.deb.uscourts.gov/doc1/04208202618'>546</a>, <a href='https://ecf.deb.uscourts.gov/doc1/04208203760'>552</a>, <a href='https://ecf.deb.uscourts.gov/doc1/04208203802'>553</a>, <a href='https://ecf.deb.uscourts.gov/doc1/04208204027'>555</a>, <a href='https://ecf.deb.uscourts.gov/doc1/04208204035'>556</a>, <a href='https://ecf.deb.uscourts.gov/doc1/04208204190'>557</a>) Filed by Smurfit-Stone Container Corporation. (Lunn, Matthew) (Entered: 03/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>03/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208222641' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208222641"'>602</a></nobr></TD><TD valign=bottom>  Affidavit/Declaration of Service <i>Regarding Omnibus Response of the Debtors to Certain Motions for the Allowance of Administrative Expense Claims Pursuant to 11 U.S.C. &#167; 503(b)(9)</i> (related document(s)<a href='https://ecf.deb.uscourts.gov/doc1/04208198158'>537</a>) Filed by Smurfit-Stone Container Corporation. (Lunn, Matthew) (Entered: 03/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>03/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208222654' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208222654"'>603</a></nobr></TD><TD valign=bottom>  Affidavit/Declaration of Service <i>Regarding Debtors' Objection to Motion of Computer Sciences Corporation to Compel Assumption or Rejection of Executory Contract</i> (related document(s)<a href='https://ecf.deb.uscourts.gov/doc1/04208198203'>538</a>) Filed by Smurfit-Stone Container Corporation. (Lunn, Matthew) (Entered: 03/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>03/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208222679' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208222679"'>604</a></nobr></TD><TD valign=bottom>  Affidavit/Declaration of Service <i>Regarding (i) Debtors Objection to Motion of Florida Self-Insurers Guaranty Association, Inc. To Compel Debtor to Obtain Workers' Compensation Insurance and (ii) Declaration of Douglas A. Bachman in Support of the Debtors' Objection to Motion of Florida Self-Insurers Guaranty Association, Inc. To Compel Debtor to Obtain Workers' Compensation Insurance</i> (related document(s)<a href='https://ecf.deb.uscourts.gov/doc1/04208208380'>563</a>, <a href='https://ecf.deb.uscourts.gov/doc1/04208208490'>564</a>) Filed by Smurfit-Stone Container Corporation. (Lunn, Matthew) (Entered: 03/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>03/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208222699' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208222699"'>605</a></nobr></TD><TD valign=bottom>  Motion to Appear pro hac vice <i>(Raymond J. Urbanik of Munsch Hardt Kopf & Harr, P.C.)</i>. Receipt Number 156696, Filed by Computer Sciences Corporation. (Ryan, Jeremy) (Entered: 03/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>03/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208222709' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208222709"'>606</a></nobr></TD><TD valign=bottom>  Affidavit/Declaration of Service <i>Regarding Notice of Agenda of Matters Scheduled for Hearing on March 25, 2009</i> (related document(s)<a href='https://ecf.deb.uscourts.gov/doc1/04208212758'>573</a>) Filed by Smurfit-Stone Container Corporation. (Lunn, Matthew) (Entered: 03/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>03/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208223652' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208223652"'>611</a></nobr></TD><TD valign=bottom>  Motion for Payment of Administrative Expenses/Claims <i>Pursuant to 11 U.S.C. Section 503(b)(9)</i> Filed by Container Graphics Corporation. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218223653'>1</a> Proposed Form of Order <a href='https://ecf.deb.uscourts.gov/doc1/04218223654'>2</a> Certificate of Service) (Phillips, Marc) (Entered: 03/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>03/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208223842' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208223842"'>613</a></nobr></TD><TD valign=bottom>  &quot;WITHDRAWN~RELATED DOCKET #3934&quot; Verified Motion for Payment of Administrative Expenses/Claims <i></i> Filed by Midwest Graphics, Inc. and Midwest Steel Rule Cutting Die, Inc.. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218223845'>1</a> Notice <a href='https://ecf.deb.uscourts.gov/doc1/04218223846'>2</a> Exhibit A-part 1<a href='https://ecf.deb.uscourts.gov/doc1/04218223847'>3</a> Exhibit A-part 2<a href='https://ecf.deb.uscourts.gov/doc1/04218223848'>4</a> Proposed Form of Order) (Duhig, Peter) Modified Text on 1/13/2010 (JAF). (Entered: 03/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>03/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208223966' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208223966"'>614</a></nobr></TD><TD valign=bottom>  Affidavit/Declaration of Service <i>of Melissa N. Flores</i> (related document(s)<a href='https://ecf.deb.uscourts.gov/doc1/04208223848'>613</a>) Filed by Midwest Graphics, Inc. and Midwest Steel Rule Cutting Die, Inc.. (Duhig, Peter) (Entered: 03/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>03/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208224095' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208224095"'>615</a></nobr></TD><TD valign=bottom>  Notice of Appearance <i>and Demand for Notices and Papers</i> Filed by Brenntag Canada Inc., Brenntag Specialties, Inc., Brenntag Southeast, Inc., Brenntag Northeast, Inc, Brenntag Mid-South Inc., Brenntag Pacific, Inc. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218224096'>1</a> Certificate of Service) (Krepto, Laurie) (Entered: 03/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>03/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208224775' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208224775"'>616</a></nobr></TD><TD valign=bottom>  Notice of Filing Under Seal <i>Notice of Exhibits Filed Under Seal</i> (related document(s)<a href='https://ecf.deb.uscourts.gov/doc1/04208147055'>453</a>, <a href='https://ecf.deb.uscourts.gov/doc1/04208147084'>454</a>, <a href='https://ecf.deb.uscourts.gov/doc1/04208214709'>575</a>) Filed by Computer Sciences Corporation. (Ryan, Jeremy) (Entered: 03/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>03/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208225992' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208225992"'>617</a></nobr></TD><TD valign=bottom>  Affidavit <i> - Notice of Filing of Affidavit of Ordinary Course Professional [Vincent Oleszkiewicz of Duane Morris LLP]</i> (related document(s)<a href='https://ecf.deb.uscourts.gov/doc1/04208059226'>196</a>, <a href='https://ecf.deb.uscourts.gov/doc1/04208099342'>315</a>, <a href='https://ecf.deb.uscourts.gov/doc1/04208108367'>373</a>) Filed by Smurfit-Stone Container Corporation. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218225993'>1</a> Exhibit A) (Poppiti, Jr., Robert) (Entered: 03/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>03/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208227737' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208227737"'>618</a></nobr></TD><TD valign=bottom>  Hearing Held/Court Sign-In Sheet (related document(s)<a href='https://ecf.deb.uscourts.gov/doc1/04208212758'>573</a>, <a href='https://ecf.deb.uscourts.gov/doc1/04208219109'>586</a>) (LCN) (Entered: 03/26/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>03/26/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208227809' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208227809"'>619</a></nobr></TD><TD valign=bottom>  Order (STIPULATED) Modifying the Automatic Stay to Permit Gary Railway Company to Effectuate Setoff. (related document(s)<a href='https://ecf.deb.uscourts.gov/doc1/04208131187'>425</a>) Order Signed on 3/25/2009. (LCN) (Entered: 03/26/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>03/26/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>  &nbsp;</TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/04208229500' onContextMenu='this.href="https://ecf.deb.uscourts.gov/doc1/04208229500"'>620</a></nobr></TD><TD valign=bottom>  Motion for Payment of Administrative Expenses/Claims <i></i> Filed by Indspec Chemical Corporation. Objections due by 7/27/2009. (Attachments: <a href='https://ecf.deb.uscourts.gov/doc1/04218229501'>1</a> Proposed Form of Order Granting Allowance and Payment of Administrative Expenses<a href='https://ecf.deb.uscourts.gov/doc1/04218229502'>2</a> Exhibit A<a href='https://ecf.deb.uscourts.gov/doc1/04218229503'>3</a> Notice <a href='https://ecf.deb.uscourts.gov/doc1/04218229504'>4</a> Certificate of Service) (Mayer, Katharine) (Entered: 03/26/2009)</TD></TR>
+</TABLE><BR><BR><BR><BR>
+			<script type='text/javascript'>
+				document.cookie = 'RECENT_CASES=' + "115824^119835^119343^117129^105698^120629^118752^117911;";
+			</script>
+		<HR><CENTER><TABLE BORDER=1 BGCOLOR=white width="400"><TR><TH COLSPAN=4><FONT SIZE=+1 COLOR=DARKRED>PACER Service Center </FONT></TH></TR><TR><TH COLSPAN=4><FONT COLOR=DARKBLUE>Transaction Receipt </FONT></TH></TR><TR></TR><TR></TR><TR><TD COLSPAN=4 ALIGN=CENTER><FONT SIZE=-1 COLOR=DARKBLUE>06/30/2017 13:29:54</FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> PACER Login: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> [ LOGIN REMOVED ] </FONT></TH></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Client Code: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE>  </FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Description: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Docket Report </FONT></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Search Criteria: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 09-10235-BLS Fil or Ent: filed From: 5/1/2000 To: 6/30/2017 Doc From: 600 Doc To: 620 Term: included  Headers: included  Format: html  </FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Billable Pages: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 4 </FONT></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Cost: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 0.40 </FONT></TD></TR><TR></TR><TR></TR></TABLE></CENTER></HR><BR></BR></div></body></html>

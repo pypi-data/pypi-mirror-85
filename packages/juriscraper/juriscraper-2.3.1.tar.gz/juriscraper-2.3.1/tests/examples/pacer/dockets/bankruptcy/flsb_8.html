@@ -1,0 +1,291 @@
+<html><head><title>CM/ECF LIVE - U.S. Bankruptcy Court:flsb</title>
+<link rel="stylesheet" type="text/css" href="/css/default.css"><script type="text/javascript" src="/lib/core.js"></script><script type="text/javascript">if (top!=self) {top.location.replace(location.href);}</script></head><body BGCOLOR=FFFFFF TEXT=000000 onLoad='SetFocus()'><div class="noprint"><img id="cmecfLogo" class="cmecfLogo" src="/graphics/cmecf-logo.gif" alt="CM/ECF" title=""  /><img src="/graphics/menubar-help.gif" alt="?" title="" class="helpImage" id="helpImage" onClick="CMECF.MainMenu.showHelpPage(''); return false" onMouseOver="CMECF.MainMenu.helpImageOn()" onMouseOut="CMECF.MainMenu.helpImageOff()" /><div id="topmenu" class="yuimenubar"><div class="bd"><ul class="first-of-type"><li class="yuimenubaritem" style="width:9%"><a class="yuimenubaritemlabel" href='/cgi-bin/iquery.pl'>Q</u>uery</a></li><li class="yuimenubaritem" style="width:11%"><a class="yuimenubaritemlabel" href='/cgi-bin/DisplayMenu.pl?Reports&id=-1'>R</u>eports</a></li><li class="yuimenubaritem" style="width:11%"><a class="yuimenubaritemlabel" href='/cgi-bin/DisplayMenu.pl?Utilities&id=-1'>U</u>tilities</a></li><li class="yuimenubaritem" style="width:10%"><a class="yuimenubaritemlabel" href='/cgi-bin/login.pl?logout'>Logout</a></li></ul></div></div></div><script type="text/javascript">if (navigator.appVersion.indexOf("MSIE")==-1){window.setTimeout( function(){ CMECF.MainMenu.renderSimpleMenu(); }, 0);}else{CMECF.util.Event.addListener(window, "load", CMECF.MainMenu.renderSimpleMenu);}</script><div id="cmecfMainContent"><input type="hidden" id="cmecfMainContentScroll" value="0"><SCRIPT LANGUAGE="JavaScript">
+		var IsForm = false;
+		var FirstField;
+		function SetFocus() {
+			if(IsForm) {
+				if(FirstField) {
+					var ind = FirstField.indexOf('document.',0);
+					if(ind == 0)
+					{
+						eval(FirstField);
+					}
+					else
+					{
+						var Code = "document.forms[0]."+FirstField+".focus();";
+						eval(Code);
+					}
+				} else {
+					var Cnt = 0;
+					while(document.forms[0].elements[Cnt] != null) {
+						if(document.forms[0].elements[Cnt].type != "hidden") {
+							document.forms[0].elements[Cnt].focus();
+							break;
+						}
+						Cnt += 1;
+					}
+				}
+			}
+			return(true);
+		}
+		</SCRIPT>
+<script type='text/JavaScript'>
+document.cookie="PDFNoHeaderReferer=111797501886545; path=/";
+</script>
+		<script type="text/javascript" src="/lib/widgits.js"></script>
+		<script>
+		var debtorPanel = null;
+
+		function create_panel(clid, message) {
+		    if (!debtorPanel) {
+		        debtorPanel = new CMECF.widget.Panel('debtorPanel', {
+				close:true,
+				draggable:false,
+				context:[clid, 'tl', 'br'],
+				width: "250" + "px",
+				height: "110" + "px",
+				constraintoviewport:true
+			});
+			debtorPanel.setHeader("Barred Debtor Information");
+			debtorPanel.setBody(message);
+			debtorPanel.body.style.height = "8em";
+			debtorPanel.render(document.body);
+		    } else {
+		        debtorPanel.show();
+		    }
+		}
+
+		function close_panel() {
+		    if (debtorPanel) {
+		        debtorPanel.destroy();
+		        debtorPanel = null;
+		    }
+		}
+		</script>
+		<TABLE width="100%" align=right BORDER=0 CELLSPACING=5><TR><TD ALIGN=right><h2> <FONT SIZE="3">SEALEDDOC, APPEAL</FONT></h2></TD></TR></TABLE><BR><BR><BR><CENTER><B><FONT SIZE="+1">U.S. Bankruptcy Court<BR>Southern District of Florida (Fort Lauderdale)<BR>Bankruptcy Petition #: 09-34791-RBR</FONT></B></CENTER><TABLE width="100%" BORDER=0 CELLSPACING=1><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><BR><I>Assigned to:</I>       Raymond B Ray<BR>Chapter          11<BR>Involuntary<BR>Asset <br><div class="noprint"><A HREF='/cgi-bin/qryAscCases.pl?490142'>Show Associated Cases</A></div> <div class="noprint"><a href='/cgi-bin/SearchClaims.pl?caseid=490142;sc'>Claims Register</a></div><BR><BR>	</FONT></TD>
+	<TD VALIGN=top  WIDTH="50%" ALIGN=right><FONT SIZE="+0"><TABLE border=0 cellspacing=0 cellpadding=0 align=center><TR><td align="right" valign="top"><I>Date filed:</I></td><td align="left" valign="top">&nbsp;&nbsp;11/10/2009</td></TR><TR><td align="right" valign="top"><I>Plan confirmed:</I></td><td align="left" valign="top">&nbsp;&nbsp;07/17/2013</td></TR><TR><td align="right" valign="top"><I>341 meeting:</I></td><td align="left" valign="top">&nbsp;&nbsp;02/11/2010</td></TR><TR><td align="right" valign="top"><I>Deadline for filing claims:</I></td><td align="left" valign="top">&nbsp;&nbsp;05/12/2010  </td></TR><TR><td align="right" valign="top"><I>Deadline for filing claims (govt.):</I></td><td align="left" valign="top">&nbsp;&nbsp;06/01/2010  </td></TR></TABLE>	</FONT></TD>
+</TR>
+</TABLE><BR><FONT SIZE="5"><B></B>
+		</FONT><TABLE width="100%" BORDER=0 CELLSPACING=1><TR><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Debtor</B></I><BR><B>Rothstein Rosenfeldt Adler, PA</B>
+<BR>6600 NW 16 St &#035;11
+<BR>Plantation, FL 33313
+<BR>BROWARD-FL
+<BR>Tax ID / EIN: 01-0587961     <BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Jordi Guso, Esq.</B>
+<BR>1450 Brickell Ave &#035;1900
+<BR>Miami, FL 33131
+<BR>(305) 755-9500
+<BR>Fax  : 305.714.4340
+<BR>Email:&nbsp;<a href='mailto:jguso@bergersingerman.com'>jguso@bergersingerman.com</a><BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Petitioning Creditor</B></I><BR><B>Roger Wittenberns,</B>
+<BR>c/o John H. Genovese, Esq
+<BR>100 SE 2 St &#035;4400
+<BR>Miami, FL 33131<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>John H Genovese, Esq</B>
+<BR>100 SE 2 St 44 Fl
+<BR>Miami, FL 33131
+<BR>(305) 349-2300
+<BR>Email:&nbsp;<a href='mailto:jgenovese@gjb-law.com'>jgenovese@gjb-law.com</a><BR><BR><B>Jeffrey R Sonn</B>
+<BR>500 E Broward Blvd &#035;1600
+<BR>Ft. Lauderdale, FL 33394
+<BR>(954) 763-4700
+<BR>Email:&nbsp;<a href='mailto:jsonn@sonnerez.com'>jsonn@sonnerez.com</a><BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Petitioning Creditor</B></I><BR><B>Bonnie Barnett</B>
+<BR>c/o Sonn & Erez PLC
+<BR>500 E Broward Blvd &#035;1600
+<BR>Ft Lauderdale, FL 33394<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>John H Genovese, Esq</B>
+<BR>(See above for address)<BR><BR><B>Jeffrey R Sonn</B>
+<BR>(See above for address)<BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Petitioning Creditor</B></I><BR><B>Aran Development Inc.</B>
+<BR>c/o Sonn & Erez PLC
+<BR>500 E Broward Blvd &#035;1600
+<BR>Ft Lauderdale, FL 33394<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>John H Genovese, Esq</B>
+<BR>(See above for address)<BR><BR><B>Heather L. Ries, Esq.</B>
+<BR>222 Lakeview Ave &#035;700
+<BR>West Palm Beach, FL 33401
+<BR>(561) 835-9600
+<BR>Fax  : (561) 835-9602
+<BR>Email:&nbsp;<a href='mailto:hries@foxrothschild.com'>hries@foxrothschild.com</a><BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Petitioning Creditor</B></I><BR><B>Universal Legal</B>
+<BR>888 E Las Olas Blvd &#035;508
+<BR>Ft Lauderdale, FL 33301<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Universal Legal</B>
+<BR>PRO SE<BR>
+<BR><B></B><BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Petitioning Creditor</B></I><BR><B>Blue Oaks Limited</B>
+<BR>c/o Marianella Morales
+<BR>AvenidaFrancisco de Miranda
+<BR>Torre Provincial &quot;A&quot; Piso 8
+<BR>Caracas 1060<BR>Venezuela<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  WIDTH="20%" ALIGN=right><FONT SIZE="+0">&nbsp;	</FONT></TD>
+<TD valign="top" WIDTH="40%" NOWRAP>
+  	                    <font size="+0">&nbsp;</font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Petitioning Creditor</B></I><BR><B>Pharon Development Assets, Inc</B>
+<BR>c/o Marianella Morales
+<BR>Avenida Francisco de Miranda
+<BR>Torre Provincial &quot;A&quot; Piso 8
+<BR>Caracas 1060<BR>Venezuela<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  WIDTH="20%" ALIGN=right><FONT SIZE="+0">&nbsp;	</FONT></TD>
+<TD valign="top" WIDTH="40%" NOWRAP>
+  	                    <font size="+0">&nbsp;</font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Petitioning Creditor</B></I><BR><B>Camilo Manrique</B>
+<BR>c/o Marianella Morales
+<BR>Avenida Francisco de Miranda
+<BR>Torre Provincial &quot;A&quot; Piso 8
+<BR>Caracas 1060<BR>Venezuela<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  WIDTH="20%" ALIGN=right><FONT SIZE="+0">&nbsp;	</FONT></TD>
+<TD valign="top" WIDTH="40%" NOWRAP>
+  	                    <font size="+0">&nbsp;</font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Petitioning Creditor</B></I><BR><B>Ricardo Martinez</B>
+<BR>c/o Marianella Morales
+<BR>Avenida Francisco de Miranda
+<BR>Torre Provincial &quot;A&quot; Piso 8
+<BR>Caracas 1060<BR>Venezuela<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  WIDTH="20%" ALIGN=right><FONT SIZE="+0">&nbsp;	</FONT></TD>
+<TD valign="top" WIDTH="40%" NOWRAP>
+  	                    <font size="+0">&nbsp;</font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Trustee</B></I><BR><B>Herbert Stettin</B>
+<BR>2 S Biscayne Blvd &#035;3700
+<BR>Miami, FL 33131
+<BR>786.493.5734<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>David C. Cimo, Esq</B>
+<BR>100 SE 2 St &#035;4400
+<BR>Miami, FL 33131
+<BR>(305) 372-2439
+<BR>Fax  : (305) 349-2310
+<BR>Email:&nbsp;<a href='mailto:dcimo@gjb-law.com'>dcimo@gjb-law.com</a><BR><BR><B>David L Gay, Esq.</B>
+<BR>1450 Brickell Ave &#035;1900
+<BR>Miami, FL 33131
+<BR>(305) 755-9500
+<BR>Email:&nbsp;<a href='mailto:dgay@bergersingerman.com'>dgay@bergersingerman.com</a><BR><BR><B>John H Genovese, Esq</B>
+<BR>(See above for address)<BR><BR><B>Jordi Guso, Esq.</B>
+<BR>(See above for address)<BR><BR><B>Christopher A Jarvinen</B>
+<BR>1450 Brickell Ave &#035;1900
+<BR>Miami, FL 33131
+<BR>305.714-4363
+<BR>Fax  : 305.714.4340
+<BR>Email:&nbsp;<a href='mailto:cjarvinen@bergersingerman.com'>cjarvinen@bergersingerman.com</a><BR><BR><B>Charles H Lichtman</B>
+<BR>350 E Las Olas Blvd &#035; 1000
+<BR>Ft Lauderdale, FL 33301
+<BR>(954) 525-9900
+<BR>Email:&nbsp;<a href='mailto:clichtman@bergersingerman.com'>clichtman@bergersingerman.com</a><BR><BR><B>Isaac M Marcushamer, Esq.</B>
+<BR>1450 Brickell Ave &#035; 1900
+<BR>Miami, FL 33131
+<BR>(305) 755-9500
+<BR>Fax  : 305-714-4340
+<BR>Email:&nbsp;<a href='mailto:imarcushamer@bergersingerman.com'>imarcushamer@bergersingerman.com</a><BR><BR><B>Patrick S. Scott, Esq.</B>
+<BR>401 E Las Olas Blvd &#035;1000
+<BR>Fort Lauderdale, FL 33301
+<BR>954.761.8111
+<BR>Fax  : 954.761.8112
+<BR>Email:&nbsp;<a href='mailto:patrick.scott@gray-robinson.com'>patrick.scott@gray-robinson.com</a><BR><BR><B>Frank P Scruggs</B>
+<BR>350 E Las Olas Blvd &#035; 1000
+<BR>Ft Lauderdale, FL 33301
+<BR>(954) 525-9900
+<BR>Email:&nbsp;<a href='mailto:fscruggs@bergersingerman.com'>fscruggs@bergersingerman.com</a><BR><BR><B>Paul Steven Singerman, Esq</B>
+<BR>1450 Brickell Ave &#035;1900
+<BR>Miami, FL 33131
+<BR>(305) 755-9500
+<BR>Fax  : 305.714.4340
+<BR>Email:&nbsp;<a href='mailto:singerman@bergersingerman.com'>singerman@bergersingerman.com</a><BR><BR><B>Jesus M Suarez</B>
+<BR>100 SE 2 St
+<BR>Miami, FL 33131
+<BR>(305) 349-2300
+<BR>Email:&nbsp;<a href='mailto:jsuarez@gjb-law.com'>jsuarez@gjb-law.com</a><BR><BR><B>Deborah Talenfeld</B>
+<BR>Berger Singerman LLP
+<BR>One Town Center Road
+<BR>Suite 301
+<BR>Boca Raton, FL 33486
+<BR>561 241-9500
+<BR>Fax  : 561 998-0028
+<BR>Email:&nbsp;<a href='mailto:dtalenfeld@bergersingerman.com'>dtalenfeld@bergersingerman.com</a><BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>U.S. Trustee</B></I><BR><B>Office of the US Trustee</B>
+<BR>51 S.W. 1st Ave.
+<BR>Suite 1204
+<BR>Miami, FL 33130
+<BR>(305) 536-7285<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+<TD valign="top" WIDTH="40%">
+  	                    <font size="+0"><B>Steven D Schneiderman</B>
+<BR>Office of the US Trustee
+<BR>51 SW 1 Ave &#035;1204
+<BR>Miami, FL 33130
+<BR>(305) 536-7285
+<BR>Fax  : (305) 536-7360
+<BR>Email:&nbsp;<a href='mailto:Steven.D.Schneiderman@usdoj.gov'>Steven.D.Schneiderman@usdoj.gov</a><BR><BR></font></TD><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Noticing / Claims Agent</B></I><BR><B>Trustee Services, Inc.</B>
+<BR>1844 N Nob Hill Rd &#035;615
+<BR>Plantation, FL 33322
+<BR>954.889.3403<BR><BR>	</FONT></TD>
+	<TD VALIGN=top  WIDTH="20%" ALIGN=right><FONT SIZE="+0">&nbsp;	</FONT></TD>
+<TD valign="top" WIDTH="40%" NOWRAP>
+  	                    <font size="+0">&nbsp;</font></TD></TR><TR>	<TD VALIGN=top  WIDTH="50%"><FONT SIZE="+0"><I><B>Creditor Committee</B></I><BR><B>Official Committee of Creditors</B>
+<BR>c/o Michael I. Goldberg
+<BR>Akerman Senterfitt
+<BR>350 East Las Olas Blvd.
+<BR>Ste. 1600
+<BR>Fort Lauderdale, FL 33324
+<BR>954 463-2700	</FONT></TD>
+	<TD VALIGN=top  WIDTH="20%" ALIGN=right><FONT SIZE="+0">represented by	</FONT></TD>
+	<TD VALIGN=top  WIDTH="40%"><FONT SIZE="+0"><B>Eyal Berger, Esq.</B>
+<BR>350 E Las Olas Blvd &#035;1600
+<BR>Ft Lauderdale, FL 33301
+<BR>954.463.2700
+<BR>Email:&nbsp;<a href='mailto:eyal.berger@akerman.com'>eyal.berger@akerman.com</a><BR><BR><B>Michael I Goldberg, Esq</B>
+<BR>350 E Las Olas Blvd &#035;1600
+<BR>Ft. Lauderdale, FL 33301
+<BR>(954) 463-2700
+<BR>Email:&nbsp;<a href='mailto:michael.goldberg@akerman.com'>michael.goldberg@akerman.com</a><BR><BR><B>Bruce A Katzen</B>
+<BR>201 S Biscayne Blvd  &#035;1700
+<BR>Miami, FL 33131
+<BR>(305) 379-9000
+<BR>Email:&nbsp;<a href='mailto:bkatzen@klugerkaplan.com'>bkatzen@klugerkaplan.com</a><BR><BR><B>Joan M Levit, Esq</B>
+<BR>350 E Las Olas Blvd &#035;1600
+<BR>Ft. Lauderdale, FL 33301
+<BR>(954) 463-2700
+<BR>Email:&nbsp;<a href='mailto:joan.levit@akerman.com'>joan.levit@akerman.com</a><BR><BR><B>William G Salim Jr</B>
+<BR>800 Corporate Dr &#035; 500
+<BR>FT  Lauderdale, FL 33334
+<BR>(954) 491-2000
+<BR>Email:&nbsp;<a href='mailto:wsalim@mmsslaw.com'>wsalim@mmsslaw.com</a><BR><BR><B>James D. Silver, Esq.</B>
+<BR>633 S Federal Hwy
+<BR>Fort Lauderdale, FL 33301
+<BR>954.847.3324
+<BR>Fax  : 954.463.9244
+<BR>Email:&nbsp;<a href='mailto:jds@conradscherer.com'>jds@conradscherer.com</a>	</FONT></TD>
+</TR></TABLE><BR><TABLE BORDER=1 CELLPADDING=10 CELLSPACING=0><TR><TH width='94' nowrap>Filing Date</TH>
+<TH colspan=2 align='center'>#</TH><TH align=center>Docket Text</TH></TR>
+<TR><TD width="94" nowrap valign=bottom>11/24/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?490142,179"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/050010560692' onContextMenu='this.href="https://ecf.flsb.uscourts.gov/doc1/050010560692"'>50</a></nobr></TD><TD valign=bottom>  Notice of Appearance and Request for Service by Mark F Booth Esq Filed by Creditor VRLP1, LLC . (Grooms, Desiree) (Entered: 11/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?490142,183"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/050010561020' onContextMenu='this.href="https://ecf.flsb.uscourts.gov/doc1/050010561020"'>51</a></nobr></TD><TD valign=bottom>  Certificate of Service <i></i> Filed by Petitioning Creditors Aran Development Inc., Bonnie Barnett, Universal Legal, Roger Wittenberns, (Re: <a href='https://ecf.flsb.uscourts.gov/doc1/050010556588'>47</a> Order on Motion to Appoint Trustee). (Genovese, John) (Entered: 11/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?490142,186"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/050010562764' onContextMenu='this.href="https://ecf.flsb.uscourts.gov/doc1/050010562764"'>52</a></nobr></TD><TD valign=bottom>  Interim Order Granting Application to Employ John H Genovese and Setting Final Hearing Scheduled for December 21, 2009 at 10:00 a.m. at The United States Bankruptcy Court, 200 East Broward Blvd, Courtroom 308, Fort Lauderdale Florida 33301 (Re: # <a href='https://ecf.flsb.uscourts.gov/doc1/050010549944'>43</a>) (Grooms, Desiree) (Entered: 11/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?490142,194"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/050010563094' onContextMenu='this.href="https://ecf.flsb.uscourts.gov/doc1/050010563094"'>53</a></nobr></TD><TD valign=bottom>  Motion for Relief from Stay <i></i> [Fee Amount $150] Filed by Creditor C/o Lynn Maynard Gollin Gibraltar Private Bank and Trust. (Gollin, Lynn) (Entered: 11/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?490142,201"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/050010563232' onContextMenu='this.href="https://ecf.flsb.uscourts.gov/doc1/050010563232"'>54</a></nobr></TD><TD valign=bottom>  Interim Order Granting Application to Employ Paul Steven Singerman Setting Final Hearing Scheduled for December 21, 2009 at 10:00 a.m. at The United States Bankruptcy Court, 200 East Broward Blvd, Courtroom 308, Fort Lauderdale Florida 33301 (Re: # <a href='https://ecf.flsb.uscourts.gov/doc1/050010549805'>42</a>) (Grooms, Desiree) (Entered: 11/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?490142,214"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/050010563746' onContextMenu='this.href="https://ecf.flsb.uscourts.gov/doc1/050010563746"'>55</a></nobr></TD><TD valign=bottom>  Order Granting Application for Approval of Selection of Appointment of Chapter 11 Trustee (Re: # <a href='https://ecf.flsb.uscourts.gov/doc1/050010556933'>49</a>) (Grooms, Desiree) (Entered: 11/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?490142,216"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/050010563910' onContextMenu='this.href="https://ecf.flsb.uscourts.gov/doc1/050010563910"'>56</a></nobr></TD><TD valign=bottom>  Order Granting Application to Employ Richard A Pollack (Re: # <a href='https://ecf.flsb.uscourts.gov/doc1/050010550000'>44</a>) (Grooms, Desiree) (Entered: 11/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?490142,221"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/050010564690' onContextMenu='this.href="https://ecf.flsb.uscourts.gov/doc1/050010564690"'>57</a></nobr></TD><TD valign=bottom>  Answer to Involuntary Petition <i>(Consent to Order for Relief in Involuntary Case filed by Chapter 11 Trustee)</i> Filed by Trustee Herbert Stettin. (Guso, Jordi) (Entered: 11/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?490142,223"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/050010567081' onContextMenu='this.href="https://ecf.flsb.uscourts.gov/doc1/050010567081"'>58</a></nobr></TD><TD valign=bottom>  Certificate of Service <i></i> Filed by Trustee Herbert Stettin (Re: <a href='https://ecf.flsb.uscourts.gov/doc1/050010562764'>52</a> Order on Application to Employ). (Genovese, John) (Entered: 11/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?490142,226"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/050010567353' onContextMenu='this.href="https://ecf.flsb.uscourts.gov/doc1/050010567353"'>59</a></nobr></TD><TD valign=bottom>  Notice of Hearing (Re: <a href='https://ecf.flsb.uscourts.gov/doc1/050010542375'>40</a> Motion to Compel <i>Assumption or Rejection of Executory Lease</i> Filed by Creditor Blue Capital US East Coast Properties, L.P..) Hearing scheduled for 12/16/2009 at 09:30:00 AM at 299 E Broward Blvd Room 308 (RBR), Fort Lauderdale. (Gomez, Edy) (Entered: 11/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?490142,229"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/050010567398' onContextMenu='this.href="https://ecf.flsb.uscourts.gov/doc1/050010567398"'>60</a></nobr></TD><TD valign=bottom>  Notice of Hearing (Re: <a href='https://ecf.flsb.uscourts.gov/doc1/050010542403'>41</a> Application for Administrative Expenses <i></i> Filed by Creditor Blue Capital US East Coast Properties, L.P..) Hearing scheduled for 12/16/2009 at 09:30:00 AM at 299 E Broward Blvd Room 308 (RBR), Fort Lauderdale. (Gomez, Edy) (Entered: 11/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?490142,232"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/050010568695' onContextMenu='this.href="https://ecf.flsb.uscourts.gov/doc1/050010568695"'>61</a></nobr></TD><TD valign=bottom>  Certificate of Service <i></i> by Attorney Lynn Maynard Gollin Esq (Re: <a href='https://ecf.flsb.uscourts.gov/doc1/050010563094'>53</a> Motion for Relief from Stay <i></i> [Fee Amount $150] filed by Creditor C/o Lynn Maynard Gollin Gibraltar Private Bank and Trust). (Gollin, Lynn) (Entered: 11/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/25/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?490142,235"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/050010568810' onContextMenu='this.href="https://ecf.flsb.uscourts.gov/doc1/050010568810"'>62</a></nobr></TD><TD valign=bottom>  Adversary case 09-02464. Complaint by TD Bank, N.A. against Herbert Stettin, Scott W. Rothstein, Kimberly Ann Rothstein, United States of America, Rubin Vine, Sharon Vine, Todd D Snyder, LMB Funding Group, DJB Financial Holdings, LLC, RRA Goal Line Management, LLC, RRA Sports and Entertainment, LLC, PRCH, LLC, The Bova Group, LLC, John Doe, Jane Doe. <i></i> Nature of Suit:,(91 (Declaratory judgment)) (Attachments: <a href='https://ecf.flsb.uscourts.gov/doc1/050110568811'>1</a> Exhibit 1<a href='https://ecf.flsb.uscourts.gov/doc1/050110568812'>2</a> Exhibit 2<a href='https://ecf.flsb.uscourts.gov/doc1/050110568813'>3</a> Exhibit 3<a href='https://ecf.flsb.uscourts.gov/doc1/050110568814'>4</a> Exhibit 4<a href='https://ecf.flsb.uscourts.gov/doc1/050110568815'>5</a> Exhibit 5<a href='https://ecf.flsb.uscourts.gov/doc1/050110568816'>6</a> Exhibit 6<a href='https://ecf.flsb.uscourts.gov/doc1/050110568818'>7</a> Exhibit 7<a href='https://ecf.flsb.uscourts.gov/doc1/050110568819'>8</a> Exhibit 8) (Bloom, Mark) (Entered: 11/25/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/27/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?490142,237"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/050010577817' onContextMenu='this.href="https://ecf.flsb.uscourts.gov/doc1/050010577817"'>63</a></nobr></TD><TD valign=bottom>  BNC Certificate of Mailing - PDF Document (Re: <a href='https://ecf.flsb.uscourts.gov/doc1/050010563232'>54</a> Interim Order Granting Application to Employ Paul Steven Singerman Setting Final Hearing Scheduled for December 21, 2009 at 10:00 a.m. at The United States Bankruptcy Court, 200 East Broward Blvd, Courtroom 308, Fort Lauderdale Florida 33301) Service Date 11/27/2009. (Admin.) (Entered: 11/28/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/27/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?490142,240"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/050010577818' onContextMenu='this.href="https://ecf.flsb.uscourts.gov/doc1/050010577818"'>64</a></nobr></TD><TD valign=bottom>  BNC Certificate of Mailing - PDF Document (Re: <a href='https://ecf.flsb.uscourts.gov/doc1/050010563746'>55</a> Order Granting Application for Approval of Selection of Appointment of Chapter 11 Trustee) Service Date 11/27/2009. (Admin.) (Entered: 11/28/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/30/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?490142,243"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/050010584412' onContextMenu='this.href="https://ecf.flsb.uscourts.gov/doc1/050010584412"'>65</a></nobr></TD><TD valign=bottom>  Notice of Appearance and Request for Service <i></i> by Mark D Bloom Esq Filed by Interested Party TD Bank, N.A.. (Bloom, Mark) (Entered: 11/30/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/30/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?490142,247"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/050010584566' onContextMenu='this.href="https://ecf.flsb.uscourts.gov/doc1/050010584566"'>66</a></nobr></TD><TD valign=bottom>  Order for Relief in Involuntary Case and Order Setting Deadline for Filing Schedules, Statements and Other Documents . [Incomplete Filings due by 12/15/2009]. Schedule A due 12/15/2009. Schedule B due 12/15/2009. Schedule D due 12/15/2009. Schedule E due 12/15/2009. Schedule F due 12/15/2009. Schedule G due 12/15/2009. Schedule H due 12/15/2009.Declaration Concerning Debtors Schedules Due: 12/15/2009. Summary of Schedules due 12/15/2009.Statement of Financial Affairs Due 12/15/2009.Corporate Ownership Statement due 12/15/2009.Creditor Matrix Due: 12/15/2009. List of Twenty Largest Unsecured Creditors Due: 12/2/2009. List of Equity Security Holders due 12/15/2009. (Grooms, Desiree) (Entered: 11/30/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/30/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?490142,249"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/050010590765' onContextMenu='this.href="https://ecf.flsb.uscourts.gov/doc1/050010590765"'>67</a></nobr></TD><TD valign=bottom>  Certificate of Service <i></i> by Attorney Jordi Guso Esq (Re: <a href='https://ecf.flsb.uscourts.gov/doc1/050010556627'>48</a> Order on Miscellaneous Motion, <a href='https://ecf.flsb.uscourts.gov/doc1/050010563232'>54</a> Order on Application to Employ, <a href='https://ecf.flsb.uscourts.gov/doc1/050010563910'>56</a> Order on Application to Employ). (Guso, Jordi) (Entered: 11/30/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/30/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?490142,254"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/050010591903' onContextMenu='this.href="https://ecf.flsb.uscourts.gov/doc1/050010591903"'>68</a></nobr></TD><TD valign=bottom>  Notice of Change of Address <i>and Rquest by Arthur C. Neiwirth, pro se, for Copies of Filings</i> Filed by Interested Party Arthur C. Neiwirth. (Neiwirth, Arthur) (Entered: 11/30/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>11/30/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?490142,258"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/050010597231' onContextMenu='this.href="https://ecf.flsb.uscourts.gov/doc1/050010597231"'>69</a></nobr></TD><TD valign=bottom>  Emergency Motion <i>to (1) Suspend, in part, Local Rule 2004-1(A), U.S. Bankruptcy Court, Southern District of Florida and (2) Require Court Approval for any Federal Rule of Bankruptcy Procedure 7030 Deposition of Herbert Stettin, Rothstein Rosenfeldt Adler P.A. through Existing Employees, or Current Professionals of the Trustee</i> Filed by Trustee Herbert Stettin. (Singerman, Paul) (Entered: 11/30/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>12/01/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?490142,260"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/050010601952' onContextMenu='this.href="https://ecf.flsb.uscourts.gov/doc1/050010601952"'>70</a></nobr></TD><TD valign=bottom>  Certificate of Service <i>of Notice of Hearing on Motion of Creditor Blue Capital US East Coast Properties, L.P. to Compel Assumption or Rejection of Executory Lease and Notice of Hearing on Blue Capital US East Coast Properties, L.P.s Request for Payment of Administrative Expense</i> Filed by Creditor Blue Capital US East Coast Properties, L.P. (Re: <a href='https://ecf.flsb.uscourts.gov/doc1/050010567353'>59</a> Notice of Hearing, <a href='https://ecf.flsb.uscourts.gov/doc1/050010567398'>60</a> Notice of Hearing). (Roth, Jeffrey) (Entered: 12/01/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>12/01/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?490142,264"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/050010603849' onContextMenu='this.href="https://ecf.flsb.uscourts.gov/doc1/050010603849"'>71</a></nobr></TD><TD valign=bottom>  Notice of Hearing (Re: <a href='https://ecf.flsb.uscourts.gov/doc1/050010597231'>69</a>Emergency Motion to (1) Suspend, in part, Local Rule 2004-1(A), U.S. Bankruptcy Court, Southern District of Florida and (2) Require Court Approval for any Federal Rule of Bankruptcy Procedure 7030 Deposition of Herbert Stettin, Rothstein Rosenfeldt Adler P.A. through Existing Employees, or Current Professionals of the Trustee Filed by Trustee Herbert StettinHearing scheduled for 12/02/2009 at 09:30:00 AM at 299 E Broward Blvd Room 308 (RBR), Fort Lauderdale. (Gomez, Edy) (Entered: 12/01/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>12/01/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?490142,267"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/050010604412' onContextMenu='this.href="https://ecf.flsb.uscourts.gov/doc1/050010604412"'>72</a></nobr></TD><TD valign=bottom>  Amended Notice of Hearing (Re: <a href='https://ecf.flsb.uscourts.gov/doc1/050010597231'>69</a>Emergency Motion to (1) Suspend, in part, Local Rule 2004-1(A), U.S. Bankruptcy Court, Southern District of Florida and (2) Require Court Approval for any Federal Rule of Bankruptcy Procedure 7030 Deposition of Herbert Stettin, Rothstein Rosenfeldt Adler P.A. through Existing Employees, or Current Professionals of the Trustee Filed by Trustee Herbert Stettinto) Hearing scheduled for 12/02/2009 at 01:30:00 PM at 299 E Broward Blvd Room 308 (RBR), Fort Lauderdale. (Gomez, Edy) (Entered: 12/01/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>12/01/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?490142,270"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/050010610864' onContextMenu='this.href="https://ecf.flsb.uscourts.gov/doc1/050010610864"'>73</a></nobr></TD><TD valign=bottom>  Certificate of Service <i></i> by Attorney Jordi Guso Esq (Re: <a href='https://ecf.flsb.uscourts.gov/doc1/050010604412'>72</a> Notice of Hearing Amended/Renoticed/Continued). (Guso, Jordi) (Entered: 12/01/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>12/01/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?490142,273"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/050010611929' onContextMenu='this.href="https://ecf.flsb.uscourts.gov/doc1/050010611929"'>74</a></nobr></TD><TD valign=bottom>  Adversary case 09-02478. Complaint by Herbert Stettin against Scott W. Rothstein, 29 Bahia, LLC, 235 GC, LLC, 350 LOP #2840, LLC, 353BR, LLC, 708 Spangler, LLC, 1012 Broward, LLC, 1198 Dixie, LLC, 1299 Federal, LLC, 2133 IP, LLC, 10630 #110, LLC, 15158, LLC, AAMG, LLC, AAMG1, LLC, AAMM Holdings, LLC, ABT Investments, LLC, Advanced Solutions, LLC, Bahia Property Management, LLC, BFHI, LLC, Boat Management, LLC, BOSM Holdings, LLC, Bova Prime, LLC, The Bova Group, LLC, Bova Restaurant Group, LLC, Bova Smoke, LLC, BOVCU, LLC, BOVRI, LLC, CCCN, LLC, CI 08, LLC, CI 07, LLC, CI 16, LLC, CI 27, LLC, CSU, LLC, D&D Management & Investment, LLC, D&S Management and Investment, LLC, DJB Financial Holdings, LLC, DYMMU, LLC, Fifth Court Financial, LLC, Full Circle Ft. Lauderdale, LLC, GBPT, LLC, GHW1, LLC, IDNLGEAH, LLC, ILK3, LLC, IS Management, LLC, JB Boca M Holdings LLC, JJ Finance Holdings, LLC, Judah, LLC, MLC 350, LLC, MRISC, LLC, NF Servicing, LLC, NRI 15, LLC, NRI 11, LLC, NS Holdings, LLC, PK Adventures, LLC, PK's Wild Ride, LTD, QT, LLC, REC Group, LLC, REN Group, LLC, REP Group, LLC, RES Group, LLC, RET Group, LLC, REV Group, LLC, Rothstein Family Foundation, Inc., RRA Consulting, Inc., RRA Goal Line Management, LLC, RRA Sports & Entertainment, LLC, RSA 11th ST, LLC, RW Collections, LLC, S&KEA, LLC, SCORH, LLC, SPAC Investments, LLC, TB22N, LLC, TIPP, LLC, TLBN, LLC, UG, LLC, VGS, LLC, VGSI, LLC, Walter Industries, LLC, The Walter Family, LLC, WAWW, LLC, WAWW2, LLC, WAWW3, LLC, WAWW4, LLC, WAWW5, LLC, WAWW6, LLC, WAWW7, LLC, WAWW8, LLC, WAWW9, LLC, WAWW10, LLC, WAWW11, LLC, WAWW12, LLC, WAWW13, LLC, WAWW14, LLC, WAWW15, LLC, WAWW16, LLC, WAWW17, LLC, WAWW18, LLC, WAWW19, LLC, WAWW20, LLC, WAWW22, LLC, WPBRS, LLC. <i></i> Filing Fee Paid. Nature of Suit:,(11 (Recovery of money/property - 542 turnover of property)),(13 (Recovery of money/property - 548 fraudulent transfer)) (Cimo, David) (Entered: 12/01/2009)</TD></TR>
+<TR><TD width="94" nowrap valign=bottom>12/02/2009</TD><TD width=74 valign=top align=right style='border-right:0;padding-right:1px;padding-left:2px;white-space:nowrap'><nobr>   <a href="/cgi-bin/DisplayReceipt.pl?490142,277"><img src="/graphics/silverball.gif" width=14 height=14 border=0></a> </TD><TD width=30 valign=top align=left style='border-left:0;padding-left:1px'><a href='/doc1/050010625605' onContextMenu='this.href="https://ecf.flsb.uscourts.gov/doc1/050010625605"'>75</a></nobr></TD><TD valign=bottom>  Adversary case 09-02481. Complaint by Carolina Casualty Insurance Company, a Florida Insurance Company against Rothstein Rosenfeldt Adler, P.A.. <i></i> Nature of Suit:,(02 (Other (e.g. other actions that would have been brought in state court if unrelated to bankruptcy))) (Attachments: <a href='https://ecf.flsb.uscourts.gov/doc1/050110625606'>1</a> Exhibit A<a href='https://ecf.flsb.uscourts.gov/doc1/050110625607'>2</a> Exhibit B<a href='https://ecf.flsb.uscourts.gov/doc1/050110625608'>3</a> Exhibit C<a href='https://ecf.flsb.uscourts.gov/doc1/050110625609'>4</a> Exhibit D<a href='https://ecf.flsb.uscourts.gov/doc1/050110625610'>5</a> Exhibit E<a href='https://ecf.flsb.uscourts.gov/doc1/050110625611'>6</a> Exhibit F<a href='https://ecf.flsb.uscourts.gov/doc1/050110625612'>7</a> Exhibit G) (Shraiberg, Bradley) (Entered: 12/02/2009)</TD></TR>
+</TABLE><BR><BR><BR><BR>
+			<script type='text/javascript'>
+				document.cookie = 'RECENT_CASES=' + "490142;";
+			</script>
+		<HR><CENTER><TABLE BORDER=1 BGCOLOR=white width="400"><TR><TH COLSPAN=4><FONT SIZE=+1 COLOR=DARKRED>PACER Service Center </FONT></TH></TR><TR><TH COLSPAN=4><FONT COLOR=DARKBLUE>Transaction Receipt </FONT></TH></TR><TR></TR><TR></TR><TR><TD COLSPAN=4 ALIGN=CENTER><FONT SIZE=-1 COLOR=DARKBLUE>06/30/2017 14:03:19</FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> PACER Login: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> [ LOGIN REMOVED ] </FONT></TH></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Client Code: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE>  </FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Description: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Docket Report </FONT></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Search Criteria: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 09-34791-RBR Fil or Ent: filed   Doc From: 50 Doc To: 75 Term: included    Format: html  </FONT></TD></TR><TR><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Billable Pages: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 6 </FONT></TD><TH ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> Cost: </FONT></TH><TD ALIGN=LEFT><FONT SIZE=-1 COLOR=DARKBLUE> 0.60 </FONT></TD></TR><TR></TR><TR></TR></TABLE></CENTER></HR><BR></BR></div></body></html>
