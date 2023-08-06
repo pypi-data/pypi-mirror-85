@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: TOPSIS-Misha-101803590
+Version: 1.0.4
+Summary: Topsis package to calculate the score and rank of a given data.
+Home-page: https://github.com/mishaaggarwal15
+Author: Misha Aggarwal
+Author-email: maggarwal1_be18@thapar.edu
+License: MIT
+Description: # TOPSIS-Python
+        A command line source code for TOPSIS optimization algorithm in python.
+        
+        TOPSIS is an algorithm to determine the best choice out of many using Positive Ideal Solution and Negative Ideal Solution.
+        
+        ### 1.1 Input/Output Files:
+        • Input File of the form ".csv"
+        • Input file contain three or more columns
+        • First column is the object/variable name (e.g. M1, M2, M3, M4......) o From 2nd to last columns contain numeric values only
+        • Output Files of the form ".csv"
+        • Result file contains all the columns of input file and two additional columns having
+        TOPSIS SCORE and RANK
+        
+        ### 1.2 Source code as a command line program:
+        Usages:
+        topsis <InputDataFile> <Weights> <Impacts> <ResultFileName>
+        Example:
+        topsis inputfile.csv “1,1,1,2” “+,+,-,+” result.csv
+        
+        #### 1.3 SAMPLE INPUT 
+        | MODEL | CORR | RSEQ | RMSE | ACCURACY |
+        | ------ | ------ | ------ | ------ | ------ |
+        | M1 | 0.79	| 0.62	| 1.25	| 60.89 |
+        | M2 | 0.66	| 0.44	| 2.89	| 63.07 |
+        | M3 | 0.56	| 0.31	| 1.57	| 62.87 |
+        | M4 | 0.82	| 0.67	| 2.68	| 70.19 |
+        | M5 | 0.75 |	0.56 | 1.3 | 80.39 |
+        
+        #### 1.4 SAMPLE OUTPUT 
+        | MODEL | CORR | RSEQ | RMSE | ACCURACY | SCORE | RANK |
+        | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
+        | M1 | 0.79	| 0.62	| 1.25	| 60.89 | 0.7582678375908800	| 2.0 |
+        | M2 | 0.66	| 0.44	| 2.89	| 63.07 |	0.06794169631733270	| 5.0 |
+        | M3 | 0.56	| 0.31	| 1.57	| 62.87 |	0.32174656669725500	| 4.0 |
+        | M4 | 0.82	| 0.67	| 2.68	| 70.19 |	0.5382503509592460	| 3.0 |
+        | M5 | 0.75 |	0.56 | 1.3 | 80.39 |	0.9587817919266940	| 1.0 |
+        
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
