@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: docster
+Version: 0.1.0
+Summary: Automatically extract your python docstrings into arbitrary Jinja2 templates
+Home-page: https://github.com/BujarMurati/docster
+License: MIT
+Keywords: documentation,docstring,markdown
+Author: BujarMurati
+Author-email: 39311213+BujarMurati@users.noreply.github.com
+Requires-Python: >=3.8,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: Jinja2 (>=2.11.2,<3.0.0)
+Requires-Dist: docstring-parser (>=0.7.3,<0.8.0)
+Requires-Dist: gitpython (>=3.1.8,<4.0.0)
+Requires-Dist: pytest-cov (>=2.10.1,<3.0.0)
+Requires-Dist: typer[all] (>=0.3.2,<0.4.0)
+Project-URL: Repository, https://github.com/BujarMurati/docster
+Description-Content-Type: text/markdown
+
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/BujarMurati/docster)
+
+# docster
+Docster is a static analysis tool that extracts doc strings from your code and inserts them into any Jinja2 template of your liking.
+Use this tool to automatically build documentation for your project.
+Because docster performs static analysis instead of importing your modules, it is safe to use on modules whose import could cause side effects.
+
+
