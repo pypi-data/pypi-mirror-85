@@ -1,0 +1,216 @@
+Metadata-Version: 2.1
+Name: techsig
+Version: 1.0.5
+Summary: Technical charts with signals
+Home-page: UNKNOWN
+Author: Aayush Talekar Saloni Jaitly
+Author-email: aayush.talekar57@nmims.edu.in
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: yfinance
+Requires-Dist: ta
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: plotly
+
+techsig
+=======
+
+-   Package to get technical indicators for given market data based on
+    which Bull and Bear signals are generated.
+-   This enables a non finance background person get the insights of the
+    stock market technicalities in an understandable language.
+-   Function to get the market data is also provided.
+-   Plots are provided for all the technical indicators which can help
+    analyse the data better.
+
+Note -
+-----
+
+All investments, financial opinions expressed by techsig are from
+personal research and experience of the authors and are intended as
+educational material.
+
+Authors -
+-------
+
+-   Aayush Talekar - aayushtalekar24@gmail.com
+-   Saloni Jaitly - salonijaitly@gmail.com
+
+How to import the package-
+-------------------------
+
+    from techsig.techsig import *
+
+Function description
+--------------------
+
+### get\_data(ticker, start\_date, end\_date):
+```
+Import daily market data   
+:param ticker: ticker name according to National Stock Exchange   :param start_date: format 'yyyy-mm-dd'   
+:param end_date: format 'yyyy-mm-dd'   
+:return: pandas.DataFrame() : OHCLV data on a daily frequency
+```
+
+### moving\_average(df, exponential=False, simple=False, plot=False, signal=False):
+
+```
+Calculate simple and exponential moving average (ma) for given data   
+:param df: pandas.DataFrame() :market data downloaded from get_data()   
+:param exponential: Boolean: if True, exponential ma is displayed   :param simple: Boolean: if True, simple ma is displayed   
+:param plot: Boolean: if True, closing price with ma is plotted   :param signal: Boolean: if True, bullish/bearish signals are returned   
+:return: pandas.DataFrame() : moving average of 5 days, 10 days, 20 days, 50 days, 100 days and 200 days
+```
+
+### MACD(df, a=12, b=26, c=9, signal=False, plot=False):
+
+```
+Calculate moving average convergence divergence (MACD) for given data
+:param df: pandas.DataFrame() :market data downloaded from get_data()
+:param a: number of periods for moving average fast line: default = 12
+:param b: number of periods for moving average slow line: default = 26
+:param c: number of periods for macd signal line: default = 9
+:param plot: Boolean: if True, closing price with MACD is plotted
+:param signal: Boolean: if True, bullish/bearish signals are returned
+:return: pandas.DataFrame() : MA_Fast, MA_Slow, MACD, Signal and Positions are returned
+```
+
+### RSI (df, time\_window=14, signal=False, plot=False):
+
+```
+Calculate relative strength index (RSI) for given data
+:param df: pandas.DataFrame() :market data downloaded from get_data()
+:param time_window: number of periods for RSI : default = 14
+:param plot: Boolean: if True, closing price with RSI is plotted
+:param signal: Boolean: if True, bullish/bearish signals are returned
+:return: pandas.DataFrame() : RSI and Position is returned
+```
+
+### IchimokuCloud(df, plot=False):
+
+```
+Calculate Ichimoku Clouds for given data   
+:param df: pandas.DataFrame() :market data downloaded from get_data()   
+:param plot: Boolean: if True, closing price with Ichimoku Clouds are plotted   
+:return: pandas.DataFrame(): Conv_line, Base_line, Lead_span_A, Lead_span_B and Lagging span
+```
+
+### ADX(df, trend=False, plot=False):
+
+```
+Calculate average directional index for given data   
+:param df: pandas.DataFrame() :market data downloaded from get_data()   
+:param trend: Boolean: if True, strength of the trend is returned   :param plot: Boolean: if True, closing price with ADX is plotted   :return: pandas.DataFrame(): ADX, Positive Directional Index and Negative Directional Index
+```
+
+### ATR(DF,n=14, plot=False):
+
+```
+Calculate average true range (ATR) for given data     
+:param DF: pandas.DataFrame() :market data downloaded from get_data()     
+:param n: number of periods for ATR: default = 14     
+:param plot: Boolean: if True, closing price with ATR is plotted     
+:return: pandas.DataFrame(): ATR
+```
+
+### stochastic\_oscillator(df, signal=False, plot=False):
+
+```
+Calculate stochastic oscillator %K and %D for given data.    
+:param df: pandas.DataFrame() :market data downloaded from get_data()
+:param plot: Boolean: if True, closing price with stochastic oscillator is plotted
+:param signal: Boolean: if True, bullish/bearish signals are returned
+:return: pandas.DataFrame(): %K and %D values
+```
+
+### OBV(DF, plot=False, signal=False):
+
+```
+Calculate on balance volume (OBV) for given data
+:param DF: pandas.DataFrame() :market data downloaded from get_data()
+:param plot: Boolean: if True, closing price with OBV is plotted
+:param signal: Boolean: if True, bullish/bearish signals are returned
+:return: pandas.DataFrame(): %K and %D values
+```
+
+### ppsr(df):
+
+```
+Calculate Pivot Points, Supports and Resistances for given data
+:param df: pandas.DataFrame() :market data downloaded from get_data()
+:return: pandas.DataFrame() : Pivot Points, Resistances and Supports
+```
+
+### semideviation(df):
+
+```
+Calculate semi deviation for given close price
+:param df: pandas.DataFrame(): close price of data
+:return: float: value of semi deviation
+```
+
+### meandeviation(df):
+
+```
+Calculate mean deviation for given close price
+:param df: pandas.DataFrame(): close price of data
+:return: float: value of mean deviation
+```
+
+### standard\_deviation(df, n=21):
+
+```
+Calculate standard Deviation for given data.
+:param df: pandas.DataFrame(): close price of data
+:param n: number of periods: default = 21
+:return: pandas.DataFrame(): moving standard deviations
+```
+
+### TSI(df, r=25, s=13, c=9, signal=False, plot=False):
+
+```
+Calculate True Strength Index (TSI) for given data.
+:param df: pandas.DataFrame(): market data downloaded from get_data()
+:param r: time period for EMA_Fast: default = 25 
+:param s: time period for EMA_SLow: default = 13
+:param c: time period for Signal Line: default = 9
+:param plot: Boolean: if True, closing price with TSI is plotted
+:param signal: Boolean: if True, bullish/bearish signals are returned
+:return: pandas.DataFrame(): Price Change(pc), Price Change Smoothed(pcs), Price Change Double Smooth(pcds), Absolute Price Change(apc),
+Absolute Price Change Smoothed(apcs), Absolute Price Change Double Smooth(apcds), TSI and Signal
+```
+
+### MFI(df, n=14, signal = False, plot=False):
+
+```
+Calculate Money Flow Index(MFI) for given data.
+:param df: pandas.DataFrame(): market data downloaded from get_data()
+:param n: number of periods for MFI: default = 14
+:param plot: Boolean: if True, closing price with MFI is plotted
+:param signal: Boolean: if True, bullish/bearish signals are returned
+:return: pandas.DataFrame(): Typical Price, Money Flow, MFI
+```
+
+### summ(data):
+```
+Calculate the summary of the latest date   
+:param df: pandas.DataFrame(): market data downloaded from get_data()   
+:return: pandas.DataFrame(): Three dataframes are returned viz. Moving Average, Technical Indicators and Pivot Points
+```
+
+### sentiment\_signal(data):
+
+```
+Analysing the overall sentiment based on techncial indicators   
+:param df: pandas.DataFrame(): market data downloaded from get_data()   
+:return: pandas.DataFrame(): bull/bear/neutral signal of the technical indicator
+```
+
+
+
