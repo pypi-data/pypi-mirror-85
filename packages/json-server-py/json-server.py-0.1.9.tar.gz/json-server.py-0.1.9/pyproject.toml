@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "json-server.py"
+version = "0.1.9"
+description = "A simple JSON server"
+authors = ["Gerald <gera2ld@163.com>"]
+license = "MIT"
+packages = [
+  { include = "json_server" },
+]
+repository = 'https://github.com/gera2ld/json-server.py'
+readme = 'README.md'
+
+[tool.poetry.dependencies]
+python = "^3.6"
+click = "^7.0"
+aiohttp = "^3.6.2"
+gera2ld-pyserve = "^0.3.1"
+importlib_metadata = "^1.7.0"
+
+[tool.poetry.dev-dependencies]
+pylint = "^2.6.0"
+yapf = "^0.30.0"
+rope = "^0.18.0"
+jedi = "^0.17.2"
+
+[tool.poetry.scripts]
+json-server = "json_server.cli:main"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
