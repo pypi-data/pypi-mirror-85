@@ -1,0 +1,146 @@
+- job:
+    name: ironic-ipa-base
+    parent: ironic-base
+    irrelevant-files:
+      - ^test-requirements.txt$
+      - ^.*\.rst$
+      - ^doc/.*$
+      - ^ironic_python_agent/tests/.*$
+      - ^releasenotes/.*$
+      - ^setup.cfg$
+      - ^tools/.*$
+      - ^tox.ini$
+    required-projects:
+      - openstack/ironic-lib
+      - name: openstack/ironic-tempest-plugin
+        override-checkout: 1.5.1
+    vars:
+      devstack_localrc:
+        IRONIC_BUILD_DEPLOY_RAMDISK: True
+        USE_PYTHON3: True
+
+- job:
+    name: ipa-tempest-wholedisk-bios-ipmi-direct-tinyipa-src
+    parent: ironic-ipa-base
+    timeout: 7200
+    vars:
+      devstack_services:
+        s-account: True
+        s-container: True
+        s-object: True
+        s-proxy: True
+      devstack_localrc:
+        IRONIC_DEFAULT_DEPLOY_INTERFACE: direct
+        IRONIC_TEMPEST_WHOLE_DISK_IMAGE: True
+        USE_PYTHON3: False
+        IRONIC_VM_EPHEMERAL_DISK: 0
+        SWIFT_ENABLE_TEMPURLS: True
+        SWIFT_TEMPURL_KEY: secretkey
+
+- job:
+    name: ipa-tempest-partition-bios-ipmi-direct-tinyipa-src
+    parent: ironic-ipa-base
+    timeout: 7200
+    vars:
+      devstack_services:
+        s-account: True
+        s-container: True
+        s-object: True
+        s-proxy: True
+      devstack_localrc:
+        IRONIC_DEFAULT_DEPLOY_INTERFACE: direct
+        USE_PYTHON3: False
+        SWIFT_ENABLE_TEMPURLS: True
+        SWIFT_TEMPURL_KEY: secretkey
+
+- job:
+    name: ipa-tempest-partition-bios-ipmi-iscsi-tinyipa-src
+    parent: ironic-ipa-base
+    timeout: 7200
+
+
+- job:
+    name: ipa-tempest-wholedisk-bios-ipmi-iscsi-tinyipa-src
+    parent: ironic-ipa-base
+    timeout: 7200
+    vars:
+      devstack_localrc:
+        IRONIC_VM_EPHEMERAL_DISK: 0
+        IRONIC_TEMPEST_WHOLE_DISK_IMAGE: True
+
+- job:
+    name: ipa-tempest-ironic-inspector-src
+    parent: ironic-ipa-base
+    timeout: 10800
+    required-projects:
+      # These are in addition to what is in ironic-ipa-base
+      - openstack/ironic-inspector
+      - openstack/python-ironic-inspector-client
+    vars:
+      devstack_localrc:
+        DEVSTACK_GATE_TEMPEST_REGEX: InspectorBasicTest
+        DEVSTACK_GATE_IRONIC_INSPECTOR: 1
+        IRONIC_VM_EPHEMERAL_DISK: 0
+        IRONIC_TEMPEST_WHOLE_DISK_IMAGE: True
+        IRONIC_INSPECTOR_BUILD_RAMDISK: True
+        SWIFT_ENABLE_TEMPURLS: True
+        SWIFT_TEMPURL_KEY: secretkey
+      devstack_plugins:
+        ironic-inspector: https://opendev.org/openstack/ironic-inspector
+
+- job:
+    name: ironic-python-agent-buildimage-base
+    parent: publish-openstack-artifacts
+    run: playbooks/ironic-python-agent-buildimage/run.yaml
+    post-run: playbooks/ironic-python-agent-buildimage/post.yaml
+    timeout: 1800
+    required-projects:
+      - openstack/ironic-python-agent
+
+- job:
+    name: ironic-python-agent-buildimage-coreos
+    parent: ironic-python-agent-buildimage-base
+    vars:
+      image_name: 'coreos'
+
+- job:
+    name: ironic-python-agent-buildimage-tinyipa
+    parent: ironic-python-agent-buildimage-base
+    vars:
+      image_name: 'tinyipa'
+
+
+# Experimental jobs
+- job:
+    name: ipa-tempest-dsvm-partition-ipmi-iscsi-tinyipa-python3
+    parent: ironic-ipa-base
+    timeout: 7200
+    required-projects:
+      - openstack/python-ironicclient
+    vars:
+      devstack_localrc:
+        USE_PYTHON3: True
+        EBTABLES_RACE_FIX: True
+        IRONIC_INSPECTOR_BUILD_RAMDISK: True
+        USE_SUBNETPOOL: False
+
+- job:
+    name: ipa-tempest-dsvm-partition-bios-ipmi-iscsi-tinyipa256-src
+    parent: ironic-ipa-base
+    timeout: 7200
+    required-projects:
+      - openstack/ironic-python-agent
+      - openstack/python-ironicclient
+    vars:
+      devstack_localrc:
+        EBTABLES_RACE_FIX: True
+        IRONIC_INSPECTOR_BUILD_RAMDISK: True
+        IRONIC_VM_SPECS_RAM: 256
+        USE_SUBNETPOOL: False
+        SWIFT_ENABLE_TEMPURLS: True
+        SWIFT_TEMPURL_KEY: secretkey
+      devstack_services:
+        s-account: True
+        s-container: True
+        s-object: True
+        s-proxy: True
