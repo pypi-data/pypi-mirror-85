@@ -1,0 +1,3 @@
+.. rubric:: Overview
+
+.. autoclass:: {name}
