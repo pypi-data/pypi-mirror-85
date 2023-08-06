@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: pyote
+Version: 3.7.1
+Summary: pyote is a simplified subset of R-OTE
+Home-page: https://github.com/bob-anderson-ok/py-ote
+Author: Bob Anderson
+Author-email: bob.anderson.ok@gmail.com
+Maintainer: Bob Anderson
+Maintainer-email: bob.anderson.ok@gmail.com
+License: License :: OSI Approved :: MIT License
+Keywords: desktop app,asteroid occultation timing extraction
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Scientific/Engineering
+Requires-Dist: pyqtgraph
+Requires-Dist: opencv-python
+Requires-Dist: astroquery
+Requires-Dist: resource
+Requires-Dist: scikit-image (>=0.15.0)
+Requires-Dist: matplotlib
+Requires-Dist: numpy
+Requires-Dist: astropy
+Requires-Dist: scikit-image
+Requires-Dist: scipy
+Requires-Dist: numba (>=0.41.0)
+Requires-Dist: Adv2 (>=1.2.0)
+Requires-Dist: openpyxl
+Requires-Dist: xlrd
+Requires-Dist: winshell ; platform_system == "Windows"
+Requires-Dist: pypiwin32 ; platform_system == "Windows"
+
+pyote
+=====
+
+pyote is a Python implementation of the essential parts of the R-OTE occultation timing extractor.
+
+This app has fewer 'bells and whistles' than R-OTE and so should be easier to use for a newbie.
+It also runs faster than R-OTE and deployment is simpler and more reliable.
+
+
