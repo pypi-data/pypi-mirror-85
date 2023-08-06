@@ -1,0 +1,39 @@
+[tool.poetry]
+name = "amalgam-lisp"
+version = "0.2.0"
+description = "Lisp-like interpreted language implemented in Python"
+authors = ["PureFunctor <purefunctor@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/PureFunctor/amalgam-lisp"
+packages = [
+    { include = "amalgam" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+click = "^7.1.2"
+prompt-toolkit = "^3.0.7"
+lark-parser = "^0.10.1"
+
+[tool.poetry.dev-dependencies]
+flake8 = "^3.8.3"
+pre-commit = "^2.5.1"
+pytest = "^6.1.1"
+coverage = "^5.2.1"
+mypy = "^0.782"
+pytest-mock = "^3.3.1"
+Sphinx = "^3.2.1"
+sphinx-rtd-theme = "^0.5.0"
+nox = "^2020.8.22"
+
+[tool.poetry.scripts]
+amalgam = "amalgam.cli:amalgam_main"
+
+[tool.coverage.run]
+source = ["amalgam"]
+omit = ["*tests*", "amalgam/__main__.py"]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
