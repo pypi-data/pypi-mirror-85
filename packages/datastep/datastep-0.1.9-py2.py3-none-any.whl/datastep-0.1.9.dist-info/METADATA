@@ -1,0 +1,131 @@
+Metadata-Version: 2.1
+Name: datastep
+Version: 0.1.9
+Summary: A base class and utilities for creating steps in DAGs that are tied to large amounts of data.
+Home-page: https://github.com/AllenCellModeling/datastep
+Author: Jackson Maxfield Brown
+Author-email: jacksonb@alleninstitute.org
+License: Allen Institute Software License
+Keywords: datastep,DAG,data,stepwise
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: Free for non-commercial use
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: boto3 (>=1.11.9)
+Requires-Dist: botocore (>=1.15.0)
+Requires-Dist: docutils
+Requires-Dist: gitpython (>=3.0.5)
+Requires-Dist: jinja2 (>=2.10.3)
+Requires-Dist: pandas
+Requires-Dist: prefect
+Requires-Dist: pyarrow
+Requires-Dist: python-dateutil
+Requires-Dist: quilt3 (>=3.1.10)
+Requires-Dist: urllib3
+Requires-Dist: tqdm
+Provides-Extra: all
+Requires-Dist: boto3 (>=1.11.9) ; extra == 'all'
+Requires-Dist: botocore (>=1.15.0) ; extra == 'all'
+Requires-Dist: docutils ; extra == 'all'
+Requires-Dist: gitpython (>=3.0.5) ; extra == 'all'
+Requires-Dist: jinja2 (>=2.10.3) ; extra == 'all'
+Requires-Dist: pandas ; extra == 'all'
+Requires-Dist: prefect ; extra == 'all'
+Requires-Dist: pyarrow ; extra == 'all'
+Requires-Dist: python-dateutil ; extra == 'all'
+Requires-Dist: quilt3 (>=3.1.10) ; extra == 'all'
+Requires-Dist: urllib3 ; extra == 'all'
+Requires-Dist: tqdm ; extra == 'all'
+Requires-Dist: codecov ; extra == 'all'
+Requires-Dist: flake8 ; extra == 'all'
+Requires-Dist: black ; extra == 'all'
+Requires-Dist: pytest ; extra == 'all'
+Requires-Dist: pytest-cov ; extra == 'all'
+Requires-Dist: pytest-raises ; extra == 'all'
+Requires-Dist: pytest-runner ; extra == 'all'
+Requires-Dist: bumpversion (>=0.5.3) ; extra == 'all'
+Requires-Dist: coverage (>=5.0a4) ; extra == 'all'
+Requires-Dist: flake8 (>=3.7.7) ; extra == 'all'
+Requires-Dist: ipython (>=7.5.0) ; extra == 'all'
+Requires-Dist: m2r (>=0.2.1) ; extra == 'all'
+Requires-Dist: pytest (>=4.3.0) ; extra == 'all'
+Requires-Dist: pytest-cov (==2.6.1) ; extra == 'all'
+Requires-Dist: pytest-raises (>=0.10) ; extra == 'all'
+Requires-Dist: pytest-runner (>=4.4) ; extra == 'all'
+Requires-Dist: Sphinx (<3,>=2.0.0b1) ; extra == 'all'
+Requires-Dist: sphinx-rtd-theme (>=0.4.3) ; extra == 'all'
+Requires-Dist: tox (>=3.5.2) ; extra == 'all'
+Requires-Dist: twine (>=1.13.0) ; extra == 'all'
+Requires-Dist: wheel (>=0.33.1) ; extra == 'all'
+Requires-Dist: altair ; extra == 'all'
+Requires-Dist: jupyterlab ; extra == 'all'
+Requires-Dist: matplotlib ; extra == 'all'
+Provides-Extra: dev
+Requires-Dist: bumpversion (>=0.5.3) ; extra == 'dev'
+Requires-Dist: coverage (>=5.0a4) ; extra == 'dev'
+Requires-Dist: flake8 (>=3.7.7) ; extra == 'dev'
+Requires-Dist: ipython (>=7.5.0) ; extra == 'dev'
+Requires-Dist: m2r (>=0.2.1) ; extra == 'dev'
+Requires-Dist: pytest (>=4.3.0) ; extra == 'dev'
+Requires-Dist: pytest-cov (==2.6.1) ; extra == 'dev'
+Requires-Dist: pytest-raises (>=0.10) ; extra == 'dev'
+Requires-Dist: pytest-runner (>=4.4) ; extra == 'dev'
+Requires-Dist: Sphinx (<3,>=2.0.0b1) ; extra == 'dev'
+Requires-Dist: sphinx-rtd-theme (>=0.4.3) ; extra == 'dev'
+Requires-Dist: tox (>=3.5.2) ; extra == 'dev'
+Requires-Dist: twine (>=1.13.0) ; extra == 'dev'
+Requires-Dist: wheel (>=0.33.1) ; extra == 'dev'
+Provides-Extra: interactive
+Requires-Dist: altair ; extra == 'interactive'
+Requires-Dist: jupyterlab ; extra == 'interactive'
+Requires-Dist: matplotlib ; extra == 'interactive'
+Provides-Extra: setup
+Requires-Dist: pytest-runner ; extra == 'setup'
+Provides-Extra: test
+Requires-Dist: codecov ; extra == 'test'
+Requires-Dist: flake8 ; extra == 'test'
+Requires-Dist: black ; extra == 'test'
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: pytest-cov ; extra == 'test'
+Requires-Dist: pytest-raises ; extra == 'test'
+
+# datastep
+
+[![Build Status](https://github.com/AllenCellModeling/datastep/workflows/Build%20Master/badge.svg)](https://github.com/AllenCellModeling/datastep/actions)
+[![Documentation](https://github.com/AllenCellModeling/datastep/workflows/Documentation/badge.svg)](https://AllenCellModeling.github.io/datastep)
+[![Code Coverage](https://codecov.io/gh/AllenCellModeling/datastep/branch/master/graph/badge.svg)](https://codecov.io/gh/AllenCellModeling/datastep)
+
+A base class and utility functions for creating pure functions steps for DAGs that are heavily tied to large amounts of
+data.
+
+---
+
+This library should rarely be used by itself, it was developed in pair with
+[cookiecutter-stepworkflow](https://github.com/AllenCellModeling/cookiecutter-stepworkflow)
+and you should look there for more context rich documentation.
+
+## Installation
+**Stable Release:**
+
+`pip install datastep`
+
+**Development Head:**
+
+`pip install git+https://github.com/AllenCellModeling/datastep.git`
+
+## Documentation
+For full package documentation please visit
+[AllenCellModeling.github.io/datastep](https://AllenCellModeling.github.io/datastep).
+
+## Development
+See [CONTRIBUTING.md](CONTRIBUTING.md) for information related to developing the
+code.
+
+***Free software: Allen Institute Software License***
+
+
