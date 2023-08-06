@@ -1,0 +1,24 @@
+{
+    "description": "PersistentVolumeClaim is a user's request for and claim to a persistent volume",
+    "json": {
+        "apiVersion": "v1",
+        "kind": "PersistentVolumeClaim",
+        "metadata": "<COMPONENT.Metadata>",
+        "spec": {
+            "accessModes": "<[]string>",
+            "dataSource": {
+                "apiGroup": "<string>",
+                "kind": "<string>",
+                "name": "<string>"
+            },
+            "resources": {
+                "limits": "<map[string]string>",
+                "requests": "<map[string]string>"
+            },
+            "selector": "<COMPONENT.Selector>",
+            "storageClassName": "<string>",
+            "volumeMode": "<string>",
+            "volumeName": "<string>"
+        }
+    }
+}

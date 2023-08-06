@@ -1,0 +1,21 @@
+{
+    "apiVersion": "<string>",
+    "kind": "<string>",
+    "metadata": "<COMPONENT.Metadata>",
+    "spec": {
+        "accessModes": "<[]string>",
+        "dataSource": {
+            "apiGroup": "<string>",
+            "kind": "<string>",
+            "name": "<string>"
+        },
+        "resources": {
+            "limits": "<map[string]string>",
+            "requests": "<map[string]string>"
+        },
+        "selector": "<COMPONENT.Selector>",
+        "storageClassName": "<string>",
+        "volumeMode": "<string>",
+        "volumeName": "<string>"
+    }
+}

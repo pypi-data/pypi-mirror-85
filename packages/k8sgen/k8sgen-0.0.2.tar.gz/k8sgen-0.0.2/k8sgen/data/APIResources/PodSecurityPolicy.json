@@ -1,0 +1,45 @@
+{
+    "description": "PodSecurityPolicy governs the ability to make requests that affect the Security Context that will be applied to a pod and container.",
+    "json": {
+        "apiVersion": "policy/v1beta1",
+        "kind": "PodSecurityPolicy",
+        "metadata": "<COMPONENT.Metadata>",
+        "spec": {
+            "allowPrivilegeEscalation": "<boolean>",
+            "allowedCSIDrivers": "<[]COMPONENT.AllowedCSIDriver>",
+            "allowedCapabilities": "<[]string>",
+            "allowedFlexVolumes": "<[]COMPONENT.AllowedFlexVolume>",
+            "allowedHostPaths": "<[]COMPONENT.AllowedHostPath>",
+            "allowedProcMountTypes": "<[]string>",
+            "allowedUnsafeSysctls": "<[]string>",
+            "defaultAddCapabilities": "<[]string>",
+            "defaultAllowPrivilegeEscalation": "<boolean>",
+            "forbiddenSysctls": "<[]string>",
+            "fsGroup": "<COMPONENT.UserGroup>",
+            "hostIPC": "<boolean>",
+            "hostNetwork": "<boolean>",
+            "hostPID": "<boolean>",
+            "hostPorts": "<[]COMPONENT.Range>",
+            "privileged": "<boolean>",
+            "readOnlyRootFilesystem": "<boolean>",
+            "requiredDropCapabilities": "<[]string>",
+            "runAsGroup": "<COMPONENT.UserGroup>",
+            "runAsUser": "<COMPONENT.UserGroup>",
+            "runtimeClass": {
+                "allowedRuntimeClassNames": "<[]string>",
+                "defaultRuntimeClassName": "<string>"
+            },
+            "seLinux": {
+                "rule": "<string>",
+                "seLinuxOptions": {
+                    "level": "<string>",
+                    "role": "<string>",
+                    "type": "<string>",
+                    "user": "<string>"
+                }
+            },
+            "supplementalGroups": "<COMPONENT.UserGroup>",
+            "volumes": "<[]COMPONENT.Volume>"
+        }
+    }
+}

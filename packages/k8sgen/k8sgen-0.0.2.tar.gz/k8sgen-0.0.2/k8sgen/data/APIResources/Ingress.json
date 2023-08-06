@@ -1,0 +1,22 @@
+{
+    "description": "Ingress is a collection of rules that allow inbound connections to reach the endpoints defined by a backend. An Ingress can be configured to give services externally-reachable urls, load balance traffic, terminate SSL, offer name based virtual hosting etc. DEPRECATED - This group version of Ingress is deprecated by networking.k8s.io/v1beta1 Ingress. See the release notes for more information.",
+    "json": {
+        "apiVersion": "extensions/v1beta1",
+        "kind": "Ingress",
+        "metadata": "<COMPONENT.Metadata>",
+        "spec": {
+            "backend": {
+                "resource": {
+                    "apiGroup": "<string>",
+                    "kind": "<string>",
+                    "name": "<string>"
+                },
+                "serviceName": "<string>",
+                "servicePort": "<string>"
+            },
+            "ingressClassName": "<string>",
+            "rules": "<[]COMPONENT.IngressRule>",
+            "tls": "<[]COMPONENT.IngressTLS>"
+        }
+    }
+}

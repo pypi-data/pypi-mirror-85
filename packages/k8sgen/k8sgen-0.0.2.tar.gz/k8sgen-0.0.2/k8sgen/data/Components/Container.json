@@ -1,0 +1,55 @@
+{
+    "args": "<[]string>",
+    "command": "<[]string>",
+    "env": "<[]COMPONENT.EnvironmentVariable>",
+    "envFrom": "<[]COMPONENT.EnvironmentVariableSource>",
+    "image": "<string>",
+    "imagePullPolicy": "<string>",
+    "lifecycle": {
+        "postStart": "<[]COMPONENT.LifecycleDefinition>",
+        "preStop": "<[]COMPONENT.LifecycleDefinition>"
+    },
+    "livenessProbe": "<COMPONENT.Probe>",
+    "name": "<string>",
+    "ports": "<[]COMPONENT.ContainerPort>",
+    "readinessProbe": "<COMPONENT.Probe>",
+    "resources": {
+        "limits": "<map[string]string>",
+        "requests": "<map[string]string>"
+    },
+    "securityContext": "<COMPONENT.SecurityContext>",
+    "startupProbe": {
+        "exec": {
+            "command": "<[]string>"
+        },
+        "failureThreshold": "<integer>",
+        "httpGet": {
+            "host": "<string>",
+            "httpHeaders": [
+                {
+                    "name": "<string>",
+                    "value": "<string>"
+                }
+            ],
+            "path": "<string>",
+            "port": "<string>",
+            "scheme": "<string>"
+        },
+        "initialDelaySeconds": "<integer>",
+        "periodSeconds": "<integer>",
+        "successThreshold": "<integer>",
+        "tcpSocket": {
+            "host": "<string>",
+            "port": "<string>"
+        },
+        "timeoutSeconds": "<integer>"
+    },
+    "stdin": "<boolean>",
+    "stdinOnce": "<boolean>",
+    "terminationMessagePath": "<string>",
+    "terminationMessagePolicy": "<string>",
+    "tty": "<boolean>",
+    "volumeDevices": "<[]COMPONENT.VolumeDevice>",
+    "volumeMounts": "<[]COMPONENT.VolumeMount>",
+    "workingDir": "<string>"
+}

@@ -1,0 +1,14 @@
+{
+    "description": "NetworkPolicy describes what network traffic is allowed for a set of Pods",
+    "json": {
+        "apiVersion": "networking.k8s.io/v1",
+        "kind": "NetworkPolicy",
+        "metadata": "<COMPONENT.Metadata>",
+        "spec": {
+            "egress": "<[]COMPONENT.NetworkPolicyEgress>",
+            "ingress": "<[]COMPONENT.NetworkPolicyIngress>",
+            "podSelector": "<COMPONENT.Selector>",
+            "policyTypes": "<[]string>"
+        }
+    }
+}

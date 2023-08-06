@@ -1,0 +1,29 @@
+{
+    "description": "Service is a named abstraction of software service (for example, mysql) consisting of local port (for example 3306) that the proxy listens on, and the selector that determines which pods will answer requests sent through the proxy.",
+    "json": {
+        "apiVersion": "v1",
+        "kind": "Service",
+        "metadata": "<COMPONENT.Metadata>",
+        "spec": {
+            "clusterIP": "<string>",
+            "externalIPs": "<[]string>",
+            "externalName": "<string>",
+            "externalTrafficPolicy": "<string>",
+            "healthCheckNodePort": "<integer>",
+            "ipFamily": "<string>",
+            "loadBalancerIP": "<string>",
+            "loadBalancerSourceRanges": "<[]string>",
+            "ports": "<[]COMPONENT.ServicePort>",
+            "publishNotReadyAddresses": "<boolean>",
+            "selector": "<map[string]string>",
+            "sessionAffinity": "<string>",
+            "sessionAffinityConfig": {
+                "clientIP": {
+                    "timeoutSeconds": "<integer>"
+                }
+            },
+            "topologyKeys": "<[]string>",
+            "type": "<string>"
+        }
+    }
+}

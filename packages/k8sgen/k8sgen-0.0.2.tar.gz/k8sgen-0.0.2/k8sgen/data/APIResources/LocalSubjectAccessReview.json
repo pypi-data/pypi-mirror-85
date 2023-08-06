@@ -1,0 +1,27 @@
+{
+    "description": "LocalSubjectAccessReview checks whether or not a user or group can perform an action in a given namespace. Having a namespace scoped resource makes it much easier to grant namespace scoped policy that includes permissions checking.",
+    "json": {
+        "apiVersion": "authorization.k8s.io/v1",
+        "kind": "LocalSubjectAccessReview",
+        "metadata": "<COMPONENT.Metadata>",
+        "spec": {
+            "extra": "<map[string][]string>",
+            "groups": "<[]string>",
+            "nonResourceAttributes": {
+                "path": "<string>",
+                "verb": "<string>"
+            },
+            "resourceAttributes": {
+                "group": "<string>",
+                "name": "<string>",
+                "namespace": "<string>",
+                "resource": "<string>",
+                "subresource": "<string>",
+                "verb": "<string>",
+                "version": "<string>"
+            },
+            "uid": "<string>",
+            "user": "<string>"
+        }
+    }
+}
