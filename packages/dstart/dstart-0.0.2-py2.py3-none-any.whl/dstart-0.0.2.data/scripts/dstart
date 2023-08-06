@@ -1,0 +1,166 @@
+#!python
+"""Simple menu to start docker services."""
+import argparse
+import subprocess
+import sys
+import yaml
+from collections import defaultdict
+from time import sleep
+
+from bullet import Check, keyhandler, utils
+from bullet.charDef import SPACE_CHAR
+
+
+class DependencyCheck(Check):
+    """Extend bullet.Check to follow dependencies."""
+
+    def __init__(self, prompt="", dep_tree=(), *args, **kwargs):
+        """Extract choices from dep_tree.
+
+        dep_tree expected format:
+        (
+            ("choice A", ("choice C", "Choice D")),
+            ("choice B", ("choice A", "Choice E")),
+            ("choice C", ()),
+            ("choice D", ("choice C",)),
+            ("choice E", ("choice B",)),
+
+        #    ^choices^    ^dependencies list^
+        )
+        """
+        self.dependencies = {k: v for k, v in dep_tree}
+        self.dependants = defaultdict(set)
+        for k, deps in dep_tree:
+            for d in deps:
+                self.dependants[d].add(k)
+        choices = [c[0] for c in dep_tree]
+        super().__init__(prompt=prompt, choices=choices, *args, **kwargs)
+
+    @keyhandler.register(SPACE_CHAR)
+    def toggleRow(self):
+        self.checked[self.pos] = not self.checked[self.pos]
+        self.printRow(self.pos)
+        if self.checked[self.pos]:
+            self.check_dependencies(self.choices[self.pos])
+        else:
+            self.clear_dependants(self.choices[self.pos])
+        self.refresh()
+
+    def check_dependencies(self, choice):
+        deps = self.dependencies[choice]
+        for dep in deps:
+            self.checked[self.choices.index(dep)] = True
+            self.check_dependencies(dep)
+
+    def clear_dependants(self, choice):
+        deps = self.dependants[choice]
+        for dep in deps:
+            self.checked[self.choices.index(dep)] = False
+            self.clear_dependants(dep)
+
+    def refresh(self):
+        if not self.pos == 0:
+            utils.moveCursorUp(self.pos)
+        utils.clearLine()
+        self.printRow(0)
+        for pos in range(1, len(self.choices)):
+            utils.moveCursorDown(0)
+            utils.clearLine()
+            self.printRow(pos)
+        if not self.pos == len(self.choices) - 1:
+            utils.moveCursorUp(len(self.choices) - self.pos - 1)
+
+
+def build_deps(compose_files):
+    deps = {}
+    for f in compose_files:
+        with open(f, "r") as dc:
+            docker_compose = yaml.load(dc, Loader=yaml.FullLoader)
+        for service, params in docker_compose["services"].items():
+            deps[service] = set()
+            for link in params.get("links", []):
+                dep, _ = link.split(":")
+                deps[service].add(dep)
+            for dep in params.get("depends_on", []):
+                deps[service].add(dep)
+    return sorted([(k, tuple(v)) for k, v in deps.items()])
+
+
+def exit_error(message):
+    """Exit script with exit code 1 and print message to stderr."""
+    if not message.endswith("\n"):
+        message = "{message}\n".format(message=message)
+    sys.stderr.write(message)
+    sys.exit(1)
+
+
+def make_command(compose_files, services, extra=[]):
+    command = ["docker-compose"]
+    for file in compose_files:
+        command.extend(["-f", file])
+    command.extend(extra)
+    command.extend(["up"])
+    command.extend(services)
+    return command
+
+
+def run_docker_compose(command):
+    try:
+        subprocess.Popen(command)
+        while True:
+            sleep(1)
+    except KeyboardInterrupt:
+        sys.exit()
+    except subprocess.CalledProcessError as err:
+        sys.exit(err.returncode)
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        prog="dstart", description='Command to select services to start with docker-compose.'
+    )
+    parser.add_argument(
+        '-f',
+        '--file',
+        action="extend",
+        nargs=1,
+        type=str,
+        help='Specify an alternate compose file (default: docker-compose.yml)',
+    )
+    parser.add_argument(
+        '--print-only',
+        action="store_true",
+        help='Just print docker-compose command and exit',
+    )
+    parser.add_argument(
+        "--extra",
+        nargs=argparse.REMAINDER,
+        help="Extra arguments will be passed to `docker-compose up` command",
+    )
+    args = parser.parse_args()
+
+    compose_files = args.file or ['docker-compose.yml']
+    services = build_deps(compose_files)
+
+    cli = DependencyCheck(
+        prompt="Press SPACEBAR to check which services you want run", check="> ", dep_tree=services
+    )
+
+    try:
+        selected_services = cli.launch()
+    except KeyboardInterrupt:
+        exit_error("Nothing to start")
+
+    if not selected_services:
+        exit_error("You must select one or more services")
+
+    command = make_command(compose_files, selected_services, args.extra or [])
+    if args.print_only:
+        print("Docker compose command:")
+        print("\t" + " ".join(command))
+    else:
+        run_docker_compose(command)
+
+
+if __name__ == '__main__':
+    main()

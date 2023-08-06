@@ -1,0 +1,57 @@
+Metadata-Version: 2.1
+Name: dstart
+Version: 0.0.2
+Summary: Easy docker-compose pick-and-start
+Home-page: https://github.com/nano-labs/dstart
+Author: Fabio Pachelli Pacheco
+Author-email: nanook.labs@gmail.com
+License: MIT
+Download-URL: https://github.com/nano-labs/dstart/archive/release/0.0.2.zip
+Keywords: docker docker-compose utils start
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Requires-Python: >3.6.0
+Description-Content-Type: text/markdown
+Requires-Dist: bullet (>=2.2.0)
+Requires-Dist: PyYAML (>=5.3.1)
+
+# dstart - Docker start
+Command to select services to start with docker-compose
+
+![Usage gif](https://github.com/nano-labs/dstart/blob/main/imgs/dstart.gif)
+
+## Install
+```
+pip3 install dstart
+```
+
+## Usage
+```shell
+> dstart
+```
+- SPACEBAR to select services
+- ENTER to start selected services
+
+```shell
+$ dstart --help
+usage: dstart [-h] [-f FILE] [--print-only] [--extra ...]
+
+Command to select services to start with docker-compose.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -f FILE, --file FILE  Specify an alternate compose file (default: docker-compose.yml)
+  --print-only          Just print docker-compose command and exit
+  --extra ...           Extra arguments will be passed to `docker-compose up` command
+```
+
+## How does it work
+It uses `docker-compose` command to list all running container then `docker-compose up <SERVICES>` to start them
+
+### See also
+[dkill](https://github.com/nano-labs/dkill) - Docker Kill
+
