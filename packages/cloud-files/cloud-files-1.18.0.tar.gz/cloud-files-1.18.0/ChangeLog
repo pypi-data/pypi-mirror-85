@@ -1,0 +1,286 @@
+CHANGES
+=======
+
+1.18.0
+------
+
+* test: add exception for python3.6
+* test: add some tests of the rm cli command
+* fix(secrets): describe use of GOOGLE\_APPLICATION\_CREDENTIALS
+* feat(cli): add rm command
+
+1.17.3
+------
+
+* fix(cli): ensure license file can be found for "cloudfiles license" command
+* fix(cli): broke single file xfer while implementing multiprocessing
+* chore: update changelog
+
+1.17.2
+------
+
+* refactor: make a cloudfiles\_cli package
+* chore: update changelog
+
+1.17.1
+------
+
+* fix: make sure cli can be accessed after installation
+
+1.17.0
+------
+
+* fix: requests isn't matched with urlllib3 1.26.0
+* docs: adjust placement of CLI example
+* feat(cli): added cp, ls, and license commands (#31)
+
+1.16.0
+------
+
+* perf: try using orjson (#29)
+
+1.15.1
+------
+
+* fix: add missing options to put\_jsons
+* chore: update changelog
+
+1.15.0
+------
+
+* perf: use libdeflate to improve gzip decompression (#28)
+* chore: update changelog
+
+1.14.1
+------
+
+* chore: update changelog
+* fix(secrets): don't create empty directories (#27)
+
+1.14.0
+------
+
+* chore: drop python 3.5, adds tests for py3.9
+* fix: make ascloudpath handle https correctly
+* fix(md5): need to check md5 before decompressing
+* fix(MemoryInterface): errors when fetching non-existent file
+* fix(get,get\_json): raise errors for scalar inputs for get
+* refactor: "multiple" misspelled
+* chore: update changelog
+
+1.13.2
+------
+
+* chore: update changelog
+* fix(ascloudpath): incorporates buckets (#25)
+
+0.13.1
+------
+
+* chore: update changelog
+* fix(secrets): correctly parse string and dict secrets
+
+0.13.0
+------
+
+* feat: reenable md5 for GCS (#24)
+* chore: update ChangeLog
+* feat: simplifying the paths engine to support e.g. gs://bucket datasets (#23)
+
+0.12.1
+------
+
+* fix(GCS): disable md5 and crc checking temporarily
+* fix(interfaces): retry should never have been commented out
+* chore: update changelog
+
+0.12.0
+------
+
+* chore: update changelog
+* fix: bump google-crc32c to a fixed version (#20)
+
+0.11.1
+------
+
+* fix(crc32c): call crc32c correctly
+* chore: update changelog
+
+0.11.0
+------
+
+* docs: fix missplaced "API"
+* feat+docs: check crc32c for GCS composite objects (#19)
+* fix(https): error condition was not returning appropriate triple tuple
+* feat: perform md5 integrity checks (#16)
+
+0.10.0
+------
+
+* docs: formatting of transcode
+* feat(size): get byte sizes of files (#17)
+
+0.9.2
+-----
+
+* feat(transfer): add paths argument
+* chore: update changelog
+* fix(transcode): accomodate tuple (filename, content) inputs
+
+0.9.1
+-----
+
+* fix(transcode): accept scalar file arguments
+* chore: update changelog
+
+0.9.0
+-----
+
+* fix: gzip decode had a syntax error
+* feat: add transcode to compression (#15)
+* docs: show how to use raw and total
+* fix: adds raw to cf.put
+* chore: update changelog
+
+0.8.0
+-----
+
+* docs: show how to use zstd
+* test: add zstd to two more tests
+* feat: adds zstd as a supported compressor (#14)
+
+0.7.0
+-----
+
+* perf:  gs and s3 use batch submission for delete (and exists too for gcs) (#13)
+
+0.6.1
+-----
+
+* test: expand compression test
+* chore: add brotli as a dependency
+* docs: fix typo in transfer docs, upload changelog
+
+0.6.0
+-----
+
+* chore: upgrade google storage to 1.30.0
+* docs: mention high efficiency transfers
+* docs: remove caveat from brotli support
+* test: ensure transfer\_to works with strings
+* test: show transfer\_from works
+* feat: allow transfer\_to/transfer\_from to accept cloudpaths
+* perf: skip compress/decompress cycle during transfers (#12)
+* feat: support for brotli on GCS (#11)
+* chore: update changelog
+
+0.5.5
+-----
+
+* fix: ensure desc is a string
+* fix: typo where paths should be total
+* chore: update changelog
+
+0.5.4
+-----
+
+* fix: accept py27 str and unicode types
+
+0.5.3
+-----
+
+* fix: handling generators for exists properly
+
+0.5.2
+-----
+
+* fix: make numpy optional and print warning message if its not installed
+* fix: import error for numpy in JSON decoder
+* docs: remove reference to BOSS from secrets
+
+0.5.1
+-----
+
+* fix: compress was being overridden
+* fix: handle tuples during duplicate detection step
+* chore: update changelog
+
+0.5.0
+-----
+
+* fix: remove pdb statement
+* docs: show how to use slice notation
+* feat: add get slice notation
+* docs: add comments to transfer\_to / transfer\_from
+* feat: add transfer\_to / transfer\_from
+* feat: adds mem:// protocol
+* docs: made green thread usage more clear
+* docs: add travis badge
+
+0.4.1
+-----
+
+* feat: add option for .cloudfiles/secrets instead of .cloudvolume/secrets
+* docs: add credential info to the README
+* fix: make sure to specify aws default region
+* fix: use pbr correctly
+* fix: use setup.py to add [test] option
+* fix: use automated\_test.py
+* fix: add pytest to dev requirements
+* fix: install moto in travis environment
+* test: add s3 mock testing
+* fix: makes sure content is set during error conditions
+* docs: add endpoint
+* docs: describe motivation
+* feat: add ability to control s3 endpoint
+
+0.4.0
+-----
+
+* docs: fix misstatement about how list works
+* docs: show how list works
+* docs: use\_https
+* feat: adds use\_https argument
+* docs: remove useless line below examples
+
+0.3
+---
+
+* docs: condensed and added examples
+* feat: add dict-like features to CloudFiles
+* chore: add ChangeLog
+
+0.2
+---
+
+* test: add tests for delete with generators
+* docs: state that put\_json(s) automatically supplies content\_type
+* docs: ensure all public facing methods have documentation
+* fix: make more functions work with generators properly
+* docs: document puts
+* Revert "refactor: remove unused import"
+* fix: accomodating generators more carefully
+* docs: describe most functions
+* docs: link to how to configure secrets
+* refactor: remove unused import
+* fix: update for the release
+
+0.1
+---
+
+* docs: add highlights and credits
+* refactor: remove dead code and make private methods explicit
+* docs: add some examples
+* chore: update package summary
+* test: add travis
+* refactor: put works with single files while puts does multiples
+* fix: remove CloudFile class for now
+* fix: make sure the correct path separators are used in Windows
+* fix: a simple test of most functions is working
+* feat: add default arguments for compression and cache control
+* fix: got it returning JSON
+* fix: import without errors
+* docs: add empty README
+* wip: first pass getting ready for the testing phase
+* wip: refactoring storage
+* Initial commit
