@@ -1,0 +1,379 @@
+%- macro version_description()
+%- include 'version_description'
+%- endmacro
+
+%- macro metrics_meta_table_text()
+%- include 'metrics_meta_table_text'
+%- endmacro
+
+%- macro data_validation_pre_text()
+%- include 'data_validation_pre_text'
+%- endmacro
+
+%- macro data_validation_post_text()
+%- include 'data_validation_post_text'
+%- endmacro
+
+%- macro obsfx_table_text()
+%- include 'obsfx_table_text'
+%- endmacro
+
+%- macro data_resampling_preamble()
+%- include 'data_resampling_preamble'
+%- endmacro
+
+%- macro data_resampling_postamble()
+%- include 'data_resampling_postamble'
+%- endmacro
+
+%- macro summary_statistics_table(summary_stats, category)
+%- set span = human_statistics.values() | length
+%- set human_category = human_categories[category]
+\FloatBarrier
+\clearpage
+\begin{landscape}
+  \pagestyle{empty}
+  \small
+  \begin{longtabu} to \linewidth {
+      X[2] *{\VAR{span * 3}}{| l}
+    }
+    \caption{Table of \VAR{human_category} data summary statistics.} \\
+    \toprule
+    Aligned Pair &
+    \multicolumn{\VAR{span}}{c}{Observation} &
+    \multicolumn{\VAR{span}}{|c}{Forecast} &
+    \multicolumn{\VAR{span}}{|c}{Reference Forecast} \\
+    \BLOCK{for i in range(3)}
+    \BLOCK{for m in human_statistics.values()}
+    & \VAR{m}
+    \BLOCK{endfor}
+    \BLOCK{endfor}
+    \\
+    \midrule
+    \endfirsthead
+    \caption{Table of \VAR{human_category} data summary statistics. (cont.)} \\
+    \toprule
+    Aligned Pair &
+    \multicolumn{\VAR{span}}{c}{Observation} &
+    \multicolumn{\VAR{span}}{|c}{Forecast} &
+    \multicolumn{\VAR{span}}{|c}{Reference Forecast} \\
+    \BLOCK{for i in range(3)}
+    \BLOCK{for m in human_statistics.values()}
+    & \VAR{m}
+    \BLOCK{endfor}
+    \BLOCK{endfor}
+    \\
+    \midrule
+    \endhead
+    \endfoot
+    \bottomrule
+    \endlastfoot
+    %- for stat_result in summary_stats
+    \VAR{stat_result.name | html_to_tex }
+    %- for thing in ['observation', 'forecast', 'reference_forecast']
+    %- for metric in human_statistics.keys()
+    %- set ns = namespace(found=false)
+    %- for mval in stat_result.values
+    %- if mval.category == category and mval.metric == thing + '_' + metric
+    %- set ns.found = true
+    %- if -0.01 < mval.value < 0.01
+    & \VAR{'%.2e' | format(mval.value)}
+    %- else
+    & \VAR{'%0.3g' | format(mval.value)}
+    %- endif
+    %- endif
+    %- endfor
+    %- if not ns.found
+    &
+    %- endif
+    %- endfor
+    %- endfor
+    \\
+    %- endfor
+  \end{longtabu}
+\end{landscape}
+\clearpage
+\FloatBarrier
+%- endmacro
+
+%- macro metrics_meta_table()
+\VAR{metrics_meta_table_text() | link_filter | html_to_tex}
+\begin{table}[h]
+  \caption{Table of metrics metadata.}
+  \small
+  \begin{tabu} to \linewidth {
+      X[l] | l l l
+    }
+    Name & Normalization & Deadband(\%) & Cost Parameters\\
+    \midrule
+    %- for pfxobs in report.raw_report.processed_forecasts_observations
+    \VAR{pfxobs.name | html_to_tex} & \VAR{pfxobs.normalization_factor} & \VAR{pfxobs.uncertainty} & \hyperref[cost:\VAR{pfxobs.cost.name | html_to_tex | replace('_', '+')}]{\VAR{pfxobs.cost.name | html_to_tex}} \\
+    %- endfor
+  \end{tabu}
+\end{table}
+%- endmacro
+
+%- macro metric_table(report_metrics, category, metric_ordering)
+%- set human_category = human_categories[category]
+\FloatBarrier
+\clearpage
+\begin{landscape}
+  \pagestyle{empty}
+  \small
+  \begin{longtabu} to \linewidth {
+      X *{\VAR{metric_ordering | length}}{| l}
+    }
+    \caption{Table of \VAR{human_category} metrics.} \\
+    \toprule
+    Forecast\BLOCK{for m in metric_ordering} & \VAR{human_metrics[m].replace('^', '\\textasciicircum')}\BLOCK{endfor} \\
+    \midrule
+    \endfirsthead
+    \caption{Table of \VAR{human_category} metrics (cont.)} \\
+    \toprule
+    Forecast\BLOCK{for m in metric_ordering} & \VAR{human_metrics[m].replace('^', '\\textasciicircum')}\BLOCK{endfor} \\
+    \midrule
+    \endhead
+    \endfoot
+    \bottomrule
+    \endlastfoot
+    %- for fx_result in report_metrics
+    \VAR{fx_result.name | html_to_tex}
+    %- for metric in metric_ordering
+    %- set ns = namespace(found=false)
+    %- for mval in fx_result.values
+    %- if mval.category == category and mval.metric == metric
+    %- set ns.found = true
+    %- if -0.01 < mval.value < 0.01
+    & \VAR{'%.2e' | format(mval.value)}
+    %- else
+    & \VAR{'%0.3g' | format(mval.value)}
+    %- endif
+    %- endif
+    %- endfor
+    %- if not ns.found
+    &
+    %- endif
+    %- endfor
+    \\
+    %- endfor
+  \end{longtabu}
+\end{landscape}
+\clearpage
+\FloatBarrier
+%- endmacro
+
+%- macro data_parameters_table()
+\FloatBarrier
+\clearpage
+\begin{landscape}
+  \renewcommand{\arraystretch}{1.7}
+  \pagestyle{empty}
+  \small
+  \begin{longtabu} to \linewidth {
+      X[1.5, l] X[l] X[l] *{3}{ | X[1.5, l] X[l] X[l]}
+    }
+    \caption{Table of data alignment parameters.} \\
+    \toprule
+    \multicolumn{3}{c}{Aligned Pairs} &
+    \multicolumn{3}{c}{Observations} &
+    \multicolumn{3}{c}{Forecasts} &
+    \multicolumn{3}{c}{Reference Forecasts} \\
+    Name & Interval Label & Interval Length &
+    Name & Interval Label & Interval Length &
+    Name & Interval Label & Interval Length &
+    Name & Interval Label & Interval Length \\
+    \midrule
+    \endfirsthead
+    \caption{Table of data alignment parameters (cont.)} \\
+    \endhead
+    \endfoot
+    \bottomrule
+    \endlastfoot
+    %- for pfxobs in report.raw_report.processed_forecasts_observations
+    \VAR{pfxobs.name | html_to_tex} &
+    \VAR{pfxobs.interval_label} &
+    \VAR{pfxobs.interval_length.total_seconds()//60 | int} min &
+    %- if pfxobs.original.observation is defined
+    \href{\VAR{dash_url + '/observations/' + pfxobs.original.observation.observation_id}}{\VAR{pfxobs.original.observation.name}} &
+    %- else
+    \href{\VAR{dash_url + '/aggregates/' + pfxobs.original.aggregate.aggregate_id}}{\VAR{pfxobs.original.aggregate.name}} &
+    %- endif
+    \VAR{pfxobs.original.data_object.interval_label} &
+    \VAR{pfxobs.original.data_object.interval_length.total_seconds()//60 | int} min &
+    %- if pfxobs.original.forecast.constant_values is defined
+    \href{\VAR{dash_url + '/forecasts/cdf/' + pfxobs.original.forecast.forecast_id}}{\VAR{pfxobs.original.forecast.name}} &
+    %- elif pfxobs.original.forecast.constant_value is defined
+    \href{\VAR{dash_url + '/forecasts/cdf/single/' + pfxobs.original.forecast.forecast_id}}{\VAR{pfxobs.original.forecast.name}} &
+    %- else
+    \href{\VAR{dash_url + '/forecasts/single/' + pfxobs.original.forecast.forecast_id}}{\VAR{pfxobs.original.forecast.name}} &
+    %- endif
+    \VAR{pfxobs.original.forecast.interval_label} &
+    \VAR{pfxobs.original.forecast.interval_length.total_seconds()//60 | int} min &
+    %- if pfxobs.original.reference_forecast != none
+    %- if pfxobs.original.reference_forecast.constant_values is defined
+    \href{\VAR{dash_url + '/forecasts/cdf/' + pfxobs.original.reference_forecast.forecast_id}}{\VAR{pfxobs.original.reference_forecast.name}} &
+    %- elif pfxobs.original.forecast.constant_value is defined
+    \href{\VAR{dash_url + '/forecasts/cdf/single/' + pfxobs.original.reference_forecast.forecast_id}}{\VAR{pfxobs.original.reference_forecast.name}} &
+    %- else
+    \href{\VAR{dash_url + '/forecasts/single/' + pfxobs.original.reference_forecast.forecast_id}}{\VAR{pfxobs.original.reference_forecast.name}} &
+    %- endif
+    \VAR{pfxobs.original.reference_forecast.interval_label} &
+    \VAR{pfxobs.original.reference_forecast.interval_length.total_seconds()//60 | int} min
+    %- else
+    None &
+    %- endif
+    \\
+    %- endfor
+  \end{longtabu}
+\end{landscape}
+\FloatBarrier
+\clearpage
+%- endmacro
+
+
+%- macro data_validation_section()
+\VAR{data_validation_pre_text() | html_to_tex}
+\VAR{data_validation_post_text() | html_to_tex}
+%- if report.report_parameters.filters
+\VAR{validation_metadata_table(report.report_parameters.filters)}
+\VAR{validation_results_table(report.raw_report.processed_forecasts_observations, report.raw_report.processed_forecasts_observations | unique_flags_filter(true), 'before')}
+  %- if report.raw_report.processed_forecasts_observations | unique_flags_filter(false) | length
+    \VAR{validation_results_table(report.raw_report.processed_forecasts_observations, report.raw_report.processed_forecasts_observations | unique_flags_filter(false), 'after')}
+  %- else
+    No filters with discard after resample were available because this report was created with Solar Forecast Arbiter version 1.0rc3 or earlier (find the version information at the end of the report).
+    Visit the \href{\VAR{report_url}}{web version of this report} to recompute it and apply the revised data filtering and resampling procedures.
+  %- endif
+%- endif
+%- endmacro
+
+
+%- macro validation_metadata_table(quality_filters)
+\begin{table}[h]
+  \caption{Table of data validation filters.}
+  \small
+  \begin{tabu} to \linewidth {
+      X[l] | l l
+    }
+    Quality flags & Discard before resample & Resample threshold (\%)\\
+    \midrule
+    %- for qfilter in quality_filters
+    \VAR{qfilter.quality_flags | join(', ')} & \VAR{qfilter.discard_before_resample} & \VAR{qfilter.resample_threshold_percentage} \\
+    %- endfor
+  \end{tabu}
+\end{table}
+%- endmacro
+
+
+%- macro validation_results_table(proc_fxobs_list, unique_flags, before_resample)
+\begin{landscape}
+  \pagestyle{empty}
+  \small
+  \renewcommand{\arraystretch}{1.7}
+  \begin{longtabu} to \linewidth {
+      X[2] | X[2] | *{\VAR{unique_flags | length}}{ | l}
+    }
+    \caption{Table of data validation results \VAR{before_resample} resampling.} \\
+    \toprule
+    \multicolumn{1}{l}{} &  \multicolumn{1}{l ||}{} &
+    \multicolumn{\VAR{unique_flags | length}}{c}{Quality Flag} \\
+    \cline{3-\VAR{(unique_flags | length) + 2 }}
+    \multirow{1}{*}{Aligned Pair} &  \multirow{1}{*}{Observation}
+    %- for qfilter in unique_flags
+    & \rot{\parbox{6.2cm}{\raggedright{\VAR{qfilter}}}}
+    %- endfor
+    \\
+    \midrule
+    \endfirsthead
+    \caption{Table of data validation results \VAR{before_resample} resampling (cont.)} \\
+    \multirow{1}{*}{Aligned Pair} &  \multirow{1}{*}{Observation}
+    %- for qfilter in unique_flags
+    & \rot{\parbox{6.2cm}{\raggedright{\VAR{qfilter}}}}
+    %- endfor
+    \\
+    \midrule
+    \endhead
+    \endfoot
+    \bottomrule
+    \endlastfoot
+    %- for pfxobs in proc_fxobs_list
+    \VAR{pfxobs.name | html_to_tex} & \VAR{pfxobs.original.data_object.name}
+    %- for qfilter in unique_flags
+    %- set ns  = namespace(found=false)
+    %- for res in pfxobs.validation_results
+    %- if res.flag == qfilter
+    %- set ns.found = true
+    & \VAR{res.count}
+    %- endif
+    %- endfor
+    %- if not ns.found
+    &
+    %- endif
+    %- endfor
+    \\
+    %- endfor
+  \end{longtabu}
+\end{landscape}
+%- endmacro
+
+
+%- macro data_resampling_section()
+\VAR{data_resampling_preamble() | html_to_tex}
+\VAR{data_resampling_postamble() | html_to_tex}
+\VAR{data_preprocessing_table(report.raw_report.processed_forecasts_observations)}
+%- endmacro
+
+%- macro data_preprocessing_table(proc_fxobs_list)
+%- set preproc_steps = []
+%- for proc_fxobs in proc_fxobs_list
+%- for res in proc_fxobs.preprocessing_results
+%- if res.name not in preproc_steps
+%- set preproc_steps = preproc_steps.append(res.name)
+%- endif
+%- endfor
+%- endfor
+\clearpage
+\begin{landscape}
+  \pagestyle{empty}
+  \small
+  \renewcommand{\arraystretch}{1.7}
+  \begin{longtabu} to \linewidth {
+      X[2, l] *{\VAR{preproc_steps | length}}{ | X[1, l]}
+    }
+    \caption{Table of data preprocessing results.} \\
+    \toprule
+    & \multicolumn{\VAR{preproc_steps | length}}{c}{Number of points} \\
+    %- for step in preproc_steps
+    & \ccbr{\VAR{step}}
+    %- endfor
+    \\
+    \midrule
+    \endfirsthead
+    \caption{Table of data preprocessing results (cont.)} \\
+    %- for step in preproc_steps
+    & \ccbr{\VAR{step}}
+    %- endfor
+    \\
+    \midrule
+    \endhead
+    \endfoot
+    \bottomrule
+    \endlastfoot
+    %- for pfxobs in proc_fxobs_list
+    \VAR{pfxobs.name | html_to_tex}
+    %- for pstep in preproc_steps
+    %- set ns = namespace(found=false)
+    %- for res in pfxobs.preprocessing_results
+    %- if res.name == pstep
+    %- set ns.found = true
+    & \VAR{res.count}
+    %- endif
+    %- endfor
+    %- if not ns.found:
+    &
+    %- endif
+    %- endfor
+    \\
+    %- endfor
+  \end{longtabu}
+\end{landscape}
+%- endmacro

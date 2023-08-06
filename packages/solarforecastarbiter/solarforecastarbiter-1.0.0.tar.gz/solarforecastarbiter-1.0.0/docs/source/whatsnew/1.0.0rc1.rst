@@ -1,0 +1,144 @@
+.. _whatsnew_100rc1:
+
+1.0.0rc1 (July 6, 2020)
+-----------------------
+
+This is the first 1.0 release candidate.
+
+
+API Changes
+~~~~~~~~~~~
+* Added :py:func:`solarforecastarbiter.reference_forecasts.utils.check_persistence_compatibility`
+  to check if a pair of Forecast and Observation objects are compatible for
+  making a persistence forecast (:pull:`478`)
+* Added :py:func:`solarforecastarbiter.validation.tasks.validate_daily_defaults`
+  to validate all observations using the immediate validation function
+  along with stale and interpolated flags (:pull:`482`) (:issue:`453`)
+* Added :py:func:`solarforecastarbiter.validation.tasks.apply_immediate_validation`,
+  :py:func:`solarforecastarbiter.validation.tasks.apply_daily_validation`,
+  and :py:func:`solarforecastarbiter.validation.tasks.apply_validation`
+  convience functions (:pull:`482`)
+* The ``dailyvalidation`` command of the CLI has been renamed to ``validate`` and a
+  new ``--only-missing/--not-only-missing`` flag may be used to run validation
+  only for periods that have not been previously validated (:pull:`484`)
+* Added :py:func:`solarforecastarbiter.api.APISession.get_observation_values_not_flagged`
+  to find days where an observation is not flagged with a given flag (:pull:`484`)
+* Removed `validation.tasks.immediate_observation_validation`,
+  `validation.tasks.daily_single_observation_validation`,
+  and `validation.tasks.daily_observation_validation` in favor of
+  :py:func:`solarforecastarbiter.validation.tasks.fetch_and_validate_observation`
+  and :py:func:`solarforecastarbiter.validation.tasks.fetch_and_validate_all_observations` (:pull:`484`)
+* Added support for probabilistic persistence forecasts with
+  :py:func:`solarforecastarbiter.reference_forecasts.persistence.persistence_probabilistic` and
+  :py:func:`solarforecastarbiter.reference_forecasts.persistence.persistence_probabilistic_timeofday` (:issue:`195`) (:pull:`434`)
+* :py:func:`solarforecastarbiter.reports.figures.plotly_figures.timeseries_plots`
+  now returns a third element to represent the probability vs. time plot
+  if needed, otherwise this element is None. (:pull:`467`)
+* Added capability to import reference data from the EIA Open Data API in the
+  :py:mod:`solarforecastarbiter.io.reference_observations.eia` module. (:issue:`431`) (:pull:`485`)
+* Added :py:class:`solarforecastarbiter.datamodel.ConstantCost`,
+  :py:class:`solarforecastarbiter.datamodel.TimeOfDayCost`,
+  :py:class:`solarforecastarbiter.datamodel.DatetimeCost`,
+  :py:class:`solarforecastarbiter.datamodel.ErrorBandCost`,
+  and :py:class:`solarforecastarbiter.datamodel.Cost`
+  and added :py:func:`solarforecastarbiter.metrics.deterministic.cost`,
+  and added ``costs`` kwarg to
+  :py:func:`solarforecastarbiter.metrics.preprocessing.process_forecast_observations`
+  to support calculating deterministic cost metrics (:pull:`487`)
+* Added a ``cost`` parameter and removed ``cost_per_unit_error`` from
+  :py:class:`solarforecastarbiter.datamodel.ForecastObservation`,
+  :py:class:`solarforecastarbiter.datamodel.ForecastAggregate`, and
+  :py:class:`solarforecastarbiter.datamodel.ProcessedForecastObservation`
+  and added the ``costs`` parameter to
+  :py:class:`solarforecastarbiter.datamodel.ReportParameters` to support
+  calculating cost metrics in reports (:pull:`487`)
+* Removed :py:mod:`solarforecastarbiter.metrics.valuation` (:pull:`487`)
+* Add :py:func:`solarforecastarbiter.reference_forecasts.make_latest_probabilistic_persistence_forecasts`
+  to generate reference probabilistic persistence forecasts (:pull:`490`)
+* :py:func:`solarforecastarbiter.io.api.get_probabilistic_forecast_values`
+  now returns a DataFrame with string column names. It previously returned a
+  DataFrame with floats for column names. For example, if the columns were
+  previously described by ``Float64Index([25.0, 50.0, 75.0], dtype='float64')``
+  they are now described by ``Index(['25.0', '50.0', '75.0'], dtype='object')``.
+  (:pull:`496`)
+* :py:func:`solarforecastarbiter.io.utils.serialize_timeseries` and
+  :py:func:`solarforecastarbiter.io.utils.deserialize_timeseries` can now
+  handle DataFrames in addition to Series. (:issue:`495`, :pull:`496`)
+* :py:func:`solarforecastarbiter.reference_forecasts.utils.get_data_start_end`
+  now requires an `issue_time` argument (:pull:`497`)
+* Added a ``forecast_fill_method`` parameter to
+  :py:class:`solarforecastarbiter.datamodel.ReportParameters`
+  (:issue:`423`) (:pull:`493`)
+* Added :py:func:`solarforecastarbiter.metrics.preprocessing.apply_fill` that
+  drops or fills missing or ``numpy.nan`` values with the last valid value or
+  with a float. (:issue:`423`) (:pull:`493`)
+* Added new arguments `forecast_fill_method`, `start`, and `end` to
+  :py:func:`solarforecastarbiter.metrics.preprocessing.process_forecast_observations`
+  (:issue:`423`) (:pull:`493`)
+
+
+Enhancements
+~~~~~~~~~~~~
+* Support parsing of Site climate zones from the API (:pull:`481`)
+* Reapply validation to Observation data when fetched for a Report
+  (:issue:`376`)
+* Added the 'DAILY VALIDATION APPLIED' quality flag to ensure daily validation
+  is applied to all observation values (:issue:`377`) (:pull:`484`)
+* :py:func:`solarforecastarbiter.validation.tasks.fetch_and_validate_observation`
+  and :py:func:`solarforecastarbiter.validation.tasks.fetch_and_validate_all_observations`
+  can make use of
+  :py:func:`solarforecastarbiter.api.APISession.get_observation_values_not_flagged`
+  in order to only validate periods that have not yet had daily validation applied
+  (:issue:`377`) (:pull:`484`)
+* Reference probabilistic forecasts provided using the Persistence Ensemble
+  (PeEn) method. (:issue:`195`) (:pull:`434`)
+* Reports can be created for probabilistic forecasts.
+  (:issue:`266`, :pull:`467`)
+* Added net load reference observations from the US ISOs/RTOs: CAISO, ERCOT,
+  ISO-NE, MISO, NYISO, PJM, and SPP. (:issue:`431`) (:pull:`485`)
+* Implemented the calculation deterministic cost metrics in reports, including
+  a constant cost factor, a time-of-day varying factor, a datetime varying
+  factor, and a cost that depends on the magnitude of the error.
+  (:pull:`487`) (:pull:`501`) (:issue:`126`) (:issue:`492`)
+* Allow daily persistence forecasts to start at anytime instead of
+  restricted to midnight UTC (:pull:`497`) (:issue:`471`)
+* Added support for filling missing and ``numpy.nan`` data for forecasts.
+  (:issue:`423`) (:pull:`493`)
+
+
+Bug fixes
+~~~~~~~~~
+* Check if a Forecast and Observation are compatible for generating a
+  persistence forecast before creating reference persistence forecasts
+  (:issue:`472`) (:pull:`478`)
+* When applying validation, only the 'USER FLAGGED' flag is preserved
+  instead of all previous flags (:pull:`484`)
+* Drop NaN before computing histogram when applying
+  :py:func:`solarforecastarbiter.validation.validator.detect_clipping`
+  (:pull:`484`)
+* Fixed an issue where data for object pairs with `forecast_type` of `event`
+  caused an `AttributeError` in the
+  :py:mod:`solarforecastarbiter.io.api` module. (:issue:`486`, :pull:`489`)
+* Fix ambiguity in forecast issue time of day (:pull:`497`)
+* Fix data start/end for day of week net load persistence (:pull:`497`)
+* Fix issue with inability to create ProbabilisticForecast and
+  ProbabilisticForecastConstantValue from Forecast.from_dict.
+  (:issue:`502`, :pull:`503`)
+* Fix missing cells in validation, preprocessing, and metrics tables when
+  an object did not contain the relevant data, and ensure correct
+  ordering in PDF tables. (:issue:`504`, :issue:`512`, :pull:`513`)
+
+* Fix bug where long forecast names were cut off when used as x axis labels on
+  total metrics plots. (:pull:`515`)
+
+Contributors
+~~~~~~~~~~~~
+
+* Will Holmgren (:ghuser:`wholmgren`)
+* Leland Boeman (:ghuser:`lboeman`)
+* Cliff Hansen (:ghuser:`cwhanse`)
+* Tony Lorenzo (:ghuser:`alorenzo175`)
+* Justin Sharp (:ghuser:`MrWindAndSolar`)
+* Aidan Tuohy
+* Adam Wigington (:ghuser:`awig`)
+* David Larson (:ghuser:`dplarson`)

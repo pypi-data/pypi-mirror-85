@@ -1,0 +1,52 @@
+.. _whatsnew_100:
+
+.. py:currentmodule:: solarforecastarbiter
+
+1.0.0 (November 17, 2020)
+-------------------------
+
+API Changes
+~~~~~~~~~~~
+* Added :py:func:`solarforecastarbiter.io.api.APISession.get_value_gaps`
+  and similar methods to get any gaps in observation, forecast, and
+  probabilistic forecast data. (:pull:`617`)
+* Added :py:func:`solarforecastarbiter.reference_forecasts.main.fill_nwp_forecast_gaps`,
+  :py:func:`solarforecastarbiter.reference_forecasts.main.fill_persistence_forecasts_gaps`,
+  and :py:func:`solarforecastarbiter.reference_forecasts.main.fill_probabilistic_persistence_forecasts_gaps`
+  to support filling of gaps in NWP and persistence forecasts
+  (:issue:`459`, :pull:`617`)
+
+
+Enhancements
+~~~~~~~~~~~~
+* Add reference aggregates of mean SURFRAD GHI and DNI, and
+  sum of PV plants in Portland, OR (:issue:`473`, :pull:`615`)
+* Added a CLI option of ``--gaps-only`` when updating reference
+  observation data to only update periods where there are data
+  gaps (:issue:`459`, :pull:`616`)
+* Added CLI commands to update or fill in missing reference
+  persistence and NWP forecasts (:issue:`459`, :pull:`617`)
+
+Bug fixes
+~~~~~~~~~
+* Fix labeling of probabilistic forecasts of thresholds (``axis='x'``).
+  (:issue:`611`, :pull:`613`)
+* Added configurable timeouts when fetching NWP forecast grids to avoid
+  timeout exceptions (:issue:`130`, :pull:`614`)
+* Fixed bug causing report observation and forecast metadata download to fail.
+  (:pull:`618`)
+* Fixed bug causing incorrect x axis labelling of report metric plots.
+  (:pull:`619`)
+
+
+Contributors
+~~~~~~~~~~~~
+
+* Will Holmgren (:ghuser:`wholmgren`)
+* Leland Boeman (:ghuser:`lboeman`)
+* Cliff Hansen (:ghuser:`cwhanse`)
+* Tony Lorenzo (:ghuser:`alorenzo175`)
+* Justin Sharp (:ghuser:`MrWindAndSolar`)
+* Aidan Tuohy
+* Adam Wigington (:ghuser:`awig`)
+* David Larson (:ghuser:`dplarson`)
