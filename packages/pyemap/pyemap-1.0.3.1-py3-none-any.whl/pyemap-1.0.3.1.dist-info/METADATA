@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: pyemap
+Version: 1.0.3.1
+Summary: PyeMap: A python package for automatic identification of electron and hole transfer pathways in proteins.
+Home-page: UNKNOWN
+Author: James Gayvert
+Author-email: jrg444@gmail.com
+License: BSD-3-Clause
+Platform: UNKNOWN
+Requires-Dist: numpy
+Requires-Dist: networkx
+Requires-Dist: biopython
+Requires-Dist: scipy
+Requires-Dist: pillow (==7.2.0)
+Requires-Dist: reportlab
+Requires-Dist: pygraphviz
+Requires-Dist: svglib
+
+PyeMap (pronounced Pie-Map) is a python package for automatic identification and visualization of electron and hole transfer pathways in proteins. 
+PyeMap analysis happens in 3 steps. The first step is parsing a PDB or CIF file provided by the user or fetched from the RCSB database. 
+The next step is constructing the graph theory model of the protein crystal structure. Finally, the shortest paths between a 
+specified electron/hole source to the surface or to a specified electron/hole acceptor can be calculated.
+
+All PyeMap wheels distributed on PyPI are 3-BSD licensed.
+
+GitHub: https://github.com/gayverjr/pyemap
+
+Documentation: https://pyemap.readthedocs.io/en/latest/
+
+
