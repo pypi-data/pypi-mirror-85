@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: code-video-generator
+Version: 0.3.2
+Summary: Generate videos that walkthrough code
+Home-page: https://github.com/sleuth-io/code-video-generator
+Author: Don Brown
+Author-email: dbrown@sleuth.io
+Maintainer: Don Brown
+Maintainer-email: dbrown@sleuth.io
+License: APLv2 License
+Keywords: video
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Topic :: Software Development
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: manimce (>=0.1.0)
+Requires-Dist: librosa (>=0.8.0)
+Requires-Dist: pyglet (>=1.5.8)
+Requires-Dist: ffmpeg-python (>=0.2.0)
+Requires-Dist: pangocairocffi (>=0.4.0)
+Requires-Dist: pangocffi (>=0.8.0)
+Requires-Dist: wrapt (>=1.12.1)
+Provides-Extra: dev
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: flake8 ; extra == 'dev'
+Requires-Dist: pylint ; extra == 'dev'
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: reorder-python-imports ; extra == 'dev'
+Requires-Dist: mkdocs (>=1.1) ; extra == 'dev'
+Requires-Dist: mkdocstrings (>=0.13.6) ; extra == 'dev'
+Requires-Dist: mkdocs-material (>=6.1.5) ; extra == 'dev'
+Provides-Extra: doc
+Requires-Dist: mkdocs (>=1.1) ; extra == 'doc'
+Requires-Dist: mkdocstrings (>=0.13.6) ; extra == 'doc'
+Requires-Dist: mkdocs-material (>=6.1.5) ; extra == 'doc'
+Provides-Extra: test
+Requires-Dist: pytest ; extra == 'test'
+
+UNKNOWN
+
+
