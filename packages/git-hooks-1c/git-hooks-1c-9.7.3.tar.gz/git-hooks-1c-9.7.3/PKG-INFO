@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: git-hooks-1c
+Version: 9.7.3
+Summary: Git hooks utilities for 1C:Enterprise
+Home-page: https://github.com/Cujoko/git-hooks-1c
+License: MIT
+Keywords: 1c,git,pre-commit,v8reader,v8unpack,gcomp
+Author: Cujoko
+Author-email: cujoko@gmail.com
+Requires-Python: >=3.9,<4.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: Russian
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development
+Classifier: Topic :: Utilities
+Requires-Dist: cjk-commons (>=3.5,<4.0)
+Requires-Dist: fleep (>=1.0,<2.0)
+Requires-Dist: loguru (>=0.5,<0.6)
+Requires-Dist: parse-1c-build (>=5.14,<6.0)
+Requires-Dist: plumbum (>=1.6,<2.0)
+Project-URL: Repository, https://github.com/Cujoko/git-hooks-1c
+Description-Content-Type: text/markdown
+
+Набор утилит для перехватчиков (hooks) Git для работы с 1С
+===
+
+Что делает
+---
+
+При установке пакета в каталоге скриптов интерпретатора Python создаётся исполняемый файл *gh1c.exe*. Смотри список 
+поддерживаемых команд в составе.
+
+Требования
+---
+
+- Windows
+- Python 3.7 и выше. Каталоги интерпретатора и скриптов Python должны быть прописаны в переменной окружения Path
+- Пакеты virtualenv и virtualenvwrapper-win
+- Пакет [parse-1c-build][1] с необходимыми настройками
+
+Состав
+---
+
+- *install.py* — скрипт, создающий хуки в *.git/hooks* проекта. Запускается командой *install*.
+- *uninstall.py* — скрипт, удаляющий хуки из *.git/hooks* проекта. Запускается командой *uninstall*.
+- *pre-commit.sample* — образец hook-скрипта, запускающего *pre-commit-1c.bat*
+- *pre_commit.py* — скрипт для разборки *epf*-, *erf*-, *ert*- и *md*-файлов с помощью пакета 
+[parse-1c-build][1] в каталоги, которые затем добавляются в индекс и помещаются в git-репозиторий. Запускается командой 
+*pre_commit*.
+
+[1]: https://github.com/Cujoko/parse-1c-build
+
