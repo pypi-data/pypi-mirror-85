@@ -1,0 +1,72 @@
+# Thunar Plugins
+
+This Python package extends the [Thunar file manager](https://docs.xfce.org/xfce/thunar/start).
+
+## Prerequisites
+
+For these Thunar plugins to work, you will need to have installed:
+
+- [Thunar](https://gitlab.xfce.org/xfce/thunar) (obviously)
+- [thunarx-python](https://gitlab.xfce.org/bindings/thunarx-python)
+- [PyGObject](https://pypi.org/project/PyGObject/)
+
+## Installation
+
+Install this package from PyPI via
+
+```bash
+pip install thunar-plugins
+```
+
+> If that fails, try ```python3 -m pip install --user thunar-plugins```
+
+Or install it from the repository root via
+
+```bash
+pip install .
+```
+
+### Activating the Thunar Plugins
+
+As it is not possible (or at least deprecated) with `setuptools` to install files outside of the
+”Python-realm”, one more step is required to activate the Thunar plugins after
+installation:
+
+```bash
+thunar-plugins activate
+```
+
+> If that doesn't work, try ```python3 -m thunar_plugins activate```
+
+That should place an appropriate symlink for Thunar(x-python) to find the plugins.
+
+For Thunar to see the new plugins, you will need to restart it once:
+
+```bash
+thunar -q  # or simply log out and back in again
+```
+
+## Adding More Plugins
+
+This `thunar_plugins` package can act as a stepping stone for other packages
+that add plugins to Thunar: The activator script loads all `thunar_plugin`
+entry points provided by any installed Python package. So if another package
+provides a Thunar plugin (e.g. a new context menu entry) with class
+`mypackage.mymodule.mysubmodule.MyThunarPlugin`, that package may adjust its
+`setup.cfg` like this and stop caring about how to tell Thunar where the plugin
+can be found:
+
+```ini
+[options]
+install_requires = thunar_plugins
+
+[options.entry_points]
+thunar_plugin =
+    my-thunar-plugin = mypackage.mymodule.mysubmodule:MyThunarPlugin
+```
+
+>>>
+For proper display in the `thunar-plugins` settings dialog, every Python Thunar
+plugin class registered like this should also have a short `name` and a
+one-sentence `description` string attribute.
+>>>
