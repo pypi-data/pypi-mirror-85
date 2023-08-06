@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: soco-device
+Version: 0.0.5.2
+Summary: Log memory usage and auto choose device for machine learning model inference
+Home-page: https://www.soco.ai
+Author: xiaopeng lu
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: Free for non-commercial use
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# soco-device
+A package for logging, saving, and automatically choosing device during model inference stage.
+
+# Usage
+1. install package
+
+    pip install soco-device
+
+
+2. example usage
+```python
+from soco_device import DeviceCheck
+
+dc = DeviceCheck()
+# Return a device name ('cpu'/'cuda') and a list of gpu ids, if any
+model_name_or_path = <model name> 
+n_gpu_needed = 2
+device_name, device_ids = dc.get_device_by_model(model_name_or_path, n_gpu=n_gpu_needed)
+
+# If only single gpu, set device_name as 'cuda:gpu_id'
+# For either cpu or multi gpu case, set device_name as 'cpu'/'cuda'
+device_name = '{}:{}'.format(device_name, device_ids[0]) if len(device_ids) == 1 else device_name
+
+device = torch.device(device_name)
+
+# ......
+# Set up multi gpu training if available
+if len(device_ids) > 1:
+    model = torch.nn.DataParallel(model, device_ids=device_ids)
+
+
+# log gpu memory needed in inference stage
+dc.log_start()
+# ......
+# inference model for one time here
+dc.log_end()
+dc.save(model_name_or_path)
+```
+
+
+
