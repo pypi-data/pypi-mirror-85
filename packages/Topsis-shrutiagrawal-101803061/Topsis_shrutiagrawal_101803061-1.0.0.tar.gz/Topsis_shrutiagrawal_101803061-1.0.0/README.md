@@ -1,0 +1,38 @@
+
+
+# TOPSIS-Python
+
+## Submitted By: Shruti agrawal 101803061
+***
+## What is TOPSIS
+
+Technique for Order Preference by Similarity to Ideal Solution (TOPSIS) originated in the 1980s as a multi-criteria decision making method. TOPSIS chooses the alternative of shortest Euclidean distance from the ideal solution, and greatest distance from the negative-ideal solution.know more from [wikipedia]("https://en.wikipedia.org/wiki/TOPSIS")
+
+## How to use this package:
+
+TOPSIS-Shruti-101803061 can be run as in the following example:
+## In Command Prompt(originally) :
+>```python topsis.py data.csv "1,1,1,1" "+,+,-,+" result.csv```
+## After installing package 
+>```Topsis_shruti_101803061 data.csv "1,1,1,1" "+,+,-,+"result.csv``` 
+## sample dataset:
+
+|Model|Corr|Rseq|RMSE|Accuracy|
+|-----|----|----|----|--------|
+|M1	  |0.79	|0.62|	1.25|	60.89|
+|M2|	0.66|	0.44|	2.89|	63.07
+|M3	|0.56|	0.31|	1.57|	62.87
+|M4	|0.82|	0.67|	2.68|	70.19
+|M5	|0.75|	0.56|	1.3	|80.39
+
+## output
+
+|Model|Corr|Rseq|RMSE|Accuracy|Topsis_score|Rank|
+|-----|----|----|----|--------|------|----|
+|M1	  |0.79	|0.62|	1.25|	60.89|0.772209735|2|
+|M2|	0.66|	0.44|	2.89|	63.07|0.225598754|5|
+|M3	|0.56|	0.31|	1.57|	62.87|0.438897317|4|
+|M4	|0.82|	0.67|	2.68|	70.19|0.523877871|3|
+|M5	|0.75|	0.56|	1.3	|80.39|0.811388708|1|
+
+
