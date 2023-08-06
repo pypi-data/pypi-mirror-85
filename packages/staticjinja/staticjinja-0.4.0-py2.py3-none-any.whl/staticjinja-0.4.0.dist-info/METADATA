@@ -1,0 +1,103 @@
+Metadata-Version: 2.1
+Name: staticjinja
+Version: 0.4.0
+Summary: jinja based static site generator
+Home-page: https://github.com/staticjinja/staticjinja
+Author: Ceasar Bautista
+Author-email: cbautista2010@gmail.com
+Maintainer: Nick Crews
+Maintainer-email: nicholas.b.crews@gmail.com
+License: UNKNOWN
+Project-URL: Documentation, https://staticjinja.readthedocs.io
+Project-URL: GitHub Project, https://github.com/staticjinja/staticjinja
+Project-URL: Issue Tracker, https://github.com/staticjinja/staticjinja/issues
+Keywords: jinja,static,website
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Development Status :: 4 - Beta
+Requires-Python: >=3
+Description-Content-Type: text/x-rst
+Requires-Dist: docopt
+Requires-Dist: easywatch
+Requires-Dist: jinja2
+
+staticjinja
+===========
+
+.. image:: https://badge.fury.io/py/staticjinja.png
+    :target: http://badge.fury.io/py/staticjinja
+    :alt: PyPi Badge
+
+.. image:: https://travis-ci.com/staticjinja/staticjinja.svg?branch=main
+    :target: https://travis-ci.com/staticjinja/staticjinja
+    :alt: Travis CI status
+
+.. image:: https://readthedocs.org/projects/staticjinja/badge/?version=stable
+    :target: https://staticjinja.readthedocs.io/en/stable/?badge=stable&style=plastic
+    :alt: Documentation Status
+
+**staticjinja** is a library that makes it easy to build static sites using
+Jinja2_.
+
+Many static site generators are complex, with long manuals and unnecessary
+features. But using template engines to build static websites is really useful.
+
+staticjinja is designed to be lightweight (under 500 lines of source code),
+and to be easy to use, learn, and extend, enabling you to focus on making your
+site.
+
+.. code-block:: bash
+
+    $ mkdir templates
+    $ vim templates/index.html
+    $ staticjinja watch
+    Building index.html...
+    Templates built.
+    Watching 'templates' for changes...
+    Press Ctrl+C to stop.
+
+
+Installation
+------------
+
+To install staticjinja, simply:
+
+.. code-block:: bash
+
+    $ pip install staticjinja
+
+Documentation
+-------------
+
+Documentation is available at
+http://staticjinja.readthedocs.org/en/latest/.
+
+Contribute
+----------
+
+#. Check for open issues or open a fresh issue to start a discussion
+   around a feature idea or a bug.
+#. Fork `the repository`_ on GitHub to start making your changes to
+   the **main** branch (or branch off of it).
+#. Send a pull request and bug the maintainer until it gets merged and
+   published. :) Make sure to add yourself to AUTHORS_.
+
+.. _`the repository`: https://github.com/staticjinja/staticjinja
+.. _AUTHORS: https://github.com/staticjinja/staticjinja/blob/main/AUTHORS.rst
+.. _Jinja2: http://jinja.pocoo.org/
+
+
