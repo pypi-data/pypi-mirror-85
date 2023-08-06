@@ -1,0 +1,33 @@
+[console_scripts]
+lemur = lemur.manage:main
+
+[lemur.plugins]
+acme_http_issuer = lemur.plugins.lemur_acme.plugin:ACMEHttpIssuerPlugin
+acme_issuer = lemur.plugins.lemur_acme.plugin:ACMEIssuerPlugin
+adcs_issuer = lemur.plugins.lemur_adcs.plugin:ADCSIssuerPlugin
+adcs_source = lemur.plugins.lemur_adcs.plugin:ADCSSourcePlugin
+atlas_metric = lemur.plugins.lemur_atlas.plugin:AtlasMetricPlugin
+atlas_metric_redis = lemur.plugins.lemur_atlas_redis.plugin:AtlasMetricRedisPlugin
+aws_destination = lemur.plugins.lemur_aws.plugin:AWSDestinationPlugin
+aws_s3 = lemur.plugins.lemur_aws.plugin:S3DestinationPlugin
+aws_sns = lemur.plugins.lemur_aws.plugin:SNSNotificationPlugin
+aws_source = lemur.plugins.lemur_aws.plugin:AWSSourcePlugin
+cfssl_issuer = lemur.plugins.lemur_cfssl.plugin:CfsslIssuerPlugin
+cryptography_issuer = lemur.plugins.lemur_cryptography.plugin:CryptographyIssuerPlugin
+csr_export = lemur.plugins.lemur_csr.plugin:CSRExportPlugin
+digicert_cis_issuer = lemur.plugins.lemur_digicert.plugin:DigiCertCISIssuerPlugin
+digicert_cis_source = lemur.plugins.lemur_digicert.plugin:DigiCertCISSourcePlugin
+digicert_issuer = lemur.plugins.lemur_digicert.plugin:DigiCertIssuerPlugin
+email_notification = lemur.plugins.lemur_email.plugin:EmailNotificationPlugin
+entrust_issuer = lemur.plugins.lemur_entrust.plugin:EntrustIssuerPlugin
+entrust_source = lemur.plugins.lemur_entrust.plugin:EntrustSourcePlugin
+java_keystore_export = lemur.plugins.lemur_jks.plugin:JavaKeystoreExportPlugin
+java_truststore_export = lemur.plugins.lemur_jks.plugin:JavaTruststoreExportPlugin
+kubernetes_destination = lemur.plugins.lemur_kubernetes.plugin:KubernetesDestinationPlugin
+openssl_export = lemur.plugins.lemur_openssl.plugin:OpenSSLExportPlugin
+sftp_destination = lemur.plugins.lemur_sftp.plugin:SFTPDestinationPlugin
+slack_notification = lemur.plugins.lemur_slack.plugin:SlackNotificationPlugin
+vault_desination = lemur.plugins.lemur_vault_dest.plugin:VaultDestinationPlugin
+vault_source = lemur.plugins.lemur_vault_dest.plugin:VaultSourcePlugin
+verisign_issuer = lemur.plugins.lemur_verisign.plugin:VerisignIssuerPlugin
+
