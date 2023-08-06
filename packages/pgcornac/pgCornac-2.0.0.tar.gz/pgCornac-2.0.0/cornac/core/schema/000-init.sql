@@ -1,0 +1,6 @@
+CREATE SCHEMA cornac;
+
+CREATE TABLE IF NOT EXISTS cornac.schema_migration_log (
+  version TEXT UNIQUE NOT NULL PRIMARY KEY,
+  cdate TIMESTAMP DEFAULT NOW()
+);

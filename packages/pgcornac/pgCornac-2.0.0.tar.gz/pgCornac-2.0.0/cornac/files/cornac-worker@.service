@@ -1,0 +1,13 @@
+[Unit]
+Description=RDS-compatible Managed-Postgres Background Worker for queue %I
+After=network.target
+
+[Service]
+Type=simple
+User=cornac-worker
+Group=cornac-worker
+Environment=SYSTEMD=1
+ExecStart=/opt/cornac/bin/cornac-shell cornac --verbose worker --processes 1 --threads 4 --queues "%I"
+
+[Install]
+WantedBy=multi-user.target

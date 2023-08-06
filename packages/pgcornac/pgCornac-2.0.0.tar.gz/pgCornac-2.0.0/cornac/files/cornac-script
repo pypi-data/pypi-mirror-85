@@ -1,0 +1,12 @@
+#!/bin/bash -eu
+#
+# Execute a Python script in cornac runtime.
+#
+# This wrapper is usable as a shebang : #!/usr/bin/env cornac-script.
+#
+# It ensure cornac env is loaded and passe all arguments to cornac script
+# command.
+
+shell=${0/-script/-shell}
+path=$(readlink -e "$1")
+exec $shell cornac --verbose script "$path" "${@:1:}"
