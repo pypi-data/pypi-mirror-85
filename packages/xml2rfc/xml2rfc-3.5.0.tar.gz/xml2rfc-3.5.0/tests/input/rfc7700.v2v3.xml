@@ -1,0 +1,528 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE rfc SYSTEM "rfc2629-xhtml.ent">
+<?rfc compact="yes"?>
+<?rfc subcompact="no"?>
+<?rfc sortrefs="yes"?>
+<?rfc strict="yes"?>
+<?rfc symrefs="yes"?>
+<?rfc toc="yes"?>
+<?rfc tocdepth="4"?>
+<rfc submissionType="IETF" category="std" consensus="yes" number="7700" ipr="trust200902" obsoletes="" updates="" xml:lang="en" version="3">
+  <link rel="prev" href="https://datatracker.ietf.org/doc/draft-ietf-precis-nickname"/>
+  <front>
+    <title abbrev="PRECIS: Nickname">Preparation, Enforcement, and Comparison of Internationalized Strings Representing Nicknames</title>
+    <seriesInfo name="RFC" value="7700"/>
+    <author initials="P." surname="Saint-Andre" fullname="Peter Saint-Andre">
+      <organization>&amp;yet</organization>
+      <address>
+        <email>peter@andyet.com</email>
+        <uri>https://andyet.com/</uri>
+      </address>
+    </author>
+    <?v3xml2rfc silence="The document date .*? is more than 3 days away from today's date" ?>
+    <date month="December" year="2015"/>
+    <area>Applications</area>
+    <workgroup>PRECIS</workgroup>
+    <keyword>nickname</keyword>
+    <keyword>SIP</keyword>
+    <keyword>SIMPLE</keyword>
+    <keyword>XMPP</keyword>
+    <keyword>MSRP</keyword>
+    <keyword>XCON</keyword>
+    <keyword>chatrooms</keyword>
+    <abstract>
+      <t>This document describes methods for handling Unicode strings representing memorable, human-friendly names (called "nicknames", "display names", or "petnames") for people, devices, accounts, websites, and other entities.</t>
+    </abstract>
+  </front>
+  <middle>
+    <section anchor="intro" numbered="true" toc="default">
+      <name>Introduction</name>
+      <section anchor="overview" numbered="true" toc="default">
+        <name>Overview</name>
+        <t>A number of technologies and applications provide the ability for a person to choose a memorable, human-friendly name in a communications context, or to set such a name for another entity such as a device, account, contact, or website.  Such names are variously called "nicknames" (e.g., in chat room applications), "display names" (e.g., in Internet mail), or "petnames" (see <xref target="PETNAME-SYSTEMS" format="default"/>); for consistency, these are all called "nicknames" in this document.</t>
+        <t>Nicknames are commonly supported in technologies for textual chat rooms, e.g., Internet Relay Chat <xref target="RFC2811" format="default"/> and multi-party chat technologies based on the Extensible Messaging and Presence Protocol (XMPP) <xref target="RFC6120" format="default"/> <xref target="XEP-0045" format="default"/>, the Message Session Relay Protocol (MSRP) <xref target="RFC4975" format="default"/> <xref target="RFC7701" format="default"/>, and Centralized Conferencing (XCON) <xref target="RFC5239" format="default"/> <xref target="XCON-SYSTEM" format="default"/>.  Recent chat room technologies also allow internationalized nicknames because they support characters from outside the ASCII range <xref target="RFC20" format="default"/>, typically by means of the Unicode character set <xref target="Unicode" format="default"/>.  Although such nicknames tend to be used primarily for display purposes, they are sometimes used for programmatic purposes as well (e.g., kicking users or avoiding nickname conflicts).</t>
+        <t>A similar usage enables a person to set their own preferred display name or to set a preferred display name for another user (e.g., the "display-name" construct in the Internet message format <xref target="RFC5322" format="default"/> and <xref target="XEP-0172" format="default"/> in XMPP).</t>
+        <t>Memorable, human-friendly names are also used in contexts other than personal messaging, such as names for devices (e.g., in a network visualization application), websites (e.g., for bookmarks in a web browser), accounts (e.g., in a web interface for a list of payees in a bank account), people (e.g., in a contact list application), and the like.</t>
+        <t>The rules specified in this document can be applied in all of the foregoing contexts.</t>
+        <t>To increase the likelihood that memorable, human-friendly names will work in ways that make sense for typical users throughout the world, this document defines rules for preparing, enforcing, and comparing internationalized nicknames.</t>
+      </section>
+      <section anchor="terms" numbered="true" toc="default">
+        <name>Terminology</name>
+        <t>Many important terms used in this document are defined in <xref target="RFC7564" format="default"/>, <xref target="RFC6365" format="default"/>, and <xref target="Unicode" format="default"/>.</t>
+        <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <xref target="RFC2119" format="default"/>.</t>
+      </section>
+    </section>
+    <section anchor="rules" numbered="true" toc="default">
+      <name>Nickname Profile</name>
+      <section anchor="rules-rules" numbered="true" toc="default">
+        <name>Rules</name>
+        <t>The following rules apply within the Nickname profile of the PRECIS FreeformClass.</t>
+        <ol spacing="normal" type="1">
+          <li>Width Mapping Rule: There is no width-mapping rule (such a rule is not necessary because width mapping is performed as part of normalization using Normalization Form KC (NFKC) as specified below).</li>
+          <li>
+            <t>Additional Mapping Rule: The additional mapping rule consists of the following sub-rules.
+            </t>
+            <ol spacing="normal" type="1">
+              <li>Any instances of non-ASCII space MUST be mapped to ASCII space (U+0020); a non-ASCII space is any Unicode code point having a general category of "Zs", naturally with the exception of U+0020.</li>
+              <li>Any instances of the ASCII space character at the beginning or end of a nickname MUST be removed (e.g., "stpeter " is mapped to "stpeter").</li>
+              <li>Interior sequences of more than one ASCII space character MUST be mapped to a single ASCII space character (e.g., "St  Peter" is mapped to "St Peter").</li>
+            </ol>
+          </li>
+          <li>Case Mapping Rule: Unicode Default Case Folding MUST be applied,
+      as defined in the Unicode Standard
+          <xref target="Unicode" format="default"/> (at the time of this writing, the
+          algorithm is specified in Chapter 3 of <xref target="Unicode7.0" format="default"/>).  In applications
+      that prohibit conflicting nicknames, this rule helps to reduce
+      the possibility of confusion by ensuring that nicknames
+      differing only by case (e.g., "stpeter" vs. "StPeter") would not
+      be presented to a human user at the same time.</li>
+          <li>Normalization Rule: The string MUST be normalized using Unicode NFKC.  Because NFKC is more "aggressive" in finding matches than other normalization forms (in the terminology of Unicode, it performs both canonical and compatibility decomposition before recomposing code points), this rule helps to reduce the possibility of confusion by increasing the number of characters that would match (e.g., <u format="num-name">&#x2163;</u> would match the combination of <u format="num-name">&#x0049;</u> and <u format="num-name">&#x0056;</u>).</li>
+          <li>Directionality Rule: There is no directionality rule. The "Bidi Rule" (defined in <xref target="RFC5893" format="default"/>) and similar rules are unnecessary and inapplicable to nicknames, because it is perfectly acceptable for a given nickname to be presented differently in different layout systems (e.g., a user interface that is configured to handle primarily a right-to-left script versus an interface that is configured to handle primarily a left-to-right script), as long as the presentation is consistent in any given layout system.</li>
+        </ol>
+      </section>
+      <section anchor="rules-prep" numbered="true" toc="default">
+        <name>Preparation</name>
+        <t>An entity that prepares a string for subsequent enforcement according to this profile MUST ensure that the string consists only of Unicode code points that conform to the FreeformClass string class defined in <xref target="RFC7564" format="default"/>.  In addition, the entity MUST ensure that the string is encoded as UTF-8 <xref target="RFC3629" format="default"/>.</t>
+      </section>
+      <section anchor="rules-enforce" numbered="true" toc="default">
+        <name>Enforcement</name>
+        <t>An entity that performs enforcement according to this profile MUST
+  prepare a string as described in <xref target="rules-prep" format="default"/> and MUST also apply the
+  following rules specified in <xref target="rules-rules" format="default"/> in the order shown:
+</t>
+        <ol spacing="normal" type="1">
+          <li>Additional Mapping Rule</li>
+          <li>Normalization Rule</li>
+          <li>Directionality Rule</li>
+        </ol>
+        <t>After all of the foregoing rules have been enforced, the entity MUST
+  ensure that the nickname is not zero bytes in length (this is done
+  after enforcing the rules to prevent applications from mistakenly
+  omitting a nickname entirely, because when internationalized
+  characters are accepted, a non-empty sequence of characters can
+  result in a zero-length nickname after canonicalization).</t>
+      </section>
+      <section anchor="rules-comp" numbered="true" toc="default">
+        <name>Comparison</name>
+        <t>  An entity that performs comparison of two strings according to this
+  profile MUST prepare each string as specified in  
+<xref target="rules-prep" format="default"/> and
+  MUST apply the following rules specified in <xref target="rules-rules" format="default"/> in the order
+  shown:
+</t>
+        <ol spacing="compact" type="1">
+          <li>Additional Mapping Rule</li>
+          <li>Case Mapping Rule</li>
+          <li>Normalization Rule</li>
+          <li>Directionality Rule</li>
+        </ol>
+        <t>  The two strings are to be considered equivalent if they are an exact
+  octet-for-octet match (sometimes called "bit-string identity").
+</t>
+      </section>
+    </section>
+    <section anchor="examples" numbered="true" toc="default">
+      <name>Examples</name>
+      <t>The following examples illustrate a small number of nicknames that are consistent with the format defined above, along with the output string resulting from application of the PRECIS rules (note that the characters &lt; and &gt; are used to delineate the actual nickname and are not part of the nickname strings).</t>
+      <table>
+	 <name>A Sample of Legal Nicknames</name>
+	 <thead>
+	    <tr>
+	       <th>#</th><th>Nickname</th><th>Output for comparison</th>
+	    </tr>
+	 </thead>
+	 <tbody>
+	    <tr><td>1</td><td>&lt;Foo&gt;</td><td>&lt;foo&gt;</td></tr>
+	    <tr><td>2</td><td>&lt;foo&gt;</td><td>&lt;foo&gt;</td></tr>
+	    <tr><td>3</td><td>&lt;Foo Bar&gt;</td><td>&lt;foo bar&gt;</td></tr>
+	    <tr><td>4</td><td>&lt;foo bar&gt;</td><td>&lt;foo bar&gt;</td></tr>
+	    <tr><td>5</td><td><u format="&lt;{char}&gt; (&lt;{num}&gt;)">&#x3a3;</u></td><td><u format="name-num">&#x3c3;</u></td></tr>
+	    <tr><td>6</td><td><u format="&lt;{char}&gt; (&lt;{num}&gt;)">&#x3c3;</u></td><td><u format="name-num">&#x3c3;</u></td></tr>
+	    <tr><td>7</td><td><u format="&lt;{char}&gt; (&lt;{num}&gt;)">&#x3c2;</u></td><td><u format="name-num">&#x3c3;</u></td></tr>
+	    <tr><td>8</td><td>&lt;<u format='name-num' anchor='black-chess-king'>&#x265a;</u>&gt;</td><td><xref target='black-chess-king'/></td></tr>
+	    <tr><td>9</td><td>&lt;Richard <u format="{num}" anchor='richard-iv'>&#x2163;</u>&gt;</td><td>&lt;richard iv&gt;</td></tr>
+	 </tbody>
+      </table>
+      <t>
+
+	 Regarding examples 5, 6, and 7: applying Unicode Default Case Folding
+	 to <u format="name-num">&#x03a3;</u> results in <u format="name-num">&#x03c3;</u>, and the same is true of <u format="name-num">&#x03c2;</u>; therefore, the comparison
+	 operation defined in <xref target="rules-comp" format="default"/>
+	 would result in matching of the nicknames in examples 5, 6, and 7.
+      </t>
+      <t>
+
+    Regarding example 8: symbol characters such as <u format="name-num">&#x265a;</u>
+    are allowed by the PRECIS FreeformClass and thus can be
+    used in nicknames.  Regarding example 9: applying Unicode Default
+    Case Folding to <u format="name-num">&#x2163;</u> results in
+    <u format="name-num">&#x2173;</u>, and applying NFKC to
+    <u format="name-num">&#x2173;</u> results in
+    <u format="name-num">i</u>
+    <u format="name-num">v</u>.</t>
+    </section>
+    <section anchor="use" numbered="true" toc="default">
+      <name>Use in Application Protocols</name>
+      <t>This specification defines only the PRECIS-based rules for handling of nickname strings.  It is the responsibility of an application protocol (e.g., MSRP, XCON, or XMPP) or application definition to specify the protocol slots in which nickname strings can appear, the entities that are expected to enforce the rules governing nickname strings, and when in protocol processing or interface handling the rules need to be enforced.  See Section 6 of <xref target="RFC7564" format="default"/> for guidelines about using PRECIS profiles in applications.</t>
+      <t>Above and beyond the PRECIS-based rules specified here, application protocols can also define application-specific rules governing nickname strings (rules regarding the minimum or maximum length of nicknames, further restrictions on allowable characters or character ranges, safeguards to mitigate the effects of visually similar characters, etc.).</t>
+      <t>Naturally, application protocols can also specify rules governing the actual use of nicknames in applications (reserved nicknames, authorization requirements for using nicknames, whether certain nicknames can be prohibited, handling of duplicates, the relationship between nicknames and underlying identifiers such as SIP URIs or Jabber IDs, etc.).</t>
+      <t>Entities that enforce the rules specified in this document are encouraged to be liberal in what they accept by following this procedure:</t>
+      <ol spacing="normal" type="1">
+        <li>Where possible, map characters (e.g, through width mapping, additional mapping, case mapping, or normalization) and accept the mapped string.</li>
+        <li>If mapping is not possible (e.g., because a character is disallowed in the FreeformClass), reject the string.</li>
+      </ol>
+    </section>
+    <section anchor="iana" numbered="true" toc="default">
+      <name>IANA Considerations</name>
+      <t>The IANA shall add the following entry to the PRECIS Profiles Registry:</t>
+      <dl newline="false" spacing="normal">
+        <dt>Name:</dt>
+        <dd>Nickname</dd>
+        <dt>Base Class:</dt>
+        <dd>FreeformClass</dd>
+        <dt>Applicability:</dt>
+        <dd>Nicknames in messaging and text conferencing technologies; petnames for devices, accounts, and people; and other uses of nicknames or petnames.</dd>
+        <dt>Replaces:</dt>
+        <dd>None</dd>
+        <dt>Width Mapping Rule:</dt>
+        <dd>None (handled via NFKC)</dd>
+        <dt>Additional Mapping Rule:</dt>
+        <dd>Map non-ASCII space characters to ASCII space, strip leading and trailing space characters, map interior sequences of multiple space characters to a single ASCII space.</dd>
+        <dt>Case Mapping Rule:</dt>
+        <dd>Map uppercase and titlecase characters to lowercase using Unicode Default Case Folding.</dd>
+        <dt>Normalization Rule:</dt>
+        <dd>NFKC</dd>
+        <dt>Directionality Rule:</dt>
+        <dd>None</dd>
+        <dt>Enforcement:</dt>
+        <dd>To be specified by applications.</dd>
+        <dt>Specification:</dt>
+        <dd>RFC 7700 (this document)</dd>
+      </dl>
+    </section>
+    <section anchor="security" numbered="true" toc="default">
+      <name>Security Considerations</name>
+      <section anchor="security-precis" numbered="true" toc="default">
+        <name>Reuse of PRECIS</name>
+        <t>The security considerations described in <xref target="RFC7564" format="default"/> apply to the FreeformClass string class used in this document for nicknames.</t>
+      </section>
+      <section anchor="security-unicode" numbered="true" toc="default">
+        <name>Reuse of Unicode</name>
+        <t>The security considerations described in <xref target="UTS39" format="default"/> apply to the use of Unicode characters in nicknames.</t>
+      </section>
+      <section anchor="security-similar" numbered="true" toc="default">
+        <name>Visually Similar Characters</name>
+        <t><xref target="RFC7564" format="default"/> describes some of the security considerations related to visually similar characters, also called "confusable characters" or "confusables".</t>
+        <t>Although the mapping rules defined in <xref target="rules" format="default"/> of this document are designed, in part, to reduce the possibility of confusion about nicknames, this document does not provide more-detailed recommendations regarding the handling of visually similar characters, such as those provided in <xref target="UTS39" format="default"/>.</t>
+      </section>
+    </section>
+  </middle>
+  <back>
+    <references>
+      <name>References</name>
+      <references>
+        <name>Normative References</name>
+        <reference anchor="RFC2119" target="https://www.rfc-editor.org/info/rfc2119" xml:base="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml">
+          <front>
+            <title>Key words for use in RFCs to Indicate Requirement Levels</title>
+            <seriesInfo name="DOI" value="10.17487/RFC2119"/>
+            <seriesInfo name="RFC" value="2119"/>
+            <seriesInfo name="BCP" value="14"/>
+            <author initials="S." surname="Bradner" fullname="S. Bradner">
+              <organization/>
+            </author>
+            <date year="1997" month="March"/>
+            <abstract>
+              <t>In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized. This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.</t>
+            </abstract>
+          </front>
+        </reference>
+        <reference anchor="RFC3629" target="https://www.rfc-editor.org/info/rfc3629" xml:base="http://xml.resource.org/public/rfc/bibxml/reference.RFC.3629.xml">
+          <front>
+            <title>UTF-8, a transformation format of ISO 10646</title>
+            <seriesInfo name="DOI" value="10.17487/RFC3629"/>
+            <seriesInfo name="RFC" value="3629"/>
+            <seriesInfo name="STD" value="63"/>
+            <author initials="F." surname="Yergeau" fullname="F. Yergeau">
+              <organization/>
+            </author>
+            <date year="2003" month="November"/>
+            <abstract>
+              <t>ISO/IEC 10646-1 defines a large character set called the Universal Character Set (UCS) which encompasses most of the world's writing systems.  The originally proposed encodings of the UCS, however, were not compatible with many current applications and protocols, and this has led to the development of UTF-8, the object of this memo.  UTF-8 has the characteristic of preserving the full US-ASCII range, providing compatibility with file systems, parsers and other software that rely on US-ASCII values but are transparent to other values.  This memo obsoletes and replaces RFC 2279.</t>
+            </abstract>
+          </front>
+        </reference>
+        <reference anchor="RFC5893" target="https://www.rfc-editor.org/info/rfc5893" xml:base="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5893.xml">
+          <front>
+            <title>Right-to-Left Scripts for Internationalized Domain Names for Applications (IDNA)</title>
+            <seriesInfo name="DOI" value="10.17487/RFC5893"/>
+            <seriesInfo name="RFC" value="5893"/>
+            <author initials="H." surname="Alvestrand" fullname="H. Alvestrand" role="editor">
+              <organization/>
+            </author>
+            <author initials="C." surname="Karp" fullname="C. Karp">
+              <organization/>
+            </author>
+            <date year="2010" month="August"/>
+            <abstract>
+              <t>The use of right-to-left scripts in Internationalized Domain Names (IDNs) has presented several challenges.  This memo provides a new Bidi rule for Internationalized Domain Names for Applications (IDNA) labels, based on the encountered problems with some scripts and some shortcomings in the 2003 IDNA Bidi criterion.  [STANDARDS-TRACK]</t>
+            </abstract>
+          </front>
+        </reference>
+        <reference anchor="RFC6365" target="https://www.rfc-editor.org/info/rfc6365" xml:base="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.6365.xml">
+          <front>
+            <title>Terminology Used in Internationalization in the IETF</title>
+            <seriesInfo name="DOI" value="10.17487/RFC6365"/>
+            <seriesInfo name="RFC" value="6365"/>
+            <seriesInfo name="BCP" value="166"/>
+            <author initials="P." surname="Hoffman" fullname="P. Hoffman">
+              <organization/>
+            </author>
+            <author initials="J." surname="Klensin" fullname="J. Klensin">
+              <organization/>
+            </author>
+            <date year="2011" month="September"/>
+            <abstract>
+              <t>This document provides a list of terms used in the IETF when discussing internationalization.  The purpose is to help frame discussions of internationalization in the various areas of the IETF and to help introduce the main concepts to IETF participants.   This memo documents an Internet Best Current Practice.</t>
+            </abstract>
+          </front>
+        </reference>
+        <reference anchor="RFC7564" target="https://www.rfc-editor.org/info/rfc7564" xml:base="http://xml.resource.org/public/rfc/bibxml/reference.RFC.7564.xml">
+          <front>
+            <title>PRECIS Framework: Preparation, Enforcement, and Comparison of Internationalized Strings in Application Protocols</title>
+            <seriesInfo name="DOI" value="10.17487/RFC7564"/>
+            <seriesInfo name="RFC" value="7564"/>
+            <author initials="P." surname="Saint-Andre" fullname="P. Saint-Andre">
+              <organization/>
+            </author>
+            <author initials="M." surname="Blanchet" fullname="M. Blanchet">
+              <organization/>
+            </author>
+            <date year="2015" month="May"/>
+            <abstract>
+              <t>Application protocols using Unicode characters in protocol strings need to properly handle such strings in order to enforce internationalization rules for strings placed in various protocol slots (such as addresses and identifiers) and to perform valid comparison operations (e.g., for purposes of authentication or authorization).  This document defines a framework enabling application protocols to perform the preparation, enforcement, and comparison of internationalized strings ("PRECIS") in a way that depends on the properties of Unicode characters and thus is agile with respect to versions of Unicode.  As a result, this framework provides a more sustainable approach to the handling of internationalized strings than the previous framework, known as Stringprep (RFC 3454).  This document obsoletes RFC 3454.</t>
+            </abstract>
+          </front>
+        </reference>
+        <reference anchor="Unicode" target="http://www.unicode.org/versions/latest/">
+          <front>
+            <title>The Unicode Standard</title>
+            <author>
+              <organization>The Unicode Consortium</organization>
+            </author>
+            <date/>
+          </front>
+        </reference>
+        <reference anchor="Unicode7.0" target="http://www.unicode.org/versions/Unicode7.0.0/">
+          <front>
+            <title>The Unicode Standard, Version 7.0.0</title>
+            <author>
+              <organization>The Unicode Consortium</organization>
+            </author>
+            <date year="2014"/>
+          </front>
+        </reference>
+        <reference anchor="UTS39" target="http://unicode.org/reports/tr39/">
+          <front>
+            <title>Unicode Technical Standard #39: Unicode Security Mechanisms</title>
+            <author>
+              <organization>The Unicode Consortium</organization>
+            </author>
+            <date month="November" year="2013"/>
+          </front>
+        </reference>
+      </references>
+      <references>
+        <name>Informative References</name>
+        <reference anchor="RFC20" target="http://www.rfc-editor.org/info/rfc20">
+          <front>
+            <title>ASCII format for network interchange</title>
+            <seriesInfo name="DOI" value="10.17487/RFC0020"/>
+            <seriesInfo name="RFC" value="20"/>
+            <seriesInfo name="STD" value="80"/>
+            <author initials="V.G." surname="Cerf" fullname="V.G. Cerf">
+              <organization/>
+            </author>
+            <date year="1969" month="October"/>
+          </front>
+        </reference>
+        <reference anchor="RFC2811" target="https://www.rfc-editor.org/info/rfc2811" xml:base="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2811.xml">
+          <front>
+            <title>Internet Relay Chat: Channel Management</title>
+            <seriesInfo name="DOI" value="10.17487/RFC2811"/>
+            <seriesInfo name="RFC" value="2811"/>
+            <author initials="C." surname="Kalt" fullname="C. Kalt">
+              <organization/>
+            </author>
+            <date year="2000" month="April"/>
+            <abstract>
+              <t>This document specifies how channels, their characteristics and properties are managed by IRC servers.  This memo provides information for the Internet community.</t>
+            </abstract>
+          </front>
+        </reference>
+        <reference anchor="RFC4975" target="https://www.rfc-editor.org/info/rfc4975" xml:base="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.4975.xml">
+          <front>
+            <title>The Message Session Relay Protocol (MSRP)</title>
+            <seriesInfo name="DOI" value="10.17487/RFC4975"/>
+            <seriesInfo name="RFC" value="4975"/>
+            <author initials="B." surname="Campbell" fullname="B. Campbell" role="editor">
+              <organization/>
+            </author>
+            <author initials="R." surname="Mahy" fullname="R. Mahy" role="editor">
+              <organization/>
+            </author>
+            <author initials="C." surname="Jennings" fullname="C. Jennings" role="editor">
+              <organization/>
+            </author>
+            <date year="2007" month="September"/>
+            <abstract>
+              <t>This document describes the Message Session Relay Protocol, a protocol for transmitting a series of related instant messages in the context of a session.  Message sessions are treated like any other media stream when set up via a rendezvous or session creation protocol such as the Session Initiation Protocol.  [STANDARDS-TRACK]</t>
+            </abstract>
+          </front>
+        </reference>
+        <reference anchor="RFC5239" target="https://www.rfc-editor.org/info/rfc5239" xml:base="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5239.xml">
+          <front>
+            <title>A Framework for Centralized Conferencing</title>
+            <seriesInfo name="DOI" value="10.17487/RFC5239"/>
+            <seriesInfo name="RFC" value="5239"/>
+            <author initials="M." surname="Barnes" fullname="M. Barnes">
+              <organization/>
+            </author>
+            <author initials="C." surname="Boulton" fullname="C. Boulton">
+              <organization/>
+            </author>
+            <author initials="O." surname="Levin" fullname="O. Levin">
+              <organization/>
+            </author>
+            <date year="2008" month="June"/>
+            <abstract>
+              <t>This document defines the framework for Centralized Conferencing. The framework allows participants using various call signaling protocols, such as SIP, H.323, Jabber, Q.931 or ISDN User Part (ISUP), to exchange media in a centralized unicast conference.  The Centralized Conferencing Framework defines logical entities and naming conventions.  The framework also outlines a set of conferencing protocols, which are complementary to the call signaling protocols, for building advanced conferencing applications.  The framework binds all the defined components together for the benefit of builders of conferencing systems.  [STANDARDS-TRACK]</t>
+            </abstract>
+          </front>
+        </reference>
+        <reference anchor="RFC5322" target="https://www.rfc-editor.org/info/rfc5322" xml:base="http://xml.resource.org/public/rfc/bibxml/reference.RFC.5322.xml">
+          <front>
+            <title>Internet Message Format</title>
+            <seriesInfo name="DOI" value="10.17487/RFC5322"/>
+            <seriesInfo name="RFC" value="5322"/>
+            <author initials="P." surname="Resnick" fullname="P. Resnick" role="editor">
+              <organization/>
+            </author>
+            <date year="2008" month="October"/>
+            <abstract>
+              <t>This document specifies the Internet Message Format (IMF), a syntax for text messages that are sent between computer users, within the framework of "electronic mail" messages.  This specification is a revision of Request For Comments (RFC) 2822, which itself superseded Request For Comments (RFC) 822, "Standard for the Format of ARPA Internet Text Messages", updating it to reflect current practice and incorporating incremental changes that were specified in other RFCs.  [STANDARDS-TRACK]</t>
+            </abstract>
+          </front>
+        </reference>
+        <reference anchor="RFC6120" target="https://www.rfc-editor.org/info/rfc6120" xml:base="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.6120.xml">
+          <front>
+            <title>Extensible Messaging and Presence Protocol (XMPP): Core</title>
+            <seriesInfo name="DOI" value="10.17487/RFC6120"/>
+            <seriesInfo name="RFC" value="6120"/>
+            <author initials="P." surname="Saint-Andre" fullname="P. Saint-Andre">
+              <organization/>
+            </author>
+            <date year="2011" month="March"/>
+            <abstract>
+              <t>The Extensible Messaging and Presence Protocol (XMPP) is an application profile of the Extensible Markup Language (XML) that enables the near-real-time exchange of structured yet extensible data between any two or more network entities.  This document defines XMPP's core protocol methods: setup and teardown of XML streams, channel encryption, authentication, error handling, and communication primitives for messaging, network availability ("presence"), and request-response interactions.  This document obsoletes RFC 3920.  [STANDARDS-TRACK]</t>
+            </abstract>
+          </front>
+        </reference>
+        <!--I-D.boulton-xcon-session-chat: Expired -->
+        <reference anchor="XCON-SYSTEM">
+          <front>
+            <title>Chatrooms within a Centralized Conferencing (XCON) System</title>
+            <seriesInfo name="Work in Progress," value="draft-boulton-xcon-session-chat-08"/>
+            <author initials="M" surname="Barnes" fullname="Mary Barnes">
+              <organization/>
+            </author>
+            <author initials="C" surname="Boulton" fullname="Chris Boulton">
+              <organization/>
+            </author>
+            <author initials="S" surname="Loreto" fullname="Salvatore Loreto">
+              <organization/>
+            </author>
+            <date month="July" day="16" year="2012"/>
+            <abstract>
+              <t>The document "A Framework for Centralized Conferencing" defines a centralized conference as both signaling and protocol agnostic.  The primary examples within this framework focus on audio and video as the media types for the session.  This document provides an overview of the mechanisms defined in the centralized conferencing framework that can be used to support multi-user chat.  In addition, the document describes additional functionality and requirements necessary to provide feature rich functionality.</t>
+            </abstract>
+          </front>
+        </reference>
+        <!--I-D.ietf-simple-chat:  Companion document, RFC 7701 -->
+        <reference anchor="RFC7701" target="http://www.rfc-editor.org/info/rfc7701">
+          <front>
+            <title>Multi-party Chat Using the Message Session Relay Protocol (MSRP)</title>
+            <seriesInfo name="DOI" value="10.17487/RFC7701"/>
+            <seriesInfo name="RFC" value="7701"/>
+            <author initials="A" surname="Niemi" fullname="Aki Niemi">
+              <organization/>
+            </author>
+            <author initials="M" surname="Garcia-Martin" fullname="Miguel Garcia-Martin">
+              <organization/>
+            </author>
+            <author initials="G" surname="Sandbakken" fullname="Geir Sandbakken">
+              <organization/>
+            </author>
+            <date month="December" year="2015"/>
+            <abstract>
+              <t>The Message Session Relay Protocol (MSRP) defines a mechanism for sending instant messages within a peer-to-peer session, negotiated using the Session Initiation Protocol (SIP) and the Session Description Protocol (SDP).  This document defines the necessary tools for establishing multi-party chat sessions, or chat rooms, using MSRP.</t>
+            </abstract>
+          </front>
+        </reference>
+        <reference anchor="XEP-0045" target="http://xmpp.org/extensions/xep-0045.html">
+          <front>
+            <title>Multi-User Chat</title>
+            <seriesInfo name="XSF XEP" value="0045"/>
+            <author initials="P." surname="Saint-Andre" fullname="Peter Saint-Andre">
+              <organization/>
+              <address>
+                <email>stpeter@jabber.org</email>
+              </address>
+            </author>
+            <date day="08" month="February" year="2012"/>
+          </front>
+        </reference>
+        <reference anchor="XEP-0172" target="http://xmpp.org/extensions/xep-0172.html">
+          <front>
+            <title>User Nickname</title>
+            <seriesInfo name="XSF XEP" value="0172"/>
+            <author initials="P." surname="Saint-Andre" fullname="Peter Saint-Andre">
+              <organization/>
+              <address>
+                <email>stpeter@jabber.org</email>
+              </address>
+            </author>
+            <author initials="V." surname="Mercier" fullname="Valerie Mercier">
+              <organization/>
+              <address>
+                <email>valerie.mercier@orange-ftgroup.com</email>
+              </address>
+            </author>
+            <date day="21" month="March" year="2012"/>
+          </front>
+        </reference>
+        <reference anchor="PETNAME-SYSTEMS" target="http://www.skyhunter.com/marcs/petnames/IntroPetNames.html">
+          <front>
+            <title>An Introduction to Petname Systems</title>
+            <seriesInfo name="updated June" value="2012"/>
+            <author initials="M." surname="Stiegler" fullname="Marc Stiegler">
+              <organization/>
+              <address>
+                <email/>
+              </address>
+            </author>
+            <date month="February" year="2005"/>
+          </front>
+        </reference>
+      </references>
+    </references>
+    <section anchor="acks" numbered="false" toc="default">
+      <name>Acknowledgements</name>
+      <t>Thanks to Kim Alvefur, Mary Barnes, Ben Campbell, Dave Cridland, Miguel Garcia, Salvatore Loreto, Enrico Marocco, Matt Miller, and Yoshiro YONEYA for their reviews and comments.</t>
+      <t>Paul Kyzivat and Melinda Shore reviewed the document for the General Area Review Team and Operations Directorate, respectively.</t>
+      <t>During IESG review, Ben Campbell and Kathleen Moriarty provided comments that led to further improvements.</t>
+      <t>Thanks to Matt Miller as Document Shepherd, Pete Resnick and Andrew Sullivan as IANA Designated Experts, Marc Blanchet and Alexey Melnikov as working group Chairs, and Barry Leiba as Area Director.</t>
+      <t>The author wishes to acknowledge Cisco Systems, Inc., for employing him during his work on earlier draft versions of this document.</t>
+    </section>
+  </back>
+</rfc>
