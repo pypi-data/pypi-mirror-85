@@ -1,0 +1,50 @@
+
+from setuptools import setup, find_packages
+
+__version__ = '0.0.23'
+
+setup(
+    name='arquants',
+    version=__version__,
+    description='arquants strategy engine',
+    url='https://gitlab.com/arquants/algorithm-engine.git',
+    author='TradeSpark',
+    author_email='info@arquants.trading',
+    license='MIT',
+    packages=find_packages(),
+    install_requires=[
+        "aq-lib==0.0.8",
+        "amqp==2.2.2",
+        "APScheduler==3.6.0",
+        "dateparser==0.6.0",
+        "enum34==1.1.6",
+        "jsonpickle==0.9.5",
+        "kombu==4.2.1",
+        "logger==1.4",
+        "marshmallow==3.0.0b11",
+        "python-dateutil==2.6.1",
+        "pytz==2017.3",
+        "redis==2.10.6",
+        "regex==2018.2.3",
+        "ruamel.yaml==0.15.35",
+        "tzlocal==1.5.1",
+        "vine==1.1.4",
+        "certifi==2019.6.16",
+        "chardet==3.0.4",
+        "gspread==3.1.0",
+        "httplib2==0.13.1",
+        "idna==2.8",
+        "oauth2client==4.1.3",
+        "pyasn1==0.4.5",
+        "pyasn1-modules==0.2.5",
+        "requests==2.22.0",
+        "rsa==4.0",
+        "urllib3==1.25.3",
+        "simplejson",
+        "websocket",
+        "websocket-client",
+        "google-api-python-client==1.9.3",
+        "wheel==0.35.1",
+        "backtrader==1.9.74.123"
+    ],
+)
