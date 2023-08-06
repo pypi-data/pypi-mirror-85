@@ -1,0 +1,16 @@
+image: python
+
+before_script:
+  - pip install tox
+
+flake8:
+  script: tox -e flake8
+
+py3:
+  script: tox -e py3
+  artifacts:
+    paths:
+      - py3-deprecated-warnings.json
+
+check-manifest:
+  script: tox -e check-manifest

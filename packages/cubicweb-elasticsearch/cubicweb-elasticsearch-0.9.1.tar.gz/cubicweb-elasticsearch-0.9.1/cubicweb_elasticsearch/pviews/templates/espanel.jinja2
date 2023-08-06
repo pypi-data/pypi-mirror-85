@@ -1,0 +1,29 @@
+<table class="table table-condensed">
+    <thead>
+        <th>index</th>
+        <th>doc_type</th>
+        <th>body</th>
+        <th>response</th>
+        <th>params</th>
+        <th>elapsed (ms)</th>
+    </thead>
+    <tbody>
+        {% for query in queries %}
+            <tr>
+                <td>{{ query.index | join(',') }}</td>
+                <td>{{ query.doc_type | join(',') }}</td>
+                <td>
+                    <pre><code class="language-json">{{ query.body | tojson(indent=1) }}</code></pre>
+                </td>
+                <td>
+                    <pre><code class="language-json">{{ query.response | tojson(indent=1) }}</code></pre>
+                </td>
+                <td>{{ query.params }}</td>
+                <td>{{ "%.2f"|format(query.elapsed|float) }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/components/prism-json.min.js"></script>

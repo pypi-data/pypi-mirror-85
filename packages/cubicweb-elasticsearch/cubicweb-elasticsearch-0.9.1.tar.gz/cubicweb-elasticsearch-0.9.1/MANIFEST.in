@@ -1,0 +1,15 @@
+include *.py
+include */*.py
+recursive-include cubicweb_elasticsearch *.py
+recursive-include cubicweb_elasticsearch/data *.gif *.png *.ico *.css *.js
+recursive-include cubicweb_elasticsearch/i18n *.po
+recursive-include cubicweb_elasticsearch/pviews/templates *.jinja2
+
+include test/data/bootstrap_cubes
+recursive-include test *.py
+include tox.ini
+include .gitlab-ci.yml
+prune debian
+exclude cubicweb-elasticsearch.spec
+exclude Makefile
+include README.rst
