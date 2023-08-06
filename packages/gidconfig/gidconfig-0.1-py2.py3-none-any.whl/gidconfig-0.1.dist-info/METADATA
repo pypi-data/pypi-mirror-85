@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: gidconfig
+Version: 0.1
+Summary: Configuration provider package, that exposes the section as attribute and also automatically keeps the config file and object in sync.
+Home-page: UNKNOWN
+License: UNKNOWN
+Author: Giddius
+Description-Content-Type: text/markdown
+Classifier: License :: OSI Approved :: MIT License
+Requires-Dist: pytoml>=0.1.21
+Requires-Dist: fuzzywuzzy==0.18.0
+Requires-Dist: gidlogger==0.1.2
+
+# Gidconfig
+
+Configuration provider package, that exposes the section as attribute and also automatically keeps the config file and object in sync.
+
+Through the Factory/Strategy the config objects are singletons as long as they point to the same file.
+
+
+## Config File Formats Supported
+
+- `ini`
+- `json` (WIP)
+
+
+## Status
+
+```
+Work In Progress
+```
