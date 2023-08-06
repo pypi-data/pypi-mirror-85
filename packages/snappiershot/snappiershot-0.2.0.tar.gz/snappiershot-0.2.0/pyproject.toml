@@ -1,0 +1,76 @@
+[tool.poetry]
+name = "snappiershot"
+version = "0.2.0"
+description = "Snapshot testing library."
+authors = [
+    "Ben Bonenfant <bonenfan5ben@gmail.com>",
+    "Lena Bartell <lenabartell@gmail.com>",
+    "John-Michael Cummings <jmcummings@morsecorp.com>",
+    "Yoni Smolyar <ysmolyar@morsecorp.com>",
+]
+readme = 'README.md'
+homepage = "https://github.com/MORSECorp/snappiershot"
+repository = "https://github.com/MORSECorp/snappiershot"
+keywords = ['snapshot', 'testing']
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: Pytest",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Testing :: Unit",
+]
+
+[tool.poetry.dependencies]
+python = "^3.6.1"
+importlib-metadata = { version = ">1.5.1", python = "<3.8" }
+tomlkit = "^0.7.0"
+pprint_ordered_sets = "^1.0.0"
+
+[tool.poetry.dev-dependencies]
+black = "19.10b0"
+coverage = "^5.3"
+flake8 = "^3.8.3"
+mypy = "^0.782"
+pre-commit = "^2.6.0"
+pytest = "^6.0.1"
+pytest_mock = "^3.3.1"
+
+[tool.poetry.plugins.pytest11]
+snappiershot = "snappiershot.plugins.pytest"
+
+[tool.black]
+line-length = 92
+target-version = ['py36', 'py37', 'py38']
+exclude = '\.git|\.idea|\.venv|\.\*cache|\*\.egg-info'
+
+[tool.coverage]
+    [tool.coverage.report]
+    exclude_lines = [
+      "pragma: no cover",
+      "def __repr__",
+      "raise NotImplementedError",
+      "if __name__ == .__main__.:",
+    ]
+    omit = [
+      "*/__init__.py",
+      "*/conftest.py",
+    ]
+    fail_under = 100
+    show_missing = true
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+known_first_party = "snappiershot"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+norecursedirs = "pytester_example_dir"
+pytester_example_dir = "tests/test_plugins/pytester_example_dir"
+addopts = "-vv -p pytester"
+
+[build-system]
+requires = ["poetry>=1.0.5"]
+build-backend = "poetry.masonry.api"
