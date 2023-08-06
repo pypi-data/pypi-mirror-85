@@ -1,0 +1,1 @@
+This is a topsis program using python and is a cli based program. Use python topsis-jaskaran-101803660 <InputDataFile> <Weights> <Impacts> <ResultFileName>
