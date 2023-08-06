@@ -1,0 +1,1 @@
+# django-eveonline-group-states
