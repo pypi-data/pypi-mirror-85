@@ -1,0 +1,18 @@
+{% extends "admin/change_form.html" %}
+{% load django_readedit_switch_admin_tags %}
+
+{% block submit_buttons_top %}
+{% if with_django_readedit_switch_admin %}
+    {% django_readedit_switch_admin_submit_row %}
+{% else %}
+    {{block.super}}
+{% endif %}
+{% endblock %}
+
+{% block submit_buttons_bottom %}
+{% if with_django_readedit_switch_admin %}
+    {% django_readedit_switch_admin_submit_row %}
+{% else %}
+    {{block.super}}
+{% endif %}
+{% endblock %}
