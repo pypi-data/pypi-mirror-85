@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: Python-NBS
+Version: 1.0.0
+Summary: A python library for loading NBS files
+Home-page: https://github.com/kemo14331/Python-NBS
+Author: Kemo431
+License: MIT
+Description: # Python-NBS
+        A python library for reading NBS files
+        
+        Based on NBS Version: 4(Current version used by Open Note Block Studio)
+        
+        ## What is NBS
+        
+        > The .nbs format (Note Block Song) was created to work with Minecraft Note Block Studio, and contains data about how note blocks are laid out in the program to form a song.
+        
+        From [opennbs.org](https://opennbs.org/nbs).
+        
+        ## Installation
+        
+        ```bash
+        pip install Python-NBS
+        ```
+        
+        ## Usage
+        
+        ```Python
+        import python_nbs.nbs as nbs
+        import pprint
+        nbs_file = nbs.NBS("file.nbs")
+        
+        # print song name
+        print(nbs_file.song_name)
+        
+        # print all note blocks
+        pprint(nbs_file.note_blocks)
+        ```
+        
+        See docstring for the available instance variables.
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Games/Entertainment
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
+Provides-Extra: develop
