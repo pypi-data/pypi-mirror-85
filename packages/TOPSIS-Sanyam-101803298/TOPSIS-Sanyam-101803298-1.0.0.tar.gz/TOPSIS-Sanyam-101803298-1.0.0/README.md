@@ -1,0 +1,17 @@
+# About Topsis
+It is a method of compensatory aggregation that compares a set of alternatives by identifying weights for each criterion, normalising scores for each criterion and calculating the geometric distance between each alternative and the ideal alternative, which is the best score in each criterion. An assumption of TOPSIS is that the criteria are monotonically increasing or decreasing. Normalisation is usually required as the parameters or criteria are often of incongruous dimensions in multi-criteria problems
+
+## Installation
+```pip install TOPSIS-Sanyam-101803298```
+
+## How to use it?
+Open terminal and type following query
+```python topsis input_filename.csv "w1,w2,w3,w4" "i1,i2,i3,i4" result.csv```
+w1,w2,w3,w4 represent weights and i1,i2,i3,i4 represent impacts. w1,w2,etc can be in float/integer form while i1,i2,etc can either be '+' or '-'
+Also the input_filename.csv has to be provided in the directory in which you will be expecting the result.csv</br>
+Rank 1 in the result.csv file will denote the best decision
+
+## License
+© 2020 Sanyam Jain
+
+This repository is licensed under the MIT license. See LICENSE for details
