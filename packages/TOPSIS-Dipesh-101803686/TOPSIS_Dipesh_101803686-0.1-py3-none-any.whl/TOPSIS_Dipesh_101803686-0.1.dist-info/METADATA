@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: TOPSIS-Dipesh-101803686
+Version: 0.1
+Summary: Package for calculating Topsis Score
+Home-page: UNKNOWN
+Author: Dipesh Jindal
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3    
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3
+Description-Content-Type: text/markdown
+Requires-Dist: pandas
+
+# TOPSIS_Dipesh_101803686
+
+A Python package to get topsis score for selected csv file.
+
+## Usage
+
+This package contains a function named calculate_Topsis_Score which takes 4 parameters:
+
+-- inputFile :  This parameter denotes the csv file containing the data
+                This package assume following points about the data:
+                - Input file contain three or more columns
+                - First column is the object/variable name (e.g. M1, M2, M3, M4â€¦...)
+                - From 2nd to last columns contain numeric values only
+
+-- weight :     weight is string containg the numeric weight of each column, 
+                must be separated by ',' eg. "1,1,2,1".
+
+-- impact :     impact is string containg the impact of each column, it should be either
+                '+' or '-' must be separated   by ',' eg. "1,1,2,1".
+
+Note : Number of weights, number of impacts and number of columns (from 2nd to last columns) must be same.
+
+-- outputFile : This parameter denotes the name of csv file to store the result.
+
+```
+import topsis_dipesh_jindal_101803686
+topsis_dipesh_jindal_101803686.calculate_Topsis_Score("data.csv","1,1,1,1","+,+,-,+","result.csv")
+
+
