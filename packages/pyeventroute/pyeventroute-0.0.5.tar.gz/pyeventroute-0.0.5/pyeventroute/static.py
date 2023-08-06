@@ -1,0 +1,5 @@
+""" version which can be consumed from within the module """
+VERSION_STR = "0.0.5"
+DESCRIPTION = "pyeventroute helps you route events to loggers or to any other place"
+APP_NAME = "pyeventroute"
+LOGGER_NAME = "pyeventroute"
