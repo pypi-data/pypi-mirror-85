@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: autoskip
+Version: 1.0.4
+Summary: Blacklist artists and songs, no login needed.
+Home-page: https://github.com/Blatzar/spotify-skipper
+Author: Blatzar
+Author-email: blatzar@gmail.com
+License: UNKNOWN
+Keywords: spotify,skip
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: colorama
+Requires-Dist: dbus-python
+Requires-Dist: dbus-next
+Requires-Dist: asyncio
+Requires-Dist: argparse
+Requires-Dist: notify-send
+
+# spotify-skipper
+##### A python program to automatically skip unwanted songs.
+
+## Installation
+
+### Python Package
+
+**Linux only!** This program relies on dbus and will not work on windows.
+OSX not tested.
+
+You can install the [pypi](https://pypi.org/project/autoskip/) package using `pip3 install autoskip`. 
+
+Make sure wherever it is installed to is on your path. You can check with `pip3 show autoskip`.
+
+## Usage
+
+```bash
+autoskip # Normal usage
+autoskip -h # See help
+```
+Using any flags will not start the CLI, to make scripting easier. Use --run to prevent this.
+
+|  Short |  Long             | Description                                                 | 
+|--------|-------------------|-------------------------------------------------------------|
+| -h     | --help            | Shows CLI help and exits                                    |
+| -s     | --skip            | Skips current track                                         |
+| -wls   | --whitelist-song  | Toggle whitelist for current song                           |
+| -wla   | --whitelist-artist| Toggle whitelist for current artist                         |
+| -bls   | --blacklist-song  | Toggle blacklist for current song                           |
+| -bla   | --blacklist-artist| Toggle blacklist for current artist                         |
+| -n     | --notify          | Toggle notifications                                        |
+| -r     | --run             | Run the CLI regardless of flags                             |
+
+
+
