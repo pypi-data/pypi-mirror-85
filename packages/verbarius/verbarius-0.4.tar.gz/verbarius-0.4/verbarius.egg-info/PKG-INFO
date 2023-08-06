@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: verbarius
+Version: 0.4
+Summary: VerbariusRus
+Home-page: https://github.com/k4m454k/VerbariusRus
+Author: Vadim Apenko
+Author-email: k4m454k@gmail.com
+License: UNKNOWN
+Description: # Verbarius Clock Russian prototype algorithm
+        
+            `половина двенадцатого
+            тридцать одна минута двенадцатого
+            одиннадцать часов тридцать пять минут
+            без двадцати полдень
+            одиннадцать сорок пять
+            без минуты полдень
+            двенадцать
+            два ровно
+            пятнадцать минут третьего
+            без пяти три
+            без пятидесяти девяти пять =)
+            четыре с четвертью
+            одна минута шестого`
+        
+        ## Install:
+        
+        `pip install verbarius`
+        
+        ## Usage:
+        
+        ```
+        >>> from verbarius import Verbarius
+        >>> v = Verbarius()
+        >>> v.get_time_string(3,10)
+        'десять минут четвёртого'
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
