@@ -1,0 +1,37 @@
+Metadata-Version: 1.1
+Name: TOPSIS_Prakhar_101803126
+Version: 2.2
+Summary: Package To Calulate the Topsis score and ranking of a given CSV File ( with non-categorical data only ).
+Home-page: https://github.com/PrakharJindal/Topsis-Pypi-Package
+Author: Prakhar Jindal
+Author-email: iamprakharjindal@gmail.com
+License: MIT
+Download-URL: https://github.com/PrakharJindal/Topsis-Pypi-Package/archive/v2.2.tar.gz
+Description: Topsis-Pypi-Package
+        A Pypi Package To calculate Topsis Score and Ranking on a given CSV File
+        
+        Eg. 
+            from TOPSIS_Prakhar_101803126.topsis import CalculateTopsisScore
+        
+            filename = "testData.csv"
+        
+            weight = "1,1,1,2"
+        
+            impact = "+,+,-,+"
+        
+            CalculateTopsisScore(filename, weight, impact )
+        
+        Note : 
+            1. The package Shoud Contain All Non Categorical data 
+            2. The size of wights and impacts should be equal
+Keywords: Topsis,Topsis Ranking
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.8
