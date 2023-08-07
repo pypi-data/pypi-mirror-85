@@ -1,0 +1,30 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "nbcourse"
+author = "Matthieu Boileau"
+author-email = "matthieu.boileau@math.unistra.fr"
+home-page = "https://gitlab.math.unistra.fr/boileau/nbcourse"
+classifiers = ["License :: OSI Approved :: MIT License"]
+description-file = "README.md"
+requires = [
+    "nbconvert >= 6.0",
+    "bs4",
+    "IPython",
+    "jinja2",
+    "jupyter_contrib_nbextensions",
+    "latex",
+    "markdown",
+    "rise",
+    "pyyaml",
+    "doit >= 0.32.0",
+    "python-frontmatter",
+]
+
+[tool.flit.metadata.requires-extra]
+test = ["pytest"]
+
+[tool.flit.scripts]
+nbcourse = "nbcourse:main.main"

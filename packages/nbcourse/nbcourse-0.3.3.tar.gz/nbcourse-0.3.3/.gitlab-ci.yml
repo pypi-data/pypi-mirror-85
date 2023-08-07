@@ -1,0 +1,27 @@
+image: boileaum/jupyter
+default:
+  before_script:
+    - python -m venv .venv
+    - source .venv/bin/activate
+    - pip install flit
+    - flit install
+    - pip install git+https://github.com/boileaum/bookbook.git@master
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
+test:
+  stage: test
+  tags:
+    - docker
+  script:
+    - python -m pytest -v
+
+deploy:
+  stage: deploy
+  tags:
+    - docker
+  script:
+    - flit publish
+  only:
+    - master
